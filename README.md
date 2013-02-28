@@ -7,7 +7,7 @@ A minimal status bar for iOS. Similair to the status bar seen in the MailBox app
 ## Installation
 
 * Drag the `KGStatusBar/KGStatusBar` folder into your project.
-* Add #include "KGStatusBar.h" in your .pch file
+* Add #include "KGStatusBar.h" to your .pch file
 
 ## Usage
 
