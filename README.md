@@ -26,4 +26,4 @@ KGStatusBar is a singleton and can be ran from anywhere. Make sure your layout s
 Enjoy :)
 
 
-Brought to you you by [Kevin Gibbon](http://kevingibbon.com). Currently raising shit at [Attachments.me](https://attachments.me)
+Brought to you you by [Kevin Gibbon](https://twitter.com/kevingibbon). Currently raising hell at [Attachments.me](https://attachments.me)
