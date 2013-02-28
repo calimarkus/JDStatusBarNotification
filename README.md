@@ -11,7 +11,7 @@ A minimal status bar for iOS. Similair to the status bar seen in the MailBox app
 
 ## Usage
 
-KGStatusBar is a singleton and can be ran from anywhere. Make sure your layout shows the default status bar. I defaulted the colors to match it. Change if needed.
+KGStatusBar is a singleton. Make sure your view displays the default status bar for this to be effective. I defaulted the colors to match the default status bar. Change if needed.
 
 ### Showing the Status Bar
 
