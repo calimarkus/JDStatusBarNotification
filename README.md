@@ -2,7 +2,7 @@
 
 A minimal status bar for iOS. Similair to the status bar seen in the MailBox app. It covers the top status bar and appears like the message is embedded within.
 
-![KGStatusBar](http://s10.postimage.org/doeo90sux/KGStatus_Bar.png)
+![KGStatusBar](http://s12.postimage.org/8thcnmnct/KGStatus_Bar.png)
 
 ## Installation
 
