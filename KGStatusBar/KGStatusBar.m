@@ -25,12 +25,19 @@
     return sharedView;
 }
 
++ (void)showSuccessWithStatus:(NSString*)status
+{
+    [KGStatusBar showWithStatus:status];
+    [KGStatusBar performSelector:@selector(dismiss) withObject:self afterDelay:2.0 ];
+}
+
 + (void)showWithStatus:(NSString*)status {
     [[KGStatusBar sharedView] showWithStatus:status barColor:[UIColor blackColor] textColor:[UIColor colorWithRed:191.0/255.0 green:191.0/255.0 blue:191.0/255.0 alpha:1.0]];
 }
 
 + (void)showErrorWithStatus:(NSString*)status {
     [[KGStatusBar sharedView] showWithStatus:status barColor:[UIColor colorWithRed:97.0/255.0 green:4.0/255.0 blue:4.0/255.0 alpha:1.0] textColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    [KGStatusBar performSelector:@selector(dismiss) withObject:self afterDelay:2.0 ];
 }
 
 + (void)dismiss {
