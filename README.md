@@ -17,6 +17,7 @@ KGStatusBar is a singleton. Make sure your view displays the default status bar 
 
 * [KGStatusBar showWithStatus:@"Loading"];
 * [KGStatusBar showErrorWithStatus:@"Error Synching Files."];
+* [KGStatusBar showSuccessWithStatus:@"Successfully synced"];
 
 ### Dismissing Status Bar
 
