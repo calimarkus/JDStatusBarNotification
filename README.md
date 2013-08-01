@@ -27,4 +27,4 @@ KGStatusBar is a singleton. Make sure your view displays the default status bar 
 Enjoy :)
 
 
-Brought to you you by [Kevin Gibbon](https://twitter.com/kevingibbon). Currently raising hell at [Attachments.me](https://attachments.me)
+Brought to you you by [Kevin Gibbon](https://twitter.com/kevingibbon). Currently raising hell at [Shyp](http://shyp.com)
