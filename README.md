@@ -10,7 +10,7 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 **Manually:**  
 
 1. Drag the `JDStatusBarNotification/JDStatusBarNotification` folder into your project.
-2. Add `#include "KGStatusBar.h"`, where you want to use it
+2. Add `#include "JDStatusBarNotification.h"`, where you want to use it
 
 ## Usage
 
