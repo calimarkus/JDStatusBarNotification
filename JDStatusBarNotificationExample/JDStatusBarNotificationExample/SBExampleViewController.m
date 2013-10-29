@@ -11,7 +11,6 @@
 #import "SBExampleViewController.h"
 
 static NSString *const SBStyle1 = @"SBStyle1";
-static NSString *const SBStyle2 = @"SBStyle2";
 
 @interface SBExampleViewController ()
 
@@ -27,16 +26,10 @@ static NSString *const SBStyle2 = @"SBStyle2";
         
         [JDStatusBarNotification addStyleNamed:SBStyle1
                                        prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
-                                           style.barColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
+                                           style.barColor = [UIColor colorWithRed:0.797 green:0.000 blue:0.662 alpha:1.000];
                                            style.textColor = [UIColor whiteColor];
                                            style.animationType = JDStatusBarAnimationTypeFade;
-                                           return style;
-                                       }];
-        
-        [JDStatusBarNotification addStyleNamed:SBStyle2
-                                       prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
-                                           style.barColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
-                                           style.textColor = [UIColor darkGrayColor];
+                                           style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
                                            return style;
                                        }];
     }
@@ -50,13 +43,21 @@ static NSString *const SBStyle2 = @"SBStyle2";
     } else if (button == self.button2) {
         [JDStatusBarNotification dismiss];
     } else if (button == self.button3) {
-        [JDStatusBarNotification showWithStatus:@"You really better caul Saul!"
+        [JDStatusBarNotification showWithStatus:@"No, I don't have the money.."
+                                   dismissAfter:2.0
+                                      styleName:JDStatusBarStyleError];
+    } else if (button == self.button4) {
+        [JDStatusBarNotification showWithStatus:@"You know who I am!"
+                                   dismissAfter:2.0
+                                      styleName:JDStatusBarStyleWarning];
+    } else if (button == self.button5) {
+        [JDStatusBarNotification showWithStatus:@"That's how we roll!"
+                                   dismissAfter:2.0
+                                      styleName:JDStatusBarStyleSuccess];
+    } else if (button == self.button6) {
+        [JDStatusBarNotification showWithStatus:@"Oh, I love it!"
                                    dismissAfter:2.0
                                       styleName:SBStyle1];
-    } else if (button == self.button4) {
-        [JDStatusBarNotification showWithStatus:@"Better caul Saul!"
-                                   dismissAfter:2.0
-                                      styleName:SBStyle2];
     }
 }
 

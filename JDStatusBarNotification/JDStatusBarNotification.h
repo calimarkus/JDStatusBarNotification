@@ -9,6 +9,10 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const JDStatusBarStyleError;
+extern NSString *const JDStatusBarStyleWarning;
+extern NSString *const JDStatusBarStyleSuccess;
+
 typedef enum {
     JDStatusBarAnimationTypeMove,
     JDStatusBarAnimationTypeFade

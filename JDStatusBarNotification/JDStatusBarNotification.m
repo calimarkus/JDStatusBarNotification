@@ -9,6 +9,10 @@
 
 #import "JDStatusBarNotification.h"
 
+NSString *const JDStatusBarStyleError = @"JDStatusBarStyleError";
+NSString *const JDStatusBarStyleWarning = @"JDStatusBarStyleWarning";
+NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
+
 @interface JDStatusBarNotification ()
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *topBar;
@@ -35,17 +39,6 @@
     dispatch_once(&once, ^ {
         sharedInstance = [[JDStatusBarNotification alloc] initWithFrame:
                           [[UIScreen mainScreen] bounds]];
-        
-        // set defaults
-        JDStatusBarStyle *defaultStyle = [[JDStatusBarStyle alloc] init];
-        defaultStyle.barColor = [UIColor whiteColor];
-        defaultStyle.textColor = [UIColor grayColor];
-        defaultStyle.font = [UIFont systemFontOfSize:12.0];
-        defaultStyle.animationType = JDStatusBarAnimationTypeMove;
-        sharedInstance.defaultStyle = defaultStyle;
-        
-        // prepare userStyles
-        sharedInstance.userStyles = [NSMutableDictionary dictionary];
     });
     return sharedInstance;
 }
@@ -101,27 +94,73 @@
 + (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 {
-    NSAssert(identifier != nil, @"No identifier provided");
-    NSAssert(prepareBlock != nil, @"No prepareBlock provided");
-    
-    JDStatusBarStyle *style = [[self sharedInstance].defaultStyle copy];
-    [[self sharedInstance].userStyles setObject:prepareBlock(style) forKey:identifier];
-    return identifier;
+    return [[JDStatusBarNotification sharedInstance] addStyleNamed:identifier
+                                                           prepare:prepareBlock];
 }
 
 #pragma mark implementation
 
 - (id)initWithFrame:(CGRect)frame;
 {
-	
     if ((self = [super initWithFrame:frame])) {
 		self.userInteractionEnabled = NO;
         self.backgroundColor = [UIColor clearColor];
 		self.alpha = 0;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        // set defaults
+        JDStatusBarStyle *defaultStyle = [[JDStatusBarStyle alloc] init];
+        defaultStyle.barColor = [UIColor whiteColor];
+        defaultStyle.textColor = [UIColor grayColor];
+        defaultStyle.font = [UIFont systemFontOfSize:12.0];
+        defaultStyle.animationType = JDStatusBarAnimationTypeMove;
+        self.defaultStyle = defaultStyle;
+        
+        // prepare userStyles + defaultStyles
+        self.userStyles = [NSMutableDictionary dictionary];
+        [self addDefaultStyles];
     }
     return self;
 }
+
+#pragma mark custom styles
+
+- (void)addDefaultStyles;
+{
+    [self addStyleNamed:JDStatusBarStyleError
+                prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                    style.barColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
+                    style.textColor = [UIColor whiteColor];
+                    return style;
+                }];
+    
+    [self addStyleNamed:JDStatusBarStyleWarning
+                prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                    style.barColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
+                    style.textColor = [UIColor darkGrayColor];
+                    return style;
+                }];
+    
+    [self addStyleNamed:JDStatusBarStyleSuccess
+                prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                    style.barColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
+                    style.textColor = [UIColor whiteColor];
+                    return style;
+                }];
+}
+
+- (NSString*)addStyleNamed:(NSString*)identifier
+                   prepare:(JDPrepareStyleBlock)prepareBlock;
+{
+    NSAssert(identifier != nil, @"No identifier provided");
+    NSAssert(prepareBlock != nil, @"No prepareBlock provided");
+    
+    JDStatusBarStyle *style = [self.defaultStyle copy];
+    [self.userStyles setObject:prepareBlock(style) forKey:identifier];
+    return identifier;
+}
+
+#pragma mark presentation
 
 - (void)showWithStatus:(NSString *)status
              styleName:(NSString*)styleName;
@@ -175,6 +214,8 @@
     }];
     [self setNeedsDisplay];
 }
+
+#pragma mark dismissal
 
 - (void)setDismissTimerWithInterval:(NSTimeInterval)interval;
 {
