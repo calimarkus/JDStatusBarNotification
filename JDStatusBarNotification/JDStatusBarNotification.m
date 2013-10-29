@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readonly) UIView *topBar;
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 
+@property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
 @end
@@ -139,6 +140,17 @@
 - (void)showWithStatus:(NSString *)status
                  style:(JDStatusBarStyle*)style;
 {
+    if (style != self.activeStyle) {
+        self.activeStyle = style;
+        if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
+            self.topBar.alpha = 0.0;
+            self.topBar.frame = CGRectMake(0, 0, self.overlayWindow.frame.size.width, [self statusBarHeight]);
+        } else {
+            self.topBar.alpha = 1.0;
+            self.topBar.frame = CGRectMake(0, -[self statusBarHeight], self.overlayWindow.frame.size.width, [self statusBarHeight]);
+        }
+    }
+    
     [self.overlayWindow addSubview:self];
     [self.overlayWindow setHidden:NO];
     
@@ -158,7 +170,7 @@
 - (void)dismiss;
 {
     [UIView animateWithDuration:0.4 animations:^{
-        if (self.defaultStyle.animationType == JDStatusBarAnimationTypeFade) {
+        if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
             self.topBar.frame = CGRectMake(0, -[self statusBarHeight],
