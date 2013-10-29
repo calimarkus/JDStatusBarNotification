@@ -14,6 +14,8 @@
 @property (nonatomic, strong, readonly) UIView *topBar;
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 
+@property (nonatomic, strong) NSTimer *dismissTimer;
+
 @property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
@@ -85,8 +87,7 @@
 
 + (void)dismissAfter:(NSTimeInterval)delay;
 {
-    [JDStatusBarNotification performSelector:@selector(dismiss)
-                                  withObject:self afterDelay:delay];
+    [[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay];
 }
 
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
@@ -140,6 +141,7 @@
 - (void)showWithStatus:(NSString *)status
                  style:(JDStatusBarStyle*)style;
 {
+    // prepare for new style
     if (style != self.activeStyle) {
         self.activeStyle = style;
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
@@ -151,15 +153,22 @@
         }
     }
     
+    // cancel previous dismissing & remove animations
+    [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(dismiss) target:self argument:nil];
+    [self.topBar.layer removeAllAnimations];
+    
+    // show window
     [self.overlayWindow addSubview:self];
     [self.overlayWindow setHidden:NO];
     
+    // update style
     self.topBar.backgroundColor = style.barColor;
     self.textLabel.textColor = style.textColor;
     self.textLabel.font = style.font;
     self.textLabel.frame = CGRectMake(0, 2, self.topBar.bounds.size.width, self.topBar.bounds.size.height-2);
     self.textLabel.text = status;
     
+    // animate in
     [UIView animateWithDuration:0.4 animations:^{
         self.topBar.alpha = 1.0;
         self.topBar.frame = CGRectMake(0, 0, self.overlayWindow.frame.size.width, [self statusBarHeight]);
@@ -167,8 +176,19 @@
     [self setNeedsDisplay];
 }
 
+- (void)setDismissTimerWithInterval:(NSTimeInterval)interval;
+{
+    [self.dismissTimer invalidate];
+    self.dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
+                                                 interval:0 target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:self.dismissTimer forMode:NSRunLoopCommonModes];
+}
+
 - (void)dismiss;
 {
+    [self.dismissTimer invalidate];
+    self.dismissTimer = nil;
+    
     [UIView animateWithDuration:0.4 animations:^{
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
@@ -216,7 +236,8 @@
         [self.topBar addSubview:self.textLabel];
         [self.overlayWindow addSubview:_topBar];
         
-        if (self.defaultStyle.animationType == JDStatusBarAnimationTypeMove) {
+        JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
+        if (style.animationType == JDStatusBarAnimationTypeMove) {
             self.topBar.alpha = 1.0;
             self.topBar.frame = CGRectMake(0, -[self statusBarHeight],
                                            self.overlayWindow.frame.size.width, [self statusBarHeight]);
