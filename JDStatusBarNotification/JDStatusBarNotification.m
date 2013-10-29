@@ -185,10 +185,10 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         self.activeStyle = style;
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
-            self.topBar.frame = CGRectMake(0, 0, self.overlayWindow.frame.size.width, [self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformIdentity;
         } else {
             self.topBar.alpha = 1.0;
-            self.topBar.frame = CGRectMake(0, -[self statusBarHeight], self.overlayWindow.frame.size.width, [self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformMakeTranslation(0, -[self statusBarHeight]);
         }
     }
     
@@ -234,8 +234,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
-            self.topBar.frame = CGRectMake(0, -[self statusBarHeight],
-                                           self.overlayWindow.frame.size.width, [self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformMakeTranslation(0, -[self statusBarHeight]);
         }
     } completion:^(BOOL finished) {
         [self.topBar removeFromSuperview];
@@ -280,8 +279,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
         if (style.animationType == JDStatusBarAnimationTypeMove) {
             self.topBar.alpha = 1.0;
-            self.topBar.frame = CGRectMake(0, -[self statusBarHeight],
-                                           self.overlayWindow.frame.size.width, [self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformMakeTranslation(0, -[self statusBarHeight]);
         }
     }
     return _topBar;
