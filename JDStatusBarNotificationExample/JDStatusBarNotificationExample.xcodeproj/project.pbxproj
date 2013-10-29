@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
+		D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8921820213200DA0E53 /* CoreGraphics.framework */; };
+		D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
+		D264F89D1820213200DA0E53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
+		D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
+		D264F8A31820213200DA0E53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
+		D264F8AA1820213200DA0E53 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8A91820213200DA0E53 /* XCTest.framework */; };
+		D264F8AB1820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
+		D264F8AC1820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
+		D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */; };
+		D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
+		D264F8C71820219F00DA0E53 /* SBExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D264F8C51820219F00DA0E53 /* SBExampleViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D264F8AD1820213200DA0E53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D264F8851820213200DA0E53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D264F88C1820213200DA0E53;
+			remoteInfo = JDStatusBarNotificationExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDStatusBarNotificationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D264F8901820213200DA0E53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D264F8921820213200DA0E53 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D264F8941820213200DA0E53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D264F8981820213200DA0E53 /* JDStatusBarNotificationExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JDStatusBarNotificationExample-Info.plist"; sourceTree = "<group>"; };
+		D264F89C1820213200DA0E53 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D264F89E1820213200DA0E53 /* JDStatusBarNotificationExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDStatusBarNotificationExample-Prefix.pch"; sourceTree = "<group>"; };
+		D264F89F1820213200DA0E53 /* SBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBAppDelegate.h; sourceTree = "<group>"; };
+		D264F8A01820213200DA0E53 /* SBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBAppDelegate.m; sourceTree = "<group>"; };
+		D264F8A21820213200DA0E53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D264F8A81820213200DA0E53 /* JDStatusBarNotificationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDStatusBarNotificationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D264F8A91820213200DA0E53 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
+		D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
+		D264F8C31820219F00DA0E53 /* SBExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBExampleViewController.h; sourceTree = "<group>"; };
+		D264F8C41820219F00DA0E53 /* SBExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBExampleViewController.m; sourceTree = "<group>"; };
+		D264F8C51820219F00DA0E53 /* SBExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBExampleViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D264F88A1820213200DA0E53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */,
+				D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */,
+				D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D264F8A51820213200DA0E53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D264F8AA1820213200DA0E53 /* XCTest.framework in Frameworks */,
+				D264F8AC1820213200DA0E53 /* UIKit.framework in Frameworks */,
+				D264F8AB1820213200DA0E53 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D264F8841820213200DA0E53 = {
+			isa = PBXGroup;
+			children = (
+				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
+				D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */,
+				D264F88F1820213200DA0E53 /* Frameworks */,
+				D264F88E1820213200DA0E53 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D264F88E1820213200DA0E53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */,
+				D264F8A81820213200DA0E53 /* JDStatusBarNotificationExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D264F88F1820213200DA0E53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D264F8901820213200DA0E53 /* Foundation.framework */,
+				D264F8921820213200DA0E53 /* CoreGraphics.framework */,
+				D264F8941820213200DA0E53 /* UIKit.framework */,
+				D264F8A91820213200DA0E53 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */ = {
+			isa = PBXGroup;
+			children = (
+				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
+				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
+				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
+				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
+				D264F8C51820219F00DA0E53 /* SBExampleViewController.xib */,
+				D264F8A21820213200DA0E53 /* Images.xcassets */,
+				D264F8971820213200DA0E53 /* Supporting Files */,
+			);
+			path = JDStatusBarNotificationExample;
+			sourceTree = "<group>";
+		};
+		D264F8971820213200DA0E53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D264F8981820213200DA0E53 /* JDStatusBarNotificationExample-Info.plist */,
+				D264F89C1820213200DA0E53 /* main.m */,
+				D264F89E1820213200DA0E53 /* JDStatusBarNotificationExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D264F8BF1820216300DA0E53 /* JDStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */,
+				D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */,
+			);
+			name = JDStatusBarNotification;
+			path = ../JDStatusBarNotification;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExample" */;
+			buildPhases = (
+				D264F8891820213200DA0E53 /* Sources */,
+				D264F88A1820213200DA0E53 /* Frameworks */,
+				D264F88B1820213200DA0E53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JDStatusBarNotificationExample;
+			productName = JDStatusBarNotificationExample;
+			productReference = D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D264F8A71820213200DA0E53 /* JDStatusBarNotificationExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D264F8BC1820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExampleTests" */;
+			buildPhases = (
+				D264F8A41820213200DA0E53 /* Sources */,
+				D264F8A51820213200DA0E53 /* Frameworks */,
+				D264F8A61820213200DA0E53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D264F8AE1820213200DA0E53 /* PBXTargetDependency */,
+			);
+			name = JDStatusBarNotificationExampleTests;
+			productName = JDStatusBarNotificationExampleTests;
+			productReference = D264F8A81820213200DA0E53 /* JDStatusBarNotificationExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D264F8851820213200DA0E53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SB;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Markus;
+				TargetAttributes = {
+					D264F8A71820213200DA0E53 = {
+						TestTargetID = D264F88C1820213200DA0E53;
+					};
+				};
+			};
+			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D264F8841820213200DA0E53;
+			productRefGroup = D264F88E1820213200DA0E53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */,
+				D264F8A71820213200DA0E53 /* JDStatusBarNotificationExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D264F88B1820213200DA0E53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D264F8C71820219F00DA0E53 /* SBExampleViewController.xib in Resources */,
+				D264F8A31820213200DA0E53 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D264F8A61820213200DA0E53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D264F8891820213200DA0E53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
+				D264F89D1820213200DA0E53 /* main.m in Sources */,
+				D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */,
+				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D264F8A41820213200DA0E53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D264F8AE1820213200DA0E53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */;
+			targetProxy = D264F8AD1820213200DA0E53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D264F8B71820213200DA0E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D264F8B81820213200DA0E53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D264F8BA1820213200DA0E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
+				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D264F8BB1820213200DA0E53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
+				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D264F8BD1820213200DA0E53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JDStatusBarNotificationExample.app/JDStatusBarNotificationExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JDStatusBarNotificationExampleTests/JDStatusBarNotificationExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D264F8BE1820213200DA0E53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JDStatusBarNotificationExample.app/JDStatusBarNotificationExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
+				INFOPLIST_FILE = "JDStatusBarNotificationExampleTests/JDStatusBarNotificationExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D264F8B71820213200DA0E53 /* Debug */,
+				D264F8B81820213200DA0E53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D264F8BA1820213200DA0E53 /* Debug */,
+				D264F8BB1820213200DA0E53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D264F8BC1820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D264F8BD1820213200DA0E53 /* Debug */,
+				D264F8BE1820213200DA0E53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D264F8851820213200DA0E53 /* Project object */;
+}
