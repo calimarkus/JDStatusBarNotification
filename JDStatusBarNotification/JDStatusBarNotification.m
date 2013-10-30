@@ -188,7 +188,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
             self.topBar.transform = CGAffineTransformIdentity;
         } else {
             self.topBar.alpha = 1.0;
-            self.topBar.transform = CGAffineTransformMakeTranslation(0, -[self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
     }
     
@@ -234,7 +234,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
-            self.topBar.transform = CGAffineTransformMakeTranslation(0, -[self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
     } completion:^(BOOL finished) {
         [self.topBar removeFromSuperview];
@@ -244,13 +244,6 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         [self.overlayWindow removeFromSuperview];
         _overlayWindow = nil;
     }];
-}
-
-#pragma mark helper
-
-- (CGFloat)statusBarHeight;
-{
-    return [[UIApplication sharedApplication] statusBarFrame].size.height;
 }
 
 #pragma mark lazy views
@@ -270,7 +263,8 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
 - (UIView *)topBar;
 {
     if(_topBar == nil) {
-        _topBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.overlayWindow.frame.size.width, [self statusBarHeight])];
+        CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        _topBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.overlayWindow.frame.size.width, statusBarHeight)];
         _topBar.clipsToBounds = YES;
         _topBar.alpha = 0.0;
         [self.topBar addSubview:self.textLabel];
@@ -279,7 +273,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
         if (style.animationType == JDStatusBarAnimationTypeMove) {
             self.topBar.alpha = 1.0;
-            self.topBar.transform = CGAffineTransformMakeTranslation(0, -[self statusBarHeight]);
+            self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
     }
     return _topBar;
