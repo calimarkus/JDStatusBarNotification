@@ -2,6 +2,8 @@
 
 Show messages on top of the status bar. Customizable colors, font and animation. iOS 7 ready.
 
+![Screenshots](gfx/screenshots.png)
+
 ## Installation
 
 **Install via pods:**  
