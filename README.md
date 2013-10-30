@@ -27,17 +27,10 @@ Just use the following class methods:
 
     + (void)dismiss;
     + (void)dismissAfter:(NSTimeInterval)delay;
-
-## Customization
-
-The `prepareBlock` gives you a copy of the default style, which can than be adjusted to your needs. Than you return it again.
-
-    + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
     
-    + (NSString*)addStyleNamed:(NSString*)identifier
-                       prepare:(JDPrepareStyleBlock)prepareBlock;
+### Showing a notification with alternative styles
 
-To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`:
+Available styles: `JDStatusBarStyleError`, `JDStatusBarStyleWarning` or `JDStatusBarStyleSuccess`;
                
     + (void)showWithStatus:(NSString *)status
                  styleName:(NSString*)styleName;
@@ -45,13 +38,27 @@ To present a notification using a custom style, use the `identifier` you specifi
     + (void)showWithStatus:(NSString *)status
               dismissAfter:(NSTimeInterval)timeInterval
                  styleName:(NSString*)styleName;
+                 
+To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`. See Customization below.
 
-Customizable properties:
+## Customization
 
-    UIColor *barColor;
-    UIColor *textColor;
-    UIFont *font;
-    JDStatusBarAnimationType animationType;
+    + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
+    
+    + (NSString*)addStyleNamed:(NSString*)identifier
+                       prepare:(JDPrepareStyleBlock)prepareBlock;
+
+
+The `prepareBlock` gives you a copy of the default style, which can be modified as you like:
+
+	[JDStatusBarNotification addStyleNamed:<#identifier#>
+	                               prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
+	                                   style.barColor = <#color#>;
+	                                   style.textColor = <#color#>;
+	                                   style.animationType = <#type#>;
+	                                   style.font = <#font#>;
+	                                   return style;
+	                               }];
 
 
 ## Twitter
