@@ -320,7 +320,14 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
 {
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
-    self.topBar.frame = CGRectMake(0, 0, width, height);
+
+    // on ios7 fix position, if statusBar has double height
+    CGFloat yPos = 0;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {
+        yPos = -height/2.0;
+    }
+    
+    self.topBar.frame = CGRectMake(0, yPos, width, height);
 }
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
