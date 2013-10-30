@@ -2,9 +2,9 @@
 
 Show messages on top of the status bar. Customizable colors, font and animation. iOS 7 ready.
 
-![Animation](gfx/animation.gif)
+![Animation](gfx/animation.gif "Animation")
 
-![Screenshots](gfx/screenshots.png)
+![Screenshots](gfx/screenshots.png "Screenshots")
 
 ## Installation
 
@@ -67,7 +67,6 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 
 ## Twitter
 
-I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.  
-Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/jaydee3/JDStatusBarNotification&via=jaydee3), if you like the FlipNumberView.  
+I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter. Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/jaydee3/JDStatusBarNotification&via=jaydee3), if you like JDStatusBarNotification.  
 
 [![TweetButton](gfx/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/jaydee3/JDStatusBarNotification&via=jaydee3)
