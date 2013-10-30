@@ -210,7 +210,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
     // animate in
     [UIView animateWithDuration:0.4 animations:^{
         self.topBar.alpha = 1.0;
-        self.topBar.frame = CGRectMake(0, 0, self.overlayWindow.frame.size.width, [self statusBarHeight]);
+        self.topBar.transform = CGAffineTransformIdentity;
     }];
     [self setNeedsDisplay];
 }
