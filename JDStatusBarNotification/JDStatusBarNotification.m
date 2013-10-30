@@ -7,6 +7,8 @@
 //  Copyright 2013 Markus Emrich. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "JDStatusBarNotification.h"
 
 NSString *const JDStatusBarStyleError = @"JDStatusBarStyleError";
@@ -119,8 +121,17 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         // prepare userStyles + defaultStyles
         self.userStyles = [NSMutableDictionary dictionary];
         [self addDefaultStyles];
+        
+        // register for orientation changes
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
+                                                     name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark custom styles
@@ -256,6 +267,11 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
         _overlayWindow.backgroundColor = [UIColor clearColor];
         _overlayWindow.userInteractionEnabled = NO;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
+        _overlayWindow.rootViewController = [[UIViewController alloc] init];
+        _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
+        _overlayWindow.rootViewController.wantsFullScreenLayout = YES;
+        [self updateWindowTransform];
+        [self updateTopBarFrameWithStatusBarFrame:[[UIApplication sharedApplication] statusBarFrame]];
     }
     return _overlayWindow;
 }
@@ -263,12 +279,11 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
 - (UIView *)topBar;
 {
     if(_topBar == nil) {
-        CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-        _topBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.overlayWindow.frame.size.width, statusBarHeight)];
+        _topBar = [[UIView alloc] initWithFrame:CGRectZero];
         _topBar.clipsToBounds = YES;
         _topBar.alpha = 0.0;
         [self.topBar addSubview:self.textLabel];
-        [self.overlayWindow addSubview:_topBar];
+        [self.overlayWindow.rootViewController.view addSubview:_topBar];
         
         JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
         if (style.animationType == JDStatusBarAnimationTypeMove) {
@@ -283,6 +298,7 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
 {
     if (_textLabel == nil) {
         _textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		_textLabel.backgroundColor = [UIColor clearColor];
 		_textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         _textLabel.textAlignment = NSTextAlignmentCenter;
@@ -290,6 +306,30 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
     }
     
     return _textLabel;
+}
+
+#pragma mark rotation
+
+- (void)updateWindowTransform;
+{
+    self.overlayWindow.transform = [UIApplication sharedApplication].keyWindow.transform;
+    self.overlayWindow.frame = [UIApplication sharedApplication].keyWindow.frame;
+}
+
+- (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
+{
+    CGFloat width = MAX(rect.size.width, rect.size.height);
+    CGFloat height = MIN(rect.size.width, rect.size.height);
+    self.topBar.frame = CGRectMake(0, 0, width, height);
+}
+
+- (void)willChangeStatusBarFrame:(NSNotification*)notification;
+{
+    NSValue *barFrameValue = notification.userInfo[UIApplicationStatusBarFrameUserInfoKey];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self updateWindowTransform];
+        [self updateTopBarFrameWithStatusBarFrame:[barFrameValue CGRectValue]];
+    }];
 }
 
 @end

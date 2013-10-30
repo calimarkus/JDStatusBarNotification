@@ -61,4 +61,10 @@ static NSString *const SBStyle1 = @"SBStyle1";
     }
 }
 
+#pragma mark rotation
+
+- (BOOL)shouldAutorotate; { return YES; }
+- (NSUInteger)supportedInterfaceOrientations { return UIInterfaceOrientationMaskAll; }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation; { return YES; }
+
 @end

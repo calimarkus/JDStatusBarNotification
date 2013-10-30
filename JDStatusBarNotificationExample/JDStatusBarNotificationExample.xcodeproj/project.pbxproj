@@ -13,23 +13,11 @@
 		D264F89D1820213200DA0E53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
 		D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
 		D264F8A31820213200DA0E53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
-		D264F8AA1820213200DA0E53 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8A91820213200DA0E53 /* XCTest.framework */; };
-		D264F8AB1820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
-		D264F8AC1820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */; };
 		D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 		D264F8C71820219F00DA0E53 /* SBExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D264F8C51820219F00DA0E53 /* SBExampleViewController.xib */; };
+		D264F8C9182123D400DA0E53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8C8182123D400DA0E53 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D264F8AD1820213200DA0E53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D264F8851820213200DA0E53 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D264F88C1820213200DA0E53;
-			remoteInfo = JDStatusBarNotificationExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDStatusBarNotificationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,13 +30,12 @@
 		D264F89F1820213200DA0E53 /* SBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBAppDelegate.h; sourceTree = "<group>"; };
 		D264F8A01820213200DA0E53 /* SBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBAppDelegate.m; sourceTree = "<group>"; };
 		D264F8A21820213200DA0E53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D264F8A81820213200DA0E53 /* JDStatusBarNotificationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDStatusBarNotificationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D264F8A91820213200DA0E53 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
 		D264F8C31820219F00DA0E53 /* SBExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBExampleViewController.h; sourceTree = "<group>"; };
 		D264F8C41820219F00DA0E53 /* SBExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBExampleViewController.m; sourceTree = "<group>"; };
 		D264F8C51820219F00DA0E53 /* SBExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBExampleViewController.xib; sourceTree = "<group>"; };
+		D264F8C8182123D400DA0E53 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,19 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D264F8C9182123D400DA0E53 /* QuartzCore.framework in Frameworks */,
 				D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */,
 				D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */,
 				D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D264F8A51820213200DA0E53 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D264F8AA1820213200DA0E53 /* XCTest.framework in Frameworks */,
-				D264F8AC1820213200DA0E53 /* UIKit.framework in Frameworks */,
-				D264F8AB1820213200DA0E53 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */,
-				D264F8A81820213200DA0E53 /* JDStatusBarNotificationExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,8 +76,8 @@
 			children = (
 				D264F8901820213200DA0E53 /* Foundation.framework */,
 				D264F8921820213200DA0E53 /* CoreGraphics.framework */,
+				D264F8C8182123D400DA0E53 /* QuartzCore.framework */,
 				D264F8941820213200DA0E53 /* UIKit.framework */,
-				D264F8A91820213200DA0E53 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,24 +136,6 @@
 			productReference = D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D264F8A71820213200DA0E53 /* JDStatusBarNotificationExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D264F8BC1820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExampleTests" */;
-			buildPhases = (
-				D264F8A41820213200DA0E53 /* Sources */,
-				D264F8A51820213200DA0E53 /* Frameworks */,
-				D264F8A61820213200DA0E53 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D264F8AE1820213200DA0E53 /* PBXTargetDependency */,
-			);
-			name = JDStatusBarNotificationExampleTests;
-			productName = JDStatusBarNotificationExampleTests;
-			productReference = D264F8A81820213200DA0E53 /* JDStatusBarNotificationExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -186,11 +145,6 @@
 				CLASSPREFIX = SB;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Markus;
-				TargetAttributes = {
-					D264F8A71820213200DA0E53 = {
-						TestTargetID = D264F88C1820213200DA0E53;
-					};
-				};
 			};
 			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -205,7 +159,6 @@
 			projectRoot = "";
 			targets = (
 				D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */,
-				D264F8A71820213200DA0E53 /* JDStatusBarNotificationExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -217,13 +170,6 @@
 			files = (
 				D264F8C71820219F00DA0E53 /* SBExampleViewController.xib in Resources */,
 				D264F8A31820213200DA0E53 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D264F8A61820213200DA0E53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,22 +187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D264F8A41820213200DA0E53 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D264F8AE1820213200DA0E53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */;
-			targetProxy = D264F8AD1820213200DA0E53 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D264F8B71820213200DA0E53 /* Debug */ = {
@@ -292,7 +223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -326,7 +257,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -341,7 +272,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -355,51 +285,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D264F8BD1820213200DA0E53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JDStatusBarNotificationExample.app/JDStatusBarNotificationExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "JDStatusBarNotificationExampleTests/JDStatusBarNotificationExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D264F8BE1820213200DA0E53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JDStatusBarNotificationExample.app/JDStatusBarNotificationExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
-				INFOPLIST_FILE = "JDStatusBarNotificationExampleTests/JDStatusBarNotificationExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -422,14 +309,7 @@
 				D264F8BB1820213200DA0E53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		D264F8BC1820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D264F8BD1820213200DA0E53 /* Debug */,
-				D264F8BE1820213200DA0E53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
