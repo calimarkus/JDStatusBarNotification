@@ -245,11 +245,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     [self.dismissTimer invalidate];
     self.dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
-                                                 interval:0 target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+                                                 interval:0 target:self selector:@selector(dismiss:) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:self.dismissTimer forMode:NSRunLoopCommonModes];
 }
 
-- (void)dismiss;
+- (void)dismiss:(NSTimer*)timer;
 {
     [self dismissAnimated:YES];
 }

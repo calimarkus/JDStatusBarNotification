@@ -42,20 +42,56 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  hide automatically, you have to dimiss it on your own.
  *
  *  @param status The message to display
- *  @param styleName The name of the style. You can use any JDStatusBarStyle, 
- *  or a custom style, after you added one. If this is nil, the default style will be used.
+ *  @param styleName The name of the style. You can use any JDStatusBarStyle, or a
+ *  custom style, after you added one. If this is nil, the default style will be used.
  */
 + (void)showWithStatus:(NSString *)status
              styleName:(NSString*)styleName;
 
+/**
+ *  Same as showWithStatus:, but the notification will
+ *  automatically dismiss after the given timeInterval.
+ *
+ *  @param status       The message to display
+ *  @param timeInterval The duration, how long the notification
+ *  is displayed. (Including the animation duration)
+ */
 + (void)showWithStatus:(NSString *)status
           dismissAfter:(NSTimeInterval)timeInterval;
+
+/**
+ *  Same as showWithStatus:styleName:, but the notification 
+ *  will automatically dismiss after the given timeInterval.
+ *
+ *  @param status       The message to display
+ *  @param timeInterval The duration, how long the notification
+ *  is displayed. (Including the animation duration)
+ *  @param styleName The name of the style. You can use any JDStatusBarStyle, or a
+ *  custom style, after you added one. If this is nil, the default style will be used.
+ */
 + (void)showWithStatus:(NSString *)status
           dismissAfter:(NSTimeInterval)timeInterval
              styleName:(NSString*)styleName;
 
+/**
+ *  Calls dismissAnimated: with animated set to YES
+ */
 + (void)dismiss;
+
+/**
+ *  Dismisses any currently displayed notification immediately
+ *
+ *  @param animated If this is YES, the animation style used
+ *  for presentation will also be used for the dismissal.
+ */
 + (void)dismissAnimated:(BOOL)animated;
+
+/**
+ *  Same as dismissAnimated:, but you can specify a delay,
+ *  so the notification wont be dismissed immediately
+ *
+ *  @param delay The delay, how long the notification should stay visible
+ */
 + (void)dismissAfter:(NSTimeInterval)delay;
 
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
