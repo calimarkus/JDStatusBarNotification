@@ -55,6 +55,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
              styleName:(NSString*)styleName;
 
 + (void)dismiss;
++ (void)dismissAnimated:(BOOL)animated;
 + (void)dismissAfter:(NSTimeInterval)delay;
 
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;

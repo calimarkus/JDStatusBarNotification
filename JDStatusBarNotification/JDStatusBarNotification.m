@@ -78,7 +78,12 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 + (void)dismiss;
 {
-    [[JDStatusBarNotification sharedInstance] dismiss];
+    [self dismissAnimated:YES];
+}
+
++ (void)dismissAnimated:(BOOL)animated;
+{
+    [[JDStatusBarNotification sharedInstance] dismissAnimated:animated];
 }
 
 + (void)dismissAfter:(NSTimeInterval)delay;
@@ -246,10 +251,15 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 - (void)dismiss;
 {
+    [self dismissAnimated:YES];
+}
+
+- (void)dismissAnimated:(BOOL)animated;
+{
     [self.dismissTimer invalidate];
     self.dismissTimer = nil;
     
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:animated ? 0.4 : 0.0 animations:^{
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
