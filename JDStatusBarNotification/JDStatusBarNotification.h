@@ -21,6 +21,15 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
 };
 
 @class JDStatusBarStyle;
+
+/**
+ *  A block that is used to define the appearance of a notification.
+ *  A JDStatusBarStyle instance defines the notification appeareance.
+ *
+ *  @param style The current default JDStatusBarStyle instance.
+ *
+ *  @return The modified JDStatusBarStyle instance.
+ */
 typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 /**
