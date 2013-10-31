@@ -151,6 +151,9 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 /// The text color of the notification label
 @property (nonatomic, strong) UIColor *textColor;
 
+/// The text shadow of the notification label
+@property (nonatomic, strong) NSShadow *textShadow;
+
 /// The font of the notification label
 @property (nonatomic, strong) UIFont *font;
 

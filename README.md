@@ -59,6 +59,7 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 	                               prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
 	                                   style.barColor = <#color#>;
 	                                   style.textColor = <#color#>;
+	                                   style.textShadow = <#textShadow#>;
 	                                   style.animationType = <#type#>;
 	                                   style.font = <#font#>;
 	                                   return style;

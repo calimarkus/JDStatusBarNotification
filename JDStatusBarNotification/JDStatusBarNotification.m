@@ -232,6 +232,14 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     self.textLabel.frame = CGRectMake(0, 2, self.topBar.bounds.size.width, self.topBar.bounds.size.height-2);
     self.textLabel.text = status;
     
+    if (style.textShadow) {
+        self.textLabel.shadowColor = style.textShadow.shadowColor;
+        self.textLabel.shadowOffset = style.textShadow.shadowOffset;
+    } else {
+        self.textLabel.shadowColor = nil;
+        self.textLabel.shadowOffset = CGSizeZero;
+    }
+    
     // animate in
     BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
     [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
@@ -373,6 +381,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
     style.barColor = self.barColor;
     style.textColor = self.textColor;
+    style.textShadow = self.textShadow;
     style.font = self.font;
     style.animationType = self.animationType;
     return style;
