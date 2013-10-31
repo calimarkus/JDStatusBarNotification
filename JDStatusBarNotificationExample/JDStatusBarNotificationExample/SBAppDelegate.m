@@ -30,7 +30,7 @@
     [self.window makeKeyAndVisible];
     
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
-                                      [[SBExampleViewController alloc] init]];
+                                      [[SBExampleViewController alloc] initWithStyle:UITableViewStyleGrouped]];
     
     return YES;
 }

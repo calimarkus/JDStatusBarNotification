@@ -10,17 +10,21 @@
 
 #import "SBExampleViewController.h"
 
+static NSString *const JDButtonName = @"JDButtonName";
+static NSString *const JDButtonInfo = @"JDButtonInfo";
+static NSString *const JDNotificationText = @"JDNotificationText";
+
 static NSString *const SBStyle1 = @"SBStyle1";
 
 @interface SBExampleViewController ()
-
+@property (nonatomic, strong) NSArray *data;
 @end
 
 @implementation SBExampleViewController
 
-- (id)init
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super init];
+    self = [super initWithStyle:style];
     if (self) {
         self.title = @"JDStatusBarNotification";
         
@@ -32,33 +36,99 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                            style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
                                            return style;
                                        }];
+        
+        self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Default Style", JDNotificationText:@"Better call Saul!"},
+                        @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
+                      @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
+                        @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
+                        @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"That's how we roll!"},
+                        @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"}],
+                      @[@{JDButtonName:@"Show custom style", JDButtonInfo:@"Duration: 2s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"}]];
     }
     return self;
 }
 
-- (IBAction)buttonTouched:(UIButton*)button;
+- (void)viewDidLoad;
 {
-    if (button == self.button1) {
-        [JDStatusBarNotification showWithStatus:@"Better call Saul!"];
-    } else if (button == self.button2) {
+    [super viewDidLoad];
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.0];
+    self.tableView.backgroundView = nil;
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+{
+    return self.data.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+    return [self.data[section] count];
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    // create / dequeue cell
+    static NSString* identifier = @"identifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:11.0];
+        cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+            cell.textLabel.backgroundColor = [UIColor clearColor];
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+            cell.backgroundView = [[UIView alloc] init];
+            cell.backgroundView.backgroundColor = [UIColor whiteColor];
+            cell.selectedBackgroundView = [[UIView alloc] init];
+            cell.selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+        }
+    }
+    
+    NSDictionary *data = self.data[indexPath.section][indexPath.row];
+    cell.textLabel.text = data[JDButtonName];
+    cell.detailTextLabel.text = data[JDButtonInfo];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    NSDictionary *data = self.data[indexPath.section][indexPath.row];
+    NSString *status = data[JDNotificationText];
+    
+    if (section == 0 && row == 0) {
+        [JDStatusBarNotification showWithStatus:status];
+    } else if (section == 0 && row == 1) {
         [JDStatusBarNotification dismiss];
-    } else if (button == self.button3) {
-        [JDStatusBarNotification showWithStatus:@"No, I don't have the money.."
+    } else if (section == 1) {
+        NSString *style = JDStatusBarStyleError;
+        if (row == 1) {
+            style = JDStatusBarStyleWarning;
+        } else if(row == 2) {
+            style = JDStatusBarStyleSuccess;
+        } else if(row == 3) {
+            style = JDStatusBarStyleDark;
+        }
+        
+        [JDStatusBarNotification showWithStatus:status
                                    dismissAfter:2.0
-                                      styleName:JDStatusBarStyleError];
-    } else if (button == self.button4) {
-        [JDStatusBarNotification showWithStatus:@"You know who I am!"
-                                   dismissAfter:2.0
-                                      styleName:JDStatusBarStyleWarning];
-    } else if (button == self.button5) {
-        [JDStatusBarNotification showWithStatus:@"That's how we roll!"
-                                   dismissAfter:2.0
-                                      styleName:JDStatusBarStyleSuccess];
-    } else if (button == self.button6) {
-        [JDStatusBarNotification showWithStatus:@"Oh, I love it!"
+                                      styleName:style];
+    } else if (section == 2 && row == 0) {
+        [JDStatusBarNotification showWithStatus:status
                                    dismissAfter:2.0
                                       styleName:SBStyle1];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark rotation
