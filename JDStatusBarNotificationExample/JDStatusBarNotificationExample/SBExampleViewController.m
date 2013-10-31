@@ -39,7 +39,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
 - (IBAction)buttonTouched:(UIButton*)button;
 {
     if (button == self.button1) {
-        [JDStatusBarNotification showWithStatus:@"Better caul Saul!"];
+        [JDStatusBarNotification showWithStatus:@"Better call Saul!"];
     } else if (button == self.button2) {
         [JDStatusBarNotification dismiss];
     } else if (button == self.button3) {
