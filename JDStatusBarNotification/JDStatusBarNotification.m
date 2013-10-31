@@ -34,7 +34,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 @synthesize textLabel = _textLabel;
 @synthesize topBar = _topBar;
 
-#pragma mark class methods
+#pragma mark Class methods
 
 + (JDStatusBarNotification*)sharedInstance {
     static dispatch_once_t once;
@@ -106,7 +106,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
                                                            prepare:prepareBlock];
 }
 
-#pragma mark implementation
+#pragma mark Implementation
 
 - (id)initWithFrame:(CGRect)frame;
 {
@@ -140,7 +140,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark custom styles
+#pragma mark Custom styles
 
 - (void)addDefaultStyles;
 {
@@ -184,7 +184,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     return identifier;
 }
 
-#pragma mark presentation
+#pragma mark Presentation
 
 - (void)showWithStatus:(NSString *)status
              styleName:(NSString*)styleName;
@@ -240,7 +240,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [self setNeedsDisplay];
 }
 
-#pragma mark dismissal
+#pragma mark Dismissal
 
 - (void)setDismissTimerWithInterval:(NSTimeInterval)interval;
 {
@@ -281,7 +281,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     }];
 }
 
-#pragma mark lazy views
+#pragma mark Lazy views
 
 - (UIWindow *)overlayWindow;
 {
@@ -332,7 +332,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     return _textLabel;
 }
 
-#pragma mark rotation
+#pragma mark Rotation
 
 - (void)updateWindowTransform;
 {

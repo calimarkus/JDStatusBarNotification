@@ -30,6 +30,8 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  */
 @interface JDStatusBarNotification : UIView
 
+#pragma mark Presentation
+
 /**
  *  Show a notification. It won't hide automatically, 
  *  you have to dimiss it on your own.
@@ -74,6 +76,8 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
           dismissAfter:(NSTimeInterval)timeInterval
              styleName:(NSString*)styleName;
 
+#pragma mark Dismissal
+
 /**
  *  Calls dismissAnimated: with animated set to YES
  */
@@ -95,17 +99,54 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  */
 + (void)dismissAfter:(NSTimeInterval)delay;
 
+#pragma mark Styles
+
+/**
+ *  This changes the default style, which is always used
+ *  when a method without styleName is used for presentation, or
+ *  styleName is nil, or no style is found with this name.
+ *
+ *  @param prepareBlock A block, which has a JDStatusBarStyle instance as 
+ *  parameter. This instance can be modified to suit your needs. You need
+ *  to return the modified style again.
+ */
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
+
+/**
+ *  Adds a custom style, which than can be used
+ *  in the presentation methods.
+ *
+ *  @param identifier   The identifier, which will 
+ *  later be used to reference the configured style.
+ *  @param prepareBlock A block, which has a JDStatusBarStyle instance as
+ *  parameter. This instance can be modified to suit your needs. You need
+ *  to return the modified style again.
+ *
+ *  @return Returns the given identifier, so it can
+ *  be directly used as styleName parameter.
+ */
 + (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 
 @end
 
+/**
+ *  A Style defines the appeareance of a notification.
+ */
 @interface JDStatusBarStyle : NSObject <NSCopying>
+
+/// The background color of the notification bar
 @property (nonatomic, strong) UIColor *barColor;
+
+/// The text color of the notification label
 @property (nonatomic, strong) UIColor *textColor;
+
+/// The font of the notification label
 @property (nonatomic, strong) UIFont *font;
+
+/// The animation, that is used to present the notification
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
+
 @end
 
 
