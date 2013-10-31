@@ -232,7 +232,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     self.textLabel.text = status;
     
     // animate in
-    [UIView animateWithDuration:0.4 animations:^{
+    BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
+    [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
         self.topBar.alpha = 1.0;
         self.topBar.transform = CGAffineTransformIdentity;
     }];
@@ -259,6 +260,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [self.dismissTimer invalidate];
     self.dismissTimer = nil;
     
+    // check animation type
+    BOOL animationsEnabled = (self.activeStyle.animationType != JDStatusBarAnimationTypeNone);
+    animated &= animationsEnabled;
+    
+    // animate out
     [UIView animateWithDuration:animated ? 0.4 : 0.0 animations:^{
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
