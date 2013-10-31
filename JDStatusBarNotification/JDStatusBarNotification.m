@@ -14,6 +14,7 @@
 NSString *const JDStatusBarStyleError   = @"JDStatusBarStyleError";
 NSString *const JDStatusBarStyleWarning = @"JDStatusBarStyleWarning";
 NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
+NSString *const JDStatusBarStyleDefault = @"JDStatusBarStyleDefault";
 NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @interface JDStatusBarNotification ()

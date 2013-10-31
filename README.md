@@ -34,7 +34,7 @@ Just use the following class methods:
     
 ### Showing a notification with alternative styles
 
-Available styles: `JDStatusBarStyleError`, `JDStatusBarStyleWarning` or `JDStatusBarStyleSuccess`;
+Available styles: `JDStatusBarStyleDefault`, `JDStatusBarStyleDark`, `JDStatusBarStyleError`, `JDStatusBarStyleWarning` or `JDStatusBarStyleSuccess`;
                
     + (void)showWithStatus:(NSString *)status
                  styleName:(NSString*)styleName;
