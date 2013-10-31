@@ -11,9 +11,10 @@
 
 #import "JDStatusBarNotification.h"
 
-NSString *const JDStatusBarStyleError = @"JDStatusBarStyleError";
+NSString *const JDStatusBarStyleError   = @"JDStatusBarStyleError";
 NSString *const JDStatusBarStyleWarning = @"JDStatusBarStyleWarning";
 NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
+NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @interface JDStatusBarNotification ()
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
@@ -156,6 +157,13 @@ NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
                 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
                     style.barColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
                     style.textColor = [UIColor whiteColor];
+                    return style;
+                }];
+    
+    [self addStyleNamed:JDStatusBarStyleDark
+                prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                    style.barColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
+                    style.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
                     return style;
                 }];
 }
