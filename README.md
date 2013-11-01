@@ -32,6 +32,12 @@ Just use the following class methods:
     + (void)dismiss;
     + (void)dismissAfter:(NSTimeInterval)delay;
     
+### Showing progress
+
+![Animation](gfx/progress.gif "Animation")
+
+    + (void)showProgress:(CGFloat)progress;
+    
 ### Showing a notification with alternative styles
 
 Available styles: `JDStatusBarStyleDefault`, `JDStatusBarStyleDark`, `JDStatusBarStyleError`, `JDStatusBarStyleWarning` or `JDStatusBarStyleSuccess`;
@@ -59,9 +65,14 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 	                               prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
 	                                   style.barColor = <#color#>;
 	                                   style.textColor = <#color#>;
-	                                   style.textShadow = <#textShadow#>;
-	                                   style.animationType = <#type#>;
 	                                   style.font = <#font#>;
+	                                   
+	                                   style.textShadow = <#shadow#>;
+	                                   style.animationType = <#type#>;
+
+                                       style.progressBarColor = <#color#>;
+                                       style.progressBarHeight = <#height#>;
+
 	                                   return style;
 	                               }];
 
