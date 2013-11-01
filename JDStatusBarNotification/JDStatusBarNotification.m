@@ -355,10 +355,12 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         SEL selector = @selector(sizeWithAttributes:);
         if ([self.textLabel.text respondsToSelector:selector]) {
             // use invocation, so pods jenkins task doesn't fail on ios6
+            NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [[NSString class] instanceMethodSignatureForSelector:selector]];
             [invocation setSelector:selector];
             [invocation setTarget:self.textLabel.text];
+            [invocation setArgument:&attributes atIndex:2];
             [invocation invoke];
             [invocation getReturnValue:&textSize];
         } else {
