@@ -352,8 +352,15 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     
     if (show) {
         CGSize textSize = CGSizeZero;
-        if ([self.textLabel.text respondsToSelector:@selector(sizeWithAttributes:)]) {
-            textSize = [self.textLabel.text sizeWithAttributes:@{NSFontAttributeName:self.textLabel.font}];
+        SEL selector = @selector(sizeWithAttributes:);
+        if ([self.textLabel.text respondsToSelector:selector]) {
+            // use invocation, so pods jenkins task doesn't fail on ios6
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                        [[NSString class] instanceMethodSignatureForSelector:selector]];
+            [invocation setSelector:selector];
+            [invocation setTarget:self.textLabel.text];
+            [invocation invoke];
+            [invocation getReturnValue:&textSize];
         } else {
             textSize = [self.textLabel.text sizeWithFont:self.textLabel.font];
         }
@@ -364,7 +371,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         [self.activityView sizeToFit];
         CGRect frame = self.activityView.frame;
         frame.origin.y = ceil((self.textLabel.bounds.size.height - frame.size.height)/2.0) + self.textLabel.frame.origin.y;
-        frame.origin.x = round(self.topBar.bounds.size.width/2.0 - textSize.width/2.0) - frame.size.width - 5.0;
+        frame.origin.x = round(self.topBar.bounds.size.width/2.0 - textSize.width/2.0) - frame.size.width - 8.0;
         self.activityView.frame = frame;
     } else {
         [self.activityView stopAnimating];
