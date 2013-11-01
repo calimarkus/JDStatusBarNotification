@@ -18,6 +18,7 @@ NSString *const JDStatusBarStyleDefault = @"JDStatusBarStyleDefault";
 NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @interface JDStatusBarNotification ()
+@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityView;
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
 @property (nonatomic, strong, readonly) UILabel *textLabel;
@@ -35,6 +36,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @synthesize overlayWindow = _overlayWindow;
 @synthesize progressView = _progressView;
+@synthesize activityView = _activityView;
 @synthesize textLabel = _textLabel;
 @synthesize topBar = _topBar;
 
@@ -115,6 +117,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [[JDStatusBarNotification sharedInstance] setProgress:progress];
 }
 
++ (void)showActivityIndicator:(BOOL)show indicatorStyle:(UIActivityIndicatorViewStyle)style;
+{
+    [[JDStatusBarNotification sharedInstance] showActivityIndicator:show indicatorStyle:style];
+}
+
 #pragma mark Implementation
 
 - (id)initWithFrame:(CGRect)frame;
@@ -124,7 +131,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         self.backgroundColor = [UIColor clearColor];
 		self.alpha = 0;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
+
         // set defaults
         [self setupDefaultStyles];
         
@@ -260,8 +267,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         self.textLabel.shadowOffset = CGSizeZero;
     }
     
-    // reset progress
+    // reset progress & activity
     self.progress = 0.0;
+    [self showActivityIndicator:NO indicatorStyle:0];
     
     // animate in
     BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
@@ -304,20 +312,23 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
             self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
     } completion:^(BOOL finished) {
-        [self.topBar removeFromSuperview];
-        _topBar = nil;
-        _textLabel = nil;
-        _progressView = nil;
-        
         [self.overlayWindow removeFromSuperview];
+        [self.overlayWindow setHidden:YES];
         _overlayWindow = nil;
+        _activityView = nil;
+        _progressView = nil;
+        _textLabel = nil;
+        _topBar = nil;
     }];
 }
 
-#pragma mark progress
+#pragma mark progress & activity
 
 - (void)setProgress:(CGFloat)progress;
 {
+    if (_topBar == nil) return;
+    
+    // trim progress
     _progress = MIN(1.0, MAX(0.0,progress));
     
     // calculate progressView frame
@@ -332,6 +343,38 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.progressView.frame = frame;
     } completion:nil];
+}
+
+- (void)showActivityIndicator:(BOOL)show
+               indicatorStyle:(UIActivityIndicatorViewStyle)style;
+{
+    if (_topBar == nil) return;
+    
+    if (show) {
+        CGSize textSize = CGSizeZero;
+        if ([self.textLabel.text respondsToSelector:@selector(sizeWithAttributes:)]) {
+            textSize = [self.textLabel.text sizeWithAttributes:@{NSFontAttributeName:self.textLabel.font}];
+        } else {
+            textSize = [self.textLabel.text sizeWithFont:self.textLabel.font];
+        }
+        
+        [self.activityView startAnimating];
+        self.activityView.activityIndicatorViewStyle = style;
+        [self.topBar addSubview:self.activityView];
+        [self.activityView sizeToFit];
+        CGRect frame = self.activityView.frame;
+        frame.origin.y = ceil((self.textLabel.bounds.size.height - frame.size.height)/2.0) + self.textLabel.frame.origin.y;
+        frame.origin.x = round(self.topBar.bounds.size.width/2.0 - textSize.width/2.0) - frame.size.width - 5.0;
+        self.activityView.frame = frame;
+    } else {
+        [self.activityView stopAnimating];
+    }
+    
+    // fade in/out
+    self.activityView.alpha = show ? 0.0 : 1.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.activityView.alpha = show ? 1.0 : 0.0;
+    }];
 }
 
 #pragma mark Lazy views
@@ -392,6 +435,17 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _progressView;
+}
+
+- (UIActivityIndicatorView *)activityView;
+{
+    if (_activityView == nil) {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _activityView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        _activityView.transform = CGAffineTransformMakeScale(0.7, 0.7);
+        _activityView.hidesWhenStopped = NO;
+    }
+    return _activityView;
 }
 
 #pragma mark Rotation

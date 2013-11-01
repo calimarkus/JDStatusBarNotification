@@ -18,6 +18,8 @@ static NSString *const SBStyle1 = @"SBStyle1";
 
 @interface SBExampleViewController ()
 @property (nonatomic, strong) NSArray *data;
+
+@property (nonatomic, assign) UIActivityIndicatorViewStyle indicatorStyle;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
 @end
@@ -43,6 +45,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
         
         self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Default Style", JDNotificationText:@"Better call Saul!"},
                         @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@""},
+                        @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@""},
                         @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
                       @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
                         @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
@@ -112,16 +115,22 @@ static NSString *const SBStyle1 = @"SBStyle1";
     
     // show notification
     if (section == 0 && row == 0) {
+        self.indicatorStyle = UIActivityIndicatorViewStyleGray;
         [JDStatusBarNotification showWithStatus:status];
     } else if (section == 0 && row == 1) {
         self.progress = 0.0;
         [self startTimer];
-    }  else if (section == 0 && row == 2) {
+    } else if (section == 0 && row == 2) {
+        [JDStatusBarNotification showActivityIndicator:YES
+                                        indicatorStyle:self.indicatorStyle];
+    } else if (section == 0 && row == 3) {
         [JDStatusBarNotification dismiss];
     } else if (section == 1) {
+        self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
         NSString *style = JDStatusBarStyleError;
         if (row == 1) {
             style = JDStatusBarStyleWarning;
+            self.indicatorStyle = UIActivityIndicatorViewStyleGray;
         } else if(row == 2) {
             style = JDStatusBarStyleSuccess;
         } else if(row == 3) {
@@ -132,6 +141,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                    dismissAfter:2.0
                                       styleName:style];
     } else if (section == 2 && row == 0) {
+        self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
         [JDStatusBarNotification showWithStatus:status
                                    dismissAfter:2.0
                                       styleName:SBStyle1];

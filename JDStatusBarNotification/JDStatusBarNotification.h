@@ -138,7 +138,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 + (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 
-#pragma mark progress
+#pragma mark progress & activity
 
 /**
  *  Show the progress below the label.
@@ -146,6 +146,15 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  @param progress Relative progress from 0.0 to 1.0
  */
 + (void)showProgress:(CGFloat)progress;
+
+/**
+ *  Shows an activity indicator in front of the notification text
+ *
+ *  @param show           Use this flag to show or hide the activity indicator
+ *  @param indicatorStyle Sets the style of the activity indicator
+ */
++ (void)showActivityIndicator:(BOOL)show
+               indicatorStyle:(UIActivityIndicatorViewStyle)style;
 
 @end
 
