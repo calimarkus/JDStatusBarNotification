@@ -377,13 +377,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         self.activityView.frame = frame;
     } else {
         [self.activityView stopAnimating];
+        [self.activityView removeFromSuperview];
     }
-    
-    // fade in/out
-    self.activityView.alpha = show ? 0.0 : 1.0;
-    [UIView animateWithDuration:0.2 animations:^{
-        self.activityView.alpha = show ? 1.0 : 0.0;
-    }];
 }
 
 #pragma mark Lazy views
