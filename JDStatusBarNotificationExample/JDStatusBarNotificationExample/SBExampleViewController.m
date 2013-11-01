@@ -19,6 +19,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
 @interface SBExampleViewController ()
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, assign) CGFloat progress;
+@property (nonatomic, weak) NSTimer *timer;
 @end
 
 @implementation SBExampleViewController
@@ -35,10 +36,13 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                            style.textColor = [UIColor whiteColor];
                                            style.animationType = JDStatusBarAnimationTypeFade;
                                            style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
+                                           style.progressBarColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
+                                           style.progressBarHeight = 20.0;
                                            return style;
                                        }];
         
         self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Default Style", JDNotificationText:@"Better call Saul!"},
+                        @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@""},
                         @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
                       @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
                         @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
@@ -110,6 +114,9 @@ static NSString *const SBStyle1 = @"SBStyle1";
     if (section == 0 && row == 0) {
         [JDStatusBarNotification showWithStatus:status];
     } else if (section == 0 && row == 1) {
+        self.progress = 0.0;
+        [self startTimer];
+    }  else if (section == 0 && row == 2) {
         [JDStatusBarNotification dismiss];
     } else if (section == 1) {
         NSString *style = JDStatusBarStyleError;
@@ -130,12 +137,6 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                       styleName:SBStyle1];
     }
     
-    // show progress
-    if (!(section == 0 && row == 1)) {
-        self.progress = 0.0;
-        [self startTimer];
-    }
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -144,11 +145,14 @@ static NSString *const SBStyle1 = @"SBStyle1";
 {
     [JDStatusBarNotification showProgress:self.progress];
     
+    [self.timer invalidate];
+    self.timer = nil;
+    
     if (self.progress < 1.0) {
         CGFloat step = 0.02;
-        [NSTimer scheduledTimerWithTimeInterval:step target:self
-                                       selector:@selector(startTimer)
-                                       userInfo:nil repeats:NO];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:step target:self
+                                                    selector:@selector(startTimer)
+                                                    userInfo:nil repeats:NO];
         self.progress += step;
     } else {
         [self performSelector:@selector(hideProgress)

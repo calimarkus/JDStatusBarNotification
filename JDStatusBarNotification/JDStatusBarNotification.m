@@ -126,18 +126,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         // set defaults
-        JDStatusBarStyle *defaultStyle = [[JDStatusBarStyle alloc] init];
-        defaultStyle.barColor = [UIColor whiteColor];
-        defaultStyle.progressBarColor = [UIColor greenColor];
-        defaultStyle.progressBarHeight = 1.0;
-        defaultStyle.textColor = [UIColor grayColor];
-        defaultStyle.font = [UIFont systemFontOfSize:12.0];
-        defaultStyle.animationType = JDStatusBarAnimationTypeMove;
-        self.defaultStyle = defaultStyle;
-        
-        // prepare userStyles + defaultStyles
-        self.userStyles = [NSMutableDictionary dictionary];
-        [self addDefaultStyles];
+        [self setupDefaultStyles];
         
         // register for orientation changes
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
@@ -153,12 +142,28 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 #pragma mark Custom styles
 
-- (void)addDefaultStyles;
+- (void)setupDefaultStyles;
 {
+    // setup default style
+    JDStatusBarStyle *defaultStyle = [[JDStatusBarStyle alloc] init];
+    defaultStyle.barColor = [UIColor whiteColor];
+    defaultStyle.progressBarColor = [UIColor greenColor];
+    defaultStyle.progressBarHeight = 1.0;
+    defaultStyle.textColor = [UIColor grayColor];
+    defaultStyle.font = [UIFont systemFontOfSize:12.0];
+    defaultStyle.animationType = JDStatusBarAnimationTypeMove;
+    self.defaultStyle = defaultStyle;
+    
+    // init array
+    self.userStyles = [NSMutableDictionary dictionary];
+    
+    // setup additional defaultStyles
     [self addStyleNamed:JDStatusBarStyleError
                 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
                     style.barColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
                     style.textColor = [UIColor whiteColor];
+                    style.progressBarColor = [UIColor redColor];
+                    style.progressBarHeight = 2.0;
                     return style;
                 }];
     
@@ -166,6 +171,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
                 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
                     style.barColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
                     style.textColor = [UIColor darkGrayColor];
+                    style.progressBarColor = style.textColor;
                     return style;
                 }];
     
@@ -173,6 +179,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
                 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
                     style.barColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
                     style.textColor = [UIColor whiteColor];
+                    style.progressBarColor = [UIColor colorWithRed:0.106 green:0.594 blue:0.319 alpha:1.000];
+                    style.progressBarHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
                     return style;
                 }];
     
@@ -180,6 +188,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
                 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
                     style.barColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
                     style.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+                    style.progressBarHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
                     return style;
                 }];
 }
