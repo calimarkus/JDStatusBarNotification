@@ -256,7 +256,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     self.progressView.backgroundColor = style.progressBarColor;
     self.textLabel.textColor = style.textColor;
     self.textLabel.font = style.font;
-    self.textLabel.frame = CGRectMake(0, 2, self.topBar.bounds.size.width, self.topBar.bounds.size.height-2);
+    self.textLabel.frame = CGRectMake(0, 1, self.topBar.bounds.size.width, self.topBar.bounds.size.height-1);
     self.textLabel.text = status;
     
     if (style.textShadow) {
