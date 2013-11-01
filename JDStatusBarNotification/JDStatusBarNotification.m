@@ -19,10 +19,12 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @interface JDStatusBarNotification ()
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
-@property (nonatomic, strong, readonly) UIView *topBar;
+@property (nonatomic, strong, readonly) UIView *progressView;
 @property (nonatomic, strong, readonly) UILabel *textLabel;
+@property (nonatomic, strong, readonly) UIView *topBar;
 
 @property (nonatomic, strong) NSTimer *dismissTimer;
+@property (nonatomic, assign) CGFloat progress;
 
 @property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
@@ -32,6 +34,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 @implementation JDStatusBarNotification
 
 @synthesize overlayWindow = _overlayWindow;
+@synthesize progressView = _progressView;
 @synthesize textLabel = _textLabel;
 @synthesize topBar = _topBar;
 
@@ -107,6 +110,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
                                                            prepare:prepareBlock];
 }
 
++ (void)showProgress:(CGFloat)progress;
+{
+    [[JDStatusBarNotification sharedInstance] setProgress:progress];
+}
+
 #pragma mark Implementation
 
 - (id)initWithFrame:(CGRect)frame;
@@ -120,6 +128,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         // set defaults
         JDStatusBarStyle *defaultStyle = [[JDStatusBarStyle alloc] init];
         defaultStyle.barColor = [UIColor whiteColor];
+        defaultStyle.progressBarColor = [UIColor greenColor];
+        defaultStyle.progressBarHeight = 1.0;
         defaultStyle.textColor = [UIColor grayColor];
         defaultStyle.font = [UIFont systemFontOfSize:12.0];
         defaultStyle.animationType = JDStatusBarAnimationTypeMove;
@@ -227,6 +237,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     
     // update style
     self.topBar.backgroundColor = style.barColor;
+    self.progressView.backgroundColor = style.progressBarColor;
     self.textLabel.textColor = style.textColor;
     self.textLabel.font = style.font;
     self.textLabel.frame = CGRectMake(0, 2, self.topBar.bounds.size.width, self.topBar.bounds.size.height-2);
@@ -239,6 +250,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         self.textLabel.shadowColor = nil;
         self.textLabel.shadowOffset = CGSizeZero;
     }
+    
+    // reset progress
+    self.progress = 0.0;
     
     // animate in
     BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
@@ -284,10 +298,31 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         [self.topBar removeFromSuperview];
         _topBar = nil;
         _textLabel = nil;
+        _progressView = nil;
         
         [self.overlayWindow removeFromSuperview];
         _overlayWindow = nil;
     }];
+}
+
+#pragma mark progress
+
+- (void)setProgress:(CGFloat)progress;
+{
+    _progress = MIN(1.0, MAX(0.0,progress));
+    
+    // calculate progressView frame
+    CGRect frame = self.topBar.bounds;
+    CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
+    if (height == 20.0 && frame.size.height > height) height = frame.size.height;
+    frame.origin.y = frame.size.height - height;
+    frame.size.height = height;
+    frame.size.width *= progress;
+    
+    // update progressView frame
+    [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.progressView.frame = frame;
+    } completion:nil];
 }
 
 #pragma mark Lazy views
@@ -315,6 +350,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         _topBar = [[UIView alloc] initWithFrame:CGRectZero];
         _topBar.clipsToBounds = YES;
         _topBar.alpha = 0.0;
+        [self.topBar addSubview:self.progressView];
         [self.topBar addSubview:self.textLabel];
         [self.overlayWindow.rootViewController.view addSubview:_topBar];
         
@@ -337,8 +373,16 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         _textLabel.textAlignment = NSTextAlignmentCenter;
 		_textLabel.adjustsFontSizeToFitWidth = YES;
     }
-    
     return _textLabel;
+}
+
+- (UIView *)progressView;
+{
+    if (_progressView == nil) {
+        _progressView = [[UIView alloc] initWithFrame:CGRectZero];
+        _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return _progressView;
 }
 
 #pragma mark Rotation
@@ -380,6 +424,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
     style.barColor = self.barColor;
+    style.progressBarColor = self.progressBarColor;
+    style.progressBarHeight = self.progressBarHeight;
     style.textColor = self.textColor;
     style.textShadow = self.textShadow;
     style.font = self.font;

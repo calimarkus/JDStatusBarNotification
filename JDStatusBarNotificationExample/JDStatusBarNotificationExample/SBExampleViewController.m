@@ -18,6 +18,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
 
 @interface SBExampleViewController ()
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, assign) CGFloat progress;
 @end
 
 @implementation SBExampleViewController
@@ -105,6 +106,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
     NSDictionary *data = self.data[indexPath.section][indexPath.row];
     NSString *status = data[JDNotificationText];
     
+    // show notification
     if (section == 0 && row == 0) {
         [JDStatusBarNotification showWithStatus:status];
     } else if (section == 0 && row == 1) {
@@ -128,7 +130,35 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                       styleName:SBStyle1];
     }
     
+    // show progress
+    if (!(section == 0 && row == 1)) {
+        self.progress = 0.0;
+        [self startTimer];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (void)startTimer;
+{
+    [JDStatusBarNotification showProgress:self.progress];
+    
+    if (self.progress < 1.0) {
+        CGFloat step = 0.02;
+        [NSTimer scheduledTimerWithTimeInterval:step target:self
+                                       selector:@selector(startTimer)
+                                       userInfo:nil repeats:NO];
+        self.progress += step;
+    } else {
+        [self performSelector:@selector(hideProgress)
+                   withObject:nil afterDelay:0.5];
+    }
+}
+
+- (void)hideProgress;
+{
+    [JDStatusBarNotification showProgress:0.0];
 }
 
 #pragma mark rotation

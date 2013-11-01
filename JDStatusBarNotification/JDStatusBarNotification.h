@@ -13,7 +13,7 @@ extern NSString *const JDStatusBarStyleError;   /// This style has a red backgro
 extern NSString *const JDStatusBarStyleWarning; /// This style has a yellow background with a gray Helvetica label.
 extern NSString *const JDStatusBarStyleSuccess; /// This style has a green background with a white Helvetica label.
 extern NSString *const JDStatusBarStyleDefault; /// This style has a white background with a gray Helvetica label.
-extern NSString *const JDStatusBarStyleDark;    /// This style has a nearly black background with a white Helvetica label.
+extern NSString *const JDStatusBarStyleDark;    /// This style has a nearly black background with a nearly white Helvetica label.
 
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
     JDStatusBarAnimationTypeNone, /// Notification won't animate
@@ -138,6 +138,15 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 + (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 
+#pragma mark progress
+
+/**
+ *  Show the progress below the label.
+ *
+ *  @param progress Relative progress from 0.0 to 1.0
+ */
++ (void)showProgress:(CGFloat)progress;
+
 @end
 
 /**
@@ -159,6 +168,14 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 /// The animation, that is used to present the notification
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
+
+#pragma mark progress bar
+
+/// The background color of the progress bar (on top of the notification bar)
+@property (nonatomic, strong) UIColor *progressBarColor;
+
+/// The height of the progress bar. Default is 1.0
+@property (nonatomic, assign) CGFloat progressBarHeight;
 
 @end
 
