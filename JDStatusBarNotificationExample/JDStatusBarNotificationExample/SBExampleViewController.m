@@ -113,12 +113,16 @@ static NSString *const SBStyle1 = @"SBStyle1";
     NSDictionary *data = self.data[indexPath.section][indexPath.row];
     NSString *status = data[JDNotificationText];
     
+    // reset progress timer
+    self.progress = 0.0;
+    [self.timer invalidate];
+    self.timer = nil;
+    
     // show notification
     if (section == 0 && row == 0) {
         self.indicatorStyle = UIActivityIndicatorViewStyleGray;
         [JDStatusBarNotification showWithStatus:status];
     } else if (section == 0 && row == 1) {
-        self.progress = 0.0;
         [self startTimer];
     } else if (section == 0 && row == 2) {
         [JDStatusBarNotification showActivityIndicator:YES
