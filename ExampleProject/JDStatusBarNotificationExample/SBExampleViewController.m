@@ -44,8 +44,8 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                        }];
         
         self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Default Style", JDNotificationText:@"Better call Saul!"},
-                        @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@""},
-                        @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@""},
+                        @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@"Some Progress…"},
+                        @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@"Some Activity…"},
                         @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
                       @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
                         @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
@@ -123,8 +123,16 @@ static NSString *const SBStyle1 = @"SBStyle1";
         self.indicatorStyle = UIActivityIndicatorViewStyleGray;
         [JDStatusBarNotification showWithStatus:status];
     } else if (section == 0 && row == 1) {
+        if(![JDStatusBarNotification isVisible]) {
+            self.indicatorStyle = UIActivityIndicatorViewStyleGray;
+            [JDStatusBarNotification showWithStatus:status dismissAfter:1.4];
+        }
         [self startTimer];
     } else if (section == 0 && row == 2) {
+        if(![JDStatusBarNotification isVisible]) {
+            self.indicatorStyle = UIActivityIndicatorViewStyleGray;
+            [JDStatusBarNotification showWithStatus:status dismissAfter:2.0];
+        }
         [JDStatusBarNotification showActivityIndicator:YES
                                         indicatorStyle:self.indicatorStyle];
     } else if (section == 0 && row == 3) {

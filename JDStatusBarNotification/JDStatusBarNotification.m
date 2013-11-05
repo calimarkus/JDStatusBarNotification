@@ -52,34 +52,35 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     return sharedInstance;
 }
 
-+ (void)showWithStatus:(NSString *)status;
++ (UIView*)showWithStatus:(NSString *)status;
 {
-    [[self sharedInstance] showWithStatus:status
-                                styleName:nil];
+    return [[self sharedInstance] showWithStatus:status
+                                       styleName:nil];
 }
 
-+ (void)showWithStatus:(NSString *)status
-             styleName:(NSString*)styleName;
++ (UIView*)showWithStatus:(NSString *)status
+                styleName:(NSString*)styleName;
 {
-    [[self sharedInstance] showWithStatus:status
-                                styleName:styleName];
+    return [[self sharedInstance] showWithStatus:status
+                                       styleName:styleName];
 }
 
-+ (void)showWithStatus:(NSString *)status
-          dismissAfter:(NSTimeInterval)timeInterval;
++ (UIView*)showWithStatus:(NSString *)status
+             dismissAfter:(NSTimeInterval)timeInterval;
 {
-    [self showWithStatus:status
-            dismissAfter:timeInterval
-               styleName:nil];
+    return [self showWithStatus:status
+                   dismissAfter:timeInterval
+                      styleName:nil];
 }
 
-+ (void)showWithStatus:(NSString *)status
-          dismissAfter:(NSTimeInterval)timeInterval
-             styleName:(NSString*)styleName;
++ (UIView*)showWithStatus:(NSString *)status
+             dismissAfter:(NSTimeInterval)timeInterval
+                styleName:(NSString*)styleName;
 {
-    [self showWithStatus:status
-               styleName:styleName];
+    UIView *view = [self showWithStatus:status
+                              styleName:styleName];
     [self dismissAfter:timeInterval];
+    return view;
 }
 
 + (void)dismiss;
@@ -120,6 +121,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 + (void)showActivityIndicator:(BOOL)show indicatorStyle:(UIActivityIndicatorViewStyle)style;
 {
     [[JDStatusBarNotification sharedInstance] showActivityIndicator:show indicatorStyle:style];
+}
+
++ (BOOL)isVisible;
+{
+    return [[JDStatusBarNotification sharedInstance] isVisible];
 }
 
 #pragma mark Implementation
@@ -213,23 +219,20 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 #pragma mark Presentation
 
-- (void)showWithStatus:(NSString *)status
-             styleName:(NSString*)styleName;
+- (UIView*)showWithStatus:(NSString *)status
+                styleName:(NSString*)styleName;
 {
     JDStatusBarStyle *style = nil;
     if (styleName != nil) {
         style = self.userStyles[styleName];
     }
     
-    if (style != nil) {
-        [self showWithStatus:status style:style];
-    } else {
-        [self showWithStatus:status style:self.defaultStyle];
-    }
+    if (style == nil) style = self.defaultStyle;
+    return [self showWithStatus:status style:style];
 }
 
-- (void)showWithStatus:(NSString *)status
-                 style:(JDStatusBarStyle*)style;
+- (UIView*)showWithStatus:(NSString *)status
+                    style:(JDStatusBarStyle*)style;
 {
     // prepare for new style
     if (style != self.activeStyle) {
@@ -278,6 +281,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         self.topBar.transform = CGAffineTransformIdentity;
     }];
     [self setNeedsDisplay];
+    
+    return self.topBar;
 }
 
 #pragma mark Dismissal
@@ -379,6 +384,13 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         [self.activityView stopAnimating];
         [self.activityView removeFromSuperview];
     }
+}
+
+#pragma mark state
+
+- (BOOL)isVisible;
+{
+    return (_topBar != nil);
 }
 
 #pragma mark Lazy views

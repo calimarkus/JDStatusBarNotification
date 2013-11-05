@@ -43,23 +43,27 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 #pragma mark Presentation
 
 /**
- *  Show a notification. It won't hide automatically, 
+ *  Show a notification. It won't hide automatically,
  *  you have to dimiss it on your own.
  *
  *  @param status The message to display
+ *
+ *  @return The presented notification view for further customization
  */
-+ (void)showWithStatus:(NSString *)status;
++ (UIView*)showWithStatus:(NSString *)status;
 
 /**
- *  Show a notification with a specific style. It won't 
+ *  Show a notification with a specific style. It won't
  *  hide automatically, you have to dimiss it on your own.
  *
  *  @param status The message to display
  *  @param styleName The name of the style. You can use any JDStatusBarStyle, or a
  *  custom style, after you added one. If this is nil, the default style will be used.
+ *
+ *  @return The presented notification view for further customization
  */
-+ (void)showWithStatus:(NSString *)status
-             styleName:(NSString*)styleName;
++ (UIView*)showWithStatus:(NSString *)status
+                styleName:(NSString*)styleName;
 
 /**
  *  Same as showWithStatus:, but the notification will
@@ -68,12 +72,14 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  @param status       The message to display
  *  @param timeInterval The duration, how long the notification
  *  is displayed. (Including the animation duration)
+ *
+ *  @return The presented notification view for further customization
  */
-+ (void)showWithStatus:(NSString *)status
-          dismissAfter:(NSTimeInterval)timeInterval;
++ (UIView*)showWithStatus:(NSString *)status
+             dismissAfter:(NSTimeInterval)timeInterval;
 
 /**
- *  Same as showWithStatus:styleName:, but the notification 
+ *  Same as showWithStatus:styleName:, but the notification
  *  will automatically dismiss after the given timeInterval.
  *
  *  @param status       The message to display
@@ -81,10 +87,12 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  is displayed. (Including the animation duration)
  *  @param styleName The name of the style. You can use any JDStatusBarStyle, or a
  *  custom style, after you added one. If this is nil, the default style will be used.
+ *
+ *  @return The presented notification view for further customization
  */
-+ (void)showWithStatus:(NSString *)status
-          dismissAfter:(NSTimeInterval)timeInterval
-             styleName:(NSString*)styleName;
++ (UIView*)showWithStatus:(NSString *)status
+             dismissAfter:(NSTimeInterval)timeInterval
+                styleName:(NSString*)styleName;
 
 #pragma mark Dismissal
 
@@ -155,6 +163,10 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  */
 + (void)showActivityIndicator:(BOOL)show
                indicatorStyle:(UIActivityIndicatorViewStyle)style;
+
+#pragma mark state
+
++ (BOOL)isVisible;
 
 @end
 
