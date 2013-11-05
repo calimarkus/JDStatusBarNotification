@@ -23,9 +23,11 @@ Just use the following class methods:
 
 ### Showing a notification
 
-    + (void)showWithStatus:(NSString *)status;
-    + (void)showWithStatus:(NSString *)status
-              dismissAfter:(NSTimeInterval)timeInterval;
+    + (UIView*)showWithStatus:(NSString *)status;
+    + (UIView*)showWithStatus:(NSString *)status
+                 dismissAfter:(NSTimeInterval)timeInterval;
+
+The return value will be the notification view. You can just ignore it, but if you need further customization, this is where you can access the view.
 
 ### Dismissing a notification
 
@@ -49,12 +51,12 @@ Just use the following class methods:
 
 Available styles: `JDStatusBarStyleDefault`, `JDStatusBarStyleDark`, `JDStatusBarStyleError`, `JDStatusBarStyleWarning` or `JDStatusBarStyleSuccess`;
                
-    + (void)showWithStatus:(NSString *)status
-                 styleName:(NSString*)styleName;
+    + (UIView*)showWithStatus:(NSString *)status
+                    styleName:(NSString*)styleName;
                  
-    + (void)showWithStatus:(NSString *)status
-              dismissAfter:(NSTimeInterval)timeInterval
-                 styleName:(NSString*)styleName;
+    + (UIView*)showWithStatus:(NSString *)status
+                 dismissAfter:(NSTimeInterval)timeInterval
+                    styleName:(NSString*)styleName;
                  
 To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`. See Customization below.
 
