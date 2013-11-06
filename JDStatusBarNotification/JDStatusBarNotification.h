@@ -57,8 +57,9 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  hide automatically, you have to dimiss it on your own.
  *
  *  @param status The message to display
- *  @param styleName The name of the style. You can use any JDStatusBarStyle, or a
- *  custom style, after you added one. If this is nil, the default style will be used.
+ *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
+ *  (JDStatusBarStyleDefault, etc.), or a custom style identifier, after you added a 
+ *  custom style. If this is nil, the default style will be used.
  *
  *  @return The presented notification view for further customization
  */
@@ -85,8 +86,9 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  @param status       The message to display
  *  @param timeInterval The duration, how long the notification
  *  is displayed. (Including the animation duration)
- *  @param styleName The name of the style. You can use any JDStatusBarStyle, or a
- *  custom style, after you added one. If this is nil, the default style will be used.
+ *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
+ *  (JDStatusBarStyleDefault, etc.), or a custom style identifier, after you added a
+ *  custom style. If this is nil, the default style will be used.
  *
  *  @return The presented notification view for further customization
  */
@@ -166,6 +168,11 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 #pragma mark state
 
+/**
+ *  This method tests, if a notification is currently displayed.
+ *
+ *  @return YES, if a notification is currently displayed. Otherwise NO.
+ */
 + (BOOL)isVisible;
 
 @end
