@@ -481,7 +481,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 - (void)updateWindowTransform;
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (window == nil) window = [[[UIApplication sharedApplication] windows] firstObject];
+    if (window == nil && [[[UIApplication sharedApplication] windows] count] > 0) window = [[UIApplication sharedApplication] windows][0];
     
     _overlayWindow.transform = window.transform;
     _overlayWindow.frame = window.frame;
