@@ -12,6 +12,7 @@
 extern NSString *const JDStatusBarStyleError;   /// This style has a red background with a white Helvetica label.
 extern NSString *const JDStatusBarStyleWarning; /// This style has a yellow background with a gray Helvetica label.
 extern NSString *const JDStatusBarStyleSuccess; /// This style has a green background with a white Helvetica label.
+extern NSString *const JDStatusBarStyleMatrix;  /// This style has a black background with a green bold Courier label.
 extern NSString *const JDStatusBarStyleDefault; /// This style has a white background with a gray Helvetica label.
 extern NSString *const JDStatusBarStyleDark;    /// This style has a nearly black background with a nearly white Helvetica label.
 

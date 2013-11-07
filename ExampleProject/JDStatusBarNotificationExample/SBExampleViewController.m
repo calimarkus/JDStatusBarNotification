@@ -43,14 +43,15 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                            return style;
                                        }];
         
-        self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Default Style", JDNotificationText:@"Better call Saul!"},
+        self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"JDStatusBarStyleDefault", JDNotificationText:@"Better call Saul!"},
                         @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@"Some Progress…"},
                         @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@"Some Activity…"},
                         @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
                       @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
                         @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
                         @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"That's how we roll!"},
-                        @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"}],
+                        @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"},
+                        @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Wake up Neo…"}],
                       @[@{JDButtonName:@"Show custom style", JDButtonInfo:@"Duration: 2s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"}]];
     }
     return self;
@@ -147,6 +148,8 @@ static NSString *const SBStyle1 = @"SBStyle1";
             style = JDStatusBarStyleSuccess;
         } else if(row == 3) {
             style = JDStatusBarStyleDark;
+        } else if(row == 4) {
+            style = JDStatusBarStyleMatrix;
         }
         
         [JDStatusBarNotification showWithStatus:status
