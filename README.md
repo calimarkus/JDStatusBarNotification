@@ -38,7 +38,7 @@ The return value will be the notification view. You can just ignore it, but if y
 
 ![Progress animation](gfx/progress.gif "Progress animation")
 
-    + (void)showProgress:(CGFloat)progress;
+    + (void)showProgress:(CGFloat)progress;  // Range: 0.0 - 1.0
     
 ### Showing activity
 
@@ -49,7 +49,16 @@ The return value will be the notification view. You can just ignore it, but if y
     
 ### Showing a notification with alternative styles
 
-Available styles: `JDStatusBarStyleDefault`, `JDStatusBarStyleDark`, `JDStatusBarStyleError`, `JDStatusBarStyleWarning` or `JDStatusBarStyleSuccess`;
+Available included styles:
+
+- `JDStatusBarStyleDefault` (gray/gray)
+- `JDStatusBarStyleDark` (black/white)
+- `JDStatusBarStyleMatrix` (black/green)
+- `JDStatusBarStyleError` (red/white)
+- `JDStatusBarStyleWarning` (yellow/gray)
+- `JDStatusBarStyleSuccess` (green/white)
+
+Use them with the following methods:
                
     + (UIView*)showWithStatus:(NSString *)status
                     styleName:(NSString*)styleName;
@@ -72,6 +81,7 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 
 	[JDStatusBarNotification addStyleNamed:<#identifier#>
 	                               prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
+	                               
 	                                   style.barColor = <#color#>;
 	                                   style.textColor = <#color#>;
 	                                   style.font = <#font#>;
@@ -81,6 +91,7 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 
                                        style.progressBarColor = <#color#>;
                                        style.progressBarHeight = <#height#>;
+                                       style.progressBarPosition = <#position#>;
 
 	                                   return style;
 	                               }];
