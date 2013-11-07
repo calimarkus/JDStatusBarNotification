@@ -69,17 +69,18 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 + (UIView*)showWithStatus:(NSString *)status
              dismissAfter:(NSTimeInterval)timeInterval;
 {
-    return [self showWithStatus:status
-                   dismissAfter:timeInterval
-                      styleName:nil];
+    UIView *view = [[self sharedInstance] showWithStatus:status
+                                               styleName:nil];
+    [self dismissAfter:timeInterval];
+    return view;
 }
 
 + (UIView*)showWithStatus:(NSString *)status
              dismissAfter:(NSTimeInterval)timeInterval
                 styleName:(NSString*)styleName;
 {
-    UIView *view = [self showWithStatus:status
-                              styleName:styleName];
+    UIView *view = [[self sharedInstance] showWithStatus:status
+                                               styleName:styleName];
     [self dismissAfter:timeInterval];
     return view;
 }
