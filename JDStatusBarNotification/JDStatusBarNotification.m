@@ -468,8 +468,13 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 - (void)updateWindowTransform;
 {
-    self.overlayWindow.transform = [UIApplication sharedApplication].keyWindow.transform;
-    self.overlayWindow.frame = [UIApplication sharedApplication].keyWindow.frame;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (!window) {
+        window = [[[UIApplication sharedApplication] windows] firstObject];
+    }
+    
+    _overlayWindow.transform = window.transform;
+    _overlayWindow.frame = window.frame;
 }
 
 - (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
@@ -483,7 +488,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         yPos = -height/2.0;
     }
     
-    self.topBar.frame = CGRectMake(0, yPos, width, height);
+    _topBar.frame = CGRectMake(0, yPos, width, height);
 }
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
