@@ -17,9 +17,10 @@ extern NSString *const JDStatusBarStyleDefault; /// This style has a white backg
 extern NSString *const JDStatusBarStyleDark;    /// This style has a nearly black background with a nearly white Helvetica label.
 
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
-    JDStatusBarAnimationTypeNone, /// Notification won't animate
-    JDStatusBarAnimationTypeMove, /// Notification will move in from the top, and move out again to the top
-    JDStatusBarAnimationTypeFade  /// Notification will fade in and fade out
+    JDStatusBarAnimationTypeNone,   /// Notification won't animate
+    JDStatusBarAnimationTypeMove,   /// Notification will move in from the top, and move out again to the top
+    JDStatusBarAnimationTypeBounce, /// Notification will fall down from the top and bounce a little bit
+    JDStatusBarAnimationTypeFade    /// Notification will fade in and fade out
 };
 
 typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {

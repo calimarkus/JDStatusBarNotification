@@ -289,10 +289,14 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     
     // animate in
     BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
-    [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
-        self.topBar.alpha = 1.0;
-        self.topBar.transform = CGAffineTransformIdentity;
-    }];
+    if (animationsEnabled && style.animationType == JDStatusBarAnimationTypeBounce) {
+        [self animateInWithBounceAnimation];
+    } else {
+        [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
+            self.topBar.alpha = 1.0;
+            self.topBar.transform = CGAffineTransformIdentity;
+        }];
+    }
     [self setNeedsDisplay];
     
     return self.topBar;
@@ -340,6 +344,45 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     }];
 }
 
+#pragma mark bounce animation
+
+- (void)animateInWithBounceAnimation;
+{
+    // easing function (based on github.com/robb/RBBAnimation)
+    CGFloat(^RBBEasingFunctionEaseOutBounce)(CGFloat) = ^CGFloat(CGFloat t) {
+        if (t < 4.0 / 11.0) return pow(11.0 / 4.0, 2) * pow(t, 2);
+        if (t < 8.0 / 11.0) return 3.0 / 4.0 + pow(11.0 / 4.0, 2) * pow(t - 6.0 / 11.0, 2);
+        if (t < 10.0 / 11.0) return 15.0 /16.0 + pow(11.0 / 4.0, 2) * pow(t - 9.0 / 11.0, 2);
+        return 63.0 / 64.0 + pow(11.0 / 4.0, 2) * pow(t - 21.0 / 22.0, 2);
+    };
+    
+    // create values
+    int fromCenterY=-20, toCenterY=0, animationSteps=100;
+    NSMutableArray *values = [NSMutableArray arrayWithCapacity:animationSteps];
+    for (int t = 1; t<=animationSteps; t++) {
+        float easedTime = RBBEasingFunctionEaseOutBounce((t*1.0)/animationSteps);
+        float easedValue = fromCenterY + easedTime * (toCenterY-fromCenterY);
+        [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeTranslation(0, easedValue, 0)]];
+    }
+    
+    // build animation
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animation.duration = 0.66;
+    animation.values = values;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.delegate = self;
+    [self.topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
+    [self.topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
+{
+    self.topBar.transform = CGAffineTransformIdentity;
+    [self.topBar.layer removeAllAnimations];
+}
+
 #pragma mark progress & activity
 
 - (void)setProgress:(CGFloat)progress;
@@ -381,7 +424,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         CGSize textSize = CGSizeZero;
         SEL selector = @selector(sizeWithAttributes:);
         if ([self.textLabel.text respondsToSelector:selector]) {
-            // use invocation, so pods jenkins task doesn't fail on ios6
+            // use invocation, for iOS 6.0 SDK support
             NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                         [[NSString class] instanceMethodSignatureForSelector:selector]];
@@ -445,7 +488,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         [self.overlayWindow.rootViewController.view addSubview:_topBar];
         
         JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
-        if (style.animationType == JDStatusBarAnimationTypeMove) {
+        if (style.animationType != JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 1.0;
             self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
