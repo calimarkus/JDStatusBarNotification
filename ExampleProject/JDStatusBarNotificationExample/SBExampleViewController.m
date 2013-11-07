@@ -65,6 +65,7 @@ static NSString *const SBStyle1 = @"SBStyle1";
     self.tableView.backgroundView = nil;
     
     // presenting a notification, before a keyWindow is set
+    self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
     [JDStatusBarNotification showWithStatus:@"Hello World!" dismissAfter:2.0
                                   styleName:JDStatusBarStyleMatrix];
 }
