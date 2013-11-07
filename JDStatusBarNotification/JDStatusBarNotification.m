@@ -47,8 +47,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     static dispatch_once_t once;
     static JDStatusBarNotification *sharedInstance;
     dispatch_once(&once, ^ {
-        sharedInstance = [[JDStatusBarNotification alloc] initWithFrame:
-                          [[UIScreen mainScreen] bounds]];
+        sharedInstance = [[JDStatusBarNotification alloc] init];
     });
     return sharedInstance;
 }
@@ -132,19 +131,15 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 #pragma mark Implementation
 
-- (id)initWithFrame:(CGRect)frame;
+- (id)init
 {
-    if ((self = [super initWithFrame:frame])) {
-		self.userInteractionEnabled = NO;
-        self.backgroundColor = [UIColor clearColor];
-		self.alpha = 0;
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+    if ((self = [super init]))
+    {
         // set defaults
         [self setupDefaultStyles];
         
         // register for orientation changes
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
                                                      name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
     }
     return self;
@@ -263,8 +258,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(dismiss) target:self argument:nil];
     [self.topBar.layer removeAllAnimations];
     
-    // show window
-    [self.overlayWindow addSubview:self];
+    // create & show window
     [self.overlayWindow setHidden:NO];
     
     // update style
@@ -297,7 +291,6 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
             self.topBar.transform = CGAffineTransformIdentity;
         }];
     }
-    [self setNeedsDisplay];
     
     return self.topBar;
 }
