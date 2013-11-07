@@ -22,6 +22,12 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
     JDStatusBarAnimationTypeFade  /// Notification will fade in and fade out
 };
 
+typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
+    JDStatusBarProgressBarPositionBottom, /// progress bar will be at the bottom of the status bar
+    JDStatusBarProgressBarPositionCenter, /// progress bar will be at the center of the status bar
+    JDStatusBarProgressBarPositionTop     /// progress bar will be at the top of the status bar
+};
+
 @class JDStatusBarStyle;
 
 /**
@@ -205,6 +211,9 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 /// The height of the progress bar. Default is 1.0
 @property (nonatomic, assign) CGFloat progressBarHeight;
+
+/// The position of the progress bar. Default is JDStatusBarProgressBarPositionBottom
+@property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
 
 @end
 

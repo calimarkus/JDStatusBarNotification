@@ -164,6 +164,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     defaultStyle.barColor = [UIColor whiteColor];
     defaultStyle.progressBarColor = [UIColor greenColor];
     defaultStyle.progressBarHeight = 1.0;
+    defaultStyle.progressBarPosition = JDStatusBarProgressBarPositionBottom;
     defaultStyle.textColor = [UIColor grayColor];
     defaultStyle.font = [UIFont systemFontOfSize:12.0];
     defaultStyle.animationType = JDStatusBarAnimationTypeMove;
@@ -352,9 +353,18 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     CGRect frame = self.topBar.bounds;
     CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
     if (height == 20.0 && frame.size.height > height) height = frame.size.height;
-    frame.origin.y = frame.size.height - height;
     frame.size.height = height;
-    frame.size.width *= progress;
+    frame.size.width = round(frame.size.width * progress);
+    
+    // apply y-position from active style
+    CGFloat barHeight = self.topBar.bounds.size.height;
+    if (self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBottom) {
+        frame.origin.y = barHeight - height;
+    } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionCenter) {
+        frame.origin.y = round((barHeight - height)/2.0);
+    } else {
+        frame.origin.y = 0.0;
+    }
     
     // update progressView frame
     [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -520,6 +530,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.barColor = self.barColor;
     style.progressBarColor = self.progressBarColor;
     style.progressBarHeight = self.progressBarHeight;
+    style.progressBarPosition = self.progressBarPosition;
     style.textColor = self.textColor;
     style.textShadow = self.textShadow;
     style.font = self.font;
