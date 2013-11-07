@@ -63,6 +63,10 @@ static NSString *const SBStyle1 = @"SBStyle1";
     
     self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.0];
     self.tableView.backgroundView = nil;
+    
+    // presenting a notification, before a keyWindow is set
+    [JDStatusBarNotification showWithStatus:@"Hello World!" dismissAfter:2.0
+                                  styleName:JDStatusBarStyleMatrix];
 }
 
 #pragma mark UITableViewDataSource
