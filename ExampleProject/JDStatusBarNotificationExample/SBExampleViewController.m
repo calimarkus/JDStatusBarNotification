@@ -15,6 +15,7 @@ static NSString *const JDButtonInfo = @"JDButtonInfo";
 static NSString *const JDNotificationText = @"JDNotificationText";
 
 static NSString *const SBStyle1 = @"SBStyle1";
+static NSString *const SBStyle2 = @"SBStyle2";
 
 @interface SBExampleViewController ()
 @property (nonatomic, strong) NSArray *data;
@@ -43,6 +44,23 @@ static NSString *const SBStyle1 = @"SBStyle1";
                                            return style;
                                        }];
         
+        [JDStatusBarNotification addStyleNamed:SBStyle2
+                                       prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                                           style.barColor = [UIColor cyanColor];
+                                           style.textColor = [UIColor colorWithRed:0.056 green:0.478 blue:0.998 alpha:1.000];
+                                           style.animationType = JDStatusBarAnimationTypeBounce;
+                                           style.progressBarColor = style.textColor;
+                                           style.progressBarHeight = 5.0;
+                                           style.progressBarPosition = JDStatusBarProgressBarPositionTop;
+                                           if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+                                               style.font = [UIFont fontWithName:@"DINCondensed-Bold" size:17.0];
+                                               style.textVerticalPositionAdjustment = 2.0;
+                                           } else {
+                                               style.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:17.0];
+                                           }
+                                           return style;
+                                       }];
+        
         self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"JDStatusBarStyleDefault", JDNotificationText:@"Better call Saul!"},
                         @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@"Some Progress…"},
                         @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@"Some Activity…"},
@@ -52,7 +70,8 @@ static NSString *const SBStyle1 = @"SBStyle1";
                         @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"That's how we roll!"},
                         @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"},
                         @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Wake up Neo…"}],
-                      @[@{JDButtonName:@"Show custom style", JDButtonInfo:@"Duration: 2s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"}]];
+                      @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
+                        @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}]];
     }
     return self;
 }
@@ -125,24 +144,26 @@ static NSString *const SBStyle1 = @"SBStyle1";
     self.timer = nil;
     
     // show notification
-    if (section == 0 && row == 0) {
-        self.indicatorStyle = UIActivityIndicatorViewStyleGray;
-        [JDStatusBarNotification showWithStatus:status];
-    } else if (section == 0 && row == 1) {
-        if(![JDStatusBarNotification isVisible]) {
+    if (section == 0) {
+        if (row == 0) {
             self.indicatorStyle = UIActivityIndicatorViewStyleGray;
-            [JDStatusBarNotification showWithStatus:status dismissAfter:1.4];
+            [JDStatusBarNotification showWithStatus:status];
+        } else if (row == 1) {
+            if(![JDStatusBarNotification isVisible]) {
+                self.indicatorStyle = UIActivityIndicatorViewStyleGray;
+                [JDStatusBarNotification showWithStatus:status dismissAfter:1.4];
+            }
+            [self startTimer];
+        } else if (row == 2) {
+            if(![JDStatusBarNotification isVisible]) {
+                self.indicatorStyle = UIActivityIndicatorViewStyleGray;
+                [JDStatusBarNotification showWithStatus:status dismissAfter:2.0];
+            }
+            [JDStatusBarNotification showActivityIndicator:YES
+                                            indicatorStyle:self.indicatorStyle];
+        } else if (row == 3) {
+            [JDStatusBarNotification dismiss];
         }
-        [self startTimer];
-    } else if (section == 0 && row == 2) {
-        if(![JDStatusBarNotification isVisible]) {
-            self.indicatorStyle = UIActivityIndicatorViewStyleGray;
-            [JDStatusBarNotification showWithStatus:status dismissAfter:2.0];
-        }
-        [JDStatusBarNotification showActivityIndicator:YES
-                                        indicatorStyle:self.indicatorStyle];
-    } else if (section == 0 && row == 3) {
-        [JDStatusBarNotification dismiss];
     } else if (section == 1) {
         self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
         NSString *style = JDStatusBarStyleError;
@@ -160,11 +181,13 @@ static NSString *const SBStyle1 = @"SBStyle1";
         [JDStatusBarNotification showWithStatus:status
                                    dismissAfter:2.0
                                       styleName:style];
-    } else if (section == 2 && row == 0) {
-        self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
+    } else if (section == 2) {
+        self.indicatorStyle = (row==0) ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleGray;
+
+        NSString *style = (row==0) ? SBStyle1 : SBStyle2;
         [JDStatusBarNotification showWithStatus:status
-                                   dismissAfter:2.0
-                                      styleName:SBStyle1];
+                                   dismissAfter:4.0
+                                      styleName:style];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
