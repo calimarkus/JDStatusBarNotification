@@ -66,7 +66,6 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <connections>
                                 <action selector="selectFontSize:" destination="-1" eventType="valueChanged" id="Mu1-DX-hRE"/>
-                                <action selector="setProgressBarHeight:" destination="-1" eventType="valueChanged" id="8Ve-2T-JlJ"/>
                             </connections>
                         </stepper>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="SnD-sq-J0V">
