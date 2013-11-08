@@ -18,16 +18,6 @@
 		D264F8C9182123D400DA0E53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8C8182123D400DA0E53 /* QuartzCore.framework */; };
 		D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */; };
 		D294B57C182D03E90042B5B4 /* SBCustomStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */; };
-		D294B58E182D1C760042B5B4 /* CMColourBlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B57F182D1C760042B5B4 /* CMColourBlockView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D294B58F182D1C760042B5B4 /* CMColourSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B581182D1C760042B5B4 /* CMColourSelectTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D294B590182D1C760042B5B4 /* CMColourSelectTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B582182D1C760042B5B4 /* CMColourSelectTableViewController.xib */; };
-		D294B591182D1C760042B5B4 /* CMFontSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B584182D1C760042B5B4 /* CMFontSelectTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D294B592182D1C760042B5B4 /* CMFontSelectTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B585182D1C760042B5B4 /* CMFontSelectTableViewController.xib */; };
-		D294B593182D1C760042B5B4 /* CMFontStyleSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B587182D1C760042B5B4 /* CMFontStyleSelectTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D294B594182D1C760042B5B4 /* CMFontStyleSelectTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B588182D1C760042B5B4 /* CMFontStyleSelectTableViewController.xib */; };
-		D294B595182D1C760042B5B4 /* CMTextStylePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B58A182D1C760042B5B4 /* CMTextStylePickerViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D294B596182D1C760042B5B4 /* CMTextStylePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B58B182D1C760042B5B4 /* CMTextStylePickerViewController.xib */; };
-		D294B597182D1C760042B5B4 /* CMUpDownControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B58D182D1C760042B5B4 /* CMUpDownControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D34E5C9AB857468496D1A147 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F89E831D0E4D728185F5B4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -52,22 +42,6 @@
 		D294B578182D03E90042B5B4 /* SBCustomStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCustomStyleViewController.h; sourceTree = "<group>"; };
 		D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCustomStyleViewController.m; sourceTree = "<group>"; };
 		D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBCustomStyleViewController.xib; sourceTree = "<group>"; };
-		D294B57E182D1C760042B5B4 /* CMColourBlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMColourBlockView.h; sourceTree = "<group>"; };
-		D294B57F182D1C760042B5B4 /* CMColourBlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMColourBlockView.m; sourceTree = "<group>"; };
-		D294B580182D1C760042B5B4 /* CMColourSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMColourSelectTableViewController.h; sourceTree = "<group>"; };
-		D294B581182D1C760042B5B4 /* CMColourSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMColourSelectTableViewController.m; sourceTree = "<group>"; };
-		D294B582182D1C760042B5B4 /* CMColourSelectTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMColourSelectTableViewController.xib; sourceTree = "<group>"; };
-		D294B583182D1C760042B5B4 /* CMFontSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMFontSelectTableViewController.h; sourceTree = "<group>"; };
-		D294B584182D1C760042B5B4 /* CMFontSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMFontSelectTableViewController.m; sourceTree = "<group>"; };
-		D294B585182D1C760042B5B4 /* CMFontSelectTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMFontSelectTableViewController.xib; sourceTree = "<group>"; };
-		D294B586182D1C760042B5B4 /* CMFontStyleSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMFontStyleSelectTableViewController.h; sourceTree = "<group>"; };
-		D294B587182D1C760042B5B4 /* CMFontStyleSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMFontStyleSelectTableViewController.m; sourceTree = "<group>"; };
-		D294B588182D1C760042B5B4 /* CMFontStyleSelectTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMFontStyleSelectTableViewController.xib; sourceTree = "<group>"; };
-		D294B589182D1C760042B5B4 /* CMTextStylePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextStylePickerViewController.h; sourceTree = "<group>"; };
-		D294B58A182D1C760042B5B4 /* CMTextStylePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTextStylePickerViewController.m; sourceTree = "<group>"; };
-		D294B58B182D1C760042B5B4 /* CMTextStylePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CMTextStylePickerViewController.xib; sourceTree = "<group>"; };
-		D294B58C182D1C760042B5B4 /* CMUpDownControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUpDownControl.h; sourceTree = "<group>"; };
-		D294B58D182D1C760042B5B4 /* CMUpDownControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUpDownControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +65,6 @@
 			children = (
 				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
 				D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */,
-				D294B57D182D1C760042B5B4 /* CMTextStylePicker */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
 				D264F88E1820213200DA0E53 /* Products */,
 				53FFC4A835EA4347BBD86048 /* Pods.xcconfig */,
@@ -154,30 +127,6 @@
 			path = ../JDStatusBarNotification;
 			sourceTree = "<group>";
 		};
-		D294B57D182D1C760042B5B4 /* CMTextStylePicker */ = {
-			isa = PBXGroup;
-			children = (
-				D294B57E182D1C760042B5B4 /* CMColourBlockView.h */,
-				D294B57F182D1C760042B5B4 /* CMColourBlockView.m */,
-				D294B580182D1C760042B5B4 /* CMColourSelectTableViewController.h */,
-				D294B581182D1C760042B5B4 /* CMColourSelectTableViewController.m */,
-				D294B582182D1C760042B5B4 /* CMColourSelectTableViewController.xib */,
-				D294B583182D1C760042B5B4 /* CMFontSelectTableViewController.h */,
-				D294B584182D1C760042B5B4 /* CMFontSelectTableViewController.m */,
-				D294B585182D1C760042B5B4 /* CMFontSelectTableViewController.xib */,
-				D294B586182D1C760042B5B4 /* CMFontStyleSelectTableViewController.h */,
-				D294B587182D1C760042B5B4 /* CMFontStyleSelectTableViewController.m */,
-				D294B588182D1C760042B5B4 /* CMFontStyleSelectTableViewController.xib */,
-				D294B589182D1C760042B5B4 /* CMTextStylePickerViewController.h */,
-				D294B58A182D1C760042B5B4 /* CMTextStylePickerViewController.m */,
-				D294B58B182D1C760042B5B4 /* CMTextStylePickerViewController.xib */,
-				D294B58C182D1C760042B5B4 /* CMUpDownControl.h */,
-				D294B58D182D1C760042B5B4 /* CMUpDownControl.m */,
-			);
-			name = CMTextStylePicker;
-			path = ../CMTextStylePicker/CMTextStylePicker;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,11 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D294B594182D1C760042B5B4 /* CMFontStyleSelectTableViewController.xib in Resources */,
-				D294B596182D1C760042B5B4 /* CMTextStylePickerViewController.xib in Resources */,
-				D294B590182D1C760042B5B4 /* CMColourSelectTableViewController.xib in Resources */,
 				D294B57C182D03E90042B5B4 /* SBCustomStyleViewController.xib in Resources */,
-				D294B592182D1C760042B5B4 /* CMFontSelectTableViewController.xib in Resources */,
 				D264F8A31820213200DA0E53 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,12 +231,6 @@
 				D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
 				D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */,
-				D294B597182D1C760042B5B4 /* CMUpDownControl.m in Sources */,
-				D294B58E182D1C760042B5B4 /* CMColourBlockView.m in Sources */,
-				D294B58F182D1C760042B5B4 /* CMColourSelectTableViewController.m in Sources */,
-				D294B591182D1C760042B5B4 /* CMFontSelectTableViewController.m in Sources */,
-				D294B593182D1C760042B5B4 /* CMFontStyleSelectTableViewController.m in Sources */,
-				D294B595182D1C760042B5B4 /* CMTextStylePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

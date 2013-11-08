@@ -7,12 +7,12 @@
 //
 
 #import "JDStatusBarNotification.h"
-#import "CMTextStylePickerViewController.h"
+#import "FTFontSelectorController.h"
 #import "InfColorPicker.h"
 
 #import "SBCustomStyleViewController.h"
 
-@interface SBCustomStyleViewController () <UITextFieldDelegate, CMTextStylePickerViewControllerDelegate>
+@interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate>
 @end
 
 @implementation SBCustomStyleViewController
@@ -38,34 +38,38 @@
     return YES;
 }
 
-#pragma mark CMTextStylePickerViewControllerDelegate
+#pragma mark FTFontSelectorControllerDelegate
 
-- (void)textStylePickerViewControllerIsDone:(CMTextStylePickerViewController *)textStylePickerViewController;
+- (void)fontSelectorControllerShouldBeDismissed:(FTFontSelectorController *)controller;
 {
-    self.fontButton.titleLabel.font = textStylePickerViewController.selectedFont;
-    [self.fontButton setTitleColor:textStylePickerViewController.selectedTextColour forState:UIControlStateNormal];;
-    
-    NSString *title = [NSString stringWithFormat: @"%@, %.1fpt", textStylePickerViewController.selectedFont.fontName, textStylePickerViewController.selectedFont.pointSize];
-    [self.fontButton setTitle:title forState:UIControlStateNormal];
-    
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)fontSelectorController:(FTFontSelectorController *)controller didChangeSelectedFontName:(NSString *)fontName;
+{
+    self.fontButton.titleLabel.font = [UIFont fontWithName:fontName size:self.fontButton.titleLabel.font.pointSize];
+//    [self.fontButton setTitleColor:textStylePickerViewController.selectedTextColour forState:UIControlStateNormal];
+    
+    NSString *title = [NSString stringWithFormat: @"%@, %.1fpt",
+                       self.fontButton.titleLabel.font.fontName,
+                       self.fontButton.titleLabel.font.pointSize];
+    [self.fontButton setTitle:title forState:UIControlStateNormal];
 }
 
 #pragma mark Actions
 
 - (IBAction)selectFont:(id)sender
 {
-    CMTextStylePickerViewController *fontController = [CMTextStylePickerViewController textStylePickerViewController];
-    fontController.delegate = self;
-    fontController.selectedFont = self.fontButton.titleLabel.font;
-    fontController.selectedTextColour = self.fontButton.titleLabel.textColor;
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:fontController] animated:YES completion:nil];
+    FTFontSelectorController *fontController = [[FTFontSelectorController alloc] initWithSelectedFontName:self.fontButton.titleLabel.font.fontName];
+    [fontController setFontDelegate:self];
+    [self presentViewController:fontController animated:YES completion:nil];
 }
 
 - (IBAction)selectAnimationStyle:(id)sender {
 }
 
-- (IBAction)selectProgressBarColor:(id)sender {
+- (IBAction)selectProgressBarColor:(id)sender
+{
 }
 
 - (IBAction)selectProgressBarPosition:(id)sender {
