@@ -202,10 +202,15 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 /// The font of the notification label
 @property (nonatomic, strong) UIFont *font;
 
+/// A correction of the vertical label position in points. Default is 0.0
+@property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
+
+#pragma mark Animation
+
 /// The animation, that is used to present the notification
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-#pragma mark progress bar
+#pragma mark Progress Bar
 
 /// The background color of the progress bar (on top of the notification bar)
 @property (nonatomic, strong) UIColor *progressBarColor;

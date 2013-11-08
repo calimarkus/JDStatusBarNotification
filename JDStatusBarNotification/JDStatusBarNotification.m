@@ -266,8 +266,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     self.progressView.backgroundColor = style.progressBarColor;
     self.textLabel.textColor = style.textColor;
     self.textLabel.font = style.font;
-    self.textLabel.frame = CGRectMake(0, 1, self.topBar.bounds.size.width, self.topBar.bounds.size.height-1);
     self.textLabel.text = status;
+    self.textLabel.frame = CGRectMake(0, 1+style.textVerticalPositionAdjustment,
+                                      self.topBar.bounds.size.width, self.topBar.bounds.size.height-1);
     
     if (style.textShadow) {
         self.textLabel.shadowColor = style.textShadow.shadowColor;
@@ -337,7 +338,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     }];
 }
 
-#pragma mark bounce animation
+#pragma mark Bounce Animation
 
 - (void)animateInWithBounceAnimation;
 {
@@ -376,7 +377,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [self.topBar.layer removeAllAnimations];
 }
 
-#pragma mark progress & activity
+#pragma mark Progress & Activity
 
 - (void)setProgress:(CGFloat)progress;
 {
@@ -435,8 +436,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         [self.topBar addSubview:self.activityView];
         [self.activityView sizeToFit];
         CGRect frame = self.activityView.frame;
-        frame.origin.y = ceil((self.textLabel.bounds.size.height - frame.size.height)/2.0) + self.textLabel.frame.origin.y;
         frame.origin.x = round(self.topBar.bounds.size.width/2.0 - textSize.width/2.0) - frame.size.width - 8.0;
+        frame.origin.y = ceil((self.textLabel.bounds.size.height - frame.size.height)/2.0) + self.textLabel.frame.origin.y;
+        frame.origin.y -= self.activeStyle.textVerticalPositionAdjustment;
         self.activityView.frame = frame;
     } else {
         [self.activityView stopAnimating];
@@ -444,7 +446,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     }
 }
 
-#pragma mark state
+#pragma mark State
 
 - (BOOL)isVisible;
 {
@@ -564,13 +566,14 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
     style.barColor = self.barColor;
-    style.progressBarColor = self.progressBarColor;
-    style.progressBarHeight = self.progressBarHeight;
-    style.progressBarPosition = self.progressBarPosition;
     style.textColor = self.textColor;
     style.textShadow = self.textShadow;
     style.font = self.font;
+    style.textVerticalPositionAdjustment = self.textVerticalPositionAdjustment;
     style.animationType = self.animationType;
+    style.progressBarColor = self.progressBarColor;
+    style.progressBarHeight = self.progressBarHeight;
+    style.progressBarPosition = self.progressBarPosition;
     return style;
 }
 
