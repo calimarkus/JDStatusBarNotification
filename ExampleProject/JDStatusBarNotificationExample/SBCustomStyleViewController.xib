@@ -85,7 +85,7 @@
                                 <action selector="selectTextColor:" destination="-1" eventType="touchUpInside" id="4af-G6-XWd"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" id="6TJ-pl-R0h">
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="6TJ-pl-R0h">
                             <rect key="frame" x="14" y="134" width="36" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,7 +106,7 @@
                                 <action selector="selectBarColor:" destination="-1" eventType="touchUpInside" id="yEc-my-c8G"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" id="eJj-Ph-CWv">
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="eJj-Ph-CWv">
                             <rect key="frame" x="14" y="186" width="36" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -149,7 +149,7 @@
                                 <action selector="selectProgressBarColor:" destination="-1" eventType="touchUpInside" id="o9V-O3-TPY"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" id="LLJ-gT-L1E">
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="LLJ-gT-L1E">
                             <rect key="frame" x="14" y="330" width="36" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +174,7 @@
                             <rect key="frame" x="10" y="432" width="300" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3pt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ugc-8r-eGH">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1pt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ugc-8r-eGH">
                                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -194,7 +194,7 @@
                                     <color key="textColor" red="0.07182297856" green="0.58929067850000005" blue="0.99853438139999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="3" minimumValue="1" maximumValue="20" id="zQd-eF-2ku">
+                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="1" minimumValue="1" maximumValue="20" id="zQd-eF-2ku">
                                     <rect key="frame" x="196" y="8" width="94" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <connections>

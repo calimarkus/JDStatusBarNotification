@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */; };
 		D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8921820213200DA0E53 /* CoreGraphics.framework */; };
 		D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
@@ -24,6 +25,8 @@
 /* Begin PBXFileReference section */
 		25F89E831D0E4D728185F5B4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		53FFC4A835EA4347BBD86048 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSelectPropertyViewController.h; sourceTree = "<group>"; };
+		D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSelectPropertyViewController.m; sourceTree = "<group>"; };
 		D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDStatusBarNotificationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D264F8901820213200DA0E53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D264F8921820213200DA0E53 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +104,8 @@
 				D294B578182D03E90042B5B4 /* SBCustomStyleViewController.h */,
 				D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */,
 				D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */,
+				D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */,
+				D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */,
 				D264F8A21820213200DA0E53 /* Images.xcassets */,
 				D264F8971820213200DA0E53 /* Supporting Files */,
 			);
@@ -230,6 +235,7 @@
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
 				D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
+				D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */,
 				D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

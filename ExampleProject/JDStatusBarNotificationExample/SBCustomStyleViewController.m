@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "JDStatusBarNotification.h"
 #import "FTFontSelectorController.h"
+#import "SBSelectPropertyViewController.h"
 #import "InfColorPicker.h"
 
 #import "SBCustomStyleViewController.h"
@@ -17,6 +18,9 @@
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
+
+@property (nonatomic, assign) JDStatusBarAnimationType animationType;
+@property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
 @end
 
 @implementation SBCustomStyleViewController
@@ -24,6 +28,9 @@
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
+    
+    self.animationType = JDStatusBarAnimationTypeMove;
+    self.progressBarPosition = JDStatusBarProgressBarPositionBottom;
     
     self.textColorPreview.backgroundColor = self.fontButton.titleLabel.textColor;
     self.barColorPreview.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.000];
@@ -69,7 +76,11 @@
         style.font = self.fontButton.titleLabel.font;
         style.textColor = self.textColorPreview.backgroundColor;
         style.barColor = self.barColorPreview.backgroundColor;
+        style.animationType = self.animationType;
+        
         style.progressBarColor = self.progressBarColorPreview.backgroundColor;
+        style.progressBarPosition = self.progressBarPosition;
+        style.progressBarHeight = [self.barHeightLabel.text integerValue];
         
         return style;
     }];
@@ -179,7 +190,19 @@
 
 - (IBAction)selectAnimationStyle:(id)sender;
 {
-    
+    NSArray *data = @[@"JDStatusBarAnimationTypeNone",
+                      @"JDStatusBarAnimationTypeMove",
+                      @"JDStatusBarAnimationTypeBounce",
+                      @"JDStatusBarAnimationTypeFade"];
+    SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
+        self.animationType = selectedRow;
+        [self.animationStyleButton setTitle:data[selectedRow] forState:UIControlStateNormal];
+        [self.navigationController popViewControllerAnimated:YES];
+        [self updateStyle];
+    }];
+    controller.title = @"Animation Type";
+    controller.activeRow = self.animationType;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)selectProgressBarColor:(id)sender;
@@ -190,14 +213,27 @@
 
 - (IBAction)selectProgressBarPosition:(id)sender;
 {
-    
+    NSArray *data = @[@"JDStatusBarProgressBarPositionBottom",
+                      @"JDStatusBarProgressBarPositionCenter",
+                      @"JDStatusBarProgressBarPositionTop"];
+    SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
+        self.progressBarPosition = selectedRow;
+        [self.barPositionButton setTitle:data[selectedRow] forState:UIControlStateNormal];
+        [self.navigationController popViewControllerAnimated:YES];
+        [self updateStyle];
+    }];
+    controller.title = @"Progress Bar Position";
+    controller.activeRow = self.progressBarPosition;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)setProgressBarHeight:(UIStepper*)sender;
 {
-    
+    self.barHeightLabel.text = [NSString stringWithFormat: @"%.0fpt", sender.value];
+    [self updateStyle];
 }
 
+#pragma mark Presentation
 
 - (IBAction)show:(id)sender;
 {
@@ -206,14 +242,14 @@
 
 - (IBAction)showWithProgress:(id)sender;
 {
-    [JDStatusBarNotification showWithStatus:self.textField.text dismissAfter:1.3 styleName:@"style"];
-
     double delayInSeconds = [JDStatusBarNotification isVisible] ? 0.0 : 0.25;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         self.progress = 0.0;
         [self startTimer];
     });
+    
+    [JDStatusBarNotification showWithStatus:self.textField.text dismissAfter:1.3 styleName:@"style"];
 }
 
 #pragma mark Progress Timer
