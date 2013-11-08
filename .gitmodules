@@ -1,0 +1,3 @@
+[submodule "CMTextStylePicker"]
+	path = CMTextStylePicker
+	url = git@github.com:chrismiles/CMTextStylePicker.git

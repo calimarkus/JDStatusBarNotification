@@ -7,6 +7,7 @@
 //
 
 #import "JDStatusBarNotification.h"
+#import "SBCustomStyleViewController.h"
 
 #import "SBExampleViewController.h"
 
@@ -71,7 +72,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
                         @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"},
                         @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Wake up Neo…"}],
                       @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
-                        @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}]];
+                        @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}],
+                      @[@{JDButtonName:@"Create your own style", JDButtonInfo:@"Test all possibilities", JDNotificationText:@""}]];
     }
     return self;
 }
@@ -183,11 +185,15 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                       styleName:style];
     } else if (section == 2) {
         self.indicatorStyle = (row==0) ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleGray;
-
+        
         NSString *style = (row==0) ? SBStyle1 : SBStyle2;
         [JDStatusBarNotification showWithStatus:status
                                    dismissAfter:4.0
                                       styleName:style];
+    } else if (section == 3) {
+        SBCustomStyleViewController* viewController = [[SBCustomStyleViewController alloc] init];
+        viewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+        [self.navigationController pushViewController:viewController animated:YES];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

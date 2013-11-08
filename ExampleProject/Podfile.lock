@@ -1,0 +1,10 @@
+PODS:
+  - InfColorPicker (0.0.1)
+
+DEPENDENCIES:
+  - InfColorPicker
+
+SPEC CHECKSUMS:
+  InfColorPicker: 9e227d7ca1eae5bcbeecca138190674b0c3d3a4f
+
+COCOAPODS: 0.27.1
