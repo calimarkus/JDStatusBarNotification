@@ -1,0 +1,1 @@
+../../InfColorPicker/InfColorPicker/InfColorIndicatorView.h

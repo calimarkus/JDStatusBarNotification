@@ -1,0 +1,1 @@
+PODS_FTFONTSELECTOR_OTHER_LDFLAGS = -framework CoreText

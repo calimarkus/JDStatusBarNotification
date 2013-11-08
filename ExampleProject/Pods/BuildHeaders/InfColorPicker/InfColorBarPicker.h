@@ -1,0 +1,1 @@
+../../InfColorPicker/InfColorPicker/InfColorBarPicker.h

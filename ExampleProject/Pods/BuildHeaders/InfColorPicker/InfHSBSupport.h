@@ -1,0 +1,1 @@
+../../InfColorPicker/InfColorPicker/InfHSBSupport.h
