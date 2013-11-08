@@ -7,10 +7,12 @@
 //
 
 #import "JDStatusBarNotification.h"
+#import "CMTextStylePickerViewController.h"
+#import "InfColorPicker.h"
 
 #import "SBCustomStyleViewController.h"
 
-@interface SBCustomStyleViewController () <UITextFieldDelegate>
+@interface SBCustomStyleViewController () <UITextFieldDelegate, CMTextStylePickerViewControllerDelegate>
 @end
 
 @implementation SBCustomStyleViewController
@@ -36,9 +38,28 @@
     return YES;
 }
 
+#pragma mark CMTextStylePickerViewControllerDelegate
+
+- (void)textStylePickerViewControllerIsDone:(CMTextStylePickerViewController *)textStylePickerViewController;
+{
+    self.fontButton.titleLabel.font = textStylePickerViewController.selectedFont;
+    [self.fontButton setTitleColor:textStylePickerViewController.selectedTextColour forState:UIControlStateNormal];;
+    
+    NSString *title = [NSString stringWithFormat: @"%@, %.1fpt", textStylePickerViewController.selectedFont.fontName, textStylePickerViewController.selectedFont.pointSize];
+    [self.fontButton setTitle:title forState:UIControlStateNormal];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark Actions
 
-- (IBAction)selectFont:(id)sender {
+- (IBAction)selectFont:(id)sender
+{
+    CMTextStylePickerViewController *fontController = [CMTextStylePickerViewController textStylePickerViewController];
+    fontController.delegate = self;
+    fontController.selectedFont = self.fontButton.titleLabel.font;
+    fontController.selectedTextColour = self.fontButton.titleLabel.textColor;
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:fontController] animated:YES completion:nil];
 }
 
 - (IBAction)selectAnimationStyle:(id)sender {
