@@ -30,8 +30,15 @@
     self.progressBarColorPreview.backgroundColor = [UIColor redColor];
     
     self.textColorPreview.layer.cornerRadius = self.textColorPreview.frame.size.width/2.0;
-    self.barColorPreview.layer.cornerRadius = self.textColorPreview.frame.size.width/2.0;
-    self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.frame.size.width/2.0;
+    self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
+    self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
+    
+    self.textColorPreview.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
+    self.textColorPreview.layer.borderWidth = 1.0;
+    self.barColorPreview.layer.borderColor = self.textColorPreview.layer.borderColor;
+    self.barColorPreview.layer.borderWidth = self.textColorPreview.layer.borderWidth;
+    self.progressBarColorPreview.layer.borderColor = self.textColorPreview.layer.borderColor;
+    self.progressBarColorPreview.layer.borderWidth = self.textColorPreview.layer.borderWidth;
     
     [self updateFontText];
     [self updateStyle];
