@@ -96,6 +96,8 @@
         textField.text = @"Notification Text";
     }
     
+    [self show:nil];
+    
     return YES;
 }
 
@@ -115,19 +117,21 @@
 
 #pragma mark InfColorPicker
 
-- (void)showColorPicker;
+- (void)showColorPickerWithColor:(UIColor*)color;
 {
     InfColorPickerController *colorController = [InfColorPickerController colorPickerViewController];
     colorController.delegate = self;
-    colorController.sourceColor = self.fontButton.titleLabel.textColor;
-    colorController.resultColor = self.fontButton.titleLabel.textColor;
+    colorController.sourceColor = color;
+    colorController.resultColor = color;
     [colorController presentModallyOverViewController:self];
     
-    UIView *view = colorController.view;
-    colorController.view = [[UIView alloc] initWithFrame:view.frame];
-    colorController.view.backgroundColor = [UIColor blackColor];
-    view.frame = CGRectOffset(CGRectInset(view.frame, 0, 40), 0, 20);
-    [colorController.view addSubview:view];
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        UIView *view = colorController.view;
+        colorController.view = [[UIView alloc] initWithFrame:view.frame];
+        colorController.view.backgroundColor = [UIColor blackColor];
+        view.frame = CGRectMake(0, 64, view.bounds.size.width, view.bounds.size.height-64);
+        [colorController.view addSubview:view];
+    }
 }
 
 #pragma mark InfColorPickerControllerDelegate
@@ -179,13 +183,13 @@
 - (IBAction)selectTextColor:(id)sender;
 {
     self.colorMode = 0;
-    [self showColorPicker];
+    [self showColorPickerWithColor:self.textColorPreview.backgroundColor];
 }
 
 - (IBAction)selectBarColor:(id)sender;
 {
     self.colorMode = 1;
-    [self showColorPicker];
+    [self showColorPickerWithColor:self.barColorPreview.backgroundColor];
 }
 
 - (IBAction)selectAnimationStyle:(id)sender;
@@ -208,7 +212,7 @@
 - (IBAction)selectProgressBarColor:(id)sender;
 {
     self.colorMode = 2;
-    [self showColorPicker];
+    [self showColorPickerWithColor:self.progressBarColorPreview.backgroundColor];
 }
 
 - (IBAction)selectProgressBarPosition:(id)sender;
