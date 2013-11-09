@@ -49,14 +49,9 @@ The return value will be the notification view. You can just ignore it, but if y
     
 ### Showing a notification with alternative styles
 
-Available included styles:
+Included styles:
 
-- `JDStatusBarStyleDefault` (gray/gray)
-- `JDStatusBarStyleDark` (black/white)
-- `JDStatusBarStyleMatrix` (black/green)
-- `JDStatusBarStyleError` (red/white)
-- `JDStatusBarStyleWarning` (yellow/gray)
-- `JDStatusBarStyleSuccess` (green/white)
+![](gfx/styles.png)
 
 Use them with the following methods:
                
