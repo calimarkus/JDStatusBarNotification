@@ -82,13 +82,17 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 	[JDStatusBarNotification addStyleNamed:<#identifier#>
 	                               prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
 	                               
+                                       // main properties
 	                                   style.barColor = <#color#>;
 	                                   style.textColor = <#color#>;
 	                                   style.font = <#font#>;
 	                                   
-	                                   style.textShadow = <#shadow#>;
+                                       // advanced properties
 	                                   style.animationType = <#type#>;
+	                                   style.textShadow = <#shadow#>;
+	                                   style.textVerticalPositionAdjustment = <#adjustment#>;
 
+                                       // progress bar
                                        style.progressBarColor = <#color#>;
                                        style.progressBarHeight = <#height#>;
                                        style.progressBarPosition = <#position#>;
@@ -96,6 +100,18 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 	                                   return style;
 	                               }];
 
+#### Animation Types
+
+- `JDStatusBarAnimationTypeNone`
+- `JDStatusBarAnimationTypeMove`
+- `JDStatusBarAnimationTypeBounce`
+- `JDStatusBarAnimationTypeFade`
+
+#### Progress Bar Positions
+
+- `JDStatusBarProgressBarPositionBottom`
+- `JDStatusBarProgressBarPositionCenter`
+- `JDStatusBarProgressBarPositionTop`
 
 ## Twitter
 
