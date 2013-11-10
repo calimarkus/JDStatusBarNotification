@@ -107,6 +107,8 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 - `JDStatusBarProgressBarPositionBottom`
 - `JDStatusBarProgressBarPositionCenter`
 - `JDStatusBarProgressBarPositionTop`
+- `JDStatusBarProgressBarPositionBelow`
+- `JDStatusBarProgressBarPositionNavBar`
 
 ## Twitter
 
