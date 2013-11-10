@@ -386,6 +386,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     // trim progress
     _progress = MIN(1.0, MAX(0.0,progress));
     
+    if (_progress == 0.0) {
+        self.progressView.frame = CGRectZero;
+        return;
+    }
+    
     // calculate progressView frame
     CGRect frame = self.topBar.bounds;
     CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
@@ -406,7 +411,8 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     }
     
     // update progressView frame
-    [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    BOOL animated = !CGRectEqualToRect(self.progressView.frame, CGRectZero);
+    [UIView animateWithDuration:animated ? 0.05 : 0.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.progressView.frame = frame;
     } completion:nil];
 }
