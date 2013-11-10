@@ -399,8 +399,10 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         frame.origin.y = barHeight - height;
     } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionCenter) {
         frame.origin.y = round((barHeight - height)/2.0);
-    } else {
+    } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionTop) {
         frame.origin.y = 0.0;
+    } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow) {
+        frame.origin.y = barHeight;
     }
     
     // update progressView frame
@@ -476,7 +478,6 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     if(_topBar == nil) {
         _topBar = [[UIView alloc] initWithFrame:CGRectZero];
-        _topBar.clipsToBounds = YES;
         _topBar.alpha = 0.0;
         [self.topBar addSubview:self.progressView];
         [self.topBar addSubview:self.textLabel];
@@ -500,6 +501,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 		_textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         _textLabel.textAlignment = NSTextAlignmentCenter;
 		_textLabel.adjustsFontSizeToFitWidth = YES;
+        _textLabel.clipsToBounds = YES;
     }
     return _textLabel;
 }
