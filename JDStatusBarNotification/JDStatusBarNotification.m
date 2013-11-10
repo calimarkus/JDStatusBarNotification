@@ -391,6 +391,14 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         return;
     }
     
+    // update superview
+    if (self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow ||
+        self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
+        [self.topBar.superview addSubview:self.progressView];
+    } else {
+        [self.topBar insertSubview:self.progressView belowSubview:self.textLabel];
+    }
+    
     // calculate progressView frame
     CGRect frame = self.topBar.bounds;
     CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
@@ -408,6 +416,13 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         frame.origin.y = 0.0;
     } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow) {
         frame.origin.y = barHeight;
+    } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
+        CGFloat navBarHeight = 44.0;
+        if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
+            UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+            navBarHeight = 32.0;
+        }
+        frame.origin.y = barHeight + navBarHeight;
     }
     
     // update progressView frame

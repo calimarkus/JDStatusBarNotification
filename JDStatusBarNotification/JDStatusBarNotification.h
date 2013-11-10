@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
     JDStatusBarProgressBarPositionBottom, /// progress bar will be at the bottom of the status bar
     JDStatusBarProgressBarPositionCenter, /// progress bar will be at the center of the status bar
     JDStatusBarProgressBarPositionTop,    /// progress bar will be at the top of the status bar
-    JDStatusBarProgressBarPositionBelow   /// progress bar will be below the status bar
+    JDStatusBarProgressBarPositionBelow,  /// progress bar will be below the status bar (the prograss bar won't move with the statusbar in this case)
+    JDStatusBarProgressBarPositionNavBar, /// progress bar will be below the navigation bar (the prograss bar won't move with the statusbar in this case)
 };
 
 @class JDStatusBarStyle;
