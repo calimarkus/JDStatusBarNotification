@@ -451,7 +451,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
             [invocation invoke];
             [invocation getReturnValue:&textSize];
         } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
             textSize = [self.textLabel.text sizeWithFont:self.textLabel.font];
+#endif
         }
         
         [self.activityView startAnimating];
@@ -488,7 +490,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
         _overlayWindow.rootViewController = [[UIViewController alloc] init];
         _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
         _overlayWindow.rootViewController.wantsFullScreenLayout = YES;
+#endif
         [self updateWindowTransform];
         [self updateTopBarFrameWithStatusBarFrame:[[UIApplication sharedApplication] statusBarFrame]];
     }
