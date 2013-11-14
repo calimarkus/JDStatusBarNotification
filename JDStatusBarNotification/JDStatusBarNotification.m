@@ -504,7 +504,6 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     if(_topBar == nil) {
         _topBar = [[UIView alloc] initWithFrame:CGRectZero];
         _topBar.alpha = 0.0;
-        [self.topBar addSubview:self.progressView];
         [self.topBar addSubview:self.textLabel];
         [self.overlayWindow.rootViewController.view addSubview:_topBar];
         
