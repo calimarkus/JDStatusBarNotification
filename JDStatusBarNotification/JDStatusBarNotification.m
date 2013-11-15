@@ -342,6 +342,11 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 - (void)animateInWithBounceAnimation;
 {
+    //don't animate in, if topBar is already fully visible
+    if (self.topBar.frame.origin.y >= 0) {
+        return;
+    }
+    
     // easing function (based on github.com/robb/RBBAnimation)
     CGFloat(^RBBEasingFunctionEaseOutBounce)(CGFloat) = ^CGFloat(CGFloat t) {
         if (t < 4.0 / 11.0) return pow(11.0 / 4.0, 2) * pow(t, 2);
