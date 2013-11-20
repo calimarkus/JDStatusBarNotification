@@ -1,6 +1,6 @@
 # JDStatusBarNotification
 
-Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. iOS 7 ready. iOS6 support. 
+Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. iOS 7 ready. iOS6 support. Please open a [Github issue], if you think anything is missing or wrong.
 
 ![Animation](gfx/animation.gif "Animation")
 
@@ -8,10 +8,13 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 
 ## Installation
 
-**Install via pods:**  
+#### Cocoapods:
+
 `pod 'JDStatusBarNotification'`
 
-**Manually:**  
+(For infos on cocoapods, have a look the [cocoapods website])
+
+#### Manually:
 
 1. Drag the `JDStatusBarNotification/JDStatusBarNotification` folder into your project.
 2. Add `#include "JDStatusBarNotification.h"`, where you want to use it
@@ -115,3 +118,6 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter. Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/jaydee3/JDStatusBarNotification&via=jaydee3), if you like JDStatusBarNotification.  
 
 [![TweetButton](gfx/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/jaydee3/JDStatusBarNotification&via=jaydee3)
+
+[Github issue]: https://github.com/jaydee3/JDStatusBarNotification/issues
+[cocoapods website]: http://cocoapods.org
