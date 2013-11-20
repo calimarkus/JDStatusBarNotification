@@ -12,7 +12,7 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 
 `pod 'JDStatusBarNotification'`
 
-(For infos on cocoapods, have a look the [cocoapods website])
+(For infos on cocoapods, have a look at the [cocoapods website])
 
 #### Manually:
 
