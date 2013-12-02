@@ -18,6 +18,9 @@ NSString *const JDStatusBarStyleMatrix  = @"JDStatusBarStyleMatrix";
 NSString *const JDStatusBarStyleDefault = @"JDStatusBarStyleDefault";
 NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
+@interface JDStatusBarNotificationViewController : UIViewController
+@end
+
 @interface JDStatusBarNotification ()
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityView;
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
@@ -493,7 +496,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         _overlayWindow.backgroundColor = [UIColor clearColor];
         _overlayWindow.userInteractionEnabled = NO;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
-        _overlayWindow.rootViewController = [[UIViewController alloc] init];
+        _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
         _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
         _overlayWindow.rootViewController.wantsFullScreenLayout = YES;
@@ -606,6 +609,16 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarHeight = self.progressBarHeight;
     style.progressBarPosition = self.progressBarPosition;
     return style;
+}
+
+@end
+
+// Use a custom view controller, so the statusBarStyle doesn't change
+@implementation JDStatusBarNotificationViewController
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return [UIApplication sharedApplication].statusBarStyle;
 }
 
 @end
