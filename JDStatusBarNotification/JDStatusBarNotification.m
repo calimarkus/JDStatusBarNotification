@@ -493,7 +493,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         _overlayWindow.backgroundColor = [UIColor clearColor];
         _overlayWindow.userInteractionEnabled = NO;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
-        _overlayWindow.rootViewController = [[UIViewController alloc] init];
+        _overlayWindow.rootViewController = [[JDViewController alloc] init];
         _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
         _overlayWindow.rootViewController.wantsFullScreenLayout = YES;
@@ -606,6 +606,16 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarHeight = self.progressBarHeight;
     style.progressBarPosition = self.progressBarPosition;
     return style;
+}
+
+@end
+
+/// Add a view controller to fix status bar issue
+@implementation JDViewController
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+        return [UIApplication sharedApplication].statusBarStyle;
 }
 
 @end

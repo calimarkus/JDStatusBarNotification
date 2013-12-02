@@ -225,4 +225,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 @end
 
+/// Add a view controller to fix status bar issue
+@interface JDViewController : UIViewController
 
+@end
