@@ -610,3 +610,13 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @end
 
+/// Add a view controller to fix status bar issue
+@implementation JDViewController
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+        return [UIApplication sharedApplication].statusBarStyle;
+}
+
+@end
+
