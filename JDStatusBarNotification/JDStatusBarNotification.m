@@ -266,7 +266,6 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     
     // update style
     self.topBar.backgroundColor = style.barColor;
-    self.progressView.backgroundColor = style.progressBarColor;
     self.textLabel.textColor = style.textColor;
     self.textLabel.font = style.font;
     self.textLabel.text = status;
@@ -395,7 +394,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     _progress = MIN(1.0, MAX(0.0,progress));
     
     if (_progress == 0.0) {
-        self.progressView.frame = CGRectZero;
+        _progressView.frame = CGRectZero;
         return;
     }
     
@@ -433,6 +432,9 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
         frame.origin.y = barHeight + navBarHeight;
     }
     
+    // apply color from active style
+    self.progressView.backgroundColor = self.activeStyle.progressBarColor;
+    
     // update progressView frame
     BOOL animated = !CGRectEqualToRect(self.progressView.frame, CGRectZero);
     [UIView animateWithDuration:animated ? 0.05 : 0.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -446,37 +448,44 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     if (_topBar == nil) return;
     
     if (show) {
-        CGSize textSize = CGSizeZero;
-        SEL selector = @selector(sizeWithAttributes:);
-        if ([self.textLabel.text respondsToSelector:selector]) {
-            // use invocation, for iOS 6.0 SDK support
-            NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [[NSString class] instanceMethodSignatureForSelector:selector]];
-            [invocation setSelector:selector];
-            [invocation setTarget:self.textLabel.text];
-            [invocation setArgument:&attributes atIndex:2];
-            [invocation invoke];
-            [invocation getReturnValue:&textSize];
-        } else {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
-            textSize = [self.textLabel.text sizeWithFont:self.textLabel.font];
-#endif
-        }
-        
         [self.activityView startAnimating];
         self.activityView.activityIndicatorViewStyle = style;
         [self.topBar addSubview:self.activityView];
         [self.activityView sizeToFit];
-        CGRect frame = self.activityView.frame;
-        frame.origin.x = round(self.topBar.bounds.size.width/2.0 - textSize.width/2.0) - frame.size.width - 8.0;
-        frame.origin.y = ceil((self.textLabel.bounds.size.height - frame.size.height)/2.0) + self.textLabel.frame.origin.y;
-        frame.origin.y -= self.activeStyle.textVerticalPositionAdjustment;
-        self.activityView.frame = frame;
+        [self layoutActivityIndicator];
     } else {
-        [self.activityView stopAnimating];
-        [self.activityView removeFromSuperview];
+        [_activityView stopAnimating];
+        [_activityView removeFromSuperview];
     }
+}
+
+- (void)layoutActivityIndicator;
+{
+    if (!_topBar || !_textLabel || !_activityView ) return;
+    
+    CGSize textSize = CGSizeZero;
+    SEL selector = @selector(sizeWithAttributes:);
+    if ([self.textLabel.text respondsToSelector:selector]) {
+        // use invocation, for iOS 6.0 SDK support
+        NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [[NSString class] instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:self.textLabel.text];
+        [invocation setArgument:&attributes atIndex:2];
+        [invocation invoke];
+        [invocation getReturnValue:&textSize];
+    } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
+        textSize = [self.textLabel.text sizeWithFont:self.textLabel.font];
+#endif
+    }
+    
+    CGRect frame = self.activityView.frame;
+    frame.origin.x = round(self.topBar.bounds.size.width/2.0 - textSize.width/2.0) - frame.size.width - 8.0;
+    frame.origin.y = ceil((self.textLabel.bounds.size.height - frame.size.height)/2.0) + self.textLabel.frame.origin.y;
+    frame.origin.y -= self.activeStyle.textVerticalPositionAdjustment;
+    self.activityView.frame = frame;
 }
 
 #pragma mark State
@@ -542,7 +551,6 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     if (_progressView == nil) {
         _progressView = [[UIView alloc] initWithFrame:CGRectZero];
-        _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _progressView;
 }
@@ -551,7 +559,6 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     if (_activityView == nil) {
         _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        _activityView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         _activityView.transform = CGAffineTransformMakeScale(0.7, 0.7);
         _activityView.hidesWhenStopped = NO;
     }
@@ -589,6 +596,10 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     [UIView animateWithDuration:0.5 animations:^{
         [self updateWindowTransform];
         [self updateTopBarFrameWithStatusBarFrame:[barFrameValue CGRectValue]];
+        
+        // update subviews
+        [self layoutActivityIndicator];
+        self.progress = self.progress;
     }];
 }
 
