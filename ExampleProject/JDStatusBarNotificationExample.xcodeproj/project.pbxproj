@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */; };
+		D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
+		D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */; };
 		D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8921820213200DA0E53 /* CoreGraphics.framework */; };
 		D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
@@ -27,6 +29,10 @@
 		53FFC4A835EA4347BBD86048 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSelectPropertyViewController.h; sourceTree = "<group>"; };
 		D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSelectPropertyViewController.m; sourceTree = "<group>"; };
+		D25B0FA3184F343600B8174B /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
+		D25B0FA4184F343600B8174B /* JDStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarView.m; sourceTree = "<group>"; };
+		D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyle.h; sourceTree = "<group>"; };
+		D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyle.m; sourceTree = "<group>"; };
 		D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDStatusBarNotificationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D264F8901820213200DA0E53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D264F8921820213200DA0E53 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,6 +133,10 @@
 			children = (
 				D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */,
 				D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */,
+				D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */,
+				D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */,
+				D25B0FA3184F343600B8174B /* JDStatusBarView.h */,
+				D25B0FA4184F343600B8174B /* JDStatusBarView.m */,
 			);
 			name = JDStatusBarNotification;
 			path = ../JDStatusBarNotification;
@@ -232,9 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D264F89D1820213200DA0E53 /* main.m in Sources */,
+				D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */,
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
 				D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
+				D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */,
 				D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */,
 				D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */,
 			);
