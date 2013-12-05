@@ -25,10 +25,10 @@ JDStatusBarNotification is a singleton. You don't need to initialize it anywhere
 Just use the following class methods:
 
 ### Showing a notification
-
-    + (UIView*)showWithStatus:(NSString *)status;
-    + (UIView*)showWithStatus:(NSString *)status
-                 dismissAfter:(NSTimeInterval)timeInterval;
+    
+    + (JDStatusBarView*)showWithStatus:(NSString *)status;
+    + (JDStatusBarView*)showWithStatus:(NSString *)status
+                          dismissAfter:(NSTimeInterval)timeInterval;
 
 The return value will be the notification view. You can just ignore it, but if you need further customization, this is where you can access the view.
 
@@ -57,13 +57,13 @@ Included styles:
 ![](gfx/styles.png)
 
 Use them with the following methods:
-               
-    + (UIView*)showWithStatus:(NSString *)status
-                    styleName:(NSString*)styleName;
-                 
-    + (UIView*)showWithStatus:(NSString *)status
-                 dismissAfter:(NSTimeInterval)timeInterval
-                    styleName:(NSString*)styleName;
+
+    + (JDStatusBarView*)showWithStatus:(NSString *)status
+                             styleName:(NSString*)styleName;
+
+    + (JDStatusBarView*)showWithStatus:(NSString *)status
+                          dismissAfter:(NSTimeInterval)timeInterval
+                             styleName:(NSString*)styleName;
                  
 To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`. See Customization below.
 
