@@ -20,6 +20,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 - (instancetype)copyWithZone:(NSZone*)zone;
 {
     JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
+    style.barBackgroundImage = self.barBackgroundImage;
     style.barColor = self.barColor;
     style.textColor = self.textColor;
     style.textShadow = self.textShadow;
@@ -43,6 +44,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 {
     // setup default style
     JDStatusBarStyle *style = [[JDStatusBarStyle alloc] init];
+    style.barBackgroundImage = nil;
     style.barColor = [UIColor whiteColor];
     style.progressBarColor = [UIColor greenColor];
     style.progressBarHeight = 1.0;

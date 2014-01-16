@@ -9,6 +9,7 @@
 #import "JDStatusBarView.h"
 
 @interface JDStatusBarView ()
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @end
@@ -29,6 +30,17 @@
         [self addSubview:_textLabel];
     }
     return _textLabel;
+}
+
+-(UIImageView *)backgroundImageView{
+    if(_backgroundImageView == nil){
+        _backgroundImageView = [[UIImageView alloc] init];
+        _backgroundImageView.clipsToBounds = YES;
+        [self addSubview:_backgroundImageView];
+        //The background image should always be in the back, hence the name :)
+        [self sendSubviewToBack:_backgroundImageView];
+    }
+    return _backgroundImageView;
 }
 
 - (UIActivityIndicatorView *)activityIndicatorView;
@@ -54,6 +66,10 @@
 - (void)layoutSubviews;
 {
     [super layoutSubviews];
+    
+    // background image
+    self.backgroundImageView.frame = CGRectMake(0, 0,
+                                                self.bounds.size.width, self.bounds.size.height);
     
     // label
     self.textLabel.frame = CGRectMake(0, 1+self.textVerticalPositionAdjustment,
