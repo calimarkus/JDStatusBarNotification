@@ -35,6 +35,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
  */
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
+/// The background image of the notification bar
+@property (nonatomic, strong) UIImage *barBackgroundImage;
+
 /// The background color of the notification bar
 @property (nonatomic, strong) UIColor *barColor;
 
