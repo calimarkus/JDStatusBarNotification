@@ -212,7 +212,8 @@
     UILabel *textLabel = self.topBar.textLabel;
     textLabel.textColor = style.textColor;
     textLabel.font = style.font;
-    textLabel.text = textLabel.accessibilityLabel = status;
+    textLabel.accessibilityLabel = status;
+    textLabel.text = status;
     
     if (style.textShadow) {
         textLabel.shadowColor = style.textShadow.shadowColor;
