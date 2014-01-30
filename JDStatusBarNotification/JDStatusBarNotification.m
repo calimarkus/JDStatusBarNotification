@@ -30,6 +30,8 @@
 @property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
+
+@property (nonatomic, assign) BOOL shouldAutorotate;
 @end
 
 @implementation JDStatusBarNotification
@@ -126,6 +128,16 @@
     return [[JDStatusBarNotification sharedInstance] isVisible];
 }
 
++ (void)setShouldAutorotate:(BOOL)shouldAutorotate {
+    JDStatusBarNotification *notif = [JDStatusBarNotification sharedInstance];
+    notif.shouldAutorotate = shouldAutorotate;
+}
+
++ (BOOL)shouldAutorotate {
+    JDStatusBarNotification *notif = [JDStatusBarNotification sharedInstance];
+    return notif.shouldAutorotate;
+}
+
 #pragma mark Implementation
 
 - (id)init
@@ -138,6 +150,8 @@
         // register for orientation changes
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
                                                      name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
+        // rotation is enabled by default
+        self.shouldAutorotate = YES;
     }
     return self;
 }
@@ -518,6 +532,16 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return [[UIApplication sharedApplication] statusBarStyle];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return [JDStatusBarNotification shouldAutorotate];
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
 }
 
 @end

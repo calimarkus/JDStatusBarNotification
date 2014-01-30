@@ -164,6 +164,21 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  */
 + (BOOL)isVisible;
 
+#pragma mark orientation
+
+/**
+ * Set whether you want the notification to auto rotate
+ *
+ */
++ (void)setShouldAutorotate:(BOOL)shouldRotate;
+
+/**
+ * returns the notifications orientation preference
+ *
+ * @return YES by default unless changed by the user
+ */
++ (BOOL)shouldAutorotate;
+
 @end
 
 
