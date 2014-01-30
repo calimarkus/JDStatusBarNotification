@@ -486,12 +486,38 @@
 
 @end
 
-// Use a custom view controller, so the statusBarStyle doesn't change
+// A custom view controller, so the statusBarStyle & rotation behaviour is correct
 @implementation JDStatusBarNotificationViewController
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return [UIApplication sharedApplication].statusBarStyle;
+- (UIViewController*)keyWindowRootViewController {
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    return [keyWindow rootViewController];
+}
+
+// rotation
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return [[self keyWindowRootViewController]
+            shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+}
+
+- (BOOL)shouldAutorotate {
+    return [[self keyWindowRootViewController] shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [[self keyWindowRootViewController] supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [[self keyWindowRootViewController]
+            preferredInterfaceOrientationForPresentation];
+}
+
+// statusbar style
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return [[UIApplication sharedApplication] statusBarStyle];
 }
 
 @end

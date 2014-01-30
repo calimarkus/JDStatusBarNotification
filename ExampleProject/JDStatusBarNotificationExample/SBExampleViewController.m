@@ -224,10 +224,4 @@ static NSString *const SBStyle2 = @"SBStyle2";
     [JDStatusBarNotification showProgress:0.0];
 }
 
-#pragma mark rotation
-
-- (BOOL)shouldAutorotate; { return YES; }
-- (NSUInteger)supportedInterfaceOrientations { return UIInterfaceOrientationMaskAll; }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation; { return YES; }
-
 @end
