@@ -424,7 +424,7 @@
     return _overlayWindow;
 }
 
-- (UIView *)topBar;
+- (JDStatusBarView*)topBar;
 {
     if(_topBar == nil) {
         _topBar = [[JDStatusBarView alloc] init];
