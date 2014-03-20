@@ -10,4 +10,4 @@ SPEC CHECKSUMS:
   FTFontSelector: d385b9014df6d34f5442a004b4b7da4a37fcc21d
   InfColorPicker: 9e227d7ca1eae5bcbeecca138190674b0c3d3a4f
 
-COCOAPODS: 0.27.1
+COCOAPODS: 0.29.0
