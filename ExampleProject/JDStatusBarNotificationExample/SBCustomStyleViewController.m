@@ -36,16 +36,9 @@
     self.barColorPreview.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.000];
     self.progressBarColorPreview.backgroundColor = [UIColor redColor];
     
-    self.textColorPreview.layer.cornerRadius = self.textColorPreview.frame.size.width/2.0;
+    self.textColorPreview.layer.cornerRadius = round(CGRectGetHeight(self.textColorPreview.frame)/3.0);
     self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
-    
-    self.textColorPreview.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:1.0].CGColor;
-    self.textColorPreview.layer.borderWidth = 1.0;
-    self.barColorPreview.layer.borderColor = self.textColorPreview.layer.borderColor;
-    self.barColorPreview.layer.borderWidth = self.textColorPreview.layer.borderWidth;
-    self.progressBarColorPreview.layer.borderColor = self.textColorPreview.layer.borderColor;
-    self.progressBarColorPreview.layer.borderWidth = self.textColorPreview.layer.borderWidth;
     
     [self updateFontText];
     [self updateStyle];
@@ -63,8 +56,7 @@
 
 - (void)updateFontText;
 {
-    NSString *title = [NSString stringWithFormat: @"%@, %.1fpt",
-                       self.fontButton.titleLabel.font.familyName,
+    NSString *title = [NSString stringWithFormat: @"Change font (%.1f pt)",
                        self.fontButton.titleLabel.font.pointSize];
     [self.fontButton setTitle:title forState:UIControlStateNormal];
     self.textColorPreview.backgroundColor = self.fontButton.titleLabel.textColor;
@@ -80,7 +72,10 @@
         
         style.progressBarColor = self.progressBarColorPreview.backgroundColor;
         style.progressBarPosition = self.progressBarPosition;
-        style.progressBarHeight = [self.barHeightLabel.text integerValue];
+        
+        NSString *height = [self.barHeightLabel.text stringByReplacingOccurrencesOfString:@"ProgressBarHeight (" withString:@""];
+        height = [height stringByReplacingOccurrencesOfString:@" pt)" withString:@""];
+        style.progressBarHeight = [height doubleValue];
         
         return style;
     }];
@@ -235,7 +230,10 @@
 
 - (IBAction)setProgressBarHeight:(UIStepper*)sender;
 {
-    self.barHeightLabel.text = [NSString stringWithFormat: @"%.0fpt", sender.value];
+    if (sender.value < 1) sender.value = 0.5;
+    if (sender.value >= 1) sender.value = round(sender.value);
+    
+    self.barHeightLabel.text = [NSString stringWithFormat: @"ProgressBarHeight (%.1f pt)", sender.value];
     [self updateStyle];
 }
 
