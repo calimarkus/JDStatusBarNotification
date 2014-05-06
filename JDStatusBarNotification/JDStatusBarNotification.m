@@ -492,7 +492,22 @@
 
 - (UIViewController*)keyWindowRootViewController {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    return [keyWindow rootViewController];
+    UIWindow *ourWindow = [[self view] window];
+    
+    // return directly, keywindow isn't our window
+    if (keyWindow != ourWindow) {
+        return [keyWindow rootViewController];
+    }
+    
+    // find another window, if our window is the key window (should fix #24)
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        if (window != ourWindow) {
+            return [window rootViewController];
+        }
+    }
+    
+    // only our window found
+    return nil;
 }
 
 // rotation
