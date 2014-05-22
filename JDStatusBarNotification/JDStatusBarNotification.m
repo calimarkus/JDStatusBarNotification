@@ -275,6 +275,7 @@
     } completion:^(BOOL finished) {
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
+        _overlayWindow.rootViewController = nil;        
         _overlayWindow = nil;
         _progressView = nil;
         _topBar = nil;
