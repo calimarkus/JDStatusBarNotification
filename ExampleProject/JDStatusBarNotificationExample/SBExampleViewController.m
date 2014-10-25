@@ -91,6 +91,11 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                   styleName:JDStatusBarStyleMatrix];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;

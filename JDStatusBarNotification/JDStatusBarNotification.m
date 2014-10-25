@@ -534,10 +534,14 @@
             preferredInterfaceOrientationForPresentation];
 }
 
-// statusbar style
+// statusbar
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return [[UIApplication sharedApplication] statusBarStyle];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO;
 }
 
 @end
