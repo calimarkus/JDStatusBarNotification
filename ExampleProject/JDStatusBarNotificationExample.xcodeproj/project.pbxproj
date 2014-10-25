@@ -1,384 +1,975 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */; };
-		D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
-		D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */; };
-		D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
-		D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8921820213200DA0E53 /* CoreGraphics.framework */; };
-		D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
-		D264F89D1820213200DA0E53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
-		D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
-		D264F8A31820213200DA0E53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
-		D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */; };
-		D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
-		D264F8C9182123D400DA0E53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8C8182123D400DA0E53 /* QuartzCore.framework */; };
-		D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */; };
-		D294B57C182D03E90042B5B4 /* SBCustomStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */; };
-		D34E5C9AB857468496D1A147 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F89E831D0E4D728185F5B4 /* libPods.a */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		25F89E831D0E4D728185F5B4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		53FFC4A835EA4347BBD86048 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSelectPropertyViewController.h; sourceTree = "<group>"; };
-		D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSelectPropertyViewController.m; sourceTree = "<group>"; };
-		D25B0FA3184F343600B8174B /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
-		D25B0FA4184F343600B8174B /* JDStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarView.m; sourceTree = "<group>"; };
-		D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyle.h; sourceTree = "<group>"; };
-		D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyle.m; sourceTree = "<group>"; };
-		D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDStatusBarNotificationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D264F8901820213200DA0E53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D264F8921820213200DA0E53 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D264F8941820213200DA0E53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D264F8981820213200DA0E53 /* JDStatusBarNotificationExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JDStatusBarNotificationExample-Info.plist"; sourceTree = "<group>"; };
-		D264F89C1820213200DA0E53 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D264F89E1820213200DA0E53 /* JDStatusBarNotificationExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JDStatusBarNotificationExample-Prefix.pch"; sourceTree = "<group>"; };
-		D264F89F1820213200DA0E53 /* SBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBAppDelegate.h; sourceTree = "<group>"; };
-		D264F8A01820213200DA0E53 /* SBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBAppDelegate.m; sourceTree = "<group>"; };
-		D264F8A21820213200DA0E53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
-		D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
-		D264F8C31820219F00DA0E53 /* SBExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBExampleViewController.h; sourceTree = "<group>"; };
-		D264F8C41820219F00DA0E53 /* SBExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBExampleViewController.m; sourceTree = "<group>"; };
-		D264F8C8182123D400DA0E53 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D294B578182D03E90042B5B4 /* SBCustomStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCustomStyleViewController.h; sourceTree = "<group>"; };
-		D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBCustomStyleViewController.m; sourceTree = "<group>"; };
-		D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBCustomStyleViewController.xib; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		D264F88A1820213200DA0E53 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D264F8C9182123D400DA0E53 /* QuartzCore.framework in Frameworks */,
-				D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */,
-				D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */,
-				D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */,
-				D34E5C9AB857468496D1A147 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		D264F8841820213200DA0E53 = {
-			isa = PBXGroup;
-			children = (
-				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
-				D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */,
-				D264F88F1820213200DA0E53 /* Frameworks */,
-				D264F88E1820213200DA0E53 /* Products */,
-				53FFC4A835EA4347BBD86048 /* Pods.xcconfig */,
-			);
-			sourceTree = "<group>";
-		};
-		D264F88E1820213200DA0E53 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D264F88F1820213200DA0E53 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D264F8901820213200DA0E53 /* Foundation.framework */,
-				D264F8921820213200DA0E53 /* CoreGraphics.framework */,
-				D264F8C8182123D400DA0E53 /* QuartzCore.framework */,
-				D264F8941820213200DA0E53 /* UIKit.framework */,
-				25F89E831D0E4D728185F5B4 /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */ = {
-			isa = PBXGroup;
-			children = (
-				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
-				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
-				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
-				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
-				D294B578182D03E90042B5B4 /* SBCustomStyleViewController.h */,
-				D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */,
-				D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */,
-				D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */,
-				D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */,
-				D264F8A21820213200DA0E53 /* Images.xcassets */,
-				D264F8971820213200DA0E53 /* Supporting Files */,
-			);
-			path = JDStatusBarNotificationExample;
-			sourceTree = "<group>";
-		};
-		D264F8971820213200DA0E53 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D264F8981820213200DA0E53 /* JDStatusBarNotificationExample-Info.plist */,
-				D264F89C1820213200DA0E53 /* main.m */,
-				D264F89E1820213200DA0E53 /* JDStatusBarNotificationExample-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D264F8BF1820216300DA0E53 /* JDStatusBarNotification */ = {
-			isa = PBXGroup;
-			children = (
-				D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */,
-				D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */,
-				D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */,
-				D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */,
-				D25B0FA3184F343600B8174B /* JDStatusBarView.h */,
-				D25B0FA4184F343600B8174B /* JDStatusBarView.m */,
-			);
-			name = JDStatusBarNotification;
-			path = ../JDStatusBarNotification;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExample" */;
-			buildPhases = (
-				19D14A518C194828B485308D /* Check Pods Manifest.lock */,
-				D264F8891820213200DA0E53 /* Sources */,
-				D264F88A1820213200DA0E53 /* Frameworks */,
-				D264F88B1820213200DA0E53 /* Resources */,
-				03403319612740B2B638E4BA /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = JDStatusBarNotificationExample;
-			productName = JDStatusBarNotificationExample;
-			productReference = D264F88D1820213200DA0E53 /* JDStatusBarNotificationExample.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D264F8851820213200DA0E53 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				CLASSPREFIX = SB;
-				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = Markus;
-			};
-			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = D264F8841820213200DA0E53;
-			productRefGroup = D264F88E1820213200DA0E53 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				D264F88C1820213200DA0E53 /* JDStatusBarNotificationExample */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D264F88B1820213200DA0E53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D294B57C182D03E90042B5B4 /* SBCustomStyleViewController.xib in Resources */,
-				D264F8A31820213200DA0E53 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		03403319612740B2B638E4BA /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		19D14A518C194828B485308D /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		D264F8891820213200DA0E53 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D264F89D1820213200DA0E53 /* main.m in Sources */,
-				D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */,
-				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
-				D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */,
-				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
-				D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */,
-				D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */,
-				D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin XCBuildConfiguration section */
-		D264F8B71820213200DA0E53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D264F8B81820213200DA0E53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D264F8BA1820213200DA0E53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53FFC4A835EA4347BBD86048 /* Pods.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WARNING_CFLAGS = "-Wall";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		D264F8BB1820213200DA0E53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53FFC4A835EA4347BBD86048 /* Pods.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WARNING_CFLAGS = "-Wall";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D264F8B71820213200DA0E53 /* Debug */,
-				D264F8B81820213200DA0E53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D264F8BA1820213200DA0E53 /* Debug */,
-				D264F8BB1820213200DA0E53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D264F8851820213200DA0E53 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>03403319612740B2B638E4BA</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>19D14A518C194828B485308D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>25F89E831D0E4D728185F5B4</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>472386A3CD6B7782EEBDA061</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A91AF330F57A7EF979C692C8</string>
+				<string>7B9B6AC31AFBD4E99FCA8FF1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7B9B6AC31AFBD4E99FCA8FF1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A91AF330F57A7EF979C692C8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D228A0C8182DA75A006B7ABB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SBSelectPropertyViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D228A0C9182DA75A006B7ABB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SBSelectPropertyViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D228A0CA182DA75A006B7ABB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D228A0C9182DA75A006B7ABB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D25B0FA3184F343600B8174B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>JDStatusBarView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D25B0FA4184F343600B8174B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>JDStatusBarView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D25B0FA5184F343700B8174B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D25B0FA4184F343600B8174B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D25B0FA6184F364100B8174B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>JDStatusBarStyle.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D25B0FA7184F364100B8174B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>JDStatusBarStyle.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D25B0FA8184F364100B8174B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D25B0FA7184F364100B8174B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8841820213200DA0E53</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D264F8BF1820216300DA0E53</string>
+				<string>D264F8961820213200DA0E53</string>
+				<string>D264F88F1820213200DA0E53</string>
+				<string>D264F88E1820213200DA0E53</string>
+				<string>472386A3CD6B7782EEBDA061</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8851820213200DA0E53</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>CLASSPREFIX</key>
+				<string>SB</string>
+				<key>LastUpgradeCheck</key>
+				<string>0500</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Markus</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>D264F8881820213200DA0E53</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>D264F8841820213200DA0E53</string>
+			<key>productRefGroup</key>
+			<string>D264F88E1820213200DA0E53</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>D264F88C1820213200DA0E53</string>
+			</array>
+		</dict>
+		<key>D264F8881820213200DA0E53</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D264F8B71820213200DA0E53</string>
+				<string>D264F8B81820213200DA0E53</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D264F8891820213200DA0E53</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D264F89D1820213200DA0E53</string>
+				<string>D25B0FA5184F343700B8174B</string>
+				<string>D264F8A11820213200DA0E53</string>
+				<string>D264F8C21820216300DA0E53</string>
+				<string>D264F8C61820219F00DA0E53</string>
+				<string>D25B0FA8184F364100B8174B</string>
+				<string>D228A0CA182DA75A006B7ABB</string>
+				<string>D294B57B182D03E90042B5B4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D264F88A1820213200DA0E53</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D264F8C9182123D400DA0E53</string>
+				<string>D264F8931820213200DA0E53</string>
+				<string>D264F8951820213200DA0E53</string>
+				<string>D264F8911820213200DA0E53</string>
+				<string>D34E5C9AB857468496D1A147</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D264F88B1820213200DA0E53</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D294B57C182D03E90042B5B4</string>
+				<string>D264F8A31820213200DA0E53</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D264F88C1820213200DA0E53</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D264F8B91820213200DA0E53</string>
+			<key>buildPhases</key>
+			<array>
+				<string>19D14A518C194828B485308D</string>
+				<string>D264F8891820213200DA0E53</string>
+				<string>D264F88A1820213200DA0E53</string>
+				<string>D264F88B1820213200DA0E53</string>
+				<string>03403319612740B2B638E4BA</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>JDStatusBarNotificationExample</string>
+			<key>productName</key>
+			<string>JDStatusBarNotificationExample</string>
+			<key>productReference</key>
+			<string>D264F88D1820213200DA0E53</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>D264F88D1820213200DA0E53</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>JDStatusBarNotificationExample.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D264F88E1820213200DA0E53</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D264F88D1820213200DA0E53</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F88F1820213200DA0E53</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D264F8901820213200DA0E53</string>
+				<string>D264F8921820213200DA0E53</string>
+				<string>D264F8C8182123D400DA0E53</string>
+				<string>D264F8941820213200DA0E53</string>
+				<string>25F89E831D0E4D728185F5B4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8901820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D264F8911820213200DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8901820213200DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8921820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D264F8931820213200DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8921820213200DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8941820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D264F8951820213200DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8941820213200DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8961820213200DA0E53</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D264F89F1820213200DA0E53</string>
+				<string>D264F8A01820213200DA0E53</string>
+				<string>D264F8C31820219F00DA0E53</string>
+				<string>D264F8C41820219F00DA0E53</string>
+				<string>D294B578182D03E90042B5B4</string>
+				<string>D294B579182D03E90042B5B4</string>
+				<string>D294B57A182D03E90042B5B4</string>
+				<string>D228A0C8182DA75A006B7ABB</string>
+				<string>D228A0C9182DA75A006B7ABB</string>
+				<string>D264F8A21820213200DA0E53</string>
+				<string>D264F8971820213200DA0E53</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>JDStatusBarNotificationExample</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8971820213200DA0E53</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D264F8981820213200DA0E53</string>
+				<string>D264F89C1820213200DA0E53</string>
+				<string>D264F89E1820213200DA0E53</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8981820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>JDStatusBarNotificationExample-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F89C1820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F89D1820213200DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F89C1820213200DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F89E1820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>JDStatusBarNotificationExample-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F89F1820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SBAppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8A01820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SBAppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8A11820213200DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8A01820213200DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8A21820213200DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8A31820213200DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8A21820213200DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8B71820213200DA0E53</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D264F8B81820213200DA0E53</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D264F8B91820213200DA0E53</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>D264F8BA1820213200DA0E53</string>
+				<string>D264F8BB1820213200DA0E53</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D264F8BA1820213200DA0E53</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>A91AF330F57A7EF979C692C8</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WARNING_CFLAGS</key>
+				<string>-Wall</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>D264F8BB1820213200DA0E53</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7B9B6AC31AFBD4E99FCA8FF1</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WARNING_CFLAGS</key>
+				<string>-Wall</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>D264F8BF1820216300DA0E53</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D264F8C01820216300DA0E53</string>
+				<string>D264F8C11820216300DA0E53</string>
+				<string>D25B0FA6184F364100B8174B</string>
+				<string>D25B0FA7184F364100B8174B</string>
+				<string>D25B0FA3184F343600B8174B</string>
+				<string>D25B0FA4184F343600B8174B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>JDStatusBarNotification</string>
+			<key>path</key>
+			<string>../JDStatusBarNotification</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8C01820216300DA0E53</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>JDStatusBarNotification.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8C11820216300DA0E53</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>JDStatusBarNotification.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8C21820216300DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8C11820216300DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8C31820219F00DA0E53</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SBExampleViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8C41820219F00DA0E53</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SBExampleViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D264F8C61820219F00DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8C41820219F00DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D264F8C8182123D400DA0E53</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>QuartzCore.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/QuartzCore.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>D264F8C9182123D400DA0E53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D264F8C8182123D400DA0E53</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D294B578182D03E90042B5B4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SBCustomStyleViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D294B579182D03E90042B5B4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SBCustomStyleViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D294B57A182D03E90042B5B4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>path</key>
+			<string>SBCustomStyleViewController.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D294B57B182D03E90042B5B4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D294B579182D03E90042B5B4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D294B57C182D03E90042B5B4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D294B57A182D03E90042B5B4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D34E5C9AB857468496D1A147</key>
+		<dict>
+			<key>fileRef</key>
+			<string>25F89E831D0E4D728185F5B4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D264F8851820213200DA0E53</string>
+</dict>
+</plist>
