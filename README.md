@@ -1,6 +1,6 @@
 # JDStatusBarNotification
 
-Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. iOS 7 ready. iOS6 support. Please open a [Github issue], if you think anything is missing or wrong.
+Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. iOS 7/8 ready. iOS6 support. Please open a [Github issue], if you think anything is missing or wrong.
 
 ![Animation](gfx/animation.gif "Animation")
 
