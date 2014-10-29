@@ -69,7 +69,7 @@ To present a notification using a custom style, use the `identifier` you specifi
 
 ### Beware
 
-@goelv [informed me](https://github.com/jaydee3/JDStatusBarNotification/issues/15), that his app got rejected because of a status bar overlay (for violating 10.1/10.3). So don't overuse it. Although this is the first case I heard of. I even shipped an App myself using this class. It had no problems.
+@goelv / @dskyu informed me (see #15, #30), that his app got rejected because of a status bar overlay (for violating 10.1/10.3). So don't overuse it. Although I haven't heard of any other cases.
 
 ## Customization
 
