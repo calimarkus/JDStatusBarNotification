@@ -44,7 +44,7 @@
     static dispatch_once_t once;
     static JDStatusBarNotification *sharedInstance;
     dispatch_once(&once, ^ {
-        sharedInstance = [[JDStatusBarNotification alloc] init];
+        sharedInstance = [[self alloc] init];
     });
     return sharedInstance;
 }
