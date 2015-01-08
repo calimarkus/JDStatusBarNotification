@@ -149,7 +149,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 /**
  *  Shows an activity indicator in front of the notification text
  *
- *  @param show           Use this flag to show or hide the activity indicator
+ *  @param show  Use this flag to show or hide the activity indicator
  *  @param style Sets the style of the activity indicator
  */
 + (void)showActivityIndicator:(BOOL)show
