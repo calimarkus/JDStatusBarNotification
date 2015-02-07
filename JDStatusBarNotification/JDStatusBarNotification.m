@@ -482,13 +482,22 @@
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
 {
-    NSValue *barFrameValue = notification.userInfo[UIApplicationStatusBarFrameUserInfoKey];
-    [UIView animateWithDuration:0.5 animations:^{
+    CGRect newBarFrame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
+    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
+    
+    // update window & statusbar
+    void(^updateBlock)() = ^{
         [self updateWindowTransform];
-        [self updateTopBarFrameWithStatusBarFrame:[barFrameValue CGRectValue]];
-        
-        // update progress
-        self.progress = self.progress;
+        [self updateTopBarFrameWithStatusBarFrame:newBarFrame];
+        self.progress = self.progress; // // relayout progress bar
+    };
+    
+    [UIView animateWithDuration:duration animations:^{
+        updateBlock();
+    } completion:^(BOOL finished) {
+        // this hack fixes a broken frame after the rotation (#35)
+        // but rotation animation is still broken
+        updateBlock();
     }];
 }
 
