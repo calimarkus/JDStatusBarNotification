@@ -156,7 +156,7 @@
 - (void)setupDefaultStyles;
 {
     self.defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleDefault];
-
+    
     self.userStyles = [NSMutableDictionary dictionary];
     for (NSString *styleName in [JDStatusBarStyle allDefaultStyleIdentifier]) {
         [self.userStyles setObject:[JDStatusBarStyle defaultStyleWithName:styleName] forKey:styleName];
@@ -282,7 +282,7 @@
     } completion:^(BOOL finished) {
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
-        _overlayWindow.rootViewController = nil;        
+        _overlayWindow.rootViewController = nil;
         _overlayWindow = nil;
         _progressView = nil;
         _topBar = nil;
@@ -470,7 +470,7 @@
 {
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
-
+    
     // on ios7 fix position, if statusBar has double height
     CGFloat yPos = 0;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {

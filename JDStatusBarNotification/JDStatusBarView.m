@@ -21,10 +21,10 @@
 {
     if (_textLabel == nil) {
         _textLabel = [[UILabel alloc] init];
-		_textLabel.backgroundColor = [UIColor clearColor];
-		_textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        _textLabel.backgroundColor = [UIColor clearColor];
+        _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         _textLabel.textAlignment = NSTextAlignmentCenter;
-		_textLabel.adjustsFontSizeToFitWidth = YES;
+        _textLabel.adjustsFontSizeToFitWidth = YES;
         _textLabel.clipsToBounds = YES;
         [self addSubview:_textLabel];
     }

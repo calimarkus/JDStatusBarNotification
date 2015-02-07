@@ -23,7 +23,7 @@
 typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 /**
- *  This class is a singletion which is used to present notifications 
+ *  This class is a singletion which is used to present notifications
  *  on top of the status bar. To present a notification, use one of the
  *  given class methods.
  */
@@ -115,7 +115,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  when a method without styleName is used for presentation, or
  *  styleName is nil, or no style is found with this name.
  *
- *  @param prepareBlock A block, which has a JDStatusBarStyle instance as 
+ *  @param prepareBlock A block, which has a JDStatusBarStyle instance as
  *  parameter. This instance can be modified to suit your needs. You need
  *  to return the modified style again.
  */
@@ -125,7 +125,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  Adds a custom style, which than can be used
  *  in the presentation methods.
  *
- *  @param identifier   The identifier, which will 
+ *  @param identifier   The identifier, which will
  *  later be used to reference the configured style.
  *  @param prepareBlock A block, which has a JDStatusBarStyle instance as
  *  parameter. This instance can be modified to suit your needs. You need
