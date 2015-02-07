@@ -19,6 +19,10 @@
 @interface JDStatusBarNotificationViewController : UIViewController
 @end
 
+@interface UIApplication (mainWindow)
+- (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow*)ignoringWindow;
+@end
+
 @interface JDStatusBarNotification ()
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
@@ -456,9 +460,8 @@
 
 - (void)updateWindowTransform;
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (window == nil && [[[UIApplication sharedApplication] windows] count] > 0) window = [[UIApplication sharedApplication] windows][0];
-    
+    UIWindow *window = [[UIApplication sharedApplication]
+                        mainApplicationWindowIgnoringWindow:self.overlayWindow];
     _overlayWindow.transform = window.transform;
     _overlayWindow.frame = window.frame;
 }
@@ -494,44 +497,28 @@
 // A custom view controller, so the statusBarStyle & rotation behaviour is correct
 @implementation JDStatusBarNotificationViewController
 
-- (UIViewController*)keyWindowRootViewController {
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    UIWindow *ourWindow = [[self view] window];
-    
-    // return directly, keywindow isn't our window
-    if (keyWindow != ourWindow) {
-        return [keyWindow rootViewController];
-    }
-    
-    // find another window, if our window is the key window (should fix #24)
-    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
-        if (window != ourWindow) {
-            return [window rootViewController];
-        }
-    }
-    
-    // only our window found
-    return nil;
-}
-
 // rotation
 
+- (UIViewController*)mainController
+{
+    return [[[UIApplication sharedApplication]
+             mainApplicationWindowIgnoringWindow:self.view.window] rootViewController];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return [[self keyWindowRootViewController]
-            shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    return [[self mainController] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotate {
-    return [[self keyWindowRootViewController] shouldAutorotate];
+    return [[self mainController] shouldAutorotate];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return [[self keyWindowRootViewController] supportedInterfaceOrientations];
+    return [[self mainController] supportedInterfaceOrientations];
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return [[self keyWindowRootViewController]
-            preferredInterfaceOrientationForPresentation];
+    return [[self mainController] preferredInterfaceOrientationForPresentation];
 }
 
 // statusbar
@@ -546,3 +533,14 @@
 
 @end
 
+@implementation UIApplication (mainWindow)
+// we don't want the keyWindow, since it could be our own window
+- (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        if (!window.hidden && window != ignoringWindow) {
+            return window;
+        }
+    }
+    return nil;
+}
+@end
