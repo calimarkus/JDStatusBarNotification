@@ -239,7 +239,8 @@
     if (animationsEnabled && style.animationType == JDStatusBarAnimationTypeBounce) {
         [self animateInWithBounceAnimation];
     } else {
-        [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
+        NSTimeInterval duration = [self timeIntervalForAnimationDuration:self.activeStyle.animationDuration];
+        [UIView animateWithDuration:(animationsEnabled ? duration : 0.0) animations:^{
             self.topBar.alpha = 1.0;
             self.topBar.transform = CGAffineTransformIdentity;
         }];
@@ -272,8 +273,11 @@
     BOOL animationsEnabled = (self.activeStyle.animationType != JDStatusBarAnimationTypeNone);
     animated &= animationsEnabled;
     
+    // animation duration
+    NSTimeInterval duration = [self timeIntervalForAnimationDuration:self.activeStyle.animationDuration];
+    
     // animate out
-    [UIView animateWithDuration:animated ? 0.4 : 0.0 animations:^{
+    [UIView animateWithDuration:animated ? duration : 0.0 animations:^{
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
@@ -331,6 +335,22 @@
 {
     self.topBar.transform = CGAffineTransformIdentity;
     [self.topBar.layer removeAllAnimations];
+}
+
+#pragma mark Duration
+
+- (NSTimeInterval)timeIntervalForAnimationDuration:(JDStatusBarAnimationDuration)animationDuration
+{
+    switch (animationDuration) {
+        case JDStatusBarAnimationDurationShort:
+            return 0.25;
+            break;
+            
+        case JDStatusBarAnimationDurationNormal:
+        default:
+            return 0.4;
+            break;
+    }
 }
 
 #pragma mark Progress & Activity

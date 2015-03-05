@@ -25,7 +25,7 @@ JDStatusBarNotification is a singleton. You don't need to initialize it anywhere
 Just use the following class methods:
 
 ### Showing a notification
-    
+
     + (JDStatusBarView*)showWithStatus:(NSString *)status;
     + (JDStatusBarView*)showWithStatus:(NSString *)status
                           dismissAfter:(NSTimeInterval)timeInterval;
@@ -36,20 +36,20 @@ The return value will be the notification view. You can just ignore it, but if y
 
     + (void)dismiss;
     + (void)dismissAfter:(NSTimeInterval)delay;
-    
+
 ### Showing progress
 
 ![Progress animation](gfx/progress.gif "Progress animation")
 
     + (void)showProgress:(CGFloat)progress;  // Range: 0.0 - 1.0
-    
+
 ### Showing activity
 
 ![Activity screenshot](gfx/activity.gif "Activity screenshot")
 
     + (void)showActivityIndicator:(BOOL)show
                    indicatorStyle:(UIActivityIndicatorViewStyle)style;
-    
+
 ### Showing a notification with alternative styles
 
 Included styles:
@@ -64,7 +64,7 @@ Use them with the following methods:
     + (JDStatusBarView*)showWithStatus:(NSString *)status
                           dismissAfter:(NSTimeInterval)timeInterval
                              styleName:(NSString*)styleName;
-                 
+
 To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`. See Customization below.
 
 ### Beware
@@ -74,7 +74,7 @@ To present a notification using a custom style, use the `identifier` you specifi
 ## Customization
 
     + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
-    
+
     + (NSString*)addStyleNamed:(NSString*)identifier
                        prepare:(JDPrepareStyleBlock)prepareBlock;
 
@@ -83,14 +83,15 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 
 	[JDStatusBarNotification addStyleNamed:<#identifier#>
 	                               prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
-	                               
+
                                        // main properties
 	                                   style.barColor = <#color#>;
 	                                   style.textColor = <#color#>;
 	                                   style.font = <#font#>;
-	                                   
+
                                        // advanced properties
 	                                   style.animationType = <#type#>;
+                                     style.animationDuration = <#duration#>;
 	                                   style.textShadow = <#shadow#>;
 	                                   style.textVerticalPositionAdjustment = <#adjustment#>;
 
@@ -108,6 +109,11 @@ The `prepareBlock` gives you a copy of the default style, which can be modified 
 - `JDStatusBarAnimationTypeMove`
 - `JDStatusBarAnimationTypeBounce`
 - `JDStatusBarAnimationTypeFade`
+
+#### Animation Durations
+
+- `JDStatusBarAnimationDurationNormal // 0.4 seconds`
+- `JDStatusBarAnimationDurationShort  // 0.25 seconds`
 
 #### Progress Bar Positions
 

@@ -22,6 +22,11 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
     JDStatusBarAnimationTypeFade    /// Notification will fade in and fade out
 };
 
+typedef NS_ENUM(NSInteger, JDStatusBarAnimationDuration) {
+    JDStatusBarAnimationDurationNormal, /// Normal 0.4 second animation
+    JDStatusBarAnimationDurationShort,  /// Shorter 0.25 second animation
+};
+
 typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
     JDStatusBarProgressBarPositionBottom, /// progress bar will be at the bottom of the status bar
     JDStatusBarProgressBarPositionCenter, /// progress bar will be at the center of the status bar
@@ -54,6 +59,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 
 /// The animation, that is used to present the notification
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
+
+/// The duration of the bar animation
+@property (nonatomic) JDStatusBarAnimationDuration animationDuration;
 
 #pragma mark Progress Bar
 
