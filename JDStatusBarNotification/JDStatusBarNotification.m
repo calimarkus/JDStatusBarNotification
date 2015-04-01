@@ -510,8 +510,14 @@
 
 - (UIViewController*)mainController
 {
-    return [[[UIApplication sharedApplication]
-             mainApplicationWindowIgnoringWindow:self.view.window] rootViewController];
+    UIWindow *mainAppWindow = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.view.window];
+    UIViewController *topController = mainAppWindow.rootViewController;
+    
+    while(topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+    
+    return topController;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -532,12 +538,34 @@
 
 // statusbar
 
+static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
+    static BOOL enabled = NO;
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        enabled = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"] boolValue];
+    });
+    
+    return enabled;
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+        return [[self mainController] preferredStatusBarStyle];
+    }
+    
     return [[UIApplication sharedApplication] statusBarStyle];
 }
 
 - (BOOL)prefersStatusBarHidden {
     return NO;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+        return [[self mainController] preferredStatusBarUpdateAnimation];
+    }
+    return [super preferredStatusBarUpdateAnimation];
 }
 
 @end
