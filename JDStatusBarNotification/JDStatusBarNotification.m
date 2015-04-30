@@ -140,8 +140,8 @@
         [self setupDefaultStyles];
         
         // register for orientation changes
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
-                                                     name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeStatusBarFrame:)
+//                                                     name:UIApplicationWillChangeStatusBarFrameNotification object:nil];
     }
     return self;
 }
@@ -436,6 +436,7 @@
 {
     if(_topBar == nil) {
         _topBar = [[JDStatusBarView alloc] init];
+        _topBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self.overlayWindow.rootViewController.view addSubview:_topBar];
         
         JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
