@@ -32,6 +32,10 @@
     
     [self.window makeKeyAndVisible];
     
+    
+    // Hide original statusBar
+    // [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     return YES;
 }
 

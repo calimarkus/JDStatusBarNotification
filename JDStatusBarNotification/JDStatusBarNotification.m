@@ -34,6 +34,11 @@
 @property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
+
+// original statusBar is Hidden
+@property (nonatomic) BOOL statusBarHidden;
+
+
 @end
 
 @implementation JDStatusBarNotification
@@ -192,7 +197,12 @@
                     style:(JDStatusBarStyle*)style;
 {
     // first, check if status bar is visible at all
-    if ([UIApplication sharedApplication].statusBarHidden) return nil;
+    // show statusBar if it's original hidden
+    if ([UIApplication sharedApplication].statusBarHidden){
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        self.statusBarHidden = YES;
+    }
+    
     
     // prepare for new style
     if (style != self.activeStyle) {
@@ -265,6 +275,13 @@
 
 - (void)dismissAnimated:(BOOL)animated;
 {
+    
+    // hide status bar if it's original hidden
+    if (self.statusBarHidden){
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }
+    
+    
     [self.dismissTimer invalidate];
     self.dismissTimer = nil;
     
