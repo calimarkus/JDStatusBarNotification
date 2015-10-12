@@ -528,7 +528,7 @@
     return [[self mainController] shouldAutorotate];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [[self mainController] supportedInterfaceOrientations];
 }
 
