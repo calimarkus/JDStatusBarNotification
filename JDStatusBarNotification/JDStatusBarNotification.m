@@ -191,9 +191,12 @@
 - (UIView*)showWithStatus:(NSString *)status
                     style:(JDStatusBarStyle*)style;
 {
-    // first, check if status bar is visible at all
-    if ([UIApplication sharedApplication].statusBarHidden) return nil;
-    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 80000 // only when deployment target is before iOS 8
+	// first, check if status bar is visible at all
+	// Don't do on iOS 8 or later as then the status bar is e.g. also hidden in landscape on iPhones
+	if ([UIApplication sharedApplication].statusBarHidden) return nil;
+#endif
+	
     // prepare for new style
     if (style != self.activeStyle) {
         self.activeStyle = style;
@@ -233,6 +236,9 @@
     // reset progress & activity
     self.progress = 0.0;
     [self showActivityIndicator:NO indicatorStyle:0];
+	
+	// Just in case update the top bar frame; when activated in landscape, the status bar is unhidden but then the frame needs an update
+	[self updateTopBarFrameWithStatusBarFrame:[UIApplication sharedApplication].statusBarFrame];
     
     // animate in
     BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
