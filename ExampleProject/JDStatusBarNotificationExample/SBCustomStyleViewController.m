@@ -15,6 +15,7 @@
 #import "SBCustomStyleViewController.h"
 
 @interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate, InfColorPickerControllerDelegate>
+@property (nonatomic, assign) CGFloat minimumScaleFactor;
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
@@ -66,6 +67,7 @@
 {
     [JDStatusBarNotification addStyleNamed:@"style" prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
         style.font = self.fontButton.titleLabel.font;
+        style.minimumScaleFactor = self.minimumScaleFactor;
         style.textColor = self.textColorPreview.backgroundColor;
         style.barColor = self.barColorPreview.backgroundColor;
         style.animationType = self.animationType;
@@ -172,6 +174,23 @@
 {
     self.fontButton.titleLabel.font = [UIFont fontWithName:self.fontButton.titleLabel.font.fontName size:sender.value];
     [self updateFontText];
+    [self updateStyle];
+}
+
+- (IBAction)selectScaleFactor:(UIStepper *)sender
+{
+    self.minimumScaleFactor = MAX(0.0, MIN(sender.value, 1.0));
+    NSString *title;
+
+    if (self.minimumScaleFactor == 0.0) {
+        title = @"MinimumScaleFactor: 0 (default)";
+        self.scaleFactorButton.titleLabel.font = self.fontButton.titleLabel.font;
+    } else {
+        title = [NSString stringWithFormat:@"MinimumScaleFactor: %.1f", self.minimumScaleFactor];
+        self.scaleFactorButton.titleLabel.font = [UIFont fontWithName:self.fontButton.titleLabel.font.fontName
+                                                                 size:self.fontButton.titleLabel.font.pointSize * self.minimumScaleFactor];
+    }
+    [self.scaleFactorButton setTitle:title forState:UIControlStateNormal];
     [self updateStyle];
 }
 
