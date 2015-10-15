@@ -219,6 +219,7 @@
     UILabel *textLabel = self.topBar.textLabel;
     textLabel.textColor = style.textColor;
     textLabel.font = style.font;
+    textLabel.minimumScaleFactor = style.minimumScaleFactor;
     textLabel.accessibilityLabel = status;
     textLabel.text = status;
     
