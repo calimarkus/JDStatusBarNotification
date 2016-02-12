@@ -8,7 +8,7 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 
 ## Installation
 
-#### Cocoapods:
+#### CocoaPods:
 
 `pod 'JDStatusBarNotification'`
 
