@@ -477,7 +477,7 @@
         yPos = -height/2.0;
     }
     
-    _topBar.frame = CGRectMake(0, yPos, width, height);
+    _topBar.frame = CGRectMake(0, yPos+height+44.0, width, height);
 }
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;

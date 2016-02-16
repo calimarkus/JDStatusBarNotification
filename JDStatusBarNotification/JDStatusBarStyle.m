@@ -53,6 +53,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     
     // JDStatusBarStyleDefault
     if ([styleName isEqualToString:JDStatusBarStyleDefault]) {
+        style.animationType = JDStatusBarAnimationTypeFade;
         return style;
     }
     
