@@ -90,14 +90,29 @@
     [self dismissAnimated:YES];
 }
 
-+ (void)dismissAnimated:(BOOL)animated;
++ (void)dismissWithCompletion:(void (^ __nullable)(BOOL finished))completion;
 {
-    [[JDStatusBarNotification sharedInstance] dismissAnimated:animated];
+	[self dismissAnimated:YES completion:completion];
 }
 
-+ (void)dismissAfter:(NSTimeInterval)delay;
++ (void)dismissAnimated:(BOOL)animated;
 {
-    [[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay];
+	[[JDStatusBarNotification sharedInstance] dismissAnimated:animated completion:nil];
+}
+
++ (void)dismissAnimated:(BOOL)animated completion:(void (^ __nullable)(BOOL finished))completion
+{
+	[[JDStatusBarNotification sharedInstance] dismissAnimated:animated completion:completion];
+}
+
++ (void)dismissAfter:(NSTimeInterval)delay
+{
+    [[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay completion:nil];
+}
+
++ (void)dismissAfter:(NSTimeInterval)delay completion:(void (^ __nullable)(BOOL finished))completion
+{
+	[[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay completion:completion];
 }
 
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
@@ -113,6 +128,11 @@
 {
     return [[JDStatusBarNotification sharedInstance] addStyleNamed:identifier
                                                            prepare:prepareBlock];
+}
+
++ (void)updateStatus:(NSString*)status
+{
+	[[JDStatusBarNotification sharedInstance] updateStatus:status];
 }
 
 + (void)showProgress:(CGFloat)progress;
@@ -250,20 +270,20 @@
 
 #pragma mark Dismissal
 
-- (void)setDismissTimerWithInterval:(NSTimeInterval)interval;
+- (void)setDismissTimerWithInterval:(NSTimeInterval)interval completion:(void (^ __nullable)(BOOL finished))completion
 {
     [self.dismissTimer invalidate];
     self.dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
-                                                 interval:0 target:self selector:@selector(dismiss:) userInfo:nil repeats:NO];
+                                                 interval:0 target:self selector:@selector(dismiss:) userInfo:completion repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:self.dismissTimer forMode:NSRunLoopCommonModes];
 }
 
 - (void)dismiss:(NSTimer*)timer;
 {
-    [self dismissAnimated:YES];
+    [self dismissAnimated:YES completion:timer.userInfo];
 }
 
-- (void)dismissAnimated:(BOOL)animated;
+- (void)dismissAnimated:(BOOL)animated completion:(void (^ __nullable)(BOOL finished))completion
 {
     [self.dismissTimer invalidate];
     self.dismissTimer = nil;
@@ -280,6 +300,12 @@
             self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
     } completion:^(BOOL finished) {
+		
+		if (completion)
+		{
+			completion(finished);
+		}
+		
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
         _overlayWindow.rootViewController = nil;
@@ -334,6 +360,12 @@
 }
 
 #pragma mark Progress & Activity
+
+- (void)updateStatus:(NSString*)status
+{
+	UILabel *textLabel = self.topBar.textLabel;
+	textLabel.text = status;
+}
 
 - (void)setProgress:(CGFloat)progress;
 {
