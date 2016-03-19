@@ -92,17 +92,17 @@
 
 + (void)dismissWithCompletion:(void (^ __nullable)(BOOL finished))completion;
 {
-	[self dismissAnimated:YES completion:completion];
+    [self dismissAnimated:YES completion:completion];
 }
 
 + (void)dismissAnimated:(BOOL)animated;
 {
-	[[JDStatusBarNotification sharedInstance] dismissAnimated:animated completion:nil];
+    [[JDStatusBarNotification sharedInstance] dismissAnimated:animated completion:nil];
 }
 
 + (void)dismissAnimated:(BOOL)animated completion:(void (^ __nullable)(BOOL finished))completion
 {
-	[[JDStatusBarNotification sharedInstance] dismissAnimated:animated completion:completion];
+    [[JDStatusBarNotification sharedInstance] dismissAnimated:animated completion:completion];
 }
 
 + (void)dismissAfter:(NSTimeInterval)delay
@@ -112,7 +112,7 @@
 
 + (void)dismissAfter:(NSTimeInterval)delay completion:(void (^ __nullable)(BOOL finished))completion
 {
-	[[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay completion:completion];
+    [[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay completion:completion];
 }
 
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
@@ -132,7 +132,7 @@
 
 + (void)updateStatus:(NSString*)status
 {
-	[[JDStatusBarNotification sharedInstance] updateStatus:status];
+    [[JDStatusBarNotification sharedInstance] updateStatus:status];
 }
 
 + (void)showProgress:(CGFloat)progress;
@@ -300,12 +300,12 @@
             self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
     } completion:^(BOOL finished) {
-		
-		if (completion)
-		{
-			completion(finished);
-		}
-		
+        
+        if (completion)
+        {
+            completion(finished);
+        }
+        
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
         _overlayWindow.rootViewController = nil;
@@ -363,8 +363,8 @@
 
 - (void)updateStatus:(NSString*)status
 {
-	UILabel *textLabel = self.topBar.textLabel;
-	textLabel.text = status;
+    UILabel *textLabel = self.topBar.textLabel;
+    textLabel.text = status;
 }
 
 - (void)setProgress:(CGFloat)progress;
@@ -418,9 +418,14 @@
     
     // update progressView frame
     BOOL animated = !CGRectEqualToRect(self.progressView.frame, CGRectZero);
-    [UIView animateWithDuration:animated ? 0.05 : 0.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:animated ? 1.0 : 0.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.progressView.frame = frame;
     } completion:nil];
+}
+
++ (CGFloat)exactPercentageOfProgressView
+{
+    return [JDStatusBarNotification sharedInstance].progressView.frame.size.width / [JDStatusBarNotification sharedInstance].topBar.frame.size.width;
 }
 
 - (void)showActivityIndicator:(BOOL)show

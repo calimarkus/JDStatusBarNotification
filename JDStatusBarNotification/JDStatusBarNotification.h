@@ -175,6 +175,12 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  */
 + (BOOL)isVisible;
 
+/**
+ * Gives api access to the percentage of how much the
+ * progress view bar has filled up the top bar
+ */
++ (CGFloat)exactPercentageOfProgressView;
+
 @end
 
 
