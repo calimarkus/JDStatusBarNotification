@@ -154,8 +154,18 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  Show the progress below the label.
  *
  *  @param progress Relative progress from 0.0 to 1.0
+ *  Animation duration defaults to 0.05 with this method
  */
 + (void)showProgress:(CGFloat)progress;
+
+/**
+ *  Show the progress below the label.
+ *
+ *  @param progress Relative progress from 0.0 to 1.0
+ *  @param duration The amount of time the progress bar
+ *  will take animating between cycles
+ */
++ (void)showProgress:(CGFloat)progress withAnimationDuration:(NSTimeInterval)duration;
 
 /**
  *  Shows an activity indicator in front of the notification text
