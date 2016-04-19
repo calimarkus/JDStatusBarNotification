@@ -272,21 +272,33 @@
     BOOL animationsEnabled = (self.activeStyle.animationType != JDStatusBarAnimationTypeNone);
     animated &= animationsEnabled;
     
-    // animate out
-    [UIView animateWithDuration:animated ? 0.4 : 0.0 animations:^{
+    dispatch_block_t animation = ^{
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
             self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
-    } completion:^(BOOL finished) {
+    };
+    
+    void(^complete)(BOOL) = ^(BOOL finished) {
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
         _overlayWindow.rootViewController = nil;
         _overlayWindow = nil;
         _progressView = nil;
         _topBar = nil;
-    }];
+    };
+
+    if (animated) {
+        // animate out
+        [UIView animateWithDuration:0.4 animations:animation completion:complete];
+    } else {
+        // if animated is false instantly call functions.
+        // ensure no 0.0s animation is being used, as it can lead to UI glitches
+        // Especially fixes issue with dismissing in viewWillDisappear and scrollView contentInset in the pushed viewcontroller
+        animation();
+        complete(YES);
+    }
 }
 
 #pragma mark Bounce Animation
