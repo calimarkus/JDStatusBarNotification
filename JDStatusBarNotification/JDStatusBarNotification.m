@@ -293,9 +293,6 @@
         // animate out
         [UIView animateWithDuration:0.4 animations:animation completion:complete];
     } else {
-        // if animated is false instantly call functions.
-        // ensure no 0.0s animation is being used, as it can lead to UI glitches
-        // Especially fixes issue with dismissing in viewWillDisappear and scrollView contentInset in the pushed viewcontroller
         animation();
         complete(YES);
     }
