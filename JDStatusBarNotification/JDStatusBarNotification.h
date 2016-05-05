@@ -91,7 +91,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  Calls dismissAnimated: with animated set to YES
  */
 + (void)dismiss;
-+ (void)dismissWithCompletion:(void (^ __nullable)(BOOL finished))completion;
++ (void)dismissWithCompletion:(void (^)(BOOL finished))completion;
 
 /**
  *  Dismisses any currently displayed notification immediately
@@ -100,7 +100,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  for presentation will also be used for the dismissal.
  */
 + (void)dismissAnimated:(BOOL)animated;
-+ (void)dismissAnimated:(BOOL)animated completion:(void (^ __nullable)(BOOL finished))completion;
++ (void)dismissAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 
 /**
  *  Same as dismissAnimated:, but you can specify a delay,
@@ -109,7 +109,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  @param delay The delay, how long the notification should stay visible
  */
 + (void)dismissAfter:(NSTimeInterval)delay;
-+ (void)dismissAfter:(NSTimeInterval)delay completion:(void (^ __nullable)(BOOL finished))completion;
++ (void)dismissAfter:(NSTimeInterval)delay completion:(void (^)(BOOL finished))completion;
 
 
 #pragma mark Styles
