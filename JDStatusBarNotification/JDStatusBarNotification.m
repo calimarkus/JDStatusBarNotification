@@ -272,21 +272,30 @@
     BOOL animationsEnabled = (self.activeStyle.animationType != JDStatusBarAnimationTypeNone);
     animated &= animationsEnabled;
     
-    // animate out
-    [UIView animateWithDuration:animated ? 0.4 : 0.0 animations:^{
+    dispatch_block_t animation = ^{
         if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
             self.topBar.alpha = 0.0;
         } else {
             self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
         }
-    } completion:^(BOOL finished) {
+    };
+    
+    void(^complete)(BOOL) = ^(BOOL finished) {
         [self.overlayWindow removeFromSuperview];
         [self.overlayWindow setHidden:YES];
         _overlayWindow.rootViewController = nil;
         _overlayWindow = nil;
         _progressView = nil;
         _topBar = nil;
-    }];
+    };
+
+    if (animated) {
+        // animate out
+        [UIView animateWithDuration:0.4 animations:animation completion:complete];
+    } else {
+        animation();
+        complete(YES);
+    }
 }
 
 #pragma mark Bounce Animation
