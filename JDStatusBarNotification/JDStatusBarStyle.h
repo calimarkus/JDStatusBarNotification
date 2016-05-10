@@ -67,5 +67,8 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 /// The position of the progress bar. Default is JDStatusBarProgressBarPositionBottom
 @property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
 
+/// whether show when StatusBarHidden is true. Default is NO
+@property (nonatomic, assign) BOOL showEvenStatusBarHidden;
+
 @end
 

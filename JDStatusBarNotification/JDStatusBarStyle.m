@@ -29,6 +29,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarColor = self.progressBarColor;
     style.progressBarHeight = self.progressBarHeight;
     style.progressBarPosition = self.progressBarPosition;
+    style.showEvenStatusBarHidden = self.showEvenStatusBarHidden;
     return style;
 }
 
@@ -47,6 +48,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarColor = [UIColor greenColor];
     style.progressBarHeight = 1.0;
     style.progressBarPosition = JDStatusBarProgressBarPositionBottom;
+    style.showEvenStatusBarHidden = NO;
     style.textColor = [UIColor grayColor];
     style.font = [UIFont systemFontOfSize:12.0];
     style.animationType = JDStatusBarAnimationTypeMove;

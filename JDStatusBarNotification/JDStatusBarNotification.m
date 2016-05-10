@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "JDStatusBarNotification.h"
+@interface JDWindow : UIWindow
+@end
 
 @interface JDStatusBarStyle (Hidden)
 + (NSArray*)allDefaultStyleIdentifier;
@@ -192,7 +194,9 @@
                     style:(JDStatusBarStyle*)style;
 {
     // first, check if status bar is visible at all
-    if ([UIApplication sharedApplication].statusBarHidden) return nil;
+    if (!style.showEvenStatusBarHidden) {
+        if ([UIApplication sharedApplication].statusBarHidden) return nil;
+    }
     
     // prepare for new style
     if (style != self.activeStyle) {
@@ -425,10 +429,10 @@
 - (UIWindow *)overlayWindow;
 {
     if(_overlayWindow == nil) {
-        _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _overlayWindow = [[JDWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _overlayWindow.backgroundColor = [UIColor clearColor];
-        _overlayWindow.userInteractionEnabled = NO;
+        _overlayWindow.userInteractionEnabled = YES;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
         _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
         _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
@@ -477,6 +481,12 @@
 
 - (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
 {
+    if (CGRectEqualToRect(rect, CGRectZero)) {
+        JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
+        if (style.showEvenStatusBarHidden) {
+            rect = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.frame.size.width, 20);
+        }
+    }
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
     
@@ -590,6 +600,24 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
         if (!window.hidden && window != ignoringWindow) {
             return window;
         }
+    }
+    return nil;
+}
+@end
+
+@implementation JDWindow
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *result = [super hitTest:point withEvent:event];
+    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+    if (CGRectEqualToRect(statusBarFrame, CGRectZero)) {
+        JDStatusBarStyle *style = [JDStatusBarNotification sharedInstance].activeStyle ?: [JDStatusBarNotification sharedInstance].defaultStyle;
+        if (style.showEvenStatusBarHidden) {
+            statusBarFrame = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.frame.size.width, 20);
+        }
+    }
+    if (point.y >= statusBarFrame.origin.y &&
+        point.y <= statusBarFrame.size.height) {
+        return result;
     }
     return nil;
 }
