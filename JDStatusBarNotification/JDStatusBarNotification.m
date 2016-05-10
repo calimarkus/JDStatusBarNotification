@@ -449,6 +449,7 @@
 {
     if(_topBar == nil) {
         _topBar = [[JDStatusBarView alloc] init];
+        _topBar.userInteractionEnabled = NO;
         [self.overlayWindow.rootViewController.view addSubview:_topBar];
         
         JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
@@ -608,16 +609,18 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 @implementation JDWindow
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-    if (CGRectEqualToRect(statusBarFrame, CGRectZero)) {
-        JDStatusBarStyle *style = [JDStatusBarNotification sharedInstance].activeStyle ?: [JDStatusBarNotification sharedInstance].defaultStyle;
-        if (style.showEvenStatusBarHidden) {
-            statusBarFrame = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.frame.size.width, 20);
+    if ([JDStatusBarNotification sharedInstance].topBar.isUserInteractionEnabled) {
+        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+        if (CGRectEqualToRect(statusBarFrame, CGRectZero)) {
+            JDStatusBarStyle *style = [JDStatusBarNotification sharedInstance].activeStyle ?: [JDStatusBarNotification sharedInstance].defaultStyle;
+            if (style.showEvenStatusBarHidden) {
+                statusBarFrame = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.frame.size.width, 20);
+            }
         }
-    }
-    if (point.y >= statusBarFrame.origin.y &&
-        point.y <= statusBarFrame.size.height) {
-        return result;
+        if (point.y >= statusBarFrame.origin.y &&
+            point.y <= statusBarFrame.size.height) {
+            return result;
+        }
     }
     return nil;
 }
