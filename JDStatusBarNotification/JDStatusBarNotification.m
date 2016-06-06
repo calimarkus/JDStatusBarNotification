@@ -594,7 +594,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled() && [self mainController] != nil ) {
         return [[self mainController] preferredStatusBarStyle];
     }
     
