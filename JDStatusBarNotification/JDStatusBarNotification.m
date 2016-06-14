@@ -557,7 +557,7 @@
         topController = topController.presentedViewController;
     }
     
-    return topController;
+    return topController == self ? nil : topController;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -569,23 +569,23 @@
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
-    - (NSUInteger)supportedInterfaceOrientations {
+- (NSUInteger)supportedInterfaceOrientations {
 #else
-    - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
 #endif
     return [[self mainController] supportedInterfaceOrientations];
 }
-
+    
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return [[self mainController] preferredInterfaceOrientationForPresentation];
 }
-
+    
 // statusbar
 
 static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
     static BOOL enabled = NO;
     static dispatch_once_t onceToken;
-
+    
     dispatch_once(&onceToken, ^{
         enabled = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"] boolValue];
     });
@@ -594,7 +594,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    if(JDUIViewControllerBasedStatusBarAppearanceEnabled() && [self mainController] != nil ) {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled() && [self mainController] != nil && [[self mainController] respondsToSelector:@selector(preferredStatusBarStyle)]) {
         return [[self mainController] preferredStatusBarStyle];
     }
     
@@ -606,7 +606,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled() && [self mainController] != nil && [[self mainController] respondsToSelector:@selector(preferredStatusBarUpdateAnimation)]) {
         return [[self mainController] preferredStatusBarUpdateAnimation];
     }
     return [super preferredStatusBarUpdateAnimation];
