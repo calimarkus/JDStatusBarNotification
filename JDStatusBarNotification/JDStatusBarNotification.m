@@ -41,6 +41,18 @@
 @synthesize progressView = _progressView;
 @synthesize topBar = _topBar;
 
+#pragma mark - Getter
+
+- (CGFloat)progress
+{
+    if isnan(_progress)
+    {
+        return 0;
+    }
+    
+    return _progress;
+}
+
 #pragma mark Class methods
 
 + (JDStatusBarNotification*)sharedInstance {
