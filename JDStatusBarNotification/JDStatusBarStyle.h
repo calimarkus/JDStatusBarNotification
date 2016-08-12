@@ -67,5 +67,11 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 /// The position of the progress bar. Default is JDStatusBarProgressBarPositionBottom
 @property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
 
+/// The insets of the progress bar. Default is 0.0
+@property (nonatomic, assign) CGFloat progressBarHorizontalInsets;
+
+/// The corner radius of the progress bar. Default is 0.0
+@property (nonatomic, assign) CGFloat progressBarCornerRadius;
+
 @end
 
