@@ -369,8 +369,8 @@
     CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
     if (height == 20.0 && frame.size.height > height) height = frame.size.height;
     frame.size.height = height;
-    frame.size.width = round((frame.size.width - 2*self.activeStyle.progressBarHorizontalInsets)*progress);
-    frame.origin.x += self.activeStyle.progressBarHorizontalInsets;
+    frame.size.width = round((frame.size.width - 2 * self.activeStyle.progressBarHorizontalInsets) * progress);
+    frame.origin.x = self.activeStyle.progressBarHorizontalInsets;
     
     // apply y-position from active style
     CGFloat barHeight = self.topBar.bounds.size.height;
