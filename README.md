@@ -6,6 +6,10 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 
 ![Screenshots](gfx/screenshots.png "Screenshots")
 
+## Update
+
+Move the topBar below the navigation bar avoid the app got rejected because of a status bar overlay (for violating 10.1/10.3).
+
 ## Installation
 
 #### CocoaPods:
