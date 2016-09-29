@@ -25,6 +25,7 @@
         _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.adjustsFontSizeToFitWidth = YES;
+        _textLabel.numberOfLines = 0;
         _textLabel.clipsToBounds = YES;
         [self addSubview:_textLabel];
     }
