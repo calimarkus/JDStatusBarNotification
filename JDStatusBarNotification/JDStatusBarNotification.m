@@ -92,12 +92,12 @@
 
 + (void)dismissAnimated:(BOOL)animated;
 {
-    [[JDStatusBarNotification sharedInstance] dismissAnimated:animated];
+    [[self sharedInstance] dismissAnimated:animated];
 }
 
 + (void)dismissAfter:(NSTimeInterval)delay;
 {
-    [[JDStatusBarNotification sharedInstance] setDismissTimerWithInterval:delay];
+    [[self sharedInstance] setDismissTimerWithInterval:delay];
 }
 
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
@@ -105,29 +105,29 @@
     NSAssert(prepareBlock != nil, @"No prepareBlock provided");
     
     JDStatusBarStyle *style = [[self sharedInstance].defaultStyle copy];
-    [JDStatusBarNotification sharedInstance].defaultStyle = prepareBlock(style);
+    [self sharedInstance].defaultStyle = prepareBlock(style);
 }
 
 + (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 {
-    return [[JDStatusBarNotification sharedInstance] addStyleNamed:identifier
-                                                           prepare:prepareBlock];
+    return [[self sharedInstance] addStyleNamed:identifier
+                                        prepare:prepareBlock];
 }
 
 + (void)showProgress:(CGFloat)progress;
 {
-    [[JDStatusBarNotification sharedInstance] setProgress:progress];
+    [[self sharedInstance] setProgress:progress];
 }
 
 + (void)showActivityIndicator:(BOOL)show indicatorStyle:(UIActivityIndicatorViewStyle)style;
 {
-    [[JDStatusBarNotification sharedInstance] showActivityIndicator:show indicatorStyle:style];
+    [[self sharedInstance] showActivityIndicator:show indicatorStyle:style];
 }
 
 + (BOOL)isVisible;
 {
-    return [[JDStatusBarNotification sharedInstance] isVisible];
+    return [[self sharedInstance] isVisible];
 }
 
 #pragma mark Implementation
