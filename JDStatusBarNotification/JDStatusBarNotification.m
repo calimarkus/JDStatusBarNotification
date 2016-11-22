@@ -23,7 +23,7 @@
 - (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow*)ignoringWindow;
 @end
 
-@interface JDStatusBarNotification ()
+@interface JDStatusBarNotification () <CAAnimationDelegate>
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
 @property (nonatomic, strong, readonly) JDStatusBarView *topBar;

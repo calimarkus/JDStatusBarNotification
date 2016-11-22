@@ -14,25 +14,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] <= 6.0) {
-        NSDictionary *navbarTitle = @{UITextAttributeFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0],
-                                      UITextAttributeTextColor:[UIColor colorWithWhite:0.15 alpha:1.0],
-                                      UITextAttributeTextShadowColor:[UIColor clearColor],
-                                      UITextAttributeTextShadowOffset:[NSValue valueWithCGSize:CGSizeMake(0, 0)]};
-        
-        [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.794 green:0.792 blue:0.82 alpha:1.0]];
-        [[UINavigationBar appearance] setTitleTextAttributes:navbarTitle];
-        [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:2.0 forBarMetrics:UIBarMetricsDefault];
-    }
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
-                                      [[SBExampleViewController alloc] initWithStyle:UITableViewStyleGrouped]];
-    
-    [self.window makeKeyAndVisible];
-    
-    return YES;
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  self.window.backgroundColor = [UIColor whiteColor];
+  self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
+                                    [[SBExampleViewController alloc] initWithStyle:UITableViewStyleGrouped]];
+  [self.window makeKeyAndVisible];
+
+  return YES;
 }
 
 @end
