@@ -48,6 +48,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 /// The font of the notification label
 @property (nonatomic, strong) UIFont *font;
 
+/// The smallest multiplier for the notification label to adjust font size to fit its width. Default is 0.0
+@property (nonatomic, assign) CGFloat minimumScaleFactor;
+
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
 

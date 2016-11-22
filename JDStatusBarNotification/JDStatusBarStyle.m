@@ -17,6 +17,13 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @implementation JDStatusBarStyle
 
+- (void)setMinimumScaleFactor:(CGFloat)minimumScaleFactor
+{
+    [self willChangeValueForKey:NSStringFromSelector(@selector(minimumScaleFactor))];
+    _minimumScaleFactor = MAX(0.0, MIN(minimumScaleFactor, 1.0));
+    [self didChangeValueForKey:NSStringFromSelector(@selector(minimumScaleFactor))];
+}
+
 - (instancetype)copyWithZone:(NSZone*)zone;
 {
     JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
@@ -24,6 +31,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.textColor = self.textColor;
     style.textShadow = self.textShadow;
     style.font = self.font;
+    style.minimumScaleFactor = self.minimumScaleFactor;
     style.textVerticalPositionAdjustment = self.textVerticalPositionAdjustment;
     style.animationType = self.animationType;
     style.progressBarColor = self.progressBarColor;
