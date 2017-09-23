@@ -499,7 +499,7 @@
   NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
 
   // update window & statusbar
-  void(^updateBlock)() = ^{
+  void(^updateBlock)(void) = ^{
     [self updateWindowTransform];
     [self updateTopBarFrameWithStatusBarFrame:newBarFrame];
     self.progress = self.progress; // // relayout progress bar
