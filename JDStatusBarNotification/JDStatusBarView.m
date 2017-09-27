@@ -107,30 +107,34 @@ CGFloat const ADJUSTIPHONEX = 29;
   return textSize;
 }
 
-+ (BOOL)isIphoneX {
-    NSString *modelName = [self modelName];
-    return [modelName isEqualToString: @"Phone10,3"] || [modelName isEqualToString: @"iPhone10,6"] || [JDStatusBarView isSumulatorIphoneX];
++ (BOOL)isIphoneX
+{
+  NSString *modelName = [self modelName];
+  return [modelName isEqualToString: @"Phone10,3"] || [modelName isEqualToString: @"iPhone10,6"] || [JDStatusBarView isSimulatorIphoneX];
 }
 
-+ (NSString *)modelName {
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
++ (NSString *)modelName
+{
+  struct utsname systemInfo;
+  uname(&systemInfo);
+  return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
-+ (BOOL)isSumulatorIphoneX {
-    if ([JDStatusBarView isSimulator] && [UIScreen mainScreen].bounds.size.height == 812) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-+ (BOOL)isSimulator {
-#if TARGET_OS_SIMULATOR
++ (BOOL)isSimulatorIphoneX
+{
+  if ([JDStatusBarView isSimulator] && [UIScreen mainScreen].bounds.size.height == 812) {
     return YES;
-#else
+  } else {
     return NO;
+  }
+}
+
++ (BOOL)isSimulator
+{
+#if TARGET_OS_SIMULATOR
+  return YES;
+#else
+  return NO;
 #endif
 }
 
