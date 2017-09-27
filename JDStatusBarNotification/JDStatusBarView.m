@@ -58,12 +58,12 @@ CGFloat const ADJUSTIPHONEX = 29;
 {
   [super layoutSubviews];
     
-    CGFloat yPos = self.textVerticalPositionAdjustment;
-    CGFloat textLabelHeight = self.bounds.size.height-1;
-    if ([JDStatusBarView isIphoneX]) {
-        yPos += ADJUSTIPHONEX;
-        textLabelHeight -= ADJUSTIPHONEX;
-    }
+  CGFloat yPos = self.textVerticalPositionAdjustment;
+  CGFloat textLabelHeight = self.bounds.size.height-1;
+  if ([JDStatusBarView isIphoneX]) {
+    yPos += ADJUSTIPHONEX;
+    textLabelHeight -= ADJUSTIPHONEX;
+  }
 
   // label
   self.textLabel.frame = CGRectMake(0, 1+yPos,
@@ -76,9 +76,9 @@ CGFloat const ADJUSTIPHONEX = 29;
     indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
     indicatorFrame.origin.y = ceil(1+(self.bounds.size.height - indicatorFrame.size.height)/2.0);
       
-      if ([JDStatusBarView isIphoneX]) {
-          indicatorFrame.origin.y += ADJUSTIPHONEX * 0.5;
-      }
+  if ([JDStatusBarView isIphoneX]) {
+    indicatorFrame.origin.y += ADJUSTIPHONEX * 0.5;
+  }
       
     _activityIndicatorView.frame = indicatorFrame;
   }

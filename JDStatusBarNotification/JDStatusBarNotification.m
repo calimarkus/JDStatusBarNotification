@@ -481,19 +481,19 @@
 
 - (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
 {
-    CGFloat width = MAX(rect.size.width, rect.size.height);
-    CGFloat height = MIN(rect.size.width, rect.size.height);
+  CGFloat width = MAX(rect.size.width, rect.size.height);
+  CGFloat height = MIN(rect.size.width, rect.size.height);
     
-    // on ios7 fix position, if statusBar has double height
-    CGFloat yPos = 0;
-    if ([JDStatusBarView isIphoneX]) {
-        height = 50;
-    } else {
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {
-            yPos = -height/2.0;
-        }
+  // on ios7 fix position, if statusBar has double height
+  CGFloat yPos = 0;
+  if ([JDStatusBarView isIphoneX]) {
+    height = 50;
+  } else {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {
+      yPos = -height/2.0;
     }
-    _topBar.frame = CGRectMake(0, yPos, width, height);
+  }
+  _topBar.frame = CGRectMake(0, yPos, width, height);
 }
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
