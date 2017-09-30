@@ -487,7 +487,7 @@
   // on ios7 fix position, if statusBar has double height
   CGFloat yPos = 0;
   if ([JDStatusBarView isIphoneX]) {
-    height = 50;
+    height = 64;
   } else {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {
       yPos = -height/2.0;

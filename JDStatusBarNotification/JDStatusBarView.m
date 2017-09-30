@@ -9,7 +9,7 @@
 #import "JDStatusBarView.h"
 #import <sys/utsname.h>
 
-CGFloat const ADJUSTIPHONEX = 29;
+CGFloat const ADJUSTIPHONEX = 28;
 
 @interface JDStatusBarView ()
 @property (nonatomic, strong) UILabel *textLabel;
