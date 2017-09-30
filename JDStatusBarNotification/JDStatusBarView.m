@@ -7,6 +7,9 @@
 //
 
 #import "JDStatusBarView.h"
+#import <sys/utsname.h>
+
+CGFloat const ADJUSTIPHONEX = 28;
 
 @interface JDStatusBarView ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -54,10 +57,17 @@
 - (void)layoutSubviews;
 {
   [super layoutSubviews];
+    
+  CGFloat yPos = self.textVerticalPositionAdjustment;
+  CGFloat textLabelHeight = self.bounds.size.height-1;
+  if ([JDStatusBarView isIphoneX]) {
+    yPos += ADJUSTIPHONEX;
+    textLabelHeight -= ADJUSTIPHONEX;
+  }
 
   // label
-  self.textLabel.frame = CGRectMake(0, 1+self.textVerticalPositionAdjustment,
-                                    self.bounds.size.width, self.bounds.size.height-1);
+  self.textLabel.frame = CGRectMake(0, 1+yPos,
+                                    self.bounds.size.width, textLabelHeight);
 
   // activity indicator
   if (_activityIndicatorView ) {
@@ -65,6 +75,11 @@
     CGRect indicatorFrame = _activityIndicatorView.frame;
     indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
     indicatorFrame.origin.y = ceil(1+(self.bounds.size.height - indicatorFrame.size.height)/2.0);
+      
+  if ([JDStatusBarView isIphoneX]) {
+    indicatorFrame.origin.y += ADJUSTIPHONEX * 0.5;
+  }
+      
     _activityIndicatorView.frame = indicatorFrame;
   }
 }
@@ -91,5 +106,37 @@
 
   return textSize;
 }
+
++ (BOOL)isIphoneX
+{
+  NSString *modelName = [self modelName];
+  return [modelName isEqualToString: @"Phone10,3"] || [modelName isEqualToString: @"iPhone10,6"] || [JDStatusBarView isSimulatorIphoneX];
+}
+
++ (NSString *)modelName
+{
+  struct utsname systemInfo;
+  uname(&systemInfo);
+  return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+}
+
++ (BOOL)isSimulatorIphoneX
+{
+  if ([JDStatusBarView isSimulator] && [UIScreen mainScreen].bounds.size.height == 812) {
+    return YES;
+  } else {
+    return NO;
+  }
+}
+
++ (BOOL)isSimulator
+{
+#if TARGET_OS_SIMULATOR
+  return YES;
+#else
+  return NO;
+#endif
+}
+
 
 @end
