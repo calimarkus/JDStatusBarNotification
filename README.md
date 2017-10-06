@@ -19,7 +19,7 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 1. Drag the `JDStatusBarNotification/JDStatusBarNotification` folder into your project.
 2. Add `#include "JDStatusBarNotification.h"`, where you want to use it
 
-### Carthage:
+#### Carthage:
 
 `github "calimarkus/JDStatusBarNotification"`
 
