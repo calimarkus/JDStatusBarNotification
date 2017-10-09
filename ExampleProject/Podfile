@@ -1,7 +1,9 @@
-
+platform :ios, "8.0"
 source 'https://github.com/CocoaPods/Specs.git'
 inhibit_all_warnings!
 
-pod 'InfColorPicker'
-pod 'FTFontSelector'
+target 'JDStatusBarNotificationExample' do
+  pod 'InfColorPicker'
+  pod 'FTFontSelector'
+end
 

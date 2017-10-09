@@ -21,13 +21,13 @@
 		D264F8C9182123D400DA0E53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8C8182123D400DA0E53 /* QuartzCore.framework */; };
 		D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */; };
 		D294B57C182D03E90042B5B4 /* SBCustomStyleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */; };
-		D34E5C9AB857468496D1A147 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F89E831D0E4D728185F5B4 /* libPods.a */; };
+		F6B832203F3F06128305E38E /* libPods-JDStatusBarNotificationExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD1CFB9D9E6851BAE2B5BBE /* libPods-JDStatusBarNotificationExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		25F89E831D0E4D728185F5B4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B9B6AC31AFBD4E99FCA8FF1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		A91AF330F57A7EF979C692C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2BD1CFB9D9E6851BAE2B5BBE /* libPods-JDStatusBarNotificationExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDStatusBarNotificationExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35A565C0DC8F2E5666B5C166 /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDStatusBarNotificationExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
+		7598E274F743302055AA53A7 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSelectPropertyViewController.h; sourceTree = "<group>"; };
 		D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSelectPropertyViewController.m; sourceTree = "<group>"; };
 		D25B0FA3184F343600B8174B /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
@@ -63,22 +63,13 @@
 				D264F8931820213200DA0E53 /* CoreGraphics.framework in Frameworks */,
 				D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */,
 				D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */,
-				D34E5C9AB857468496D1A147 /* libPods.a in Frameworks */,
+				F6B832203F3F06128305E38E /* libPods-JDStatusBarNotificationExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		472386A3CD6B7782EEBDA061 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A91AF330F57A7EF979C692C8 /* Pods.debug.xcconfig */,
-				7B9B6AC31AFBD4E99FCA8FF1 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		D264F8841820213200DA0E53 = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +77,7 @@
 				D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
 				D264F88E1820213200DA0E53 /* Products */,
-				472386A3CD6B7782EEBDA061 /* Pods */,
+				FA9CDC4E6B87609F78DBB1CD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,7 +96,7 @@
 				D264F8921820213200DA0E53 /* CoreGraphics.framework */,
 				D264F8C8182123D400DA0E53 /* QuartzCore.framework */,
 				D264F8941820213200DA0E53 /* UIKit.framework */,
-				25F89E831D0E4D728185F5B4 /* libPods.a */,
+				2BD1CFB9D9E6851BAE2B5BBE /* libPods-JDStatusBarNotificationExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,6 +143,15 @@
 			path = ../JDStatusBarNotification;
 			sourceTree = "<group>";
 		};
+		FA9CDC4E6B87609F78DBB1CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7598E274F743302055AA53A7 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */,
+				35A565C0DC8F2E5666B5C166 /* Pods-JDStatusBarNotificationExample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,11 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "JDStatusBarNotificationExample" */;
 			buildPhases = (
-				19D14A518C194828B485308D /* Check Pods Manifest.lock */,
+				F1A532B70816D85B355B2034 /* [CP] Check Pods Manifest.lock */,
 				D264F8891820213200DA0E53 /* Sources */,
 				D264F88A1820213200DA0E53 /* Frameworks */,
 				D264F88B1820213200DA0E53 /* Resources */,
-				03403319612740B2B638E4BA /* Copy Pods Resources */,
+				1A58FB9C3F2D678C69ACCD5D /* [CP] Embed Pods Frameworks */,
+				8D3E431CACBEAD44A2A7C296 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,7 +182,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SB;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Markus;
 			};
 			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */;
@@ -214,34 +215,56 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03403319612740B2B638E4BA /* Copy Pods Resources */ = {
+		1A58FB9C3F2D678C69ACCD5D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		19D14A518C194828B485308D /* Check Pods Manifest.lock */ = {
+		8D3E431CACBEAD44A2A7C296 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample-resources.sh",
+				"${PODS_ROOT}/FTFontSelector/Assets/FTFontSelector.bundle",
+				"${PODS_ROOT}/InfColorPicker/InfColorPicker/InfColorPickerView.xib",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1A532B70816D85B355B2034 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JDStatusBarNotificationExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -273,14 +296,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -318,14 +347,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -350,7 +385,7 @@
 		};
 		D264F8BA1820213200DA0E53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A91AF330F57A7EF979C692C8 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 7598E274F743302055AA53A7 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -366,7 +401,7 @@
 		};
 		D264F8BB1820213200DA0E53 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B9B6AC31AFBD4E99FCA8FF1 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 35A565C0DC8F2E5666B5C166 /* Pods-JDStatusBarNotificationExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

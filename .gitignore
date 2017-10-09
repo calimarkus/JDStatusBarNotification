@@ -12,9 +12,9 @@ build/
 *.xcworkspace
 !default.xcworkspace
 xcuserdata
+xcuserdatad
 profile
 *.moved-aside
 DerivedData
-.idea/
-
-Pods/
+.xcconfig
+ExampleProject/Pods/
