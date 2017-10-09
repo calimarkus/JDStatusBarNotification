@@ -9,6 +9,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
 
 @interface JDStatusBarStyle (Hidden)
@@ -486,8 +487,14 @@
 
   // on ios7 fix position, if statusBar has double height
   CGFloat yPos = 0;
-  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height > 20.0) {
+  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height == 40.0) {
     yPos = -height/2.0;
+  }
+
+  // adjust for iPhone X
+  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
+  if (topLayoutMargin > 0) {
+    height += topLayoutMargin;
   }
 
   _topBar.frame = CGRectMake(0, yPos, width, height);

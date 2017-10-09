@@ -7,6 +7,7 @@
 //
 
 #import "JDStatusBarView.h"
+#import "JDStatusBarLayoutMarginHelper.h"
 
 @interface JDStatusBarView ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -56,15 +57,18 @@
   [super layoutSubviews];
 
   // label
-  self.textLabel.frame = CGRectMake(0, 1+self.textVerticalPositionAdjustment,
-                                    self.bounds.size.width, self.bounds.size.height-1);
+  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
+  self.textLabel.frame = CGRectMake(0,
+                                    self.textVerticalPositionAdjustment + topLayoutMargin + 1,
+                                    self.bounds.size.width,
+                                    self.bounds.size.height - topLayoutMargin - 1);
 
   // activity indicator
   if (_activityIndicatorView ) {
     CGSize textSize = [self currentTextSize];
     CGRect indicatorFrame = _activityIndicatorView.frame;
     indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
-    indicatorFrame.origin.y = ceil(1+(self.bounds.size.height - indicatorFrame.size.height)/2.0);
+    indicatorFrame.origin.y = ceil(1+(self.bounds.size.height - indicatorFrame.size.height + topLayoutMargin)/2.0);
     _activityIndicatorView.frame = indicatorFrame;
   }
 }

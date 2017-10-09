@@ -11,6 +11,7 @@
 @interface SBCustomStyleViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *fontButton;
 @property (weak, nonatomic) IBOutlet UIView *textColorPreview;

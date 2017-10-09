@@ -4,6 +4,8 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 
 ![Animation](gfx/animation.gif "Animation")
 
+![Animation](gfx/iphoneX.png "iPhone X")
+
 ![Screenshots](gfx/screenshots.png "Screenshots")
 
 ## Installation

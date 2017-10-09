@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2829C39D1F8B15F900764707 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2829C39B1F8B15F800764707 /* JDStatusBarLayoutMarginHelper.m */; };
 		D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */; };
 		D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
 		D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2829C39B1F8B15F800764707 /* JDStatusBarLayoutMarginHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarLayoutMarginHelper.m; sourceTree = "<group>"; };
+		2829C39C1F8B15F800764707 /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
 		2BD1CFB9D9E6851BAE2B5BBE /* libPods-JDStatusBarNotificationExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDStatusBarNotificationExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A565C0DC8F2E5666B5C166 /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDStatusBarNotificationExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
 		7598E274F743302055AA53A7 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 		D264F8BF1820216300DA0E53 /* JDStatusBarNotification */ = {
 			isa = PBXGroup;
 			children = (
+				2829C39C1F8B15F800764707 /* JDStatusBarLayoutMarginHelper.h */,
+				2829C39B1F8B15F800764707 /* JDStatusBarLayoutMarginHelper.m */,
 				D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */,
 				D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */,
 				D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */,
@@ -280,6 +285,7 @@
 				D264F8C21820216300DA0E53 /* JDStatusBarNotification.m in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
 				D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */,
+				2829C39D1F8B15F900764707 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */,
 				D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
 #import "FTFontSelectorController.h"
 #import "SBSelectPropertyViewController.h"
@@ -42,6 +43,23 @@
     
     [self updateFontText];
     [self updateStyle];
+
+    [self adjustForLayoutMargin];
+}
+
+- (void)adjustForLayoutMargin
+{
+    // adjust bottom bar to respect layout margins
+    CGFloat bottomLayoutMargin = JDStatusBarRootVCLayoutMargin().bottom;
+
+    CGRect frame = self.bottomBarView.frame;
+    frame.origin.y -= bottomLayoutMargin;
+    frame.size.height += bottomLayoutMargin;
+    self.bottomBarView.frame = frame;
+
+    CGRect scrollViewFrame = self.scrollView.frame;
+    scrollViewFrame.size.height -= bottomLayoutMargin;
+    self.scrollView.frame = scrollViewFrame;
 }
 
 - (void)viewDidLayoutSubviews;
