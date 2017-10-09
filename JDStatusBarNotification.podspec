@@ -6,11 +6,11 @@ Pod::Spec.new do |s|
 
   s.description  = 'Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. iOS 7/8 ready. iOS6 support.'
   
-  s.homepage     = 'https://github.com/jaydee3/JDStatusBarNotification'
+  s.homepage     = 'https://github.com/calimarkus/JDStatusBarNotification'
   s.license      = { :type => 'MIT' }
-  s.author       = { 'Markus Emrich' => 'markus@nxtbgthng.com' }  
+  s.author       = { 'Markus Emrich' => 'markus.emrich@gmail.com' }  
   
-  s.source       = { :git => 'https://github.com/jaydee3/JDStatusBarNotification.git', :tag => "#{s.version}" }
+  s.source       = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
   s.source_files = 'JDStatusBarNotification/**'
   s.frameworks   = 'QuartzCore'
   
