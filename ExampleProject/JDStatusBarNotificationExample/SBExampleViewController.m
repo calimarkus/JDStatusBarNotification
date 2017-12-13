@@ -185,7 +185,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
         } else if(row == 4) {
             style = JDStatusBarStyleMatrix;
         } else if(row == 5){
-            style = JDSTatusBarStyleErrorMini;
+            style = JDStatusBarStyleErrorMini;
         }
         
         [JDStatusBarNotification showWithStatus:status
