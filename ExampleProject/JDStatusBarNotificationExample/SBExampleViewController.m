@@ -70,7 +70,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
                         @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
                         @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"That's how we roll!"},
                         @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"},
-                        @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Wake up Neo…"}],
+                        @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Wake up Neo…"},
+                        @{JDButtonName:@"Show JDStatusBarStyleErrorMini", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."}],
                       @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
                         @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}],
                       @[@{JDButtonName:@"Create your own style", JDButtonInfo:@"Test all possibilities", JDNotificationText:@""}]];
@@ -183,6 +184,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
             style = JDStatusBarStyleDark;
         } else if(row == 4) {
             style = JDStatusBarStyleMatrix;
+        } else if(row == 5){
+            style = JDSTatusBarStyleErrorMini;
         }
         
         [JDStatusBarNotification showWithStatus:status
