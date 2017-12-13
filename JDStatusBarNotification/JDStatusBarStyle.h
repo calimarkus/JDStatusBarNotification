@@ -22,6 +22,10 @@ extern NSString *const JDStatusBarStyleDefault;
 /// This style has a nearly black background with a nearly white Helvetica label.
 extern NSString *const JDStatusBarStyleDark;
 
+/// This style has a red backbround with a white Helvetica label. For iPhone X, the size of
+/// the notification status bar is minimize to show the navigation bar
+extern NSString *const JDSTatusBarStyleErrorMini;
+
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
     /// Notification won't animate
     JDStatusBarAnimationTypeNone,
@@ -44,6 +48,13 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
     JDStatusBarProgressBarPositionBelow,
     /// progress bar will be below the navigation bar (the progress bar won't move with the status bar in this case)
     JDStatusBarProgressBarPositionNavBar,
+};
+
+typedef NS_ENUM(NSInteger, JDStatusBarIphoneXSize) {
+    /// the size of the status bar is minimize to show the navigation bar
+    JDStatusBarIphoneXSizeMini,
+    /// the size of the status bar is bigger to hide the navigation bar
+    JDStatusBarIphoneXSizeBig,
 };
 
 /**
@@ -87,6 +98,10 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 
 /// The corner radius of the progress bar. Default is 0.0
 @property (nonatomic, assign) CGFloat progressBarCornerRadius;
+
+#pragma mark Iphone X Size
+
+@property (nonatomic, assign) JDStatusBarIphoneXSize iphoneXSize;
 
 @end
 

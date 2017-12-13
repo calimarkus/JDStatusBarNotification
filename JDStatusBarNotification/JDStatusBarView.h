@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JDStatusBarStyle.h"
 
 @interface JDStatusBarView : UIView
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
+@property (nonatomic, assign) JDStatusBarIphoneXSize iphoneXSize;
 @end
