@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72CA571F2033807000944908 /* JDStatusBarLayoutMarginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */; };
+		72CA57202033807000944908 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */; };
 		72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */; };
 		72ED904A1F86D97B00AF41F7 /* JDStatusBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED90451F86D97B00AF41F7 /* JDStatusBarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
+		72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarLayoutMarginHelper.m; sourceTree = "<group>"; };
 		72ED90391F86D92A00AF41F7 /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */,
 				72ED90451F86D97B00AF41F7 /* JDStatusBarView.h */,
 				72ED90471F86D97B00AF41F7 /* JDStatusBarView.m */,
+				72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */,
+				72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */,
 			);
 			path = JDStatusBarNotification;
 			sourceTree = "<group>";
@@ -75,6 +81,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CA571F2033807000944908 /* JDStatusBarLayoutMarginHelper.h in Headers */,
 				72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */,
 				72ED904A1F86D97B00AF41F7 /* JDStatusBarView.h in Headers */,
 				72ED904B1F86D97B00AF41F7 /* JDStatusBarStyle.h in Headers */,
@@ -150,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */,
+				72CA57202033807000944908 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				72ED904C1F86D97B00AF41F7 /* JDStatusBarView.m in Sources */,
 				72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */,
 			);
