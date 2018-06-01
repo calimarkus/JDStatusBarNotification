@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72CA571F2033807000944908 /* JDStatusBarLayoutMarginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */; };
+		72CA571F2033807000944908 /* JDStatusBarLayoutMarginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72CA57202033807000944908 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */; };
 		72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */; };
