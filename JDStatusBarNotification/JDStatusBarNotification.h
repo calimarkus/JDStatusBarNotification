@@ -11,6 +11,7 @@
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarView.h"
+#import "JDStatusBarLayoutMarginHelper.h"
 
 /**
  *  A block that is used to define the appearance of a notification.
