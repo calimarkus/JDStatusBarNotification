@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface JDStatusBarView : UIView
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
 @end
+
+NS_ASSUME_NONNULL_END
