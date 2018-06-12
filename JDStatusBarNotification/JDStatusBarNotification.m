@@ -195,6 +195,11 @@
   // first, check if status bar is visible at all
   if ([UIApplication sharedApplication].statusBarHidden) return nil;
 
+  // Force update the TopBar frame if the height is 0
+  if (!self.topBar.frame.size.height) {
+    [self updateTopBarFrameWithStatusBarFrame:[[UIApplication sharedApplication] statusBarFrame]];
+  }
+
   // prepare for new style
   if (style != self.activeStyle) {
     self.activeStyle = style;
