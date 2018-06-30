@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// This style has a red background with a white Helvetica label.
 extern NSString *const JDStatusBarStyleError;
 /// This style has a yellow background with a gray Helvetica label.
@@ -90,3 +92,4 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 
 @end
 
+NS_ASSUME_NONNULL_END

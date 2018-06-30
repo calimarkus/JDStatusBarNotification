@@ -12,6 +12,8 @@
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  A block that is used to define the appearance of a notification.
  *  A JDStatusBarStyle instance defines the notification appeareance.
@@ -166,4 +168,4 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
 
 @end
 
-
+NS_ASSUME_NONNULL_END
