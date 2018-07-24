@@ -14,7 +14,6 @@ NSString *const JDStatusBarStyleSuccess     = @"JDStatusBarStyleSuccess";
 NSString *const JDStatusBarStyleMatrix      = @"JDStatusBarStyleMatrix";
 NSString *const JDStatusBarStyleDefault     = @"JDStatusBarStyleDefault";
 NSString *const JDStatusBarStyleDark        = @"JDStatusBarStyleDark";
-NSString *const JDStatusBarStyleErrorMini   = @"JDStatusBarStyleErrorMini";
 
 @implementation JDStatusBarStyle
 
@@ -38,7 +37,7 @@ NSString *const JDStatusBarStyleErrorMini   = @"JDStatusBarStyleErrorMini";
 {
   return @[JDStatusBarStyleError, JDStatusBarStyleWarning,
            JDStatusBarStyleSuccess, JDStatusBarStyleMatrix,
-           JDStatusBarStyleDark, JDStatusBarStyleErrorMini];
+           JDStatusBarStyleDark];
 }
 
 + (JDStatusBarStyle*)defaultStyleWithName:(NSString*)styleName;
@@ -101,16 +100,6 @@ NSString *const JDStatusBarStyleErrorMini   = @"JDStatusBarStyleErrorMini";
     style.progressBarColor = [UIColor greenColor];
     style.progressBarHeight = 2.0;
     return style;
-  }
-
-    // JDStatusBarStyleErrorMini
-  else if ([styleName isEqualToString:JDStatusBarStyleErrorMini]) {
-      style.barColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
-      style.textColor = [UIColor whiteColor];
-      style.progressBarColor = [UIColor redColor];
-      style.progressBarHeight = 2.0;
-      style.iphoneXSize = JDStatusBarIphoneXSizeMini;
-      return style;
   }
     
   return nil;

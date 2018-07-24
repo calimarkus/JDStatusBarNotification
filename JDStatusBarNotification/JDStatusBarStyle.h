@@ -22,10 +22,6 @@ extern NSString *const JDStatusBarStyleDefault;
 /// This style has a nearly black background with a nearly white Helvetica label.
 extern NSString *const JDStatusBarStyleDark;
 
-/// This style has a red backbround with a white Helvetica label. For iPhone X, the size of
-/// the notification status bar is minimize to show the navigation bar
-extern NSString *const JDStatusBarStyleErrorMini;
-
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
     /// Notification won't animate
     JDStatusBarAnimationTypeNone,
