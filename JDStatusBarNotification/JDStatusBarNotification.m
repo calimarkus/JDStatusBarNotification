@@ -195,6 +195,11 @@
   // first, check if status bar is visible at all
   if ([UIApplication sharedApplication].statusBarHidden) return nil;
 
+  // Force update the TopBar frame if the height is 0
+  if (self.topBar.frame.size.height == 0) {
+    [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
+  }
+
   // prepare for new style
   if (style != self.activeStyle) {
     self.activeStyle = style;
@@ -440,8 +445,7 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
     _overlayWindow.rootViewController.wantsFullScreenLayout = YES;
 #endif
-    [self updateWindowTransform];
-    [self updateTopBarFrameWithStatusBarFrame:[[UIApplication sharedApplication] statusBarFrame]];
+    [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
   }
   return _overlayWindow;
 }
@@ -471,6 +475,11 @@
 }
 
 #pragma mark Rotation
+
+- (void)updateContentFrame:(CGRect)rect {
+    [self updateWindowTransform];
+    [self updateTopBarFrameWithStatusBarFrame:rect];
+}
 
 - (void)updateWindowTransform;
 {
@@ -507,9 +516,8 @@
 
   // update window & statusbar
   void(^updateBlock)(void) = ^{
-    [self updateWindowTransform];
-    [self updateTopBarFrameWithStatusBarFrame:newBarFrame];
-    self.progress = self.progress; // // relayout progress bar
+    [self updateContentFrame:newBarFrame];
+    self.progress = self.progress; // relayout progress bar
   };
 
   [UIView animateWithDuration:duration animations:^{
