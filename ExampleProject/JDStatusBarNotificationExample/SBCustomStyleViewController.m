@@ -15,6 +15,8 @@
 
 #import "SBCustomStyleViewController.h"
 
+#define USE_IPHONEX_MINI_STYLE YES
+
 @interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate, InfColorPickerControllerDelegate>
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
@@ -90,6 +92,10 @@
         
         style.progressBarColor = self.progressBarColorPreview.backgroundColor;
         style.progressBarPosition = self.progressBarPosition;
+        
+        if (USE_IPHONEX_MINI_STYLE) {
+            style.iphoneXSize = JDStatusBarIphoneXSizeMini;
+        }
         
         NSString *height = [self.barHeightLabel.text stringByReplacingOccurrencesOfString:@"ProgressBarHeight (" withString:@""];
         height = [height stringByReplacingOccurrencesOfString:@" pt)" withString:@""];
