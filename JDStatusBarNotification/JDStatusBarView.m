@@ -66,7 +66,7 @@
     if (topLayoutMargin > 0){
 		switch (_iphoneXSize) {
 			case JDStatusBarIphoneXSizeMini:
-				labelY = self.textVerticalPositionAdjustment + topLayoutMargin - 8.0 - 3.0; // 3.0 to adjust correctly the label
+			labelY -= 12;
 				height = self.bounds.size.height - topLayoutMargin + 8.0;
 				break;
 			default:
@@ -83,7 +83,7 @@
   if (_activityIndicatorView ) {
     CGSize textSize = [self currentTextSize];
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.x = round((_textLabel.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
+    indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
     
     CGFloat indicatorY = ceil(1+(self.bounds.size.height - indicatorFrame.size.height + topLayoutMargin)/2.0);
     if (topLayoutMargin > 0){
