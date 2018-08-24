@@ -462,6 +462,7 @@
     } else {
       self.topBar.alpha = 0.0;
     }
+      self.topBar.iphoneXSize = style.iphoneXSize;
   }
   return _topBar;
 }
@@ -503,7 +504,12 @@
   // adjust for iPhone X
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
   if (topLayoutMargin > 0) {
-    height += topLayoutMargin;
+      JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
+      if (style.iphoneXSize == JDStatusBarIphoneXSizeBig){
+          height += topLayoutMargin;
+      } else {
+          height += 8.0;
+      }
   }
 
   _topBar.frame = CGRectMake(0, yPos, width, height);

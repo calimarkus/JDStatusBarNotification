@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JDStatusBarStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
+@property (nonatomic, assign) JDStatusBarIphoneXSize iphoneXSize;
 @end
 
 NS_ASSUME_NONNULL_END
