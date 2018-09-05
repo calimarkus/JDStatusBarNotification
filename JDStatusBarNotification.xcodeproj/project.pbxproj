@@ -15,7 +15,6 @@
 		72ED904B1F86D97B00AF41F7 /* JDStatusBarStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED90461F86D97B00AF41F7 /* JDStatusBarStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72ED904C1F86D97B00AF41F7 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90471F86D97B00AF41F7 /* JDStatusBarView.m */; };
 		72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */; };
-		72ED904F1F86D98500AF41F7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72ED904E1F86D98500AF41F7 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,7 +144,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72ED904F1F86D98500AF41F7 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
