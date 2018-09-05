@@ -289,10 +289,10 @@
   void(^complete)(BOOL) = ^(BOOL finished) {
     [self.overlayWindow removeFromSuperview];
     [self.overlayWindow setHidden:YES];
-    _overlayWindow.rootViewController = nil;
-    _overlayWindow = nil;
-    _progressView = nil;
-    _topBar = nil;
+    self.overlayWindow.rootViewController = nil;
+    self->_overlayWindow = nil;
+    self->_progressView = nil;
+    self->_topBar = nil;
   };
 
   if (animated) {
