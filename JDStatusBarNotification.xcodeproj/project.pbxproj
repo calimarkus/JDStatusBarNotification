@@ -60,6 +60,8 @@
 		72ED903B1F86D92A00AF41F7 /* JDStatusBarNotification */ = {
 			isa = PBXGroup;
 			children = (
+				4961AB49212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.h */,
+				4961AB4A212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.m */,
 				72ED904E1F86D98500AF41F7 /* Info.plist */,
 				72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */,
 				72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */,
