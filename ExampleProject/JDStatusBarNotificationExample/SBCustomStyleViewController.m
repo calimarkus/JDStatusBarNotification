@@ -15,12 +15,11 @@
 
 #import "SBCustomStyleViewController.h"
 
-#define USE_IPHONEX_MINI_STYLE YES
-
 @interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate, InfColorPickerControllerDelegate>
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic, assign) BOOL iPhoneXSmallStyle;
 
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 @property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
@@ -42,6 +41,8 @@
     self.textColorPreview.layer.cornerRadius = round(CGRectGetHeight(self.textColorPreview.frame)/3.0);
     self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
+    
+    self.iPhoneXSmallStyle = YES;
     
     [self updateFontText];
     [self updateStyle];
@@ -93,7 +94,7 @@
         style.progressBarColor = self.progressBarColorPreview.backgroundColor;
         style.progressBarPosition = self.progressBarPosition;
         
-        if (USE_IPHONEX_MINI_STYLE) {
+        if (_iPhoneXSmallStyle) {
             style.iphoneXSize = JDStatusBarIphoneXSizeMini;
         }
         
@@ -183,6 +184,11 @@
 }
 
 #pragma mark Actions
+
+- (IBAction)selectIphoneXSize:(id)sender {
+    _iPhoneXSmallStyle = [sender isOn];
+    [self updateStyle];
+}
 
 - (IBAction)selectFont:(id)sender;
 {
