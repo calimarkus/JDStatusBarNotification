@@ -23,6 +23,7 @@
 
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 @property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
+@property (weak, nonatomic) IBOutlet UISwitch *iPhoneXSmallStyleSwitch;
 @end
 
 @implementation SBCustomStyleViewController
@@ -42,7 +43,8 @@
     self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     
-    self.iPhoneXSmallStyle = YES;
+    self.iPhoneXSmallStyle = NO;
+    [self.iPhoneXSmallStyleSwitch setOn: self.iPhoneXSmallStyle == YES animated: false];
     
     [self updateFontText];
     [self updateStyle];
