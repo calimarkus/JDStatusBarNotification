@@ -195,21 +195,21 @@
   // first, check if status bar is visible at all
   if ([UIApplication sharedApplication].statusBarHidden) return nil;
 
+  // prepare for new style
+  if (style != self.activeStyle) {
+      self.activeStyle = style;
+      if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
+          self.topBar.alpha = 0.0;
+          self.topBar.transform = CGAffineTransformIdentity;
+      } else {
+          self.topBar.alpha = 1.0;
+          self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
+      }
+  }
+
   // Force update the TopBar frame if the height is 0
   if (self.topBar.frame.size.height == 0) {
     [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
-  }
-
-  // prepare for new style
-  if (style != self.activeStyle) {
-    self.activeStyle = style;
-    if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
-      self.topBar.alpha = 0.0;
-      self.topBar.transform = CGAffineTransformIdentity;
-    } else {
-      self.topBar.alpha = 1.0;
-      self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
-    }
   }
 
   // cancel previous dismissing & remove animations
