@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,6 +17,7 @@
                 <outlet property="barPositionButton" destination="xtI-RV-WoB" id="fin-9o-Caa"/>
                 <outlet property="bottomBarView" destination="dQj-wo-lGp" id="eze-Kw-0O5"/>
                 <outlet property="fontButton" destination="kor-Fn-M5R" id="dej-s8-rjl"/>
+                <outlet property="iPhoneXSmallStyleSwitch" destination="3Sp-ZR-2QF" id="niA-Cr-ao3"/>
                 <outlet property="lastRow" destination="o8d-dh-GmA" id="Ktt-yb-DrB"/>
                 <outlet property="progressBarColorPreview" destination="LLJ-gT-L1E" id="uEh-0Q-6ZK"/>
                 <outlet property="scrollView" destination="yUa-6Q-US6" id="zC6-WP-Zxe"/>
@@ -26,12 +27,12 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+        <view contentMode="scaleToFill" misplaced="YES" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="536"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yUa-6Q-US6">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="457"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="mxf-Om-xe1">
@@ -50,8 +51,8 @@
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PGm-sg-PAE">
-                            <rect key="frame" x="10" y="54" width="300" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notification Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PGm-sg-PAE">
+                            <rect key="frame" x="10" y="54" width="150" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <nil key="highlightedColor"/>
@@ -141,14 +142,35 @@
                                 <action selector="selectAnimationStyle:" destination="-1" eventType="touchUpInside" id="VTo-Wp-ox5"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NUQ-T4-zDZ">
-                            <rect key="frame" x="10" y="272" width="300" height="21"/>
+                        <view contentMode="scaleToFill" misplaced="YES" id="0CS-EY-DAH">
+                            <rect key="frame" x="0.0" y="262" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="iPhone X small" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dq6-5d-ebS">
+                                    <rect key="frame" x="89" y="2" width="143" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="3Sp-ZR-2QF">
+                                    <rect key="frame" x="191" y="5" width="49" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <action selector="selectIphoneXSize:" destination="-1" eventType="touchUpInside" id="L7C-ia-ahZ"/>
+                                    </connections>
+                                </switch>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Progress Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NUQ-T4-zDZ">
+                            <rect key="frame" x="10" y="307" width="300" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="lEu-EP-Jkd">
-                            <rect key="frame" x="0.0" y="297" width="320" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="lEu-EP-Jkd">
+                            <rect key="frame" x="0.0" y="332" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -164,13 +186,13 @@
                                 <action selector="selectProgressBarColor:" destination="-1" eventType="touchUpInside" id="o9V-O3-TPY"/>
                             </connections>
                         </button>
-                        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="LLJ-gT-L1E">
-                            <rect key="frame" x="206" y="304" width="134" height="30"/>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="LLJ-gT-L1E">
+                            <rect key="frame" x="206" y="339" width="134" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="xtI-RV-WoB">
-                            <rect key="frame" x="0.0" y="342" width="320" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="xtI-RV-WoB">
+                            <rect key="frame" x="0.0" y="377" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -186,8 +208,8 @@
                                 <action selector="selectProgressBarPosition:" destination="-1" eventType="touchUpInside" id="c0j-gB-NzV"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" id="o8d-dh-GmA">
-                            <rect key="frame" x="0.0" y="389" width="320" height="44"/>
+                        <view contentMode="scaleToFill" misplaced="YES" id="o8d-dh-GmA">
+                            <rect key="frame" x="0.0" y="424" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProgressBarHeight (1pt)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VCm-BG-2Vb">
@@ -211,7 +233,7 @@
                     <color key="backgroundColor" red="0.92584240436553955" green="0.92504066228866577" blue="0.94968438148498535" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </scrollView>
                 <view contentMode="scaleToFill" misplaced="YES" id="dQj-wo-lGp">
-                    <rect key="frame" x="0.0" y="457" width="320" height="63"/>
+                    <rect key="frame" x="0.0" y="473" width="320" height="63"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" misplaced="YES" id="vmK-8H-mj5">
@@ -257,6 +279,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="34" y="62"/>
         </view>
     </objects>
 </document>

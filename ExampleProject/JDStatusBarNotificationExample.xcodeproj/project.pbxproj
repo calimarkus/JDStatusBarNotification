@@ -168,7 +168,6 @@
 				D264F8891820213200DA0E53 /* Sources */,
 				D264F88A1820213200DA0E53 /* Frameworks */,
 				D264F88B1820213200DA0E53 /* Resources */,
-				1A58FB9C3F2D678C69ACCD5D /* [CP] Embed Pods Frameworks */,
 				8D3E431CACBEAD44A2A7C296 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -220,21 +219,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A58FB9C3F2D678C69ACCD5D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8D3E431CACBEAD44A2A7C296 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,7 +231,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FTFontSelector.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InfColorPickerView.nib",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -395,6 +380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";
@@ -411,6 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Info.plist";

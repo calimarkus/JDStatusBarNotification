@@ -19,9 +19,11 @@
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic, assign) BOOL iPhoneXSmallStyle;
 
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 @property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
+@property (weak, nonatomic) IBOutlet UISwitch *iPhoneXSmallStyleSwitch;
 @end
 
 @implementation SBCustomStyleViewController
@@ -40,6 +42,9 @@
     self.textColorPreview.layer.cornerRadius = round(CGRectGetHeight(self.textColorPreview.frame)/3.0);
     self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
+    
+    self.iPhoneXSmallStyle = YES;
+    [self.iPhoneXSmallStyleSwitch setOn: self.iPhoneXSmallStyle == YES animated: false];
     
     [self updateFontText];
     [self updateStyle];
@@ -90,6 +95,10 @@
         
         style.progressBarColor = self.progressBarColorPreview.backgroundColor;
         style.progressBarPosition = self.progressBarPosition;
+        
+        if (_iPhoneXSmallStyle) {
+            style.iphoneXSize = JDStatusBarIphoneXSizeMini;
+        }
         
         NSString *height = [self.barHeightLabel.text stringByReplacingOccurrencesOfString:@"ProgressBarHeight (" withString:@""];
         height = [height stringByReplacingOccurrencesOfString:@" pt)" withString:@""];
@@ -177,6 +186,11 @@
 }
 
 #pragma mark Actions
+
+- (IBAction)selectIphoneXSize:(id)sender {
+    _iPhoneXSmallStyle = [sender isOn];
+    [self updateStyle];
+}
 
 - (IBAction)selectFont:(id)sender;
 {
