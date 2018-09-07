@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4961AB4B212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4961AB49212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.h */; };
-		4961AB4C212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4961AB4A212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.m */; };
+		72CA571F2033807000944908 /* JDStatusBarLayoutMarginHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */; };
+		72CA57202033807000944908 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */; };
 		72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */; };
 		72ED904A1F86D97B00AF41F7 /* JDStatusBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ED90451F86D97B00AF41F7 /* JDStatusBarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4961AB49212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
-		4961AB4A212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarLayoutMarginHelper.m; sourceTree = "<group>"; };
+		72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
+		72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarLayoutMarginHelper.m; sourceTree = "<group>"; };
 		72ED90391F86D92A00AF41F7 /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72ED903C1F86D92A00AF41F7 /* JDStatusBarNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		72ED90441F86D97B00AF41F7 /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 				72ED90481F86D97B00AF41F7 /* JDStatusBarStyle.m */,
 				72ED90451F86D97B00AF41F7 /* JDStatusBarView.h */,
 				72ED90471F86D97B00AF41F7 /* JDStatusBarView.m */,
+				72CA571D2033807000944908 /* JDStatusBarLayoutMarginHelper.h */,
+				72CA571E2033807000944908 /* JDStatusBarLayoutMarginHelper.m */,
 			);
 			path = JDStatusBarNotification;
 			sourceTree = "<group>";
@@ -80,7 +82,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4961AB4B212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.h in Headers */,
+				72CA571F2033807000944908 /* JDStatusBarLayoutMarginHelper.h in Headers */,
 				72ED903E1F86D92A00AF41F7 /* JDStatusBarNotification.h in Headers */,
 				72ED904A1F86D97B00AF41F7 /* JDStatusBarView.h in Headers */,
 				72ED904B1F86D97B00AF41F7 /* JDStatusBarStyle.h in Headers */,
@@ -114,7 +116,7 @@
 		72ED90301F86D92A00AF41F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					72ED90381F86D92A00AF41F7 = {
 						CreatedOnToolsVersion = 9.0;
@@ -155,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72ED904D1F86D97B00AF41F7 /* JDStatusBarStyle.m in Sources */,
-				4961AB4C212C56320057DDD1 /* JDStatusBarLayoutMarginHelper.m in Sources */,
+				72CA57202033807000944908 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				72ED904C1F86D97B00AF41F7 /* JDStatusBarView.m in Sources */,
 				72ED90491F86D97B00AF41F7 /* JDStatusBarNotification.m in Sources */,
 			);
@@ -178,6 +180,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -185,6 +188,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -213,7 +217,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -236,6 +240,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -243,6 +248,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -265,7 +271,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

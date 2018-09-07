@@ -27,6 +27,16 @@ Show messages on top of the status bar. Customizable colors, font and animation.
 
 (more infos on Carthage [here](https://github.com/Carthage/Carthage))
 
+## Beware: App Rejections
+
+Some people informed me, that their apps got rejected for using status bar overlays (for violating 10.1/10.3).
+All cases I'm aware of are listed here:
+
+- [@goelv](https://github.com/goelv) in [#15](https://github.com/calimarkus/JDStatusBarNotification/issues/15)
+- [@dskyu](https://github.com/dskyu) in [#30](https://github.com/calimarkus/JDStatusBarNotification/issues/30)
+- [@graceydb](https://github.com/graceydb) in [#49](https://github.com/calimarkus/JDStatusBarNotification/issues/49)
+- [@hongdong](https://github.com/hongdong) in [#91](https://github.com/calimarkus/JDStatusBarNotification/issues/91)
+
 ## Usage
 
 JDStatusBarNotification is a singleton. You don't need to initialize it anywhere.
@@ -74,10 +84,6 @@ Use them with the following methods:
                              styleName:(NSString*)styleName;
                  
 To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`. See Customization below.
-
-### Beware
-
-[@goelv](https://github.com/goelv) / [@dskyu](https://github.com/dskyu) / [@graceydb](https://github.com/graceydb) informed me (see [#15](https://github.com/calimarkus/JDStatusBarNotification/issues/15), [#30](https://github.com/calimarkus/JDStatusBarNotification/issues/30), [#49](https://github.com/calimarkus/JDStatusBarNotification/issues/49)), that his app got rejected because of a status bar overlay (for violating 10.1/10.3). So don't overuse it. Although I haven't heard of any other cases.
 
 ## Customization
 
