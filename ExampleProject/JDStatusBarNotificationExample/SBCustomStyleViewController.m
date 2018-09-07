@@ -43,7 +43,7 @@
     self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
     
-    self.iPhoneXSmallStyle = NO;
+    self.iPhoneXSmallStyle = YES;
     [self.iPhoneXSmallStyleSwitch setOn: self.iPhoneXSmallStyle == YES animated: false];
     
     [self updateFontText];
