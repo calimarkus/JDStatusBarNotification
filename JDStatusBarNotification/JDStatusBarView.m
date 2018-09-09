@@ -58,45 +58,29 @@
 
   // label
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
-    
-    CGFloat labelY = self.textVerticalPositionAdjustment + topLayoutMargin + 1;
-    CGFloat height = self.bounds.size.height - topLayoutMargin - 1;
-    
-    // adjust for iPhone X
-    if (topLayoutMargin > 0){
-		switch (_iphoneXSize) {
-			case JDStatusBarIphoneXSizeMini:
-			labelY -= 12;
-				height = self.bounds.size.height - topLayoutMargin + 8.0;
-				break;
-			default:
-				break;
-		}
+  CGFloat labelY = self.textVerticalPositionAdjustment + topLayoutMargin + 1;
+  CGFloat height = self.bounds.size.height - topLayoutMargin - 1;
+
+  // adjust for iPhone X
+  if (topLayoutMargin > 0){
+    switch (_heightForIPhoneX) {
+      case JDStatusBarHeightForIPhoneXHalf:
+        labelY -= 12;
+        height += 9.0;
+        break;
+      case JDStatusBarHeightForIPhoneXFullNavBar:
+        break;
     }
-    
-  self.textLabel.frame = CGRectMake(0,
-                                    labelY,
-                                    self.bounds.size.width,
-                                    height);
+  }
+
+  self.textLabel.frame = CGRectMake(0, labelY, self.bounds.size.width, height);
 
   // activity indicator
   if (_activityIndicatorView ) {
     CGSize textSize = [self currentTextSize];
     CGRect indicatorFrame = _activityIndicatorView.frame;
     indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
-    
-    CGFloat indicatorY = ceil(1+(self.bounds.size.height - indicatorFrame.size.height + topLayoutMargin)/2.0);
-    if (topLayoutMargin > 0){
-		switch (_iphoneXSize) {
-			case JDStatusBarIphoneXSizeMini:
-				indicatorY = self.bounds.size.height - indicatorFrame.size.height - 8.0/2;
-				break;
-			default:
-				break;
-		}
-    }
-      
-    indicatorFrame.origin.y = indicatorY;
+    indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(self.textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
   }
 }

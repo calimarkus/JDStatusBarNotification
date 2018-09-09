@@ -48,11 +48,11 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
     JDStatusBarProgressBarPositionNavBar,
 };
 
-typedef NS_ENUM(NSInteger, JDStatusBarIphoneXSize) {
-    /// the size of the status bar is minimize to show the navigation bar
-    JDStatusBarIphoneXSizeMini,
-    /// the size of the status bar is bigger to hide the navigation bar
-    JDStatusBarIphoneXSizeBig,
+typedef NS_ENUM(NSInteger, JDStatusBarHeightForIPhoneX) {
+    /// shows parts of the navigation bar
+    JDStatusBarHeightForIPhoneXHalf,
+    /// covers the full navigation bar
+    JDStatusBarHeightForIPhoneXFullNavBar,
 };
 
 /**
@@ -97,9 +97,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarIphoneXSize) {
 /// The corner radius of the progress bar. Default is 0.0
 @property (nonatomic, assign) CGFloat progressBarCornerRadius;
 
-#pragma mark Iphone X Size
+#pragma mark iPhone X height
 
-@property (nonatomic, assign) JDStatusBarIphoneXSize iphoneXSize;
+@property (nonatomic, assign) JDStatusBarHeightForIPhoneX heightForIPhoneX;
 
 @end
 

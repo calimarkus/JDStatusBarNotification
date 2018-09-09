@@ -457,12 +457,12 @@
     [self.overlayWindow.rootViewController.view addSubview:_topBar];
 
     JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
+    self.topBar.heightForIPhoneX = style.heightForIPhoneX;
     if (style.animationType != JDStatusBarAnimationTypeFade) {
       self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
     } else {
       self.topBar.alpha = 0.0;
     }
-      self.topBar.iphoneXSize = style.iphoneXSize;
   }
   return _topBar;
 }
@@ -490,27 +490,33 @@
   _overlayWindow.frame = window.frame;
 }
 
+static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat height) {
+  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
+  if (topLayoutMargin > 0) {
+    switch (style.heightForIPhoneX) {
+      case JDStatusBarHeightForIPhoneXFullNavBar:
+        return height + topLayoutMargin;
+      case JDStatusBarHeightForIPhoneXHalf:
+        return height + 8.0;
+    }
+  } else {
+    return height;
+  }
+}
+
 - (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
 {
   CGFloat width = MAX(rect.size.width, rect.size.height);
   CGFloat height = MIN(rect.size.width, rect.size.height);
 
-  // on ios7 fix position, if statusBar has double height
+  // adjust position for iOS 7, if statusBar has double height
   CGFloat yPos = 0;
   if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height == 40.0) {
     yPos = -height/2.0;
   }
 
-  // adjust for iPhone X
-  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
-  if (topLayoutMargin > 0) {
-      JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
-      if (style.iphoneXSize == JDStatusBarIphoneXSizeBig){
-          height += topLayoutMargin;
-      } else {
-          height += 8.0;
-      }
-  }
+  // adjust height for iPhone X
+  height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height);
 
   _topBar.frame = CGRectMake(0, yPos, width, height);
 }
