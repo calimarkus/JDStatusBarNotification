@@ -61,7 +61,7 @@
                             <rect key="frame" x="0.0" y="78" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                             <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="124" maxY="0.0"/>
                             <state key="normal" title="Change font: 12pt">
                                 <color key="titleColor" red="0.071822978556156158" green="0.58929067850112915" blue="0.99853438138961792" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
