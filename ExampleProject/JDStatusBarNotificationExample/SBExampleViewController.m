@@ -65,6 +65,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
         self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"JDStatusBarStyleDefault", JDNotificationText:@"Better call Saul!"},
                         @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@"Some Progress…"},
                         @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@"Some Activity…"},
+                        @{JDButtonName:@"Update text", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
                         @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
                       @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
                         @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
@@ -169,7 +170,9 @@ static NSString *const SBStyle2 = @"SBStyle2";
             [JDStatusBarNotification showActivityIndicator:YES
                                             indicatorStyle:self.indicatorStyle];
         } else if (row == 3) {
-            [JDStatusBarNotification dismiss];
+          [JDStatusBarNotification updateStatus:@"Replaced Text.."];
+        } else if (row == 4) {
+          [JDStatusBarNotification dismiss];
         }
     } else if (section == 1) {
         self.indicatorStyle = UIActivityIndicatorViewStyleWhite;

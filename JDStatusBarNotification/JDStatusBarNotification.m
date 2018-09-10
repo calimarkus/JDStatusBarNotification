@@ -116,6 +116,11 @@
                                       prepare:prepareBlock];
 }
 
++ (void)updateStatus:(NSString *)status;
+{
+  [[self sharedInstance] setStatus:status];
+}
+
 + (void)showProgress:(CGFloat)progress;
 {
   [[self sharedInstance] setProgress:progress];
@@ -348,7 +353,18 @@
   [self.topBar.layer removeAllAnimations];
 }
 
-#pragma mark Progress & Activity
+#pragma mark Modifications
+
+- (void)setStatus:(NSString *)status;
+{
+  if (_topBar == nil) return;
+
+  UILabel *textLabel = self.topBar.textLabel;
+  textLabel.accessibilityLabel = status;
+  textLabel.text = status;
+
+  [self.topBar setNeedsLayout];
+}
 
 - (void)setProgress:(CGFloat)progress;
 {
