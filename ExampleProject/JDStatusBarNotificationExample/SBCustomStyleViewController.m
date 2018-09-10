@@ -20,6 +20,7 @@
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
 
+@property (nonatomic, assign) JDStatusBarHeightForIPhoneX heightForIPhoneX;
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 @property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
 @end
@@ -31,6 +32,7 @@
     [super viewDidLoad];
     
     self.animationType = JDStatusBarAnimationTypeMove;
+    self.heightForIPhoneX = JDStatusBarHeightForIPhoneXFullNavBar;
     self.progressBarPosition = JDStatusBarProgressBarPositionBottom;
     
     self.textColorPreview.backgroundColor = self.fontButton.titleLabel.textColor;
@@ -87,14 +89,15 @@
         style.textColor = self.textColorPreview.backgroundColor;
         style.barColor = self.barColorPreview.backgroundColor;
         style.animationType = self.animationType;
-        
+        style.heightForIPhoneX = self.heightForIPhoneX;
+
         style.progressBarColor = self.progressBarColorPreview.backgroundColor;
         style.progressBarPosition = self.progressBarPosition;
-        
+
         NSString *height = [self.barHeightLabel.text stringByReplacingOccurrencesOfString:@"ProgressBarHeight (" withString:@""];
         height = [height stringByReplacingOccurrencesOfString:@" pt)" withString:@""];
         style.progressBarHeight = [height doubleValue];
-        
+
         return style;
     }];
 }
@@ -207,19 +210,34 @@
 
 - (IBAction)selectAnimationStyle:(id)sender;
 {
-    NSArray *data = @[@"JDStatusBarAnimationTypeNone",
-                      @"JDStatusBarAnimationTypeMove",
-                      @"JDStatusBarAnimationTypeBounce",
-                      @"JDStatusBarAnimationTypeFade"];
-    SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
-        self.animationType = selectedRow;
-        [self.animationStyleButton setTitle:data[selectedRow] forState:UIControlStateNormal];
-        [self.navigationController popViewControllerAnimated:YES];
-        [self updateStyle];
-    }];
-    controller.title = @"Animation Type";
-    controller.activeRow = self.animationType;
-    [self.navigationController pushViewController:controller animated:YES];
+  NSArray *data = @[@"JDStatusBarAnimationTypeNone",
+                    @"JDStatusBarAnimationTypeMove",
+                    @"JDStatusBarAnimationTypeBounce",
+                    @"JDStatusBarAnimationTypeFade"];
+  SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
+    self.animationType = selectedRow;
+    [self.animationStyleButton setTitle:data[selectedRow] forState:UIControlStateNormal];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self updateStyle];
+  }];
+  controller.title = @"Animation Type";
+  controller.activeRow = self.animationType;
+  [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)selectIPhoneXHeight:(id)sender;
+{
+  NSArray *data = @[@"JDStatusBarHeightForIPhoneXHalf",
+                    @"JDStatusBarHeightForIPhoneXFullNavBar"];
+  SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
+    self.heightForIPhoneX = selectedRow;
+    [self.heightForIPhoneXButton setTitle:data[selectedRow] forState:UIControlStateNormal];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self updateStyle];
+  }];
+  controller.title = @"Height for iPhoneX";
+  controller.activeRow = self.heightForIPhoneX;
+  [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)selectProgressBarColor:(id)sender;
