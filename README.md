@@ -1,4 +1,4 @@
-BEWARE: Currently this is NOT compatible with iOS 13. See issue #110
+WARN: Currently this is NOT compatible with iOS 13. See issue #110
 
 # JDStatusBarNotification
 
