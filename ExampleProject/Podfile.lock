@@ -7,7 +7,7 @@ DEPENDENCIES:
   - InfColorPicker
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FTFontSelector
     - InfColorPicker
 
@@ -17,4 +17,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 82ca418f297a92c39ba3d6ed8c8457ea4538fa5e
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

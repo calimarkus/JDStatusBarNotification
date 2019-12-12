@@ -7,111 +7,107 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F6BB624BD344D7955029B57F55B5BBA /* InfHSBSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = BD0DC21EB7011833637714CA06F02D4A /* InfHSBSupport.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1E7DFDB3933C15BC501E312799ED6EE5 /* FTFontFamilyMembersViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C12AB7C807972FA7DEAB1772F5AC8EA9 /* FTFontFamilyMembersViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2723F68264012CB81A03556E8C5A4BB0 /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C24F4916B606EC936B62ADBB833962B9 /* Pods-JDStatusBarNotificationExample-dummy.m */; };
-		27E90BD9EF8E3683F534375234AAB83A /* FTFontFamilyMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A31470EE8F60D233FC32EF5FCDF1E89B /* FTFontFamilyMembersViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		30C9E89833EAA096CCE6775938520719 /* FTFontSelector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 62615290D8BB60727B8987E4A327CE9F /* FTFontSelector-dummy.m */; };
-		3A72685F757DC296CA1FE5E057C84E20 /* InfColorPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B53619D74E6D84577EB650D05503FA /* InfColorPickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		425F132276523671461D21B621125C6F /* FTFontSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F34EB2545BB1938A1FCFC4DA015535 /* FTFontSelectorController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4406A4D93FC48D25ED045CC06009425A /* FTFontFamiliesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19EFA08B1568F2F2C6EDE915058CEEB4 /* FTFontFamiliesViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		48240A1051A0118B6BE01458EFF846F0 /* FTFontDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D99C325984660DE3C0FE6E12C6CE3C2 /* FTFontDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5B6441CE0521E7FAB5C49EC4D0B0394C /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC53398334464CE4203D178894DB6BB /* InfColorBarPicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5FFCDD8128DF50E45CE38618C03FCA4D /* InfColorBarPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A7597183150C2B1BCF3C29F1C06A7DD /* InfColorBarPicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		613901499DB6F6B617ABE0B7778758A1 /* InfColorSquarePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1740B6F9808CEE0F1003B4E5571A495D /* InfColorSquarePicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		67C090B617AD63D2434439B7653D7D3D /* InfColorPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A810F731DF1357A8FFB115F668FB0E /* InfColorPickerController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6E4D1587A5E6A11E849212F6BF17AEF8 /* InfColorPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = FF109F10DE08AA096815535B7E64CFA3 /* InfColorPicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9494074CB7EDFC2A573A8CEA3BB8AD52 /* FTFontFamiliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D94B6EE9BD0BDEF17BC16A3D2EF673 /* FTFontFamiliesViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A2C402AF7EE64FA43C030B129081D1C9 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 984D71DF86302F887E47D7A91F1DA1CF /* InfColorIndicatorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A3954292600B3814DBF4EB396E73872D /* InfColorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = BF34A8C7A8A0692F4E5AADC296D15326 /* InfColorIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B107B48FCBD60D65C920499AA81935E7 /* InfColorPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E18C3FDD12B5093057AC4F087DC43EA /* InfColorPicker-dummy.m */; };
-		B173669A9E8AA4CDF5C7C47942AA2329 /* InfSourceColorView.h in Headers */ = {isa = PBXBuildFile; fileRef = AA193363F4BA022EA43CC872FFC584D1 /* InfSourceColorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B1C065A2F9914F4B7D4A96DB0CC72BD1 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C0EE67D1E0E05E60E6177C328B78A1 /* InfHSBSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		CAAFD5367B1F2084DFA684AF26409493 /* FTFontDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF023ECE8A0782747A585199D780ED9 /* FTFontDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D2F48263F7491620765C0F27AA043EBD /* InfSourceColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F81D7CBAD35720D673C2304263EAA1DC /* InfSourceColorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E6E3AB3992044AEAB8E8F98609E785DC /* InfColorSquarePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F92F1B3879D8F11AAB8B1DCEE06E7A1 /* InfColorSquarePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F5F13CA501604E1BB833D445DB2ED116 /* FTFontSelectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F3FDF66B6A6693B408E2C08A14B69DE1 /* FTFontSelectorController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FF9792E81A220B9D075A1FA9A9F52F82 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E94189C864B44F500F68C8F8971527 /* CoreText.framework */; };
+		0792025B566D8B59EC2814DBD8D640C3 /* InfColorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B1A96AC6135671F75FCB5CFAAE879C /* InfColorIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		16799682CDB54451D094F03E4167A308 /* FTFontSelectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E20E8FB2E48859416A66F7ED4CA8ADB /* FTFontSelectorController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1AA960253C00BC99C42CF53F6658BFD7 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF49383C0E067B2128BC710D2B3838 /* InfColorIndicatorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1D5CFCCA05819C0FD2F15EB8ABD8277C /* FTFontDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F07739EED70F09AA4067C5A72CE0092 /* FTFontDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		28CC0958F719DB93EA01F9CC73CF5BC7 /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1CE1F1C4773613EE5CC9939575756 /* Pods-JDStatusBarNotificationExample-dummy.m */; };
+		3EB6DD45B27B6A8DE1429671E152EA5C /* FTFontDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 26AAA59BFA4DAA49447BC9A9FDFB92C3 /* FTFontDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		547E11AA6FED0F5481127ABD5929FB98 /* InfColorSquarePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B5A437C7E468D8A2FAB7D14319FD6 /* InfColorSquarePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6DBFEDB6268FD115644F9565A869B819 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F9F722556BC7558E6F5B94A4CC3B4F /* InfHSBSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7BF5E0693CE02B7501B0F24CB1233CED /* InfColorBarPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = CC956044AE93C9B8908332BF1615C9C2 /* InfColorBarPicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		803068ACC2183522B2F5FAA7BFD46909 /* FTFontFamilyMembersViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 63328F77442347A0FA848CAEFAAEF790 /* FTFontFamilyMembersViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A3F7C77B62B9CCC730336A512B5B9591 /* InfSourceColorView.h in Headers */ = {isa = PBXBuildFile; fileRef = F51E9AF2852BF51CA96C2A3BC1D01F92 /* InfSourceColorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BAFAEF5E9A72BF1E91C415FC12B34492 /* FTFontFamiliesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 160A81AC26DF1E20712A481A5F1E852E /* FTFontFamiliesViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BCCFA850CB9C5007DDD392E80429A029 /* FTFontFamiliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B20BAD8F3DA003FB97C395993FFA32 /* FTFontFamiliesViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CA64754A225D30E7926FD77E47D58257 /* FTFontSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9592193FB3F3FF7A0D372AB64034B9 /* FTFontSelectorController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		CE65E00E46C31DD45D196DE5AFD3092C /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC8D7D4FF64CE2DF86061E1BB3D572D /* InfColorBarPicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D1B70EA262F96734002A162B06A1E93C /* InfHSBSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 70E624887934B0BBF52C49766213AD30 /* InfHSBSupport.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DF8C7D14D9D90DDFB653ED0DCCCA1F4A /* FTFontFamilyMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62B6A49F1DF984B460D57D72337012A /* FTFontFamilyMembersViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E6A951FDBFC4C5CBE3239C3638289816 /* FTFontSelector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56892282C07764CAB8F1D5585CD24DF6 /* FTFontSelector-dummy.m */; };
+		EC22ECBE284F04B0F0E49E6CB85D0DE9 /* InfColorSquarePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = FC92F36F556458106A3FE3FC21056FD8 /* InfColorSquarePicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ED96C3300E5FD0170D20C6A3A8AAE299 /* InfSourceColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3CF92B2FD7A26C0944EE8CB8E0FEAB /* InfSourceColorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F4139D47F330BF19333AC60267EDCD82 /* InfColorPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B5CC80C5DA2FBF77B0F5CACBAF15406 /* InfColorPicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F6534DC00C689E4BE7ADF80A5F97AE64 /* InfColorPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA13C4013F336D951FC1BD9B36165853 /* InfColorPicker-dummy.m */; };
+		F75EA724BC7AD801ED49796C4AE87BFE /* InfColorPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7910CB6E18BB885CCFB85E9DD65D6A6A /* InfColorPickerController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FCCEBB2A742D4A8F57AA262C1F45D838 /* InfColorPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A37C57254DF6629F8AB6C57FF3AB496 /* InfColorPickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C962EF14FF6185F85871FE0397357043 /* PBXContainerItemProxy */ = {
+		B53A587902D92E30FD592D905A5DDAD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 61B5EE6B0A856396A178CE84BCE30AF1;
-			remoteInfo = InfColorPicker;
-		};
-		F271EB95D54578F6EED4B3CBF7B964C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A15FCE8A57284339C894F9AFFB88EB5C;
+			remoteGlobalIDString = 5AE494EA2BB775EC1D2DA8BE89DF8CE0;
 			remoteInfo = FTFontSelector;
+		};
+		DF4CE41EDB8C24D574F4DDCC301969DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C356B6180B455CA6BA160C8F8413C02F;
+			remoteInfo = InfColorPicker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03471F1BEFC2B5CA2CB337026203685A /* FTFontSelector.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTFontSelector.xcconfig; sourceTree = "<group>"; };
-		04B53619D74E6D84577EB650D05503FA /* InfColorPickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorPickerController.m; path = InfColorPicker/InfColorPickerController.m; sourceTree = "<group>"; };
-		0AC42F51C2135C323A6C962D4CD9B6A9 /* FTFontSelector.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTFontSelector.bundle; path = Assets/FTFontSelector.bundle; sourceTree = "<group>"; };
-		0C6C2FD1965C10C77F318BE3B8D446CF /* InfColorPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = InfColorPicker.xcconfig; sourceTree = "<group>"; };
-		1740B6F9808CEE0F1003B4E5571A495D /* InfColorSquarePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorSquarePicker.h; path = InfColorPicker/InfColorSquarePicker.h; sourceTree = "<group>"; };
-		19EFA08B1568F2F2C6EDE915058CEEB4 /* FTFontFamiliesViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontFamiliesViewController.h; path = Classes/Private/FTFontFamiliesViewController.h; sourceTree = "<group>"; };
-		1B7CAE2DDDFB085E53D1D04F88DDE3AE /* InfColorPickerView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = InfColorPickerView.xib; path = InfColorPicker/InfColorPickerView.xib; sourceTree = "<group>"; };
-		1D3C5A97F00A3B68EDF369F935513F13 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
-		1EFF83318249C44864C204E80B198E37 /* libInfColorPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libInfColorPicker.a; path = libInfColorPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E870AAD88688121009C2299F6D546EF /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JDStatusBarNotificationExample-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3CC53398334464CE4203D178894DB6BB /* InfColorBarPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorBarPicker.m; path = InfColorPicker/InfColorBarPicker.m; sourceTree = "<group>"; };
-		3F92F1B3879D8F11AAB8B1DCEE06E7A1 /* InfColorSquarePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorSquarePicker.m; path = InfColorPicker/InfColorSquarePicker.m; sourceTree = "<group>"; };
-		433A8D31E1511582D4D623C258747B82 /* libPods-JDStatusBarNotificationExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-JDStatusBarNotificationExample.a"; path = "libPods-JDStatusBarNotificationExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D99C325984660DE3C0FE6E12C6CE3C2 /* FTFontDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontDescriptor.h; path = Classes/Private/FTFontDescriptor.h; sourceTree = "<group>"; };
-		4E190BC46E74C78F3C05E4C43B806648 /* Pods-JDStatusBarNotificationExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JDStatusBarNotificationExample-resources.sh"; sourceTree = "<group>"; };
-		508B27B92B7610B98959D266F0BB7882 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JDStatusBarNotificationExample-acknowledgements.plist"; sourceTree = "<group>"; };
-		52F34EB2545BB1938A1FCFC4DA015535 /* FTFontSelectorController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontSelectorController.m; path = Classes/FTFontSelectorController.m; sourceTree = "<group>"; };
-		5719D84A8CB8E04E8EBC2EB6950843F5 /* InfColorPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InfColorPicker-prefix.pch"; sourceTree = "<group>"; };
-		5A7597183150C2B1BCF3C29F1C06A7DD /* InfColorBarPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorBarPicker.h; path = InfColorPicker/InfColorBarPicker.h; sourceTree = "<group>"; };
-		5E18C3FDD12B5093057AC4F087DC43EA /* InfColorPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "InfColorPicker-dummy.m"; sourceTree = "<group>"; };
-		62615290D8BB60727B8987E4A327CE9F /* FTFontSelector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTFontSelector-dummy.m"; sourceTree = "<group>"; };
-		76D8CE2534BE3A5D63126B7D920A6636 /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
-		90D94B6EE9BD0BDEF17BC16A3D2EF673 /* FTFontFamiliesViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontFamiliesViewController.m; path = Classes/Private/FTFontFamiliesViewController.m; sourceTree = "<group>"; };
-		92C0EE67D1E0E05E60E6177C328B78A1 /* InfHSBSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfHSBSupport.m; path = InfColorPicker/InfHSBSupport.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9727D231BEF756CAD232AEC6D3608961 /* FTFontSelector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTFontSelector-prefix.pch"; sourceTree = "<group>"; };
-		984D71DF86302F887E47D7A91F1DA1CF /* InfColorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorIndicatorView.m; path = InfColorPicker/InfColorIndicatorView.m; sourceTree = "<group>"; };
-		992B1F965EA084DF1EDCB781BDA03C57 /* libFTFontSelector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFTFontSelector.a; path = libFTFontSelector.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A31470EE8F60D233FC32EF5FCDF1E89B /* FTFontFamilyMembersViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontFamilyMembersViewController.m; path = Classes/Private/FTFontFamilyMembersViewController.m; sourceTree = "<group>"; };
-		AA193363F4BA022EA43CC872FFC584D1 /* InfSourceColorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfSourceColorView.h; path = InfColorPicker/InfSourceColorView.h; sourceTree = "<group>"; };
-		BD0DC21EB7011833637714CA06F02D4A /* InfHSBSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfHSBSupport.h; path = InfColorPicker/InfHSBSupport.h; sourceTree = "<group>"; };
-		BF34A8C7A8A0692F4E5AADC296D15326 /* InfColorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorIndicatorView.h; path = InfColorPicker/InfColorIndicatorView.h; sourceTree = "<group>"; };
-		C0087E4599E3543D12505241134E0685 /* Pods-JDStatusBarNotificationExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JDStatusBarNotificationExample-frameworks.sh"; sourceTree = "<group>"; };
-		C0A810F731DF1357A8FFB115F668FB0E /* InfColorPickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorPickerController.h; path = InfColorPicker/InfColorPickerController.h; sourceTree = "<group>"; };
-		C12AB7C807972FA7DEAB1772F5AC8EA9 /* FTFontFamilyMembersViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontFamilyMembersViewController.h; path = Classes/Private/FTFontFamilyMembersViewController.h; sourceTree = "<group>"; };
-		C24F4916B606EC936B62ADBB833962B9 /* Pods-JDStatusBarNotificationExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JDStatusBarNotificationExample-dummy.m"; sourceTree = "<group>"; };
-		C4E94189C864B44F500F68C8F8971527 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		DBF023ECE8A0782747A585199D780ED9 /* FTFontDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontDescriptor.m; path = Classes/Private/FTFontDescriptor.m; sourceTree = "<group>"; };
-		F3FDF66B6A6693B408E2C08A14B69DE1 /* FTFontSelectorController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontSelectorController.h; path = Classes/FTFontSelectorController.h; sourceTree = "<group>"; };
-		F81D7CBAD35720D673C2304263EAA1DC /* InfSourceColorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfSourceColorView.m; path = InfColorPicker/InfSourceColorView.m; sourceTree = "<group>"; };
-		FF109F10DE08AA096815535B7E64CFA3 /* InfColorPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorPicker.h; path = InfColorPicker/InfColorPicker.h; sourceTree = "<group>"; };
+		0A5E46A50FF8B8761858A3DFFC60BFD9 /* FTFontSelector.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTFontSelector.xcconfig; sourceTree = "<group>"; };
+		15B1A96AC6135671F75FCB5CFAAE879C /* InfColorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorIndicatorView.h; path = InfColorPicker/InfColorIndicatorView.h; sourceTree = "<group>"; };
+		160A81AC26DF1E20712A481A5F1E852E /* FTFontFamiliesViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontFamiliesViewController.h; path = Classes/Private/FTFontFamiliesViewController.h; sourceTree = "<group>"; };
+		16D89DD4E89FC25188236F501C573AE6 /* libPods-JDStatusBarNotificationExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-JDStatusBarNotificationExample.a"; path = "libPods-JDStatusBarNotificationExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26AAA59BFA4DAA49447BC9A9FDFB92C3 /* FTFontDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontDescriptor.h; path = Classes/Private/FTFontDescriptor.h; sourceTree = "<group>"; };
+		3B5CC80C5DA2FBF77B0F5CACBAF15406 /* InfColorPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorPicker.h; path = InfColorPicker/InfColorPicker.h; sourceTree = "<group>"; };
+		43626DB3057C9DC84E54A0F4106D06C9 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JDStatusBarNotificationExample-acknowledgements.plist"; sourceTree = "<group>"; };
+		45F9F722556BC7558E6F5B94A4CC3B4F /* InfHSBSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfHSBSupport.m; path = InfColorPicker/InfHSBSupport.m; sourceTree = "<group>"; };
+		4A37C57254DF6629F8AB6C57FF3AB496 /* InfColorPickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorPickerController.m; path = InfColorPicker/InfColorPickerController.m; sourceTree = "<group>"; };
+		4BC1CE1F1C4773613EE5CC9939575756 /* Pods-JDStatusBarNotificationExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JDStatusBarNotificationExample-dummy.m"; sourceTree = "<group>"; };
+		4E00E11D571315EC98AFB9773FFAC262 /* InfColorPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = InfColorPicker.xcconfig; sourceTree = "<group>"; };
+		4E9592193FB3F3FF7A0D372AB64034B9 /* FTFontSelectorController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontSelectorController.m; path = Classes/FTFontSelectorController.m; sourceTree = "<group>"; };
+		56892282C07764CAB8F1D5585CD24DF6 /* FTFontSelector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTFontSelector-dummy.m"; sourceTree = "<group>"; };
+		59177B4140C92601CC56E1A351B98B4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
+		5E68087B23B475351E8497085CBA32D3 /* FTFontSelector.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTFontSelector.bundle; path = Assets/FTFontSelector.bundle; sourceTree = "<group>"; };
+		63328F77442347A0FA848CAEFAAEF790 /* FTFontFamilyMembersViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontFamilyMembersViewController.h; path = Classes/Private/FTFontFamilyMembersViewController.h; sourceTree = "<group>"; };
+		63AC515B95715407E02A56960486EB73 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
+		648E6C323B54A60488E396648B69C5DE /* libInfColorPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libInfColorPicker.a; path = libInfColorPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EF486337FC94B7EFA4BAFB80599A8AF /* Pods-JDStatusBarNotificationExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JDStatusBarNotificationExample-resources.sh"; sourceTree = "<group>"; };
+		70E624887934B0BBF52C49766213AD30 /* InfHSBSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfHSBSupport.h; path = InfColorPicker/InfHSBSupport.h; sourceTree = "<group>"; };
+		74B20BAD8F3DA003FB97C395993FFA32 /* FTFontFamiliesViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontFamiliesViewController.m; path = Classes/Private/FTFontFamiliesViewController.m; sourceTree = "<group>"; };
+		7910CB6E18BB885CCFB85E9DD65D6A6A /* InfColorPickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorPickerController.h; path = InfColorPicker/InfColorPickerController.h; sourceTree = "<group>"; };
+		84CF49383C0E067B2128BC710D2B3838 /* InfColorIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorIndicatorView.m; path = InfColorPicker/InfColorIndicatorView.m; sourceTree = "<group>"; };
+		8B2B5A437C7E468D8A2FAB7D14319FD6 /* InfColorSquarePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorSquarePicker.m; path = InfColorPicker/InfColorSquarePicker.m; sourceTree = "<group>"; };
+		8E20E8FB2E48859416A66F7ED4CA8ADB /* FTFontSelectorController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontSelectorController.h; path = Classes/FTFontSelectorController.h; sourceTree = "<group>"; };
+		92E4A7F03CD84AE162F2DCDFE3258F3C /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JDStatusBarNotificationExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E9B664C236E37B78C22965CE5821FE5 /* InfColorPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InfColorPicker-prefix.pch"; sourceTree = "<group>"; };
+		9F07739EED70F09AA4067C5A72CE0092 /* FTFontDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontDescriptor.m; path = Classes/Private/FTFontDescriptor.m; sourceTree = "<group>"; };
+		BB3CF92B2FD7A26C0944EE8CB8E0FEAB /* InfSourceColorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfSourceColorView.m; path = InfColorPicker/InfSourceColorView.m; sourceTree = "<group>"; };
+		CC956044AE93C9B8908332BF1615C9C2 /* InfColorBarPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorBarPicker.h; path = InfColorPicker/InfColorBarPicker.h; sourceTree = "<group>"; };
+		CE440D0A4493C1B099E29A02828817B4 /* InfColorPickerView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = InfColorPickerView.xib; path = InfColorPicker/InfColorPickerView.xib; sourceTree = "<group>"; };
+		D1B830E92F463E180FA079426176016C /* FTFontSelector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTFontSelector-prefix.pch"; sourceTree = "<group>"; };
+		DA13C4013F336D951FC1BD9B36165853 /* InfColorPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "InfColorPicker-dummy.m"; sourceTree = "<group>"; };
+		E62B6A49F1DF984B460D57D72337012A /* FTFontFamilyMembersViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontFamilyMembersViewController.m; path = Classes/Private/FTFontFamilyMembersViewController.m; sourceTree = "<group>"; };
+		ED1AFE0AAAB139B96418BFD1EF3568A1 /* libFTFontSelector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFTFontSelector.a; path = libFTFontSelector.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51E9AF2852BF51CA96C2A3BC1D01F92 /* InfSourceColorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfSourceColorView.h; path = InfColorPicker/InfSourceColorView.h; sourceTree = "<group>"; };
+		FC92F36F556458106A3FE3FC21056FD8 /* InfColorSquarePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InfColorSquarePicker.h; path = InfColorPicker/InfColorSquarePicker.h; sourceTree = "<group>"; };
+		FEC8D7D4FF64CE2DF86061E1BB3D572D /* InfColorBarPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = InfColorBarPicker.m; path = InfColorPicker/InfColorBarPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A057C4C4CCB1661F64408438A3F6B8E0 /* Frameworks */ = {
+		05BC50FB3AE80EDE0BA7AE37CF1EFFAC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BE0F0C3A74C2F8B8F7D47DA35ADD8813 /* Frameworks */ = {
+		0C803BBE3D5367E28F653C379CA3A895 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF9792E81A220B9D075A1FA9A9F52F82 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1859941E0A8AF6EAABF45ECF38F9FC4 /* Frameworks */ = {
+		D149E62C8DC6C3F35EEEA127CE49D466 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -121,216 +117,208 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02E27CB122CDEEE7BB8D92DBA287008A /* Pods-JDStatusBarNotificationExample */ = {
+		01CEDC9F84295776A558E7FB986A6935 /* FTFontSelector */ = {
 			isa = PBXGroup;
 			children = (
-				2E870AAD88688121009C2299F6D546EF /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */,
-				508B27B92B7610B98959D266F0BB7882 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */,
-				C24F4916B606EC936B62ADBB833962B9 /* Pods-JDStatusBarNotificationExample-dummy.m */,
-				C0087E4599E3543D12505241134E0685 /* Pods-JDStatusBarNotificationExample-frameworks.sh */,
-				4E190BC46E74C78F3C05E4C43B806648 /* Pods-JDStatusBarNotificationExample-resources.sh */,
-				1D3C5A97F00A3B68EDF369F935513F13 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */,
-				76D8CE2534BE3A5D63126B7D920A6636 /* Pods-JDStatusBarNotificationExample.release.xcconfig */,
-			);
-			name = "Pods-JDStatusBarNotificationExample";
-			path = "Target Support Files/Pods-JDStatusBarNotificationExample";
-			sourceTree = "<group>";
-		};
-		1E660F3A5016B89BA172A9C91AC5BA8D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				03471F1BEFC2B5CA2CB337026203685A /* FTFontSelector.xcconfig */,
-				62615290D8BB60727B8987E4A327CE9F /* FTFontSelector-dummy.m */,
-				9727D231BEF756CAD232AEC6D3608961 /* FTFontSelector-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FTFontSelector";
-			sourceTree = "<group>";
-		};
-		64F7C86CED897F6F9B28C710DFBE01A0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				704A8EEF637371C5039E887754EBE3BD /* FTFontSelector */,
-				C708DAE2268D755939F0B2657E41FFC5 /* InfColorPicker */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		704A8EEF637371C5039E887754EBE3BD /* FTFontSelector */ = {
-			isa = PBXGroup;
-			children = (
-				4D99C325984660DE3C0FE6E12C6CE3C2 /* FTFontDescriptor.h */,
-				DBF023ECE8A0782747A585199D780ED9 /* FTFontDescriptor.m */,
-				19EFA08B1568F2F2C6EDE915058CEEB4 /* FTFontFamiliesViewController.h */,
-				90D94B6EE9BD0BDEF17BC16A3D2EF673 /* FTFontFamiliesViewController.m */,
-				C12AB7C807972FA7DEAB1772F5AC8EA9 /* FTFontFamilyMembersViewController.h */,
-				A31470EE8F60D233FC32EF5FCDF1E89B /* FTFontFamilyMembersViewController.m */,
-				F3FDF66B6A6693B408E2C08A14B69DE1 /* FTFontSelectorController.h */,
-				52F34EB2545BB1938A1FCFC4DA015535 /* FTFontSelectorController.m */,
-				FED562D66A82340FBDB21FC745CC3525 /* Resources */,
-				1E660F3A5016B89BA172A9C91AC5BA8D /* Support Files */,
+				26AAA59BFA4DAA49447BC9A9FDFB92C3 /* FTFontDescriptor.h */,
+				9F07739EED70F09AA4067C5A72CE0092 /* FTFontDescriptor.m */,
+				160A81AC26DF1E20712A481A5F1E852E /* FTFontFamiliesViewController.h */,
+				74B20BAD8F3DA003FB97C395993FFA32 /* FTFontFamiliesViewController.m */,
+				63328F77442347A0FA848CAEFAAEF790 /* FTFontFamilyMembersViewController.h */,
+				E62B6A49F1DF984B460D57D72337012A /* FTFontFamilyMembersViewController.m */,
+				8E20E8FB2E48859416A66F7ED4CA8ADB /* FTFontSelectorController.h */,
+				4E9592193FB3F3FF7A0D372AB64034B9 /* FTFontSelectorController.m */,
+				5D76A72F8DEB5B6C597F4AFBAC53BAAF /* Resources */,
+				3FCDF76149E22C8223563601EFD1F179 /* Support Files */,
 			);
 			name = FTFontSelector;
 			path = FTFontSelector;
 			sourceTree = "<group>";
 		};
-		7179CC6F494DFBF010138DCFBBEB5018 /* iOS */ = {
+		0AF14D0C2524D6437B5EC62210AE18B1 /* InfColorPicker */ = {
 			isa = PBXGroup;
 			children = (
-				C4E94189C864B44F500F68C8F8971527 /* CoreText.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				64F7C86CED897F6F9B28C710DFBE01A0 /* Pods */,
-				B65465BDDD9C99C47AE4EFF0375BD6A5 /* Products */,
-				B0AF108210C3D1A5D9246CBBA19CF9CD /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		861358675F3AEDD74465E142C5D242BC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0C6C2FD1965C10C77F318BE3B8D446CF /* InfColorPicker.xcconfig */,
-				5E18C3FDD12B5093057AC4F087DC43EA /* InfColorPicker-dummy.m */,
-				5719D84A8CB8E04E8EBC2EB6950843F5 /* InfColorPicker-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/InfColorPicker";
-			sourceTree = "<group>";
-		};
-		B0AF108210C3D1A5D9246CBBA19CF9CD /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				02E27CB122CDEEE7BB8D92DBA287008A /* Pods-JDStatusBarNotificationExample */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		B65465BDDD9C99C47AE4EFF0375BD6A5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				992B1F965EA084DF1EDCB781BDA03C57 /* libFTFontSelector.a */,
-				1EFF83318249C44864C204E80B198E37 /* libInfColorPicker.a */,
-				433A8D31E1511582D4D623C258747B82 /* libPods-JDStatusBarNotificationExample.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7179CC6F494DFBF010138DCFBBEB5018 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C6593E13479FE0E5C10B273F92C2D8ED /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				1B7CAE2DDDFB085E53D1D04F88DDE3AE /* InfColorPickerView.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		C708DAE2268D755939F0B2657E41FFC5 /* InfColorPicker */ = {
-			isa = PBXGroup;
-			children = (
-				5A7597183150C2B1BCF3C29F1C06A7DD /* InfColorBarPicker.h */,
-				3CC53398334464CE4203D178894DB6BB /* InfColorBarPicker.m */,
-				BF34A8C7A8A0692F4E5AADC296D15326 /* InfColorIndicatorView.h */,
-				984D71DF86302F887E47D7A91F1DA1CF /* InfColorIndicatorView.m */,
-				FF109F10DE08AA096815535B7E64CFA3 /* InfColorPicker.h */,
-				C0A810F731DF1357A8FFB115F668FB0E /* InfColorPickerController.h */,
-				04B53619D74E6D84577EB650D05503FA /* InfColorPickerController.m */,
-				1740B6F9808CEE0F1003B4E5571A495D /* InfColorSquarePicker.h */,
-				3F92F1B3879D8F11AAB8B1DCEE06E7A1 /* InfColorSquarePicker.m */,
-				BD0DC21EB7011833637714CA06F02D4A /* InfHSBSupport.h */,
-				92C0EE67D1E0E05E60E6177C328B78A1 /* InfHSBSupport.m */,
-				AA193363F4BA022EA43CC872FFC584D1 /* InfSourceColorView.h */,
-				F81D7CBAD35720D673C2304263EAA1DC /* InfSourceColorView.m */,
-				C6593E13479FE0E5C10B273F92C2D8ED /* Resources */,
-				861358675F3AEDD74465E142C5D242BC /* Support Files */,
+				CC956044AE93C9B8908332BF1615C9C2 /* InfColorBarPicker.h */,
+				FEC8D7D4FF64CE2DF86061E1BB3D572D /* InfColorBarPicker.m */,
+				15B1A96AC6135671F75FCB5CFAAE879C /* InfColorIndicatorView.h */,
+				84CF49383C0E067B2128BC710D2B3838 /* InfColorIndicatorView.m */,
+				3B5CC80C5DA2FBF77B0F5CACBAF15406 /* InfColorPicker.h */,
+				7910CB6E18BB885CCFB85E9DD65D6A6A /* InfColorPickerController.h */,
+				4A37C57254DF6629F8AB6C57FF3AB496 /* InfColorPickerController.m */,
+				FC92F36F556458106A3FE3FC21056FD8 /* InfColorSquarePicker.h */,
+				8B2B5A437C7E468D8A2FAB7D14319FD6 /* InfColorSquarePicker.m */,
+				70E624887934B0BBF52C49766213AD30 /* InfHSBSupport.h */,
+				45F9F722556BC7558E6F5B94A4CC3B4F /* InfHSBSupport.m */,
+				F51E9AF2852BF51CA96C2A3BC1D01F92 /* InfSourceColorView.h */,
+				BB3CF92B2FD7A26C0944EE8CB8E0FEAB /* InfSourceColorView.m */,
+				C42CA6025838A9CE26041C59B5797FE6 /* Resources */,
+				EED78A3BCE96D347173EE1BC7D13C55D /* Support Files */,
 			);
 			name = InfColorPicker;
 			path = InfColorPicker;
 			sourceTree = "<group>";
 		};
-		FED562D66A82340FBDB21FC745CC3525 /* Resources */ = {
+		3FCDF76149E22C8223563601EFD1F179 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0AC42F51C2135C323A6C962D4CD9B6A9 /* FTFontSelector.bundle */,
+				0A5E46A50FF8B8761858A3DFFC60BFD9 /* FTFontSelector.xcconfig */,
+				56892282C07764CAB8F1D5585CD24DF6 /* FTFontSelector-dummy.m */,
+				D1B830E92F463E180FA079426176016C /* FTFontSelector-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FTFontSelector";
+			sourceTree = "<group>";
+		};
+		405FC8C370B33025828FABC576DD01CC /* Pods-JDStatusBarNotificationExample */ = {
+			isa = PBXGroup;
+			children = (
+				92E4A7F03CD84AE162F2DCDFE3258F3C /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */,
+				43626DB3057C9DC84E54A0F4106D06C9 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */,
+				4BC1CE1F1C4773613EE5CC9939575756 /* Pods-JDStatusBarNotificationExample-dummy.m */,
+				6EF486337FC94B7EFA4BAFB80599A8AF /* Pods-JDStatusBarNotificationExample-resources.sh */,
+				63AC515B95715407E02A56960486EB73 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */,
+				59177B4140C92601CC56E1A351B98B4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */,
+			);
+			name = "Pods-JDStatusBarNotificationExample";
+			path = "Target Support Files/Pods-JDStatusBarNotificationExample";
+			sourceTree = "<group>";
+		};
+		4F25B01AD8ED899510EFB266F94991A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01CEDC9F84295776A558E7FB986A6935 /* FTFontSelector */,
+				0AF14D0C2524D6437B5EC62210AE18B1 /* InfColorPicker */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5D76A72F8DEB5B6C597F4AFBAC53BAAF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E68087B23B475351E8497085CBA32D3 /* FTFontSelector.bundle */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		AB66E0DE79D677AC12B53513613F8B61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED1AFE0AAAB139B96418BFD1EF3568A1 /* libFTFontSelector.a */,
+				648E6C323B54A60488E396648B69C5DE /* libInfColorPicker.a */,
+				16D89DD4E89FC25188236F501C573AE6 /* libPods-JDStatusBarNotificationExample.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C42CA6025838A9CE26041C59B5797FE6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE440D0A4493C1B099E29A02828817B4 /* InfColorPickerView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				4F25B01AD8ED899510EFB266F94991A2 /* Pods */,
+				AB66E0DE79D677AC12B53513613F8B61 /* Products */,
+				CF38F97B29C9147CA5AA3B0A9194EC3B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		CF38F97B29C9147CA5AA3B0A9194EC3B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				405FC8C370B33025828FABC576DD01CC /* Pods-JDStatusBarNotificationExample */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EED78A3BCE96D347173EE1BC7D13C55D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4E00E11D571315EC98AFB9773FFAC262 /* InfColorPicker.xcconfig */,
+				DA13C4013F336D951FC1BD9B36165853 /* InfColorPicker-dummy.m */,
+				9E9B664C236E37B78C22965CE5821FE5 /* InfColorPicker-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/InfColorPicker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		121978B1605C871267A054F73AC559B4 /* Headers */ = {
+		40B71FD8D56675170215C04A5BFF31D6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48240A1051A0118B6BE01458EFF846F0 /* FTFontDescriptor.h in Headers */,
-				4406A4D93FC48D25ED045CC06009425A /* FTFontFamiliesViewController.h in Headers */,
-				1E7DFDB3933C15BC501E312799ED6EE5 /* FTFontFamilyMembersViewController.h in Headers */,
-				F5F13CA501604E1BB833D445DB2ED116 /* FTFontSelectorController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CC311BF59951E21996E3E347694531A /* Headers */ = {
+		55A92DE89099EC1FC86D18044492BD41 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FFCDD8128DF50E45CE38618C03FCA4D /* InfColorBarPicker.h in Headers */,
-				A3954292600B3814DBF4EB396E73872D /* InfColorIndicatorView.h in Headers */,
-				6E4D1587A5E6A11E849212F6BF17AEF8 /* InfColorPicker.h in Headers */,
-				67C090B617AD63D2434439B7653D7D3D /* InfColorPickerController.h in Headers */,
-				613901499DB6F6B617ABE0B7778758A1 /* InfColorSquarePicker.h in Headers */,
-				0F6BB624BD344D7955029B57F55B5BBA /* InfHSBSupport.h in Headers */,
-				B173669A9E8AA4CDF5C7C47942AA2329 /* InfSourceColorView.h in Headers */,
+				3EB6DD45B27B6A8DE1429671E152EA5C /* FTFontDescriptor.h in Headers */,
+				BAFAEF5E9A72BF1E91C415FC12B34492 /* FTFontFamiliesViewController.h in Headers */,
+				803068ACC2183522B2F5FAA7BFD46909 /* FTFontFamilyMembersViewController.h in Headers */,
+				16799682CDB54451D094F03E4167A308 /* FTFontSelectorController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		925366A77D244C0214F23A824FBA1454 /* Headers */ = {
+		79AF5A7B7F0CDE890ABEC8A1CDAD345A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BF5E0693CE02B7501B0F24CB1233CED /* InfColorBarPicker.h in Headers */,
+				0792025B566D8B59EC2814DBD8D640C3 /* InfColorIndicatorView.h in Headers */,
+				F4139D47F330BF19333AC60267EDCD82 /* InfColorPicker.h in Headers */,
+				F75EA724BC7AD801ED49796C4AE87BFE /* InfColorPickerController.h in Headers */,
+				EC22ECBE284F04B0F0E49E6CB85D0DE9 /* InfColorSquarePicker.h in Headers */,
+				D1B70EA262F96734002A162B06A1E93C /* InfHSBSupport.h in Headers */,
+				A3F7C77B62B9CCC730336A512B5B9591 /* InfSourceColorView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		61B5EE6B0A856396A178CE84BCE30AF1 /* InfColorPicker */ = {
+		5939CBDDC6A381F6ECA45040A18B2F70 /* Pods-JDStatusBarNotificationExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D207845409CE75733DC5E5E27A3ED60A /* Build configuration list for PBXNativeTarget "InfColorPicker" */;
+			buildConfigurationList = CD53835E3DCC62F28A8A30685F3C159B /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */;
 			buildPhases = (
-				6CC311BF59951E21996E3E347694531A /* Headers */,
-				3D64AB675637EC57576C306B8EA90DEC /* Sources */,
-				F1859941E0A8AF6EAABF45ECF38F9FC4 /* Frameworks */,
+				40B71FD8D56675170215C04A5BFF31D6 /* Headers */,
+				57D795DB180C5A018561AC0612B3125D /* Sources */,
+				05BC50FB3AE80EDE0BA7AE37CF1EFFAC /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AF240578970365E419E738DB75FF623D /* PBXTargetDependency */,
+				BBC6258E39A8658CC53AA1DBD3DF9B20 /* PBXTargetDependency */,
 			);
-			name = InfColorPicker;
-			productName = InfColorPicker;
-			productReference = 1EFF83318249C44864C204E80B198E37 /* libInfColorPicker.a */;
+			name = "Pods-JDStatusBarNotificationExample";
+			productName = "Pods-JDStatusBarNotificationExample";
+			productReference = 16D89DD4E89FC25188236F501C573AE6 /* libPods-JDStatusBarNotificationExample.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A15FCE8A57284339C894F9AFFB88EB5C /* FTFontSelector */ = {
+		5AE494EA2BB775EC1D2DA8BE89DF8CE0 /* FTFontSelector */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48C45EA94859EEA85E9DBAD506ACC426 /* Build configuration list for PBXNativeTarget "FTFontSelector" */;
+			buildConfigurationList = 821D3F0819B85DC502B089711A89935F /* Build configuration list for PBXNativeTarget "FTFontSelector" */;
 			buildPhases = (
-				121978B1605C871267A054F73AC559B4 /* Headers */,
-				E6BAD37AA8CE46C3FD732F5B58AB68D3 /* Sources */,
-				BE0F0C3A74C2F8B8F7D47DA35ADD8813 /* Frameworks */,
+				55A92DE89099EC1FC86D18044492BD41 /* Headers */,
+				47DF5A121FA3F1BFEA16EB236B53210D /* Sources */,
+				D149E62C8DC6C3F35EEEA127CE49D466 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,201 +326,109 @@
 			);
 			name = FTFontSelector;
 			productName = FTFontSelector;
-			productReference = 992B1F965EA084DF1EDCB781BDA03C57 /* libFTFontSelector.a */;
+			productReference = ED1AFE0AAAB139B96418BFD1EF3568A1 /* libFTFontSelector.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		DC9FB0D5903272A83574B1749C2BC29E /* Pods-JDStatusBarNotificationExample */ = {
+		C356B6180B455CA6BA160C8F8413C02F /* InfColorPicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 847BCC023880B9AC973BBA738272A04B /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */;
+			buildConfigurationList = BE4381C17EE2FEB468E07BDFA58289DA /* Build configuration list for PBXNativeTarget "InfColorPicker" */;
 			buildPhases = (
-				925366A77D244C0214F23A824FBA1454 /* Headers */,
-				65643953FFC49AC873C126F407F96ED3 /* Sources */,
-				A057C4C4CCB1661F64408438A3F6B8E0 /* Frameworks */,
+				79AF5A7B7F0CDE890ABEC8A1CDAD345A /* Headers */,
+				FEF52869C07AC112DA7EA52F475B4220 /* Sources */,
+				0C803BBE3D5367E28F653C379CA3A895 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				753F2EABF88FABBED3EC0D40E1D46F2F /* PBXTargetDependency */,
-				402AB67E4865CC5D6B49B721848FBC3E /* PBXTargetDependency */,
 			);
-			name = "Pods-JDStatusBarNotificationExample";
-			productName = "Pods-JDStatusBarNotificationExample";
-			productReference = 433A8D31E1511582D4D623C258747B82 /* libPods-JDStatusBarNotificationExample.a */;
+			name = InfColorPicker;
+			productName = InfColorPicker;
+			productReference = 648E6C323B54A60488E396648B69C5DE /* libInfColorPicker.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = B65465BDDD9C99C47AE4EFF0375BD6A5 /* Products */;
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = AB66E0DE79D677AC12B53513613F8B61 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A15FCE8A57284339C894F9AFFB88EB5C /* FTFontSelector */,
-				61B5EE6B0A856396A178CE84BCE30AF1 /* InfColorPicker */,
-				DC9FB0D5903272A83574B1749C2BC29E /* Pods-JDStatusBarNotificationExample */,
+				5AE494EA2BB775EC1D2DA8BE89DF8CE0 /* FTFontSelector */,
+				C356B6180B455CA6BA160C8F8413C02F /* InfColorPicker */,
+				5939CBDDC6A381F6ECA45040A18B2F70 /* Pods-JDStatusBarNotificationExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3D64AB675637EC57576C306B8EA90DEC /* Sources */ = {
+		47DF5A121FA3F1BFEA16EB236B53210D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B6441CE0521E7FAB5C49EC4D0B0394C /* InfColorBarPicker.m in Sources */,
-				A2C402AF7EE64FA43C030B129081D1C9 /* InfColorIndicatorView.m in Sources */,
-				B107B48FCBD60D65C920499AA81935E7 /* InfColorPicker-dummy.m in Sources */,
-				3A72685F757DC296CA1FE5E057C84E20 /* InfColorPickerController.m in Sources */,
-				E6E3AB3992044AEAB8E8F98609E785DC /* InfColorSquarePicker.m in Sources */,
-				B1C065A2F9914F4B7D4A96DB0CC72BD1 /* InfHSBSupport.m in Sources */,
-				D2F48263F7491620765C0F27AA043EBD /* InfSourceColorView.m in Sources */,
+				1D5CFCCA05819C0FD2F15EB8ABD8277C /* FTFontDescriptor.m in Sources */,
+				BCCFA850CB9C5007DDD392E80429A029 /* FTFontFamiliesViewController.m in Sources */,
+				DF8C7D14D9D90DDFB653ED0DCCCA1F4A /* FTFontFamilyMembersViewController.m in Sources */,
+				E6A951FDBFC4C5CBE3239C3638289816 /* FTFontSelector-dummy.m in Sources */,
+				CA64754A225D30E7926FD77E47D58257 /* FTFontSelectorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65643953FFC49AC873C126F407F96ED3 /* Sources */ = {
+		57D795DB180C5A018561AC0612B3125D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2723F68264012CB81A03556E8C5A4BB0 /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */,
+				28CC0958F719DB93EA01F9CC73CF5BC7 /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E6BAD37AA8CE46C3FD732F5B58AB68D3 /* Sources */ = {
+		FEF52869C07AC112DA7EA52F475B4220 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAAFD5367B1F2084DFA684AF26409493 /* FTFontDescriptor.m in Sources */,
-				9494074CB7EDFC2A573A8CEA3BB8AD52 /* FTFontFamiliesViewController.m in Sources */,
-				27E90BD9EF8E3683F534375234AAB83A /* FTFontFamilyMembersViewController.m in Sources */,
-				30C9E89833EAA096CCE6775938520719 /* FTFontSelector-dummy.m in Sources */,
-				425F132276523671461D21B621125C6F /* FTFontSelectorController.m in Sources */,
+				CE65E00E46C31DD45D196DE5AFD3092C /* InfColorBarPicker.m in Sources */,
+				1AA960253C00BC99C42CF53F6658BFD7 /* InfColorIndicatorView.m in Sources */,
+				F6534DC00C689E4BE7ADF80A5F97AE64 /* InfColorPicker-dummy.m in Sources */,
+				FCCEBB2A742D4A8F57AA262C1F45D838 /* InfColorPickerController.m in Sources */,
+				547E11AA6FED0F5481127ABD5929FB98 /* InfColorSquarePicker.m in Sources */,
+				6DBFEDB6268FD115644F9565A869B819 /* InfHSBSupport.m in Sources */,
+				ED96C3300E5FD0170D20C6A3A8AAE299 /* InfSourceColorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		402AB67E4865CC5D6B49B721848FBC3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = InfColorPicker;
-			target = 61B5EE6B0A856396A178CE84BCE30AF1 /* InfColorPicker */;
-			targetProxy = C962EF14FF6185F85871FE0397357043 /* PBXContainerItemProxy */;
-		};
-		753F2EABF88FABBED3EC0D40E1D46F2F /* PBXTargetDependency */ = {
+		AF240578970365E419E738DB75FF623D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FTFontSelector;
-			target = A15FCE8A57284339C894F9AFFB88EB5C /* FTFontSelector */;
-			targetProxy = F271EB95D54578F6EED4B3CBF7B964C3 /* PBXContainerItemProxy */;
+			target = 5AE494EA2BB775EC1D2DA8BE89DF8CE0 /* FTFontSelector */;
+			targetProxy = B53A587902D92E30FD592D905A5DDAD2 /* PBXContainerItemProxy */;
+		};
+		BBC6258E39A8658CC53AA1DBD3DF9B20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = InfColorPicker;
+			target = C356B6180B455CA6BA160C8F8413C02F /* InfColorPicker */;
+			targetProxy = DF4CE41EDB8C24D574F4DDCC301969DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		045E42ABAAC26F714621A22ECF2794D6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C6C2FD1965C10C77F318BE3B8D446CF /* InfColorPicker.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/InfColorPicker/InfColorPicker-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = InfColorPicker;
-				PRODUCT_NAME = InfColorPicker;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		077D8F0FB8920A72A546174804BFE5ED /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76D8CE2534BE3A5D63126B7D920A6636 /* Pods-JDStatusBarNotificationExample.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		189BA2B5001C448BB433431466F046CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03471F1BEFC2B5CA2CB337026203685A /* FTFontSelector.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FTFontSelector/FTFontSelector-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FTFontSelector;
-				PRODUCT_NAME = FTFontSelector;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		80061D1ACD2CFAD58AE5CB8013F774F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D3C5A97F00A3B68EDF369F935513F13 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		96434B6C8FF320C976A10DAD7174A4BB /* Release */ = {
+		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -564,8 +460,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -587,59 +481,36 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		A617FD627786EEC46AD2E898AC887309 /* Release */ = {
+		72FE130178EE4E557EE5287B133A1CCA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C6C2FD1965C10C77F318BE3B8D446CF /* InfColorPicker.xcconfig */;
+			baseConfigurationReference = 59177B4140C92601CC56E1A351B98B4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/InfColorPicker/InfColorPicker-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = InfColorPicker;
-				PRODUCT_NAME = InfColorPicker;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		B29DFE325A95DD235639E35BC93EFDCC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03471F1BEFC2B5CA2CB337026203685A /* FTFontSelector.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FTFontSelector/FTFontSelector-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FTFontSelector;
-				PRODUCT_NAME = FTFontSelector;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D11C82AF2204B41B80412B8DC9C1D652 /* Debug */ = {
+		7EF7227D9B20A1D549000096ACCB23D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -671,8 +542,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -699,50 +568,169 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		98CADE57C11727818E615DCC127DF932 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5E46A50FF8B8761858A3DFFC60BFD9 /* FTFontSelector.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FTFontSelector/FTFontSelector-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FTFontSelector;
+				PRODUCT_NAME = FTFontSelector;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B75C39DC82F0C1A455BDE7A6E90AE21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E00E11D571315EC98AFB9773FFAC262 /* InfColorPicker.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/InfColorPicker/InfColorPicker-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = InfColorPicker;
+				PRODUCT_NAME = InfColorPicker;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DF0A0020AF1041165FE8CED107985866 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A5E46A50FF8B8761858A3DFFC60BFD9 /* FTFontSelector.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FTFontSelector/FTFontSelector-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FTFontSelector;
+				PRODUCT_NAME = FTFontSelector;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EECD7236DDCF7751FB1C095EC25F19D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E00E11D571315EC98AFB9773FFAC262 /* InfColorPicker.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/InfColorPicker/InfColorPicker-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = InfColorPicker;
+				PRODUCT_NAME = InfColorPicker;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA93D77DDAFF3AC9F63075FE70731BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63AC515B95715407E02A56960486EB73 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D11C82AF2204B41B80412B8DC9C1D652 /* Debug */,
-				96434B6C8FF320C976A10DAD7174A4BB /* Release */,
+				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
+				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48C45EA94859EEA85E9DBAD506ACC426 /* Build configuration list for PBXNativeTarget "FTFontSelector" */ = {
+		821D3F0819B85DC502B089711A89935F /* Build configuration list for PBXNativeTarget "FTFontSelector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B29DFE325A95DD235639E35BC93EFDCC /* Debug */,
-				189BA2B5001C448BB433431466F046CF /* Release */,
+				98CADE57C11727818E615DCC127DF932 /* Debug */,
+				DF0A0020AF1041165FE8CED107985866 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		847BCC023880B9AC973BBA738272A04B /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */ = {
+		BE4381C17EE2FEB468E07BDFA58289DA /* Build configuration list for PBXNativeTarget "InfColorPicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				80061D1ACD2CFAD58AE5CB8013F774F0 /* Debug */,
-				077D8F0FB8920A72A546174804BFE5ED /* Release */,
+				9B75C39DC82F0C1A455BDE7A6E90AE21 /* Debug */,
+				EECD7236DDCF7751FB1C095EC25F19D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D207845409CE75733DC5E5E27A3ED60A /* Build configuration list for PBXNativeTarget "InfColorPicker" */ = {
+		CD53835E3DCC62F28A8A30685F3C159B /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				045E42ABAAC26F714621A22ECF2794D6 /* Debug */,
-				A617FD627786EEC46AD2E898AC887309 /* Release */,
+				FA93D77DDAFF3AC9F63075FE70731BE9 /* Debug */,
+				72FE130178EE4E557EE5287B133A1CCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }
