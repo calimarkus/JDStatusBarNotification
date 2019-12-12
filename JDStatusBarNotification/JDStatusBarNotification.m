@@ -620,7 +620,11 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (BOOL)prefersStatusBarHidden {
-  return @available(iOS 13, *) && JDStatusBarRootVCLayoutMargin().top == 0;
+  if (@available(iOS 13, *)) {
+    return JDStatusBarRootVCLayoutMargin().top == 0;
+  } else {
+    return NO;
+  }
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
