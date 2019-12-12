@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   
   s.name         = 'JDStatusBarNotification'
-  s.version      = '1.6.0'
+  s.version      = '1.6.1'
   s.summary      = 'Easy, customizable notifications displayed on top of the statusbar. With progress and activity. iPhone X ready.'
 
   s.description  = 'Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. Supports iOS 6+ and iPhone X.'
