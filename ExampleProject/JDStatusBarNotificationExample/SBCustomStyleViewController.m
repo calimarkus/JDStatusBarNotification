@@ -11,11 +11,10 @@
 #import "JDStatusBarNotification.h"
 #import "FTFontSelectorController.h"
 #import "SBSelectPropertyViewController.h"
-#import "InfColorPicker.h"
 
 #import "SBCustomStyleViewController.h"
 
-@interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate, InfColorPickerControllerDelegate>
+@interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate, UIColorPickerViewControllerDelegate>
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
@@ -131,42 +130,32 @@
   [self updateStyle];
 }
 
-#pragma mark InfColorPicker
+#pragma mark UIColorPickerViewController
 
-- (void)showColorPickerWithColor:(UIColor*)color;
-{
-  InfColorPickerController *colorController = [InfColorPickerController colorPickerViewController];
-  colorController.delegate = self;
-  colorController.sourceColor = color;
-  colorController.resultColor = color;
-  [colorController presentModallyOverViewController:self];
-
-  if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-    UIView *view = colorController.view;
-    colorController.view = [[UIView alloc] initWithFrame:view.frame];
-    colorController.view.backgroundColor = [UIColor blackColor];
-    view.frame = CGRectMake(0, 64, view.bounds.size.width, view.bounds.size.height-64);
-    [colorController.view addSubview:view];
-  }
+- (void)showColorPickerWithColor:(UIColor*)color {
+    UIColorPickerViewController *colorController = [[UIColorPickerViewController alloc] init];
+    colorController.delegate = self;
+    colorController.selectedColor = color;
+    colorController.supportsAlpha = NO;
+    [self presentViewController:colorController animated:YES completion:nil];
 }
 
-#pragma mark InfColorPickerControllerDelegate
+#pragma mark UIColorPickerViewControllerDelegate
 
-- (void)colorPickerControllerDidChangeColor:(InfColorPickerController *)controller;
-{
+- (void)colorPickerViewControllerDidSelectColor:(UIColorPickerViewController *)viewController {
   switch (self.colorMode) {
     case 0: {
-      [self.fontButton setTitleColor:controller.resultColor forState:UIControlStateNormal];
-      self.textColorPreview.backgroundColor = controller.resultColor;
+      [self.fontButton setTitleColor:viewController.selectedColor forState:UIControlStateNormal];
+      self.textColorPreview.backgroundColor = viewController.selectedColor;
       [self updateFontText];
       break;
     }
     case 1: {
-      self.barColorPreview.backgroundColor = controller.resultColor;
+      self.barColorPreview.backgroundColor = viewController.selectedColor;
       break;
     }
     case 2: {
-      self.progressBarColorPreview.backgroundColor = controller.resultColor;
+      self.progressBarColorPreview.backgroundColor = viewController.selectedColor;
       break;
     }
   }
@@ -174,8 +163,7 @@
   [self updateStyle];
 }
 
-- (void)colorPickerControllerDidFinish:(InfColorPickerController *)controller;
-{
+- (void)colorPickerViewControllerDidFinish:(UIColorPickerViewController *)viewController {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 

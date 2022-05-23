@@ -1,20 +1,16 @@
 PODS:
   - FTFontSelector (1.1.3)
-  - InfColorPicker (0.0.1)
 
 DEPENDENCIES:
   - FTFontSelector
-  - InfColorPicker
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FTFontSelector
-    - InfColorPicker
 
 SPEC CHECKSUMS:
   FTFontSelector: a5f0fc4dfb1606ad76da38570b0816c2e6c0d136
-  InfColorPicker: 8bfb8d8d44c356f0c98587a049783e900d7b5ff9
 
-PODFILE CHECKSUM: 95210221d1e14bc221e8f8e0dc69425a35186add
+PODFILE CHECKSUM: 49573ccfacba105c7688a220a0720cb85963a70b
 
 COCOAPODS: 1.11.3
