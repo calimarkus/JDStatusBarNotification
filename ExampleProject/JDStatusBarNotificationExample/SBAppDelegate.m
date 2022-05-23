@@ -12,12 +12,10 @@
 
 @implementation SBAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  self.window.backgroundColor = [UIColor whiteColor];
   self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
-                                    [[SBExampleViewController alloc] initWithStyle:UITableViewStyleGrouped]];
+                                    [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
   [self.window makeKeyAndVisible];
 
   return YES;

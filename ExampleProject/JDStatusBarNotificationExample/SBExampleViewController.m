@@ -83,9 +83,6 @@ static NSString *const SBStyle2 = @"SBStyle2";
 {
   [super viewDidLoad];
 
-  self.tableView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.95 alpha:1.0];
-  self.tableView.backgroundView = nil;
-
   // presenting a notification, before a keyWindow is set
   self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
   [JDStatusBarNotification showWithStatus:@"Hello World!" dismissAfter:2.0
