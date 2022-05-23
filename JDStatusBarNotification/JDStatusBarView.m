@@ -35,7 +35,7 @@
 - (UIActivityIndicatorView *)activityIndicatorView;
 {
   if (_activityIndicatorView == nil) {
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
     [self addSubview:_activityIndicatorView];
   }

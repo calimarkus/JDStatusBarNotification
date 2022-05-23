@@ -84,7 +84,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
-  self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
+  self.indicatorStyle = UIActivityIndicatorViewStyleMedium;
   [JDStatusBarNotification showWithStatus:@"Hello World!" dismissAfter:2.0
                                 styleName:JDStatusBarStyleMatrix];
 }
@@ -172,7 +172,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
       [JDStatusBarNotification dismiss];
     }
   } else if (section == 1) {
-    self.indicatorStyle = UIActivityIndicatorViewStyleWhite;
+    self.indicatorStyle = UIActivityIndicatorViewStyleMedium;
     NSString *style = JDStatusBarStyleError;
     if (row == 1) {
       style = JDStatusBarStyleWarning;
@@ -189,7 +189,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                dismissAfter:2.0
                                   styleName:style];
   } else if (section == 2) {
-    self.indicatorStyle = (row==0) ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleGray;
+    self.indicatorStyle = (row==0) ? UIActivityIndicatorViewStyleMedium : UIActivityIndicatorViewStyleGray;
 
     NSString *style = (row==0) ? SBStyle1 : SBStyle2;
     [JDStatusBarNotification showWithStatus:status
