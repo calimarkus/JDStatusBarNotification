@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2829C39D1F8B15F900764707 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2829C39B1F8B15F800764707 /* JDStatusBarLayoutMarginHelper.m */; };
+		7E8B9AEF283B6FD300507BC1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
 		D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */; };
 		D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
 		D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */; };
@@ -31,6 +32,7 @@
 		2BD1CFB9D9E6851BAE2B5BBE /* libPods-JDStatusBarNotificationExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JDStatusBarNotificationExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A565C0DC8F2E5666B5C166 /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDStatusBarNotificationExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
 		7598E274F743302055AA53A7 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
+		7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSelectPropertyViewController.h; sourceTree = "<group>"; };
 		D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSelectPropertyViewController.m; sourceTree = "<group>"; };
 		D25B0FA3184F343600B8174B /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */,
 				D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */,
 				D264F8A21820213200DA0E53 /* Images.xcassets */,
+				7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */,
 				D264F8971820213200DA0E53 /* Supporting Files */,
 			);
 			path = JDStatusBarNotificationExample;
@@ -212,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8B9AEF283B6FD300507BC1 /* Launch Screen.storyboard in Resources */,
 				D294B57C182D03E90042B5B4 /* SBCustomStyleViewController.xib in Resources */,
 				D264F8A31820213200DA0E53 /* Images.xcassets in Resources */,
 			);
@@ -386,7 +390,6 @@
 			baseConfigurationReference = 7598E274F743302055AA53A7 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
@@ -404,7 +407,6 @@
 			baseConfigurationReference = 35A565C0DC8F2E5666B5C166 /* Pods-JDStatusBarNotificationExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JDStatusBarNotificationExample/JDStatusBarNotificationExample-Prefix.pch";
