@@ -456,9 +456,6 @@
     _overlayWindow.windowLevel = UIWindowLevelStatusBar;
     _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
-    _overlayWindow.rootViewController.wantsFullScreenLayout = YES;
-#endif
     [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
   }
   return _overlayWindow;
@@ -572,10 +569,6 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   }
 
   return topController;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-  return [[self mainController] shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 - (BOOL)shouldAutorotate {
