@@ -1,9 +1,17 @@
-platform :ios, "8.0"
-source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, "13.0"
 inhibit_all_warnings!
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'JDStatusBarNotificationExample' do
   pod 'InfColorPicker'
   pod 'FTFontSelector'
 end
 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'  ## workaround for ios3 & ios5 deployment targets
+      config.build_settings.delete 'ARCHS' ## workaround for not using "recommended settings"
+    end
+  end
+end
