@@ -156,13 +156,11 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
 + (void)showProgress:(CGFloat)progress;
 
 /**
- *  Shows an activity indicator in front of the notification text
+ *  Shows an activity indicator in front of the notification text using the text color
  *
  *  @param show  Use this flag to show or hide the activity indicator
- *  @param style Sets the style of the activity indicator
  */
-+ (void)showActivityIndicator:(BOOL)show
-               indicatorStyle:(UIActivityIndicatorViewStyle)style;
++ (void)showActivityIndicator:(BOOL)show;
 
 #pragma mark state
 

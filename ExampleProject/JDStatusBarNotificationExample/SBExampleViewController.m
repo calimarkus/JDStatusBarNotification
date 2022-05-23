@@ -20,8 +20,6 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 @interface SBExampleViewController ()
 @property (nonatomic, strong) NSArray *data;
-
-@property (nonatomic, assign) UIActivityIndicatorViewStyle indicatorStyle;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
 @end
@@ -62,11 +60,11 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                      return style;
                                    }];
 
-    self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"JDStatusBarStyleDefault", JDNotificationText:@"Better call Saul!"},
-                    @{JDButtonName:@"Show Progress", JDButtonInfo:@"0-100% in 1s", JDNotificationText:@"Some Progress…"},
-                    @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"UIActivityIndicatorViewStyleGray", JDNotificationText:@"Some Activity…"},
+    self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Don't autohide.", JDNotificationText:@"Better call Saul!"},
+                    @{JDButtonName:@"Show Progress for 1s", JDButtonInfo:@"", JDNotificationText:@"Some Progress…"},
+                    @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
                     @{JDButtonName:@"Update text", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
-                    @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"Animated", JDNotificationText:@""}],
+                    @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"", JDNotificationText:@""}],
                   @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
                     @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
                     @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"That's how we roll!"},
@@ -84,7 +82,6 @@ static NSString *const SBStyle2 = @"SBStyle2";
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
-  self.indicatorStyle = UIActivityIndicatorViewStyleMedium;
   [JDStatusBarNotification showWithStatus:@"Hello World!" dismissAfter:2.0
                                 styleName:JDStatusBarStyleMatrix];
 }
@@ -151,32 +148,26 @@ static NSString *const SBStyle2 = @"SBStyle2";
   // show notification
   if (section == 0) {
     if (row == 0) {
-      self.indicatorStyle = UIActivityIndicatorViewStyleGray;
       [JDStatusBarNotification showWithStatus:status];
     } else if (row == 1) {
       if(![JDStatusBarNotification isVisible]) {
-        self.indicatorStyle = UIActivityIndicatorViewStyleGray;
         [JDStatusBarNotification showWithStatus:status dismissAfter:1.4];
       }
       [self startTimer];
     } else if (row == 2) {
       if(![JDStatusBarNotification isVisible]) {
-        self.indicatorStyle = UIActivityIndicatorViewStyleGray;
         [JDStatusBarNotification showWithStatus:status dismissAfter:2.0];
       }
-      [JDStatusBarNotification showActivityIndicator:YES
-                                      indicatorStyle:self.indicatorStyle];
+        [JDStatusBarNotification showActivityIndicator:YES];
     } else if (row == 3) {
       [JDStatusBarNotification updateStatus:@"Replaced Text.."];
     } else if (row == 4) {
       [JDStatusBarNotification dismiss];
     }
   } else if (section == 1) {
-    self.indicatorStyle = UIActivityIndicatorViewStyleMedium;
     NSString *style = JDStatusBarStyleError;
     if (row == 1) {
       style = JDStatusBarStyleWarning;
-      self.indicatorStyle = UIActivityIndicatorViewStyleGray;
     } else if(row == 2) {
       style = JDStatusBarStyleSuccess;
     } else if(row == 3) {
@@ -189,8 +180,6 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                dismissAfter:2.0
                                   styleName:style];
   } else if (section == 2) {
-    self.indicatorStyle = (row==0) ? UIActivityIndicatorViewStyleMedium : UIActivityIndicatorViewStyleGray;
-
     NSString *style = (row==0) ? SBStyle1 : SBStyle2;
     [JDStatusBarNotification showWithStatus:status
                                dismissAfter:4.0

@@ -35,7 +35,7 @@
 - (UIActivityIndicatorView *)activityIndicatorView;
 {
   if (_activityIndicatorView == nil) {
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
     [self addSubview:_activityIndicatorView];
   }
@@ -79,7 +79,7 @@
   if (_activityIndicatorView ) {
     CGSize textSize = [self currentTextSize];
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 8.0;
+    indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 16.0;
     indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(self.textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
   }

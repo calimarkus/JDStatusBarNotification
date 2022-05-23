@@ -126,9 +126,9 @@
   [[self sharedInstance] setProgress:progress];
 }
 
-+ (void)showActivityIndicator:(BOOL)show indicatorStyle:(UIActivityIndicatorViewStyle)style;
++ (void)showActivityIndicator:(BOOL)show;
 {
-  [[self sharedInstance] showActivityIndicator:show indicatorStyle:style];
+  [[self sharedInstance] showActivityIndicator:show];
 }
 
 + (BOOL)isVisible;
@@ -243,7 +243,7 @@
 
   // reset progress & activity
   self.progress = 0.0;
-  [self showActivityIndicator:NO indicatorStyle:0];
+  [self showActivityIndicator:NO];
 
   // animate in
   BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
@@ -426,17 +426,15 @@
   } completion:nil];
 }
 
-- (void)showActivityIndicator:(BOOL)show
-               indicatorStyle:(UIActivityIndicatorViewStyle)style;
-{
-  if (_topBar == nil) return;
+- (void)showActivityIndicator:(BOOL)show {
+    if (_topBar == nil) return;
 
-  if (show) {
-    [self.topBar.activityIndicatorView startAnimating];
-    self.topBar.activityIndicatorView.activityIndicatorViewStyle = style;
-  } else {
-    [self.topBar.activityIndicatorView stopAnimating];
-  }
+    if (show) {
+        self.topBar.activityIndicatorView.color = self.activeStyle.textColor;
+        [self.topBar.activityIndicatorView startAnimating];
+    } else {
+        [self.topBar.activityIndicatorView stopAnimating];
+    }
 }
 
 #pragma mark State
