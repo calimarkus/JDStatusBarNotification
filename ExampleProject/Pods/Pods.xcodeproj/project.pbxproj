@@ -7,62 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F17B2EA456437BF2BC4709A65037A2E /* FTFontSelectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C1E7E7AF79FED1692000E409454ED85F /* FTFontSelectorController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		20E47A15CDE4A54A71CD61B2A2393559 /* FTFontSelector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D809A6A92DDE08CBAA79E4CEAB6599 /* FTFontSelector-dummy.m */; };
-		3E671DF283B8021B4FCB9C7A2835C71A /* FTFontFamilyMembersViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FD595026DBF45B7A983AB092038CF2F3 /* FTFontFamilyMembersViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		593B85A68BB3D2682423F173D6DF430A /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1CE1F1C4773613EE5CC9939575756 /* Pods-JDStatusBarNotificationExample-dummy.m */; };
-		759E7D7DF8CE5AF199BD403C37CC5032 /* FTFontFamilyMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34E36B5E1CFD0B819197B463D869C73 /* FTFontFamilyMembersViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7922EA68422BD3A8D7BA4CFDFCEE9976 /* FTFontDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAE8BFB572127C07758D2056E80DAC0 /* FTFontDescriptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		AAC027EF5F0E2C097BBA1C14E4EF5145 /* FTFontFamiliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C5A4D5C4E68716D254B76088C4BC2C /* FTFontFamiliesViewController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		B3B9F3E53486AE9F18D33CC87EAC8D4B /* FTFontSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF62532A206E8D8A22BC48B94E83BAC7 /* FTFontSelectorController.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		BB8AC7E338FBE015086C102C08E539E2 /* FTFontFamiliesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A931438892CF1B200B738800AE1690C0 /* FTFontFamiliesViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E7850045A9C35F51C6BD7867C63CA140 /* FTFontDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BCADCB3F029A389A489D01B44187314 /* FTFontDescriptor.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		94C5FD02DB70676B9A8EF416E3A35988 /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E347BF061A5BA0E28493AD17E15249B /* Pods-JDStatusBarNotificationExample-dummy.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		641D2C7C88E4765AA14F79D64A35A5B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5AE494EA2BB775EC1D2DA8BE89DF8CE0;
-			remoteInfo = FTFontSelector;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		11D809A6A92DDE08CBAA79E4CEAB6599 /* FTFontSelector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTFontSelector-dummy.m"; sourceTree = "<group>"; };
 		16D89DD4E89FC25188236F501C573AE6 /* Pods-JDStatusBarNotificationExample */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-JDStatusBarNotificationExample"; path = "libPods-JDStatusBarNotificationExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BAE8BFB572127C07758D2056E80DAC0 /* FTFontDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontDescriptor.m; path = Classes/Private/FTFontDescriptor.m; sourceTree = "<group>"; };
-		1C833D8E3D45E91FF06CAE0A547A626D /* FTFontSelector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTFontSelector.debug.xcconfig; sourceTree = "<group>"; };
-		43626DB3057C9DC84E54A0F4106D06C9 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JDStatusBarNotificationExample-acknowledgements.plist"; sourceTree = "<group>"; };
-		470781E46A6CABA1E2016EB85F8E19A8 /* FTFontSelector.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTFontSelector.bundle; path = Assets/FTFontSelector.bundle; sourceTree = "<group>"; };
-		4BC1CE1F1C4773613EE5CC9939575756 /* Pods-JDStatusBarNotificationExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JDStatusBarNotificationExample-dummy.m"; sourceTree = "<group>"; };
-		59177B4140C92601CC56E1A351B98B4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
-		63AC515B95715407E02A56960486EB73 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
-		6EF486337FC94B7EFA4BAFB80599A8AF /* Pods-JDStatusBarNotificationExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JDStatusBarNotificationExample-resources.sh"; sourceTree = "<group>"; };
-		75C5A4D5C4E68716D254B76088C4BC2C /* FTFontFamiliesViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontFamiliesViewController.m; path = Classes/Private/FTFontFamiliesViewController.m; sourceTree = "<group>"; };
-		8BCADCB3F029A389A489D01B44187314 /* FTFontDescriptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontDescriptor.h; path = Classes/Private/FTFontDescriptor.h; sourceTree = "<group>"; };
-		92E4A7F03CD84AE162F2DCDFE3258F3C /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JDStatusBarNotificationExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		34139D92EFE3A6446CD20AAB4618CC4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.release.xcconfig"; sourceTree = "<group>"; };
+		4E347BF061A5BA0E28493AD17E15249B /* Pods-JDStatusBarNotificationExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JDStatusBarNotificationExample-dummy.m"; sourceTree = "<group>"; };
+		59F2F063DBD72FFA2060D58A40F99005 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JDStatusBarNotificationExample-acknowledgements.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A34E36B5E1CFD0B819197B463D869C73 /* FTFontFamilyMembersViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontFamilyMembersViewController.m; path = Classes/Private/FTFontFamilyMembersViewController.m; sourceTree = "<group>"; };
-		A931438892CF1B200B738800AE1690C0 /* FTFontFamiliesViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontFamiliesViewController.h; path = Classes/Private/FTFontFamiliesViewController.h; sourceTree = "<group>"; };
-		AEA3C633C0BD57D35B5CEBD821DDA909 /* FTFontSelector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTFontSelector-prefix.pch"; sourceTree = "<group>"; };
-		BA71D8F0A840874B07EECF6D86427E99 /* FTFontSelector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTFontSelector.release.xcconfig; sourceTree = "<group>"; };
-		BF62532A206E8D8A22BC48B94E83BAC7 /* FTFontSelectorController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTFontSelectorController.m; path = Classes/FTFontSelectorController.m; sourceTree = "<group>"; };
-		C1E7E7AF79FED1692000E409454ED85F /* FTFontSelectorController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontSelectorController.h; path = Classes/FTFontSelectorController.h; sourceTree = "<group>"; };
-		ED1AFE0AAAB139B96418BFD1EF3568A1 /* FTFontSelector */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = FTFontSelector; path = libFTFontSelector.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD595026DBF45B7A983AB092038CF2F3 /* FTFontFamilyMembersViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTFontFamilyMembersViewController.h; path = Classes/Private/FTFontFamilyMembersViewController.h; sourceTree = "<group>"; };
+		E7EEF13D4A8A2BA7115D1EF3147F9508 /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JDStatusBarNotificationExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F3458A025CBA3762167628FCB8AEA44D /* Pods-JDStatusBarNotificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JDStatusBarNotificationExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		784E4E99CC908B2985AEA040B16CE903 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		932EF2555FD7BCE1E3A106B7131367EC /* Frameworks */ = {
+		2B781970007EAD4F6DCBB78AF86E1D33 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,73 +31,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		405FC8C370B33025828FABC576DD01CC /* Pods-JDStatusBarNotificationExample */ = {
+		83CF79021EBAAD12EE76B0DB32C160F1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92E4A7F03CD84AE162F2DCDFE3258F3C /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */,
-				43626DB3057C9DC84E54A0F4106D06C9 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */,
-				4BC1CE1F1C4773613EE5CC9939575756 /* Pods-JDStatusBarNotificationExample-dummy.m */,
-				6EF486337FC94B7EFA4BAFB80599A8AF /* Pods-JDStatusBarNotificationExample-resources.sh */,
-				63AC515B95715407E02A56960486EB73 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */,
-				59177B4140C92601CC56E1A351B98B4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */,
-			);
-			name = "Pods-JDStatusBarNotificationExample";
-			path = "Target Support Files/Pods-JDStatusBarNotificationExample";
-			sourceTree = "<group>";
-		};
-		4899E3161E1569CD45DB98BD6C53AC42 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				470781E46A6CABA1E2016EB85F8E19A8 /* FTFontSelector.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		8206468190B3AAAF233AC71F882047B2 /* FTFontSelector */ = {
-			isa = PBXGroup;
-			children = (
-				8BCADCB3F029A389A489D01B44187314 /* FTFontDescriptor.h */,
-				1BAE8BFB572127C07758D2056E80DAC0 /* FTFontDescriptor.m */,
-				A931438892CF1B200B738800AE1690C0 /* FTFontFamiliesViewController.h */,
-				75C5A4D5C4E68716D254B76088C4BC2C /* FTFontFamiliesViewController.m */,
-				FD595026DBF45B7A983AB092038CF2F3 /* FTFontFamilyMembersViewController.h */,
-				A34E36B5E1CFD0B819197B463D869C73 /* FTFontFamilyMembersViewController.m */,
-				C1E7E7AF79FED1692000E409454ED85F /* FTFontSelectorController.h */,
-				BF62532A206E8D8A22BC48B94E83BAC7 /* FTFontSelectorController.m */,
-				4899E3161E1569CD45DB98BD6C53AC42 /* Resources */,
-				CED8129B42AC70075E732E86BFE0809B /* Support Files */,
-			);
-			name = FTFontSelector;
-			path = FTFontSelector;
-			sourceTree = "<group>";
-		};
-		B9287003E7E881BB5AEDFAF23B51A2BD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8206468190B3AAAF233AC71F882047B2 /* FTFontSelector */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		C941BFBD02325F898A2C779BB4A26E65 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ED1AFE0AAAB139B96418BFD1EF3568A1 /* FTFontSelector */,
 				16D89DD4E89FC25188236F501C573AE6 /* Pods-JDStatusBarNotificationExample */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CED8129B42AC70075E732E86BFE0809B /* Support Files */ = {
+		BFAE1D2A5BCD5C727B53E66723C7878C /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				11D809A6A92DDE08CBAA79E4CEAB6599 /* FTFontSelector-dummy.m */,
-				AEA3C633C0BD57D35B5CEBD821DDA909 /* FTFontSelector-prefix.pch */,
-				1C833D8E3D45E91FF06CAE0A547A626D /* FTFontSelector.debug.xcconfig */,
-				BA71D8F0A840874B07EECF6D86427E99 /* FTFontSelector.release.xcconfig */,
+				E48E6AD1B66214AAF57AC3133BC06DFE /* Pods-JDStatusBarNotificationExample */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/FTFontSelector";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -146,18 +52,9 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
-				B9287003E7E881BB5AEDFAF23B51A2BD /* Pods */,
-				C941BFBD02325F898A2C779BB4A26E65 /* Products */,
-				CF38F97B29C9147CA5AA3B0A9194EC3B /* Targets Support Files */,
+				83CF79021EBAAD12EE76B0DB32C160F1 /* Products */,
+				BFAE1D2A5BCD5C727B53E66723C7878C /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		CF38F97B29C9147CA5AA3B0A9194EC3B /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				405FC8C370B33025828FABC576DD01CC /* Pods-JDStatusBarNotificationExample */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
@@ -167,21 +64,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E48E6AD1B66214AAF57AC3133BC06DFE /* Pods-JDStatusBarNotificationExample */ = {
+			isa = PBXGroup;
+			children = (
+				E7EEF13D4A8A2BA7115D1EF3147F9508 /* Pods-JDStatusBarNotificationExample-acknowledgements.markdown */,
+				59F2F063DBD72FFA2060D58A40F99005 /* Pods-JDStatusBarNotificationExample-acknowledgements.plist */,
+				4E347BF061A5BA0E28493AD17E15249B /* Pods-JDStatusBarNotificationExample-dummy.m */,
+				F3458A025CBA3762167628FCB8AEA44D /* Pods-JDStatusBarNotificationExample.debug.xcconfig */,
+				34139D92EFE3A6446CD20AAB4618CC4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */,
+			);
+			name = "Pods-JDStatusBarNotificationExample";
+			path = "Target Support Files/Pods-JDStatusBarNotificationExample";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		4B219D8EA17B90DE23447569EB72878A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7850045A9C35F51C6BD7867C63CA140 /* FTFontDescriptor.h in Headers */,
-				BB8AC7E338FBE015086C102C08E539E2 /* FTFontFamiliesViewController.h in Headers */,
-				3E671DF283B8021B4FCB9C7A2835C71A /* FTFontFamilyMembersViewController.h in Headers */,
-				1F17B2EA456437BF2BC4709A65037A2E /* FTFontSelectorController.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EBA0A310168784FA6F1490B3160F5B2D /* Headers */ = {
+		A6C6AEBAEDF95FEAB8FED55FE5C0EED9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -193,37 +92,19 @@
 /* Begin PBXNativeTarget section */
 		5939CBDDC6A381F6ECA45040A18B2F70 /* Pods-JDStatusBarNotificationExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6AC49BED0268CF967716D6CDC4B0626E /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */;
+			buildConfigurationList = 511DEBC21AEB31EAC215DF8BEA0B64CD /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */;
 			buildPhases = (
-				EBA0A310168784FA6F1490B3160F5B2D /* Headers */,
-				6AE0842800FA67D1FA11CDDC692CEFE8 /* Sources */,
-				932EF2555FD7BCE1E3A106B7131367EC /* Frameworks */,
+				A6C6AEBAEDF95FEAB8FED55FE5C0EED9 /* Headers */,
+				73C0AE36DDD6D5800F5D5561D72D3365 /* Sources */,
+				2B781970007EAD4F6DCBB78AF86E1D33 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6BDD70F512711A8656074EFFDE9E6CC9 /* PBXTargetDependency */,
 			);
 			name = "Pods-JDStatusBarNotificationExample";
 			productName = "Pods-JDStatusBarNotificationExample";
 			productReference = 16D89DD4E89FC25188236F501C573AE6 /* Pods-JDStatusBarNotificationExample */;
-			productType = "com.apple.product-type.library.static";
-		};
-		5AE494EA2BB775EC1D2DA8BE89DF8CE0 /* FTFontSelector */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 35F8CD2BBF60DF7A6213DD25875EF314 /* Build configuration list for PBXNativeTarget "FTFontSelector" */;
-			buildPhases = (
-				4B219D8EA17B90DE23447569EB72878A /* Headers */,
-				FE3CBD9571C03CE4AB7548A357737B0F /* Sources */,
-				784E4E99CC908B2985AEA040B16CE903 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = FTFontSelector;
-			productName = FTFontSelector;
-			productReference = ED1AFE0AAAB139B96418BFD1EF3568A1 /* FTFontSelector */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -244,58 +125,38 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = C941BFBD02325F898A2C779BB4A26E65 /* Products */;
+			productRefGroup = 83CF79021EBAAD12EE76B0DB32C160F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5AE494EA2BB775EC1D2DA8BE89DF8CE0 /* FTFontSelector */,
 				5939CBDDC6A381F6ECA45040A18B2F70 /* Pods-JDStatusBarNotificationExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6AE0842800FA67D1FA11CDDC692CEFE8 /* Sources */ = {
+		73C0AE36DDD6D5800F5D5561D72D3365 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				593B85A68BB3D2682423F173D6DF430A /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE3CBD9571C03CE4AB7548A357737B0F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7922EA68422BD3A8D7BA4CFDFCEE9976 /* FTFontDescriptor.m in Sources */,
-				AAC027EF5F0E2C097BBA1C14E4EF5145 /* FTFontFamiliesViewController.m in Sources */,
-				759E7D7DF8CE5AF199BD403C37CC5032 /* FTFontFamilyMembersViewController.m in Sources */,
-				20E47A15CDE4A54A71CD61B2A2393559 /* FTFontSelector-dummy.m in Sources */,
-				B3B9F3E53486AE9F18D33CC87EAC8D4B /* FTFontSelectorController.m in Sources */,
+				94C5FD02DB70676B9A8EF416E3A35988 /* Pods-JDStatusBarNotificationExample-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		6BDD70F512711A8656074EFFDE9E6CC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FTFontSelector;
-			target = 5AE494EA2BB775EC1D2DA8BE89DF8CE0 /* FTFontSelector */;
-			targetProxy = 641D2C7C88E4765AA14F79D64A35A5B0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		19B2B584F0B015D529A02233639ACA96 /* Release */ = {
+		1E68D604E574BF5E5966813DA5B4AB45 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59177B4140C92601CC56E1A351B98B4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */;
+			baseConfigurationReference = F3458A025CBA3762167628FCB8AEA44D /* Pods-JDStatusBarNotificationExample.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -303,28 +164,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		6589D2E1D00C3A1B87E0708E8151C333 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C833D8E3D45E91FF06CAE0A547A626D /* FTFontSelector.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FTFontSelector/FTFontSelector-prefix.pch";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FTFontSelector;
-				PRODUCT_NAME = FTFontSelector;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -457,37 +296,17 @@
 			};
 			name = Release;
 		};
-		D06819293B175F75122449677DAAB930 /* Release */ = {
+		EA275481516554E2021A79B2D737374C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA71D8F0A840874B07EECF6D86427E99 /* FTFontSelector.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/FTFontSelector/FTFontSelector-prefix.pch";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = FTFontSelector;
-				PRODUCT_NAME = FTFontSelector;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D6A9D1E4147A5540FE5FE563560D2474 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63AC515B95715407E02A56960486EB73 /* Pods-JDStatusBarNotificationExample.debug.xcconfig */;
+			baseConfigurationReference = 34139D92EFE3A6446CD20AAB4618CC4D /* Pods-JDStatusBarNotificationExample.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -496,21 +315,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		35F8CD2BBF60DF7A6213DD25875EF314 /* Build configuration list for PBXNativeTarget "FTFontSelector" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6589D2E1D00C3A1B87E0708E8151C333 /* Debug */,
-				D06819293B175F75122449677DAAB930 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -520,11 +331,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6AC49BED0268CF967716D6CDC4B0626E /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */ = {
+		511DEBC21AEB31EAC215DF8BEA0B64CD /* Build configuration list for PBXNativeTarget "Pods-JDStatusBarNotificationExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D6A9D1E4147A5540FE5FE563560D2474 /* Debug */,
-				19B2B584F0B015D529A02233639ACA96 /* Release */,
+				1E68D604E574BF5E5966813DA5B4AB45 /* Debug */,
+				EA275481516554E2021A79B2D737374C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -171,7 +171,6 @@
 				D264F8891820213200DA0E53 /* Sources */,
 				D264F88A1820213200DA0E53 /* Frameworks */,
 				D264F88B1820213200DA0E53 /* Resources */,
-				8D3E431CACBEAD44A2A7C296 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,24 +223,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8D3E431CACBEAD44A2A7C296 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample-resources.sh",
-				"${PODS_ROOT}/FTFontSelector/Assets/FTFontSelector.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FTFontSelector.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JDStatusBarNotificationExample/Pods-JDStatusBarNotificationExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F1A532B70816D85B355B2034 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

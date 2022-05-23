@@ -9,12 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
-#import "FTFontSelectorController.h"
 #import "SBSelectPropertyViewController.h"
 
 #import "SBCustomStyleViewController.h"
 
-@interface SBCustomStyleViewController () <UITextFieldDelegate, FTFontSelectorControllerDelegate, UIColorPickerViewControllerDelegate>
+@interface SBCustomStyleViewController () <UITextFieldDelegate, UIFontPickerViewControllerDelegate, UIColorPickerViewControllerDelegate>
 @property (nonatomic, assign) NSInteger colorMode;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, weak) NSTimer *timer;
@@ -116,18 +115,17 @@
   return YES;
 }
 
-#pragma mark FTFontSelectorControllerDelegate
+#pragma mark UIFontPickerViewControllerDelegate
 
-- (void)fontSelectorControllerShouldBeDismissed:(FTFontSelectorController *)controller;
-{
-  [self dismissViewControllerAnimated:YES completion:nil];
+- (void)fontPickerViewControllerDidCancel:(UIFontPickerViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)fontSelectorController:(FTFontSelectorController *)controller didChangeSelectedFontName:(NSString *)fontName;
-{
-  self.fontButton.titleLabel.font = [UIFont fontWithName:fontName size:self.fontButton.titleLabel.font.pointSize];
-  [self updateFontText];
-  [self updateStyle];
+- (void)fontPickerViewControllerDidPickFont:(UIFontPickerViewController *)viewController {
+    self.fontButton.titleLabel.font = [UIFont fontWithDescriptor:viewController.selectedFontDescriptor size:self.fontButton.titleLabel.font.pointSize];
+    [self updateFontText];
+    [self updateStyle];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark UIColorPickerViewController
@@ -169,12 +167,13 @@
 
 #pragma mark Actions
 
-- (IBAction)selectFont:(id)sender;
-{
-  FTFontSelectorController *fontController = [[FTFontSelectorController alloc] initWithSelectedFontName:self.fontButton.titleLabel.font.fontName];
-  [fontController setFontDelegate:self];
-  [self presentViewController:fontController
-                     animated:YES completion:nil];
+- (IBAction)selectFont:(id)sender {
+    UIFontPickerViewControllerConfiguration *config = [UIFontPickerViewControllerConfiguration new];
+    config.includeFaces = YES;
+    UIFontPickerViewController *controller = [[UIFontPickerViewController alloc] initWithConfiguration:config];
+    controller.selectedFontDescriptor = self.fontButton.titleLabel.font.fontDescriptor;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (IBAction)selectFontSize:(UIStepper*)sender;

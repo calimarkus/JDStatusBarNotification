@@ -1,16 +1,3 @@
-PODS:
-  - FTFontSelector (1.1.3)
-
-DEPENDENCIES:
-  - FTFontSelector
-
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - FTFontSelector
-
-SPEC CHECKSUMS:
-  FTFontSelector: a5f0fc4dfb1606ad76da38570b0816c2e6c0d136
-
-PODFILE CHECKSUM: 49573ccfacba105c7688a220a0720cb85963a70b
+PODFILE CHECKSUM: 799d1e344acd425a9d078cedbf56498dba8f1483
 
 COCOAPODS: 1.11.3
