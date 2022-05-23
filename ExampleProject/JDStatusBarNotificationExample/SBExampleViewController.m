@@ -65,13 +65,13 @@ static NSString *const SBStyle2 = @"SBStyle2";
                     @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
                     @{JDButtonName:@"Update text", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
                     @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"", JDNotificationText:@""}],
-                  @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"No, I don't have the money.."},
-                    @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"You know who I am!"},
-                    @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"That's how we roll!"},
-                    @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Don't mess with me!"},
-                    @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 2s", JDNotificationText:@"Wake up Neo…"}],
-                  @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
-                    @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 4s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}],
+                  @[@{JDButtonName:@"Show JDStatusBarStyleError", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"No, I don't have the money.."},
+                    @{JDButtonName:@"Show JDStatusBarStyleWarning", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"You know who I am!"},
+                    @{JDButtonName:@"Show JDStatusBarStyleSuccess", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"That's how we roll!"},
+                    @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"Don't mess with me!"},
+                    @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"Wake up Neo…"}],
+                  @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
+                    @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}],
                   @[@{JDButtonName:@"Create your own style", JDButtonInfo:@"Test all possibilities", JDNotificationText:@""}]];
   }
   return self;
@@ -156,7 +156,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
       [self startTimer];
     } else if (row == 2) {
       if(![JDStatusBarNotification isVisible]) {
-        [JDStatusBarNotification showWithStatus:status dismissAfter:2.0];
+        [JDStatusBarNotification showWithStatus:status dismissAfter:3.0];
       }
         [JDStatusBarNotification showActivityIndicator:YES];
     } else if (row == 3) {
@@ -177,12 +177,12 @@ static NSString *const SBStyle2 = @"SBStyle2";
     }
 
     [JDStatusBarNotification showWithStatus:status
-                               dismissAfter:2.0
+                               dismissAfter:3.0
                                   styleName:style];
   } else if (section == 2) {
     NSString *style = (row==0) ? SBStyle1 : SBStyle2;
     [JDStatusBarNotification showWithStatus:status
-                               dismissAfter:4.0
+                               dismissAfter:3.0
                                   styleName:style];
   } else if (section == 3) {
     SBCustomStyleViewController* viewController = [[SBCustomStyleViewController alloc] init];
