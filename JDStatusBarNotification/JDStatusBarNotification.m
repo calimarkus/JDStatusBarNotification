@@ -478,11 +478,11 @@
     [self.overlayWindow.rootViewController.view addSubview:_topBar];
 
     JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
-    self.topBar.heightForIPhoneX = style.heightForIPhoneX;
+    _topBar.heightForIPhoneX = style.heightForIPhoneX;
     if (style.animationType != JDStatusBarAnimationTypeFade) {
-      self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
+      _topBar.transform = CGAffineTransformMakeTranslation(0, -_topBar.frame.size.height);
     } else {
-      self.topBar.alpha = 0.0;
+      _topBar.alpha = 0.0;
     }
   }
   return _topBar;
