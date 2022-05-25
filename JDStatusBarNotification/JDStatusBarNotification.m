@@ -25,6 +25,8 @@
 @end
 
 @interface JDStatusBarNotification () <CAAnimationDelegate>
+@property (nonatomic, strong) UIWindowScene *windowScene;
+
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
 @property (nonatomic, strong, readonly) JDStatusBarView *topBar;
@@ -52,6 +54,10 @@
     sharedInstance = [[self alloc] init];
   });
   return sharedInstance;
+}
+
++ (void)setWindowScene:(UIWindowScene *)windowScene {
+    [self sharedInstance].windowScene = windowScene;
 }
 
 + (UIView*)showWithStatus:(NSString *)status;
@@ -449,7 +455,11 @@
 - (UIWindow *)overlayWindow;
 {
   if(_overlayWindow == nil) {
-    _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+      if (self.windowScene != nil) {
+        _overlayWindow = [[UIWindow alloc] initWithWindowScene:self.windowScene];
+      } else {
+        _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+      }
     _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _overlayWindow.backgroundColor = [UIColor clearColor];
     _overlayWindow.userInteractionEnabled = NO;

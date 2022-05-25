@@ -31,6 +31,8 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  */
 @interface JDStatusBarNotification : NSObject
 
++ (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
+
 #pragma mark Presentation
 
 /**
