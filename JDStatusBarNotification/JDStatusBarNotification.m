@@ -512,16 +512,21 @@
 }
 
 static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat height) {
-  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
-  if (topLayoutMargin > 0) {
+  if (JDStatusBarRootVCLayoutMargin().top > 0) {
     switch (style.heightForIPhoneX) {
       case JDStatusBarHeightForIPhoneXFullNavBar:
-        return height + topLayoutMargin;
+        return height + 44.0;
       case JDStatusBarHeightForIPhoneXHalf:
         return height + 8.0;
     }
   } else {
-    return height;
+      // Starting with iOS 13 we can't be on top of the status bar anymore.
+      // Thus start presenting a larger status bar notification similar to the
+      // iPhone-X style also on no-notch devices (e.g. SE).
+      if (@available(iOS 13, *)) {
+          return height + 44.0;
+      }
+      return height;
   }
 }
 
@@ -621,11 +626,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (BOOL)prefersStatusBarHidden {
-  if (@available(iOS 13, *)) {
-    return JDStatusBarRootVCLayoutMargin().top == 0;
-  } else {
     return NO;
-  }
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {

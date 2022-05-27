@@ -58,10 +58,17 @@
 
   // label
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
-  CGFloat labelY = self.textVerticalPositionAdjustment + topLayoutMargin + 1;
-  CGFloat height = self.bounds.size.height - topLayoutMargin - 1;
+  CGFloat labelAdjustment = topLayoutMargin;
+  if (@available(iOS 13, *)) {
+    if (topLayoutMargin == 0 ) {
+      labelAdjustment = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    }
+  }
 
-  // adjust for iPhone X
+  CGFloat labelY = self.textVerticalPositionAdjustment + labelAdjustment + 1;
+  CGFloat height = self.bounds.size.height - labelAdjustment - 1;
+
+  // adjust for IPhoneXHalf style
   if (topLayoutMargin > 0){
     switch (_heightForIPhoneX) {
       case JDStatusBarHeightForIPhoneXHalf:
