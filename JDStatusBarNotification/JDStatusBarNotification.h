@@ -31,6 +31,11 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  */
 @interface JDStatusBarNotification : NSObject
 
+/**
+ *  This needs to be set once, if you are using window scenes in your app, otherwise the notifications won't show up at all.
+ *
+ *  @param windowScene The windowScene in which the notifcation should be presented.
+ */
 + (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
 
 #pragma mark Presentation
