@@ -411,12 +411,7 @@
   } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow) {
     frame.origin.y = barHeight;
   } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
-    CGFloat navBarHeight = 44.0;
-    if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
-        UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-      navBarHeight = 32.0;
-    }
-    frame.origin.y = barHeight + navBarHeight;
+    frame.origin.y = barHeight + navBarHeight(_windowScene);
   }
 
   // apply color from active style
@@ -441,6 +436,16 @@
     } else {
         [self.topBar.activityIndicatorView stopAnimating];
     }
+}
+
+static CGFloat navBarHeight(UIWindowScene *windowScene) {
+    if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
+        UIInterfaceOrientationIsLandscape(windowScene != nil
+                                          ? windowScene.interfaceOrientation
+                                          : [[UIApplication sharedApplication] statusBarOrientation])) {
+      return 32.0;
+    }
+    return 44.0;
 }
 
 #pragma mark State
@@ -516,7 +521,7 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   if (JDStatusBarRootVCLayoutMarginForWindow(mainWindow).top > 0) {
     switch (style.heightForIPhoneX) {
       case JDStatusBarHeightForIPhoneXFullNavBar:
-        return height + 44.0;
+        return height + navBarHeight(mainWindow.windowScene);
       case JDStatusBarHeightForIPhoneXHalf:
         return height + 8.0;
     }
@@ -525,7 +530,7 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
       // Thus start presenting a larger status bar notification similar to the
       // iPhone-X style also on no-notch devices (e.g. SE).
       if (@available(iOS 13, *)) {
-          return height + 44.0;
+          return height + navBarHeight(mainWindow.windowScene);
       }
       return height;
   }
