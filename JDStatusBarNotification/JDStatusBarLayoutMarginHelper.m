@@ -8,9 +8,9 @@
 
 #import "JDStatusBarLayoutMarginHelper.h"
 
-UIEdgeInsets JDStatusBarRootVCLayoutMargin(void)
+UIEdgeInsets JDStatusBarRootVCLayoutMarginForWindow(UIWindow *window)
 {
-  UIEdgeInsets layoutMargins = [[[[[UIApplication sharedApplication] keyWindow] rootViewController] view] layoutMargins];
+  UIEdgeInsets layoutMargins = window.rootViewController.view.layoutMargins;
   if (layoutMargins.top > 8 && layoutMargins.bottom > 8) {
     return layoutMargins;
   } else {

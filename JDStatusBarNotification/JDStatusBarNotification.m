@@ -507,13 +507,13 @@
     // update top bar frame
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
-    height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height);
+    height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height, window);
     _topBar.frame = CGRectMake(0, 0, width, height);
 
 }
 
-static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat height) {
-  if (JDStatusBarRootVCLayoutMargin().top > 0) {
+static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat height, UIWindow *mainWindow) {
+  if (JDStatusBarRootVCLayoutMarginForWindow(mainWindow).top > 0) {
     switch (style.heightForIPhoneX) {
       case JDStatusBarHeightForIPhoneXFullNavBar:
         return height + 44.0;

@@ -57,7 +57,7 @@
   [super layoutSubviews];
 
   // label
-  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMargin().top;
+  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(self.window).top;
   CGFloat labelAdjustment = topLayoutMargin;
   if (@available(iOS 13, *)) {
     if (topLayoutMargin == 0 ) {

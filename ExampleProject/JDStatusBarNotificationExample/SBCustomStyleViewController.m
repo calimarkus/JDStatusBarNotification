@@ -50,7 +50,7 @@
 - (void)adjustForLayoutMargin
 {
   // adjust bottom bar to respect layout margins
-  CGFloat bottomLayoutMargin = JDStatusBarRootVCLayoutMargin().bottom;
+  CGFloat bottomLayoutMargin = [[UIApplication sharedApplication] windows].firstObject.rootViewController.view.layoutMargins.bottom;
 
   CGRect frame = self.bottomBarView.frame;
   frame.origin.y -= bottomLayoutMargin;

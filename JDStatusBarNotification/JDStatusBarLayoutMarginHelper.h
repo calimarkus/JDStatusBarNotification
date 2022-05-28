@@ -7,4 +7,4 @@
 
 #import <UIKit/UIKit.h>
 
-extern UIEdgeInsets JDStatusBarRootVCLayoutMargin(void);
+extern UIEdgeInsets JDStatusBarRootVCLayoutMarginForWindow(UIWindow *window);
