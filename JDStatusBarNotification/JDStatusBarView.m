@@ -84,35 +84,13 @@
 
   // activity indicator
   if (_activityIndicatorView ) {
-    CGSize textSize = [self currentTextSize];
+    NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
+    CGSize textSize = [self.textLabel.text sizeWithAttributes:attributes];
     CGRect indicatorFrame = _activityIndicatorView.frame;
     indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 16.0;
     indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(self.textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
   }
-}
-
-- (CGSize)currentTextSize;
-{
-  CGSize textSize = CGSizeZero;
-
-  // use new sizeWithAttributes: if possible
-  SEL selector = NSSelectorFromString(@"sizeWithAttributes:");
-  if ([self.textLabel.text respondsToSelector:selector]) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
-    textSize = [self.textLabel.text sizeWithAttributes:attributes];
-#endif
-  }
-
-  // otherwise use old sizeWithFont:
-  else {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 // only when deployment target is < ios7
-    textSize = [self.textLabel.text sizeWithFont:self.textLabel.font];
-#endif
-  }
-
-  return textSize;
 }
 
 @end

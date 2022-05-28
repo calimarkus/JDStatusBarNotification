@@ -535,16 +535,10 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   CGFloat width = MAX(rect.size.width, rect.size.height);
   CGFloat height = MIN(rect.size.width, rect.size.height);
 
-  // adjust position for iOS 7, if statusBar has double height
-  CGFloat yPos = 0;
-  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 && height == 40.0) {
-    yPos = -height/2.0;
-  }
-
   // adjust height for iPhone X
   height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height);
 
-  _topBar.frame = CGRectMake(0, yPos, width, height);
+  _topBar.frame = CGRectMake(0, 0, width, height);
 }
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
@@ -590,15 +584,9 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   return [[self mainController] shouldAutorotate];
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
-- (NSUInteger)supportedInterfaceOrientations {
-  return [[self mainController] supportedInterfaceOrientations];
-}
-#else
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
   return [[self mainController] supportedInterfaceOrientations];
 }
-#endif
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
   return [[self mainController] preferredInterfaceOrientationForPresentation];
