@@ -499,16 +499,17 @@
 #pragma mark Rotation
 
 - (void)updateContentFrame:(CGRect)rect {
-  [self updateWindowTransform];
-  [self updateTopBarFrameWithStatusBarFrame:rect];
-}
+    // match main window transform & frame
+    UIWindow *window = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.overlayWindow];
+    _overlayWindow.transform = window.transform;
+    _overlayWindow.frame = window.frame;
 
-- (void)updateWindowTransform;
-{
-  UIWindow *window = [[UIApplication sharedApplication]
-                      mainApplicationWindowIgnoringWindow:self.overlayWindow];
-  _overlayWindow.transform = window.transform;
-  _overlayWindow.frame = window.frame;
+    // update top bar frame
+    CGFloat width = MAX(rect.size.width, rect.size.height);
+    CGFloat height = MIN(rect.size.width, rect.size.height);
+    height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height);
+    _topBar.frame = CGRectMake(0, 0, width, height);
+
 }
 
 static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat height) {
@@ -528,17 +529,6 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
       }
       return height;
   }
-}
-
-- (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;
-{
-  CGFloat width = MAX(rect.size.width, rect.size.height);
-  CGFloat height = MIN(rect.size.width, rect.size.height);
-
-  // adjust height for iPhone X
-  height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height);
-
-  _topBar.frame = CGRectMake(0, 0, width, height);
 }
 
 - (void)willChangeStatusBarFrame:(NSNotification*)notification;
