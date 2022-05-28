@@ -203,9 +203,6 @@
 - (UIView*)showWithStatus:(NSString *)status
                     style:(JDStatusBarStyle*)style;
 {
-  // first, check if status bar is visible at all
-  if ([UIApplication sharedApplication].statusBarHidden) return nil;
-
   // prepare for new style
   if (style != self.activeStyle) {
     self.activeStyle = style;
@@ -509,6 +506,11 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     _overlayWindow.transform = window.transform;
     _overlayWindow.frame = window.frame;
 
+    // default to window width
+    if (CGRectIsEmpty(rect)) {
+        rect = CGRectMake(0, 0, window.frame.size.width, 0.0);
+    }
+
     // update top bar frame
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
@@ -536,23 +538,15 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   }
 }
 
-- (void)willChangeStatusBarFrame:(NSNotification*)notification;
-{
+- (void)willChangeStatusBarFrame:(NSNotification*)notification {
   CGRect newBarFrame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
   NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
 
-  // update window & statusbar
-  void(^updateBlock)(void) = ^{
-    [self updateContentFrame:newBarFrame];
-    self.progress = self.progress; // relayout progress bar
-  };
-
   [UIView animateWithDuration:duration animations:^{
-    updateBlock();
-  } completion:^(BOOL finished) {
-    // this hack fixes a broken frame after the rotation (#35)
-    // but rotation animation is still broken
-    updateBlock();
+      // update window & statusbar
+      [self updateContentFrame:newBarFrame];
+      // relayout progress bar
+      self.progress = self.progress;
   }];
 }
 
@@ -570,6 +564,10 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
 
   while(topController.presentedViewController) {
     topController = topController.presentedViewController;
+  }
+
+  if ([topController respondsToSelector:@selector(topViewController)]) {
+    topController = [((UINavigationController *)topController) topViewController];
   }
 
   return topController;
@@ -590,11 +588,14 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
 // statusbar
 
 static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
-  static BOOL enabled = NO;
+  static BOOL enabled = YES;
   static dispatch_once_t onceToken;
 
   dispatch_once(&onceToken, ^{
-    enabled = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"] boolValue];
+    NSNumber *value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"];
+    if (value != nil) {
+      enabled = [value boolValue];
+    }
   });
 
   return enabled;
@@ -609,7 +610,10 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return NO;
+    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+        return [[self mainController] prefersStatusBarHidden];
+    }
+    return [super prefersStatusBarHidden];
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
