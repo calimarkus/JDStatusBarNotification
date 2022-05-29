@@ -30,7 +30,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 {
   self = [super initWithStyle:style];
   if (self) {
-    self.title = @"JDStatusBarNotification";
+    self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleViewControllerTitle"];
 
     [JDStatusBarNotification addStyleNamed:SBStyle1
                                    prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
@@ -82,7 +82,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
-  [JDStatusBarNotification showWithStatus:@"Hello World!" dismissAfter:2.0
+  [JDStatusBarNotification showWithStatus:@"👋 Hello World!" dismissAfter:2.0
                                 styleName:JDStatusBarStyleMatrix];
 }
 

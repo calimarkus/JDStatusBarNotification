@@ -13,10 +13,13 @@
 @implementation SBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
-                                    [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
-  [self.window makeKeyAndVisible];
+  BOOL isWindowSceneBased = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleIsWindowSceneBased"] boolValue];
+  if (!isWindowSceneBased) {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
+                                      [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
+    [self.window makeKeyAndVisible];
+  }
 
   return YES;
 }
