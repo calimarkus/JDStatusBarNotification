@@ -32,33 +32,31 @@ static NSString *const SBStyle2 = @"SBStyle2";
   if (self) {
     self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleViewControllerTitle"];
 
-    [JDStatusBarNotification addStyleNamed:SBStyle1
-                                   prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
-                                     style.barColor = [UIColor colorWithRed:0.797 green:0.000 blue:0.662 alpha:1.000];
-                                     style.textColor = [UIColor whiteColor];
-                                     style.animationType = JDStatusBarAnimationTypeFade;
-                                     style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
-                                     style.progressBarColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
-                                     style.progressBarHeight = 20.0;
-                                     return style;
-                                   }];
+    [[JDStatusBarNotification sharedPresenter] addStyleNamed:SBStyle1 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+      style.barColor = [UIColor colorWithRed:0.797 green:0.000 blue:0.662 alpha:1.000];
+      style.textColor = [UIColor whiteColor];
+      style.animationType = JDStatusBarAnimationTypeFade;
+      style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
+      style.progressBarColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
+      style.progressBarHeight = 20.0;
+      return style;
+    }];
 
-    [JDStatusBarNotification addStyleNamed:SBStyle2
-                                   prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
-                                     style.barColor = [UIColor cyanColor];
-                                     style.textColor = [UIColor colorWithRed:0.056 green:0.478 blue:0.998 alpha:1.000];
-                                     style.animationType = JDStatusBarAnimationTypeBounce;
-                                     style.progressBarColor = style.textColor;
-                                     style.progressBarHeight = 5.0;
-                                     style.progressBarPosition = JDStatusBarProgressBarPositionTop;
-                                     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-                                       style.font = [UIFont fontWithName:@"DINCondensed-Bold" size:17.0];
-                                       style.textVerticalPositionAdjustment = 2.0;
-                                     } else {
-                                       style.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:17.0];
-                                     }
-                                     return style;
-                                   }];
+    [[JDStatusBarNotification sharedPresenter] addStyleNamed:SBStyle2 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+      style.barColor = [UIColor cyanColor];
+      style.textColor = [UIColor colorWithRed:0.056 green:0.478 blue:0.998 alpha:1.000];
+      style.animationType = JDStatusBarAnimationTypeBounce;
+      style.progressBarColor = style.textColor;
+      style.progressBarHeight = 5.0;
+      style.progressBarPosition = JDStatusBarProgressBarPositionTop;
+      if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        style.font = [UIFont fontWithName:@"DINCondensed-Bold" size:17.0];
+        style.textVerticalPositionAdjustment = 2.0;
+      } else {
+        style.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:17.0];
+      }
+      return style;
+    }];
 
     self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Don't autohide.", JDNotificationText:@"Better call Saul!"},
                     @{JDButtonName:@"Show Progress for 1s", JDButtonInfo:@"", JDNotificationText:@"Some Progress…"},
@@ -82,9 +80,9 @@ static NSString *const SBStyle2 = @"SBStyle2";
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
-  [JDStatusBarNotification showWithStatus:@"👋 Hello World!"
-                        dismissAfterDelay:2.0
-                                styleName:JDStatusBarStyleMatrix];
+  [[JDStatusBarNotification sharedPresenter] showWithStatus:@"👋 Hello World!"
+                                          dismissAfterDelay:2.0
+                                                  styleName:JDStatusBarStyleMatrix];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -149,21 +147,21 @@ static NSString *const SBStyle2 = @"SBStyle2";
   // show notification
   if (section == 0) {
     if (row == 0) {
-      [JDStatusBarNotification showWithStatus:status];
+      [[JDStatusBarNotification sharedPresenter] showWithStatus:status];
     } else if (row == 1) {
-      if(![JDStatusBarNotification isVisible]) {
-        [JDStatusBarNotification showWithStatus:status dismissAfterDelay:1.4];
+      if(![[JDStatusBarNotification sharedPresenter] isVisible]) {
+        [[JDStatusBarNotification sharedPresenter] showWithStatus:status dismissAfterDelay:1.4];
       }
       [self startTimer];
     } else if (row == 2) {
-      if(![JDStatusBarNotification isVisible]) {
-        [JDStatusBarNotification showWithStatus:status dismissAfterDelay:3.0];
+      if(![[JDStatusBarNotification sharedPresenter] isVisible]) {
+        [[JDStatusBarNotification sharedPresenter] showWithStatus:status dismissAfterDelay:3.0];
       }
-        [JDStatusBarNotification showActivityIndicator:YES];
+      [[JDStatusBarNotification sharedPresenter] showActivityIndicator:YES];
     } else if (row == 3) {
-      [JDStatusBarNotification updateStatus:@"Replaced Text.."];
+      [[JDStatusBarNotification sharedPresenter] updateStatus:@"Replaced Text.."];
     } else if (row == 4) {
-      [JDStatusBarNotification dismiss];
+      [[JDStatusBarNotification sharedPresenter] dismiss];
     }
   } else if (section == 1) {
     NSString *style = JDStatusBarStyleError;
@@ -177,14 +175,14 @@ static NSString *const SBStyle2 = @"SBStyle2";
       style = JDStatusBarStyleMatrix;
     }
 
-    [JDStatusBarNotification showWithStatus:status
-                          dismissAfterDelay:3.0
-                                  styleName:style];
+    [[JDStatusBarNotification sharedPresenter] showWithStatus:status
+                                                     dismissAfterDelay:3.0
+                                                             styleName:style];
   } else if (section == 2) {
     NSString *style = (row==0) ? SBStyle1 : SBStyle2;
-    [JDStatusBarNotification showWithStatus:status
-                          dismissAfterDelay:3.0
-                                  styleName:style];
+    [[JDStatusBarNotification sharedPresenter] showWithStatus:status
+                                                     dismissAfterDelay:3.0
+                                                             styleName:style];
   } else if (section == 3) {
     SBCustomStyleViewController* viewController = [[SBCustomStyleViewController alloc] init];
     viewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
@@ -197,7 +195,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)startTimer;
 {
-  [JDStatusBarNotification showProgressBarWithPercentage:self.progress];
+  [[JDStatusBarNotification sharedPresenter] showProgressBarWithPercentage:self.progress];
   
   [self.timer invalidate];
   self.timer = nil;
@@ -216,7 +214,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)hideProgress;
 {
-  [JDStatusBarNotification showProgressBarWithPercentage:0.0];
+  [[JDStatusBarNotification sharedPresenter] showProgressBarWithPercentage:0.0];
 }
 
 @end

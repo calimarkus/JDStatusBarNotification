@@ -9,20 +9,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JDStatusBarPrepareStyleBlock.h"
 #import "JDStatusBarStyle.h"
-#import "JDStatusBarView.h"
+
+@class JDStatusBarStyle;
+@class JDStatusBarView;
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- *  A block that is used to define the appearance of a notification.
- *  A JDStatusBarStyle instance defines the notification appeareance.
- *
- *  @param style The current default JDStatusBarStyle instance.
- *
- *  @return The modified JDStatusBarStyle instance.
- */
-typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _Nonnull style);
 
 /**
  *  This class is a singletion which is used to present notifications
@@ -31,12 +24,19 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  */
 @interface JDStatusBarNotification : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
++ (instancetype)sharedPresenter;
+
+#pragma mark - Public API
+
 /**
  *  This needs to be set once, if you are using window scenes in your app, otherwise the notifications won't show up at all.
  *
  *  @param windowScene The windowScene in which the notifcation should be presented.
  */
-+ (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
+- (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
 
 #pragma mark - Presentation
 
@@ -48,7 +48,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView *)showWithStatus:(NSString *)status;
+- (JDStatusBarView *)showWithStatus:(NSString *)status;
 
 /**
  *  Show a notification with a specific style. It won't
@@ -61,8 +61,8 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView *)showWithStatus:(NSString *)status
-                         styleName:(NSString *)styleName;
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                          styleName:(NSString * _Nullable)styleName;
 
 /**
  *  Same as showWithStatus:, but the notification will
@@ -74,8 +74,8 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView *)showWithStatus:(NSString *)status
-                 dismissAfterDelay:(NSTimeInterval)timeInterval;
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                  dismissAfterDelay:(NSTimeInterval)timeInterval;
 
 /**
  *  Same as showWithStatus:styleName:, but the notification
@@ -90,16 +90,16 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView *)showWithStatus:(NSString *)status
-                 dismissAfterDelay:(NSTimeInterval)timeInterval
-                         styleName:(NSString *)styleName;
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                  dismissAfterDelay:(NSTimeInterval)timeInterval
+                          styleName:(NSString * _Nullable)styleName;
 
 #pragma mark - Dismissal
 
 /**
  *  Calls dismissAnimated: with animated set to YES
  */
-+ (void)dismiss;
+- (void)dismiss;
 
 /**
  *  Dismisses any currently displayed notification immediately
@@ -107,7 +107,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *  @param animated If this is YES, the animation style used
  *  for presentation will also be used for the dismissal.
  */
-+ (void)dismissAnimated:(BOOL)animated;
+- (void)dismissAnimated:(BOOL)animated;
 
 /**
  *  Same as dismissAnimated:, but you can specify a delay,
@@ -115,7 +115,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @param delay The delay, how long the notification should stay visible
  */
-+ (void)dismissAfterDelay:(NSTimeInterval)delay;
+- (void)dismissAfterDelay:(NSTimeInterval)delay;
 
 #pragma mark - Styles
 
@@ -128,7 +128,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *  parameter. This instance can be modified to suit your needs. You need
  *  to return the modified style again.
  */
-+ (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
+- (void)updateDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
 
 /**
  *  Adds a custom style, which than can be used
@@ -143,7 +143,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *  @return Returns the given identifier, so it can
  *  be directly used as styleName parameter.
  */
-+ (NSString *)addStyleNamed:(NSString *)identifier
+- (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 
 #pragma mark - Modifications
@@ -153,30 +153,31 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @param status The new message to display
  */
-+ (void)updateStatus:(NSString *)status;
+- (void)updateStatus:(NSString *)status;
 
 /**
  *  Show the progress below the label.
  *
- *  @param progress Relative progress from 0.0 to 1.0
+ *  @param percentage Relative progress from 0.0 to 1.0
  */
-+ (void)showProgressBarWithPercentage:(CGFloat)percentage;
+- (void)showProgressBarWithPercentage:(CGFloat)percentage;
 
 /**
  *  Shows an activity indicator in front of the notification text using the text color
  *
  *  @param show  Use this flag to show or hide the activity indicator
  */
-+ (void)showActivityIndicator:(BOOL)show;
+- (void)showActivityIndicator:(BOOL)show;
 
-#pragma mark - state
+#pragma mark - State
 
 /**
  *  This method tests, if a notification is currently displayed.
  *
  *  @return YES, if a notification is currently displayed. Otherwise NO.
  */
-+ (BOOL)isVisible;
+- (BOOL)isVisible;
+
 
 @end
 

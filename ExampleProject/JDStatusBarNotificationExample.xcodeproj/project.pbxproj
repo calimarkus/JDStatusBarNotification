@@ -54,6 +54,7 @@
 		7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotificationViewController.m; sourceTree = "<group>"; };
 		7EBE34102844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
 		7EBE34112844CA2D0096CD55 /* UIApplication+MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+MainWindow.h"; sourceTree = "<group>"; };
+		7EBE341C2844CFA90096CD55 /* JDStatusBarPrepareStyleBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarPrepareStyleBlock.h; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN_WindowSceneExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_WindowSceneExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
 		7EFD77A428434906000BFBF1 /* SBSceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSceneDelegate.h; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 			children = (
 				D264F8C01820216300DA0E53 /* JDStatusBarNotification.h */,
 				D264F8C11820216300DA0E53 /* JDStatusBarNotification.m */,
+				7EBE341C2844CFA90096CD55 /* JDStatusBarPrepareStyleBlock.h */,
 				D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */,
 				D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */,
 				D25B0FA3184F343600B8174B /* JDStatusBarView.h */,

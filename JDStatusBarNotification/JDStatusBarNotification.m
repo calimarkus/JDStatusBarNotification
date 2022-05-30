@@ -1,14 +1,19 @@
 //
 //  JDStatusBarNotification.m
 //
+//  Based on KGStatusBar by Kevin Gibbon
+//
 //  Created by Markus Emrich on 10/28/13.
 //  Copyright 2013 Markus Emrich. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
+
+#import "JDStatusBarStyle.h"
+#import "JDStatusBarView.h"
+#import "JDStatusBarLayoutMarginHelper.h"
 #import "UIApplication+MainWindow.h"
 #import "JDStatusBarNotificationViewController.h"
 
@@ -18,8 +23,8 @@
 @end
 
 @interface JDStatusBarNotification () <CAAnimationDelegate>
-@property (nonatomic, strong) UIWindowScene *windowScene;
 
+@property (nonatomic, strong, readonly) UIWindowScene *windowScene;
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 @property (nonatomic, strong, readonly) UIView *progressView;
 @property (nonatomic, strong, readonly) JDStatusBarView *topBar;
@@ -27,20 +32,22 @@
 @property (nonatomic, strong) NSTimer *dismissTimer;
 @property (nonatomic, assign) CGFloat progress;
 
-@property (nonatomic, weak) JDStatusBarStyle *activeStyle;
+@property (nonatomic, strong) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
+
 @end
 
 @implementation JDStatusBarNotification
 
+@synthesize windowScene = _windowScene;
 @synthesize overlayWindow = _overlayWindow;
 @synthesize progressView = _progressView;
 @synthesize topBar = _topBar;
 
-#pragma mark - Class methods
+#pragma mark - Singleton
 
-+ (JDStatusBarNotification *)sharedInstance {
++ (instancetype)sharedPresenter {
   static dispatch_once_t once;
   static JDStatusBarNotification *sharedInstance;
   dispatch_once(&once, ^ {
@@ -49,95 +56,9 @@
   return sharedInstance;
 }
 
-+ (void)setWindowScene:(UIWindowScene *)windowScene {
-    [self sharedInstance].windowScene = windowScene;
-}
-
-+ (UIView *)showWithStatus:(NSString *)status;
-{
-  return [[self sharedInstance] showWithStatus:status
-                                     styleName:nil];
-}
-
-+ (UIView *)showWithStatus:(NSString *)status
-                styleName:(NSString *)styleName;
-{
-  return [[self sharedInstance] showWithStatus:status
-                                     styleName:styleName];
-}
-
-+ (UIView *)showWithStatus:(NSString *)status
-        dismissAfterDelay:(NSTimeInterval)timeInterval;
-{
-  UIView *view = [[self sharedInstance] showWithStatus:status
-                                             styleName:nil];
-  [self dismissAfterDelay:timeInterval];
-  return view;
-}
-
-+ (UIView *)showWithStatus:(NSString *)status
-        dismissAfterDelay:(NSTimeInterval)timeInterval
-                styleName:(NSString *)styleName;
-{
-  UIView *view = [[self sharedInstance] showWithStatus:status
-                                             styleName:styleName];
-  [self dismissAfterDelay:timeInterval];
-  return view;
-}
-
-+ (void)dismiss;
-{
-  [self dismissAnimated:YES];
-}
-
-+ (void)dismissAnimated:(BOOL)animated;
-{
-  [[self sharedInstance] dismissAnimated:animated];
-}
-
-+ (void)dismissAfterDelay:(NSTimeInterval)delay;
-{
-  [[self sharedInstance] setDismissTimerWithInterval:delay];
-}
-
-+ (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
-{
-  NSAssert(prepareBlock != nil, @"No prepareBlock provided");
-
-  JDStatusBarStyle *style = [[self sharedInstance].defaultStyle copy];
-  [self sharedInstance].defaultStyle = prepareBlock(style);
-}
-
-+ (NSString *)addStyleNamed:(NSString *)identifier
-                   prepare:(JDPrepareStyleBlock)prepareBlock;
-{
-  return [[self sharedInstance] addStyleNamed:identifier
-                                      prepare:prepareBlock];
-}
-
-+ (void)updateStatus:(NSString *)status;
-{
-  [[self sharedInstance] updateStatus:status];
-}
-
-+ (void)showProgressBarWithPercentage:(CGFloat)percentage;
-{
-  [[self sharedInstance] showProgressBarWithPercentage:percentage];
-}
-
-+ (void)showActivityIndicator:(BOOL)show;
-{
-  [[self sharedInstance] showActivityIndicator:show];
-}
-
-+ (BOOL)isVisible;
-{
-  return [[self sharedInstance] isVisible];
-}
-
 #pragma mark - Implementation
 
-- (id)init
+- (instancetype)init
 {
   if ((self = [super init]))
   {
@@ -156,6 +77,12 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - Window Scene
+
+- (void)setWindowScene:(UIWindowScene *)windowScene {
+  _windowScene = windowScene;
+}
+
 #pragma mark - Custom styles
 
 - (void)setupDefaultStyles;
@@ -168,7 +95,12 @@
   }
 }
 
-- (NSString *)addStyleNamed:(NSString *)identifier
+- (void)updateDefaultStyle:(JDPrepareStyleBlock)prepareBlock {
+  NSAssert(prepareBlock != nil, @"No prepareBlock provided");
+  self.defaultStyle = prepareBlock([self.defaultStyle copy]);
+}
+
+- (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 {
   NSAssert(identifier != nil, @"No identifier provided");
@@ -181,8 +113,23 @@
 
 #pragma mark - Presentation
 
-- (UIView *)showWithStatus:(NSString *)status
-                styleName:(NSString *)styleName;
+- (JDStatusBarView *)showWithStatus:(NSString *)status {
+  return [self showWithStatus:status dismissAfterDelay:0.0 styleName:nil];
+}
+
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                          styleName:(NSString * _Nullable)styleName {
+  return [self showWithStatus:status dismissAfterDelay:0.0 styleName:styleName];
+}
+
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                  dismissAfterDelay:(NSTimeInterval)timeInterval {
+  return [self showWithStatus:status dismissAfterDelay:timeInterval styleName:nil];
+}
+
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                  dismissAfterDelay:(NSTimeInterval)timeInterval
+                          styleName:(NSString * _Nullable)styleName;
 {
   JDStatusBarStyle *style = nil;
   if (styleName != nil) {
@@ -190,11 +137,15 @@
   }
 
   if (style == nil) style = self.defaultStyle;
-  return [self showWithStatus:status style:style];
+  JDStatusBarView *view = [self showWithStatus:status style:style];
+  if (timeInterval > 0.0) {
+    [self dismissAfterDelay:timeInterval];
+  }
+  return view;
 }
 
-- (UIView *)showWithStatus:(NSString *)status
-                    style:(JDStatusBarStyle *)style;
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                              style:(JDStatusBarStyle *)style;
 {
   // prepare for new style
   if (style != self.activeStyle) {
@@ -257,7 +208,7 @@
 
 #pragma mark - Dismissal
 
-- (void)setDismissTimerWithInterval:(NSTimeInterval)interval;
+- (void)dismissAfterDelay:(NSTimeInterval)interval;
 {
   [self.dismissTimer invalidate];
   self.dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
@@ -450,8 +401,8 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
 - (UIWindow *)overlayWindow;
 {
   if(_overlayWindow == nil) {
-      if (self.windowScene != nil) {
-        _overlayWindow = [[UIWindow alloc] initWithWindowScene:self.windowScene];
+      if (_windowScene != nil) {
+        _overlayWindow = [[UIWindow alloc] initWithWindowScene:_windowScene];
       } else {
         _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
       }

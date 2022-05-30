@@ -5,8 +5,9 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+#import "JDStatusBarPrepareStyleBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

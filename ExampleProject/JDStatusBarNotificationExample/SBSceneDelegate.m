@@ -18,7 +18,7 @@
                                           [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
         [_window makeKeyAndVisible];
 
-        [JDStatusBarNotification setWindowScene:windowScene];
+        [[JDStatusBarNotification sharedPresenter] setWindowScene:windowScene];
     }
 }
 
