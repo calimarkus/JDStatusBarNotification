@@ -153,3 +153,8 @@ I'm [@calimarkus](http://twitter.com/calimarkus) on Twitter. Feel free to [post 
 
 [Github issue]: https://github.com/calimarkus/JDStatusBarNotification/issues
 [cocoapods website]: http://cocoapods.org
+
+## Credits
+
+Based on KGStatusBar by Kevin Gibbon
+
