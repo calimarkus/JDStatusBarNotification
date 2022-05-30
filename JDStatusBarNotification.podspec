@@ -10,9 +10,10 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT' }
   s.author       = { 'Markus Emrich' => 'markus.emrich@gmail.com' }  
   
-  s.source       = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
-  s.source_files = 'JDStatusBarNotification/**'
-  s.frameworks   = 'QuartzCore'
+  s.source               = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
+  s.source_files         = 'JDStatusBarNotification/**'
+  s.private_header_files = 'JDStatusBarNotification/Private/*.{h}'
+  s.frameworks           = 'QuartzCore'
   
   s.platform     = :ios, '6.0'
   s.requires_arc = true
