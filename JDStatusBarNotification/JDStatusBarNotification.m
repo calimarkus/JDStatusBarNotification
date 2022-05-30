@@ -11,17 +11,12 @@
 
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
+#import "UIApplication+MainWindow.h"
+#import "JDStatusBarNotificationViewController.h"
 
 @interface JDStatusBarStyle (Hidden)
 + (NSArray*)allDefaultStyleIdentifier;
 + (JDStatusBarStyle*)defaultStyleWithName:(NSString*)styleName;
-@end
-
-@interface JDStatusBarNotificationViewController : UIViewController
-@end
-
-@interface UIApplication (mainWindow)
-- (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow*)ignoringWindow;
 @end
 
 @interface JDStatusBarNotification () <CAAnimationDelegate>
@@ -550,89 +545,4 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   }];
 }
 
-@end
-
-// A custom view controller, so the statusBarStyle & rotation behaviour is correct
-@implementation JDStatusBarNotificationViewController
-
-// rotation
-
-- (UIViewController*)mainController
-{
-  UIWindow *mainAppWindow = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.view.window];
-  UIViewController *topController = mainAppWindow.rootViewController;
-
-  while(topController.presentedViewController) {
-    topController = topController.presentedViewController;
-  }
-
-  if ([topController respondsToSelector:@selector(topViewController)]) {
-    topController = [((UINavigationController *)topController) topViewController];
-  }
-
-  return topController;
-}
-
-- (BOOL)shouldAutorotate {
-  return [[self mainController] shouldAutorotate];
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-  return [[self mainController] supportedInterfaceOrientations];
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  return [[self mainController] preferredInterfaceOrientationForPresentation];
-}
-
-// statusbar
-
-static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
-  static BOOL enabled = YES;
-  static dispatch_once_t onceToken;
-
-  dispatch_once(&onceToken, ^{
-    NSNumber *value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"];
-    if (value != nil) {
-      enabled = [value boolValue];
-    }
-  });
-
-  return enabled;
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-  if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self mainController] preferredStatusBarStyle];
-  }
-
-  return [[UIApplication sharedApplication] statusBarStyle];
-}
-
-- (BOOL)prefersStatusBarHidden {
-    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-        return [[self mainController] prefersStatusBarHidden];
-    }
-    return [super prefersStatusBarHidden];
-}
-
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-  if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self mainController] preferredStatusBarUpdateAnimation];
-  }
-  return [super preferredStatusBarUpdateAnimation];
-}
-
-@end
-
-@implementation UIApplication (mainWindow)
-// we don't want the keyWindow, since it could be our own window
-- (UIWindow*)mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
-  for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
-    if (!window.hidden && window != ignoringWindow) {
-      return window;
-    }
-  }
-  return nil;
-}
 @end
