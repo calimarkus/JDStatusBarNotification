@@ -48,6 +48,15 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
   JDStatusBarProgressBarPositionNavBar,
 };
 
+typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
+  /// Use current default
+  JDStatusBarSystemStyleDefault,
+  /// Force light status bar contents (UIStatusBarStyleLightContent)
+  JDStatusBarSystemStyleLightContent,
+  /// Force dark status bar contents (UIStatusBarStyleDarkContent)
+  JDStatusBarSystemStyleDarkContent
+};
+
 /**
  *  A Style defines the appeareance of a notification.
  */
@@ -67,6 +76,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
+
+/// The UIStatusBarStyle, which should be used during presentation
+@property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
 #pragma mark - Animation
 

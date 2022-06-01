@@ -29,6 +29,7 @@
 @implementation JDStatusBarNotificationPresenter {
   UIWindowScene *_windowScene;
   UIWindow *_overlayWindow;
+  JDStatusBarNotificationViewController *_statusBarViewController;
   UIView *_progressView;
   JDStatusBarView *_topBar;
   
@@ -154,6 +155,7 @@
   [_overlayWindow setHidden:NO];
   
   // update status & style
+  _statusBarViewController.statusBarSystemStyle = style.systemStatusBarStyle;
   [_topBar setStatus:status];
   [_topBar setStyle:style];
   
@@ -223,6 +225,7 @@
   [_overlayWindow setHidden:YES];
   _overlayWindow.rootViewController = nil;
   _overlayWindow = nil;
+  _statusBarViewController = nil;
   _progressView = nil;
   _topBar = nil;
 }
@@ -361,8 +364,9 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
 
 - (void)createWindowAndViewIfNeededWithStyle:(JDStatusBarStyle *)style {
   if(_overlayWindow == nil || _topBar == nil) {
-    JDStatusBarNotificationViewController *vc = [[JDStatusBarNotificationViewController alloc] init];
-    vc.delegate = self;
+    _statusBarViewController = [[JDStatusBarNotificationViewController alloc] init];
+    _statusBarViewController.delegate = self;
+    _statusBarViewController.statusBarSystemStyle = style.systemStatusBarStyle;
     
     if (_windowScene != nil) {
       _overlayWindow = [[UIWindow alloc] initWithWindowScene:_windowScene];
@@ -373,7 +377,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     _overlayWindow.backgroundColor = [UIColor clearColor];
     _overlayWindow.userInteractionEnabled = NO;
     _overlayWindow.windowLevel = UIWindowLevelStatusBar;
-    _overlayWindow.rootViewController = vc;
+    _overlayWindow.rootViewController = _statusBarViewController;
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
     
     _topBar = [[JDStatusBarView alloc] initWithStyle:style];

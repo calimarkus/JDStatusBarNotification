@@ -8,7 +8,7 @@
 // A custom view controller, so the statusBarStyle & rotation behaviour is correct
 @implementation JDStatusBarNotificationViewController
 
-// rotation
+// mainVC determination
 
 - (UIViewController *)mainController
 {
@@ -25,6 +25,8 @@
   
   return topController;
 }
+
+// rotation
 
 - (BOOL)shouldAutorotate {
   return [[self mainController] shouldAutorotate];
@@ -64,7 +66,25 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
   return enabled;
 }
 
+- (void)setStatusBarSystemStyle:(JDStatusBarSystemStyle)statusBarSystemStyle {
+  if (_statusBarSystemStyle != statusBarSystemStyle) {
+    _statusBarSystemStyle = statusBarSystemStyle;
+    [self setNeedsStatusBarAppearanceUpdate];
+  }
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
+  switch (_statusBarSystemStyle) {
+    case JDStatusBarSystemStyleDefault:
+      return [self defaultStatusBarStyle];
+    case JDStatusBarSystemStyleLightContent:
+      return UIStatusBarStyleLightContent;
+    case JDStatusBarSystemStyleDarkContent:
+      return UIStatusBarStyleDarkContent;
+  }
+}
+
+- (UIStatusBarStyle)defaultStatusBarStyle {
   if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
     return [[self mainController] preferredStatusBarStyle];
   }
@@ -80,10 +100,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-  if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self mainController] preferredStatusBarUpdateAnimation];
-  }
-  return [super preferredStatusBarUpdateAnimation];
+  return UIStatusBarAnimationFade;
 }
 
 @end

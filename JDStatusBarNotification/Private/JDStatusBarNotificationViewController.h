@@ -3,6 +3,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JDStatusBarStyle.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JDStatusBarNotificationViewControllerDelegate
@@ -10,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface JDStatusBarNotificationViewController : UIViewController
+
+@property (nonatomic, assign) JDStatusBarSystemStyle statusBarSystemStyle;
 
 @property (nonatomic, weak) id<JDStatusBarNotificationViewControllerDelegate> delegate;
 

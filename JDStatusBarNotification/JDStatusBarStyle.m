@@ -23,6 +23,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
   style.textShadow = self.textShadow;
   style.font = self.font;
   style.textVerticalPositionAdjustment = self.textVerticalPositionAdjustment;
+  style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.animationType = self.animationType;
   style.progressBarColor = self.progressBarColor;
   style.progressBarHeight = self.progressBarHeight;
@@ -44,6 +45,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
   style.progressBarHeight = 1.0;
   style.progressBarPosition = JDStatusBarProgressBarPositionBottom;
   style.textColor = [UIColor grayColor];
+  style.systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
   style.font = [UIFont systemFontOfSize:12.0];
   style.animationType = JDStatusBarAnimationTypeMove;
   
@@ -83,6 +85,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.barColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
     style.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     style.progressBarHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
+    style.systemStatusBarStyle = JDStatusBarSystemStyleLightContent;
     return style;
   }
   
@@ -93,6 +96,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.font = [UIFont fontWithName:@"Courier-Bold" size:14.0];
     style.progressBarColor = [UIColor greenColor];
     style.progressBarHeight = 2.0;
+    style.systemStatusBarStyle = JDStatusBarSystemStyleLightContent;
     return style;
   }
   
