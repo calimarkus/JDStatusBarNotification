@@ -1,6 +1,5 @@
 //
 //  JDStatusBarStyle.m
-//  JDStatusBarNotificationExample
 //
 //  Created by Markus on 04.12.13.
 //  Copyright (c) 2013 Markus. All rights reserved.
