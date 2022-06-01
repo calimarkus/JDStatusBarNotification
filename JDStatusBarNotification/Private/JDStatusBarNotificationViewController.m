@@ -38,6 +38,16 @@
   return [[self mainController] preferredInterfaceOrientationForPresentation];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+  [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+    [self.delegate animationsForViewTransitionToSize:size];
+  } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+    //
+  }];
+}
+
 // statusbar
 
 static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
@@ -59,14 +69,14 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
     return [[self mainController] preferredStatusBarStyle];
   }
 
-  return [[UIApplication sharedApplication] statusBarStyle];
+  return [super preferredStatusBarStyle];
 }
 
 - (BOOL)prefersStatusBarHidden {
-    if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-        return [[self mainController] prefersStatusBarHidden];
-    }
-    return [super prefersStatusBarHidden];
+  if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
+    return [[self mainController] prefersStatusBarHidden];
+  }
+  return [super prefersStatusBarHidden];
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {

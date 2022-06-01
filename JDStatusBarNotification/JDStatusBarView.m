@@ -9,6 +9,7 @@
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarLayoutMarginHelper.h"
+#import "JDStatusBarManagerHelper.h"
 
 @implementation JDStatusBarView {
   JDStatusBarStyle *_style;
@@ -91,7 +92,7 @@
   CGFloat labelAdjustment = topLayoutMargin;
   if (@available(iOS 13, *)) {
     if (topLayoutMargin == 0 ) {
-      labelAdjustment = [[UIApplication sharedApplication] statusBarFrame].size.height;
+      labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
     }
   }
 
