@@ -80,8 +80,14 @@ static NSString *const SBStyle2 = @"SBStyle2";
   
   // presenting a notification, before a keyWindow is set
   [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"👋 Hello World!"
-                                                   dismissAfterDelay:2.0
                                                            styleName:JDStatusBarStyleMatrix];
+
+  // utilizing the completion block
+  [[JDStatusBarNotificationPresenter sharedPresenter] dismissAfterDelay:1.5 completion:^{
+    [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"Another one!"
+                                                     dismissAfterDelay:1.5
+                                                             styleName:JDStatusBarStyleMatrix];
+  }];
 }
 
 - (BOOL)prefersStatusBarHidden

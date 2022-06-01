@@ -179,18 +179,39 @@
 
 #pragma mark - Dismissal
 
-- (void)dismissAfterDelay:(NSTimeInterval)interval {
+static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletionBlockKey";
+
+- (void)dismissAfterDelay:(NSTimeInterval)delay {
+  [self dismissAfterDelay:delay completion:nil];
+}
+
+- (void)dismissAfterDelay:(NSTimeInterval)delay
+             completion:(void(^ _Nullable)(void))completion {
   [_dismissTimer invalidate];
-  _dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
-                                           interval:0 target:self selector:@selector(dismiss:) userInfo:nil repeats:NO];
+
+  NSDictionary *userInfo = nil;
+  if (completion != nil) {
+    userInfo = @{kJDStatusBarDismissCompletionBlockKey: completion};
+  }
+
+  _dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:delay]
+                                           interval:0 target:self selector:@selector(dismiss:)
+                                           userInfo:userInfo
+                                            repeats:NO];
   [[NSRunLoop currentRunLoop] addTimer:_dismissTimer forMode:NSRunLoopCommonModes];
 }
 
 - (void)dismiss:(NSTimer *)timer {
-  [self dismissAnimated:YES];
+  [self dismissAnimated:YES
+             completion:timer.userInfo[kJDStatusBarDismissCompletionBlockKey]];
 }
 
 - (void)dismissAnimated:(BOOL)animated {
+  [self dismissAnimated:animated completion:nil];
+}
+
+- (void)dismissAnimated:(BOOL)animated
+             completion:(void(^ _Nullable)(void))completion {
   [_dismissTimer invalidate];
   _dismissTimer = nil;
   
@@ -207,16 +228,19 @@
   };
   
   __weak __typeof(self) weakSelf = self;
-  void(^complete)(BOOL) = ^(BOOL finished) {
+  void(^animationCompletion)(BOOL) = ^(BOOL finished) {
     [weakSelf resetWindowAndViews];
+    if (completion != nil) {
+      completion();
+    }
   };
   
   if (animated) {
     // animate out
-    [UIView animateWithDuration:0.4 animations:animation completion:complete];
+    [UIView animateWithDuration:0.4 animations:animation completion:animationCompletion];
   } else {
     animation();
-    complete(YES);
+    animationCompletion(YES);
   }
 }
 

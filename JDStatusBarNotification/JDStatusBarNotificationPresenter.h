@@ -111,6 +111,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)dismissAfterDelay:(NSTimeInterval)delay;
 
+/**
+ *  Same as dismissAfterDelay:, but let's you utilize a completion block.
+ *
+ *  @param delay The delay, how long the notification should stay visible
+ *  @param completion A completion block, which will be executed upon dismissal.
+ */
+- (void)dismissAfterDelay:(NSTimeInterval)delay
+               completion:(void(^ _Nullable)(void))completion;
+
 #pragma mark - Styles
 
 /**
