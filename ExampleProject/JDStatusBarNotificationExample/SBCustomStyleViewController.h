@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *fontButton;
+@property (weak, nonatomic) IBOutlet UIStepper *fontStepper;
 @property (weak, nonatomic) IBOutlet UIView *textColorPreview;
 @property (weak, nonatomic) IBOutlet UIView *barColorPreview;
 @property (weak, nonatomic) IBOutlet UIButton *animationStyleButton;

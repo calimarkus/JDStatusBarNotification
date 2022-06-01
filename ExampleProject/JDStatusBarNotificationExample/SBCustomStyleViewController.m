@@ -37,6 +37,8 @@
   self.textColorPreview.layer.cornerRadius = round(CGRectGetHeight(self.textColorPreview.frame)/3.0);
   self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
   self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
+
+  self.fontStepper.value = self.fontButton.titleLabel.font.pointSize;
   
   [self updateFontText];
   [self updateStyle];
