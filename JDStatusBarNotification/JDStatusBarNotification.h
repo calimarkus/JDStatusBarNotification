@@ -160,7 +160,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @param progress Relative progress from 0.0 to 1.0
  */
-+ (void)showProgress:(CGFloat)progress;
++ (void)showProgressBarWithPercentage:(CGFloat)percentage;
 
 /**
  *  Shows an activity indicator in front of the notification text using the text color

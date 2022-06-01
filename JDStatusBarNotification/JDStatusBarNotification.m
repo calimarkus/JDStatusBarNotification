@@ -117,12 +117,12 @@
 
 + (void)updateStatus:(NSString *)status;
 {
-  [[self sharedInstance] setStatus:status];
+  [[self sharedInstance] updateStatus:status];
 }
 
-+ (void)showProgress:(CGFloat)progress;
++ (void)showProgressBarWithPercentage:(CGFloat)percentage;
 {
-  [[self sharedInstance] setProgress:progress];
+  [[self sharedInstance] showProgressBarWithPercentage:percentage];
 }
 
 + (void)showActivityIndicator:(BOOL)show;
@@ -351,7 +351,7 @@
 
 #pragma mark - Modifications
 
-- (void)setStatus:(NSString *)status;
+- (void)updateStatus:(NSString *)status;
 {
   if (_topBar == nil) return;
 
@@ -362,12 +362,12 @@
   [self.topBar setNeedsLayout];
 }
 
-- (void)setProgress:(CGFloat)progress;
+- (void)showProgressBarWithPercentage:(CGFloat)percentage;
 {
   if (_topBar == nil) return;
 
   // trim progress
-  _progress = MIN(1.0, MAX(0.0,progress));
+  _progress = MIN(1.0, MAX(0.0,percentage));
 
   if (_progress == 0.0) {
     _progressView.frame = CGRectZero;
@@ -387,7 +387,7 @@
   CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
   if (height == 20.0 && frame.size.height > height) height = frame.size.height;
   frame.size.height = height;
-  frame.size.width = round((frame.size.width - 2 * self.activeStyle.progressBarHorizontalInsets) * progress);
+  frame.size.width = round((frame.size.width - 2 * self.activeStyle.progressBarHorizontalInsets) * percentage);
   frame.origin.x = self.activeStyle.progressBarHorizontalInsets;
 
   // apply y-position from active style

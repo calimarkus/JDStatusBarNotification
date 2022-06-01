@@ -197,7 +197,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)startTimer;
 {
-  [JDStatusBarNotification showProgress:self.progress];
+  [JDStatusBarNotification showProgressBarWithPercentage:self.progress];
   
   [self.timer invalidate];
   self.timer = nil;
@@ -216,7 +216,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)hideProgress;
 {
-  [JDStatusBarNotification showProgress:0.0];
+  [JDStatusBarNotification showProgressBarWithPercentage:0.0];
 }
 
 @end
