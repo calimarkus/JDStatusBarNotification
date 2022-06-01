@@ -417,27 +417,8 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   }
   
   // update top bar frame
-  CGFloat adjustedHeight = topBarHeightAdjustedForIphoneX(_activeStyle ?: _defaultStyle, rect.size.height, window);
-  _topBar.frame = CGRectMake(0, 0, rect.size.width, adjustedHeight);
-}
-
-static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat height, UIWindow *mainWindow) {
-  if (JDStatusBarRootVCLayoutMarginForWindow(mainWindow).top > 0) {
-    switch (style.heightForIPhoneX) {
-      case JDStatusBarHeightForIPhoneXFullNavBar:
-        return height + navBarHeight(mainWindow.windowScene);
-      case JDStatusBarHeightForIPhoneXHalf:
-        return height + 8.0;
-    }
-  } else {
-    // Starting with iOS 13 we can't be on top of the status bar anymore.
-    // Thus start presenting a larger status bar notification similar to the
-    // iPhone-X style also on no-notch devices (e.g. SE).
-    if (@available(iOS 13, *)) {
-      return height + navBarHeight(mainWindow.windowScene);
-    }
-    return height;
-  }
+  CGFloat heightIncludingNavBar = rect.size.height + navBarHeight(window.windowScene);
+  _topBar.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
 }
 
 @end

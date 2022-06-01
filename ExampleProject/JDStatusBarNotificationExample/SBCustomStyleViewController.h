@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIView *textColorPreview;
 @property (weak, nonatomic) IBOutlet UIView *barColorPreview;
 @property (weak, nonatomic) IBOutlet UIButton *animationStyleButton;
-@property (weak, nonatomic) IBOutlet UIButton *heightForIPhoneXButton;
 @property (weak, nonatomic) IBOutlet UIView *progressBarColorPreview;
 @property (weak, nonatomic) IBOutlet UIButton *barPositionButton;
 @property (weak, nonatomic) IBOutlet UILabel *barHeightLabel;
@@ -28,7 +27,6 @@
 - (IBAction)selectTextColor:(id)sender;
 - (IBAction)selectBarColor:(id)sender;
 - (IBAction)selectAnimationStyle:(id)sender;
-- (IBAction)selectIPhoneXHeight:(id)sender;
 - (IBAction)selectProgressBarColor:(id)sender;
 - (IBAction)selectProgressBarPosition:(id)sender;
 - (IBAction)setProgressBarHeight:(UIStepper *)sender;

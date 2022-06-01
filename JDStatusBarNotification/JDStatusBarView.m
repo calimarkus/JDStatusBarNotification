@@ -13,9 +13,8 @@
 
 @implementation JDStatusBarView {
   JDStatusBarStyle *_style;
-  
+
   CGFloat _textVerticalPositionAdjustment;
-  JDStatusBarHeightForIPhoneX _heightForIPhoneX;
 }
 
 @synthesize textLabel = _textLabel;
@@ -66,7 +65,6 @@
   self.backgroundColor = style.barColor;
   
   _textVerticalPositionAdjustment = style.textVerticalPositionAdjustment;
-  _heightForIPhoneX = style.heightForIPhoneX;
   
   _textLabel.textColor = style.textColor;
   _textLabel.font = style.font;
@@ -90,26 +88,12 @@
   // label
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(self.window).top;
   CGFloat labelAdjustment = topLayoutMargin;
-  if (@available(iOS 13, *)) {
-    if (topLayoutMargin == 0 ) {
-      labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
-    }
+  if (topLayoutMargin == 0 ) {
+    labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
   }
   
   CGFloat labelY = _textVerticalPositionAdjustment + labelAdjustment + 1;
   CGFloat height = self.bounds.size.height - labelAdjustment - 1;
-  
-  // adjust for IPhoneXHalf style
-  if (topLayoutMargin > 0){
-    switch (_heightForIPhoneX) {
-      case JDStatusBarHeightForIPhoneXHalf:
-        labelY -= 12;
-        height += 9.0;
-        break;
-      case JDStatusBarHeightForIPhoneXFullNavBar:
-        break;
-    }
-  }
   
   self.textLabel.frame = CGRectMake(0, labelY, self.bounds.size.width, height);
   
