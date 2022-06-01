@@ -185,7 +185,7 @@
   }
 
   // reset progress & activity
-  self.progress = 0.0;
+  [self showProgressBarWithPercentage:0.0];
   [self showActivityIndicator:NO];
 
   // animate in
@@ -475,7 +475,7 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
       // update window & statusbar
       [self updateContentFrame:newBarFrame];
       // relayout progress bar
-      self.progress = self.progress;
+      [self showProgressBarWithPercentage:_progress];
   }];
 }
 
