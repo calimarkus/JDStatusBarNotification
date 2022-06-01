@@ -7,7 +7,13 @@
 
 // we don't want the keyWindow, since it could be our own window
 - (UIWindow *)mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
-  for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+  NSArray *allWindows;
+  if (ignoringWindow.windowScene != nil) {
+    allWindows = ignoringWindow.windowScene.windows;
+  } else {
+    allWindows = [[UIApplication sharedApplication] windows];
+  }
+  for (UIWindow *window in allWindows) {
     if (!window.hidden && window != ignoringWindow) {
       return window;
     }
