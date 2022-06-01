@@ -1,12 +1,11 @@
 Pod::Spec.new do |s|
   
   s.name         = 'JDStatusBarNotification'
-  s.version      = '1.6.1'
-  s.summary      = 'Easy, customizable notifications displayed on top of the statusbar. With progress and activity. iPhone X ready.'
-
-  s.description  = 'Show messages on top of the status bar. Customizable colors, font and animation. Supports progress display and can show an activity indicator. Supports iOS 6+ and iPhone X.'
-  
+  s.version      = '2.0'
+  s.summary      = 'Easy, customizable notifications displayed below the status bar. Notch and no-notch devices. Customizable colors, fonts, animations. Can show an activity indicicator & a progress bar. iOS 13+'
+  s.description  = 'Easy, customizable notifications displayed below the status bar. Notch and no-notch devices. Customizable colors, fonts, animations. Can show an activity indicicator & a progress bar. iOS 13+'
   s.homepage     = 'https://github.com/calimarkus/JDStatusBarNotification'
+  s.platform     = :ios, '13.0'
   s.license      = { :type => 'MIT' }
   s.author       = { 'Markus Emrich' => 'markus.emrich@gmail.com' }  
   
@@ -15,7 +14,4 @@ Pod::Spec.new do |s|
   s.private_header_files = 'JDStatusBarNotification/Private/*.{h}'
   s.frameworks           = 'QuartzCore'
   
-  s.platform     = :ios, '6.0'
-  s.requires_arc = true
-
 end
