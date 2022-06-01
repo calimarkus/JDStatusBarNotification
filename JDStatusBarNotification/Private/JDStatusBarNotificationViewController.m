@@ -10,8 +10,7 @@
 
 // mainVC determination
 
-- (UIViewController *)mainController
-{
+- (UIViewController *)jdsb_mainController {
   UIWindow *mainAppWindow = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.view.window];
   UIViewController *topController = mainAppWindow.rootViewController;
   
@@ -22,6 +21,11 @@
   if ([topController respondsToSelector:@selector(topViewController)]) {
     topController = [((UINavigationController *)topController) topViewController];
   }
+
+  // ensure we never end up with recursive calls
+  if (topController == self) {
+    return nil;
+  }
   
   return topController;
 }
@@ -29,15 +33,15 @@
 // rotation
 
 - (BOOL)shouldAutorotate {
-  return [[self mainController] shouldAutorotate];
+  return [[self jdsb_mainController] shouldAutorotate];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-  return [[self mainController] supportedInterfaceOrientations];
+  return [[self jdsb_mainController] supportedInterfaceOrientations];
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  return [[self mainController] preferredInterfaceOrientationForPresentation];
+  return [[self jdsb_mainController] preferredInterfaceOrientationForPresentation];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -86,7 +90,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 
 - (UIStatusBarStyle)defaultStatusBarStyle {
   if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self mainController] preferredStatusBarStyle];
+    return [[self jdsb_mainController] preferredStatusBarStyle];
   }
   
   return [super preferredStatusBarStyle];
@@ -94,7 +98,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 
 - (BOOL)prefersStatusBarHidden {
   if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self mainController] prefersStatusBarHidden];
+    return [[self jdsb_mainController] prefersStatusBarHidden];
   }
   return [super prefersStatusBarHidden];
 }
