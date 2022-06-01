@@ -20,7 +20,7 @@
                                       [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
     [self.window makeKeyAndVisible];
   }
-
+  
   return YES;
 }
 

@@ -13,7 +13,7 @@
 
 @implementation JDStatusBarView {
   JDStatusBarStyle *_style;
-
+  
   CGFloat _textVerticalPositionAdjustment;
   JDStatusBarHeightForIPhoneX _heightForIPhoneX;
 }
@@ -56,21 +56,21 @@
 - (void)setStatus:(NSString *)status {
   _textLabel.accessibilityLabel = status;
   _textLabel.text = status;
-
+  
   [self setNeedsLayout];
 }
 
 - (void)setStyle:(JDStatusBarStyle *)style {
   _style = style;
-
+  
   self.backgroundColor = style.barColor;
-
+  
   _textVerticalPositionAdjustment = style.textVerticalPositionAdjustment;
   _heightForIPhoneX = style.heightForIPhoneX;
-
+  
   _textLabel.textColor = style.textColor;
   _textLabel.font = style.font;
-
+  
   if (style.textShadow != nil) {
     _textLabel.shadowColor = style.textShadow.shadowColor;
     _textLabel.shadowOffset = style.textShadow.shadowOffset;
@@ -78,7 +78,7 @@
     _textLabel.shadowColor = nil;
     _textLabel.shadowOffset = CGSizeZero;
   }
-
+  
   [self setNeedsLayout];
 }
 
@@ -86,7 +86,7 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-
+  
   // label
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(self.window).top;
   CGFloat labelAdjustment = topLayoutMargin;
@@ -95,10 +95,10 @@
       labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
     }
   }
-
+  
   CGFloat labelY = _textVerticalPositionAdjustment + labelAdjustment + 1;
   CGFloat height = self.bounds.size.height - labelAdjustment - 1;
-
+  
   // adjust for IPhoneXHalf style
   if (topLayoutMargin > 0){
     switch (_heightForIPhoneX) {
@@ -110,9 +110,9 @@
         break;
     }
   }
-
+  
   self.textLabel.frame = CGRectMake(0, labelY, self.bounds.size.width, height);
-
+  
   // activity indicator
   if (_activityIndicatorView ) {
     NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};

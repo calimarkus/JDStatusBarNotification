@@ -47,9 +47,9 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     cell.textLabel.font = [UIFont systemFontOfSize:14.0];
   }
-
+  
   cell.textLabel.text = self.data[indexPath.row];
-
+  
   if (indexPath.row == self.activeRow) {
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
   } else {

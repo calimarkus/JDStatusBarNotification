@@ -27,22 +27,22 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   self.animationType = JDStatusBarAnimationTypeMove;
   self.heightForIPhoneX = JDStatusBarHeightForIPhoneXFullNavBar;
   self.progressBarPosition = JDStatusBarProgressBarPositionBottom;
-
+  
   self.textColorPreview.backgroundColor = self.fontButton.titleLabel.textColor;
   self.barColorPreview.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.000];
   self.progressBarColorPreview.backgroundColor = [UIColor redColor];
-
+  
   self.textColorPreview.layer.cornerRadius = round(CGRectGetHeight(self.textColorPreview.frame)/3.0);
   self.barColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
   self.progressBarColorPreview.layer.cornerRadius = self.textColorPreview.layer.cornerRadius;
-
+  
   [self updateFontText];
   [self updateStyle];
-
+  
   [self adjustForLayoutMargin];
 }
 
@@ -50,12 +50,12 @@
 {
   // adjust bottom bar to respect layout margins
   CGFloat bottomLayoutMargin = [[UIApplication sharedApplication] windows].firstObject.rootViewController.view.layoutMargins.bottom;
-
+  
   CGRect frame = self.bottomBarView.frame;
   frame.origin.y -= bottomLayoutMargin;
   frame.size.height += bottomLayoutMargin;
   self.bottomBarView.frame = frame;
-
+  
   CGRect scrollViewFrame = self.scrollView.frame;
   scrollViewFrame.size.height -= bottomLayoutMargin;
   self.scrollView.frame = scrollViewFrame;
@@ -63,7 +63,7 @@
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-
+  
   self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
                                            self.lastRow.frame.origin.y + self.lastRow.frame.size.height + 10.0);
 }
@@ -84,14 +84,14 @@
     style.barColor = self.barColorPreview.backgroundColor;
     style.animationType = self.animationType;
     style.heightForIPhoneX = self.heightForIPhoneX;
-
+    
     style.progressBarColor = self.progressBarColorPreview.backgroundColor;
     style.progressBarPosition = self.progressBarPosition;
-
+    
     NSString *height = [self.barHeightLabel.text stringByReplacingOccurrencesOfString:@"ProgressBarHeight (" withString:@""];
     height = [height stringByReplacingOccurrencesOfString:@" pt)" withString:@""];
     style.progressBarHeight = [height doubleValue];
-
+    
     return style;
   }];
 }
@@ -101,37 +101,37 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [textField resignFirstResponder];
-
+  
   if (textField.text.length == 0) {
     textField.text = @"Notification Text";
   }
-
+  
   [self show:nil];
-
+  
   return YES;
 }
 
 #pragma mark - UIFontPickerViewControllerDelegate
 
 - (void)fontPickerViewControllerDidCancel:(UIFontPickerViewController *)viewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)fontPickerViewControllerDidPickFont:(UIFontPickerViewController *)viewController {
-    self.fontButton.titleLabel.font = [UIFont fontWithDescriptor:viewController.selectedFontDescriptor size:self.fontButton.titleLabel.font.pointSize];
-    [self updateFontText];
-    [self updateStyle];
-    [self dismissViewControllerAnimated:YES completion:nil];
+  self.fontButton.titleLabel.font = [UIFont fontWithDescriptor:viewController.selectedFontDescriptor size:self.fontButton.titleLabel.font.pointSize];
+  [self updateFontText];
+  [self updateStyle];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIColorPickerViewController
 
 - (void)showColorPickerWithColor:(UIColor *)color {
-    UIColorPickerViewController *colorController = [[UIColorPickerViewController alloc] init];
-    colorController.delegate = self;
-    colorController.selectedColor = color;
-    colorController.supportsAlpha = NO;
-    [self presentViewController:colorController animated:YES completion:nil];
+  UIColorPickerViewController *colorController = [[UIColorPickerViewController alloc] init];
+  colorController.delegate = self;
+  colorController.selectedColor = color;
+  colorController.supportsAlpha = NO;
+  [self presentViewController:colorController animated:YES completion:nil];
 }
 
 #pragma mark - UIColorPickerViewControllerDelegate
@@ -153,7 +153,7 @@
       break;
     }
   }
-
+  
   [self updateStyle];
 }
 
@@ -164,12 +164,12 @@
 #pragma mark - Actions
 
 - (IBAction)selectFont:(id)sender {
-    UIFontPickerViewControllerConfiguration *config = [UIFontPickerViewControllerConfiguration new];
-    config.includeFaces = YES;
-    UIFontPickerViewController *controller = [[UIFontPickerViewController alloc] initWithConfiguration:config];
-    controller.selectedFontDescriptor = self.fontButton.titleLabel.font.fontDescriptor;
-    controller.delegate = self;
-    [self presentViewController:controller animated:YES completion:nil];
+  UIFontPickerViewControllerConfiguration *config = [UIFontPickerViewControllerConfiguration new];
+  config.includeFaces = YES;
+  UIFontPickerViewController *controller = [[UIFontPickerViewController alloc] initWithConfiguration:config];
+  controller.selectedFontDescriptor = self.fontButton.titleLabel.font.fontDescriptor;
+  controller.delegate = self;
+  [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (IBAction)selectFontSize:(UIStepper *)sender {
@@ -243,7 +243,7 @@
 - (IBAction)setProgressBarHeight:(UIStepper *)sender {
   if (sender.value < 1) sender.value = 0.5;
   if (sender.value >= 1) sender.value = round(sender.value);
-
+  
   self.barHeightLabel.text = [NSString stringWithFormat: @"ProgressBarHeight (%.1f pt)", sender.value];
   [self updateStyle];
 }
@@ -261,7 +261,7 @@
     self.progress = 0.0;
     [self startTimer];
   });
-
+  
   [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:self.textField.text dismissAfterDelay:1.3 styleName:@"style"];
 }
 
@@ -269,7 +269,7 @@
 
 - (void)startTimer {
   [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
-
+  
   [self.timer invalidate];
   self.timer = nil;
   

@@ -31,7 +31,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   self = [super initWithStyle:style];
   if (self) {
     self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleViewControllerTitle"];
-
+    
     [[JDStatusBarNotificationPresenter sharedPresenter] addStyleNamed:SBStyle1 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
       style.barColor = [UIColor colorWithRed:0.797 green:0.000 blue:0.662 alpha:1.000];
       style.textColor = [UIColor whiteColor];
@@ -41,7 +41,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
       style.progressBarHeight = 20.0;
       return style;
     }];
-
+    
     [[JDStatusBarNotificationPresenter sharedPresenter] addStyleNamed:SBStyle2 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
       style.barColor = [UIColor cyanColor];
       style.textColor = [UIColor colorWithRed:0.056 green:0.478 blue:0.998 alpha:1.000];
@@ -57,7 +57,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
       }
       return style;
     }];
-
+    
     self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Don't autohide.", JDNotificationText:@"Better call Saul!"},
                     @{JDButtonName:@"Show Progress for 1s", JDButtonInfo:@"", JDNotificationText:@"Some Progress…"},
                     @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
@@ -77,11 +77,11 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   // presenting a notification, before a keyWindow is set
   [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"👋 Hello World!"
-                                          dismissAfterDelay:2.0
-                                                  styleName:JDStatusBarStyleMatrix];
+                                                   dismissAfterDelay:2.0
+                                                           styleName:JDStatusBarStyleMatrix];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -109,7 +109,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:11.0];
     cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
-
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
       cell.textLabel.backgroundColor = [UIColor clearColor];
       cell.detailTextLabel.backgroundColor = [UIColor clearColor];
@@ -119,26 +119,26 @@ static NSString *const SBStyle2 = @"SBStyle2";
       cell.selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     }
   }
-
+  
   NSDictionary *data = self.data[indexPath.section][indexPath.row];
   cell.textLabel.text = data[JDButtonName];
   cell.detailTextLabel.text = data[JDButtonInfo];
-
+  
   return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
-
+  
   NSDictionary *data = self.data[indexPath.section][indexPath.row];
   NSString *status = data[JDNotificationText];
-
+  
   // reset progress timer
   self.progress = 0.0;
   [self.timer invalidate];
   self.timer = nil;
-
+  
   // show notification
   if (section == 0) {
     if (row == 0) {
@@ -169,7 +169,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
     } else if(row == 4) {
       style = JDStatusBarStyleMatrix;
     }
-
+    
     [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
                                                      dismissAfterDelay:3.0
                                                              styleName:style];
@@ -183,7 +183,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
     viewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     [self.navigationController pushViewController:viewController animated:YES];
   }
-
+  
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -193,7 +193,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   
   [self.timer invalidate];
   self.timer = nil;
-
+  
   if (self.progress < 1.0) {
     CGFloat step = 0.02;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:step target:self

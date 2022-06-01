@@ -48,12 +48,12 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
   style.font = [UIFont systemFontOfSize:12.0];
   style.animationType = JDStatusBarAnimationTypeMove;
   style.heightForIPhoneX = JDStatusBarHeightForIPhoneXFullNavBar;
-
+  
   // JDStatusBarStyleDefault
   if ([styleName isEqualToString:JDStatusBarStyleDefault]) {
     return style;
   }
-
+  
   // JDStatusBarStyleError
   else if ([styleName isEqualToString:JDStatusBarStyleError]) {
     style.barColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
@@ -62,7 +62,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarHeight = 2.0;
     return style;
   }
-
+  
   // JDStatusBarStyleWarning
   else if ([styleName isEqualToString:JDStatusBarStyleWarning]) {
     style.barColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
@@ -70,7 +70,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarColor = style.textColor;
     return style;
   }
-
+  
   // JDStatusBarStyleSuccess
   else if ([styleName isEqualToString:JDStatusBarStyleSuccess]) {
     style.barColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
@@ -79,7 +79,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
     return style;
   }
-
+  
   // JDStatusBarStyleDark
   else if ([styleName isEqualToString:JDStatusBarStyleDark]) {
     style.barColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
@@ -87,7 +87,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
     return style;
   }
-
+  
   // JDStatusBarStyleMatrix
   else if ([styleName isEqualToString:JDStatusBarStyleMatrix]) {
     style.barColor = [UIColor blackColor];
@@ -97,7 +97,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
     style.progressBarHeight = 2.0;
     return style;
   }
-
+  
   return nil;
 }
 
