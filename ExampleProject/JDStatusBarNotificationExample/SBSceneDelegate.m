@@ -4,7 +4,7 @@
 #import "SBSceneDelegate.h"
 
 #import "SBExampleViewController.h"
-#import "JDStatusBarNotification.h"
+#import "JDStatusBarNotificationPresenter.h"
 
 @implementation SBSceneDelegate {
     UIWindow *_window;
@@ -18,7 +18,7 @@
                                           [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
         [_window makeKeyAndVisible];
 
-        [[JDStatusBarNotification sharedPresenter] setWindowScene:windowScene];
+        [[JDStatusBarNotificationPresenter sharedPresenter] setWindowScene:windowScene];
     }
 }
 

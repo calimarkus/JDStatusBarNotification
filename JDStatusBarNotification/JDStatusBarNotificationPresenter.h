@@ -1,5 +1,5 @@
 //
-//  JDStatusBarNotification.h
+//  JDStatusBarNotificationPresenter.h
 //
 //  Based on KGStatusBar by Kevin Gibbon
 //
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  on top of the status bar. To present a notification, use one of the
  *  given class methods.
  */
-@interface JDStatusBarNotification : NSObject
+@interface JDStatusBarNotificationPresenter : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

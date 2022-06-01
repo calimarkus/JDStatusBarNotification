@@ -1,5 +1,5 @@
 //
-//  JDStatusBarNotification.m
+//  JDStatusBarNotificationPresenter.m
 //
 //  Based on KGStatusBar by Kevin Gibbon
 //
@@ -9,7 +9,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "JDStatusBarNotification.h"
+#import "JDStatusBarNotificationPresenter.h"
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarView.h"
@@ -22,7 +22,7 @@
 + (JDStatusBarStyle *)defaultStyleWithName:(NSString *)styleName;
 @end
 
-@interface JDStatusBarNotification () <CAAnimationDelegate>
+@interface JDStatusBarNotificationPresenter () <CAAnimationDelegate>
 
 @property (nonatomic, strong, readonly) UIWindowScene *windowScene;
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation JDStatusBarNotification
+@implementation JDStatusBarNotificationPresenter
 
 @synthesize windowScene = _windowScene;
 @synthesize overlayWindow = _overlayWindow;
@@ -49,7 +49,7 @@
 
 + (instancetype)sharedPresenter {
   static dispatch_once_t once;
-  static JDStatusBarNotification *sharedInstance;
+  static JDStatusBarNotificationPresenter *sharedInstance;
   dispatch_once(&once, ^ {
     sharedInstance = [[self alloc] init];
   });

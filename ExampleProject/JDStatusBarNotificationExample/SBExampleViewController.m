@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import "JDStatusBarNotification.h"
+#import "JDStatusBarNotificationPresenter.h"
 #import "SBCustomStyleViewController.h"
 
 #import "SBExampleViewController.h"
@@ -32,7 +32,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   if (self) {
     self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleViewControllerTitle"];
 
-    [[JDStatusBarNotification sharedPresenter] addStyleNamed:SBStyle1 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+    [[JDStatusBarNotificationPresenter sharedPresenter] addStyleNamed:SBStyle1 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
       style.barColor = [UIColor colorWithRed:0.797 green:0.000 blue:0.662 alpha:1.000];
       style.textColor = [UIColor whiteColor];
       style.animationType = JDStatusBarAnimationTypeFade;
@@ -42,7 +42,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
       return style;
     }];
 
-    [[JDStatusBarNotification sharedPresenter] addStyleNamed:SBStyle2 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+    [[JDStatusBarNotificationPresenter sharedPresenter] addStyleNamed:SBStyle2 prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
       style.barColor = [UIColor cyanColor];
       style.textColor = [UIColor colorWithRed:0.056 green:0.478 blue:0.998 alpha:1.000];
       style.animationType = JDStatusBarAnimationTypeBounce;
@@ -80,7 +80,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
-  [[JDStatusBarNotification sharedPresenter] showWithStatus:@"👋 Hello World!"
+  [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"👋 Hello World!"
                                           dismissAfterDelay:2.0
                                                   styleName:JDStatusBarStyleMatrix];
 }
@@ -147,21 +147,21 @@ static NSString *const SBStyle2 = @"SBStyle2";
   // show notification
   if (section == 0) {
     if (row == 0) {
-      [[JDStatusBarNotification sharedPresenter] showWithStatus:status];
+      [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status];
     } else if (row == 1) {
-      if(![[JDStatusBarNotification sharedPresenter] isVisible]) {
-        [[JDStatusBarNotification sharedPresenter] showWithStatus:status dismissAfterDelay:1.4];
+      if(![[JDStatusBarNotificationPresenter sharedPresenter] isVisible]) {
+        [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status dismissAfterDelay:1.4];
       }
       [self startTimer];
     } else if (row == 2) {
-      if(![[JDStatusBarNotification sharedPresenter] isVisible]) {
-        [[JDStatusBarNotification sharedPresenter] showWithStatus:status dismissAfterDelay:3.0];
+      if(![[JDStatusBarNotificationPresenter sharedPresenter] isVisible]) {
+        [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status dismissAfterDelay:3.0];
       }
-      [[JDStatusBarNotification sharedPresenter] showActivityIndicator:YES];
+      [[JDStatusBarNotificationPresenter sharedPresenter] showActivityIndicator:YES];
     } else if (row == 3) {
-      [[JDStatusBarNotification sharedPresenter] updateStatus:@"Replaced Text.."];
+      [[JDStatusBarNotificationPresenter sharedPresenter] updateStatus:@"Replaced Text.."];
     } else if (row == 4) {
-      [[JDStatusBarNotification sharedPresenter] dismiss];
+      [[JDStatusBarNotificationPresenter sharedPresenter] dismiss];
     }
   } else if (section == 1) {
     NSString *style = JDStatusBarStyleError;
@@ -175,12 +175,12 @@ static NSString *const SBStyle2 = @"SBStyle2";
       style = JDStatusBarStyleMatrix;
     }
 
-    [[JDStatusBarNotification sharedPresenter] showWithStatus:status
+    [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
                                                      dismissAfterDelay:3.0
                                                              styleName:style];
   } else if (section == 2) {
     NSString *style = (row==0) ? SBStyle1 : SBStyle2;
-    [[JDStatusBarNotification sharedPresenter] showWithStatus:status
+    [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
                                                      dismissAfterDelay:3.0
                                                              styleName:style];
   } else if (section == 3) {
@@ -195,7 +195,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)startTimer;
 {
-  [[JDStatusBarNotification sharedPresenter] showProgressBarWithPercentage:self.progress];
+  [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
   
   [self.timer invalidate];
   self.timer = nil;
@@ -214,7 +214,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (void)hideProgress;
 {
-  [[JDStatusBarNotification sharedPresenter] showProgressBarWithPercentage:0.0];
+  [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.0];
 }
 
 @end

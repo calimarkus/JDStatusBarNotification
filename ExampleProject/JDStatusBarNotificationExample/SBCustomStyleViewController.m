@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "JDStatusBarLayoutMarginHelper.h"
-#import "JDStatusBarNotification.h"
+#import "JDStatusBarNotificationPresenter.h"
 #import "SBSelectPropertyViewController.h"
 
 #import "SBCustomStyleViewController.h"
@@ -82,7 +82,7 @@
 
 - (void)updateStyle;
 {
-  [[JDStatusBarNotification sharedPresenter] addStyleNamed:@"style" prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+  [[JDStatusBarNotificationPresenter sharedPresenter] addStyleNamed:@"style" prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
     style.font = self.fontButton.titleLabel.font;
     style.textColor = self.textColorPreview.backgroundColor;
     style.barColor = self.barColorPreview.backgroundColor;
@@ -264,26 +264,26 @@
 
 - (IBAction)show:(id)sender;
 {
-  [[JDStatusBarNotification sharedPresenter] showWithStatus:self.textField.text dismissAfterDelay:2.0 styleName:@"style"];
+  [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:self.textField.text dismissAfterDelay:2.0 styleName:@"style"];
 }
 
 - (IBAction)showWithProgress:(id)sender;
 {
-  double delayInSeconds = [[JDStatusBarNotification sharedPresenter] isVisible] ? 0.0 : 0.25;
+  double delayInSeconds = [[JDStatusBarNotificationPresenter sharedPresenter] isVisible] ? 0.0 : 0.25;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     self.progress = 0.0;
     [self startTimer];
   });
 
-  [[JDStatusBarNotification sharedPresenter] showWithStatus:self.textField.text dismissAfterDelay:1.3 styleName:@"style"];
+  [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:self.textField.text dismissAfterDelay:1.3 styleName:@"style"];
 }
 
 #pragma mark - Progress Timer
 
 - (void)startTimer;
 {
-  [[JDStatusBarNotification sharedPresenter] showProgressBarWithPercentage:self.progress];
+  [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
 
   [self.timer invalidate];
   self.timer = nil;
@@ -302,7 +302,7 @@
 
 - (void)hideProgress;
 {
-  [[JDStatusBarNotification sharedPresenter] showProgressBarWithPercentage:0.0];
+  [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.0];
 }
 
 @end
