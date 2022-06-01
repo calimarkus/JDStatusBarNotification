@@ -17,8 +17,7 @@
 
 #pragma mark - dynamic getter
 
-- (UILabel *)textLabel;
-{
+- (UILabel *)textLabel {
   if (_textLabel == nil) {
     _textLabel = [[UILabel alloc] init];
     _textLabel.backgroundColor = [UIColor clearColor];
@@ -31,8 +30,7 @@
   return _textLabel;
 }
 
-- (UIActivityIndicatorView *)activityIndicatorView;
-{
+- (UIActivityIndicatorView *)activityIndicatorView {
   if (_activityIndicatorView == nil) {
     _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
@@ -43,16 +41,14 @@
 
 #pragma mark - setter
 
-- (void)setTextVerticalPositionAdjustment:(CGFloat)textVerticalPositionAdjustment;
-{
+- (void)setTextVerticalPositionAdjustment:(CGFloat)textVerticalPositionAdjustment {
   _textVerticalPositionAdjustment = textVerticalPositionAdjustment;
   [self setNeedsLayout];
 }
 
 #pragma mark - layout
 
-- (void)layoutSubviews;
-{
+- (void)layoutSubviews {
   [super layoutSubviews];
 
   // label

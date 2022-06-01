@@ -25,8 +25,7 @@
 
 @implementation SBCustomStyleViewController
 
-- (void)viewDidLoad;
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
 
   self.animationType = JDStatusBarAnimationTypeMove;
@@ -62,8 +61,7 @@
   self.scrollView.frame = scrollViewFrame;
 }
 
-- (void)viewDidLayoutSubviews;
-{
+- (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
 
   self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
@@ -72,16 +70,14 @@
 
 #pragma mark - UI Updates
 
-- (void)updateFontText;
-{
+- (void)updateFontText {
   NSString *title = [NSString stringWithFormat: @"Change font (%.1f pt)",
                      self.fontButton.titleLabel.font.pointSize];
   [self.fontButton setTitle:title forState:UIControlStateNormal];
   self.textColorPreview.backgroundColor = self.fontButton.titleLabel.textColor;
 }
 
-- (void)updateStyle;
-{
+- (void)updateStyle {
   [[JDStatusBarNotificationPresenter sharedPresenter] addStyleNamed:@"style" prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
     style.font = self.fontButton.titleLabel.font;
     style.textColor = self.textColorPreview.backgroundColor;
@@ -176,27 +172,23 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (IBAction)selectFontSize:(UIStepper *)sender;
-{
+- (IBAction)selectFontSize:(UIStepper *)sender {
   self.fontButton.titleLabel.font = [UIFont fontWithName:self.fontButton.titleLabel.font.fontName size:sender.value];
   [self updateFontText];
   [self updateStyle];
 }
 
-- (IBAction)selectTextColor:(id)sender;
-{
+- (IBAction)selectTextColor:(id)sender {
   self.colorMode = 0;
   [self showColorPickerWithColor:self.textColorPreview.backgroundColor];
 }
 
-- (IBAction)selectBarColor:(id)sender;
-{
+- (IBAction)selectBarColor:(id)sender {
   self.colorMode = 1;
   [self showColorPickerWithColor:self.barColorPreview.backgroundColor];
 }
 
-- (IBAction)selectAnimationStyle:(id)sender;
-{
+- (IBAction)selectAnimationStyle:(id)sender {
   NSArray *data = @[@"JDStatusBarAnimationTypeNone",
                     @"JDStatusBarAnimationTypeMove",
                     @"JDStatusBarAnimationTypeBounce",
@@ -212,8 +204,7 @@
   [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)selectIPhoneXHeight:(id)sender;
-{
+- (IBAction)selectIPhoneXHeight:(id)sender {
   NSArray *data = @[@"JDStatusBarHeightForIPhoneXHalf",
                     @"JDStatusBarHeightForIPhoneXFullNavBar"];
   SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
@@ -227,14 +218,12 @@
   [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)selectProgressBarColor:(id)sender;
-{
+- (IBAction)selectProgressBarColor:(id)sender {
   self.colorMode = 2;
   [self showColorPickerWithColor:self.progressBarColorPreview.backgroundColor];
 }
 
-- (IBAction)selectProgressBarPosition:(id)sender;
-{
+- (IBAction)selectProgressBarPosition:(id)sender {
   NSArray *data = @[@"JDStatusBarProgressBarPositionBottom",
                     @"JDStatusBarProgressBarPositionCenter",
                     @"JDStatusBarProgressBarPositionTop",
@@ -251,8 +240,7 @@
   [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)setProgressBarHeight:(UIStepper *)sender;
-{
+- (IBAction)setProgressBarHeight:(UIStepper *)sender {
   if (sender.value < 1) sender.value = 0.5;
   if (sender.value >= 1) sender.value = round(sender.value);
 
@@ -262,13 +250,11 @@
 
 #pragma mark - Presentation
 
-- (IBAction)show:(id)sender;
-{
+- (IBAction)show:(id)sender {
   [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:self.textField.text dismissAfterDelay:2.0 styleName:@"style"];
 }
 
-- (IBAction)showWithProgress:(id)sender;
-{
+- (IBAction)showWithProgress:(id)sender {
   double delayInSeconds = [[JDStatusBarNotificationPresenter sharedPresenter] isVisible] ? 0.0 : 0.25;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -281,8 +267,7 @@
 
 #pragma mark - Progress Timer
 
-- (void)startTimer;
-{
+- (void)startTimer {
   [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
 
   [self.timer invalidate];
@@ -300,8 +285,7 @@
   }
 }
 
-- (void)hideProgress;
-{
+- (void)hideProgress {
   [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.0];
 }
 

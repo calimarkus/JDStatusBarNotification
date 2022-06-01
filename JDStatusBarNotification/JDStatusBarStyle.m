@@ -16,8 +16,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
 
 @implementation JDStatusBarStyle
 
-- (instancetype)copyWithZone:(NSZone *)zone;
-{
+- (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.barColor = self.barColor;
   style.textColor = self.textColor;
@@ -32,15 +31,13 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
   return style;
 }
 
-+ (NSArray *)allDefaultStyleIdentifier;
-{
++ (NSArray *)allDefaultStyleIdentifier {
   return @[JDStatusBarStyleError, JDStatusBarStyleWarning,
            JDStatusBarStyleSuccess, JDStatusBarStyleMatrix,
            JDStatusBarStyleDark];
 }
 
-+ (JDStatusBarStyle *)defaultStyleWithName:(NSString *)styleName;
-{
++ (JDStatusBarStyle *)defaultStyleWithName:(NSString *)styleName {
   // setup default style
   JDStatusBarStyle *style = [[JDStatusBarStyle alloc] init];
   style.barColor = [UIColor whiteColor];

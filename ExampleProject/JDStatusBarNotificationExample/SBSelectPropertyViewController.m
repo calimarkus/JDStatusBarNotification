@@ -16,8 +16,7 @@
 @implementation SBSelectPropertyViewController
 
 - (id)initWithData:(NSArray *)data
-       resultBlock:(SBSelectPropertyResultBlock)resultBlock;
-{
+       resultBlock:(SBSelectPropertyResultBlock)resultBlock {
   self = [super initWithStyle:UITableViewStylePlain];
   if (self) {
     self.data = data;
@@ -60,8 +59,7 @@
   return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   if (self.resultBlock) {
     self.resultBlock(indexPath.row);
   }

@@ -75,8 +75,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   return self;
 }
 
-- (void)viewDidLoad;
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
@@ -92,18 +91,15 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return self.data.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return [self.data[section] count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   // create / dequeue cell
   static NSString* identifier = @"identifier";
   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -131,8 +127,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger section = indexPath.section;
   NSInteger row = indexPath.row;
 
@@ -193,8 +188,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
 }
 
 
-- (void)startTimer;
-{
+- (void)startTimer {
   [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
   
   [self.timer invalidate];
@@ -212,8 +206,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   }
 }
 
-- (void)hideProgress;
-{
+- (void)hideProgress {
   [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.0];
 }
 

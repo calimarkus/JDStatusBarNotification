@@ -85,8 +85,7 @@
 
 #pragma mark - Custom styles
 
-- (void)setupDefaultStyles;
-{
+- (void)setupDefaultStyles {
   self.defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleDefault];
 
   self.userStyles = [NSMutableDictionary dictionary];
@@ -101,8 +100,7 @@
 }
 
 - (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock;
-{
+                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
   NSAssert(identifier != nil, @"No identifier provided");
   NSAssert(prepareBlock != nil, @"No prepareBlock provided");
 
@@ -129,8 +127,7 @@
 
 - (JDStatusBarView *)showWithStatus:(NSString *)status
                   dismissAfterDelay:(NSTimeInterval)timeInterval
-                          styleName:(NSString * _Nullable)styleName;
-{
+                          styleName:(NSString * _Nullable)styleName {
   JDStatusBarStyle *style = nil;
   if (styleName != nil) {
     style = self.userStyles[styleName];
@@ -145,8 +142,7 @@
 }
 
 - (JDStatusBarView *)showWithStatus:(NSString *)status
-                              style:(JDStatusBarStyle *)style;
-{
+                              style:(JDStatusBarStyle *)style {
   // prepare for new style
   if (style != self.activeStyle) {
     self.activeStyle = style;
@@ -208,21 +204,18 @@
 
 #pragma mark - Dismissal
 
-- (void)dismissAfterDelay:(NSTimeInterval)interval;
-{
+- (void)dismissAfterDelay:(NSTimeInterval)interval {
   [self.dismissTimer invalidate];
   self.dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
                                                interval:0 target:self selector:@selector(dismiss:) userInfo:nil repeats:NO];
   [[NSRunLoop currentRunLoop] addTimer:self.dismissTimer forMode:NSRunLoopCommonModes];
 }
 
-- (void)dismiss:(NSTimer *)timer;
-{
+- (void)dismiss:(NSTimer *)timer {
   [self dismissAnimated:YES];
 }
 
-- (void)dismissAnimated:(BOOL)animated;
-{
+- (void)dismissAnimated:(BOOL)animated {
   [self.dismissTimer invalidate];
   self.dismissTimer = nil;
 
@@ -258,8 +251,7 @@
 
 #pragma mark - Bounce Animation
 
-- (void)animateInWithBounceAnimation;
-{
+- (void)animateInWithBounceAnimation {
   //don't animate in, if topBar is already fully visible
   if (self.topBar.frame.origin.y >= 0) {
     return;
@@ -294,16 +286,14 @@
   [self.topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
-{
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
   self.topBar.transform = CGAffineTransformIdentity;
   [self.topBar.layer removeAllAnimations];
 }
 
 #pragma mark - Modifications
 
-- (void)updateStatus:(NSString *)status;
-{
+- (void)updateStatus:(NSString *)status {
   if (_topBar == nil) return;
 
   UILabel *textLabel = self.topBar.textLabel;
@@ -313,8 +303,7 @@
   [self.topBar setNeedsLayout];
 }
 
-- (void)showProgressBarWithPercentage:(CGFloat)percentage;
-{
+- (void)showProgressBarWithPercentage:(CGFloat)percentage {
   if (_topBar == nil) return;
 
   // trim progress
@@ -391,15 +380,13 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
 
 #pragma mark - State
 
-- (BOOL)isVisible;
-{
+- (BOOL)isVisible {
   return (_topBar != nil);
 }
 
 #pragma mark - Lazy views
 
-- (UIWindow *)overlayWindow;
-{
+- (UIWindow *)overlayWindow {
   if(_overlayWindow == nil) {
       if (_windowScene != nil) {
         _overlayWindow = [[UIWindow alloc] initWithWindowScene:_windowScene];
@@ -417,8 +404,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   return _overlayWindow;
 }
 
-- (JDStatusBarView *)topBar;
-{
+- (JDStatusBarView *)topBar {
   if(_topBar == nil) {
     _topBar = [[JDStatusBarView alloc] init];
     [self.overlayWindow.rootViewController.view addSubview:_topBar];
@@ -434,8 +420,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   return _topBar;
 }
 
-- (UIView *)progressView;
-{
+- (UIView *)progressView {
   if (_progressView == nil) {
     _progressView = [[UIView alloc] initWithFrame:CGRectZero];
   }
