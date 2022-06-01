@@ -6,28 +6,39 @@
 //
 
 #import "JDStatusBarView.h"
+
+#import "JDStatusBarStyle.h"
 #import "JDStatusBarLayoutMarginHelper.h"
 
-@interface JDStatusBarView ()
-@property (nonatomic, strong) UILabel *textLabel;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
-@end
+@implementation JDStatusBarView {
+  JDStatusBarStyle *_style;
 
-@implementation JDStatusBarView
+  CGFloat _textVerticalPositionAdjustment;
+  JDStatusBarHeightForIPhoneX _heightForIPhoneX;
+}
+
+@synthesize textLabel = _textLabel;
+@synthesize activityIndicatorView = _activityIndicatorView;
+
+- (instancetype)initWithStyle:(JDStatusBarStyle *)style {
+  self = [super init];
+  if (self) {
+    [self setupTextLabel];
+    [self setStyle:style];
+  }
+  return self;
+}
 
 #pragma mark - dynamic getter
 
-- (UILabel *)textLabel {
-  if (_textLabel == nil) {
-    _textLabel = [[UILabel alloc] init];
-    _textLabel.backgroundColor = [UIColor clearColor];
-    _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    _textLabel.textAlignment = NSTextAlignmentCenter;
-    _textLabel.adjustsFontSizeToFitWidth = YES;
-    _textLabel.clipsToBounds = YES;
-    [self addSubview:_textLabel];
-  }
-  return _textLabel;
+- (void)setupTextLabel {
+  _textLabel = [[UILabel alloc] init];
+  _textLabel.backgroundColor = [UIColor clearColor];
+  _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+  _textLabel.textAlignment = NSTextAlignmentCenter;
+  _textLabel.adjustsFontSizeToFitWidth = YES;
+  _textLabel.clipsToBounds = YES;
+  [self addSubview:_textLabel];
 }
 
 - (UIActivityIndicatorView *)activityIndicatorView {
@@ -41,8 +52,32 @@
 
 #pragma mark - setter
 
-- (void)setTextVerticalPositionAdjustment:(CGFloat)textVerticalPositionAdjustment {
-  _textVerticalPositionAdjustment = textVerticalPositionAdjustment;
+- (void)setStatus:(NSString *)status {
+  _textLabel.accessibilityLabel = status;
+  _textLabel.text = status;
+
+  [self setNeedsLayout];
+}
+
+- (void)setStyle:(JDStatusBarStyle *)style {
+  _style = style;
+
+  self.backgroundColor = style.barColor;
+
+  _textVerticalPositionAdjustment = style.textVerticalPositionAdjustment;
+  _heightForIPhoneX = style.heightForIPhoneX;
+
+  _textLabel.textColor = style.textColor;
+  _textLabel.font = style.font;
+
+  if (style.textShadow != nil) {
+    _textLabel.shadowColor = style.textShadow.shadowColor;
+    _textLabel.shadowOffset = style.textShadow.shadowOffset;
+  } else {
+    _textLabel.shadowColor = nil;
+    _textLabel.shadowOffset = CGSizeZero;
+  }
+
   [self setNeedsLayout];
 }
 
@@ -60,7 +95,7 @@
     }
   }
 
-  CGFloat labelY = self.textVerticalPositionAdjustment + labelAdjustment + 1;
+  CGFloat labelY = _textVerticalPositionAdjustment + labelAdjustment + 1;
   CGFloat height = self.bounds.size.height - labelAdjustment - 1;
 
   // adjust for IPhoneXHalf style

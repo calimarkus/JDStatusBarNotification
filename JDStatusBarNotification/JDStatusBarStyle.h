@@ -61,16 +61,16 @@ typedef NS_ENUM(NSInteger, JDStatusBarHeightForIPhoneX) {
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
 /// The background color of the notification bar
-@property (nonatomic, strong) UIColor *barColor;
+@property (nonatomic, strong) UIColor * _Nullable barColor;
 
 /// The text color of the notification label
-@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor * _Nullable textColor;
 
 /// The text shadow of the notification label
-@property (nonatomic, strong) NSShadow *textShadow;
+@property (nonatomic, strong) NSShadow * _Nullable textShadow;
 
 /// The font of the notification label
-@property (nonatomic, strong) UIFont *font;
+@property (nonatomic, strong) UIFont * _Nullable font;
 
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarHeightForIPhoneX) {
 #pragma mark - Progress Bar
 
 /// The background color of the progress bar (on top of the notification bar)
-@property (nonatomic, strong) UIColor *progressBarColor;
+@property (nonatomic, strong) UIColor * _Nullable progressBarColor;
 
 /// The height of the progress bar. Default is 1.0
 @property (nonatomic, assign) CGFloat progressBarHeight;

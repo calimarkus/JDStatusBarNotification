@@ -6,15 +6,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JDStatusBarStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class JDStatusBarStyle;
+
 @interface JDStatusBarView : UIView
+
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
-@property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
-@property (nonatomic, assign) JDStatusBarHeightForIPhoneX heightForIPhoneX;
+
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+
+- (instancetype)initWithStyle:(JDStatusBarStyle *)style;
+
+- (void)setStatus:(NSString *)status;
+- (void)setStyle:(JDStatusBarStyle *)style;
+
 @end
 
 NS_ASSUME_NONNULL_END

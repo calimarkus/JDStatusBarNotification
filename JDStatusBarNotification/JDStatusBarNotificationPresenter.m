@@ -167,22 +167,9 @@
   // create & show window
   [self.overlayWindow setHidden:NO];
 
-  // update style
-  self.topBar.backgroundColor = style.barColor;
-  self.topBar.textVerticalPositionAdjustment = style.textVerticalPositionAdjustment;
-  UILabel *textLabel = self.topBar.textLabel;
-  textLabel.textColor = style.textColor;
-  textLabel.font = style.font;
-  textLabel.accessibilityLabel = status;
-  textLabel.text = status;
-
-  if (style.textShadow) {
-    textLabel.shadowColor = style.textShadow.shadowColor;
-    textLabel.shadowOffset = style.textShadow.shadowOffset;
-  } else {
-    textLabel.shadowColor = nil;
-    textLabel.shadowOffset = CGSizeZero;
-  }
+  // update status & style
+  [self.topBar setStatus:status];
+  [self.topBar setStyle:style];
 
   // reset progress & activity
   [self showProgressBarWithPercentage:0.0];
@@ -294,13 +281,7 @@
 #pragma mark - Modifications
 
 - (void)updateStatus:(NSString *)status {
-  if (_topBar == nil) return;
-
-  UILabel *textLabel = self.topBar.textLabel;
-  textLabel.accessibilityLabel = status;
-  textLabel.text = status;
-
-  [self.topBar setNeedsLayout];
+  [_topBar setStatus:status];
 }
 
 - (void)showProgressBarWithPercentage:(CGFloat)percentage {
@@ -399,6 +380,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     _overlayWindow.windowLevel = UIWindowLevelStatusBar;
     _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
+
     [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
   }
   return _overlayWindow;
@@ -406,11 +388,11 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
 
 - (JDStatusBarView *)topBar {
   if(_topBar == nil) {
-    _topBar = [[JDStatusBarView alloc] init];
+    JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
+    _topBar = [[JDStatusBarView alloc] initWithStyle:style];
+
     [self.overlayWindow.rootViewController.view addSubview:_topBar];
 
-    JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
-    _topBar.heightForIPhoneX = style.heightForIPhoneX;
     if (style.animationType != JDStatusBarAnimationTypeFade) {
       _topBar.transform = CGAffineTransformMakeTranslation(0, -_topBar.frame.size.height);
     } else {
