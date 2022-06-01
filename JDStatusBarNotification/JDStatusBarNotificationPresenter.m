@@ -13,6 +13,7 @@
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarView.h"
+#import "JDStatusBarWindow.h"
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarManagerHelper.h"
 #import "UIApplication+MainWindow.h"
@@ -392,15 +393,18 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     _statusBarViewController = [[JDStatusBarNotificationViewController alloc] init];
     _statusBarViewController.delegate = self;
     _statusBarViewController.statusBarSystemStyle = style.systemStatusBarStyle;
-    
+
+    JDStatusBarWindow *statusBarWindow;
     if (_windowScene != nil) {
-      _overlayWindow = [[UIWindow alloc] initWithWindowScene:_windowScene];
+      statusBarWindow = [[JDStatusBarWindow alloc] initWithWindowScene:_windowScene];
     } else {
-      _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+      statusBarWindow = [[JDStatusBarWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
+    _overlayWindow = statusBarWindow;
+
     _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _overlayWindow.backgroundColor = [UIColor clearColor];
-    _overlayWindow.userInteractionEnabled = NO;
+    _overlayWindow.userInteractionEnabled = YES;
     _overlayWindow.windowLevel = UIWindowLevelStatusBar;
     _overlayWindow.rootViewController = _statusBarViewController;
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
@@ -411,6 +415,8 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     } else {
       _topBar.alpha = 0.0;
     }
+
+    statusBarWindow.topBar = _topBar;
     [_overlayWindow.rootViewController.view addSubview:_topBar];
     
     [self updateContentFrame:JDStatusBarFrameForWindowScene(_windowScene)];

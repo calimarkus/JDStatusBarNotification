@@ -14,6 +14,8 @@
 		7EBE34152844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340E2844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m */; };
 		7EBE34162844CA2D0096CD55 /* JDStatusBarNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */; };
 		7EBE34172844CA2D0096CD55 /* JDStatusBarNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */; };
+		7ED140922847557600593D6F /* JDStatusBarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDStatusBarWindow.m */; };
+		7ED140932847557600593D6F /* JDStatusBarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDStatusBarWindow.m */; };
 		7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
 		7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
 		7EFD778D2843461D000BFBF1 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
@@ -57,6 +59,8 @@
 		7EBE34102844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarLayoutMarginHelper.h; sourceTree = "<group>"; };
 		7EBE34112844CA2D0096CD55 /* UIApplication+MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+MainWindow.h"; sourceTree = "<group>"; };
 		7EBE341C2844CFA90096CD55 /* JDStatusBarPrepareStyleBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarPrepareStyleBlock.h; sourceTree = "<group>"; };
+		7ED140902847557600593D6F /* JDStatusBarWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarWindow.h; sourceTree = "<group>"; };
+		7ED140912847557600593D6F /* JDStatusBarWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarWindow.m; sourceTree = "<group>"; };
 		7EE516D428470CC300685DDF /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarManagerHelper.m; sourceTree = "<group>"; };
 		7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarManagerHelper.h; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */,
 				7EBE34112844CA2D0096CD55 /* UIApplication+MainWindow.h */,
 				7EBE340D2844CA2D0096CD55 /* UIApplication+MainWindow.m */,
+				7ED140902847557600593D6F /* JDStatusBarWindow.h */,
+				7ED140912847557600593D6F /* JDStatusBarWindow.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */,
+				7ED140932847557600593D6F /* JDStatusBarWindow.m in Sources */,
 				7EFD77A628434906000BFBF1 /* SBSceneDelegate.m in Sources */,
 				7EFD778D2843461D000BFBF1 /* JDStatusBarView.m in Sources */,
 				7EFD778F2843461D000BFBF1 /* JDStatusBarNotificationPresenter.m in Sources */,
@@ -330,6 +337,7 @@
 				D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */,
 				7EBE34142844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */,
+				7ED140922847557600593D6F /* JDStatusBarWindow.m in Sources */,
 				D228A0CA182DA75A006B7ABB /* SBSelectPropertyViewController.m in Sources */,
 				D294B57B182D03E90042B5B4 /* SBCustomStyleViewController.m in Sources */,
 				7EBE34122844CA2D0096CD55 /* UIApplication+MainWindow.m in Sources */,

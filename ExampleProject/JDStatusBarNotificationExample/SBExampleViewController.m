@@ -69,7 +69,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
                     @{JDButtonName:@"Show JDStatusBarStyleDark", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"Don't mess with me!"},
                     @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"Wake up Neo…"}],
                   @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
-                    @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"}],
+                    @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"},
+                    @{JDButtonName:@"Show notification with button", JDButtonInfo:@"Manually customized view", JDNotificationText:@""}],
                   @[@{JDButtonName:@"Create your own style", JDButtonInfo:@"Test all possibilities", JDNotificationText:@""}]];
   }
   return self;
@@ -180,10 +181,24 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                                      dismissAfterDelay:3.0
                                                              styleName:style];
   } else if (section == 2) {
-    NSString *style = (row==0) ? SBStyle1 : SBStyle2;
-    [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
-                                                     dismissAfterDelay:3.0
-                                                             styleName:style];
+    if (row == 2) {
+      JDStatusBarView *view = [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status];
+      [view.textLabel removeFromSuperview];
+      UIAction *action = [UIAction actionWithHandler:^(__kindof UIAction * _Nonnull action) {
+        [[JDStatusBarNotificationPresenter sharedPresenter] dismissAnimated:YES];
+      }];
+      UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem primaryAction:action];
+      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+      [button setTitle:@"dismiss" forState:UIControlStateNormal];
+      [view addSubview:button];
+      [button sizeToFit];
+      button.center = view.center;
+    } else {
+      NSString *style = (row==0) ? SBStyle1 : SBStyle2;
+      [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
+                                                       dismissAfterDelay:3.0
+                                                               styleName:style];
+    }
   } else if (section == 3) {
     SBCustomStyleViewController* viewController = [[SBCustomStyleViewController alloc] init];
     viewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
