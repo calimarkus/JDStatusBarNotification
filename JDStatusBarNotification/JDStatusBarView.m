@@ -16,7 +16,7 @@
 
 @implementation JDStatusBarView
 
-#pragma mark dynamic getter
+#pragma mark - dynamic getter
 
 - (UILabel *)textLabel;
 {
@@ -42,7 +42,7 @@
   return _activityIndicatorView;
 }
 
-#pragma mark setter
+#pragma mark - setter
 
 - (void)setTextVerticalPositionAdjustment:(CGFloat)textVerticalPositionAdjustment;
 {
@@ -50,7 +50,7 @@
   [self setNeedsLayout];
 }
 
-#pragma mark layout
+#pragma mark - layout
 
 - (void)layoutSubviews;
 {

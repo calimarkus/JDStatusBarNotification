@@ -70,7 +70,7 @@
                                            self.lastRow.frame.origin.y + self.lastRow.frame.size.height + 10.0);
 }
 
-#pragma mark UI Updates
+#pragma mark - UI Updates
 
 - (void)updateFontText;
 {
@@ -100,7 +100,7 @@
   }];
 }
 
-#pragma mark UITextFieldDelegate
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -115,7 +115,7 @@
   return YES;
 }
 
-#pragma mark UIFontPickerViewControllerDelegate
+#pragma mark - UIFontPickerViewControllerDelegate
 
 - (void)fontPickerViewControllerDidCancel:(UIFontPickerViewController *)viewController {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -128,7 +128,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark UIColorPickerViewController
+#pragma mark - UIColorPickerViewController
 
 - (void)showColorPickerWithColor:(UIColor*)color {
     UIColorPickerViewController *colorController = [[UIColorPickerViewController alloc] init];
@@ -138,7 +138,7 @@
     [self presentViewController:colorController animated:YES completion:nil];
 }
 
-#pragma mark UIColorPickerViewControllerDelegate
+#pragma mark - UIColorPickerViewControllerDelegate
 
 - (void)colorPickerViewControllerDidSelectColor:(UIColorPickerViewController *)viewController {
   switch (self.colorMode) {
@@ -165,7 +165,7 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark Actions
+#pragma mark - Actions
 
 - (IBAction)selectFont:(id)sender {
     UIFontPickerViewControllerConfiguration *config = [UIFontPickerViewControllerConfiguration new];
@@ -260,7 +260,7 @@
   [self updateStyle];
 }
 
-#pragma mark Presentation
+#pragma mark - Presentation
 
 - (IBAction)show:(id)sender;
 {
@@ -279,7 +279,7 @@
   [JDStatusBarNotification showWithStatus:self.textField.text dismissAfter:1.3 styleName:@"style"];
 }
 
-#pragma mark Progress Timer
+#pragma mark - Progress Timer
 
 - (void)startTimer;
 {

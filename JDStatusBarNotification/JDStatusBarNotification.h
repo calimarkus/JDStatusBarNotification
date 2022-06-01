@@ -38,7 +38,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  */
 + (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
 
-#pragma mark Presentation
+#pragma mark - Presentation
 
 /**
  *  Show a notification. It won't hide automatically,
@@ -94,7 +94,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
                       dismissAfter:(NSTimeInterval)timeInterval
                          styleName:(NSString*)styleName;
 
-#pragma mark Dismissal
+#pragma mark - Dismissal
 
 /**
  *  Calls dismissAnimated: with animated set to YES
@@ -117,7 +117,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  */
 + (void)dismissAfter:(NSTimeInterval)delay;
 
-#pragma mark Styles
+#pragma mark - Styles
 
 /**
  *  This changes the default style, which is always used
@@ -146,7 +146,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
 + (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 
-#pragma mark Modifications
+#pragma mark - Modifications
 
 /**
  *  Update the text of the label without presenting a new notification.
@@ -169,7 +169,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  */
 + (void)showActivityIndicator:(BOOL)show;
 
-#pragma mark state
+#pragma mark - state
 
 /**
  *  This method tests, if a notification is currently displayed.

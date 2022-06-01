@@ -75,12 +75,12 @@ typedef NS_ENUM(NSInteger, JDStatusBarHeightForIPhoneX) {
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
 
-#pragma mark Animation
+#pragma mark - Animation
 
 /// The animation, that is used to present the notification
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-#pragma mark Progress Bar
+#pragma mark - Progress Bar
 
 /// The background color of the progress bar (on top of the notification bar)
 @property (nonatomic, strong) UIColor *progressBarColor;
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarHeightForIPhoneX) {
 /// The corner radius of the progress bar. Default is 0.0
 @property (nonatomic, assign) CGFloat progressBarCornerRadius;
 
-#pragma mark iPhone X height
+#pragma mark - iPhone X height
 
 @property (nonatomic, assign) JDStatusBarHeightForIPhoneX heightForIPhoneX;
 

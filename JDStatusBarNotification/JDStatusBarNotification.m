@@ -40,7 +40,7 @@
 @synthesize progressView = _progressView;
 @synthesize topBar = _topBar;
 
-#pragma mark Class methods
+#pragma mark - Class methods
 
 + (JDStatusBarNotification*)sharedInstance {
   static dispatch_once_t once;
@@ -137,7 +137,7 @@
   return [[self sharedInstance] isVisible];
 }
 
-#pragma mark Implementation
+#pragma mark - Implementation
 
 - (id)init
 {
@@ -158,7 +158,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark Custom styles
+#pragma mark - Custom styles
 
 - (void)setupDefaultStyles;
 {
@@ -181,7 +181,7 @@
   return identifier;
 }
 
-#pragma mark Presentation
+#pragma mark - Presentation
 
 - (UIView*)showWithStatus:(NSString *)status
                 styleName:(NSString*)styleName;
@@ -257,7 +257,7 @@
   return self.topBar;
 }
 
-#pragma mark Dismissal
+#pragma mark - Dismissal
 
 - (void)setDismissTimerWithInterval:(NSTimeInterval)interval;
 {
@@ -307,7 +307,7 @@
   }
 }
 
-#pragma mark Bounce Animation
+#pragma mark - Bounce Animation
 
 - (void)animateInWithBounceAnimation;
 {
@@ -351,7 +351,7 @@
   [self.topBar.layer removeAllAnimations];
 }
 
-#pragma mark Modifications
+#pragma mark - Modifications
 
 - (void)setStatus:(NSString *)status;
 {
@@ -440,14 +440,14 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     return 44.0;
 }
 
-#pragma mark State
+#pragma mark - State
 
 - (BOOL)isVisible;
 {
   return (_topBar != nil);
 }
 
-#pragma mark Lazy views
+#pragma mark - Lazy views
 
 - (UIWindow *)overlayWindow;
 {
@@ -493,7 +493,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   return _progressView;
 }
 
-#pragma mark Rotation
+#pragma mark - Rotation
 
 - (void)updateContentFrame:(CGRect)rect {
     // match main window transform & frame

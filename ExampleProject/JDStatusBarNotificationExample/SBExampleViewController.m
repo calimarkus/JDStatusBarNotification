@@ -91,7 +91,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   return NO;
 }
 
-#pragma mark UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
