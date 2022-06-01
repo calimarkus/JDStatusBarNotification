@@ -23,27 +23,21 @@
 @end
 
 @interface JDStatusBarNotificationPresenter () <CAAnimationDelegate>
-
-@property (nonatomic, strong, readonly) UIWindowScene *windowScene;
-@property (nonatomic, strong, readonly) UIWindow *overlayWindow;
-@property (nonatomic, strong, readonly) UIView *progressView;
-@property (nonatomic, strong, readonly) JDStatusBarView *topBar;
-
-@property (nonatomic, strong) NSTimer *dismissTimer;
-@property (nonatomic, assign) CGFloat progress;
-
-@property (nonatomic, strong) JDStatusBarStyle *activeStyle;
-@property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
-@property (nonatomic, strong) NSMutableDictionary *userStyles;
-
 @end
 
-@implementation JDStatusBarNotificationPresenter
+@implementation JDStatusBarNotificationPresenter {
+  UIWindowScene *_windowScene;
+  UIWindow *_overlayWindow;
+  UIView *_progressView;
+  JDStatusBarView *_topBar;
 
-@synthesize windowScene = _windowScene;
-@synthesize overlayWindow = _overlayWindow;
-@synthesize progressView = _progressView;
-@synthesize topBar = _topBar;
+  NSTimer *_dismissTimer;
+  CGFloat _progress;
+
+  JDStatusBarStyle *_activeStyle;
+  JDStatusBarStyle *_defaultStyle;
+  NSMutableDictionary *_userStyles;
+}
 
 #pragma mark - Singleton
 
@@ -86,17 +80,17 @@
 #pragma mark - Custom styles
 
 - (void)setupDefaultStyles {
-  self.defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleDefault];
+  _defaultStyle = [JDStatusBarStyle defaultStyleWithName:JDStatusBarStyleDefault];
 
-  self.userStyles = [NSMutableDictionary dictionary];
+  _userStyles = [NSMutableDictionary dictionary];
   for (NSString *styleName in [JDStatusBarStyle allDefaultStyleIdentifier]) {
-    [self.userStyles setObject:[JDStatusBarStyle defaultStyleWithName:styleName] forKey:styleName];
+    [_userStyles setObject:[JDStatusBarStyle defaultStyleWithName:styleName] forKey:styleName];
   }
 }
 
 - (void)updateDefaultStyle:(JDStatusBarPrepareStyleBlock)prepareBlock {
   NSAssert(prepareBlock != nil, @"No prepareBlock provided");
-  self.defaultStyle = prepareBlock([self.defaultStyle copy]);
+  _defaultStyle = prepareBlock([_defaultStyle copy]);
 }
 
 - (NSString*)addStyleNamed:(NSString*)identifier
@@ -104,8 +98,8 @@
   NSAssert(identifier != nil, @"No identifier provided");
   NSAssert(prepareBlock != nil, @"No prepareBlock provided");
 
-  JDStatusBarStyle *style = [self.defaultStyle copy];
-  [self.userStyles setObject:prepareBlock(style) forKey:identifier];
+  JDStatusBarStyle *style = [_defaultStyle copy];
+  [_userStyles setObject:prepareBlock(style) forKey:identifier];
   return identifier;
 }
 
@@ -130,10 +124,10 @@
                           styleName:(NSString * _Nullable)styleName {
   JDStatusBarStyle *style = nil;
   if (styleName != nil) {
-    style = self.userStyles[styleName];
+    style = _userStyles[styleName];
   }
 
-  if (style == nil) style = self.defaultStyle;
+  if (style == nil) style = _defaultStyle;
   JDStatusBarView *view = [self showWithStatus:status style:style];
   if (timeInterval > 0.0) {
     [self dismissAfterDelay:timeInterval];
@@ -143,33 +137,35 @@
 
 - (JDStatusBarView *)showWithStatus:(NSString *)status
                               style:(JDStatusBarStyle *)style {
+  [self createWindowAndViewIfNeededWithStyle:style];
+
   // prepare for new style
-  if (style != self.activeStyle) {
-    self.activeStyle = style;
-    if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
-      self.topBar.alpha = 0.0;
-      self.topBar.transform = CGAffineTransformIdentity;
+  if (style != _activeStyle) {
+    _activeStyle = style;
+    if (_activeStyle.animationType == JDStatusBarAnimationTypeFade) {
+      _topBar.alpha = 0.0;
+      _topBar.transform = CGAffineTransformIdentity;
     } else {
-      self.topBar.alpha = 1.0;
-      self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
+      _topBar.alpha = 1.0;
+      _topBar.transform = CGAffineTransformMakeTranslation(0, -_topBar.frame.size.height);
     }
   }
 
   // Force update the TopBar frame if the height is 0
-  if (self.topBar.frame.size.height == 0) {
+  if (_topBar.frame.size.height == 0) {
     [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
   }
 
   // cancel previous dismissing & remove animations
   [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(dismiss:) target:self argument:nil];
-  [self.topBar.layer removeAllAnimations];
+  [_topBar.layer removeAllAnimations];
 
   // create & show window
-  [self.overlayWindow setHidden:NO];
+  [_overlayWindow setHidden:NO];
 
   // update status & style
-  [self.topBar setStatus:status];
-  [self.topBar setStyle:style];
+  [_topBar setStatus:status];
+  [_topBar setStyle:style];
 
   // reset progress & activity
   [self showProgressBarWithPercentage:0.0];
@@ -181,21 +177,21 @@
     [self animateInWithBounceAnimation];
   } else {
     [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
-      self.topBar.alpha = 1.0;
-      self.topBar.transform = CGAffineTransformIdentity;
+      self->_topBar.alpha = 1.0;
+      self->_topBar.transform = CGAffineTransformIdentity;
     }];
   }
 
-  return self.topBar;
+  return _topBar;
 }
 
 #pragma mark - Dismissal
 
 - (void)dismissAfterDelay:(NSTimeInterval)interval {
-  [self.dismissTimer invalidate];
-  self.dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
+  [_dismissTimer invalidate];
+  _dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]
                                                interval:0 target:self selector:@selector(dismiss:) userInfo:nil repeats:NO];
-  [[NSRunLoop currentRunLoop] addTimer:self.dismissTimer forMode:NSRunLoopCommonModes];
+  [[NSRunLoop currentRunLoop] addTimer:_dismissTimer forMode:NSRunLoopCommonModes];
 }
 
 - (void)dismiss:(NSTimer *)timer {
@@ -203,28 +199,24 @@
 }
 
 - (void)dismissAnimated:(BOOL)animated {
-  [self.dismissTimer invalidate];
-  self.dismissTimer = nil;
+  [_dismissTimer invalidate];
+  _dismissTimer = nil;
 
   // check animation type
-  BOOL animationsEnabled = (self.activeStyle.animationType != JDStatusBarAnimationTypeNone);
+  BOOL animationsEnabled = (_activeStyle.animationType != JDStatusBarAnimationTypeNone);
   animated &= animationsEnabled;
 
   dispatch_block_t animation = ^{
-    if (self.activeStyle.animationType == JDStatusBarAnimationTypeFade) {
-      self.topBar.alpha = 0.0;
+    if (self->_activeStyle.animationType == JDStatusBarAnimationTypeFade) {
+      self->_topBar.alpha = 0.0;
     } else {
-      self.topBar.transform = CGAffineTransformMakeTranslation(0, -self.topBar.frame.size.height);
+      self->_topBar.transform = CGAffineTransformMakeTranslation(0, -self->_topBar.frame.size.height);
     }
   };
 
+  __weak __typeof(self) weakSelf = self;
   void(^complete)(BOOL) = ^(BOOL finished) {
-    [self.overlayWindow removeFromSuperview];
-    [self.overlayWindow setHidden:YES];
-    self.overlayWindow.rootViewController = nil;
-    self->_overlayWindow = nil;
-    self->_progressView = nil;
-    self->_topBar = nil;
+    [weakSelf resetWindowAndViews];
   };
 
   if (animated) {
@@ -236,11 +228,20 @@
   }
 }
 
+- (void)resetWindowAndViews {
+  [_overlayWindow removeFromSuperview];
+  [_overlayWindow setHidden:YES];
+  _overlayWindow.rootViewController = nil;
+  _overlayWindow = nil;
+  _progressView = nil;
+  _topBar = nil;
+}
+
 #pragma mark - Bounce Animation
 
 - (void)animateInWithBounceAnimation {
   //don't animate in, if topBar is already fully visible
-  if (self.topBar.frame.origin.y >= 0) {
+  if (_topBar.frame.origin.y >= 0) {
     return;
   }
 
@@ -269,13 +270,13 @@
   animation.removedOnCompletion = NO;
   animation.fillMode = kCAFillModeForwards;
   animation.delegate = self;
-  [self.topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
-  [self.topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
+  [_topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
+  [_topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-  self.topBar.transform = CGAffineTransformIdentity;
-  [self.topBar.layer removeAllAnimations];
+  _topBar.transform = CGAffineTransformIdentity;
+  [_topBar.layer removeAllAnimations];
 }
 
 #pragma mark - Modifications
@@ -295,46 +296,49 @@
     return;
   }
 
+  // create view
+  [self createProgressViewIfNeeded];
+
   // update superview
-  if (self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow ||
-      self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
-    [self.topBar.superview addSubview:self.progressView];
+  if (_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow ||
+      _activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
+    [_topBar.superview addSubview:_progressView];
   } else {
-    [self.topBar insertSubview:self.progressView belowSubview:self.topBar.textLabel];
+    [_topBar insertSubview:_progressView belowSubview:_topBar.textLabel];
   }
 
   // calculate progressView frame
-  CGRect frame = self.topBar.bounds;
-  CGFloat height = MIN(frame.size.height,MAX(0.5, self.activeStyle.progressBarHeight));
+  CGRect frame = _topBar.bounds;
+  CGFloat height = MIN(frame.size.height,MAX(0.5, _activeStyle.progressBarHeight));
   if (height == 20.0 && frame.size.height > height) height = frame.size.height;
   frame.size.height = height;
-  frame.size.width = round((frame.size.width - 2 * self.activeStyle.progressBarHorizontalInsets) * percentage);
-  frame.origin.x = self.activeStyle.progressBarHorizontalInsets;
+  frame.size.width = round((frame.size.width - 2 * _activeStyle.progressBarHorizontalInsets) * percentage);
+  frame.origin.x = _activeStyle.progressBarHorizontalInsets;
 
   // apply y-position from active style
-  CGFloat barHeight = self.topBar.bounds.size.height;
-  if (self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBottom) {
+  CGFloat barHeight = _topBar.bounds.size.height;
+  if (_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBottom) {
     frame.origin.y = barHeight - height;
-  } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionCenter) {
+  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionCenter) {
     frame.origin.y = round((barHeight - height)/2.0);
-  } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionTop) {
+  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionTop) {
     frame.origin.y = 0.0;
-  } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow) {
+  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow) {
     frame.origin.y = barHeight;
-  } else if(self.activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
+  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
     frame.origin.y = barHeight + navBarHeight(_windowScene);
   }
 
   // apply color from active style
-  self.progressView.backgroundColor = self.activeStyle.progressBarColor;
+  _progressView.backgroundColor = _activeStyle.progressBarColor;
 
   // apply corner radius
-  self.progressView.layer.cornerRadius = self.activeStyle.progressBarCornerRadius;
+  _progressView.layer.cornerRadius = _activeStyle.progressBarCornerRadius;
 
   // update progressView frame
-  BOOL animated = !CGRectEqualToRect(self.progressView.frame, CGRectZero);
+  BOOL animated = !CGRectEqualToRect(_progressView.frame, CGRectZero);
   [UIView animateWithDuration:animated ? 0.05 : 0.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-    self.progressView.frame = frame;
+    self->_progressView.frame = frame;
   } completion:nil];
 }
 
@@ -342,10 +346,10 @@
     if (_topBar == nil) return;
 
     if (show) {
-        self.topBar.activityIndicatorView.color = self.activeStyle.textColor;
-        [self.topBar.activityIndicatorView startAnimating];
+        _topBar.activityIndicatorView.color = _activeStyle.textColor;
+        [_topBar.activityIndicatorView startAnimating];
     } else {
-        [self.topBar.activityIndicatorView stopAnimating];
+        [_topBar.activityIndicatorView stopAnimating];
     }
 }
 
@@ -365,15 +369,15 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   return (_topBar != nil);
 }
 
-#pragma mark - Lazy views
+#pragma mark - View/Window factories
 
-- (UIWindow *)overlayWindow {
-  if(_overlayWindow == nil) {
-      if (_windowScene != nil) {
-        _overlayWindow = [[UIWindow alloc] initWithWindowScene:_windowScene];
-      } else {
-        _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-      }
+- (void)createWindowAndViewIfNeededWithStyle:(JDStatusBarStyle *)style {
+  if(_overlayWindow == nil || _topBar == nil) {
+    if (_windowScene != nil) {
+      _overlayWindow = [[UIWindow alloc] initWithWindowScene:_windowScene];
+    } else {
+      _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
     _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _overlayWindow.backgroundColor = [UIColor clearColor];
     _overlayWindow.userInteractionEnabled = NO;
@@ -381,39 +385,29 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
 
-    [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
-  }
-  return _overlayWindow;
-}
-
-- (JDStatusBarView *)topBar {
-  if(_topBar == nil) {
-    JDStatusBarStyle *style = self.activeStyle ?: self.defaultStyle;
     _topBar = [[JDStatusBarView alloc] initWithStyle:style];
-
-    [self.overlayWindow.rootViewController.view addSubview:_topBar];
-
     if (style.animationType != JDStatusBarAnimationTypeFade) {
       _topBar.transform = CGAffineTransformMakeTranslation(0, -_topBar.frame.size.height);
     } else {
       _topBar.alpha = 0.0;
     }
+    [_overlayWindow.rootViewController.view addSubview:_topBar];
+
+    [self updateContentFrame:[[UIApplication sharedApplication] statusBarFrame]];
   }
-  return _topBar;
 }
 
-- (UIView *)progressView {
+- (void)createProgressViewIfNeeded {
   if (_progressView == nil) {
     _progressView = [[UIView alloc] initWithFrame:CGRectZero];
   }
-  return _progressView;
 }
 
 #pragma mark - Rotation
 
 - (void)updateContentFrame:(CGRect)rect {
     // match main window transform & frame
-    UIWindow *window = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.overlayWindow];
+    UIWindow *window = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:_overlayWindow];
     _overlayWindow.transform = window.transform;
     _overlayWindow.frame = window.frame;
 
@@ -425,7 +419,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     // update top bar frame
     CGFloat width = MAX(rect.size.width, rect.size.height);
     CGFloat height = MIN(rect.size.width, rect.size.height);
-    height = topBarHeightAdjustedForIphoneX(self.activeStyle ?: self.defaultStyle, height, window);
+    height = topBarHeightAdjustedForIphoneX(_activeStyle ?: _defaultStyle, height, window);
     _topBar.frame = CGRectMake(0, 0, width, height);
 
 }
@@ -457,7 +451,7 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
       // update window & statusbar
       [self updateContentFrame:newBarFrame];
       // relayout progress bar
-      [self showProgressBarWithPercentage:_progress];
+      [self showProgressBarWithPercentage:self->_progress];
   }];
 }
 
