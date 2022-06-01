@@ -161,7 +161,7 @@
   }
 
   // cancel previous dismissing & remove animations
-  [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(dismiss) target:self argument:nil];
+  [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(dismiss:) target:self argument:nil];
   [self.topBar.layer removeAllAnimations];
 
   // create & show window

@@ -96,11 +96,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Dismissal
 
 /**
- *  Calls dismissAnimated: with animated set to YES
- */
-- (void)dismiss;
-
-/**
  *  Dismisses any currently displayed notification immediately
  *
  *  @param animated If this is YES, the animation style used

@@ -156,7 +156,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
     } else if (row == 3) {
       [[JDStatusBarNotificationPresenter sharedPresenter] updateStatus:@"Replaced Text.."];
     } else if (row == 4) {
-      [[JDStatusBarNotificationPresenter sharedPresenter] dismiss];
+      [[JDStatusBarNotificationPresenter sharedPresenter] dismissAnimated:YES];
     }
   } else if (section == 1) {
     NSString *style = JDStatusBarStyleError;
