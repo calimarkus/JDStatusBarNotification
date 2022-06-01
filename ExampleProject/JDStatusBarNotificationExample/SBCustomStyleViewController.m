@@ -264,7 +264,7 @@
 
 - (IBAction)show:(id)sender;
 {
-  [JDStatusBarNotification showWithStatus:self.textField.text dismissAfter:2.0 styleName:@"style"];
+  [JDStatusBarNotification showWithStatus:self.textField.text dismissAfterDelay:2.0 styleName:@"style"];
 }
 
 - (IBAction)showWithProgress:(id)sender;
@@ -276,7 +276,7 @@
     [self startTimer];
   });
 
-  [JDStatusBarNotification showWithStatus:self.textField.text dismissAfter:1.3 styleName:@"style"];
+  [JDStatusBarNotification showWithStatus:self.textField.text dismissAfterDelay:1.3 styleName:@"style"];
 }
 
 #pragma mark - Progress Timer

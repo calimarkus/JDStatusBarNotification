@@ -75,7 +75,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *  @return The presented notification view for further customization
  */
 + (JDStatusBarView*)showWithStatus:(NSString *)status
-                      dismissAfter:(NSTimeInterval)timeInterval;
+                 dismissAfterDelay:(NSTimeInterval)timeInterval;
 
 /**
  *  Same as showWithStatus:styleName:, but the notification
@@ -91,7 +91,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *  @return The presented notification view for further customization
  */
 + (JDStatusBarView*)showWithStatus:(NSString *)status
-                      dismissAfter:(NSTimeInterval)timeInterval
+                 dismissAfterDelay:(NSTimeInterval)timeInterval
                          styleName:(NSString*)styleName;
 
 #pragma mark - Dismissal
@@ -115,7 +115,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @param delay The delay, how long the notification should stay visible
  */
-+ (void)dismissAfter:(NSTimeInterval)delay;
++ (void)dismissAfterDelay:(NSTimeInterval)delay;
 
 #pragma mark - Styles
 

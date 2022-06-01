@@ -82,7 +82,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
   [super viewDidLoad];
 
   // presenting a notification, before a keyWindow is set
-  [JDStatusBarNotification showWithStatus:@"👋 Hello World!" dismissAfter:2.0
+  [JDStatusBarNotification showWithStatus:@"👋 Hello World!"
+                        dismissAfterDelay:2.0
                                 styleName:JDStatusBarStyleMatrix];
 }
 
@@ -151,12 +152,12 @@ static NSString *const SBStyle2 = @"SBStyle2";
       [JDStatusBarNotification showWithStatus:status];
     } else if (row == 1) {
       if(![JDStatusBarNotification isVisible]) {
-        [JDStatusBarNotification showWithStatus:status dismissAfter:1.4];
+        [JDStatusBarNotification showWithStatus:status dismissAfterDelay:1.4];
       }
       [self startTimer];
     } else if (row == 2) {
       if(![JDStatusBarNotification isVisible]) {
-        [JDStatusBarNotification showWithStatus:status dismissAfter:3.0];
+        [JDStatusBarNotification showWithStatus:status dismissAfterDelay:3.0];
       }
         [JDStatusBarNotification showActivityIndicator:YES];
     } else if (row == 3) {
@@ -177,12 +178,12 @@ static NSString *const SBStyle2 = @"SBStyle2";
     }
 
     [JDStatusBarNotification showWithStatus:status
-                               dismissAfter:3.0
+                          dismissAfterDelay:3.0
                                   styleName:style];
   } else if (section == 2) {
     NSString *style = (row==0) ? SBStyle1 : SBStyle2;
     [JDStatusBarNotification showWithStatus:status
-                               dismissAfter:3.0
+                          dismissAfterDelay:3.0
                                   styleName:style];
   } else if (section == 3) {
     SBCustomStyleViewController* viewController = [[SBCustomStyleViewController alloc] init];

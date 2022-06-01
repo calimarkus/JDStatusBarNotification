@@ -67,21 +67,21 @@
 }
 
 + (UIView*)showWithStatus:(NSString *)status
-             dismissAfter:(NSTimeInterval)timeInterval;
+        dismissAfterDelay:(NSTimeInterval)timeInterval;
 {
   UIView *view = [[self sharedInstance] showWithStatus:status
                                              styleName:nil];
-  [self dismissAfter:timeInterval];
+  [self dismissAfterDelay:timeInterval];
   return view;
 }
 
 + (UIView*)showWithStatus:(NSString *)status
-             dismissAfter:(NSTimeInterval)timeInterval
+        dismissAfterDelay:(NSTimeInterval)timeInterval
                 styleName:(NSString*)styleName;
 {
   UIView *view = [[self sharedInstance] showWithStatus:status
                                              styleName:styleName];
-  [self dismissAfter:timeInterval];
+  [self dismissAfterDelay:timeInterval];
   return view;
 }
 
@@ -95,7 +95,7 @@
   [[self sharedInstance] dismissAnimated:animated];
 }
 
-+ (void)dismissAfter:(NSTimeInterval)delay;
++ (void)dismissAfterDelay:(NSTimeInterval)delay;
 {
   [[self sharedInstance] setDismissTimerWithInterval:delay];
 }
