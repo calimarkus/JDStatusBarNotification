@@ -228,6 +228,7 @@
   _statusBarViewController = nil;
   _progressView = nil;
   _topBar = nil;
+  _activeStyle = nil;
 }
 
 #pragma mark - Bounce Animation
