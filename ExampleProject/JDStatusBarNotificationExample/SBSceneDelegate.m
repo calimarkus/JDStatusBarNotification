@@ -4,7 +4,7 @@
 #import "SBSceneDelegate.h"
 
 #import "SBExampleViewController.h"
-#import "JDStatusBarNotificationPresenter.h"
+#import "JDStatusBarNotification.h"
 
 @implementation SBSceneDelegate {
     UIWindow *_window;

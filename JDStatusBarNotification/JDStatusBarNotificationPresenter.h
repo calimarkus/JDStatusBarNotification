@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 
 #import "JDStatusBarPrepareStyleBlock.h"
-#import "JDStatusBarStyle.h"
 
 @class JDStatusBarStyle;
 @class JDStatusBarView;

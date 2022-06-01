@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "JDStatusBarLayoutMarginHelper.h"
-#import "JDStatusBarNotificationPresenter.h"
+#import "JDStatusBarNotification.h"
 #import "SBSelectPropertyViewController.h"
 
 #import "SBCustomStyleViewController.h"

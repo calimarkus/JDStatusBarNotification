@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import "JDStatusBarNotificationPresenter.h"
+#import "JDStatusBarNotification.h"
 #import "SBCustomStyleViewController.h"
 
 #import "SBExampleViewController.h"
