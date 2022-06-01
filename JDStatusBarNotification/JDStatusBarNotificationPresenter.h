@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  parameter. This instance can be modified to suit your needs. You need
  *  to return the modified style again.
  */
-- (void)updateDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
+- (void)updateDefaultStyle:(JDStatusBarPrepareStyleBlock)prepareBlock;
 
 /**
  *  Adds a custom style, which than can be used
@@ -143,7 +143,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  be directly used as styleName parameter.
  */
 - (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDPrepareStyleBlock)prepareBlock;
+                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock;
 
 #pragma mark - Modifications
 

@@ -95,13 +95,13 @@
   }
 }
 
-- (void)updateDefaultStyle:(JDPrepareStyleBlock)prepareBlock {
+- (void)updateDefaultStyle:(JDStatusBarPrepareStyleBlock)prepareBlock {
   NSAssert(prepareBlock != nil, @"No prepareBlock provided");
   self.defaultStyle = prepareBlock([self.defaultStyle copy]);
 }
 
 - (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDPrepareStyleBlock)prepareBlock;
+                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock;
 {
   NSAssert(identifier != nil, @"No identifier provided");
   NSAssert(prepareBlock != nil, @"No prepareBlock provided");

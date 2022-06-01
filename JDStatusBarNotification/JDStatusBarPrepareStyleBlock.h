@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#ifndef JDPrepareStyleBlock_h
-#define JDPrepareStyleBlock_h
+#ifndef JDStatusBarPrepareStyleBlock_h
+#define JDStatusBarPrepareStyleBlock_h
 
 @class JDStatusBarStyle;
 
@@ -18,6 +18,6 @@
  *
  *  @return The modified JDStatusBarStyle instance.
  */
-typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _Nonnull style);
+typedef JDStatusBarStyle * _Nonnull(^JDStatusBarPrepareStyleBlock)(JDStatusBarStyle * _Nonnull style);
 
-#endif /* JDPrepareStyleBlock_h */
+#endif /* JDStatusBarPrepareStyleBlock_h */
