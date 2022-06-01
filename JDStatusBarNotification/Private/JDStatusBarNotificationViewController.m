@@ -10,7 +10,7 @@
 
 // rotation
 
-- (UIViewController*)mainController
+- (UIViewController *)mainController
 {
   UIWindow *mainAppWindow = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.view.window];
   UIViewController *topController = mainAppWindow.rootViewController;

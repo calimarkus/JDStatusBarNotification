@@ -48,7 +48,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView*)showWithStatus:(NSString *)status;
++ (JDStatusBarView *)showWithStatus:(NSString *)status;
 
 /**
  *  Show a notification with a specific style. It won't
@@ -61,8 +61,8 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
-                         styleName:(NSString*)styleName;
++ (JDStatusBarView *)showWithStatus:(NSString *)status
+                         styleName:(NSString *)styleName;
 
 /**
  *  Same as showWithStatus:, but the notification will
@@ -74,7 +74,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
++ (JDStatusBarView *)showWithStatus:(NSString *)status
                  dismissAfterDelay:(NSTimeInterval)timeInterval;
 
 /**
@@ -90,9 +90,9 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *
  *  @return The presented notification view for further customization
  */
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
++ (JDStatusBarView *)showWithStatus:(NSString *)status
                  dismissAfterDelay:(NSTimeInterval)timeInterval
-                         styleName:(NSString*)styleName;
+                         styleName:(NSString *)styleName;
 
 #pragma mark - Dismissal
 
@@ -143,7 +143,7 @@ typedef JDStatusBarStyle * _Nonnull(^JDPrepareStyleBlock)(JDStatusBarStyle * _No
  *  @return Returns the given identifier, so it can
  *  be directly used as styleName parameter.
  */
-+ (NSString*)addStyleNamed:(NSString*)identifier
++ (NSString *)addStyleNamed:(NSString *)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 
 #pragma mark - Modifications

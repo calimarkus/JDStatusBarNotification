@@ -47,8 +47,8 @@ Just use the following class methods:
 ### Showing a notification
     
 ```objc
-+ (JDStatusBarView*)showWithStatus:(NSString *)status;
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
++ (JDStatusBarView *)showWithStatus:(NSString *)status;
++ (JDStatusBarView *)showWithStatus:(NSString *)status
                       dismissAfter:(NSTimeInterval)timeInterval;
 ```
 
@@ -87,10 +87,10 @@ Included styles:
 Use them with the following methods:
 
 ```objc
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
++ (JDStatusBarView *)showWithStatus:(NSString *)status
                          styleName:(NSString*)styleName;
 
-+ (JDStatusBarView*)showWithStatus:(NSString *)status
++ (JDStatusBarView *)showWithStatus:(NSString *)status
                       dismissAfter:(NSTimeInterval)timeInterval
                          styleName:(NSString*)styleName;
 ```
@@ -102,7 +102,7 @@ To present a notification using a custom style, use the `identifier` you specifi
 ```objc
 + (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
 
-+ (NSString*)addStyleNamed:(NSString*)identifier
++ (NSString *)addStyleNamed:(NSString*)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 ```
 

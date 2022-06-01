@@ -24,14 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIView *lastRow;
 
 - (IBAction)selectFont:(id)sender;
-- (IBAction)selectFontSize:(UIStepper*)sender;
+- (IBAction)selectFontSize:(UIStepper *)sender;
 - (IBAction)selectTextColor:(id)sender;
 - (IBAction)selectBarColor:(id)sender;
 - (IBAction)selectAnimationStyle:(id)sender;
 - (IBAction)selectIPhoneXHeight:(id)sender;
 - (IBAction)selectProgressBarColor:(id)sender;
 - (IBAction)selectProgressBarPosition:(id)sender;
-- (IBAction)setProgressBarHeight:(UIStepper*)sender;
+- (IBAction)setProgressBarHeight:(UIStepper *)sender;
 
 - (IBAction)show:(id)sender;
 - (IBAction)showWithProgress:(id)sender;

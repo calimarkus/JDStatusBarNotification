@@ -13,8 +13,8 @@
 #import "JDStatusBarNotificationViewController.h"
 
 @interface JDStatusBarStyle (Hidden)
-+ (NSArray*)allDefaultStyleIdentifier;
-+ (JDStatusBarStyle*)defaultStyleWithName:(NSString*)styleName;
++ (NSArray *)allDefaultStyleIdentifier;
++ (JDStatusBarStyle *)defaultStyleWithName:(NSString *)styleName;
 @end
 
 @interface JDStatusBarNotification () <CAAnimationDelegate>
@@ -40,7 +40,7 @@
 
 #pragma mark - Class methods
 
-+ (JDStatusBarNotification*)sharedInstance {
++ (JDStatusBarNotification *)sharedInstance {
   static dispatch_once_t once;
   static JDStatusBarNotification *sharedInstance;
   dispatch_once(&once, ^ {
@@ -53,20 +53,20 @@
     [self sharedInstance].windowScene = windowScene;
 }
 
-+ (UIView*)showWithStatus:(NSString *)status;
++ (UIView *)showWithStatus:(NSString *)status;
 {
   return [[self sharedInstance] showWithStatus:status
                                      styleName:nil];
 }
 
-+ (UIView*)showWithStatus:(NSString *)status
-                styleName:(NSString*)styleName;
++ (UIView *)showWithStatus:(NSString *)status
+                styleName:(NSString *)styleName;
 {
   return [[self sharedInstance] showWithStatus:status
                                      styleName:styleName];
 }
 
-+ (UIView*)showWithStatus:(NSString *)status
++ (UIView *)showWithStatus:(NSString *)status
         dismissAfterDelay:(NSTimeInterval)timeInterval;
 {
   UIView *view = [[self sharedInstance] showWithStatus:status
@@ -75,9 +75,9 @@
   return view;
 }
 
-+ (UIView*)showWithStatus:(NSString *)status
++ (UIView *)showWithStatus:(NSString *)status
         dismissAfterDelay:(NSTimeInterval)timeInterval
-                styleName:(NSString*)styleName;
+                styleName:(NSString *)styleName;
 {
   UIView *view = [[self sharedInstance] showWithStatus:status
                                              styleName:styleName];
@@ -108,7 +108,7 @@
   [self sharedInstance].defaultStyle = prepareBlock(style);
 }
 
-+ (NSString*)addStyleNamed:(NSString*)identifier
++ (NSString *)addStyleNamed:(NSString *)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 {
   return [[self sharedInstance] addStyleNamed:identifier
@@ -168,7 +168,7 @@
   }
 }
 
-- (NSString*)addStyleNamed:(NSString*)identifier
+- (NSString *)addStyleNamed:(NSString *)identifier
                    prepare:(JDPrepareStyleBlock)prepareBlock;
 {
   NSAssert(identifier != nil, @"No identifier provided");
@@ -181,8 +181,8 @@
 
 #pragma mark - Presentation
 
-- (UIView*)showWithStatus:(NSString *)status
-                styleName:(NSString*)styleName;
+- (UIView *)showWithStatus:(NSString *)status
+                styleName:(NSString *)styleName;
 {
   JDStatusBarStyle *style = nil;
   if (styleName != nil) {
@@ -193,8 +193,8 @@
   return [self showWithStatus:status style:style];
 }
 
-- (UIView*)showWithStatus:(NSString *)status
-                    style:(JDStatusBarStyle*)style;
+- (UIView *)showWithStatus:(NSString *)status
+                    style:(JDStatusBarStyle *)style;
 {
   // prepare for new style
   if (style != self.activeStyle) {
@@ -265,7 +265,7 @@
   [[NSRunLoop currentRunLoop] addTimer:self.dismissTimer forMode:NSRunLoopCommonModes];
 }
 
-- (void)dismiss:(NSTimer*)timer;
+- (void)dismiss:(NSTimer *)timer;
 {
   [self dismissAnimated:YES];
 }
@@ -466,7 +466,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   return _overlayWindow;
 }
 
-- (JDStatusBarView*)topBar;
+- (JDStatusBarView *)topBar;
 {
   if(_topBar == nil) {
     _topBar = [[JDStatusBarView alloc] init];
@@ -531,7 +531,7 @@ static CGFloat topBarHeightAdjustedForIphoneX(JDStatusBarStyle *style, CGFloat h
   }
 }
 
-- (void)willChangeStatusBarFrame:(NSNotification*)notification {
+- (void)willChangeStatusBarFrame:(NSNotification *)notification {
   CGRect newBarFrame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
   NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
 

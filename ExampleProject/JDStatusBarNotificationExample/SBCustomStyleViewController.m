@@ -130,7 +130,7 @@
 
 #pragma mark - UIColorPickerViewController
 
-- (void)showColorPickerWithColor:(UIColor*)color {
+- (void)showColorPickerWithColor:(UIColor *)color {
     UIColorPickerViewController *colorController = [[UIColorPickerViewController alloc] init];
     colorController.delegate = self;
     colorController.selectedColor = color;
@@ -176,7 +176,7 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (IBAction)selectFontSize:(UIStepper*)sender;
+- (IBAction)selectFontSize:(UIStepper *)sender;
 {
   self.fontButton.titleLabel.font = [UIFont fontWithName:self.fontButton.titleLabel.font.fontName size:sender.value];
   [self updateFontText];
@@ -251,7 +251,7 @@
   [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)setProgressBarHeight:(UIStepper*)sender;
+- (IBAction)setProgressBarHeight:(UIStepper *)sender;
 {
   if (sender.value < 1) sender.value = 0.5;
   if (sender.value >= 1) sender.value = round(sender.value);

@@ -14,7 +14,7 @@ typedef void(^SBSelectPropertyResultBlock)(NSInteger selectedRow);
 
 @property (nonatomic, assign) NSInteger activeRow;
 
-- (id)initWithData:(NSArray*)data
+- (id)initWithData:(NSArray *)data
        resultBlock:(SBSelectPropertyResultBlock)resultBlock;
 
 @end

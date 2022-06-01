@@ -15,7 +15,7 @@
 
 @implementation SBSelectPropertyViewController
 
-- (id)initWithData:(NSArray*)data
+- (id)initWithData:(NSArray *)data
        resultBlock:(SBSelectPropertyResultBlock)resultBlock;
 {
   self = [super initWithStyle:UITableViewStylePlain];

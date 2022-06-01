@@ -104,7 +104,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
   return [self.data[section] count];
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
   // create / dequeue cell
   static NSString* identifier = @"identifier";
