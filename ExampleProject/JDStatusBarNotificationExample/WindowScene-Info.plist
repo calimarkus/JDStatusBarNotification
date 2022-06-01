@@ -35,8 +35,6 @@
 			<key>UIWindowSceneSessionRoleApplication</key>
 			<array>
 				<dict>
-					<key>UISceneClassName</key>
-					<string>UIWindowGroup</string>
 					<key>UISceneConfigurationName</key>
 					<string></string>
 					<key>UISceneDelegateClassName</key>
