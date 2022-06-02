@@ -70,7 +70,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
                     @{JDButtonName:@"Show JDStatusBarStyleMatrix", JDButtonInfo:@"Duration: 3s", JDNotificationText:@"Wake up Neo…"}],
                   @[@{JDButtonName:@"Show custom style 1", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeFade", JDNotificationText:@"Oh, I love it!"},
                     @{JDButtonName:@"Show custom style 2", JDButtonInfo:@"Duration: 3s, JDStatusBarAnimationTypeBounce", JDNotificationText:@"Level up!"},
-                    @{JDButtonName:@"Show notification with button", JDButtonInfo:@"Manually customized view", JDNotificationText:@""}],
+                    @{JDButtonName:@"Show notification with button", JDButtonInfo:@"Manually customized view", JDNotificationText:@""},
+                    @{JDButtonName:@"2 notifications in sequence", JDButtonInfo:@"Utilizing the completion block", JDNotificationText:@""}],
                   @[@{JDButtonName:@"Create your own style", JDButtonInfo:@"Test all possibilities", JDNotificationText:@""}]];
   }
   return self;
@@ -79,21 +80,10 @@ static NSString *const SBStyle2 = @"SBStyle2";
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  // presenting a notification, before a keyWindow is set
+  // presenting a notification, before view is attached to window & before keyWindow is set
   [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"👋 Hello World!"
+                                                   dismissAfterDelay:2.5
                                                            styleName:JDStatusBarStyleMatrix];
-
-  // utilizing the completion block
-  [[JDStatusBarNotificationPresenter sharedPresenter] dismissAfterDelay:1.5 completion:^{
-    [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"Another one!"
-                                                     dismissAfterDelay:1.5
-                                                             styleName:JDStatusBarStyleMatrix];
-  }];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-  return NO;
 }
 
 #pragma mark - UITableViewDataSource
@@ -104,6 +94,19 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return [self.data[section] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+  switch (section) {
+    case 0:
+      return @"Default Style";
+    case 1:
+      return @"Included Styles";
+    case 2:
+      return @"Customization";
+    default:
+      return nil;
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -181,7 +184,12 @@ static NSString *const SBStyle2 = @"SBStyle2";
                                                      dismissAfterDelay:3.0
                                                              styleName:style];
   } else if (section == 2) {
-    if (row == 2) {
+    if (row < 2) {
+      NSString *style = (row==0) ? SBStyle1 : SBStyle2;
+      [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
+                                                       dismissAfterDelay:3.0
+                                                               styleName:style];
+    } else if (row == 2) {
       JDStatusBarView *view = [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status];
       [view.textLabel removeFromSuperview];
       UIAction *action = [UIAction actionWithHandler:^(__kindof UIAction * _Nonnull action) {
@@ -193,11 +201,15 @@ static NSString *const SBStyle2 = @"SBStyle2";
       [view addSubview:button];
       [button sizeToFit];
       button.center = view.center;
-    } else {
-      NSString *style = (row==0) ? SBStyle1 : SBStyle2;
-      [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status
-                                                       dismissAfterDelay:3.0
-                                                               styleName:style];
+    } else if (row == 3) {
+      [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"This is 1/2!"
+                                                               styleName:JDStatusBarStyleDark];
+      [[JDStatusBarNotificationPresenter sharedPresenter] showActivityIndicator:YES];
+      [[JDStatusBarNotificationPresenter sharedPresenter] dismissAfterDelay:1.0 completion:^{
+        [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"✅ This is 2/2!"
+                                                         dismissAfterDelay:1.0
+                                                                 styleName:JDStatusBarStyleDark];
+      }];
     }
   } else if (section == 3) {
     SBCustomStyleViewController* viewController = [[SBCustomStyleViewController alloc] init];
