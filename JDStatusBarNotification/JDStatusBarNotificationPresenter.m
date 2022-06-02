@@ -331,8 +331,7 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   
   // calculate progressView frame
   CGRect frame = _topBar.bounds;
-  CGFloat height = MIN(frame.size.height,MAX(0.5, progressBarStyle.barHeight));
-  if (height == 20.0 && frame.size.height > height) height = frame.size.height;
+  CGFloat height = MIN(frame.size.height, MAX(0.5, progressBarStyle.barHeight));
   frame.size.height = height;
   frame.size.width = round((frame.size.width - 2 * progressBarStyle.horizontalInsets) * percentage);
   frame.origin.x = progressBarStyle.horizontalInsets;
@@ -344,7 +343,7 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
       frame.origin.y = barHeight - height;
       break;
     case JDStatusBarProgressBarPositionCenter:
-      frame.origin.y = round((barHeight - height)/2.0);
+      frame.origin.y = _topBar.textLabel.center.y;
       break;
     case JDStatusBarProgressBarPositionTop:
       frame.origin.y = 0.0;

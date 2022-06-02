@@ -38,7 +38,7 @@ static NSString *const SBStyle2 = @"SBStyle2";
       style.animationType = JDStatusBarAnimationTypeFade;
       style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
       style.progressBarStyle.barColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
-      style.progressBarStyle.barHeight = 20.0;
+      style.progressBarStyle.barHeight = 400.0;
       return style;
     }];
     

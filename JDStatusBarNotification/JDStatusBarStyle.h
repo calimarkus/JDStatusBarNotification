@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 /// The background color of the progress bar (on top of the notification bar)
 @property (nonatomic, strong, nullable) UIColor *barColor;
 
-/// The height of the progress bar. Default is 1.0
+/// The height of the progress bar. Default is 1.0. The applied value will have a minimum of 0.5 and a maximum full status bar height.
 @property (nonatomic, assign) CGFloat barHeight;
 
 /// The position of the progress bar. Default is JDStatusBarProgressBarPositionBottom
