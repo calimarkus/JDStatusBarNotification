@@ -141,7 +141,8 @@ JDStatusBarViewDelegate
   }
   
   // cancel previous dismissing & remove animations
-  [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(dismiss:) target:self argument:nil];
+  [_dismissTimer invalidate];
+  _dismissTimer = nil;
   [_topBar.layer removeAllAnimations];
   
   // create & show window
@@ -193,14 +194,14 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
     userInfo = @{kJDStatusBarDismissCompletionBlockKey: completion};
   }
 
-  _dismissTimer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:delay]
-                                           interval:0 target:self selector:@selector(dismiss:)
-                                           userInfo:userInfo
-                                            repeats:NO];
-  [[NSRunLoop currentRunLoop] addTimer:_dismissTimer forMode:NSRunLoopCommonModes];
+  _dismissTimer = [NSTimer scheduledTimerWithTimeInterval:delay
+                                                   target:self
+                                                 selector:@selector(dismissTimerFired:)
+                                                 userInfo:userInfo
+                                                  repeats:NO];
 }
 
-- (void)dismiss:(NSTimer *)timer {
+- (void)dismissTimerFired:(NSTimer *)timer {
   [self dismissAnimated:YES
              completion:timer.userInfo[kJDStatusBarDismissCompletionBlockKey]];
 }
