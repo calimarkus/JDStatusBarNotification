@@ -41,6 +41,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
   style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.animationType = self.animationType;
   style.progressBarStyle = [self.progressBarStyle copy];
+  style.canSwipeToDismiss = self.canSwipeToDismiss;
   return style;
 }
 
@@ -58,6 +59,7 @@ NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
   style.font = [UIFont systemFontOfSize:12.0];
   style.systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
   style.animationType = JDStatusBarAnimationTypeMove;
+  style.canSwipeToDismiss = YES;
 
   JDStatusBarProgressBarStyle *progressBarStyle = [[JDStatusBarProgressBarStyle alloc] init];
   progressBarStyle.barColor = [UIColor greenColor];

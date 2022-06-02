@@ -61,16 +61,16 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
 /// The background color of the notification bar
-@property (nonatomic, strong) UIColor * _Nullable barColor;
+@property (nonatomic, strong, nullable) UIColor *barColor;
 
 /// The text color of the notification label
-@property (nonatomic, strong) UIColor * _Nullable textColor;
+@property (nonatomic, strong, nullable) UIColor *textColor;
 
 /// The text shadow of the notification label
-@property (nonatomic, strong) NSShadow * _Nullable textShadow;
+@property (nonatomic, strong, nullable) NSShadow *textShadow;
 
 /// The font of the notification label
-@property (nonatomic, strong) UIFont * _Nullable font;
+@property (nonatomic, strong, nullable) UIFont *font;
 
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
@@ -84,6 +84,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 /// The styling of the progress bar
 @property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
 
+/// Defines if the bar can be dismissed by the user or not (by swiping up)
+@property (nonatomic, assign) BOOL canSwipeToDismiss;
+
 @end
 
 /**
@@ -92,7 +95,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 @interface JDStatusBarProgressBarStyle : NSObject <NSCopying>
 
 /// The background color of the progress bar (on top of the notification bar)
-@property (nonatomic, strong) UIColor * _Nullable barColor;
+@property (nonatomic, strong, nullable) UIColor *barColor;
 
 /// The height of the progress bar. Default is 1.0
 @property (nonatomic, assign) CGFloat barHeight;

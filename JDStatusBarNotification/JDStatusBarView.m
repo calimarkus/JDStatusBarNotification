@@ -106,6 +106,8 @@
     _textLabel.shadowColor = nil;
     _textLabel.shadowOffset = CGSizeZero;
   }
+
+  _panGestureRecognizer.enabled = style.canSwipeToDismiss;
   
   [self setNeedsLayout];
 }
