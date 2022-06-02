@@ -338,15 +338,10 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   
   // create view
   [self createProgressViewIfNeeded];
-  
+  [_topBar insertSubview:_progressView belowSubview:_topBar.textLabel];
+
   // update superview
   JDStatusBarProgressBarStyle *progressBarStyle = _activeStyle.progressBarStyle;
-  if (progressBarStyle.position == JDStatusBarProgressBarPositionBelow ||
-      progressBarStyle.position == JDStatusBarProgressBarPositionNavBar) {
-    [_topBar.superview addSubview:_progressView];
-  } else {
-    [_topBar insertSubview:_progressView belowSubview:_topBar.textLabel];
-  }
   
   // calculate progressView frame
   CGRect frame = _topBar.bounds;
@@ -367,12 +362,6 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
       break;
     case JDStatusBarProgressBarPositionTop:
       frame.origin.y = 0.0;
-      break;
-    case JDStatusBarProgressBarPositionBelow:
-      frame.origin.y = barHeight;
-      break;
-    case JDStatusBarProgressBarPositionNavBar:
-      frame.origin.y = barHeight + navBarHeight(_windowScene);
       break;
   }
   

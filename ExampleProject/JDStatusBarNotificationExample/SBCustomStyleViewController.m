@@ -211,9 +211,7 @@
 - (IBAction)selectProgressBarPosition:(id)sender {
   NSArray *data = @[@"JDStatusBarProgressBarPositionBottom",
                     @"JDStatusBarProgressBarPositionCenter",
-                    @"JDStatusBarProgressBarPositionTop",
-                    @"JDStatusBarProgressBarPositionBelow",
-                    @"JDStatusBarProgressBarPositionNavBar"];
+                    @"JDStatusBarProgressBarPositionTop"];
   SBSelectPropertyViewController *controller = [[SBSelectPropertyViewController alloc] initWithData:data resultBlock:^(NSInteger selectedRow) {
     self.progressBarPosition = selectedRow;
     [self.barPositionButton setTitle:data[selectedRow] forState:UIControlStateNormal];
