@@ -57,6 +57,8 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
   JDStatusBarSystemStyleDarkContent
 };
 
+@class JDStatusBarProgressBarStyle;
+
 /**
  *  A Style defines the appeareance of a notification.
  */
@@ -80,27 +82,33 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 /// The UIStatusBarStyle, which should be used during presentation
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
-#pragma mark - Animation
-
 /// The animation, that is used to present the notification
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-#pragma mark - Progress Bar
+/// The styling of the progress bar
+@property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
+
+@end
+
+/**
+ *  A Style defines the appeareance of a notification.
+ */
+@interface JDStatusBarProgressBarStyle : NSObject <NSCopying>
 
 /// The background color of the progress bar (on top of the notification bar)
-@property (nonatomic, strong) UIColor * _Nullable progressBarColor;
+@property (nonatomic, strong) UIColor * _Nullable barColor;
 
 /// The height of the progress bar. Default is 1.0
-@property (nonatomic, assign) CGFloat progressBarHeight;
+@property (nonatomic, assign) CGFloat barHeight;
 
 /// The position of the progress bar. Default is JDStatusBarProgressBarPositionBottom
-@property (nonatomic, assign) JDStatusBarProgressBarPosition progressBarPosition;
+@property (nonatomic, assign) JDStatusBarProgressBarPosition position;
 
 /// The insets of the progress bar. Default is 0.0
-@property (nonatomic, assign) CGFloat progressBarHorizontalInsets;
+@property (nonatomic, assign) CGFloat horizontalInsets;
 
 /// The corner radius of the progress bar. Default is 0.0
-@property (nonatomic, assign) CGFloat progressBarCornerRadius;
+@property (nonatomic, assign) CGFloat cornerRadius;
 
 @end
 

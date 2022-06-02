@@ -340,8 +340,9 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   [self createProgressViewIfNeeded];
   
   // update superview
-  if (_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow ||
-      _activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
+  JDStatusBarProgressBarStyle *progressBarStyle = _activeStyle.progressBarStyle;
+  if (progressBarStyle.position == JDStatusBarProgressBarPositionBelow ||
+      progressBarStyle.position == JDStatusBarProgressBarPositionNavBar) {
     [_topBar.superview addSubview:_progressView];
   } else {
     [_topBar insertSubview:_progressView belowSubview:_topBar.textLabel];
@@ -349,31 +350,37 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   
   // calculate progressView frame
   CGRect frame = _topBar.bounds;
-  CGFloat height = MIN(frame.size.height,MAX(0.5, _activeStyle.progressBarHeight));
+  CGFloat height = MIN(frame.size.height,MAX(0.5, progressBarStyle.barHeight));
   if (height == 20.0 && frame.size.height > height) height = frame.size.height;
   frame.size.height = height;
-  frame.size.width = round((frame.size.width - 2 * _activeStyle.progressBarHorizontalInsets) * percentage);
-  frame.origin.x = _activeStyle.progressBarHorizontalInsets;
+  frame.size.width = round((frame.size.width - 2 * progressBarStyle.horizontalInsets) * percentage);
+  frame.origin.x = progressBarStyle.horizontalInsets;
   
   // apply y-position from active style
   CGFloat barHeight = _topBar.bounds.size.height;
-  if (_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBottom) {
-    frame.origin.y = barHeight - height;
-  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionCenter) {
-    frame.origin.y = round((barHeight - height)/2.0);
-  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionTop) {
-    frame.origin.y = 0.0;
-  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionBelow) {
-    frame.origin.y = barHeight;
-  } else if(_activeStyle.progressBarPosition == JDStatusBarProgressBarPositionNavBar) {
-    frame.origin.y = barHeight + navBarHeight(_windowScene);
+  switch (progressBarStyle.position) {
+    case JDStatusBarProgressBarPositionBottom:
+      frame.origin.y = barHeight - height;
+      break;
+    case JDStatusBarProgressBarPositionCenter:
+      frame.origin.y = round((barHeight - height)/2.0);
+      break;
+    case JDStatusBarProgressBarPositionTop:
+      frame.origin.y = 0.0;
+      break;
+    case JDStatusBarProgressBarPositionBelow:
+      frame.origin.y = barHeight;
+      break;
+    case JDStatusBarProgressBarPositionNavBar:
+      frame.origin.y = barHeight + navBarHeight(_windowScene);
+      break;
   }
   
   // apply color from active style
-  _progressView.backgroundColor = _activeStyle.progressBarColor;
+  _progressView.backgroundColor = progressBarStyle.barColor;
   
   // apply corner radius
-  _progressView.layer.cornerRadius = _activeStyle.progressBarCornerRadius;
+  _progressView.layer.cornerRadius = progressBarStyle.cornerRadius;
   
   // update progressView frame
   BOOL animated = !CGRectEqualToRect(_progressView.frame, CGRectZero);

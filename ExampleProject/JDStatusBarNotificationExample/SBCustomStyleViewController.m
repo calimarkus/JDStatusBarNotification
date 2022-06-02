@@ -84,12 +84,12 @@
     style.barColor = self.barColorPreview.backgroundColor;
     style.animationType = self.animationType;
     
-    style.progressBarColor = self.progressBarColorPreview.backgroundColor;
-    style.progressBarPosition = self.progressBarPosition;
+    style.progressBarStyle.barColor = self.progressBarColorPreview.backgroundColor;
+    style.progressBarStyle.position = self.progressBarPosition;
     
     NSString *height = [self.barHeightLabel.text stringByReplacingOccurrencesOfString:@"ProgressBarHeight (" withString:@""];
     height = [height stringByReplacingOccurrencesOfString:@" pt)" withString:@""];
-    style.progressBarHeight = [height doubleValue];
+    style.progressBarStyle.barHeight = [height doubleValue];
     
     return style;
   }];

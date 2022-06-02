@@ -37,8 +37,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
       style.textColor = [UIColor whiteColor];
       style.animationType = JDStatusBarAnimationTypeFade;
       style.font = [UIFont fontWithName:@"SnellRoundhand-Bold" size:17.0];
-      style.progressBarColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
-      style.progressBarHeight = 20.0;
+      style.progressBarStyle.barColor = [UIColor colorWithRed:0.986 green:0.062 blue:0.598 alpha:1.000];
+      style.progressBarStyle.barHeight = 20.0;
       return style;
     }];
     
@@ -46,9 +46,9 @@ static NSString *const SBStyle2 = @"SBStyle2";
       style.barColor = [UIColor cyanColor];
       style.textColor = [UIColor colorWithRed:0.056 green:0.478 blue:0.998 alpha:1.000];
       style.animationType = JDStatusBarAnimationTypeBounce;
-      style.progressBarColor = style.textColor;
-      style.progressBarHeight = 5.0;
-      style.progressBarPosition = JDStatusBarProgressBarPositionTop;
+      style.progressBarStyle.barColor = style.textColor;
+      style.progressBarStyle.barHeight = 5.0;
+      style.progressBarStyle.position = JDStatusBarProgressBarPositionTop;
       if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         style.font = [UIFont fontWithName:@"DINCondensed-Bold" size:17.0];
         style.textVerticalPositionAdjustment = 2.0;
