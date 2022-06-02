@@ -29,7 +29,7 @@
   return self;
 }
 
-#pragma mark - dynamic getter
+#pragma mark - view setup
 
 - (void)setupTextLabel {
   _textLabel = [[UILabel alloc] init];
@@ -48,6 +48,23 @@
     [self addSubview:_activityIndicatorView];
   }
   return _activityIndicatorView;
+}
+
+- (void)resetSubviewsIfNeeded {
+  // remove subviews added from outside
+  for (UIView *subview in self.subviews) {
+    if (subview != _textLabel && subview != _activityIndicatorView) {
+      [subview removeFromSuperview];
+    }
+  }
+
+  // ensure expected subviews are set
+  if (_textLabel.superview != self) {
+    [self addSubview:_textLabel];
+  }
+  if (_activityIndicatorView != nil && _activityIndicatorView.superview != self) {
+    [self addSubview:_activityIndicatorView];
+  }
 }
 
 #pragma mark - setter
@@ -88,7 +105,7 @@
   // label
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(self.window).top;
   CGFloat labelAdjustment = topLayoutMargin;
-  if (topLayoutMargin == 0 ) {
+  if (topLayoutMargin == 0) {
     labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
   }
   
@@ -98,7 +115,7 @@
   self.textLabel.frame = CGRectMake(0, labelY, self.bounds.size.width, height);
   
   // activity indicator
-  if (_activityIndicatorView ) {
+  if (_activityIndicatorView) {
     NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
     CGSize textSize = [self.textLabel.text sizeWithAttributes:attributes];
     CGRect indicatorFrame = _activityIndicatorView.frame;

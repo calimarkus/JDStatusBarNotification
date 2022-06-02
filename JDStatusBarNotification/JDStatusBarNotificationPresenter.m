@@ -130,7 +130,8 @@
 - (JDStatusBarView *)showWithStatus:(NSString *)status
                               style:(JDStatusBarStyle *)style {
   [self createWindowAndViewIfNeededWithStyle:style];
-  
+  [_topBar resetSubviewsIfNeeded];
+
   // prepare for new style
   if (style != _activeStyle) {
     _activeStyle = style;
