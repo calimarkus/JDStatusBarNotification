@@ -61,6 +61,7 @@
 		7EBE341C2844CFA90096CD55 /* JDStatusBarPrepareStyleBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarPrepareStyleBlock.h; sourceTree = "<group>"; };
 		7ED140902847557600593D6F /* JDStatusBarWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarWindow.h; sourceTree = "<group>"; };
 		7ED140912847557600593D6F /* JDStatusBarWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarWindow.m; sourceTree = "<group>"; };
+		7ED14094284847FB00593D6F /* JDStatusBarView_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView_Private.h; sourceTree = "<group>"; };
 		7EE516D428470CC300685DDF /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarManagerHelper.m; sourceTree = "<group>"; };
 		7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarManagerHelper.h; sourceTree = "<group>"; };
@@ -128,10 +129,11 @@
 				7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */,
 				7EBE340C2844CA2D0096CD55 /* JDStatusBarNotificationViewController.h */,
 				7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */,
-				7EBE34112844CA2D0096CD55 /* UIApplication+MainWindow.h */,
-				7EBE340D2844CA2D0096CD55 /* UIApplication+MainWindow.m */,
+				7ED14094284847FB00593D6F /* JDStatusBarView_Private.h */,
 				7ED140902847557600593D6F /* JDStatusBarWindow.h */,
 				7ED140912847557600593D6F /* JDStatusBarWindow.m */,
+				7EBE34112844CA2D0096CD55 /* UIApplication+MainWindow.h */,
+				7EBE340D2844CA2D0096CD55 /* UIApplication+MainWindow.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";

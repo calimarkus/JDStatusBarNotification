@@ -6,6 +6,7 @@
 //
 
 #import "JDStatusBarView.h"
+#import "JDStatusBarView_Private.h"
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarLayoutMarginHelper.h"
@@ -18,12 +19,14 @@
 }
 
 @synthesize textLabel = _textLabel;
+@synthesize panGestureRecognizer = _panGestureRecognizer;
 @synthesize activityIndicatorView = _activityIndicatorView;
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style {
   self = [super init];
   if (self) {
     [self setupTextLabel];
+    [self setupPanGesture];
     [self setStyle:style];
   }
   return self;
@@ -39,6 +42,12 @@
   _textLabel.adjustsFontSizeToFitWidth = YES;
   _textLabel.clipsToBounds = YES;
   [self addSubview:_textLabel];
+}
+
+- (void)setupPanGesture {
+  _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+  _panGestureRecognizer.enabled = YES;
+  [self addGestureRecognizer:_panGestureRecognizer];
 }
 
 - (UIActivityIndicatorView *)activityIndicatorView {
@@ -65,6 +74,10 @@
   if (_activityIndicatorView != nil && _activityIndicatorView.superview != self) {
     [self addSubview:_activityIndicatorView];
   }
+
+  // ensure pan recognizer is setup
+  _panGestureRecognizer.enabled = YES;
+  [self addGestureRecognizer:_panGestureRecognizer];
 }
 
 #pragma mark - setter
@@ -122,6 +135,35 @@
     indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 16.0;
     indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(self.textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
+  }
+}
+
+#pragma mark - Pan gesture
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
+  if (recognizer.isEnabled) {
+    CGPoint translation = [recognizer translationInView:self];
+    switch (recognizer.state) {
+      case UIGestureRecognizerStateBegan:
+        [recognizer setTranslation:CGPointZero inView:self];
+        break;
+      case UIGestureRecognizerStateChanged: {
+        self.transform = CGAffineTransformMakeTranslation(0, MIN(translation.y, 0.0));
+        break;
+      }
+      case UIGestureRecognizerStateEnded:
+      case UIGestureRecognizerStateCancelled:
+      case UIGestureRecognizerStateFailed:
+        if (translation.y > -(self.bounds.size.height * 0.20)) {
+          [UIView animateWithDuration:0.22 animations:^{
+            self.transform = CGAffineTransformIdentity;
+          }];
+        } else {
+          [self.delegate statusBarViewDidPanToDismiss];
+        }
+      default:
+        break;
+    }
   }
 }
 

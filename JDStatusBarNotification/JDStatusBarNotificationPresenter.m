@@ -13,6 +13,7 @@
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarView.h"
+#import "JDStatusBarView_Private.h"
 #import "JDStatusBarWindow.h"
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarManagerHelper.h"
@@ -24,7 +25,11 @@
 + (JDStatusBarStyle *)defaultStyleWithName:(NSString *)styleName;
 @end
 
-@interface JDStatusBarNotificationPresenter () <CAAnimationDelegate, JDStatusBarNotificationViewControllerDelegate>
+@interface JDStatusBarNotificationPresenter () <
+CAAnimationDelegate,
+JDStatusBarNotificationViewControllerDelegate,
+JDStatusBarViewDelegate
+>
 @end
 
 @implementation JDStatusBarNotificationPresenter {
@@ -179,6 +184,12 @@
   return _topBar;
 }
 
+#pragma mark - JDStatusBarViewDelegate
+
+- (void)statusBarViewDidPanToDismiss {
+  [self dismissAnimated:YES duration:0.25 completion:nil];
+}
+
 #pragma mark - Dismissal
 
 static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletionBlockKey";
@@ -214,8 +225,17 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
 
 - (void)dismissAnimated:(BOOL)animated
              completion:(void(^ _Nullable)(void))completion {
+  [self dismissAnimated:animated duration:0.4 completion:completion];
+}
+
+- (void)dismissAnimated:(BOOL)animated
+               duration:(CGFloat)duration
+             completion:(void(^ _Nullable)(void))completion {
   [_dismissTimer invalidate];
   _dismissTimer = nil;
+
+  // disable pan gesture
+  _topBar.panGestureRecognizer.enabled = NO;
   
   // check animation type
   BOOL animationsEnabled = (_activeStyle.animationType != JDStatusBarAnimationTypeNone);
@@ -239,7 +259,7 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   
   if (animated) {
     // animate out
-    [UIView animateWithDuration:0.4 animations:animation completion:animationCompletion];
+    [UIView animateWithDuration:duration animations:animation completion:animationCompletion];
   } else {
     animation();
     animationCompletion(YES);
@@ -411,6 +431,7 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
     _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];
     
     _topBar = [[JDStatusBarView alloc] initWithStyle:style];
+    _topBar.delegate = self;
     if (style.animationType != JDStatusBarAnimationTypeFade) {
       _topBar.transform = CGAffineTransformMakeTranslation(0, -_topBar.frame.size.height);
     } else {
