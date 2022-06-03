@@ -42,24 +42,6 @@ JDStatusBarViewDelegate
   JDStatusBarView *topBar = _statusBarView;
   [topBar resetSubviewsIfNeeded];
 
-  // prepare for new style
-  if (style != _statusBarView.style) {
-    _statusBarView.style = style;
-    if (_statusBarView.style.animationType == JDStatusBarAnimationTypeFade) {
-      topBar.alpha = 0.0;
-      topBar.transform = CGAffineTransformIdentity;
-    } else {
-      topBar.alpha = 1.0;
-      topBar.transform = CGAffineTransformMakeTranslation(0, -topBar.frame.size.height);
-    }
-  }
-
-  // cancel previous dismissing & remove animations
-  [_dismissTimer invalidate];
-  _dismissTimer = nil;
-  _dismissCompletionBlock = nil;
-  [topBar.layer removeAllAnimations];
-
   // update status & style
   [topBar setStatus:status];
   [topBar setStyle:style];
@@ -67,6 +49,21 @@ JDStatusBarViewDelegate
   // reset progress & activity
   [topBar setProgressBarPercentage:0.0];
   [topBar setDisplaysActivityIndicator:NO];
+
+  // cancel previous dismissing & remove animations
+  [_dismissTimer invalidate];
+  _dismissTimer = nil;
+  _dismissCompletionBlock = nil;
+  [topBar.layer removeAllAnimations];
+
+  // prepare animation
+  if (style.animationType == JDStatusBarAnimationTypeFade) {
+    topBar.alpha = 0.0;
+    topBar.transform = CGAffineTransformIdentity;
+  } else {
+    topBar.alpha = 1.0;
+    topBar.transform = CGAffineTransformMakeTranslation(0, -topBar.frame.size.height);
+  }
 
   // animate in
   BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
@@ -122,6 +119,7 @@ JDStatusBarViewDelegate
     duration = 0.0;
   }
 
+  // animate out
   dispatch_block_t animation = ^{
     if (self->_statusBarView.style.animationType == JDStatusBarAnimationTypeFade) {
       topBar.alpha = 0.0;
