@@ -21,6 +21,8 @@
 
 - (void)loadView {
   [super loadView];
+
+  self.view.backgroundColor = [UIColor clearColor];
   [self.view addSubview:_statusBarView];
 }
 
