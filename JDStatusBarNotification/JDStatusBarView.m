@@ -172,7 +172,11 @@
   }
 }
 
-#pragma mark - setter
+#pragma mark - properties
+
+- (NSString *)status {
+  return _textLabel.text ?: @"";
+}
 
 - (void)setStatus:(NSString *)status {
   _textLabel.accessibilityLabel = status;

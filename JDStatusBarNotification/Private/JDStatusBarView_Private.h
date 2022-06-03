@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style;
 
-- (void)setStatus:(NSString *)status;
-- (void)setStyle:(JDStatusBarStyle *)style;
 - (void)resetSubviewsIfNeeded;
 
 @end
