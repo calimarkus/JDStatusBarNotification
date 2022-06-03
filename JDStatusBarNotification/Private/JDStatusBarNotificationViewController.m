@@ -3,10 +3,26 @@
 
 #import "JDStatusBarNotificationViewController.h"
 
+#import "JDStatusBarStyle.h"
+#import "JDStatusBarView.h"
+#import "JDStatusBarView_Private.h"
 #import "UIApplication+MainWindow.h"
 
 // A custom view controller, so the statusBarStyle & rotation behaviour is correct
 @implementation JDStatusBarNotificationViewController
+
+- (instancetype)initWithStyle:(JDStatusBarStyle *)style {
+  self = [super init];
+  if (self) {
+    _statusBarView = [[JDStatusBarView alloc] initWithStyle:style];
+  }
+  return self;
+}
+
+- (void)loadView {
+  [super loadView];
+  [self.view addSubview:_statusBarView];
+}
 
 // mainVC determination
 
@@ -70,15 +86,8 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
   return enabled;
 }
 
-- (void)setStatusBarSystemStyle:(JDStatusBarSystemStyle)statusBarSystemStyle {
-  if (_statusBarSystemStyle != statusBarSystemStyle) {
-    _statusBarSystemStyle = statusBarSystemStyle;
-    [self setNeedsStatusBarAppearanceUpdate];
-  }
-}
-
 - (UIStatusBarStyle)preferredStatusBarStyle {
-  switch (_statusBarSystemStyle) {
+  switch (_statusBarView.style.systemStatusBarStyle) {
     case JDStatusBarSystemStyleDefault:
       return [self defaultStatusBarStyle];
     case JDStatusBarSystemStyleLightContent:
