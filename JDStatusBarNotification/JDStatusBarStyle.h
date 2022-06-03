@@ -11,18 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSString * JDStatusBarIncludedStyle NS_EXTENSIBLE_STRING_ENUM;
+
 /// This style has a red background with a white Helvetica label.
-extern NSString *const JDStatusBarStyleError;
+extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleError;
 /// This style has a yellow background with a gray Helvetica label.
-extern NSString *const JDStatusBarStyleWarning;
+extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleWarning;
 /// This style has a green background with a white Helvetica label.
-extern NSString *const JDStatusBarStyleSuccess;
+extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleSuccess;
 /// This style has a black background with a green bold Courier label.
-extern NSString *const JDStatusBarStyleMatrix;
+extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleMatrix;
 /// This style has a white background with a gray Helvetica label.
-extern NSString *const JDStatusBarStyleDefault;
+extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleDefault;
 /// This style has a nearly black background with a nearly white Helvetica label.
-extern NSString *const JDStatusBarStyleDark;
+extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleDark;
 
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
   /// Notification won't animate

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E67050D284A4BE900AD58E1 /* ExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesView.swift */; };
+		7E67050E284A4BE900AD58E1 /* ExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesView.swift */; };
 		7E8B9AEF283B6FD300507BC1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
 		7EBE34122844CA2D0096CD55 /* UIApplication+MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340D2844CA2D0096CD55 /* UIApplication+MainWindow.m */; };
 		7EBE34132844CA2D0096CD55 /* UIApplication+MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340D2844CA2D0096CD55 /* UIApplication+MainWindow.m */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E67050A284A4BE900AD58E1 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E67050C284A4BE900AD58E1 /* ExamplesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesView.swift; sourceTree = "<group>"; };
 		7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7EBE340C2844CA2D0096CD55 /* JDStatusBarNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationViewController.h; sourceTree = "<group>"; };
 		7EBE340D2844CA2D0096CD55 /* UIApplication+MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+MainWindow.m"; sourceTree = "<group>"; };
@@ -165,19 +169,21 @@
 		D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */ = {
 			isa = PBXGroup;
 			children = (
+				7E67050A284A4BE900AD58E1 /* Swift-Bridging-Header.h */,
 				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
 				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
 				7EFD77A428434906000BFBF1 /* SBSceneDelegate.h */,
 				7EFD77A528434906000BFBF1 /* SBSceneDelegate.m */,
+				7E67050C284A4BE900AD58E1 /* ExamplesView.swift */,
 				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
 				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
+				D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */,
+				D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */,
 				D294B578182D03E90042B5B4 /* SBCustomStyleViewController.h */,
 				D294B579182D03E90042B5B4 /* SBCustomStyleViewController.m */,
 				D294B57A182D03E90042B5B4 /* SBCustomStyleViewController.xib */,
-				D228A0C8182DA75A006B7ABB /* SBSelectPropertyViewController.h */,
-				D228A0C9182DA75A006B7ABB /* SBSelectPropertyViewController.m */,
-				D264F8A21820213200DA0E53 /* Images.xcassets */,
 				7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */,
+				D264F8A21820213200DA0E53 /* Images.xcassets */,
 				D264F8971820213200DA0E53 /* Supporting Files */,
 			);
 			path = JDStatusBarNotificationExample;
@@ -256,6 +262,14 @@
 				CLASSPREFIX = SB;
 				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = Markus;
+				TargetAttributes = {
+					7EFD778A2843461D000BFBF1 = {
+						LastSwiftMigration = 1340;
+					};
+					D264F88C1820213200DA0E53 = {
+						LastSwiftMigration = 1340;
+					};
+				};
 			};
 			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -312,6 +326,7 @@
 				7ED140982848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
 				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
 				7EFD77912843461D000BFBF1 /* JDStatusBarStyle.m in Sources */,
+				7E67050E284A4BE900AD58E1 /* ExamplesView.swift in Sources */,
 				7EFD77932843461D000BFBF1 /* SBSelectPropertyViewController.m in Sources */,
 				7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */,
 				7EBE34132844CA2D0096CD55 /* UIApplication+MainWindow.m in Sources */,
@@ -329,6 +344,7 @@
 				D264F89D1820213200DA0E53 /* main.m in Sources */,
 				D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */,
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
+				7E67050D284A4BE900AD58E1 /* ExamplesView.swift in Sources */,
 				7ED140972848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
 				D264F8C21820216300DA0E53 /* JDStatusBarNotificationPresenter.m in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
@@ -350,12 +366,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
+				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
 			};
@@ -365,12 +387,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
+				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
 			};
@@ -413,10 +440,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -481,12 +504,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=0";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/Classic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
+				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
 			};
@@ -496,12 +525,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=0";
 				INFOPLIST_FILE = "JDStatusBarNotificationExample/Classic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
+				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
 			};

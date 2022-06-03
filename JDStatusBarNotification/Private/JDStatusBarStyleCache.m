@@ -54,13 +54,13 @@ static JDStatusBarStyle *defaultStyle(void) {
 }
 
 static JDStatusBarStyle *defaultStyleWithName(NSString *styleName) {
-  // JDStatusBarStyleDefault
-  if ([styleName isEqualToString:JDStatusBarStyleDefault]) {
+  // JDStatusBarIncludedStyleDefault
+  if ([styleName isEqualToString:JDStatusBarIncludedStyleDefault]) {
     return defaultStyle();
   }
 
-  // JDStatusBarStyleError
-  else if ([styleName isEqualToString:JDStatusBarStyleError]) {
+  // JDStatusBarIncludedStyleError
+  else if ([styleName isEqualToString:JDStatusBarIncludedStyleError]) {
     JDStatusBarStyle *style = defaultStyle();
     style.barColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
     style.textColor = [UIColor whiteColor];
@@ -69,8 +69,8 @@ static JDStatusBarStyle *defaultStyleWithName(NSString *styleName) {
     return style;
   }
 
-  // JDStatusBarStyleWarning
-  else if ([styleName isEqualToString:JDStatusBarStyleWarning]) {
+  // JDStatusBarIncludedStyleWarning
+  else if ([styleName isEqualToString:JDStatusBarIncludedStyleWarning]) {
     JDStatusBarStyle *style = defaultStyle();
     style.barColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
     style.textColor = [UIColor darkGrayColor];
@@ -78,8 +78,8 @@ static JDStatusBarStyle *defaultStyleWithName(NSString *styleName) {
     return style;
   }
 
-  // JDStatusBarStyleSuccess
-  else if ([styleName isEqualToString:JDStatusBarStyleSuccess]) {
+  // JDStatusBarIncludedStyleSuccess
+  else if ([styleName isEqualToString:JDStatusBarIncludedStyleSuccess]) {
     JDStatusBarStyle *style = defaultStyle();
     style.barColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
     style.textColor = [UIColor whiteColor];
@@ -88,8 +88,8 @@ static JDStatusBarStyle *defaultStyleWithName(NSString *styleName) {
     return style;
   }
 
-  // JDStatusBarStyleDark
-  else if ([styleName isEqualToString:JDStatusBarStyleDark]) {
+  // JDStatusBarIncludedStyleDark
+  else if ([styleName isEqualToString:JDStatusBarIncludedStyleDark]) {
     JDStatusBarStyle *style = defaultStyle();
     style.barColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
     style.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
@@ -98,8 +98,8 @@ static JDStatusBarStyle *defaultStyleWithName(NSString *styleName) {
     return style;
   }
 
-  // JDStatusBarStyleMatrix
-  else if ([styleName isEqualToString:JDStatusBarStyleMatrix]) {
+  // JDStatusBarIncludedStyleMatrix
+  else if ([styleName isEqualToString:JDStatusBarIncludedStyleMatrix]) {
     JDStatusBarStyle *style = defaultStyle();
     style.barColor = [UIColor blackColor];
     style.textColor = [UIColor greenColor];

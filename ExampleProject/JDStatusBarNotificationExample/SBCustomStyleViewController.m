@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.title = @"Create your own style";
   
   self.animationType = JDStatusBarAnimationTypeMove;
   self.progressBarPosition = JDStatusBarProgressBarPositionBottom;

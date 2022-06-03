@@ -7,12 +7,12 @@
 
 #import "JDStatusBarStyle.h"
 
-NSString *const JDStatusBarStyleError   = @"JDStatusBarStyleError";
-NSString *const JDStatusBarStyleWarning = @"JDStatusBarStyleWarning";
-NSString *const JDStatusBarStyleSuccess = @"JDStatusBarStyleSuccess";
-NSString *const JDStatusBarStyleMatrix  = @"JDStatusBarStyleMatrix";
-NSString *const JDStatusBarStyleDefault = @"JDStatusBarStyleDefault";
-NSString *const JDStatusBarStyleDark    = @"JDStatusBarStyleDark";
+JDStatusBarIncludedStyle const JDStatusBarIncludedStyleError   = @"JDStatusBarIncludedStyleError";
+JDStatusBarIncludedStyle const JDStatusBarIncludedStyleWarning = @"JDStatusBarIncludedStyleWarning";
+JDStatusBarIncludedStyle const JDStatusBarIncludedStyleSuccess = @"JDStatusBarIncludedStyleSuccess";
+JDStatusBarIncludedStyle const JDStatusBarIncludedStyleMatrix  = @"JDStatusBarIncludedStyleMatrix";
+JDStatusBarIncludedStyle const JDStatusBarIncludedStyleDefault = @"JDStatusBarIncludedStyleDefault";
+JDStatusBarIncludedStyle const JDStatusBarIncludedStyleDark    = @"JDStatusBarIncludedStyleDark";
 
 @implementation JDStatusBarProgressBarStyle
 

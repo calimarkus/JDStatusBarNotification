@@ -16,8 +16,7 @@
   BOOL isWindowSceneBased = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleIsWindowSceneBased"] boolValue];
   if (!isWindowSceneBased) {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:
-                                      [[SBExampleViewController alloc] initWithStyle:UITableViewStyleInsetGrouped]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[SBExampleViewController alloc] init]];
     [self.window makeKeyAndVisible];
   }
   

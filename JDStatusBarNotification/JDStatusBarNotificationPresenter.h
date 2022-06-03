@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param status The message to display
  *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
- *  (JDStatusBarStyleDefault, etc.), or a custom style identifier, after you added a
+ *  (JDStatusBarIncludedStyleDefault, etc.), or a custom style identifier, after you added a
  *  custom style. If this is nil, the default style will be used.
  *
  *  @return The presented notification view for further customization
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param timeInterval The duration, how long the notification
  *  is displayed. (Including the animation duration)
  *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
- *  (JDStatusBarStyleDefault, etc.), or a custom style identifier, after you added a
+ *  (JDStatusBarIncludedStyleDefault, etc.), or a custom style identifier, after you added a
  *  custom style. If this is nil, the default style will be used.
  *
  *  @return The presented notification view for further customization
