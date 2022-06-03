@@ -40,7 +40,7 @@
 
 - (void)updateFramesForStatusBarFrame:(CGRect)rect {
   // match main window transform & frame
-  UIWindow *window = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self];
+  UIWindow *window = [[UIApplication sharedApplication] jdsb_mainApplicationWindowIgnoringWindow:self];
   self.transform = window.transform;
   self.frame = window.frame;
 

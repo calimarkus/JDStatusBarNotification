@@ -6,7 +6,7 @@
 @implementation UIApplication (MainWindow)
 
 // we don't want the keyWindow, since it could be our own window
-- (UIWindow *)mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
+- (UIWindow *)jdsb_mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
   NSArray *allWindows;
   if (ignoringWindow.windowScene != nil) {
     allWindows = ignoringWindow.windowScene.windows;
@@ -22,7 +22,7 @@
 }
 
 - (UIViewController *)jdsb_mainControllerIgnoringViewController:(UIViewController *)viewController {
-  UIWindow *mainAppWindow = [self mainApplicationWindowIgnoringWindow:viewController.view.window];
+  UIWindow *mainAppWindow = [self jdsb_mainApplicationWindowIgnoringWindow:viewController.view.window];
   UIViewController *topController = mainAppWindow.rootViewController;
 
   while(topController.presentedViewController) {
