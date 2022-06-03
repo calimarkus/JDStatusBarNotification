@@ -9,8 +9,7 @@
 
 #import "JDStatusBarNotificationPresenter.h"
 
-#import "JDStatusBarStyle.h"
-#import "JDStatusBarIncludedStyles.h"
+#import "JDStatusBarStyleCache.h"
 #import "JDStatusBarNotificationViewController.h"
 #import "JDStatusBarView.h"
 #import "JDStatusBarWindow.h"
@@ -21,9 +20,7 @@
 @implementation JDStatusBarNotificationPresenter {
   UIWindowScene *_windowScene;
   JDStatusBarWindow *_overlayWindow;
-
-  JDStatusBarStyle *_defaultStyle;
-  NSMutableDictionary *_userStyles;
+  JDStatusBarStyleCache *_styleCache;
 }
 
 #pragma mark - Singleton
@@ -42,8 +39,7 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _defaultStyle = [JDStatusBarIncludedStyles defaultStyleWithName:JDStatusBarStyleDefault];
-    _userStyles = [NSMutableDictionary dictionary];
+    _styleCache = [[JDStatusBarStyleCache alloc] init];
   }
   return self;
 }
@@ -54,7 +50,7 @@
   _windowScene = windowScene;
 }
 
-#pragma mark - Window Management
+#pragma mark - Presentation logic
 
 - (JDStatusBarView *)showWithStatus:(NSString *)status
                               style:(JDStatusBarStyle *)style {
@@ -83,14 +79,12 @@
 #pragma mark - Style Management API
 
 - (void)updateDefaultStyle:(JDStatusBarPrepareStyleBlock)prepareBlock {
-  _defaultStyle = prepareBlock([_defaultStyle copy]);
+  [_styleCache updateDefaultStyle:prepareBlock];
 }
 
 - (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
-  JDStatusBarStyle *style = [_defaultStyle copy];
-  [_userStyles setObject:prepareBlock(style) forKey:identifier];
-  return identifier;
+  return [_styleCache addStyleNamed:identifier prepare:prepareBlock];
 }
 
 #pragma mark - Presentation API
@@ -112,10 +106,7 @@
 - (JDStatusBarView *)showWithStatus:(NSString *)status
                   dismissAfterDelay:(NSTimeInterval)timeInterval
                           styleName:(NSString * _Nullable)styleName {
-  JDStatusBarStyle *style = ([JDStatusBarIncludedStyles defaultStyleWithName:styleName]
-                             ?: _userStyles[styleName]
-                             ?: _defaultStyle);
-
+  JDStatusBarStyle *style = [_styleCache styleForName:styleName];
   JDStatusBarView *view = [self showWithStatus:status style:style];
   if (timeInterval > 0.0) {
     [self dismissAfterDelay:timeInterval];

@@ -16,8 +16,8 @@
 		7EBE34172844CA2D0096CD55 /* JDStatusBarNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */; };
 		7ED140922847557600593D6F /* JDStatusBarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDStatusBarWindow.m */; };
 		7ED140932847557600593D6F /* JDStatusBarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDStatusBarWindow.m */; };
-		7ED140972848513800593D6F /* JDStatusBarIncludedStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDStatusBarIncludedStyles.m */; };
-		7ED140982848513800593D6F /* JDStatusBarIncludedStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDStatusBarIncludedStyles.m */; };
+		7ED140972848513800593D6F /* JDStatusBarStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDStatusBarStyleCache.m */; };
+		7ED140982848513800593D6F /* JDStatusBarStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDStatusBarStyleCache.m */; };
 		7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
 		7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
 		7EFD778D2843461D000BFBF1 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
@@ -60,8 +60,8 @@
 		7ED140902847557600593D6F /* JDStatusBarWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarWindow.h; sourceTree = "<group>"; };
 		7ED140912847557600593D6F /* JDStatusBarWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarWindow.m; sourceTree = "<group>"; };
 		7ED14094284847FB00593D6F /* JDStatusBarView_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView_Private.h; sourceTree = "<group>"; };
-		7ED140952848513800593D6F /* JDStatusBarIncludedStyles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarIncludedStyles.h; sourceTree = "<group>"; };
-		7ED140962848513800593D6F /* JDStatusBarIncludedStyles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarIncludedStyles.m; sourceTree = "<group>"; };
+		7ED140952848513800593D6F /* JDStatusBarStyleCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyleCache.h; sourceTree = "<group>"; };
+		7ED140962848513800593D6F /* JDStatusBarStyleCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyleCache.m; sourceTree = "<group>"; };
 		7EE516D428470CC300685DDF /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarManagerHelper.m; sourceTree = "<group>"; };
 		7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarManagerHelper.h; sourceTree = "<group>"; };
@@ -117,8 +117,8 @@
 		7EBE340B2844CA2D0096CD55 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				7ED140952848513800593D6F /* JDStatusBarIncludedStyles.h */,
-				7ED140962848513800593D6F /* JDStatusBarIncludedStyles.m */,
+				7ED140952848513800593D6F /* JDStatusBarStyleCache.h */,
+				7ED140962848513800593D6F /* JDStatusBarStyleCache.m */,
 				7EBE34102844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.h */,
 				7EBE340E2844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m */,
 				7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */,
@@ -309,7 +309,7 @@
 				7EFD77A628434906000BFBF1 /* SBSceneDelegate.m in Sources */,
 				7EFD778D2843461D000BFBF1 /* JDStatusBarView.m in Sources */,
 				7EFD778F2843461D000BFBF1 /* JDStatusBarNotificationPresenter.m in Sources */,
-				7ED140982848513800593D6F /* JDStatusBarIncludedStyles.m in Sources */,
+				7ED140982848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
 				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
 				7EFD77912843461D000BFBF1 /* JDStatusBarStyle.m in Sources */,
 				7EFD77932843461D000BFBF1 /* SBSelectPropertyViewController.m in Sources */,
@@ -329,7 +329,7 @@
 				D264F89D1820213200DA0E53 /* main.m in Sources */,
 				D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */,
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
-				7ED140972848513800593D6F /* JDStatusBarIncludedStyles.m in Sources */,
+				7ED140972848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
 				D264F8C21820216300DA0E53 /* JDStatusBarNotificationPresenter.m in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
 				D25B0FA8184F364100B8174B /* JDStatusBarStyle.m in Sources */,
