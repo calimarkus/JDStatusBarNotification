@@ -12,6 +12,5 @@ Pod::Spec.new do |s|
   s.source               = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
   s.source_files         = 'JDStatusBarNotification/**'
   s.private_header_files = 'JDStatusBarNotification/Private/*.{h}'
-  s.frameworks           = 'QuartzCore'
   
 end

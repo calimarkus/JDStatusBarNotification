@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarNotification.h"
 #import "SBSelectPropertyViewController.h"

@@ -7,8 +7,6 @@
 //  Copyright 2013 Markus Emrich. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
-
 #import "JDStatusBarNotificationPresenter.h"
 
 #import "JDStatusBarStyle.h"
