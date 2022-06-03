@@ -8,9 +8,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol JDStatusBarWindowDelegate <NSObject>
+- (void)didDismissStatusBar;
+@end
+
 @interface JDStatusBarWindow : UIWindow
 
 @property (nonatomic, strong) JDStatusBarNotificationViewController *statusBarViewController;
+@property (nonatomic, weak) id<JDStatusBarWindowDelegate> delegate;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

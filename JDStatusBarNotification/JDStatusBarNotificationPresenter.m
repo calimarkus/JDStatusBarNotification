@@ -11,23 +11,17 @@
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarIncludedStyles.h"
-#import "JDStatusBarView.h"
-#import "JDStatusBarView_Private.h"
-#import "JDStatusBarWindow.h"
 #import "JDStatusBarNotificationViewController.h"
+#import "JDStatusBarView.h"
+#import "JDStatusBarWindow.h"
 
-@interface JDStatusBarNotificationPresenter () <
-CAAnimationDelegate,
-JDStatusBarViewDelegate
->
+@interface JDStatusBarNotificationPresenter () <JDStatusBarWindowDelegate>
 @end
 
 @implementation JDStatusBarNotificationPresenter {
   UIWindowScene *_windowScene;
   JDStatusBarWindow *_overlayWindow;
-  NSTimer *_dismissTimer;
-  
-  JDStatusBarStyle *_activeStyle;
+
   JDStatusBarStyle *_defaultStyle;
   NSMutableDictionary *_userStyles;
 }
@@ -60,24 +54,46 @@ JDStatusBarViewDelegate
   _windowScene = windowScene;
 }
 
-#pragma mark - Custom Styles
+#pragma mark - Window Management
+
+- (JDStatusBarView *)showWithStatus:(NSString *)status
+                              style:(JDStatusBarStyle *)style {
+  if(_overlayWindow == nil) {
+    _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
+    _overlayWindow.delegate = self;
+  }
+
+  JDStatusBarView *view = [_overlayWindow.statusBarViewController showWithStatus:status style:style];
+
+  [_overlayWindow setHidden:NO];
+  [_overlayWindow.statusBarViewController setNeedsStatusBarAppearanceUpdate];
+
+  return view;
+}
+
+#pragma mark - JDStatusBarWindowDelegate
+
+- (void)didDismissStatusBar {
+  [_overlayWindow removeFromSuperview];
+  [_overlayWindow setHidden:YES];
+  _overlayWindow.rootViewController = nil;
+  _overlayWindow = nil;
+}
+
+#pragma mark - Style Management API
 
 - (void)updateDefaultStyle:(JDStatusBarPrepareStyleBlock)prepareBlock {
-  NSAssert(prepareBlock != nil, @"No prepareBlock provided");
   _defaultStyle = prepareBlock([_defaultStyle copy]);
 }
 
 - (NSString*)addStyleNamed:(NSString*)identifier
                    prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
-  NSAssert(identifier != nil, @"No identifier provided");
-  NSAssert(prepareBlock != nil, @"No prepareBlock provided");
-  
   JDStatusBarStyle *style = [_defaultStyle copy];
   [_userStyles setObject:prepareBlock(style) forKey:identifier];
   return identifier;
 }
 
-#pragma mark - Presentation
+#pragma mark - Presentation API
 
 - (JDStatusBarView *)showWithStatus:(NSString *)status {
   return [self showWithStatus:status dismissAfterDelay:0.0 styleName:nil];
@@ -107,208 +123,43 @@ JDStatusBarViewDelegate
   return view;
 }
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                              style:(JDStatusBarStyle *)style {
-  [self createWindowAndViewIfNeededWithStyle:style];
-
-  JDStatusBarView *topBar = self.statusBarView;
-  [topBar resetSubviewsIfNeeded];
-
-  // prepare for new style
-  if (style != _activeStyle) {
-    _activeStyle = style;
-    if (_activeStyle.animationType == JDStatusBarAnimationTypeFade) {
-      topBar.alpha = 0.0;
-      topBar.transform = CGAffineTransformIdentity;
-    } else {
-      topBar.alpha = 1.0;
-      topBar.transform = CGAffineTransformMakeTranslation(0, -topBar.frame.size.height);
-    }
-  }
-  
-  // cancel previous dismissing & remove animations
-  [_dismissTimer invalidate];
-  _dismissTimer = nil;
-  [topBar.layer removeAllAnimations];
-  
-  // create & show window
-  [_overlayWindow setHidden:NO];
-
-  // update status & style
-  [topBar setStatus:status];
-  [topBar setStyle:style];
-  [_overlayWindow.statusBarViewController setNeedsStatusBarAppearanceUpdate];
-  
-  // reset progress & activity
-  [self showProgressBarWithPercentage:0.0];
-  [topBar setDisplaysActivityIndicator:NO];
-  
-  // animate in
-  BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
-  if (animationsEnabled && style.animationType == JDStatusBarAnimationTypeBounce) {
-    [self animateInWithBounceAnimation];
-  } else {
-    [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
-      topBar.alpha = 1.0;
-      topBar.transform = CGAffineTransformIdentity;
-    }];
-  }
-  
-  return topBar;
-}
-
-#pragma mark - JDStatusBarViewDelegate
-
-- (void)statusBarViewDidPanToDismiss {
-  [self dismissAnimated:YES duration:0.25 completion:nil];
-}
-
-#pragma mark - Dismissal
-
-static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletionBlockKey";
+#pragma mark - Dismissal API
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay {
-  [self dismissAfterDelay:delay completion:nil];
+  [_overlayWindow.statusBarViewController dismissAfterDelay:delay completion:nil];
 }
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-             completion:(void(^ _Nullable)(void))completion {
-  [_dismissTimer invalidate];
-
-  NSDictionary *userInfo = nil;
-  if (completion != nil) {
-    userInfo = @{kJDStatusBarDismissCompletionBlockKey: completion};
-  }
-
-  _dismissTimer = [NSTimer scheduledTimerWithTimeInterval:delay
-                                                   target:self
-                                                 selector:@selector(dismissTimerFired:)
-                                                 userInfo:userInfo
-                                                  repeats:NO];
-}
-
-- (void)dismissTimerFired:(NSTimer *)timer {
-  [self dismissAnimated:YES
-             completion:timer.userInfo[kJDStatusBarDismissCompletionBlockKey]];
+               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  __weak __typeof(self) weakSelf = self;
+  [_overlayWindow.statusBarViewController dismissAfterDelay:delay completion:^{
+    if (completion) {
+      completion(weakSelf);
+    }
+  }];
 }
 
 - (void)dismissAnimated:(BOOL)animated {
-  [self dismissAnimated:animated completion:nil];
+  [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 completion:nil];
 }
 
-- (void)dismissAnimated:(BOOL)animated
-             completion:(void(^ _Nullable)(void))completion {
-  [self dismissAnimated:animated duration:0.4 completion:completion];
-}
-
-- (void)dismissAnimated:(BOOL)animated
-               duration:(CGFloat)duration
-             completion:(void(^ _Nullable)(void))completion {
-  [_dismissTimer invalidate];
-  _dismissTimer = nil;
-
-  // disable pan gesture
-  JDStatusBarView *topBar = self.statusBarView;
-  topBar.panGestureRecognizer.enabled = NO;
-  
-  // check animation type
-  BOOL animationsEnabled = (_activeStyle.animationType != JDStatusBarAnimationTypeNone);
-  animated &= animationsEnabled;
-  
-  dispatch_block_t animation = ^{
-    if (self->_activeStyle.animationType == JDStatusBarAnimationTypeFade) {
-      topBar.alpha = 0.0;
-    } else {
-      topBar.transform = CGAffineTransformMakeTranslation(0, - topBar.frame.size.height);
-    }
-  };
-  
-  __weak __typeof(self) weakSelf = self;
-  void(^animationCompletion)(BOOL) = ^(BOOL finished) {
-    [weakSelf resetWindowAndViews];
-    if (completion != nil) {
-      completion();
-    }
-  };
-  
-  if (animated) {
-    // animate out
-    [UIView animateWithDuration:duration animations:animation completion:animationCompletion];
-  } else {
-    animation();
-    animationCompletion(YES);
-  }
-}
-
-- (void)resetWindowAndViews {
-  [_overlayWindow removeFromSuperview];
-  [_overlayWindow setHidden:YES];
-  _overlayWindow.rootViewController = nil;
-  _overlayWindow = nil;
-  _activeStyle = nil;
-}
-
-#pragma mark - Bounce Animation
-
-- (void)animateInWithBounceAnimation {
-  //don't animate in, if topBar is already fully visible
-  JDStatusBarView *topBar = self.statusBarView;
-  if (topBar.frame.origin.y >= 0) {
-    return;
-  }
-  
-  // easing function (based on github.com/robb/RBBAnimation)
-  CGFloat(^RBBEasingFunctionEaseOutBounce)(CGFloat) = ^CGFloat(CGFloat t) {
-    if (t < 4.0 / 11.0) return pow(11.0 / 4.0, 2) * pow(t, 2);
-    if (t < 8.0 / 11.0) return 3.0 / 4.0 + pow(11.0 / 4.0, 2) * pow(t - 6.0 / 11.0, 2);
-    if (t < 10.0 / 11.0) return 15.0 /16.0 + pow(11.0 / 4.0, 2) * pow(t - 9.0 / 11.0, 2);
-    return 63.0 / 64.0 + pow(11.0 / 4.0, 2) * pow(t - 21.0 / 22.0, 2);
-  };
-  
-  // create values
-  int fromCenterY=-20, toCenterY=0, animationSteps=100;
-  NSMutableArray *values = [NSMutableArray arrayWithCapacity:animationSteps];
-  for (int t = 1; t<=animationSteps; t++) {
-    float easedTime = RBBEasingFunctionEaseOutBounce((t*1.0)/animationSteps);
-    float easedValue = fromCenterY + easedTime * (toCenterY-fromCenterY);
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeTranslation(0, easedValue, 0)]];
-  }
-  
-  // build animation
-  CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-  animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-  animation.duration = 0.66;
-  animation.values = values;
-  animation.removedOnCompletion = NO;
-  animation.fillMode = kCAFillModeForwards;
-  animation.delegate = self;
-  [topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
-  [topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-  JDStatusBarView *topBar = self.statusBarView;
-  topBar.transform = CGAffineTransformIdentity;
-  [topBar.layer removeAllAnimations];
-}
-
-#pragma mark - Modifications
+#pragma mark - Other public API
 
 - (void)updateStatus:(NSString *)status {
-  [self.statusBarView setStatus:status];
+  [_overlayWindow.statusBarViewController.statusBarView setStatus:status];
 }
 
 - (void)showProgressBarWithPercentage:(CGFloat)percentage {
-  [self.statusBarView setProgressBarPercentage:percentage];
+  [_overlayWindow.statusBarViewController.statusBarView setProgressBarPercentage:percentage];
 }
 
 - (void)showProgressBarWithPercentage:(CGFloat)percentage
                     animationDuration:(CGFloat)animationDuration
-                           completion:(void(^ _Nullable)(JDStatusBarNotificationPresenter *presenter))completion {
+                           completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   __weak __typeof(self) weakSelf = self;
-  [self.statusBarView setProgressBarPercentage:percentage
-                             animationDuration:animationDuration
-                                    completion:^{
+  [_overlayWindow.statusBarViewController.statusBarView setProgressBarPercentage:percentage
+                                                               animationDuration:animationDuration
+                                                                      completion:^{
     if (completion) {
       completion(weakSelf);
     }
@@ -316,33 +167,11 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
 }
 
 - (void)showActivityIndicator:(BOOL)show {
-  [self.statusBarView setDisplaysActivityIndicator:show];
+  [_overlayWindow.statusBarViewController.statusBarView setDisplaysActivityIndicator:show];
 }
-
-#pragma mark - State
 
 - (BOOL)isVisible {
   return (_overlayWindow != nil);
-}
-
-- (JDStatusBarView *)statusBarView {
-  return _overlayWindow.statusBarViewController.statusBarView;
-}
-
-#pragma mark - View/Window factories
-
-- (void)createWindowAndViewIfNeededWithStyle:(JDStatusBarStyle *)style {
-  if(_overlayWindow == nil) {
-    _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
-
-    JDStatusBarView *topBar = _overlayWindow.statusBarViewController.statusBarView;
-    topBar.delegate = self;
-    if (style.animationType != JDStatusBarAnimationTypeFade) {
-      topBar.transform = CGAffineTransformMakeTranslation(0, - topBar.frame.size.height);
-    } else {
-      topBar.alpha = 0.0;
-    }
-  }
 }
 
 @end

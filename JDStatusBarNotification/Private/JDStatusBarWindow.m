@@ -72,6 +72,10 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   [self updateFramesForStatusBarFrame:CGRectMake(0, 0, size.width, JDStatusBarFrameForWindowScene(self.windowScene).size.height)];
 }
 
+- (void)didDismissStatusBar {
+  [self.delegate didDismissStatusBar];
+}
+
 #pragma mark - HitTest
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {

@@ -220,10 +220,10 @@ static NSString *const SBStyle2 = @"SBStyle2";
       [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"This is 1/2!"
                                                                styleName:JDStatusBarStyleDark];
       [[JDStatusBarNotificationPresenter sharedPresenter] showActivityIndicator:YES];
-      [[JDStatusBarNotificationPresenter sharedPresenter] dismissAfterDelay:1.0 completion:^{
-        [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:@"✅ This is 2/2!"
-                                                         dismissAfterDelay:1.0
-                                                                 styleName:JDStatusBarStyleDark];
+      [[JDStatusBarNotificationPresenter sharedPresenter] dismissAfterDelay:1.0 completion:^(JDStatusBarNotificationPresenter *presenter){
+        [presenter showWithStatus:@"✅ This is 2/2!"
+                dismissAfterDelay:1.0
+                        styleName:JDStatusBarStyleDark];
       }];
     }
   } else if (section == 3) {

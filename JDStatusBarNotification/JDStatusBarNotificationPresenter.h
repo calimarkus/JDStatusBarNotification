@@ -13,6 +13,9 @@
 
 @class JDStatusBarStyle;
 @class JDStatusBarView;
+@class JDStatusBarNotificationPresenter;
+
+typedef void (^ _Nullable JDStatusBarNotificationPresenterCompletionBlock)(JDStatusBarNotificationPresenter * _Nonnull presenter);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -118,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion A completion block, which will be executed upon dismissal.
  */
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-               completion:(void(^ _Nullable)(void))completion;
+               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion;
 
 #pragma mark - Styles
 
@@ -173,7 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)showProgressBarWithPercentage:(CGFloat)percentage
                     animationDuration:(CGFloat)animationDuration
-                           completion:(void(^ _Nullable)(JDStatusBarNotificationPresenter *presenter))completion;
+                           completion:(JDStatusBarNotificationPresenterCompletionBlock)completion;
 
 /**
  *  Shows an activity indicator in front of the notification text using the text color
