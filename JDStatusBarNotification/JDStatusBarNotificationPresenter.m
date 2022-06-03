@@ -32,11 +32,8 @@ JDStatusBarViewDelegate
   UIWindowScene *_windowScene;
   UIWindow *_overlayWindow;
   JDStatusBarNotificationViewController *_statusBarViewController;
-  UIView *_progressView;
   JDStatusBarView *_topBar;
-  
   NSTimer *_dismissTimer;
-  CGFloat _progress;
   
   JDStatusBarStyle *_activeStyle;
   JDStatusBarStyle *_defaultStyle;
@@ -259,7 +256,6 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   _overlayWindow.rootViewController = nil;
   _overlayWindow = nil;
   _statusBarViewController = nil;
-  _progressView = nil;
   _topBar = nil;
   _activeStyle = nil;
 }
@@ -313,55 +309,7 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
 }
 
 - (void)showProgressBarWithPercentage:(CGFloat)percentage {
-  if (_topBar == nil) return;
-  
-  // trim progress
-  _progress = MIN(1.0, MAX(0.0,percentage));
-  
-  if (_progress == 0.0) {
-    _progressView.frame = CGRectZero;
-    return;
-  }
-  
-  // create view
-  [self createProgressViewIfNeeded];
-  [_topBar insertSubview:_progressView belowSubview:_topBar.textLabel];
-
-  // update superview
-  JDStatusBarProgressBarStyle *progressBarStyle = _activeStyle.progressBarStyle;
-  
-  // calculate progressView frame
-  CGRect frame = _topBar.bounds;
-  CGFloat height = MIN(frame.size.height, MAX(0.5, progressBarStyle.barHeight));
-  frame.size.height = height;
-  frame.size.width = round((frame.size.width - 2 * progressBarStyle.horizontalInsets) * percentage);
-  frame.origin.x = progressBarStyle.horizontalInsets;
-  
-  // apply y-position from active style
-  CGFloat barHeight = _topBar.bounds.size.height;
-  switch (progressBarStyle.position) {
-    case JDStatusBarProgressBarPositionBottom:
-      frame.origin.y = barHeight - height;
-      break;
-    case JDStatusBarProgressBarPositionCenter:
-      frame.origin.y = _topBar.textLabel.center.y;
-      break;
-    case JDStatusBarProgressBarPositionTop:
-      frame.origin.y = 0.0;
-      break;
-  }
-  
-  // apply color from active style
-  _progressView.backgroundColor = progressBarStyle.barColor;
-  
-  // apply corner radius
-  _progressView.layer.cornerRadius = progressBarStyle.cornerRadius;
-  
-  // update progressView frame
-  BOOL animated = !CGRectEqualToRect(_progressView.frame, CGRectZero);
-  [UIView animateWithDuration:animated ? 0.05 : 0.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-    self->_progressView.frame = frame;
-  } completion:nil];
+  [_topBar setProgressBarPercentage:percentage];
 }
 
 - (void)showActivityIndicator:(BOOL)show {
@@ -420,19 +368,13 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
   }
 }
 
-- (void)createProgressViewIfNeeded {
-  if (_progressView == nil) {
-    _progressView = [[UIView alloc] initWithFrame:CGRectZero];
-  }
-}
-
 #pragma mark - Rotation
 
 - (void)animationsForViewTransitionToSize:(CGSize)size {
   // update window & statusbar
   [self updateContentFrame:CGRectMake(0, 0, size.width, JDStatusBarFrameForWindowScene(_windowScene).size.height)];
   // relayout progress bar
-  [self showProgressBarWithPercentage:_progress];
+  [self showProgressBarWithPercentage:_topBar.progressBarPercentage];
 }
 
 #pragma mark - Sizing

@@ -14,6 +14,7 @@
 
 @implementation JDStatusBarView {
   UIActivityIndicatorView *_activityIndicatorView;
+  UIView *_progressView;
   JDStatusBarStyle *_style;
 }
 
@@ -48,7 +49,7 @@
 - (void)resetSubviewsIfNeeded {
   // remove subviews added from outside
   for (UIView *subview in self.subviews) {
-    if (subview != _textLabel && subview != _activityIndicatorView) {
+    if (subview != _textLabel && subview != _activityIndicatorView && subview != _progressView) {
       [subview removeFromSuperview];
     }
   }
@@ -59,6 +60,9 @@
   }
   if (_activityIndicatorView != nil && _activityIndicatorView.superview != self) {
     [self addSubview:_activityIndicatorView];
+  }
+  if (_progressView != nil && _progressView.superview != self) {
+    [self insertSubview:_progressView belowSubview:_textLabel];
   }
 
   // ensure pan recognizer is setup
@@ -88,6 +92,67 @@
   }
 }
 
+#pragma mark - progress bar
+
+- (void)createProgressViewIfNeeded {
+  if (_progressView == nil) {
+    _progressView = [[UIView alloc] initWithFrame:CGRectZero];
+    _progressView.backgroundColor = _style.progressBarStyle.barColor;
+    _progressView.layer.cornerRadius = _style.progressBarStyle.cornerRadius;
+    [self insertSubview:_progressView belowSubview:_textLabel];
+  }
+}
+
+- (CGRect)prograssViewRectForCurrentState {
+  JDStatusBarProgressBarStyle *progressBarStyle = _style.progressBarStyle;
+
+  // calculate progressView frame
+  CGSize bounds = self.bounds.size;
+  CGFloat height = MIN(bounds.height, MAX(0.5, progressBarStyle.barHeight));
+  CGFloat width = round((bounds.width - 2 * progressBarStyle.horizontalInsets) * _progressBarPercentage);
+  CGRect barFrame = CGRectMake(progressBarStyle.horizontalInsets, 0, width, height);
+
+  // calculate y-position
+  switch (_style.progressBarStyle.position) {
+    case JDStatusBarProgressBarPositionBottom:
+      barFrame.origin.y = bounds.height - height;
+      break;
+    case JDStatusBarProgressBarPositionCenter:
+      barFrame.origin.y = _textLabel.center.y;
+      break;
+    case JDStatusBarProgressBarPositionTop:
+      barFrame.origin.y = 0.0;
+      break;
+  }
+
+  return barFrame;
+}
+
+- (void)setProgressBarPercentage:(CGFloat)percentage {
+  // clamp progress
+  _progressBarPercentage = MIN(1.0, MAX(0.0,percentage));
+
+  // reset view
+  if (_progressBarPercentage == 0.0) {
+    _progressView.hidden = YES;
+    return;
+  }
+
+  // create view
+  [self createProgressViewIfNeeded];
+  _progressView.hidden = NO;
+
+  // update progressView frame
+  CGRect frame = [self prograssViewRectForCurrentState];
+  if (CGRectEqualToRect(_progressView.frame, CGRectZero)) {
+    _progressView.frame = frame;
+  } else {
+    [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+      self->_progressView.frame = frame;
+    } completion:nil];
+  }
+}
+
 #pragma mark - setter
 
 - (void)setStatus:(NSString *)status {
@@ -113,8 +178,10 @@
     _textLabel.shadowOffset = CGSizeZero;
   }
 
-  // style activity indicator
+  // style other views
   _activityIndicatorView.color = style.textColor;
+  _progressView.backgroundColor = style.progressBarStyle.barColor;
+  _progressView.layer.cornerRadius = style.progressBarStyle.cornerRadius;
 
   // update gesture recognizer
   _panGestureRecognizer.enabled = style.canSwipeToDismiss;
