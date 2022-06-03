@@ -13,20 +13,17 @@
 #import "JDStatusBarManagerHelper.h"
 
 @implementation JDStatusBarView {
+  UIActivityIndicatorView *_activityIndicatorView;
   JDStatusBarStyle *_style;
-
-  CGFloat _textVerticalPositionAdjustment;
 }
 
 @synthesize textLabel = _textLabel;
 @synthesize panGestureRecognizer = _panGestureRecognizer;
-@synthesize activityIndicatorView = _activityIndicatorView;
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style {
   self = [super init];
   if (self) {
-    [self setupTextLabel];
-    [self setupPanGesture];
+    [self setupView];
     [self setStyle:style];
   }
   return self;
@@ -34,7 +31,7 @@
 
 #pragma mark - view setup
 
-- (void)setupTextLabel {
+- (void)setupView {
   _textLabel = [[UILabel alloc] init];
   _textLabel.backgroundColor = [UIColor clearColor];
   _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -42,21 +39,10 @@
   _textLabel.adjustsFontSizeToFitWidth = YES;
   _textLabel.clipsToBounds = YES;
   [self addSubview:_textLabel];
-}
 
-- (void)setupPanGesture {
   _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
   _panGestureRecognizer.enabled = YES;
   [self addGestureRecognizer:_panGestureRecognizer];
-}
-
-- (UIActivityIndicatorView *)activityIndicatorView {
-  if (_activityIndicatorView == nil) {
-    _activityIndicatorView = [UIActivityIndicatorView new];
-    _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
-    [self addSubview:_activityIndicatorView];
-  }
-  return _activityIndicatorView;
 }
 
 - (void)resetSubviewsIfNeeded {
@@ -80,6 +66,28 @@
   [self addGestureRecognizer:_panGestureRecognizer];
 }
 
+#pragma mark - acitivity indicator
+
+- (void)createActivityIndicatorViewIfNeeded {
+  if (_activityIndicatorView == nil) {
+    _activityIndicatorView = [UIActivityIndicatorView new];
+    _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
+    _activityIndicatorView.color = _style.textColor;
+    [self addSubview:_activityIndicatorView];
+  }
+}
+
+- (void)setDisplaysActivityIndicator:(BOOL)displaysActivityIndicator {
+  _displaysActivityIndicator = displaysActivityIndicator;
+
+  if (displaysActivityIndicator) {
+    [self createActivityIndicatorViewIfNeeded];
+    [_activityIndicatorView startAnimating];
+  } else {
+    [_activityIndicatorView stopAnimating];
+  }
+}
+
 #pragma mark - setter
 
 - (void)setStatus:(NSString *)status {
@@ -93,12 +101,10 @@
   _style = style;
   
   self.backgroundColor = style.barColor;
-  
-  _textVerticalPositionAdjustment = style.textVerticalPositionAdjustment;
-  
+
+  // style label
   _textLabel.textColor = style.textColor;
   _textLabel.font = style.font;
-  
   if (style.textShadow != nil) {
     _textLabel.shadowColor = style.textShadow.shadowColor;
     _textLabel.shadowOffset = style.textShadow.shadowOffset;
@@ -107,6 +113,10 @@
     _textLabel.shadowOffset = CGSizeZero;
   }
 
+  // style activity indicator
+  _activityIndicatorView.color = style.textColor;
+
+  // update gesture recognizer
   _panGestureRecognizer.enabled = style.canSwipeToDismiss;
   
   [self setNeedsLayout];
@@ -124,7 +134,7 @@
     labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
   }
   
-  CGFloat labelY = _textVerticalPositionAdjustment + labelAdjustment + 1;
+  CGFloat labelY = _style.textVerticalPositionAdjustment + labelAdjustment + 1;
   CGFloat height = self.bounds.size.height - labelAdjustment - 1;
   
   self.textLabel.frame = CGRectMake(0, labelY, self.bounds.size.width, height);

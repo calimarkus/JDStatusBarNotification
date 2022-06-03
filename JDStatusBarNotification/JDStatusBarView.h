@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly, nonnull) UILabel *textLabel;
 @property (nonatomic, strong, readonly, nonnull) UIPanGestureRecognizer *panGestureRecognizer;
-@property (nonatomic, strong, readonly, nullable) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, assign) BOOL displaysActivityIndicator;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;

@@ -155,7 +155,7 @@ JDStatusBarViewDelegate
   
   // reset progress & activity
   [self showProgressBarWithPercentage:0.0];
-  [self showActivityIndicator:NO];
+  [_topBar setDisplaysActivityIndicator:NO];
   
   // animate in
   BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
@@ -365,14 +365,7 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
 }
 
 - (void)showActivityIndicator:(BOOL)show {
-  if (_topBar == nil) return;
-  
-  if (show) {
-    _topBar.activityIndicatorView.color = _activeStyle.textColor;
-    [_topBar.activityIndicatorView startAnimating];
-  } else {
-    [_topBar.activityIndicatorView stopAnimating];
-  }
+  [_topBar setDisplaysActivityIndicator:show];
 }
 
 static CGFloat navBarHeight(UIWindowScene *windowScene) {
