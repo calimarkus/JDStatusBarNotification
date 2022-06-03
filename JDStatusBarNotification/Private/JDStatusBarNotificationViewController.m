@@ -162,7 +162,7 @@ JDStatusBarViewDelegate
   };
 
   // create values
-  int fromCenterY=-20, toCenterY=0, animationSteps=100;
+  int fromCenterY=-topBar.bounds.size.height, toCenterY=0, animationSteps=200;
   NSMutableArray *values = [NSMutableArray arrayWithCapacity:animationSteps];
   for (int t = 1; t<=animationSteps; t++) {
     float easedTime = RBBEasingFunctionEaseOutBounce((t*1.0)/animationSteps);
@@ -173,7 +173,7 @@ JDStatusBarViewDelegate
   // build animation
   CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
   animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-  animation.duration = 0.66;
+  animation.duration = 0.75;
   animation.values = values;
   animation.removedOnCompletion = NO;
   animation.fillMode = kCAFillModeForwards;
@@ -181,6 +181,8 @@ JDStatusBarViewDelegate
   [topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
   [topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
 }
+
+#pragma mark - CAAnimationDelegate
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
   JDStatusBarView *topBar = self.statusBarView;
