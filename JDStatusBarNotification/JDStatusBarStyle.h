@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * JDStatusBarIncludedStyle NS_EXTENSIBLE_STRING_ENUM;
+typedef NSString * JDStatusBarIncludedStyle NS_EXTENSIBLE_STRING_ENUM NS_SWIFT_NAME(IncludedStatusBarStyle);
 
 /// This style has a red background with a white Helvetica label.
 extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleError;

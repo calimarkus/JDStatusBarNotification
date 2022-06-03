@@ -252,7 +252,7 @@
 #pragma mark - Progress Timer
 
 - (void)startTimer {
-  [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
+  [[JDStatusBarNotificationPresenter sharedPresenter] displayProgressBarWithPercentage:self.progress];
   
   [self.timer invalidate];
   self.timer = nil;
@@ -270,7 +270,7 @@
 }
 
 - (void)hideProgress {
-  [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.0];
+  [[JDStatusBarNotificationPresenter sharedPresenter] displayProgressBarWithPercentage:0.0];
 }
 
 @end

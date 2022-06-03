@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  on top of the status bar. To present a notification, use one of the
  *  given class methods.
  */
+NS_SWIFT_NAME(NotificationPresenter)
 @interface JDStatusBarNotificationPresenter : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -50,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return The presented notification view for further customization
  */
-- (JDStatusBarView *)showWithStatus:(NSString *)status;
+- (JDStatusBarView *)showWithStatus:(NSString *)status NS_SWIFT_NAME(show(status:));
 
 /**
  *  Show a notification with a specific style. It won't
@@ -64,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return The presented notification view for further customization
  */
 - (JDStatusBarView *)showWithStatus:(NSString *)status
-                          styleName:(NSString * _Nullable)styleName;
+                          styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(show(status:styleName:));
 
 /**
  *  Same as showWithStatus:, but the notification will
@@ -77,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return The presented notification view for further customization
  */
 - (JDStatusBarView *)showWithStatus:(NSString *)status
-                  dismissAfterDelay:(NSTimeInterval)timeInterval;
+                  dismissAfterDelay:(NSTimeInterval)timeInterval NS_SWIFT_NAME(show(status:dismissAfterDelay:));
 
 /**
  *  Same as showWithStatus:styleName:, but the notification
@@ -94,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (JDStatusBarView *)showWithStatus:(NSString *)status
                   dismissAfterDelay:(NSTimeInterval)timeInterval
-                          styleName:(NSString * _Nullable)styleName;
+                          styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(show(status:dismissAfterDelay:styleName:));
 
 #pragma mark - Dismissal
 
@@ -104,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param animated If this is YES, the animation style used
  *  for presentation will also be used for the dismissal.
  */
-- (void)dismissAnimated:(BOOL)animated;
+- (void)dismissAnimated:(BOOL)animated NS_SWIFT_NAME(dismiss(animated:));
 
 /**
  *  Same as dismissAnimated:, but you can specify a delay,
@@ -112,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param delay The delay, how long the notification should stay visible
  */
-- (void)dismissAfterDelay:(NSTimeInterval)delay;
+- (void)dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(dismiss(afterDelay:));
 
 /**
  *  Same as dismissAfterDelay:, but let's you utilize a completion block.
@@ -121,7 +122,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion A completion block, which will be executed upon dismissal.
  */
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion;
+               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(dismiss(afterDelay:completion:));
 
 #pragma mark - Styles
 
@@ -150,7 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  be directly used as styleName parameter.
  */
 - (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock;
+                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(named:prepare:));
 
 #pragma mark - Modifications
 
@@ -166,7 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param percentage Relative progress from 0.0 to 1.0
  */
-- (void)showProgressBarWithPercentage:(CGFloat)percentage;
+- (void)displayProgressBarWithPercentage:(CGFloat)percentage NS_SWIFT_NAME(displayProgressBar(percentage:));
 /**
  *  Show the progress bar according to the current progressBarStyle.
  *
@@ -174,16 +175,16 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param animationDuration This duration will be utilized to animate the change in percentage.
  *  @param completion A block to be executed upon animation completion.
  */
-- (void)showProgressBarWithPercentage:(CGFloat)percentage
-                    animationDuration:(CGFloat)animationDuration
-                           completion:(JDStatusBarNotificationPresenterCompletionBlock)completion;
+- (void)displayProgressBarWithPercentage:(CGFloat)percentage
+                       animationDuration:(CGFloat)animationDuration
+                              completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(displayProgressBar(percentage:animationDuration:completion:));
 
 /**
  *  Shows an activity indicator in front of the notification text using the text color
  *
  *  @param show  Use this flag to show or hide the activity indicator
  */
-- (void)showActivityIndicator:(BOOL)show;
+- (void)displayActivityIndicator:(BOOL)show;
 
 #pragma mark - State
 

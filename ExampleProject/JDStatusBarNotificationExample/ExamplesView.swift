@@ -13,7 +13,7 @@ class ExamplesViewFactory: NSObject {
   }
 
   static func setupCustomStyles() {
-    JDStatusBarNotificationPresenter.shared().addStyleNamed(ExamplesView.customStyle1) { style in
+    NotificationPresenter.shared().addStyle(named: ExamplesView.customStyle1) { style in
       style.barColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
       style.textColor = .white
       style.animationType = .fade
@@ -23,7 +23,7 @@ class ExamplesViewFactory: NSObject {
       return style
     }
 
-    JDStatusBarNotificationPresenter.shared().addStyleNamed(ExamplesView.customStyle2) { style in
+    NotificationPresenter.shared().addStyle(named: ExamplesView.customStyle2) { style in
       style.barColor = .cyan
       style.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
       style.animationType = .bounce
@@ -37,9 +37,9 @@ class ExamplesViewFactory: NSObject {
   }
 
   static func presentInitialNotification() {
-    JDStatusBarNotificationPresenter.shared().show(withStatus: "👋 Hello World!",
-                                                   dismissAfterDelay: 2.5,
-                                                   styleName: JDStatusBarIncludedStyle.matrix.rawValue)
+    NotificationPresenter.shared().show(status: "👋 Hello World!",
+                                        dismissAfterDelay: 2.5,
+                                        styleName: IncludedStatusBarStyle.matrix.rawValue)
   }
 }
 
@@ -50,18 +50,16 @@ struct ExamplesView: View {
 
   let customStylePresentationHandler: () -> ()
 
-  func notifPresenter() -> JDStatusBarNotificationPresenter {
-    return JDStatusBarNotificationPresenter.shared()
-  }
-
   func showDefaultNotificationIfNotPresented(_ text: String) {
-    if !notifPresenter().isVisible() {
-      notifPresenter().show(withStatus: text)
+    if !NotificationPresenter.shared().isVisible() {
+      NotificationPresenter.shared().show(status: text)
     }
   }
 
-  func showIncludedStyle(_ text: String, style: JDStatusBarIncludedStyle) {
-    notifPresenter().show(withStatus: text, dismissAfterDelay: 3.0, styleName: style.rawValue)
+  func showIncludedStyle(_ text: String, style: IncludedStatusBarStyle) {
+    NotificationPresenter.shared().show(status: text,
+                                        dismissAfterDelay: 3.0,
+                                        styleName: style.rawValue)
   }
 
   var body: some View {
@@ -72,25 +70,25 @@ struct ExamplesView: View {
         }
         cell(title: "Animate ProgressBar & hide", subtitle: "Hide bar at 100%") {
           showDefaultNotificationIfNotPresented("Animating Progress…")
-          notifPresenter().showProgressBar(withPercentage: 0.0)
-          notifPresenter().showProgressBar(withPercentage: 1.0, animationDuration: 1.0) { presenter in
+          NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+          NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
             presenter.dismiss(animated: true)
           }
         }
         cell(title: "Show ProgressBar at 33%") {
           showDefaultNotificationIfNotPresented("1/3 done.")
-          notifPresenter().showProgressBar(withPercentage: 0.33)
+          NotificationPresenter.shared().displayProgressBar(percentage: 0.33)
         }
         cell(title: "Show Activity Indicator") {
           showDefaultNotificationIfNotPresented("Some Activity…")
-          notifPresenter().showActivityIndicator(true)
+          NotificationPresenter.shared().displayActivityIndicator(true)
         }
         cell(title: "Update Text") {
           showDefaultNotificationIfNotPresented("")
-          notifPresenter().updateStatus("Updated Text…")
+          NotificationPresenter.shared().updateStatus("Updated Text…")
         }
         cell(title: "Dismiss Notification") {
-          notifPresenter().dismiss(animated: true)
+          NotificationPresenter.shared().dismiss(animated: true)
         }
       }
 
@@ -114,32 +112,32 @@ struct ExamplesView: View {
 
       Section("Custom Styles") {
         cell(title: "Show custom style 1", subtitle: "AnimationType.fade + Progress") {
-          notifPresenter().show(withStatus: "Oh, I love it!",
-                                dismissAfterDelay: 3.0,
-                                styleName: ExamplesView.customStyle1)
+          NotificationPresenter.shared().show(status: "Oh, I love it!",
+                                              dismissAfterDelay: 3.0,
+                                              styleName: ExamplesView.customStyle1)
           DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
-            notifPresenter().showProgressBar(withPercentage: 1.0, animationDuration: 1.0) { presenter in
+            NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)
             }
           }
         }
 
         cell(title: "Show custom style 2", subtitle: "AnimationType.bounce + Progress") {
-          notifPresenter().show(withStatus: "Level up!",
-                                dismissAfterDelay: 3.0,
-                                styleName: ExamplesView.customStyle2)
+          NotificationPresenter.shared().show(status: "Level up!",
+                                              dismissAfterDelay: 3.0,
+                                              styleName: ExamplesView.customStyle2)
           DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
-            notifPresenter().showProgressBar(withPercentage: 1.0, animationDuration: 1.0) { presenter in
+            NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)
             }
           }
         }
 
         cell(title: "Show notification with button", subtitle: "Manually customized view") {
-          let view = notifPresenter().show(withStatus: "")
+          let view = NotificationPresenter.shared().show(status: "")
           view.textLabel.removeFromSuperview()
           let action = UIAction { _ in
-            notifPresenter().dismiss(animated: true)
+            NotificationPresenter.shared().dismiss(animated: true)
           }
           let button = UIButton(type: .system, primaryAction: action)
           button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
@@ -151,8 +149,8 @@ struct ExamplesView: View {
 
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
           showIncludedStyle("This is 1/2!", style: .dark)
-          notifPresenter().showActivityIndicator(true)
-          notifPresenter().dismiss(afterDelay: 1.0) { presenter in
+          NotificationPresenter.shared().displayActivityIndicator(true)
+          NotificationPresenter.shared().dismiss(afterDelay: 1.0) { presenter in
             showIncludedStyle("✅ This is 2/2!", style: .dark)
             presenter.dismiss(afterDelay: 1.0)
           }
