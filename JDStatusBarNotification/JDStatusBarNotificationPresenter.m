@@ -135,9 +135,9 @@ JDStatusBarViewDelegate
   [_overlayWindow setHidden:NO];
 
   // update status & style
-  [_overlayWindow.statusBarViewController setNeedsStatusBarAppearanceUpdate];
   [topBar setStatus:status];
   [topBar setStyle:style];
+  [_overlayWindow.statusBarViewController setNeedsStatusBarAppearanceUpdate];
   
   // reset progress & activity
   [self showProgressBarWithPercentage:0.0];
