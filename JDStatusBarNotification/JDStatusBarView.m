@@ -99,17 +99,18 @@
     _progressView = [[UIView alloc] initWithFrame:CGRectZero];
     _progressView.backgroundColor = _style.progressBarStyle.barColor;
     _progressView.layer.cornerRadius = _style.progressBarStyle.cornerRadius;
+    _progressView.frame = [self prograssViewRectForPercentage:0.0];
     [self insertSubview:_progressView belowSubview:_textLabel];
   }
 }
 
-- (CGRect)prograssViewRectForCurrentState {
+- (CGRect)prograssViewRectForPercentage:(CGFloat)percentage {
   JDStatusBarProgressBarStyle *progressBarStyle = _style.progressBarStyle;
 
   // calculate progressView frame
   CGSize bounds = self.bounds.size;
   CGFloat height = MIN(bounds.height, MAX(0.5, progressBarStyle.barHeight));
-  CGFloat width = round((bounds.width - 2 * progressBarStyle.horizontalInsets) * _progressBarPercentage);
+  CGFloat width = round((bounds.width - 2 * progressBarStyle.horizontalInsets) * percentage);
   CGRect barFrame = CGRectMake(progressBarStyle.horizontalInsets, 0, width, height);
 
   // calculate y-position
@@ -129,27 +130,45 @@
 }
 
 - (void)setProgressBarPercentage:(CGFloat)percentage {
+  [self setProgressBarPercentage:percentage animationDuration:0.0 completion:nil];
+}
+
+- (void)setProgressBarPercentage:(CGFloat)percentage
+               animationDuration:(CGFloat)animationDuration
+                      completion:(void(^ _Nullable)(void))completion {
   // clamp progress
-  _progressBarPercentage = MIN(1.0, MAX(0.0,percentage));
+  _progressBarPercentage = MIN(1.0, MAX(0.0, percentage));
+
+  // reset animations
+  [_progressView.layer removeAllAnimations];
 
   // reset view
   if (_progressBarPercentage == 0.0) {
     _progressView.hidden = YES;
+    _progressView.frame = [self prograssViewRectForPercentage:0.0];
     return;
   }
 
-  // create view
+  // create view & reset state
   [self createProgressViewIfNeeded];
   _progressView.hidden = NO;
 
   // update progressView frame
-  CGRect frame = [self prograssViewRectForCurrentState];
-  if (CGRectEqualToRect(_progressView.frame, CGRectZero)) {
+  CGRect frame = [self prograssViewRectForPercentage:_progressBarPercentage];
+
+  if (animationDuration == 0.0) {
     _progressView.frame = frame;
+    if (completion != nil) {
+      completion();
+    }
   } else {
-    [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
       self->_progressView.frame = frame;
-    } completion:nil];
+    } completion:^(BOOL finished) {
+      if (finished && completion) {
+        completion();
+      }
+    }];
   }
 }
 

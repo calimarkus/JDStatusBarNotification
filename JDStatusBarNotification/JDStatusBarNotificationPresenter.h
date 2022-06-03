@@ -159,11 +159,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateStatus:(NSString *)status;
 
 /**
- *  Show the progress below the label.
+ *  Displays a progress bar according to the current progressBarStyle. Displays the given percentage immediately without animation.
  *
  *  @param percentage Relative progress from 0.0 to 1.0
  */
 - (void)showProgressBarWithPercentage:(CGFloat)percentage;
+/**
+ *  Show the progress bar according to the current progressBarStyle.
+ *
+ *  @param percentage Relative progress from 0.0 to 1.0
+ *  @param animationDuration This duration will be utilized to animate the change in percentage.
+ *  @param completion A block to be executed upon animation completion.
+ */
+- (void)showProgressBarWithPercentage:(CGFloat)percentage
+                    animationDuration:(CGFloat)animationDuration
+                           completion:(void(^ _Nullable)(JDStatusBarNotificationPresenter *presenter))completion;
 
 /**
  *  Shows an activity indicator in front of the notification text using the text color

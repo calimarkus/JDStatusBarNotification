@@ -312,6 +312,19 @@ static NSString *const kJDStatusBarDismissCompletionBlockKey = @"JDSBDCompletion
   [_topBar setProgressBarPercentage:percentage];
 }
 
+- (void)showProgressBarWithPercentage:(CGFloat)percentage
+                    animationDuration:(CGFloat)animationDuration
+                           completion:(void(^ _Nullable)(JDStatusBarNotificationPresenter *presenter))completion {
+  __weak __typeof(self) weakSelf = self;
+  [_topBar setProgressBarPercentage:percentage
+                  animationDuration:animationDuration
+                         completion:^{
+    if (completion) {
+      completion(weakSelf);
+    }
+  }];
+}
+
 - (void)showActivityIndicator:(BOOL)show {
   [_topBar setDisplaysActivityIndicator:show];
 }

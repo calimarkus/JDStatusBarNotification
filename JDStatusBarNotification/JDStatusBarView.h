@@ -18,7 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL displaysActivityIndicator;
 @property (nonatomic, assign) CGFloat progressBarPercentage;
 
+- (void)setProgressBarPercentage:(CGFloat)percentage
+               animationDuration:(CGFloat)animationDuration
+                      completion:(void(^ _Nullable)(void))completion;
 
+// default init unavailable
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

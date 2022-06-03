@@ -20,8 +20,6 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
 @interface SBExampleViewController ()
 @property (nonatomic, strong) NSArray *data;
-@property (nonatomic, assign) CGFloat progress;
-@property (nonatomic, weak) NSTimer *timer;
 @end
 
 @implementation SBExampleViewController
@@ -59,7 +57,8 @@ static NSString *const SBStyle2 = @"SBStyle2";
     }];
     
     self.data = @[@[@{JDButtonName:@"Show Notification", JDButtonInfo:@"Don't autohide.", JDNotificationText:@"Better call Saul!"},
-                    @{JDButtonName:@"Show Progress for 1s", JDButtonInfo:@"", JDNotificationText:@"Some Progress…"},
+                    @{JDButtonName:@"Animate ProgressBar & hide", JDButtonInfo:@"Hide bar at 100%", JDNotificationText:@"Animating Progress…"},
+                    @{JDButtonName:@"Show ProgressBar at 33%", JDButtonInfo:@"", JDNotificationText:@"1/3 done."},
                     @{JDButtonName:@"Show Activity Indicator", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
                     @{JDButtonName:@"Update text", JDButtonInfo:@"", JDNotificationText:@"Some Activity…"},
                     @{JDButtonName:@"Dismiss Notification", JDButtonInfo:@"", JDNotificationText:@""}],
@@ -144,30 +143,35 @@ static NSString *const SBStyle2 = @"SBStyle2";
   NSDictionary *data = self.data[indexPath.section][indexPath.row];
   NSString *status = data[JDNotificationText];
   
-  // reset progress timer
-  self.progress = 0.0;
-  [self.timer invalidate];
-  self.timer = nil;
-  
   // show notification
   if (section == 0) {
     if (row == 0) {
       [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status];
-    } else if (row == 1) {
+    } else if (row == 1 || row == 2) {
       if(![[JDStatusBarNotificationPresenter sharedPresenter] isVisible]) {
         [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status];
       }
 
-      // reset to 0 upon finishing
-      [self showProgressBarAndUpdateWithTimerAndDismissOnCompletion];
-    } else if (row == 2) {
+      if (row == 1) {
+        [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.0];
+        [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:1.0
+                                                                        animationDuration:1.0
+                                                                               completion:^(JDStatusBarNotificationPresenter *presenter) {
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [presenter dismissAnimated:YES];
+          });
+        }];
+      } else {
+        [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:0.33];
+      }
+    } else if (row == 3) {
       if(![[JDStatusBarNotificationPresenter sharedPresenter] isVisible]) {
         [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status dismissAfterDelay:3.0];
       }
       [[JDStatusBarNotificationPresenter sharedPresenter] showActivityIndicator:YES];
-    } else if (row == 3) {
-      [[JDStatusBarNotificationPresenter sharedPresenter] updateStatus:@"Replaced Text.."];
     } else if (row == 4) {
+      [[JDStatusBarNotificationPresenter sharedPresenter] updateStatus:@"Replaced Text.."];
+    } else if (row == 5) {
       [[JDStatusBarNotificationPresenter sharedPresenter] dismissAnimated:YES];
     }
   } else if (section == 1) {
@@ -192,7 +196,13 @@ static NSString *const SBStyle2 = @"SBStyle2";
 
       // show progress after short delay & dismiss on completion
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self showProgressBarAndUpdateWithTimerAndDismissOnCompletion];
+        [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:1.0
+                                                                        animationDuration:1.0
+                                                                               completion:^(JDStatusBarNotificationPresenter *presenter){
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [presenter dismissAnimated:YES];
+          });
+        }];
       });
     } else if (row == 2) {
       JDStatusBarView *view = [[JDStatusBarNotificationPresenter sharedPresenter] showWithStatus:status];
@@ -223,32 +233,6 @@ static NSString *const SBStyle2 = @"SBStyle2";
   }
   
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-- (void)showProgressBarAndUpdateWithTimerAndDismissOnCompletion {
-  self.progress = 0.0;
-  [self.timer invalidate];
-  self.timer = nil;
-  self.timer = [NSTimer scheduledTimerWithTimeInterval:0.02
-                                                target:self
-                                              selector:@selector(timerFired:)
-                                              userInfo:nil
-                                               repeats:YES];
-}
-
-- (void)timerFired:(NSTimer *)timer {
-  if (self.progress < 1.0) {
-    self.progress += 0.02;
-    [[JDStatusBarNotificationPresenter sharedPresenter] showProgressBarWithPercentage:self.progress];
-  } else {
-    self.progress = 0.0;
-    [self.timer invalidate];
-    self.timer = nil;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-      [[JDStatusBarNotificationPresenter sharedPresenter] dismissAnimated:YES];
-    });
-  }
 }
 
 @end
