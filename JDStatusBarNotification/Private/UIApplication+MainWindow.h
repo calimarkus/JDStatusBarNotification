@@ -9,6 +9,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIWindow *)mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow;
 
+- (UIViewController *)jdsb_mainControllerIgnoringViewController:(UIViewController *)viewController;
+
 @end
 
 NS_ASSUME_NONNULL_END

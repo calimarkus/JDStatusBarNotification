@@ -20,4 +20,25 @@
   }
   return nil;
 }
+
+- (UIViewController *)jdsb_mainControllerIgnoringViewController:(UIViewController *)viewController {
+  UIWindow *mainAppWindow = [self mainApplicationWindowIgnoringWindow:viewController.view.window];
+  UIViewController *topController = mainAppWindow.rootViewController;
+
+  while(topController.presentedViewController) {
+    topController = topController.presentedViewController;
+  }
+
+  if ([topController respondsToSelector:@selector(topViewController)]) {
+    topController = [((UINavigationController *)topController) topViewController];
+  }
+
+  // ensure we never end up with recursive calls
+  if (topController == viewController) {
+    return nil;
+  }
+
+  return topController;
+}
+
 @end

@@ -26,45 +26,23 @@
   [self.view addSubview:_statusBarView];
 }
 
-// mainVC determination
-
-- (UIViewController *)jdsb_mainController {
-  UIWindow *mainAppWindow = [[UIApplication sharedApplication] mainApplicationWindowIgnoringWindow:self.view.window];
-  UIViewController *topController = mainAppWindow.rootViewController;
-  
-  while(topController.presentedViewController) {
-    topController = topController.presentedViewController;
-  }
-  
-  if ([topController respondsToSelector:@selector(topViewController)]) {
-    topController = [((UINavigationController *)topController) topViewController];
-  }
-
-  // ensure we never end up with recursive calls
-  if (topController == self) {
-    return nil;
-  }
-  
-  return topController;
-}
-
-// rotation
+#pragma mark - Rotation handling
 
 - (BOOL)shouldAutorotate {
-  return [[self jdsb_mainController] shouldAutorotate];
+  return [[[UIApplication sharedApplication] jdsb_mainControllerIgnoringViewController:self] shouldAutorotate];
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-  return [[self jdsb_mainController] supportedInterfaceOrientations];
+  return [[[UIApplication sharedApplication] jdsb_mainControllerIgnoringViewController:self] supportedInterfaceOrientations];
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  return [[self jdsb_mainController] preferredInterfaceOrientationForPresentation];
+  return [[[UIApplication sharedApplication] jdsb_mainControllerIgnoringViewController:self] preferredInterfaceOrientationForPresentation];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
   [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-  
+
   [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
     [self.delegate animationsForViewTransitionToSize:size];
   } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
@@ -72,19 +50,19 @@
   }];
 }
 
-// statusbar
+#pragma mark - System StatusBar Management
 
 static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
   static BOOL enabled = YES;
   static dispatch_once_t onceToken;
-  
+
   dispatch_once(&onceToken, ^{
     NSNumber *value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIViewControllerBasedStatusBarAppearance"];
     if (value != nil) {
       enabled = [value boolValue];
     }
   });
-  
+
   return enabled;
 }
 
@@ -101,15 +79,15 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 
 - (UIStatusBarStyle)defaultStatusBarStyle {
   if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self jdsb_mainController] preferredStatusBarStyle];
+    return [[[UIApplication sharedApplication] jdsb_mainControllerIgnoringViewController:self] preferredStatusBarStyle];
   }
-  
+
   return [super preferredStatusBarStyle];
 }
 
 - (BOOL)prefersStatusBarHidden {
   if(JDUIViewControllerBasedStatusBarAppearanceEnabled()) {
-    return [[self jdsb_mainController] prefersStatusBarHidden];
+    return [[[UIApplication sharedApplication] jdsb_mainControllerIgnoringViewController:self] prefersStatusBarHidden];
   }
   return [super prefersStatusBarHidden];
 }
