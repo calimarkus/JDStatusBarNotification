@@ -37,13 +37,13 @@ JDStatusBarViewDelegate
 
 #pragma mark - Presentation
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status
+- (JDStatusBarView *)presentWithText:(NSString *)text
                               style:(JDStatusBarStyle *)style {
   JDStatusBarView *topBar = _statusBarView;
   [topBar resetSubviewsIfNeeded];
 
   // update status & style
-  [topBar setStatus:status];
+  [topBar setText:text];
   [topBar setStyle:style];
 
   // reset progress & activity

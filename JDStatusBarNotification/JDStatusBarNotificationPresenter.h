@@ -47,44 +47,44 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  Show a notification. It won't hide automatically,
  *  you have to dimiss it on your own.
  *
- *  @param status The message to display
+ *  @param text The message to display
  *
  *  @return The presented notification view for further customization
  */
-- (JDStatusBarView *)showWithStatus:(NSString *)status NS_SWIFT_NAME(show(status:));
+- (JDStatusBarView *)presentWithText:(NSString *)text NS_SWIFT_NAME(present(text:));
 
 /**
  *  Show a notification with a specific style. It won't
  *  hide automatically, you have to dimiss it on your own.
  *
- *  @param status The message to display
+ *  @param text The message to display
  *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
  *  (JDStatusBarIncludedStyleDefault, etc.), or a custom style identifier, after you added a
  *  custom style. If this is nil, the default style will be used.
  *
  *  @return The presented notification view for further customization
  */
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                          styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(show(status:styleName:));
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                           styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:styleName:));
 
 /**
- *  Same as showWithStatus:, but the notification will
+ *  Same as presentWithText:, but the notification will
  *  automatically dismiss after the given timeInterval.
  *
- *  @param status       The message to display
+ *  @param text The message to display
  *  @param timeInterval The duration, how long the notification
  *  is displayed. (Including the animation duration)
  *
  *  @return The presented notification view for further customization
  */
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                  dismissAfterDelay:(NSTimeInterval)timeInterval NS_SWIFT_NAME(show(status:dismissAfterDelay:));
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                   dismissAfterDelay:(NSTimeInterval)timeInterval NS_SWIFT_NAME(present(text:dismissAfterDelay:));
 
 /**
- *  Same as showWithStatus:styleName:, but the notification
+ *  Same as presentWithText:styleName:, but the notification
  *  will automatically dismiss after the given timeInterval.
  *
- *  @param status       The message to display
+ *  @param text The message to display
  *  @param timeInterval The duration, how long the notification
  *  is displayed. (Including the animation duration)
  *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
@@ -93,9 +93,9 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @return The presented notification view for further customization
  */
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                  dismissAfterDelay:(NSTimeInterval)timeInterval
-                          styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(show(status:dismissAfterDelay:styleName:));
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                   dismissAfterDelay:(NSTimeInterval)timeInterval
+                           styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:styleName:));
 
 #pragma mark - Dismissal
 
@@ -158,9 +158,9 @@ NS_SWIFT_NAME(NotificationPresenter)
 /**
  *  Update the text of the label without presenting a new notification.
  *
- *  @param status The new message to display
+ *  @param text The new message to display
  */
-- (void)updateStatus:(NSString *)status;
+- (void)updateText:(NSString *)text;
 
 /**
  *  Displays a progress bar according to the current progressBarStyle. Displays the given percentage immediately without animation.

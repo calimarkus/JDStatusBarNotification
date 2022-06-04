@@ -22,7 +22,7 @@ typedef void (^ _Nullable JDStatusBarNotificationViewControllerDismissCompletion
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style;
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status style:(JDStatusBarStyle *)style;
+- (JDStatusBarView *)presentWithText:(NSString *)text style:(JDStatusBarStyle *)style;
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
                completion:(JDStatusBarNotificationViewControllerDismissCompletion)completion;

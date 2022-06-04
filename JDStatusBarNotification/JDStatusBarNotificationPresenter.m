@@ -52,14 +52,14 @@
 
 #pragma mark - Presentation logic
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status
+- (JDStatusBarView *)presentWithText:(NSString *)text
                               style:(JDStatusBarStyle *)style {
   if(_overlayWindow == nil) {
     _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
     _overlayWindow.delegate = self;
   }
 
-  JDStatusBarView *view = [_overlayWindow.statusBarViewController showWithStatus:status style:style];
+  JDStatusBarView *view = [_overlayWindow.statusBarViewController presentWithText:text style:style];
 
   [_overlayWindow setHidden:NO];
   [_overlayWindow.statusBarViewController setNeedsStatusBarAppearanceUpdate];
@@ -89,25 +89,25 @@
 
 #pragma mark - Presentation API
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status {
-  return [self showWithStatus:status dismissAfterDelay:0.0 styleName:nil];
+- (JDStatusBarView *)presentWithText:(NSString *)text {
+  return [self presentWithText:text dismissAfterDelay:0.0 styleName:nil];
 }
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                          styleName:(NSString * _Nullable)styleName {
-  return [self showWithStatus:status dismissAfterDelay:0.0 styleName:styleName];
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                           styleName:(NSString * _Nullable)styleName {
+  return [self presentWithText:text dismissAfterDelay:0.0 styleName:styleName];
 }
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                  dismissAfterDelay:(NSTimeInterval)timeInterval {
-  return [self showWithStatus:status dismissAfterDelay:timeInterval styleName:nil];
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                   dismissAfterDelay:(NSTimeInterval)timeInterval {
+  return [self presentWithText:text dismissAfterDelay:timeInterval styleName:nil];
 }
 
-- (JDStatusBarView *)showWithStatus:(NSString *)status
-                  dismissAfterDelay:(NSTimeInterval)timeInterval
-                          styleName:(NSString * _Nullable)styleName {
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                   dismissAfterDelay:(NSTimeInterval)timeInterval
+                           styleName:(NSString * _Nullable)styleName {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
-  JDStatusBarView *view = [self showWithStatus:status style:style];
+  JDStatusBarView *view = [self presentWithText:text style:style];
   if (timeInterval > 0.0) {
     [self dismissAfterDelay:timeInterval];
   }
@@ -136,8 +136,8 @@
 
 #pragma mark - Other public API
 
-- (void)updateStatus:(NSString *)status {
-  [_overlayWindow.statusBarViewController.statusBarView setStatus:status];
+- (void)updateText:(NSString *)text {
+  [_overlayWindow.statusBarViewController.statusBarView setText:text];
 }
 
 - (void)displayProgressBarWithPercentage:(CGFloat)percentage {

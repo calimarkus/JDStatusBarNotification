@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JDStatusBarView : UIView
 
-@property (nonatomic, strong, nonnull) NSString *status;
+@property (nonatomic, strong, nonnull) NSString *text;
 @property (nonatomic, strong, nonnull) JDStatusBarStyle *style;
 
 @property (nonatomic, strong, readonly, nonnull) UILabel *textLabel;

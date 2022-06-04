@@ -174,13 +174,13 @@
 
 #pragma mark - properties
 
-- (NSString *)status {
+- (NSString *)text {
   return _textLabel.text ?: @"";
 }
 
-- (void)setStatus:(NSString *)status {
-  _textLabel.accessibilityLabel = status;
-  _textLabel.text = status;
+- (void)setText:(NSString *)text {
+  _textLabel.accessibilityLabel = text;
+  _textLabel.text = text;
   
   [self setNeedsLayout];
 }
