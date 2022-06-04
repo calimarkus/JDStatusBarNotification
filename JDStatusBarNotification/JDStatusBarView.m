@@ -109,17 +109,17 @@
 
   // calculate progressView frame
   CGSize bounds = self.bounds.size;
-  CGFloat height = MIN(bounds.height, MAX(0.5, progressBarStyle.barHeight));
+  CGFloat barHeight = MIN(bounds.height, MAX(0.5, progressBarStyle.barHeight));
   CGFloat width = round((bounds.width - 2 * progressBarStyle.horizontalInsets) * percentage);
-  CGRect barFrame = CGRectMake(progressBarStyle.horizontalInsets, 0, width, height);
+  CGRect barFrame = CGRectMake(progressBarStyle.horizontalInsets, 0, width, barHeight);
 
   // calculate y-position
   switch (_style.progressBarStyle.position) {
     case JDStatusBarProgressBarPositionBottom:
-      barFrame.origin.y = bounds.height - height;
+      barFrame.origin.y = bounds.height - barHeight;
       break;
     case JDStatusBarProgressBarPositionCenter:
-      barFrame.origin.y = _textLabel.center.y;
+      barFrame.origin.y = round(_textLabel.center.y - (barHeight / 2.0));
       break;
     case JDStatusBarProgressBarPositionTop:
       barFrame.origin.y = 0.0;
