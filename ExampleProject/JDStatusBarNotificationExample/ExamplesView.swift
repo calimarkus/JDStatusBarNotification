@@ -28,10 +28,11 @@ class ExamplesViewFactory: NSObject {
       style.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
       style.animationType = .bounce
       style.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
-      style.textVerticalPositionAdjustment = 2.0
-      style.progressBarStyle.barColor = style.textColor
-      style.progressBarStyle.barHeight = 22.0
-      style.progressBarStyle.position = .top
+      style.progressBarStyle.barColor = UIColor(white: 1.0, alpha: 0.66)
+      style.progressBarStyle.barHeight = 6.0
+      style.progressBarStyle.cornerRadius = 3.0
+      style.progressBarStyle.horizontalInsets = 20.0
+      style.progressBarStyle.position = .center
       return style
     }
   }
