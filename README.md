@@ -85,7 +85,7 @@ The return value will be the notification view. You can just ignore it, but if y
 
 Included styles:
 
-![styles](https://user-images.githubusercontent.com/807039/170856062-af9803ae-f740-4d8e-83dd-f2f3822ebc54.png)
+![styles](https://user-images.githubusercontent.com/807039/172004375-789e050c-b0c9-465c-a1d0-4c76bc00f935.jpg)
 
 Use them with the following methods:
 
