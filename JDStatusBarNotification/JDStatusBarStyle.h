@@ -69,11 +69,14 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The text color of the notification label
 @property (nonatomic, strong, nullable) UIColor *textColor;
 
-/// The text shadow of the notification label
-@property (nonatomic, strong, nullable) NSShadow *textShadow;
-
 /// The font of the notification label
 @property (nonatomic, strong) UIFont *font;
+
+/// The text shadow color, the default is nil, meaning no shadow.
+@property (nonatomic, strong, nullable) UIColor *textShadowColor;
+
+/// The text shadow offset of the notification label
+@property (nonatomic, assign) CGSize textShadowOffset;
 
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;

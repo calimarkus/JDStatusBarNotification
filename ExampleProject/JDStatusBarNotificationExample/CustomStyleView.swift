@@ -13,10 +13,11 @@ class CustomStyleViewFactory: NSObject {
 class CustomStyle: ObservableObject {
   @Published var barColor: UIColor? = .systemTeal
   @Published var textColor: UIColor? = .white
-  @Published var textShadow: NSShadow? = nil
-  @Published var font: UIFont = UIFont.systemFont(ofSize: 12.0)
+  @Published var textShadowColor: UIColor? = .systemTeal
+  @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
+  @Published var font: UIFont = UIFont.init(name: "Futura-Medium", size: 15.0)!
   @Published var textVerticalPositionAdjustment: CGFloat = 0.0
-  @Published var systemStatusBarStyle: StatusBarSystemStyle = .default
+  @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var animationType: AnimationType = .move
   @Published var canSwipeToDismiss: Bool = true
 
@@ -38,7 +39,8 @@ class CustomStyle: ObservableObject {
     let style = StatusBarStyle()
     style.barColor = barColor
     style.textColor = textColor
-    style.textShadow = textShadow
+    style.textShadowColor = textShadowColor
+    style.textShadowOffset = textShadowOffset
     style.font = font
     style.textVerticalPositionAdjustment = textVerticalPositionAdjustment
     style.systemStatusBarStyle = systemStatusBarStyle
@@ -60,14 +62,16 @@ struct CustomStyleView: View {
 
   var body: some View {
     Form {
-      buttonRow(title: "Present notification") {
-        NotificationPresenter.shared()
-          .present(text: text,
-                   dismissAfterDelay: 2.0,
-                   customStyle: style.registerComputedStyle())
+      buttonRow(title: "Present notification for 1.5s") {
+        NotificationPresenter.shared().present(
+          text: text,
+          dismissAfterDelay: 1.5,
+          customStyle: style.registerComputedStyle()
+        )
+        NotificationPresenter.shared().displayActivityIndicator(true)
       }
 
-      buttonRow(title: "Present notification with progress") {
+      buttonRow(title: "Present with progress + dismiss") {
         NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
           presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
             presenter.dismiss(animated: true)
@@ -87,6 +91,18 @@ struct CustomStyleView: View {
             .foregroundColor(Color(uiColor: style.textColor ?? .black))
             .padding(.top, 12.0 + style.textVerticalPositionAdjustment / 2.0)
             .padding(.bottom, 12.0 - style.textVerticalPositionAdjustment / 2.0)
+            .padding([.leading, .trailing], 10.0)
+            .shadow(color: Color(uiColor: (style.textShadowColor ?? style.barColor)!), radius: 0.0, x: style.textShadowOffset.width, y: style.textShadowOffset.height)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+          VStack {
+            Spacer()
+            Color(uiColor: style.pbBarColor ?? style.barColor ?? .white)
+              .cornerRadius(1.5)
+              .frame(height: 3.0)
+              .padding([.leading, .trailing], 10.0)
+            Spacer().frame(height: 4.0)
+          }
         }
       }
 
@@ -112,16 +128,28 @@ struct CustomStyleView: View {
           }))
           .font(.subheadline)
 
-        customColorPicker(title: "Text Color", binding: $style.textColor)
-
         Stepper("Y-position adjustment (\(Int(style.textVerticalPositionAdjustment)))",
                 value: $style.textVerticalPositionAdjustment)
           .font(.subheadline)
 
-        Text("Text Shadow not customizable yet.")
-          .font(.caption)
-          .foregroundColor(.init(white: 0.0, opacity: 0.33))
-          .disabled(true)
+        customColorPicker(title: "Text Color", binding: $style.textColor)
+
+        customColorPicker(title: "Text Shadow Color", binding: $style.textShadowColor)
+
+        VStack(alignment: .leading, spacing: 6.0) {
+          Text("Text Shadow Offset (\(Int(style.textShadowOffset.width))/\(Int(style.textShadowOffset.height)))")
+            .font(.subheadline)
+          HStack(alignment: .center, spacing: 20.0) {
+            Spacer()
+            Stepper("X:", value: $style.textShadowOffset.width)
+              .frame(width: 120)
+              .font(.subheadline)
+            Stepper("Y:", value: $style.textShadowOffset.height)
+              .frame(width: 120)
+              .font(.subheadline)
+            Spacer()
+          }
+        }
       }
 
       Section("Notification Bar") {
@@ -184,7 +212,7 @@ struct CustomStyleView: View {
 
   func customColorPicker(title: String, binding: Binding<UIColor?>) -> some View {
     ColorPicker(title, selection: Binding<CGColor>(get: {
-      binding.wrappedValue?.cgColor ?? UIColor.systemBlue.cgColor
+      binding.wrappedValue?.cgColor ?? UIColor.white.cgColor
     }, set: { val in
       binding.wrappedValue = UIColor(cgColor: val)
     }))

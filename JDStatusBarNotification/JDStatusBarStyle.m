@@ -51,7 +51,8 @@
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.barColor = self.barColor;
   style.textColor = self.textColor;
-  style.textShadow = self.textShadow;
+  style.textShadowColor = self.textShadowColor;
+  style.textShadowOffset = self.textShadowOffset;
   style.font = self.font;
   style.textVerticalPositionAdjustment = self.textVerticalPositionAdjustment;
   style.systemStatusBarStyle = self.systemStatusBarStyle;

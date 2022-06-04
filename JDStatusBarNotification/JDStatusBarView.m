@@ -193,9 +193,9 @@
   // style label
   _textLabel.textColor = style.textColor;
   _textLabel.font = style.font;
-  if (style.textShadow != nil) {
-    _textLabel.shadowColor = style.textShadow.shadowColor;
-    _textLabel.shadowOffset = style.textShadow.shadowOffset;
+  if (style.textShadowColor != nil) {
+    _textLabel.shadowColor = style.textShadowColor;
+    _textLabel.shadowOffset = style.textShadowOffset;
   } else {
     _textLabel.shadowColor = nil;
     _textLabel.shadowOffset = CGSizeZero;
