@@ -235,7 +235,7 @@
 #pragma mark - Presentation
 
 - (IBAction)show:(id)sender {
-  [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:self.textField.text dismissAfterDelay:2.0 styleName:@"style"];
+  [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:self.textField.text dismissAfterDelay:2.0 customStyle:@"style"];
 }
 
 - (IBAction)showWithProgress:(id)sender {
@@ -246,7 +246,7 @@
     [self startTimer];
   });
   
-  [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:self.textField.text dismissAfterDelay:1.3 styleName:@"style"];
+  [[JDStatusBarNotificationPresenter sharedPresenter] presentWithText:self.textField.text dismissAfterDelay:1.3 customStyle:@"style"];
 }
 
 #pragma mark - Progress Timer

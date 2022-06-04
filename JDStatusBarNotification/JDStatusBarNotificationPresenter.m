@@ -90,23 +90,39 @@
 #pragma mark - Presentation API
 
 - (JDStatusBarView *)presentWithText:(NSString *)text {
-  return [self presentWithText:text dismissAfterDelay:0.0 styleName:nil];
+  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil];
 }
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                           styleName:(NSString * _Nullable)styleName {
-  return [self presentWithText:text dismissAfterDelay:0.0 styleName:styleName];
+                         customStyle:(NSString * _Nullable)styleName {
+  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:styleName];
+}
+
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                       includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:)) {
+  return [self presentWithText:text dismissAfterDelay:0.0 includedStyle:includedStyle];
 }
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
                    dismissAfterDelay:(NSTimeInterval)delay {
-  return [self presentWithText:text dismissAfterDelay:delay styleName:nil];
+  return [self presentWithText:text dismissAfterDelay:delay customStyle:nil];
 }
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
                    dismissAfterDelay:(NSTimeInterval)delay
-                           styleName:(NSString * _Nullable)styleName {
+                         customStyle:(NSString * _Nullable)styleName {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
+  JDStatusBarView *view = [self presentWithText:text style:style];
+  if (delay > 0.0) {
+    [self dismissAfterDelay:delay];
+  }
+  return view;
+}
+
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                   dismissAfterDelay:(NSTimeInterval)delay
+                       includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:)) {
+  JDStatusBarStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
   JDStatusBarView *view = [self presentWithText:text style:style];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];

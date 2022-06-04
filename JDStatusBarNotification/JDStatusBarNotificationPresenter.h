@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 
 #import "JDStatusBarPrepareStyleBlock.h"
+#import "JDStatusBarStyle.h"
 
-@class JDStatusBarStyle;
 @class JDStatusBarView;
 @class JDStatusBarNotificationPresenter;
 
@@ -62,13 +62,25 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param styleName The name of the style. You can use custom styles or any JDStatusBarIncludedStyle constant
+ *  @param styleName The name of the style. You can use previously added custom styles.
  *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.
  *
  *  @return The presented JDStatusBarView for further customization
  */
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                           styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:styleName:));
+                         customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:customStyle:));
+
+/**
+ *  Present a notification using the specified style.
+ *  If no style exists for the provided name, the defaultStyle is used.
+ *
+ *  @param text The message to display
+ *  @param style The included style that should be used.
+ *
+ *  @return The presented JDStatusBarView for further customization
+ */
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                       includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:));
 
 /**
  *  Present a notification using the default style. The notification will
@@ -88,14 +100,28 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param text The message to display
  *  @param delay The delay in seconds, before the notification should be dismissed.
- *  @param styleName The name of the style. You can use custom styles or any JDStatusBarIncludedStyle constant
- *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.  
+ *  @param style The included style that should be used.
  *
  *  @return The presented JDStatusBarView for further customization
  */
 - (JDStatusBarView *)presentWithText:(NSString *)text
                    dismissAfterDelay:(NSTimeInterval)delay
-                           styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:styleName:));
+                       includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
+
+/**
+ *  Present a notification using the specified style.The notification will dismiss after the
+ *  given delay. If no style exists for the provided name, the defaultStyle is used.
+ *
+ *  @param text The message to display
+ *  @param delay The delay in seconds, before the notification should be dismissed.
+ *  @param styleName The name of the style. You can use previously added custom styles.
+ *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *
+ *  @return The presented JDStatusBarView for further customization
+ */
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                   dismissAfterDelay:(NSTimeInterval)delay
+                         customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:customStyle:));
 
 #pragma mark - Dismissal
 

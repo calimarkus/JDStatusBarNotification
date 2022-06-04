@@ -39,7 +39,7 @@ class ExamplesViewFactory: NSObject {
   static func presentInitialNotification() {
     NotificationPresenter.shared().present(text: "👋 Hello World!",
                                            dismissAfterDelay: 2.5,
-                                           styleName: IncludedStatusBarStyle.matrix.rawValue)
+                                           includedStyle: IncludedStatusBarStyle.matrix)
   }
 }
 
@@ -59,7 +59,7 @@ struct ExamplesView: View {
   func showIncludedStyle(_ text: String, style: IncludedStatusBarStyle) {
     NotificationPresenter.shared().present(text: text,
                                            dismissAfterDelay: 3.0,
-                                           styleName: style.rawValue)
+                                           includedStyle: style)
   }
 
   var body: some View {
@@ -114,7 +114,7 @@ struct ExamplesView: View {
         cell(title: "Show custom style 1", subtitle: "AnimationType.fade + Progress") {
           NotificationPresenter.shared().present(text: "Oh, I love it!",
                                                  dismissAfterDelay: 3.0,
-                                                 styleName: ExamplesView.customStyle1)
+                                                 customStyle: ExamplesView.customStyle1)
           DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
             NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)
@@ -125,7 +125,7 @@ struct ExamplesView: View {
         cell(title: "Show custom style 2", subtitle: "AnimationType.bounce + Progress") {
           NotificationPresenter.shared().present(text: "Level up!",
                                                  dismissAfterDelay: 3.0,
-                                                 styleName: ExamplesView.customStyle2)
+                                                 customStyle: ExamplesView.customStyle2)
           DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
             NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)

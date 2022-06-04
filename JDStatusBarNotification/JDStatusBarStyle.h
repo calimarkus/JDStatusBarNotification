@@ -11,20 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * JDStatusBarIncludedStyle NS_EXTENSIBLE_STRING_ENUM NS_SWIFT_NAME(IncludedStatusBarStyle);
-
-/// This style has a red background with a white Helvetica label.
-extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleError;
-/// This style has a yellow background with a gray Helvetica label.
-extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleWarning;
-/// This style has a green background with a white Helvetica label.
-extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleSuccess;
-/// This style has a black background with a green bold Courier label.
-extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleMatrix;
-/// This style has a white background with a gray Helvetica label.
-extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleDefault;
-/// This style has a nearly black background with a nearly white Helvetica label.
-extern JDStatusBarIncludedStyle const JDStatusBarIncludedStyleDark;
+typedef NS_ENUM(NSInteger, JDStatusBarIncludedStyle) {
+  /// This style has a red background with a white Helvetica label.
+  JDStatusBarIncludedStyleError,
+  /// This style has a yellow background with a gray Helvetica label.
+  JDStatusBarIncludedStyleWarning,
+  /// This style has a green background with a white Helvetica label.
+  JDStatusBarIncludedStyleSuccess,
+  /// This style has a black background with a green bold Courier label.
+  JDStatusBarIncludedStyleMatrix,
+  /// This style has a white background with a gray Helvetica label.
+  JDStatusBarIncludedStyleDefault,
+  /// This style has a nearly black background with a nearly white Helvetica label.
+  JDStatusBarIncludedStyleDark,
+} NS_SWIFT_NAME(IncludedStatusBarStyle);
 
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
   /// Notification won't animate
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
   JDStatusBarAnimationTypeBounce,
   /// Notification will fade in and fade out
   JDStatusBarAnimationTypeFade,
-};
+} NS_SWIFT_NAME(AnimationType);
 
 typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
   /// progress bar will be at the bottom of the status bar
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
   JDStatusBarProgressBarPositionCenter,
   /// progress bar will be at the top of the status bar
   JDStatusBarProgressBarPositionTop
-};
+} NS_SWIFT_NAME(ProgressBarPosition);
 
 typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
   /// Use current default
@@ -53,13 +53,14 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
   JDStatusBarSystemStyleLightContent,
   /// Force dark status bar contents (UIStatusBarStyleDarkContent)
   JDStatusBarSystemStyleDarkContent
-};
+} NS_SWIFT_NAME(StatusBarSystemStyle);
 
 @class JDStatusBarProgressBarStyle;
 
 /**
  *  A Style defines the appeareance of a notification.
  */
+NS_SWIFT_NAME(StatusBarStyle)
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
 /// The background color of the notification bar
@@ -94,6 +95,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 /**
  *  A Style defines the appeareance of a notification.
  */
+NS_SWIFT_NAME(ProgressBarStyle)
 @interface JDStatusBarProgressBarStyle : NSObject <NSCopying>
 
 /// The background color of the progress bar (on top of the notification bar)
