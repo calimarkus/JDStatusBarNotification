@@ -168,11 +168,11 @@ struct ExamplesView: View {
         VStack(alignment: .leading) {
           Text(title)
             .font(.subheadline)
-            .foregroundColor(.black)
+            .foregroundColor(.primary)
           if let subtitle = subtitle {
             Text(subtitle)
               .font(.caption2)
-              .foregroundColor(.gray)
+              .foregroundColor(.secondary)
           }
         }
         Spacer()
