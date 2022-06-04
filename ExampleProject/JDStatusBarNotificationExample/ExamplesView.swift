@@ -113,10 +113,8 @@ struct ExamplesView: View {
       Section("Custom Styles") {
         cell(title: "Show custom style 1", subtitle: "AnimationType.fade + Progress") {
           NotificationPresenter.shared().present(text: "Oh, I love it!",
-                                                 dismissAfterDelay: 3.0,
-                                                 customStyle: ExamplesView.customStyle1)
-          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
-            NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+                                                 customStyle: ExamplesView.customStyle1) { presenter in
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.5) { presenter in
               presenter.dismiss(animated: true)
             }
           }
@@ -124,10 +122,8 @@ struct ExamplesView: View {
 
         cell(title: "Show custom style 2", subtitle: "AnimationType.bounce + Progress") {
           NotificationPresenter.shared().present(text: "Level up!",
-                                                 dismissAfterDelay: 3.0,
-                                                 customStyle: ExamplesView.customStyle2)
-          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
-            NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+                                                 customStyle: ExamplesView.customStyle2) { presenter in
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.5) { presenter in
               presenter.dismiss(animated: true)
             }
           }
