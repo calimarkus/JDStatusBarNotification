@@ -73,7 +73,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 @property (nonatomic, strong, nullable) NSShadow *textShadow;
 
 /// The font of the notification label
-@property (nonatomic, strong, nullable) UIFont *font;
+@property (nonatomic, strong) UIFont *font;
 
 /// A correction of the vertical label position in points. Default is 0.0
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;

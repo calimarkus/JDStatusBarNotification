@@ -17,7 +17,7 @@ class ExamplesViewFactory: NSObject {
       style.barColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
       style.textColor = .white
       style.animationType = .fade
-      style.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)
+      style.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
       style.progressBarStyle.barColor = UIColor(red: 0.986, green: 0.062, blue: 0.598, alpha: 1.0)
       style.progressBarStyle.barHeight = 400.0
       return style
@@ -27,7 +27,7 @@ class ExamplesViewFactory: NSObject {
       style.barColor = .cyan
       style.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
       style.animationType = .bounce
-      style.font = UIFont(name: "DINCondensed-Bold", size: 17.0)
+      style.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
       style.textVerticalPositionAdjustment = 2.0
       style.progressBarStyle.barColor = style.textColor
       style.progressBarStyle.barHeight = 22.0

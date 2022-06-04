@@ -9,6 +9,16 @@
 
 @implementation JDStatusBarProgressBarStyle
 
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    _barColor = [UIColor greenColor];
+    _barHeight = 1.0;
+    _position = JDStatusBarProgressBarPositionBottom;
+  }
+  return self;
+}
+
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarProgressBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.barColor = self.barColor;
@@ -22,6 +32,20 @@
 @end
 
 @implementation JDStatusBarStyle
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    _barColor = [UIColor whiteColor];
+    _textColor = [UIColor grayColor];
+    _font = [UIFont systemFontOfSize:12.0];
+    _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
+    _animationType = JDStatusBarAnimationTypeMove;
+    _progressBarStyle = [JDStatusBarProgressBarStyle new];
+    _canSwipeToDismiss = YES;
+  }
+  return self;
+}
 
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
