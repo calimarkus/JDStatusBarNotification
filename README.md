@@ -4,11 +4,13 @@ Easy, customizable notifications displayed below the status bar for notch and no
 Customizable colors, fonts and animations. Supports displaying a progress bar and/or an activity indicator.
 Please open a [Github issue], if you think anything is missing or wrong.
 
-![animation](https://user-images.githubusercontent.com/807039/170856043-6da8fcae-d453-47aa-9fdd-cd4f6ea982f5.gif)
+| Drag to dismiss | Activity & Progress Bars | Custom styles |
+| ------------- | ------------- | ------------- |
+| ![1](https://user-images.githubusercontent.com/807039/172001713-74d8c212-cd58-4687-8d6b-472e1bdb944d.gif) | ![3](https://user-images.githubusercontent.com/807039/172001734-be3c4e36-46b6-4f9f-a3d5-59a51e5db675.gif) | ![2](https://user-images.githubusercontent.com/807039/172001727-65aa6374-beeb-4a5c-adac-7e1967236b63.gif) |
 
-![iphoneX](https://user-images.githubusercontent.com/807039/170856047-f63ebbf1-0aac-41ef-a620-07e73d5c0a76.png)
-
-![screenshots](https://user-images.githubusercontent.com/807039/170856049-b7ca45a0-abbd-4e76-8bac-7c0c6adeb26a.png)
+| Landscape apps (device rotation also supported) |
+| ------------- |
+| ![landscape](https://user-images.githubusercontent.com/807039/172003389-7752a183-f960-4bef-87c7-fcf583e4a13f.gif) |
 
 ## Installation
 
@@ -63,7 +65,8 @@ The return value will be the notification view. You can just ignore it, but if y
     
 ### Showing progress
 
-![progress](https://user-images.githubusercontent.com/807039/170856052-23feecb8-e692-4b64-a89c-7be504f4813a.gif)
+![progress](https://user-images.githubusercontent.com/807039/172003585-bf8e7284-9e2e-4de2-ab88-7fce086d65a6.gif)
+
 
 ```objc
 + (void)showProgress:(CGFloat)progress;  // Range: 0.0 - 1.0
@@ -71,7 +74,7 @@ The return value will be the notification view. You can just ignore it, but if y
     
 ### Showing activity
 
-![activity](https://user-images.githubusercontent.com/807039/170856058-a38fb6ea-5d04-40af-9ede-d4984e288b66.gif)
+![activity](https://user-images.githubusercontent.com/807039/172003589-d0513124-9b72-4e3f-89f0-278bf4c66226.gif)
 
 ```objc
 + (void)showActivityIndicator:(BOOL)show
