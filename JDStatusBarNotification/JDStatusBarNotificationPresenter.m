@@ -82,9 +82,9 @@
   [_styleCache updateDefaultStyle:prepareBlock];
 }
 
-- (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
-  return [_styleCache addStyleNamed:identifier prepare:prepareBlock];
+- (NSString *)addStyleNamed:(NSString *)styleName
+                    prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
+  return [_styleCache addStyleNamed:styleName prepare:prepareBlock];
 }
 
 #pragma mark - Presentation API
@@ -99,17 +99,17 @@
 }
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)timeInterval {
-  return [self presentWithText:text dismissAfterDelay:timeInterval styleName:nil];
+                   dismissAfterDelay:(NSTimeInterval)delay {
+  return [self presentWithText:text dismissAfterDelay:delay styleName:nil];
 }
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)timeInterval
+                   dismissAfterDelay:(NSTimeInterval)delay
                            styleName:(NSString * _Nullable)styleName {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
   JDStatusBarView *view = [self presentWithText:text style:style];
-  if (timeInterval > 0.0) {
-    [self dismissAfterDelay:timeInterval];
+  if (delay > 0.0) {
+    [self dismissAfterDelay:delay];
   }
   return view;
 }

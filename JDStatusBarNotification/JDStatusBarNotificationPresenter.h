@@ -20,9 +20,14 @@ typedef void (^ _Nullable JDStatusBarNotificationPresenterCompletionBlock)(JDSta
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  This class is a singletion which is used to present notifications
- *  on top of the status bar. To present a notification, use one of the
- *  given class methods.
+ *  The NotificationPresenter let's you present text notification below the statusBar.
+ *  You can customize the style & animations or even retrieve the presented view for further customization.
+ *  It also supports displaying an activity indicator and / or an animated progress bar.
+ *
+ *  While a notification is displayed, a separate window is presented on top of your application window.
+ *  Upon dismissal this window is fully removed from the memory. The presenter class itself is a singleton,
+ *  which will stay in memory for the lifetime of your application, once it was used. That includes the
+ *  DefaultStyle and any custom StatusBarStyles that were setup by the user.
  */
 NS_SWIFT_NAME(NotificationPresenter)
 @interface JDStatusBarNotificationPresenter : NSObject
@@ -32,7 +37,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 
 + (instancetype)sharedPresenter;
 
-#pragma mark - Public API
+#pragma mark - WindowScene
 
 /**
  *  This needs to be set once, if you are using window scenes in your app, otherwise the notifications won't show up at all.
@@ -44,152 +49,137 @@ NS_SWIFT_NAME(NotificationPresenter)
 #pragma mark - Presentation
 
 /**
- *  Show a notification. It won't hide automatically,
- *  you have to dimiss it on your own.
+ *  Present a notification using the default style.
  *
  *  @param text The message to display
  *
- *  @return The presented notification view for further customization
+ *  @return The presented JDStatusBarView for further customization
  */
 - (JDStatusBarView *)presentWithText:(NSString *)text NS_SWIFT_NAME(present(text:));
 
 /**
- *  Show a notification with a specific style. It won't
- *  hide automatically, you have to dimiss it on your own.
+ *  Present a notification using the specified style.
+ *  If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
- *  (JDStatusBarIncludedStyleDefault, etc.), or a custom style identifier, after you added a
- *  custom style. If this is nil, the default style will be used.
+ *  @param styleName The name of the style. You can use custom styles or any JDStatusBarIncludedStyle constant
+ *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.
  *
- *  @return The presented notification view for further customization
+ *  @return The presented JDStatusBarView for further customization
  */
 - (JDStatusBarView *)presentWithText:(NSString *)text
                            styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:styleName:));
 
 /**
- *  Same as presentWithText:, but the notification will
- *  automatically dismiss after the given timeInterval.
+ *  Present a notification using the default style. The notification will
+ *  automatically dismiss after the given delay.
  *
  *  @param text The message to display
- *  @param timeInterval The duration, how long the notification
- *  is displayed. (Including the animation duration)
+ *  @param delay The delay in seconds, before the notification should be dismissed automatically.
  *
- *  @return The presented notification view for further customization
+ *  @return The presented JDStatusBarView for further customization
  */
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)timeInterval NS_SWIFT_NAME(present(text:dismissAfterDelay:));
+                   dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(present(text:dismissAfterDelay:));
 
 /**
- *  Same as presentWithText:styleName:, but the notification
- *  will automatically dismiss after the given timeInterval.
+ *  Present a notification using the specified style.The notification will dismiss after the
+ *  given delay. If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param timeInterval The duration, how long the notification
- *  is displayed. (Including the animation duration)
- *  @param styleName The name of the style. You can use any JDStatusBarStyle constant
- *  (JDStatusBarIncludedStyleDefault, etc.), or a custom style identifier, after you added a
- *  custom style. If this is nil, the default style will be used.
+ *  @param delay The delay in seconds, before the notification should be dismissed.
+ *  @param styleName The name of the style. You can use custom styles or any JDStatusBarIncludedStyle constant
+ *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.  
  *
- *  @return The presented notification view for further customization
+ *  @return The presented JDStatusBarView for further customization
  */
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)timeInterval
+                   dismissAfterDelay:(NSTimeInterval)delay
                            styleName:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:styleName:));
 
 #pragma mark - Dismissal
 
 /**
- *  Dismisses any currently displayed notification immediately
+ *  Dismisses any currently displayed notification immediately.
  *
- *  @param animated If this is YES, the animation style used
- *  for presentation will also be used for the dismissal.
+ *  @param animated If set, the notification will be dismissed according to the currently set StatusBarStyle
  */
 - (void)dismissAnimated:(BOOL)animated NS_SWIFT_NAME(dismiss(animated:));
 
 /**
- *  Same as dismissAnimated:, but you can specify a delay,
- *  so the notification wont be dismissed immediately
+ *  Dismisses any currently displayed notification after the provided delay.
  *
- *  @param delay The delay, how long the notification should stay visible
+ *  @param delay The delay in seconds, before the notification should be dismissed.
  */
 - (void)dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(dismiss(afterDelay:));
 
 /**
- *  Same as dismissAfterDelay:, but let's you utilize a completion block.
+ *  Dismisses any currently displayed notification after the provided delay.
+ *  The completion block is called once the dismiss animation finishes.
  *
- *  @param delay The delay, how long the notification should stay visible
- *  @param completion A completion block, which will be executed upon dismissal.
+ *  @param delay The delay in seconds, before the notification should be dismissed.
+ *  @param completion A completion block, which gets called once the dismiss animation finishes.
  */
 - (void)dismissAfterDelay:(NSTimeInterval)delay
                completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(dismiss(afterDelay:completion:));
 
-#pragma mark - Styles
+#pragma mark - Style Modification
 
 /**
- *  This changes the default style, which is always used
- *  when a method without styleName is used for presentation, or
- *  styleName is nil, or no style is found with this name.
+ *  Defines a new default style. It will be used in all future presentations, if no style is specified.
  *
- *  @param prepareBlock A block, which has a JDStatusBarStyle instance as
- *  parameter. This instance can be modified to suit your needs. You need
- *  to return the modified style again.
+ *  @param prepareBlock Provides the existing defaultStyle instance for further customization.
  */
 - (void)updateDefaultStyle:(JDStatusBarPrepareStyleBlock)prepareBlock;
 
 /**
- *  Adds a custom style, which than can be used
- *  in the presentation methods.
+ *  Adds a new custom style, which can be used in future presentations by utilizing the same styleName.
+ *  If a style with the same name already exists, it will be replaced.
  *
- *  @param identifier   The identifier, which will
- *  later be used to reference the configured style.
- *  @param prepareBlock A block, which has a JDStatusBarStyle instance as
- *  parameter. This instance can be modified to suit your needs. You need
- *  to return the modified style again.
+ *  @param styleName   The styleName which will later be used to reference the added style.
+ *  @param prepareBlock Provides the existing defaultStyle instance for further customization.
  *
- *  @return Returns the given identifier, so it can
- *  be directly used as styleName parameter.
+ *  @return Returns the styleName, so this can be used directly within a presentation call.
  */
-- (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(named:prepare:));
+- (NSString *)addStyleNamed:(NSString*)styleName
+                    prepare:(JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:prepare:));
 
-#pragma mark - Modifications
+#pragma mark - Others
 
 /**
- *  Update the text of the label without presenting a new notification.
+ *  Updates the text of an existing notification without any animation.
  *
  *  @param text The new message to display
  */
 - (void)updateText:(NSString *)text;
 
 /**
- *  Displays a progress bar according to the current progressBarStyle. Displays the given percentage immediately without animation.
+ *  Displays a progress bar according to the current progressBarStyle. Displays the given percentage immediately without any animation.
  *
  *  @param percentage Relative progress from 0.0 to 1.0
  */
 - (void)displayProgressBarWithPercentage:(CGFloat)percentage NS_SWIFT_NAME(displayProgressBar(percentage:));
 /**
- *  Show the progress bar according to the current progressBarStyle.
+ *  Displays a progress bar according to the current progressBarStyle. Animates to the provided
+ *  percentage using the provided animationDuration. It starts from the current percentage.
  *
  *  @param percentage Relative progress from 0.0 to 1.0
- *  @param animationDuration This duration will be utilized to animate the change in percentage.
- *  @param completion A block to be executed upon animation completion.
+ *  @param animationDuration The duration of the animation from the current percentage to the provided percentage.
+ *  @param completion A completion block, which gets called once the animation finishes.
  */
 - (void)displayProgressBarWithPercentage:(CGFloat)percentage
                        animationDuration:(CGFloat)animationDuration
                               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(displayProgressBar(percentage:animationDuration:completion:));
 
 /**
- *  Shows an activity indicator in front of the notification text using the text color
+ *  Displays an activity indicator in front of the notification text. It will have the same color as the text color of the current style.
  *
- *  @param show  Use this flag to show or hide the activity indicator
+ *  @param show  Show or hide the activity indicator.
  */
 - (void)displayActivityIndicator:(BOOL)show;
 
-#pragma mark - State
-
 /**
- *  This method tests, if a notification is currently displayed.
+ *  Check if any notification is currently displayed.
  *
  *  @return YES, if a notification is currently displayed. Otherwise NO.
  */

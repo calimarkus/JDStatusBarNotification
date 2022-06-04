@@ -29,10 +29,10 @@
   _defaultStyle = prepareBlock([_defaultStyle copy]);
 }
 
-- (NSString*)addStyleNamed:(NSString*)identifier
-                   prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
-  [_userStyles setObject:prepareBlock([_defaultStyle copy]) forKey:identifier];
-  return identifier;
+- (NSString *)addStyleNamed:(NSString *)styleName
+                    prepare:(JDStatusBarPrepareStyleBlock)prepareBlock {
+  [_userStyles setObject:prepareBlock([_defaultStyle copy]) forKey:styleName];
+  return styleName;
 }
 
 static JDStatusBarStyle *defaultStyle(void) {
