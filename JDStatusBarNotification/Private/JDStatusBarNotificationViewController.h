@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ _Nullable JDStatusBarNotificationViewControllerDismissCompletion)(void);
+typedef void (^ _Nullable JDStatusBarNotificationViewControllerCompletion)(void);
 
 @protocol JDStatusBarNotificationViewControllerDelegate
 - (void)animationsForViewTransitionToSize:(CGSize)size;
@@ -22,13 +22,15 @@ typedef void (^ _Nullable JDStatusBarNotificationViewControllerDismissCompletion
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style;
 
-- (JDStatusBarView *)presentWithText:(NSString *)text style:(JDStatusBarStyle *)style;
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                               style:(JDStatusBarStyle *)style
+                          completion:(JDStatusBarNotificationViewControllerCompletion)completion;
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-               completion:(JDStatusBarNotificationViewControllerDismissCompletion)completion;
+               completion:(JDStatusBarNotificationViewControllerCompletion)completion;
 
 - (void)dismissWithDuration:(CGFloat)duration
-                 completion:(JDStatusBarNotificationViewControllerDismissCompletion)completion;
+                 completion:(JDStatusBarNotificationViewControllerCompletion)completion;
 
 @end
 

@@ -16,7 +16,8 @@ JDStatusBarViewDelegate
 
 @implementation JDStatusBarNotificationViewController {
   NSTimer *_dismissTimer;
-  JDStatusBarNotificationViewControllerDismissCompletion _dismissCompletionBlock;
+  JDStatusBarNotificationViewControllerCompletion _dismissCompletionBlock;
+  JDStatusBarNotificationViewControllerCompletion _animateInCompletionBlock;
 }
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style {
@@ -38,7 +39,8 @@ JDStatusBarViewDelegate
 #pragma mark - Presentation
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                              style:(JDStatusBarStyle *)style {
+                               style:(JDStatusBarStyle *)style
+                          completion:(JDStatusBarNotificationViewControllerCompletion)completion {
   JDStatusBarView *topBar = _statusBarView;
   [topBar resetSubviewsIfNeeded];
 
@@ -54,6 +56,7 @@ JDStatusBarViewDelegate
   [_dismissTimer invalidate];
   _dismissTimer = nil;
   _dismissCompletionBlock = nil;
+  _animateInCompletionBlock = nil;
   [topBar.layer removeAllAnimations];
 
   // prepare animation
@@ -68,11 +71,16 @@ JDStatusBarViewDelegate
   // animate in
   BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
   if (animationsEnabled && style.animationType == JDStatusBarAnimationTypeBounce) {
+    _animateInCompletionBlock = completion;
     [self animateInWithBounceAnimation];
   } else {
     [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
       topBar.alpha = 1.0;
       topBar.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+      if (completion) {
+        completion();
+      }
     }];
   }
 
@@ -88,7 +96,7 @@ JDStatusBarViewDelegate
 #pragma mark - Dismissal
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-             completion:(JDStatusBarNotificationViewControllerDismissCompletion)completion {
+             completion:(JDStatusBarNotificationViewControllerCompletion)completion {
   [_dismissTimer invalidate];
 
   _dismissCompletionBlock = [completion copy];
@@ -100,13 +108,13 @@ JDStatusBarViewDelegate
 }
 
 - (void)dismissTimerFired:(NSTimer *)timer {
-  JDStatusBarNotificationViewControllerDismissCompletion block = _dismissCompletionBlock;
+  JDStatusBarNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
   [self dismissWithDuration:0.4 completion:block];
 }
 
 - (void)dismissWithDuration:(CGFloat)duration
-                 completion:(JDStatusBarNotificationViewControllerDismissCompletion)completion {
+                 completion:(JDStatusBarNotificationViewControllerCompletion)completion {
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
@@ -147,11 +155,7 @@ JDStatusBarViewDelegate
 #pragma mark - Bounce Animation
 
 - (void)animateInWithBounceAnimation {
-  //don't animate in, if topBar is already fully visible
   JDStatusBarView *topBar = self.statusBarView;
-  if (topBar.frame.origin.y >= 0) {
-    return;
-  }
 
   // easing function (based on github.com/robb/RBBAnimation)
   CGFloat(^RBBEasingFunctionEaseOutBounce)(CGFloat) = ^CGFloat(CGFloat t) {
@@ -162,7 +166,7 @@ JDStatusBarViewDelegate
   };
 
   // create values
-  int fromCenterY=-topBar.bounds.size.height, toCenterY=0, animationSteps=200;
+  int fromCenterY = -topBar.bounds.size.height, toCenterY=0, animationSteps=200;
   NSMutableArray *values = [NSMutableArray arrayWithCapacity:animationSteps];
   for (int t = 1; t<=animationSteps; t++) {
     float easedTime = RBBEasingFunctionEaseOutBounce((t*1.0)/animationSteps);
@@ -188,6 +192,12 @@ JDStatusBarViewDelegate
   JDStatusBarView *topBar = self.statusBarView;
   topBar.transform = CGAffineTransformIdentity;
   [topBar.layer removeAllAnimations];
+
+  if (_animateInCompletionBlock) {
+    JDStatusBarNotificationViewControllerCompletion completion = _animateInCompletionBlock;
+    _animateInCompletionBlock = nil;
+    completion();
+  }
 }
 
 #pragma mark - Rotation handling
