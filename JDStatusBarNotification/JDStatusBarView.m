@@ -226,15 +226,21 @@
   
   CGFloat labelY = _style.textVerticalPositionAdjustment + labelAdjustment + 1;
   CGFloat height = self.bounds.size.height - labelAdjustment - 1;
-  
-  self.textLabel.frame = CGRectMake(0, labelY, self.bounds.size.width, height);
+
+  CGFloat inset = 30.0;
+  CGFloat activitySpacing = 16.0;
+  CGFloat activityWidth = CGRectGetWidth(_activityIndicatorView.frame);
+  if (_activityIndicatorView) {
+    inset += activityWidth + activitySpacing;
+  }
+  self.textLabel.frame = CGRectMake(inset, labelY, self.bounds.size.width - inset * 2, height);
   
   // activity indicator
   if (_activityIndicatorView) {
     NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
-    CGSize textSize = [self.textLabel.text sizeWithAttributes:attributes];
+    CGFloat textWidth = MIN([self.textLabel.text sizeWithAttributes:attributes].width, CGRectGetWidth(_textLabel.frame));
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.x = round((self.bounds.size.width - textSize.width)/2.0) - indicatorFrame.size.width - 16.0;
+    indicatorFrame.origin.x = round((self.bounds.size.width - textWidth)/2.0) - indicatorFrame.size.width - activitySpacing;
     indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(self.textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
   }
