@@ -10,12 +10,12 @@ class CustomStyleViewFactory: NSObject {
   }
 }
 
-class CustomStyle: ObservableObject {
+class CustomStyle: ObservableObject, Equatable {
   @Published var barColor: UIColor? = .systemTeal
   @Published var textColor: UIColor? = .white
   @Published var textShadowColor: UIColor? = .systemTeal
   @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
-  @Published var font: UIFont = UIFont.init(name: "Futura-Medium", size: 15.0)!
+  @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
   @Published var textVerticalPositionAdjustment: CGFloat = 0.0
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var animationType: AnimationType = .move
@@ -26,6 +26,10 @@ class CustomStyle: ObservableObject {
   @Published var pbPosition: ProgressBarPosition = .center
   @Published var pbHorizontalInsets: CGFloat = 20.0
   @Published var pbCornerRadius: CGFloat = 10.0
+
+  static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
+    return false // a hack to trigger .onChange(of: style) on every change
+  }
 
   func registerComputedStyle() -> String {
     let styleName = "custom"
@@ -60,19 +64,42 @@ struct CustomStyleView: View {
   @State var text: String = "You are doing great!"
   @StateObject var style: CustomStyle = .init()
 
+  weak static var statusBarView: JDStatusBarView? = nil
+
+  func presentDefault() {
+    CustomStyleView.statusBarView = NotificationPresenter.shared().present(
+      text: text,
+      customStyle: style.registerComputedStyle()
+    )
+    NotificationPresenter.shared().displayActivityIndicator(true)
+    NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+  }
+
   var body: some View {
     Form {
-      buttonRow(title: "Present notification for 1.5s") {
-        NotificationPresenter.shared().present(
-          text: text,
-          dismissAfterDelay: 1.5,
-          customStyle: style.registerComputedStyle()
-        )
-        NotificationPresenter.shared().displayActivityIndicator(true)
+      // a hack to trigger live updates
+      EmptyView()
+        .onChange(of: style) { _ in
+          CustomStyleView.statusBarView?.style = style.computedStyle()
+          CustomStyleView.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+        }
+        .onChange(of: style.animationType) { _ in
+          presentDefault()
+        }
+        .onChange(of: text) { _ in
+          NotificationPresenter.shared().updateText(text)
+        }
+
+      buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide. Activity + 40% progress.") {
+        if NotificationPresenter.shared().isVisible() {
+          NotificationPresenter.shared().dismiss(animated: true)
+        } else {
+          presentDefault()
+        }
       }
 
-      buttonRow(title: "Present with progress + dismiss") {
-        NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
+      buttonRow(title: "Present (progress bar)", subtitle: "Hides at 100% progress") {
+        CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
           presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
             presenter.dismiss(animated: true)
           }
@@ -80,31 +107,12 @@ struct CustomStyleView: View {
       }
 
       HStack {
-        Text("Preview:")
-          .font(.subheadline)
-        Spacer(minLength: 40.0)
-        ZStack {
-          Color(uiColor: style.barColor ?? .white)
-            .cornerRadius(10.0)
-          Text(text)
-            .font(Font(.init(style.font.fontDescriptor, size: style.font.pointSize)))
-            .foregroundColor(Color(uiColor: style.textColor ?? .black))
-            .padding(.top, 12.0 + style.textVerticalPositionAdjustment / 2.0)
-            .padding(.bottom, 12.0 - style.textVerticalPositionAdjustment / 2.0)
-            .padding([.leading, .trailing], 10.0)
-            .shadow(color: Color(uiColor: (style.textShadowColor ?? style.barColor)!), radius: 0.0, x: style.textShadowOffset.width, y: style.textShadowOffset.height)
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
-          VStack {
-            Spacer()
-            Color(uiColor: style.pbBarColor ?? style.barColor ?? .white)
-              .cornerRadius(1.5)
-              .frame(height: 3.0)
-              .padding([.leading, .trailing], 10.0)
-            Spacer().frame(height: 4.0)
-          }
-        }
-      }
+        Spacer()
+        Text("Keep the notification presented to see any changes live!")
+          .font(.caption2)
+          .foregroundColor(.secondary)
+        Spacer()
+      }.disabled(true)
 
       Section("Text") {
         TextField("Text", text: $text)
@@ -219,11 +227,18 @@ struct CustomStyleView: View {
     .font(.subheadline)
   }
 
-  func buttonRow(title: String, action: @escaping () -> Void) -> some View {
+  func buttonRow(title: String, subtitle: String? = nil, action: @escaping () -> Void) -> some View {
     Button(action: action, label: {
       HStack {
-        Text(title)
-          .font(.subheadline)
+        VStack(alignment: .leading) {
+          Text(title)
+            .font(.subheadline)
+          if let subtitle = subtitle {
+            Text(subtitle)
+              .font(.caption)
+              .foregroundColor(.secondary)
+          }
+        }
         Spacer()
         NavigationLink.empty
           .frame(width: 30.0)
