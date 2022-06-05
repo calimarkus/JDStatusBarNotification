@@ -75,11 +75,11 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The text shadow color, the default is nil, meaning no shadow.
 @property (nonatomic, strong, nullable) UIColor *textShadowColor;
 
-/// The text shadow offset of the notification label
+/// The text shadow offset of the notification label.
 @property (nonatomic, assign) CGSize textShadowOffset;
 
-/// A correction of the vertical label position in points. Default is 0.0
-@property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
+/// Offsets the text label on the y-axis. Default is 0.0.
+@property (nonatomic, assign) CGFloat textOffsetY;
 
 /// The UIStatusBarStyle, which should be used during presentation
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;

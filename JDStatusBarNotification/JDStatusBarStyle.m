@@ -54,7 +54,7 @@
   style.textShadowColor = self.textShadowColor;
   style.textShadowOffset = self.textShadowOffset;
   style.font = self.font;
-  style.textVerticalPositionAdjustment = self.textVerticalPositionAdjustment;
+  style.textOffsetY = self.textOffsetY;
   style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.animationType = self.animationType;
   style.progressBarStyle = [self.progressBarStyle copy];

@@ -16,7 +16,7 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var textShadowColor: UIColor? = .systemTeal
   @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
   @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
-  @Published var textVerticalPositionAdjustment: CGFloat = 0.0
+  @Published var textOffsetY: CGFloat = 0.0
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var animationType: AnimationType = .move
   @Published var canSwipeToDismiss: Bool = true
@@ -47,7 +47,7 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
-    style.textVerticalPositionAdjustment = textVerticalPositionAdjustment
+    style.textOffsetY = textOffsetY
     style.canSwipeToDismiss = canSwipeToDismiss
 
     style.textShadowColor = textShadowColor
@@ -69,7 +69,7 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.animationType = \(animationType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
-    style.textVerticalPositionAdjustment = \(textVerticalPositionAdjustment)
+    style.textOffsetY = \(textOffsetY)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
     """
 
@@ -184,8 +184,8 @@ struct CustomStyleView: View {
           }))
           .font(.subheadline)
 
-        Stepper("Y-position adjustment (\(Int(style.textVerticalPositionAdjustment)))",
-                value: $style.textVerticalPositionAdjustment)
+        Stepper("Text Offset Y (\(Int(style.textOffsetY)))",
+                value: $style.textOffsetY)
           .font(.subheadline)
 
         customColorPicker(title: "Text Color", binding: $style.textColor)

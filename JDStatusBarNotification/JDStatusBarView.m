@@ -226,7 +226,7 @@
     labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
   }
   
-  CGFloat labelY = _style.textVerticalPositionAdjustment + labelAdjustment + 1;
+  CGFloat labelY = _style.textOffsetY + labelAdjustment + 1;
   CGFloat height = self.bounds.size.height - labelAdjustment - 1;
 
   CGFloat inset = 30.0;
