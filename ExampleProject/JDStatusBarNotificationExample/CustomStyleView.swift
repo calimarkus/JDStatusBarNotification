@@ -44,17 +44,17 @@ class CustomStyle: ObservableObject, Equatable {
   func computedStyle() -> StatusBarStyle {
     let style = StatusBarStyle()
     style.backgroundColor = backgroundColor
-    style.textColor = textColor
-    style.font = font
+
+    style.textStyle.textColor = textColor
+    style.textStyle.font = font
+    style.textStyle.textOffsetY = textOffsetY
+    style.textStyle.textShadowColor = textShadowColor
+    style.textStyle.textShadowOffset = textShadowOffset
 
     style.animationType = animationType
     style.backgroundType = backgroundType
     style.systemStatusBarStyle = systemStatusBarStyle
-    style.textOffsetY = textOffsetY
     style.canSwipeToDismiss = canSwipeToDismiss
-
-    style.textShadowColor = textShadowColor
-    style.textShadowOffset = textShadowOffset
 
     style.progressBarStyle.barHeight = pbBarHeight
     style.progressBarStyle.position = pbPosition
@@ -68,26 +68,27 @@ class CustomStyle: ObservableObject, Equatable {
   func styleConfigurationString() -> String {
     var text = """
     style.backgroundColor = \(backgroundColor ?? .white)
-    style.textColor = \(textColor ?? .white)
-    style.font = \(font)
 
-    style.animationType = \(animationType)
-    style.backgroundType = \(backgroundType)
-    style.systemStatusBarStyle = \(systemStatusBarStyle)
-    style.textOffsetY = \(textOffsetY)
-    style.canSwipeToDismiss = \(canSwipeToDismiss)
+    style.textStyle.textColor = \(textColor ?? .white)
+    style.textStyle.font = \(font)
+    style.textStyle.textOffsetY = \(textOffsetY)
     """
 
     if let color = textShadowColor {
-      text.append("\n\n")
+      text.append("\n")
       text.append("""
-      style.textShadowColor = \(color)
-      style.textShadowOffset = \(textShadowOffset)
+      style.textStyle.textShadowColor = \(color)
+      style.textStyle.textShadowOffset = \(textShadowOffset)
       """)
     }
 
     text.append("\n\n")
     text.append("""
+    style.animationType = \(animationType)
+    style.backgroundType = \(backgroundType)
+    style.systemStatusBarStyle = \(systemStatusBarStyle)
+    style.canSwipeToDismiss = \(canSwipeToDismiss)
+
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition)
     style.progressBarStyle.barColor = \(pbBarColor ?? .white)

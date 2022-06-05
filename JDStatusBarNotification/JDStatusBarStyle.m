@@ -7,6 +7,29 @@
 
 #import "JDStatusBarStyle.h"
 
+@implementation JDStatusBarTextStyle
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    _textColor = [UIColor grayColor];
+    _font = [UIFont systemFontOfSize:12.0];
+  }
+  return self;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+  JDStatusBarTextStyle *style = [[[self class] allocWithZone:zone] init];
+  style.textColor = self.textColor;
+  style.font = self.font;
+  style.textShadowColor = self.textShadowColor;
+  style.textShadowOffset = self.textShadowOffset;
+  style.textOffsetY = self.textOffsetY;
+  return style;
+}
+
+@end
+
 @implementation JDStatusBarProgressBarStyle
 
 - (instancetype)init {
@@ -38,8 +61,7 @@
   self = [super init];
   if (self) {
     _backgroundColor = [UIColor whiteColor];
-    _textColor = [UIColor grayColor];
-    _font = [UIFont systemFontOfSize:12.0];
+    _textStyle = [JDStatusBarTextStyle new];
     _animationType = JDStatusBarAnimationTypeMove;
     _backgroundType = JDStatusBarBackgroundTypeClassic;
     _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
@@ -52,11 +74,7 @@
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.backgroundColor = self.backgroundColor;
-  style.textColor = self.textColor;
-  style.font = self.font;
-  style.textShadowColor = self.textShadowColor;
-  style.textShadowOffset = self.textShadowOffset;
-  style.textOffsetY = self.textOffsetY;
+  style.textStyle = [self.textStyle copy];
   style.animationType = self.animationType;
   style.backgroundType = self.backgroundType;
   style.systemStatusBarStyle = self.systemStatusBarStyle;

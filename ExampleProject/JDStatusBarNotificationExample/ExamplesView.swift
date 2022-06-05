@@ -15,9 +15,9 @@ class ExamplesViewFactory: NSObject {
   static func setupCustomStyles() {
     NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle1) { style in
       style.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
-      style.textColor = .white
+      style.textStyle.textColor = .white
       style.animationType = .fade
-      style.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
+      style.textStyle.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
       style.progressBarStyle.barColor = UIColor(red: 0.986, green: 0.062, blue: 0.598, alpha: 1.0)
       style.progressBarStyle.barHeight = 400.0
       return style
@@ -25,9 +25,9 @@ class ExamplesViewFactory: NSObject {
 
     NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle2) { style in
       style.backgroundColor = .cyan
-      style.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
+      style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
       style.animationType = .bounce
-      style.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
+      style.textStyle.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
       style.progressBarStyle.barColor = UIColor(white: 1.0, alpha: 0.66)
       style.progressBarStyle.barHeight = 6.0
       style.progressBarStyle.cornerRadius = 3.0

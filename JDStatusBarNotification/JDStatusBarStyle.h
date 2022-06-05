@@ -63,6 +63,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 } NS_SWIFT_NAME(StatusBarSystemStyle);
 
 @class JDStatusBarProgressBarStyle;
+@class JDStatusBarTextStyle;
 
 /**
  *  A Style defines the appeareance of a notification.
@@ -73,20 +74,8 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The background color of the notification bar
 @property (nonatomic, strong, nullable) UIColor *backgroundColor;
 
-/// The text color of the notification label
-@property (nonatomic, strong, nullable) UIColor *textColor;
-
-/// The font of the notification label
-@property (nonatomic, strong) UIFont *font;
-
-/// The text shadow color, the default is nil, meaning no shadow.
-@property (nonatomic, strong, nullable) UIColor *textShadowColor;
-
-/// The text shadow offset of the notification label.
-@property (nonatomic, assign) CGSize textShadowOffset;
-
-/// Offsets the text label on the y-axis. Default is 0.0.
-@property (nonatomic, assign) CGFloat textOffsetY;
+/// The styling of the text
+@property (nonatomic, strong) JDStatusBarTextStyle *textStyle;
 
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
@@ -102,6 +91,29 @@ NS_SWIFT_NAME(StatusBarStyle)
 
 /// Defines if the bar can be dismissed by the user or not (by swiping up)
 @property (nonatomic, assign) BOOL canSwipeToDismiss;
+
+@end
+
+/**
+ *  A Style defines the appeareance of a notification.
+ */
+NS_SWIFT_NAME(NotificationTextStyle)
+@interface JDStatusBarTextStyle : NSObject <NSCopying>
+
+/// The text color of the notification label
+@property (nonatomic, strong, nullable) UIColor *textColor;
+
+/// The font of the notification label
+@property (nonatomic, strong) UIFont *font;
+
+/// The text shadow color, the default is nil, meaning no shadow.
+@property (nonatomic, strong, nullable) UIColor *textShadowColor;
+
+/// The text shadow offset of the notification label.
+@property (nonatomic, assign) CGSize textShadowOffset;
+
+/// Offsets the text label on the y-axis. Default is 0.0.
+@property (nonatomic, assign) CGFloat textOffsetY;
 
 @end
 

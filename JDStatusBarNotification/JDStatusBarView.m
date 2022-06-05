@@ -85,7 +85,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   if (_activityIndicatorView == nil) {
     _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
-    _activityIndicatorView.color = _style.textColor;
+    _activityIndicatorView.color = _style.textStyle.textColor;
     _activityIndicatorView.tag = kExpectedSubviewTag;
     [self addSubview:_activityIndicatorView];
   }
@@ -225,18 +225,19 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [self applyStyleForBackgroundType];
 
   // style label
-  _textLabel.textColor = style.textColor;
-  _textLabel.font = style.font;
-  if (style.textShadowColor != nil) {
-    _textLabel.shadowColor = style.textShadowColor;
-    _textLabel.shadowOffset = style.textShadowOffset;
+  JDStatusBarTextStyle *textSyle = style.textStyle;
+  _textLabel.textColor = textSyle.textColor;
+  _textLabel.font = textSyle.font;
+  if (textSyle.textShadowColor != nil) {
+    _textLabel.shadowColor = textSyle.textShadowColor;
+    _textLabel.shadowOffset = textSyle.textShadowOffset;
   } else {
     _textLabel.shadowColor = nil;
     _textLabel.shadowOffset = CGSizeZero;
   }
 
   // style other views
-  _activityIndicatorView.color = style.textColor;
+  _activityIndicatorView.color = textSyle.textColor;
   _progressView.backgroundColor = style.progressBarStyle.barColor;
   _progressView.layer.cornerRadius = style.progressBarStyle.cornerRadius;
 
@@ -283,7 +284,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 
   // text label
-  CGFloat labelY = _style.textOffsetY + labelAdjustment;
+  CGFloat labelY = _style.textStyle.textOffsetY + labelAdjustment;
   CGFloat height = self.bounds.size.height - labelAdjustment;
   CGFloat activitySpacing = 16.0;
   CGFloat activityWidth = CGRectGetWidth(_activityIndicatorView.frame);
