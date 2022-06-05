@@ -124,7 +124,7 @@
       barFrame.origin.y = round(_textLabel.center.y - (barHeight / 2.0)) + progressBarStyle.offsetY;
       break;
     case JDStatusBarProgressBarPositionTop:
-      barFrame.origin.y = 0.0 + progressBarStyle.offsetY;
+      barFrame.origin.y = CGRectGetMinY(_textLabel.frame) + progressBarStyle.offsetY;
       break;
   }
 
