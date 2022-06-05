@@ -143,9 +143,16 @@ struct CustomStyleView: View {
         }
       }
 
-      buttonRow(title: "Print style", subtitle: "Print current style config to the console") {
-        print(style.styleConfigurationString())
-      }
+      #if targetEnvironment(simulator)
+        buttonRow(title: "Print style", subtitle: "Print current style config to \nthe console & copy it to the pasteboard.") {
+          print(style.styleConfigurationString())
+          UIPasteboard.general.string = style.styleConfigurationString();
+        }
+      #else
+        buttonRow(title: "Copy style", subtitle: "Copy current style config to pasteboard") {
+          UIPasteboard.general.string = style.styleConfigurationString();
+        }
+      #endif
 
       HStack {
         Spacer()
