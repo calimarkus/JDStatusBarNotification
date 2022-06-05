@@ -33,6 +33,8 @@
 #pragma mark - view setup
 
 - (void)setupView {
+  self.clipsToBounds = YES;
+
   _textLabel = [[UILabel alloc] init];
   _textLabel.backgroundColor = [UIColor clearColor];
   _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -234,6 +236,10 @@
     inset += activityWidth + activitySpacing;
   }
   self.textLabel.frame = CGRectMake(inset, labelY, self.bounds.size.width - inset * 2, height);
+
+  if (_progressView && _progressView.layer.animationKeys.count == 0) {
+    _progressView.frame = [self prograssViewRectForPercentage:_progressBarPercentage];
+  }
   
   // activity indicator
   if (_activityIndicatorView) {
