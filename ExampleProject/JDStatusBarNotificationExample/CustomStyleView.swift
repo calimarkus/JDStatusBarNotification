@@ -62,7 +62,7 @@ class CustomStyle: ObservableObject, Equatable {
   }
 
   func styleConfigurationString() -> String {
-    return """
+    var text = """
     style.barColor = \(barColor ?? .white)
     style.textColor = \(textColor ?? .white)
     style.font = \(font)
@@ -71,16 +71,28 @@ class CustomStyle: ObservableObject, Equatable {
     style.systemStatusBarStyle = \(systemStatusBarStyle)
     style.textVerticalPositionAdjustment = \(textVerticalPositionAdjustment)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
+    """
 
-    style.textShadowColor = \(textShadowColor ?? .white)
-    style.textShadowOffset = \(textShadowOffset)
+    if let color = textShadowColor {
+      text.append("\n\n")
+      text.append("""
+      style.textShadowColor = \(color)
+      style.textShadowOffset = \(textShadowOffset)
+      """)
+    }
 
+    text.append("\n\n")
+    text.append("""
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition)
     style.progressBarStyle.barColor = \(pbBarColor ?? .white)
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
-    """
+    """)
+
+    text.append("\n")
+
+    return text
   }
 }
 
@@ -171,20 +183,30 @@ struct CustomStyleView: View {
 
         customColorPicker(title: "Text Color", binding: $style.textColor)
 
-        customColorPicker(title: "Text Shadow Color", binding: $style.textShadowColor)
+        buttonRow(title: "Add / remove text shadow") {
+          if let _ = style.textShadowColor {
+            style.textShadowColor = nil
+          } else {
+            style.textShadowColor = style.barColor
+          }
+        }.foregroundColor(.primary)
 
-        VStack(alignment: .leading, spacing: 6.0) {
-          Text("Text Shadow Offset (\(Int(style.textShadowOffset.width))/\(Int(style.textShadowOffset.height)))")
-            .font(.subheadline)
-          HStack(alignment: .center, spacing: 20.0) {
-            Spacer()
-            Stepper("X:", value: $style.textShadowOffset.width)
-              .frame(width: 120)
+        if let _ = style.textShadowColor {
+          customColorPicker(title: "Text Shadow Color", binding: $style.textShadowColor)
+
+          VStack(alignment: .leading, spacing: 6.0) {
+            Text("Text Shadow Offset (\(Int(style.textShadowOffset.width))/\(Int(style.textShadowOffset.height)))")
               .font(.subheadline)
-            Stepper("Y:", value: $style.textShadowOffset.height)
-              .frame(width: 120)
-              .font(.subheadline)
-            Spacer()
+            HStack(alignment: .center, spacing: 20.0) {
+              Spacer()
+              Stepper("X:", value: $style.textShadowOffset.width)
+                .frame(width: 120)
+                .font(.subheadline)
+              Stepper("Y:", value: $style.textShadowOffset.height)
+                .frame(width: 120)
+                .font(.subheadline)
+              Spacer()
+            }
           }
         }
       }
