@@ -36,7 +36,7 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _barColor = [UIColor whiteColor];
+    _backgroundColor = [UIColor whiteColor];
     _textColor = [UIColor grayColor];
     _font = [UIFont systemFontOfSize:12.0];
     _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
@@ -49,7 +49,7 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
-  style.barColor = self.barColor;
+  style.backgroundColor = self.backgroundColor;
   style.textColor = self.textColor;
   style.textShadowColor = self.textShadowColor;
   style.textShadowOffset = self.textShadowOffset;

@@ -14,7 +14,7 @@ class ExamplesViewFactory: NSObject {
 
   static func setupCustomStyles() {
     NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle1) { style in
-      style.barColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
+      style.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
       style.textColor = .white
       style.animationType = .fade
       style.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
@@ -24,7 +24,7 @@ class ExamplesViewFactory: NSObject {
     }
 
     NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle2) { style in
-      style.barColor = .cyan
+      style.backgroundColor = .cyan
       style.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
       style.animationType = .bounce
       style.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!

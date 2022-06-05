@@ -64,7 +64,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
 /// The background color of the notification bar
-@property (nonatomic, strong, nullable) UIColor *barColor;
+@property (nonatomic, strong, nullable) UIColor *backgroundColor;
 
 /// The text color of the notification label
 @property (nonatomic, strong, nullable) UIColor *textColor;

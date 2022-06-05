@@ -190,7 +190,7 @@
 - (void)setStyle:(JDStatusBarStyle *)style {
   _style = style;
   
-  self.backgroundColor = style.barColor;
+  self.backgroundColor = style.backgroundColor;
 
   // style label
   _textLabel.textColor = style.textColor;

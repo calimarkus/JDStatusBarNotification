@@ -11,7 +11,7 @@ class CustomStyleViewFactory: NSObject {
 }
 
 class CustomStyle: ObservableObject, Equatable {
-  @Published var barColor: UIColor? = .systemTeal
+  @Published var backgroundColor: UIColor? = .systemTeal
   @Published var textColor: UIColor? = .white
   @Published var textShadowColor: UIColor? = .systemTeal
   @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
@@ -42,7 +42,7 @@ class CustomStyle: ObservableObject, Equatable {
 
   func computedStyle() -> StatusBarStyle {
     let style = StatusBarStyle()
-    style.barColor = barColor
+    style.backgroundColor = backgroundColor
     style.textColor = textColor
     style.font = font
 
@@ -65,7 +65,7 @@ class CustomStyle: ObservableObject, Equatable {
 
   func styleConfigurationString() -> String {
     var text = """
-    style.barColor = \(barColor ?? .white)
+    style.backgroundColor = \(backgroundColor ?? .white)
     style.textColor = \(textColor ?? .white)
     style.font = \(font)
 
@@ -197,7 +197,7 @@ struct CustomStyleView: View {
           if let _ = style.textShadowColor {
             style.textShadowColor = nil
           } else {
-            style.textShadowColor = style.barColor
+            style.textShadowColor = style.backgroundColor
           }
         }.foregroundColor(.primary)
 
@@ -222,7 +222,7 @@ struct CustomStyleView: View {
       }
 
       Section("Notification Bar") {
-        customColorPicker(title: "Bar Color", binding: $style.barColor)
+        customColorPicker(title: "Background Color", binding: $style.backgroundColor)
 
         VStack(alignment: .leading) {
           Text("AnimationStyle").font(.subheadline)
