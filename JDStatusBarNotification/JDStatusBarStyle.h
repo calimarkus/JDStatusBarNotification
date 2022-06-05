@@ -113,6 +113,9 @@ NS_SWIFT_NAME(ProgressBarStyle)
 /// The insets of the progress bar. Default is 0.0
 @property (nonatomic, assign) CGFloat horizontalInsets;
 
+/// Offsets the progress bar on the  y-axis. Default is 0.0.
+@property (nonatomic, assign) CGFloat offsetY;
+
 /// The corner radius of the progress bar. Default is 0.0
 @property (nonatomic, assign) CGFloat cornerRadius;
 

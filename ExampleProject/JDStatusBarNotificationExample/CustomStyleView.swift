@@ -26,6 +26,7 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var pbPosition: ProgressBarPosition = .center
   @Published var pbHorizontalInsets: CGFloat = 20.0
   @Published var pbCornerRadius: CGFloat = 10.0
+  @Published var pbBarOffset: CGFloat = 0.0
 
   static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
     return false // a hack to trigger .onChange(of: style) on every change
@@ -58,6 +59,7 @@ class CustomStyle: ObservableObject, Equatable {
     style.progressBarStyle.barColor = pbBarColor
     style.progressBarStyle.horizontalInsets = pbHorizontalInsets
     style.progressBarStyle.cornerRadius = pbCornerRadius
+    style.progressBarStyle.offsetY = pbBarOffset
     return style
   }
 
@@ -88,6 +90,7 @@ class CustomStyle: ObservableObject, Equatable {
     style.progressBarStyle.barColor = \(pbBarColor ?? .white)
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
+    style.progressBarStyle.offsetY = \(pbBarOffset)
     """)
 
     text.append("\n")
@@ -252,6 +255,10 @@ struct CustomStyleView: View {
       Section("Progress Bar") {
         customColorPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
 
+        Stepper("Bar height (\(Int(style.pbBarHeight)))",
+                value: $style.pbBarHeight)
+          .font(.subheadline)
+
         VStack(alignment: .leading) {
           Text("Position").font(.subheadline)
           Picker("", selection: $style.pbPosition) {
@@ -261,16 +268,16 @@ struct CustomStyleView: View {
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
-        Stepper("Bar height (\(Int(style.pbBarHeight)))",
-                value: $style.pbBarHeight)
+        Stepper("Corner radius (\(Int(style.pbCornerRadius)))",
+                value: $style.pbCornerRadius)
+          .font(.subheadline)
+
+        Stepper("Bar Offset Y (\(Int(style.pbBarOffset)))",
+                value: $style.pbBarOffset)
           .font(.subheadline)
 
         Stepper("Horizontal Insets (\(Int(style.pbHorizontalInsets)))",
                 value: $style.pbHorizontalInsets)
-          .font(.subheadline)
-
-        Stepper("Corner radius (\(Int(style.pbCornerRadius)))",
-                value: $style.pbCornerRadius)
           .font(.subheadline)
       }
     }

@@ -118,13 +118,13 @@
   // calculate y-position
   switch (_style.progressBarStyle.position) {
     case JDStatusBarProgressBarPositionBottom:
-      barFrame.origin.y = bounds.height - barHeight;
+      barFrame.origin.y = bounds.height - barHeight + progressBarStyle.offsetY;
       break;
     case JDStatusBarProgressBarPositionCenter:
-      barFrame.origin.y = round(_textLabel.center.y - (barHeight / 2.0));
+      barFrame.origin.y = round(_textLabel.center.y - (barHeight / 2.0)) + progressBarStyle.offsetY;
       break;
     case JDStatusBarProgressBarPositionTop:
-      barFrame.origin.y = 0.0;
+      barFrame.origin.y = 0.0 + progressBarStyle.offsetY;
       break;
   }
 
