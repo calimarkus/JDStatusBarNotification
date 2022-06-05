@@ -43,19 +43,44 @@ class CustomStyle: ObservableObject, Equatable {
     let style = StatusBarStyle()
     style.barColor = barColor
     style.textColor = textColor
+    style.font = font
+
+    style.animationType = animationType
+    style.systemStatusBarStyle = systemStatusBarStyle
+    style.textVerticalPositionAdjustment = textVerticalPositionAdjustment
+    style.canSwipeToDismiss = canSwipeToDismiss
+
     style.textShadowColor = textShadowColor
     style.textShadowOffset = textShadowOffset
-    style.font = font
-    style.textVerticalPositionAdjustment = textVerticalPositionAdjustment
-    style.systemStatusBarStyle = systemStatusBarStyle
-    style.animationType = animationType
-    style.canSwipeToDismiss = canSwipeToDismiss
+
     style.progressBarStyle.barHeight = pbBarHeight
     style.progressBarStyle.position = pbPosition
     style.progressBarStyle.barColor = pbBarColor
     style.progressBarStyle.horizontalInsets = pbHorizontalInsets
     style.progressBarStyle.cornerRadius = pbCornerRadius
     return style
+  }
+
+  func styleConfigurationString() -> String {
+    return """
+    style.barColor = \(barColor ?? .white)
+    style.textColor = \(textColor ?? .white)
+    style.font = \(font)
+
+    style.animationType = \(animationType)
+    style.systemStatusBarStyle = \(systemStatusBarStyle)
+    style.textVerticalPositionAdjustment = \(textVerticalPositionAdjustment)
+    style.canSwipeToDismiss = \(canSwipeToDismiss)
+
+    style.textShadowColor = \(textShadowColor ?? .white)
+    style.textShadowOffset = \(textShadowOffset)
+
+    style.progressBarStyle.barHeight = \(pbBarHeight)
+    style.progressBarStyle.position = \(pbPosition)
+    style.progressBarStyle.barColor = \(pbBarColor ?? .white)
+    style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
+    style.progressBarStyle.cornerRadius = \(pbCornerRadius)
+    """
   }
 }
 
@@ -98,12 +123,16 @@ struct CustomStyleView: View {
         }
       }
 
-      buttonRow(title: "Present (progress bar)", subtitle: "Hides at 100% progress") {
+      buttonRow(title: "Present (animate progress bar)", subtitle: "Hides at 100% progress") {
         CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
           presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
             presenter.dismiss(animated: true)
           }
         }
+      }
+
+      buttonRow(title: "Print style", subtitle: "Print current style config to the console") {
+        print(style.styleConfigurationString())
       }
 
       HStack {
