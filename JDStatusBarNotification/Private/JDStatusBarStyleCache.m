@@ -44,7 +44,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
 
     case JDStatusBarIncludedStyleError: {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
-      style.backgroundColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
+      style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
       style.textStyle.textColor = [UIColor whiteColor];
       style.progressBarStyle.barColor = [UIColor redColor];
       style.progressBarStyle.barHeight = 2.0;
@@ -53,7 +53,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
 
     case JDStatusBarIncludedStyleWarning: {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
-      style.backgroundColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
+      style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
       style.textStyle.textColor = [UIColor darkGrayColor];
       style.progressBarStyle.barColor = style.textStyle.textColor;
       return style;
@@ -61,7 +61,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
 
     case JDStatusBarIncludedStyleSuccess: {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
-      style.backgroundColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
+      style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
       style.textStyle.textColor = [UIColor whiteColor];
       style.progressBarStyle.barColor = [UIColor colorWithRed:0.106 green:0.594 blue:0.319 alpha:1.000];
       style.progressBarStyle.barHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
@@ -70,7 +70,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
 
     case JDStatusBarIncludedStyleMatrix: {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
-      style.backgroundColor = [UIColor blackColor];
+      style.backgroundStyle.backgroundColor = [UIColor blackColor];
       style.textStyle.textColor = [UIColor greenColor];
       style.textStyle.font = [UIFont fontWithName:@"Courier-Bold" size:14.0];
       style.progressBarStyle.barColor = [UIColor greenColor];
@@ -81,7 +81,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
 
     case JDStatusBarIncludedStyleDark: {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
-      style.backgroundColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
+      style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
       style.textStyle.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
       style.progressBarStyle.barHeight = 1.0+1.0/[[UIScreen mainScreen] scale];
       style.systemStatusBarStyle = JDStatusBarSystemStyleLightContent;

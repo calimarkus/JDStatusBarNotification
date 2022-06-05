@@ -43,16 +43,16 @@ class CustomStyle: ObservableObject, Equatable {
 
   func computedStyle() -> StatusBarStyle {
     let style = StatusBarStyle()
-    style.backgroundColor = backgroundColor
-
     style.textStyle.textColor = textColor
     style.textStyle.font = font
     style.textStyle.textOffsetY = textOffsetY
     style.textStyle.textShadowColor = textShadowColor
     style.textStyle.textShadowOffset = textShadowOffset
 
+    style.backgroundStyle.backgroundColor = backgroundColor
+    style.backgroundStyle.backgroundType = backgroundType
+
     style.animationType = animationType
-    style.backgroundType = backgroundType
     style.systemStatusBarStyle = systemStatusBarStyle
     style.canSwipeToDismiss = canSwipeToDismiss
 
@@ -67,8 +67,6 @@ class CustomStyle: ObservableObject, Equatable {
 
   func styleConfigurationString() -> String {
     var text = """
-    style.backgroundColor = \(backgroundColor ?? .white)
-
     style.textStyle.textColor = \(textColor ?? .white)
     style.textStyle.font = \(font)
     style.textStyle.textOffsetY = \(textOffsetY)
@@ -84,8 +82,10 @@ class CustomStyle: ObservableObject, Equatable {
 
     text.append("\n\n")
     text.append("""
+    style.backgroundStyle.backgroundColor = \(backgroundColor ?? .white)
+    style.backgroundStyle.backgroundType = \(backgroundType)
+    
     style.animationType = \(animationType)
-    style.backgroundType = \(backgroundType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
 

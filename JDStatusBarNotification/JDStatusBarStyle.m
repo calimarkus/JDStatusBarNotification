@@ -30,6 +30,26 @@
 
 @end
 
+@implementation JDStatusBarBackgroundStyle
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    _backgroundColor = [UIColor whiteColor];
+    _backgroundType = JDStatusBarBackgroundTypeClassic;
+  }
+  return self;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+  JDStatusBarBackgroundStyle *style = [[[self class] allocWithZone:zone] init];
+  style.backgroundColor = self.backgroundColor;
+  style.backgroundType = self.backgroundType;
+  return style;
+}
+
+@end
+
 @implementation JDStatusBarProgressBarStyle
 
 - (instancetype)init {
@@ -60,10 +80,9 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _backgroundColor = [UIColor whiteColor];
     _textStyle = [JDStatusBarTextStyle new];
+    _backgroundStyle = [JDStatusBarBackgroundStyle new];
     _animationType = JDStatusBarAnimationTypeMove;
-    _backgroundType = JDStatusBarBackgroundTypeClassic;
     _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
     _progressBarStyle = [JDStatusBarProgressBarStyle new];
     _canSwipeToDismiss = YES;
@@ -73,10 +92,9 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
-  style.backgroundColor = self.backgroundColor;
   style.textStyle = [self.textStyle copy];
+  style.backgroundStyle = [self.backgroundStyle copy];
   style.animationType = self.animationType;
-  style.backgroundType = self.backgroundType;
   style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.progressBarStyle = [self.progressBarStyle copy];
   style.canSwipeToDismiss = self.canSwipeToDismiss;

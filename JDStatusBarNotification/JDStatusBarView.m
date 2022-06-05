@@ -107,7 +107,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (void)createPillBackgroundViewIfNeeded {
   if (_pillBackgroundView == nil) {
     _pillBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-    _pillBackgroundView.backgroundColor = _style.backgroundColor;
+    _pillBackgroundView.backgroundColor = _style.backgroundStyle.backgroundColor;
     _pillBackgroundView.tag = kExpectedSubviewTag;
     [self addSubview:_pillBackgroundView];
     [self sendSubviewToBack:_pillBackgroundView];
@@ -115,7 +115,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 }
 
 - (CGRect)outerRectForBackgroundStyle {
-  switch (_style.backgroundType) {
+  switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic:
       return self.bounds;
     case JDStatusBarBackgroundTypePill:
@@ -248,14 +248,15 @@ static const NSInteger kExpectedSubviewTag = 12321;
 }
 
 - (void)applyStyleForBackgroundType {
-  switch (_style.backgroundType) {
+  JDStatusBarBackgroundStyle *backgroundStyle = _style.backgroundStyle;
+  switch (backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic:
-      self.backgroundColor = _style.backgroundColor;
+      self.backgroundColor = backgroundStyle.backgroundColor;
       break;
     case JDStatusBarBackgroundTypePill: {
       self.backgroundColor = [UIColor clearColor];
       [self createPillBackgroundViewIfNeeded];
-      _pillBackgroundView.backgroundColor = _style.backgroundColor;
+      _pillBackgroundView.backgroundColor = backgroundStyle.backgroundColor;
       break;
     }
   }
@@ -275,7 +276,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
   CGFloat pillInset = 20.0;
   CGFloat labelInset = 30.0;
-  switch (_style.backgroundType) {
+  switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic:
       break;
     case JDStatusBarBackgroundTypePill:
@@ -315,7 +316,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 
   // layer masking
-  switch (_style.backgroundType) {
+  switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic: {
       self.layer.mask = nil;
       break;

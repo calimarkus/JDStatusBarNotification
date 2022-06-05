@@ -62,6 +62,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
   JDStatusBarSystemStyleDarkContent
 } NS_SWIFT_NAME(StatusBarSystemStyle);
 
+@class JDStatusBarBackgroundStyle;
 @class JDStatusBarProgressBarStyle;
 @class JDStatusBarTextStyle;
 
@@ -71,23 +72,20 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 NS_SWIFT_NAME(StatusBarStyle)
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
-/// The background color of the notification bar
-@property (nonatomic, strong, nullable) UIColor *backgroundColor;
-
 /// The styling of the text
 @property (nonatomic, strong) JDStatusBarTextStyle *textStyle;
+
+/// The styling of the background
+@property (nonatomic, strong) JDStatusBarBackgroundStyle *backgroundStyle;
+
+/// The styling of the progress bar
+@property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
 
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-/// The background type
-@property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
-
 /// The UIStatusBarStyle, which should be used during presentation
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
-
-/// The styling of the progress bar
-@property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
 
 /// Defines if the bar can be dismissed by the user or not (by swiping up)
 @property (nonatomic, assign) BOOL canSwipeToDismiss;
@@ -114,6 +112,20 @@ NS_SWIFT_NAME(NotificationTextStyle)
 
 /// Offsets the text label on the y-axis. Default is 0.0.
 @property (nonatomic, assign) CGFloat textOffsetY;
+
+@end
+
+/**
+ *  A Style defines the appeareance of a notification.
+ */
+NS_SWIFT_NAME(NotificationBackgroundStyle)
+@interface JDStatusBarBackgroundStyle : NSObject <NSCopying>
+
+/// The background color of the notification bar
+@property (nonatomic, strong, nullable) UIColor *backgroundColor;
+
+/// The background type
+@property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
 
 @end
 
