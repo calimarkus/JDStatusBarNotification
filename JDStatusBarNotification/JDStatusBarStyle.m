@@ -26,6 +26,7 @@
   style.position = self.position;
   style.horizontalInsets = self.horizontalInsets;
   style.cornerRadius = self.cornerRadius;
+  style.offsetY = self.offsetY;
   return style;
 }
 
@@ -39,8 +40,9 @@
     _backgroundColor = [UIColor whiteColor];
     _textColor = [UIColor grayColor];
     _font = [UIFont systemFontOfSize:12.0];
-    _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
     _animationType = JDStatusBarAnimationTypeMove;
+    _backgroundType = JDStatusBarBackgroundTypeClassic;
+    _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
     _progressBarStyle = [JDStatusBarProgressBarStyle new];
     _canSwipeToDismiss = YES;
   }
@@ -51,12 +53,13 @@
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.backgroundColor = self.backgroundColor;
   style.textColor = self.textColor;
+  style.font = self.font;
   style.textShadowColor = self.textShadowColor;
   style.textShadowOffset = self.textShadowOffset;
-  style.font = self.font;
   style.textOffsetY = self.textOffsetY;
-  style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.animationType = self.animationType;
+  style.backgroundType = self.backgroundType;
+  style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.progressBarStyle = [self.progressBarStyle copy];
   style.canSwipeToDismiss = self.canSwipeToDismiss;
   return style;

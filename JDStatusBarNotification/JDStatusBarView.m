@@ -12,9 +12,12 @@
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarManagerHelper.h"
 
+static const NSInteger kExpectedSubviewTag = 12321;
+
 @implementation JDStatusBarView {
   UIActivityIndicatorView *_activityIndicatorView;
   UIView *_progressView;
+  UIView *_pillBackgroundView;
   JDStatusBarStyle *_style;
 }
 
@@ -41,6 +44,7 @@
   _textLabel.textAlignment = NSTextAlignmentCenter;
   _textLabel.adjustsFontSizeToFitWidth = YES;
   _textLabel.clipsToBounds = YES;
+  _textLabel.tag = kExpectedSubviewTag;
   [self addSubview:_textLabel];
 
   _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -51,7 +55,7 @@
 - (void)resetSubviewsIfNeeded {
   // remove subviews added from outside
   for (UIView *subview in self.subviews) {
-    if (subview != _textLabel && subview != _activityIndicatorView && subview != _progressView) {
+    if (subview.tag != kExpectedSubviewTag) {
       [subview removeFromSuperview];
     }
   }
@@ -60,11 +64,14 @@
   if (_textLabel.superview != self) {
     [self addSubview:_textLabel];
   }
-  if (_activityIndicatorView != nil && _activityIndicatorView.superview != self) {
-    [self addSubview:_activityIndicatorView];
+  if (_pillBackgroundView.superview != self) {
+    [self insertSubview:_pillBackgroundView belowSubview:_textLabel];
   }
-  if (_progressView != nil && _progressView.superview != self) {
+  if (_progressView.superview != self) {
     [self insertSubview:_progressView belowSubview:_textLabel];
+  }
+  if (_activityIndicatorView.superview != self) {
+    [self insertSubview:_activityIndicatorView aboveSubview:_textLabel];
   }
 
   // ensure pan recognizer is setup
@@ -79,6 +86,7 @@
     _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
     _activityIndicatorView.color = _style.textColor;
+    _activityIndicatorView.tag = kExpectedSubviewTag;
     [self addSubview:_activityIndicatorView];
   }
 }
@@ -94,6 +102,27 @@
   }
 }
 
+#pragma mark - pill background
+
+- (void)createPillBackgroundViewIfNeeded {
+  if (_pillBackgroundView == nil) {
+    _pillBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    _pillBackgroundView.backgroundColor = _style.backgroundColor;
+    _pillBackgroundView.tag = kExpectedSubviewTag;
+    [self addSubview:_pillBackgroundView];
+    [self sendSubviewToBack:_pillBackgroundView];
+  }
+}
+
+- (CGRect)outerRectForBackgroundStyle {
+  switch (_style.backgroundType) {
+    case JDStatusBarBackgroundTypeClassic:
+      return self.bounds;
+    case JDStatusBarBackgroundTypePill:
+      return _pillBackgroundView.frame;
+  }
+}
+
 #pragma mark - progress bar
 
 - (void)createProgressViewIfNeeded {
@@ -101,30 +130,33 @@
     _progressView = [[UIView alloc] initWithFrame:CGRectZero];
     _progressView.backgroundColor = _style.progressBarStyle.barColor;
     _progressView.layer.cornerRadius = _style.progressBarStyle.cornerRadius;
-    _progressView.frame = [self prograssViewRectForPercentage:0.0];
+    _progressView.frame = [self progressViewRectForPercentage:0.0];
+    _progressView.tag = kExpectedSubviewTag;
     [self insertSubview:_progressView belowSubview:_textLabel];
+    [self sendSubviewToBack:_pillBackgroundView];
   }
 }
 
-- (CGRect)prograssViewRectForPercentage:(CGFloat)percentage {
+- (CGRect)progressViewRectForPercentage:(CGFloat)percentage {
   JDStatusBarProgressBarStyle *progressBarStyle = _style.progressBarStyle;
 
   // calculate progressView frame
-  CGSize bounds = self.bounds.size;
+  CGRect outerRect = [self outerRectForBackgroundStyle];
+  CGSize bounds = outerRect.size;
   CGFloat barHeight = MIN(bounds.height, MAX(0.5, progressBarStyle.barHeight));
   CGFloat width = round((bounds.width - 2 * progressBarStyle.horizontalInsets) * percentage);
-  CGRect barFrame = CGRectMake(progressBarStyle.horizontalInsets, 0, width, barHeight);
+  CGRect barFrame = CGRectMake(outerRect.origin.x + progressBarStyle.horizontalInsets, outerRect.origin.y, width, barHeight);
 
   // calculate y-position
   switch (_style.progressBarStyle.position) {
     case JDStatusBarProgressBarPositionBottom:
-      barFrame.origin.y = bounds.height - barHeight + progressBarStyle.offsetY;
+      barFrame.origin.y += bounds.height - barHeight + progressBarStyle.offsetY;
       break;
     case JDStatusBarProgressBarPositionCenter:
       barFrame.origin.y = round(_textLabel.center.y - (barHeight / 2.0)) + progressBarStyle.offsetY;
       break;
     case JDStatusBarProgressBarPositionTop:
-      barFrame.origin.y = CGRectGetMinY(_textLabel.frame) + progressBarStyle.offsetY;
+      barFrame.origin.y += CGRectGetMinY(_textLabel.frame) + progressBarStyle.offsetY;
       break;
   }
 
@@ -147,7 +179,7 @@
   // reset view
   if (_progressBarPercentage == 0.0) {
     _progressView.hidden = YES;
-    _progressView.frame = [self prograssViewRectForPercentage:0.0];
+    _progressView.frame = [self progressViewRectForPercentage:0.0];
     return;
   }
 
@@ -156,7 +188,7 @@
   _progressView.hidden = NO;
 
   // update progressView frame
-  CGRect frame = [self prograssViewRectForPercentage:_progressBarPercentage];
+  CGRect frame = [self progressViewRectForPercentage:_progressBarPercentage];
 
   if (animationDuration == 0.0) {
     _progressView.frame = frame;
@@ -189,8 +221,8 @@
 
 - (void)setStyle:(JDStatusBarStyle *)style {
   _style = style;
-  
-  self.backgroundColor = style.backgroundColor;
+
+  [self applyStyleForBackgroundType];
 
   // style label
   _textLabel.textColor = style.textColor;
@@ -214,41 +246,88 @@
   [self setNeedsLayout];
 }
 
+- (void)applyStyleForBackgroundType {
+  switch (_style.backgroundType) {
+    case JDStatusBarBackgroundTypeClassic:
+      self.backgroundColor = _style.backgroundColor;
+      break;
+    case JDStatusBarBackgroundTypePill: {
+      self.backgroundColor = [UIColor clearColor];
+      [self createPillBackgroundViewIfNeeded];
+      _pillBackgroundView.backgroundColor = _style.backgroundColor;
+      break;
+    }
+  }
+}
+
 #pragma mark - layout
 
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  // label
+  // layout margins
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(self.window).top;
   CGFloat labelAdjustment = topLayoutMargin;
   if (topLayoutMargin == 0) {
     labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
   }
-  
-  CGFloat labelY = _style.textOffsetY + labelAdjustment + 1;
-  CGFloat height = self.bounds.size.height - labelAdjustment - 1;
 
-  CGFloat inset = 30.0;
+  CGFloat pillInset = 20.0;
+  CGFloat labelInset = 30.0;
+  switch (_style.backgroundType) {
+    case JDStatusBarBackgroundTypeClassic:
+      break;
+    case JDStatusBarBackgroundTypePill:
+      labelInset += pillInset;
+      break;
+  }
+
+  // text label
+  CGFloat labelY = _style.textOffsetY + labelAdjustment;
+  CGFloat height = self.bounds.size.height - labelAdjustment;
   CGFloat activitySpacing = 16.0;
   CGFloat activityWidth = CGRectGetWidth(_activityIndicatorView.frame);
-  if (_activityIndicatorView) {
-    inset += activityWidth + activitySpacing;
+  if (_displaysActivityIndicator) {
+    labelInset += activityWidth + activitySpacing;
   }
-  self.textLabel.frame = CGRectMake(inset, labelY, self.bounds.size.width - inset * 2, height);
+  _textLabel.frame = CGRectMake(labelInset, labelY, self.bounds.size.width - labelInset * 2, height);
 
+  // pill background
+  if (_pillBackgroundView) {
+    _pillBackgroundView.frame = CGRectInset(CGRectMake(pillInset, labelY, self.bounds.size.width - pillInset * 2, height), 0.0, 6.0);
+    _pillBackgroundView.layer.cornerRadius = CGRectGetHeight(_pillBackgroundView.frame) / 2.0;
+  }
+
+  // progress view
   if (_progressView && _progressView.layer.animationKeys.count == 0) {
-    _progressView.frame = [self prograssViewRectForPercentage:_progressBarPercentage];
+    _progressView.frame = [self progressViewRectForPercentage:_progressBarPercentage];
   }
   
   // activity indicator
   if (_activityIndicatorView) {
-    NSDictionary *attributes = @{NSFontAttributeName:self.textLabel.font};
-    CGFloat textWidth = MIN([self.textLabel.text sizeWithAttributes:attributes].width, CGRectGetWidth(_textLabel.frame));
+    NSDictionary *attributes = @{NSFontAttributeName:_textLabel.font};
+    CGFloat textWidth = MIN([_textLabel.text sizeWithAttributes:attributes].width, CGRectGetWidth(_textLabel.frame));
     CGRect indicatorFrame = _activityIndicatorView.frame;
     indicatorFrame.origin.x = round((self.bounds.size.width - textWidth)/2.0) - indicatorFrame.size.width - activitySpacing;
-    indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(self.textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
+    indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(_textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
+  }
+
+  // layer masking
+  switch (_style.backgroundType) {
+    case JDStatusBarBackgroundTypeClassic: {
+      self.layer.mask = nil;
+      break;
+    }
+    case JDStatusBarBackgroundTypePill: {
+      CGRect frame = CGRectInset(CGRectMake(pillInset, labelY, self.bounds.size.width - pillInset * 2, height), 0.0, 6.0);
+      UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:frame
+                                                                 cornerRadius:height / 2.0];
+      CAShapeLayer *maskLayer = [CAShapeLayer layer];
+      maskLayer.path = roundedRectPath.CGPath;
+      self.layer.mask = maskLayer;
+      break;
+    }
   }
 }
 

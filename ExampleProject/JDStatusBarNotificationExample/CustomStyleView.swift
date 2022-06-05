@@ -17,8 +17,9 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
   @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
   @Published var textOffsetY: CGFloat = 0.0
-  @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var animationType: AnimationType = .move
+  @Published var backgroundType: BarBackgroundType = .classic
+  @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var canSwipeToDismiss: Bool = true
 
   @Published var pbBarColor: UIColor? = .orange
@@ -47,6 +48,7 @@ class CustomStyle: ObservableObject, Equatable {
     style.font = font
 
     style.animationType = animationType
+    style.backgroundType = backgroundType
     style.systemStatusBarStyle = systemStatusBarStyle
     style.textOffsetY = textOffsetY
     style.canSwipeToDismiss = canSwipeToDismiss
@@ -70,6 +72,7 @@ class CustomStyle: ObservableObject, Equatable {
     style.font = \(font)
 
     style.animationType = \(animationType)
+    style.backgroundType = \(backgroundType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
     style.textOffsetY = \(textOffsetY)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
@@ -130,40 +133,42 @@ struct CustomStyleView: View {
           NotificationPresenter.shared().updateText(text)
         }
 
-      buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide. Activity + 40% progress.") {
-        if NotificationPresenter.shared().isVisible() {
-          NotificationPresenter.shared().dismiss(animated: true)
-        } else {
-          presentDefault()
-        }
-      }
-
-      buttonRow(title: "Present (animate progress bar)", subtitle: "Hides at 100% progress") {
-        CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
-          presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
-            presenter.dismiss(animated: true)
+      Section {
+        buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide. Activity + 40% progress.") {
+          if NotificationPresenter.shared().isVisible() {
+            NotificationPresenter.shared().dismiss(animated: true)
+          } else {
+            presentDefault()
           }
         }
+
+        buttonRow(title: "Present (animate progress bar)", subtitle: "Hides at 100% progress") {
+          CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+              presenter.dismiss(animated: true)
+            }
+          }
+        }
+
+        #if targetEnvironment(simulator)
+          buttonRow(title: "Print style", subtitle: "Print current style config to \nthe console & copy it to the pasteboard.") {
+            print(style.styleConfigurationString())
+            UIPasteboard.general.string = style.styleConfigurationString()
+          }
+        #else
+          buttonRow(title: "Copy style", subtitle: "Copy current style config to pasteboard") {
+            UIPasteboard.general.string = style.styleConfigurationString()
+          }
+        #endif
+
+        HStack {
+          Spacer()
+          Text("Keep the notification presented to see any changes live!")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+          Spacer()
+        }.disabled(true)
       }
-
-      #if targetEnvironment(simulator)
-        buttonRow(title: "Print style", subtitle: "Print current style config to \nthe console & copy it to the pasteboard.") {
-          print(style.styleConfigurationString())
-          UIPasteboard.general.string = style.styleConfigurationString();
-        }
-      #else
-        buttonRow(title: "Copy style", subtitle: "Copy current style config to pasteboard") {
-          UIPasteboard.general.string = style.styleConfigurationString();
-        }
-      #endif
-
-      HStack {
-        Spacer()
-        Text("Keep the notification presented to see any changes live!")
-          .font(.caption2)
-          .foregroundColor(.secondary)
-        Spacer()
-      }.disabled(true)
 
       Section("Text") {
         TextField("Text", text: $text)
@@ -235,10 +240,10 @@ struct CustomStyleView: View {
         }
 
         VStack(alignment: .leading) {
-          Text("Swipe to dismiss").font(.subheadline)
-          Picker("", selection: $style.canSwipeToDismiss) {
-            Text("Enabled").tag(true)
-            Text("Disabled").tag(false)
+          Text("BackgroundStyle").font(.subheadline)
+          Picker("", selection: $style.backgroundType) {
+            Text("Classic").tag(BarBackgroundType.classic)
+            Text("Pill").tag(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
@@ -248,6 +253,14 @@ struct CustomStyleView: View {
             Text("Default").tag(StatusBarSystemStyle.default)
             Text("Light").tag(StatusBarSystemStyle.lightContent)
             Text("Dark").tag(StatusBarSystemStyle.darkContent)
+          }.font(.subheadline).pickerStyle(.segmented)
+        }
+
+        VStack(alignment: .leading) {
+          Text("Swipe to dismiss").font(.subheadline)
+          Picker("", selection: $style.canSwipeToDismiss) {
+            Text("Enabled").tag(true)
+            Text("Disabled").tag(false)
           }.font(.subheadline).pickerStyle(.segmented)
         }
       }

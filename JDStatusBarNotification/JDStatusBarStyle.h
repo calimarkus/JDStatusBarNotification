@@ -26,6 +26,13 @@ typedef NS_ENUM(NSInteger, JDStatusBarIncludedStyle) {
   JDStatusBarIncludedStyleDark,
 } NS_SWIFT_NAME(IncludedStatusBarStyle);
 
+typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
+  /// The background covers the full status bar & navbar area.
+  JDStatusBarBackgroundTypeClassic,
+  /// The background is a floating pill around the text.
+  JDStatusBarBackgroundTypePill,
+} NS_SWIFT_NAME(BarBackgroundType);
+
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
   /// Notification won't animate
   JDStatusBarAnimationTypeNone,
@@ -47,7 +54,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 } NS_SWIFT_NAME(ProgressBarPosition);
 
 typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
-  /// Use current default
+  /// Match the current viewController / window
   JDStatusBarSystemStyleDefault,
   /// Force light status bar contents (UIStatusBarStyleLightContent)
   JDStatusBarSystemStyleLightContent,
@@ -81,11 +88,14 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// Offsets the text label on the y-axis. Default is 0.0.
 @property (nonatomic, assign) CGFloat textOffsetY;
 
+/// The animation for presentation & dismissal
+@property (nonatomic, assign) JDStatusBarAnimationType animationType;
+
+/// The background type
+@property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
+
 /// The UIStatusBarStyle, which should be used during presentation
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
-
-/// The animation, that is used to present the notification
-@property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
 /// The styling of the progress bar
 @property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
