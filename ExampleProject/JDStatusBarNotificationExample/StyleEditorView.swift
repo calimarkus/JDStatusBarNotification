@@ -8,7 +8,7 @@ class StyleEditorViewFactory: NSObject {
   static let initialText = "You are doing great!"
   static let initialProgress = 0.55
 
-  @objc static func createStyleEditorView(presentationHandler: @escaping () -> Void) -> UIViewController {
+  @objc static func createStyleEditorView() -> UIViewController {
     presentInitialNotification()
     return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: true, progress: initialProgress))
   }

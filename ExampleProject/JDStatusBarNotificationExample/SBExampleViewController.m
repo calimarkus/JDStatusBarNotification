@@ -16,12 +16,15 @@
   #import "JDSBN_ClassicExample-Swift.h"
 #endif
 
-@implementation SBExampleViewController
+@implementation SBExampleViewController {
+  UIViewController *_hostingController;
+}
 
 - (void)loadView {
-  [super loadView];
-
   self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleViewControllerTitle"];
+
+  self.view = [[UIView alloc] init];
+  self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.view.backgroundColor = [UIColor systemGray6Color];
 
   if (@available(iOS 15.0, *)) {
@@ -34,6 +37,14 @@
     [self.view addSubview:hostingController.view];
     hostingController.view.frame = self.view.bounds;
     hostingController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _hostingController = hostingController;
+  } else {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"The Example App only supports iOS 15+";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor systemGray6Color];
+    [label sizeToFit];
+    self.view = label;
   }
 }
 
