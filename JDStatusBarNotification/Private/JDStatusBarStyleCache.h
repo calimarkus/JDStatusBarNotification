@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)addStyleNamed:(NSString *)styleName
                     prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
 
+- (NSString *)addStyleNamed:(NSString*)styleName
+               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

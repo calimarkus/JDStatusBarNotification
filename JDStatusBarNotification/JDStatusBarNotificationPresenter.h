@@ -202,6 +202,20 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (NSString *)addStyleNamed:(NSString*)styleName
                     prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:prepare:));
 
+/**
+ *  Adds a new custom style, which can be used in future presentations by utilizing the same styleName.
+ *  If a style with the same name already exists, it will be replaced.
+ *
+ *  @param styleName  The styleName which will later be used to reference the added style.
+ *  @param includedStyle  The style that you want to base your style on.
+ *  @param prepareBlock  Provides the specified style instance for further customization.
+ *
+ *  @return Returns the styleName, so this can be used directly within a presentation call.
+ */
+- (NSString *)addStyleNamed:(NSString*)styleName
+               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:basedOnIncludedStyle:prepare:));
+
 #pragma mark - Others
 
 /**

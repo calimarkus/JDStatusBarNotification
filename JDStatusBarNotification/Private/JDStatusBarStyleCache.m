@@ -37,6 +37,13 @@
   return styleName;
 }
 
+- (NSString *)addStyleNamed:(NSString*)styleName
+               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock {
+  [_userStyles setObject:prepareBlock([includedStyle(basedOnStyle) copy]) forKey:styleName];
+  return styleName;
+}
+
 static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
   switch (style) {
     case JDStatusBarIncludedStyleDefault:

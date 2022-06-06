@@ -185,6 +185,12 @@
   return [_styleCache addStyleNamed:styleName prepare:prepareBlock];
 }
 
+- (NSString *)addStyleNamed:(NSString*)styleName
+               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock {
+  return [_styleCache addStyleNamed:styleName basedOnStyle:basedOnStyle prepare:prepareBlock];
+}
+
 #pragma mark - Others
 
 - (void)updateText:(NSString *)text {
