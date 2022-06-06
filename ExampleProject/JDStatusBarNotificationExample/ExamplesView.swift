@@ -51,9 +51,11 @@ struct ExamplesView: View {
 
   let customStylePresentationHandler: () -> ()
 
-  func showDefaultNotificationIfNotPresented(_ text: String) {
+  func showDefaultNotificationIfNotPresented(_ text: String, completion: @escaping (NotificationPresenter)->Void) {
     if !NotificationPresenter.shared().isVisible() {
-      NotificationPresenter.shared().present(text: text)
+      NotificationPresenter.shared().present(text: text, includedStyle: .default, completion: completion)
+    } else {
+      completion(NotificationPresenter.shared())
     }
   }
 
@@ -67,25 +69,26 @@ struct ExamplesView: View {
     List {
       Section("Default Style") {
         cell(title: "Show Notification", subtitle: "Don't autohide") {
-          showDefaultNotificationIfNotPresented("Better call Saul!")
+          showDefaultNotificationIfNotPresented("Better call Saul!") { _ in }
         }
         cell(title: "Animate ProgressBar & hide", subtitle: "Hide bar at 100%") {
-          showDefaultNotificationIfNotPresented("Animating Progress…")
-          NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-          NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
-            presenter.dismiss(animated: true)
+          showDefaultNotificationIfNotPresented("Animating Progress…") { presenter in
+            presenter.displayProgressBar(percentage: 0.0)
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+              presenter.dismiss(animated: true)
+            }
           }
         }
         cell(title: "Show ProgressBar at 33%") {
-          showDefaultNotificationIfNotPresented("1/3 done.")
+          showDefaultNotificationIfNotPresented("1/3 done.") { _ in }
           NotificationPresenter.shared().displayProgressBar(percentage: 0.33)
         }
         cell(title: "Show Activity Indicator") {
-          showDefaultNotificationIfNotPresented("Some Activity…")
+          showDefaultNotificationIfNotPresented("Some Activity…") { _ in }
           NotificationPresenter.shared().displayActivityIndicator(true)
         }
         cell(title: "Update Text") {
-          showDefaultNotificationIfNotPresented("")
+          showDefaultNotificationIfNotPresented("") { _ in }
           NotificationPresenter.shared().updateText("Updated Text…")
         }
         cell(title: "Dismiss Notification") {
