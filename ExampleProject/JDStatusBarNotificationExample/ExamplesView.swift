@@ -228,6 +228,9 @@ struct ExamplesView: View {
       style.textStyle.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
       style.progressBarStyle.barColor = UIColor(red: 0.986, green: 0.062, blue: 0.598, alpha: 1.0)
       style.progressBarStyle.barHeight = 400.0
+      style.progressBarStyle.cornerRadius = 0.0
+      style.progressBarStyle.horizontalInsets = 0.0
+      style.progressBarStyle.offsetY = 0.0
       return style
     }
 
