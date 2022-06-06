@@ -5,18 +5,18 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 class StyleEditorViewFactory: NSObject {
-
   static let initialText = "You are doing great!"
+  static let initialProgress = 0.55
 
   @objc static func createStyleEditorView(presentationHandler: @escaping () -> Void) -> UIViewController {
     presentInitialNotification()
-    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: true, showProgress: true))
+    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: true, progress: initialProgress))
   }
 
   static func presentInitialNotification() {
     StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: CustomStyle().registerComputedStyle())
     NotificationPresenter.shared().displayActivityIndicator(true)
-    NotificationPresenter.shared().displayProgressBar(percentage: 0.33)
+    NotificationPresenter.shared().displayProgressBar(percentage: initialProgress)
   }
 }
 
@@ -27,17 +27,17 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
   @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
   @Published var textOffsetY: CGFloat = 0.0
-  @Published var animationType: AnimationType = .move
-  @Published var backgroundType: BarBackgroundType = .classic
+  @Published var animationType: AnimationType = .bounce
+  @Published var backgroundType: BarBackgroundType = .pill
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var canSwipeToDismiss: Bool = true
 
   @Published var pbBarColor: UIColor? = .orange
   @Published var pbBarHeight: CGFloat = 26.0
   @Published var pbPosition: ProgressBarPosition = .center
-  @Published var pbHorizontalInsets: CGFloat = 20.0
-  @Published var pbCornerRadius: CGFloat = 10.0
-  @Published var pbBarOffset: CGFloat = 0.0
+  @Published var pbHorizontalInsets: CGFloat = 6.0
+  @Published var pbCornerRadius: CGFloat = 13.0
+  @Published var pbBarOffset: CGFloat = -1.0
 
   static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
     return false // a hack to trigger .onChange(of: style) on every change
@@ -117,7 +117,7 @@ class CustomStyle: ObservableObject, Equatable {
 struct StyleEditorView: View {
   @State var text: String
   @State var showActivity: Bool
-  @State var showProgress: Bool
+  @State var progress: Double
   @StateObject var style: CustomStyle = .init()
 
   weak static var statusBarView: JDStatusBarView? = nil
@@ -130,8 +130,8 @@ struct StyleEditorView: View {
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
-    if showProgress {
-      NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+    if progress > 0.0 {
+      NotificationPresenter.shared().displayProgressBar(percentage: progress)
     }
   }
 
@@ -187,14 +187,18 @@ struct StyleEditorView: View {
             }
           }.font(.subheadline)
 
-        Toggle("Progress Bar (40%)", isOn: $showProgress)
-          .onChange(of: showProgress) { _ in
-            if !NotificationPresenter.shared().isVisible() {
-              presentDefault()
-            } else {
-              NotificationPresenter.shared().displayProgressBar(percentage: showProgress ? 0.4 : 0.0)
-            }
-          }.font(.subheadline)
+        HStack {
+          Text("Progress Bar")
+          Spacer(minLength: 40.0)
+          Slider(value: $progress)
+        }
+        .onChange(of: progress) { _ in
+          if !NotificationPresenter.shared().isVisible() {
+            presentDefault()
+          } else {
+            NotificationPresenter.shared().displayProgressBar(percentage: progress)
+          }
+        }.font(.subheadline)
 
         HStack {
           Spacer()
@@ -409,6 +413,6 @@ public struct FontPicker: UIViewControllerRepresentable {
 @available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    StyleEditorView(text: "Initial Text", showActivity: true, showProgress: true)
+    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33)
   }
 }

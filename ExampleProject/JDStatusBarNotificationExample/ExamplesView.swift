@@ -25,9 +25,9 @@ struct ExamplesView: View {
 
   let customStylePresentationHandler: () -> ()
 
-  @State var showActivity: Bool = false
-  @State var showProgress: Bool = false
-  @State var usePillStyle: Bool = true
+  @State var progress = 0.0
+  @State var showActivity = false
+  @State var usePillStyle = true
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
     let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .default) { style in
@@ -38,8 +38,8 @@ struct ExamplesView: View {
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
-    if showProgress {
-      NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+    if progress > 0.0 {
+      NotificationPresenter.shared().displayProgressBar(percentage: progress)
     }
   }
 
@@ -54,8 +54,8 @@ struct ExamplesView: View {
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
-    if showProgress {
-      NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+    if progress > 0.0 {
+      NotificationPresenter.shared().displayProgressBar(percentage: progress)
     }
   }
 
@@ -110,17 +110,21 @@ struct ExamplesView: View {
             }
           }.font(.subheadline)
 
-        Toggle("Progress Bar (33%)", isOn: $showProgress)
-          .onChange(of: showProgress) { _ in
-            if !NotificationPresenter.shared().isVisible() {
-              if showProgress {
-                showDefaultNotification("We're at 33%…") { _ in }
-                NotificationPresenter.shared().dismiss(afterDelay: 2.0)
-              }
-            } else {
-              NotificationPresenter.shared().displayProgressBar(percentage: showProgress ? 0.33 : 0.0)
+        HStack {
+          Text("Progress Bar")
+          Spacer(minLength: 40.0)
+          Slider(value: $progress)
+        }
+        .onChange(of: progress) { _ in
+          if !NotificationPresenter.shared().isVisible() {
+            if progress > 0.0 {
+              showDefaultNotification("We're at \(round(progress))%…") { _ in }
+              NotificationPresenter.shared().dismiss(afterDelay: 2.0)
             }
-          }.font(.subheadline)
+          } else {
+            NotificationPresenter.shared().displayProgressBar(percentage: progress)
+          }
+        }.font(.subheadline)
 
         Toggle("Use Pill Style", isOn: $usePillStyle)
           .onChange(of: usePillStyle) { _ in
