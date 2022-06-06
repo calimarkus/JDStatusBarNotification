@@ -61,6 +61,12 @@ struct ExamplesView: View {
 
   var body: some View {
     List {
+      Section {
+        cell(title: "Style Editor", subtitle: "Get creative & create your own style!") {
+          customStylePresentationHandler()
+        }
+      }
+
       Section("Default Style") {
         cell(title: "Present / dismiss", subtitle: "Default style, don't autohide") {
           if NotificationPresenter.shared().isVisible() {
@@ -183,12 +189,6 @@ struct ExamplesView: View {
             showIncludedStyle("✅ This is 2/2!", style: .dark)
             presenter.dismiss(afterDelay: 1.0)
           }
-        }
-      }
-
-      Section {
-        cell(title: "Create your own style", subtitle: "Test all the possibilities…") {
-          customStylePresentationHandler()
         }
       }
     }

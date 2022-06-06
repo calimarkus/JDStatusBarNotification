@@ -19,7 +19,7 @@
 - (void)loadView {
   [super loadView];
 
-  self.title = @"Create your own style";
+  self.title = @"Style Editor";
   self.view.backgroundColor = [UIColor systemGray6Color];
 
   if (@available(iOS 15.0, *)) {
