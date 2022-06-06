@@ -36,8 +36,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
 #pragma mark - view setup
 
 - (void)setupView {
-  self.clipsToBounds = YES;
-
   _textLabel = [[UILabel alloc] init];
   _textLabel.backgroundColor = [UIColor clearColor];
   _textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -331,7 +329,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic: {
       _pillBackgroundView.hidden = YES;
-      self.layer.mask = nil;
+      _progressView.layer.mask = nil;
       break;
     }
     case JDStatusBarBackgroundTypePill: {
@@ -369,11 +367,15 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   // adjust text label
   _textLabel.frame = CGRectOffset(CGRectInset(pillFrame, textPaddingX, 0), 0, _style.textStyle.textOffsetY);
 
-  // mask self to pill size & shape
-  UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:pillFrame cornerRadius:pillFrame.size.height / 2.0];
+  // mask progress to pill size & shape
+  _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:pillFrame fromView:self]);
+}
+
+static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
+  UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:CGRectGetHeight(rect) / 2.0];
   CAShapeLayer *maskLayer = [CAShapeLayer layer];
   maskLayer.path = roundedRectPath.CGPath;
-  self.layer.mask = maskLayer;
+  return maskLayer;
 }
 
 #pragma mark - Pan gesture
