@@ -36,7 +36,7 @@
   self = [super init];
   if (self) {
     _backgroundColor = [UIColor whiteColor];
-    _backgroundType = JDStatusBarBackgroundTypeClassic;
+    _backgroundType = JDStatusBarBackgroundTypePill;
     _minimumPillWidth = 160.0;
   }
   return self;
@@ -58,8 +58,11 @@
   self = [super init];
   if (self) {
     _barColor = [UIColor greenColor];
-    _barHeight = 1.0;
+    _barHeight = 2.0;
+    _horizontalInsets = 20.0;
+    _cornerRadius = 1.0;
     _position = JDStatusBarProgressBarPositionBottom;
+    _offsetY = -3.0;
   }
   return self;
 }
