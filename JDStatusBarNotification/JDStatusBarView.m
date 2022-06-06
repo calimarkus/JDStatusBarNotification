@@ -100,6 +100,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   } else {
     [_activityIndicatorView stopAnimating];
   }
+
+  [self setNeedsLayout];
 }
 
 #pragma mark - pill background
@@ -285,12 +287,9 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   [super layoutSubviews];
 
   // text label
+  CGFloat labelInsetX = 30.0;
   CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
-  CGFloat labelInset = 30.0;
-  if (_displaysActivityIndicator) {
-    labelInset += CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing;
-  }
-  _textLabel.frame = CGRectMake(labelInset, contentRect.origin.y, contentRect.size.width - labelInset * 2, contentRect.size.height);
+  _textLabel.frame = CGRectInset(contentRect, labelInsetX, 0);
 
   // background type
   [self layoutSubviewsForBackgroundType];
@@ -301,11 +300,15 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   }
 
   // activity indicator
-  if (_activityIndicatorView) {
+  if (_displaysActivityIndicator) {
     CGRect indicatorFrame = _activityIndicatorView.frame;
     indicatorFrame.origin.x = round((contentRect.size.width - fittedTextWidthForLabel(_textLabel))/2.0) - indicatorFrame.size.width - kActivityIndicatorSpacing;
     indicatorFrame.origin.y = contentRect.origin.y + floor((contentRect.size.height - CGRectGetHeight(indicatorFrame))/2.0);
-    _activityIndicatorView.frame = indicatorFrame;
+
+    // adjust centering
+    CGFloat centerAdjustement = (CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0;
+    _textLabel.frame = CGRectOffset(_textLabel.frame, centerAdjustement, 0);
+    _activityIndicatorView.frame = CGRectOffset(indicatorFrame, centerAdjustement, 0);
   }
 }
 
@@ -334,7 +337,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 
   // activity indicator adjustment
   if (_displaysActivityIndicator) {
-    textPaddingX += CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing;
+    textPaddingX += (CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing) / 2.0;
   }
 
   // layout pill background
