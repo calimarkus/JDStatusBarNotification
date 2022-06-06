@@ -367,7 +367,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   _pillBackgroundView.layer.cornerRadius = round(_pillBackgroundView.frame.size.height / 2.0);
 
   // adjust text label
-  _textLabel.frame = CGRectInset(pillFrame, textPaddingX, 0);
+  _textLabel.frame = CGRectOffset(CGRectInset(pillFrame, textPaddingX, 0), 0, _style.textStyle.textOffsetY);
 
   // mask self to pill size & shape
   UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:pillFrame cornerRadius:pillFrame.size.height / 2.0];
