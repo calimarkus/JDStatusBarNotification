@@ -114,15 +114,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
-- (CGRect)outerRectForBackgroundStyle {
-  switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic:
-      return self.bounds;
-    case JDStatusBarBackgroundTypePill:
-      return _pillBackgroundView.frame;
-  }
-}
-
 #pragma mark - progress bar
 
 - (void)createProgressViewIfNeeded {
@@ -137,26 +128,34 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
+- (CGRect)progressViewContentRectForBackgroundStyle {
+  switch (_style.backgroundStyle.backgroundType) {
+    case JDStatusBarBackgroundTypeClassic:
+      return contentRectForWindow(self, _style.textStyle.textOffsetY);
+    case JDStatusBarBackgroundTypePill:
+      return _pillBackgroundView.frame;
+  }
+}
+
 - (CGRect)progressViewRectForPercentage:(CGFloat)percentage {
   JDStatusBarProgressBarStyle *progressBarStyle = _style.progressBarStyle;
 
   // calculate progressView frame
-  CGRect outerRect = [self outerRectForBackgroundStyle];
-  CGSize bounds = outerRect.size;
-  CGFloat barHeight = MIN(bounds.height, MAX(0.5, progressBarStyle.barHeight));
-  CGFloat width = round((bounds.width - 2 * progressBarStyle.horizontalInsets) * percentage);
-  CGRect barFrame = CGRectMake(outerRect.origin.x + progressBarStyle.horizontalInsets, outerRect.origin.y, width, barHeight);
+  CGRect contentRect = [self progressViewContentRectForBackgroundStyle];
+  CGFloat barHeight = MIN(contentRect.size.height, MAX(0.5, progressBarStyle.barHeight));
+  CGFloat width = round((contentRect.size.width - 2 * progressBarStyle.horizontalInsets) * percentage);
+  CGRect barFrame = CGRectMake(contentRect.origin.x + progressBarStyle.horizontalInsets, progressBarStyle.offsetY, width, barHeight);
 
   // calculate y-position
   switch (_style.progressBarStyle.position) {
-    case JDStatusBarProgressBarPositionBottom:
-      barFrame.origin.y += bounds.height - barHeight + progressBarStyle.offsetY;
+    case JDStatusBarProgressBarPositionTop:
+      barFrame.origin.y += contentRect.origin.y;
       break;
     case JDStatusBarProgressBarPositionCenter:
-      barFrame.origin.y = round(_textLabel.center.y - (barHeight / 2.0)) + progressBarStyle.offsetY;
+      barFrame.origin.y += contentRect.origin.y + round((contentRect.size.height - barHeight) / 2.0) + 1;
       break;
-    case JDStatusBarProgressBarPositionTop:
-      barFrame.origin.y += CGRectGetMinY(_textLabel.frame) + progressBarStyle.offsetY;
+    case JDStatusBarProgressBarPositionBottom:
+      barFrame.origin.y += contentRect.origin.y + contentRect.size.height - barHeight;
       break;
   }
 
