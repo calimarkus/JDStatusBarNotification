@@ -13,7 +13,7 @@
   self = [super init];
   if (self) {
     _textColor = [UIColor grayColor];
-    _font = [UIFont systemFontOfSize:12.0];
+    _font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
   }
   return self;
 }

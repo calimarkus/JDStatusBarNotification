@@ -84,7 +84,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-/// The UIStatusBarStyle, which should be used during presentation
+/// The UIStatusBarStyle, which should be used during presentation. If you use JDStatusBarBackgroundTypePill, this is ignored.
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
 /// Defines if the bar can be dismissed by the user or not (by swiping up)
@@ -101,7 +101,7 @@ NS_SWIFT_NAME(NotificationTextStyle)
 /// The text color of the notification label
 @property (nonatomic, strong, nullable) UIColor *textColor;
 
-/// The font of the notification label
+/// The font of the notification label, the default is UIFontTextStyleFootnote.
 @property (nonatomic, strong) UIFont *font;
 
 /// The text shadow color, the default is nil, meaning no shadow.

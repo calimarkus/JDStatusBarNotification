@@ -241,13 +241,19 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-  switch (_statusBarView.style.systemStatusBarStyle) {
-    case JDStatusBarSystemStyleDefault:
+  switch (_statusBarView.style.backgroundStyle.backgroundType) {
+    case JDStatusBarBackgroundTypeClassic:
+      switch (_statusBarView.style.systemStatusBarStyle) {
+        case JDStatusBarSystemStyleDefault:
+          return [self defaultStatusBarStyle];
+        case JDStatusBarSystemStyleLightContent:
+          return UIStatusBarStyleLightContent;
+        case JDStatusBarSystemStyleDarkContent:
+          return UIStatusBarStyleDarkContent;
+      }
+    case JDStatusBarBackgroundTypePill:
+      // the pills should not change the system status bar
       return [self defaultStatusBarStyle];
-    case JDStatusBarSystemStyleLightContent:
-      return UIStatusBarStyleLightContent;
-    case JDStatusBarSystemStyleDarkContent:
-      return UIStatusBarStyleDarkContent;
   }
 }
 
