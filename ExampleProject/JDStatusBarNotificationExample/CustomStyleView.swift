@@ -5,8 +5,18 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 class CustomStyleViewFactory: NSObject {
+
+  static let initialText = "You are doing great!"
+
   @objc static func createCustomStyleView(presentationHandler: @escaping () -> Void) -> UIViewController {
-    return UIHostingController(rootView: CustomStyleView())
+    presentInitialNotification()
+    return UIHostingController(rootView: CustomStyleView(text: initialText, showActivity: true, showProgress: true))
+  }
+
+  static func presentInitialNotification() {
+    CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: CustomStyle().registerComputedStyle())
+    NotificationPresenter.shared().displayActivityIndicator(true)
+    NotificationPresenter.shared().displayProgressBar(percentage: 0.33)
   }
 }
 
@@ -105,11 +115,10 @@ class CustomStyle: ObservableObject, Equatable {
 
 @available(iOS 15.0, *)
 struct CustomStyleView: View {
-  @State var text: String = "You are doing great!"
+  @State var text: String
+  @State var showActivity: Bool
+  @State var showProgress: Bool
   @StateObject var style: CustomStyle = .init()
-
-  @State var showActivity: Bool = true
-  @State var showProgress: Bool = true
 
   weak static var statusBarView: JDStatusBarView? = nil
 
@@ -400,6 +409,6 @@ public struct FontPicker: UIViewControllerRepresentable {
 @available(iOS 15.0, *)
 struct CustomStyleView_Previews: PreviewProvider {
   static var previews: some View {
-    CustomStyleView()
+    CustomStyleView(text: "Initial Text", showActivity: true, showProgress: true)
   }
 }
