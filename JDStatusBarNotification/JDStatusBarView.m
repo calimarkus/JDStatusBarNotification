@@ -85,8 +85,10 @@ static const NSInteger kExpectedSubviewTag = 12321;
   if (_activityIndicatorView == nil) {
     _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
+    [_activityIndicatorView sizeToFit];
     _activityIndicatorView.color = _style.textStyle.textColor;
     _activityIndicatorView.tag = kExpectedSubviewTag;
+
     [self addSubview:_activityIndicatorView];
   }
 }
@@ -267,7 +269,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 #pragma mark - Layout
 
-static const NSInteger kActivityIndicatorSpacing = 16.0;
+static const NSInteger kActivityIndicatorSpacing = 5.0;
 
 static CGRect contentRectForWindow(UIView *view, CGFloat textOffsetY) {
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(view.window).top;
@@ -304,11 +306,11 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   // activity indicator
   if (_displaysActivityIndicator) {
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.x = round((contentRect.size.width - fittedTextWidthForLabel(_textLabel))/2.0) - indicatorFrame.size.width - kActivityIndicatorSpacing;
+    indicatorFrame.origin.x = round((contentRect.size.width - fittedTextWidthForLabel(_textLabel))/2.0 - indicatorFrame.size.width - kActivityIndicatorSpacing);
     indicatorFrame.origin.y = contentRect.origin.y + floor((contentRect.size.height - CGRectGetHeight(indicatorFrame))/2.0);
 
     // adjust centering
-    CGFloat centerAdjustement = (CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0;
+    CGFloat centerAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
     _textLabel.frame = CGRectOffset(_textLabel.frame, centerAdjustement, 0);
     _activityIndicatorView.frame = CGRectOffset(indicatorFrame, centerAdjustement, 0);
   }
@@ -339,17 +341,17 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 
   // activity indicator adjustment
   if (_displaysActivityIndicator) {
-    textPaddingX += (CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing) / 2.0;
+    textPaddingX += round((CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing) / 2.0);
   }
 
   // layout pill background
   CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
-  CGFloat pillWidth = MAX(minPillWidth, MIN(maxPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2));
-  CGFloat pillX = MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0);
-  CGFloat pillY = contentRect.origin.y + (contentRect.size.height - pillHeight) / 2.0;
+  CGFloat pillWidth = round(MAX(minPillWidth, MIN(maxPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2)));
+  CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
+  CGFloat pillY = round(contentRect.origin.y + (contentRect.size.height - pillHeight) / 2.0);
   CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
   _pillBackgroundView.frame = pillFrame;
-  _pillBackgroundView.layer.cornerRadius = _pillBackgroundView.frame.size.height / 2.0;
+  _pillBackgroundView.layer.cornerRadius = round(_pillBackgroundView.frame.size.height / 2.0);
 
   // adjust text label
   _textLabel.frame = CGRectInset(pillFrame, textPaddingX, 0);
