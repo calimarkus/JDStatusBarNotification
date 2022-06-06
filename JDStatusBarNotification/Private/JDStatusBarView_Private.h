@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JDStatusBarViewDelegate <NSObject>
 - (void)statusBarViewDidPanToDismiss;
+- (void)didUpdateStyle;
 @end
 
 @interface JDStatusBarView ()

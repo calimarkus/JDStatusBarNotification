@@ -93,6 +93,10 @@ JDStatusBarViewDelegate
   [self dismissWithDuration:0.25 completion:nil];
 }
 
+- (void)didUpdateStyle {
+  [_delegate didUpdateStyle];
+}
+
 #pragma mark - Dismissal
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay

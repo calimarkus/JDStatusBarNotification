@@ -5,6 +5,7 @@
 
 #import "JDStatusBarNotificationViewController.h"
 #import "JDStatusBarView.h"
+#import "JDStatusBarStyle.h"
 #import "UIApplication+MainWindow.h"
 #import "JDStatusBarManagerHelper.h"
 
@@ -50,17 +51,24 @@
   }
 
   // update top bar frame
-  CGFloat heightIncludingNavBar = rect.size.height + navBarHeight(window.windowScene);
-  _statusBarViewController.statusBarView.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
+  JDStatusBarView *statusBarView = _statusBarViewController.statusBarView;
+  CGFloat heightIncludingNavBar = rect.size.height + navBarHeight(window.windowScene, statusBarView.style.backgroundStyle.backgroundType);
+  statusBarView.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
 
   // relayout progress bar
-  [_statusBarViewController.statusBarView setProgressBarPercentage:_statusBarViewController.statusBarView.progressBarPercentage];
+  [statusBarView setProgressBarPercentage:_statusBarViewController.statusBarView.progressBarPercentage];
 }
 
-static CGFloat navBarHeight(UIWindowScene *windowScene) {
-  if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
-      UIInterfaceOrientationIsLandscape(JDStatusBarOrientationForWindowScene(windowScene))) {
-    return 32.0;
+static CGFloat navBarHeight(UIWindowScene *windowScene, JDStatusBarBackgroundType backgroundType) {
+  switch (backgroundType) {
+    case JDStatusBarBackgroundTypeClassic: {
+      if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
+          UIInterfaceOrientationIsLandscape(JDStatusBarOrientationForWindowScene(windowScene))) {
+        return 32.0;
+      }
+    }
+    case JDStatusBarBackgroundTypePill:
+      break;
   }
   return 44.0;
 }
@@ -74,6 +82,10 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
 
 - (void)didDismissStatusBar {
   [self.delegate didDismissStatusBar];
+}
+
+- (void)didUpdateStyle {
+  [self updateFramesForStatusBarFrame:JDStatusBarFrameForWindowScene(self.windowScene)];
 }
 
 #pragma mark - HitTest

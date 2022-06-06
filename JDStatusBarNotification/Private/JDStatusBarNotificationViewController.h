@@ -13,6 +13,7 @@ typedef void (^ _Nullable JDStatusBarNotificationViewControllerCompletion)(void)
 @protocol JDStatusBarNotificationViewControllerDelegate
 - (void)animationsForViewTransitionToSize:(CGSize)size;
 - (void)didDismissStatusBar;
+- (void)didUpdateStyle;
 @end
 
 @interface JDStatusBarNotificationViewController : UIViewController

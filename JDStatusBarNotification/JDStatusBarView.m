@@ -246,6 +246,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   _panGestureRecognizer.enabled = style.canSwipeToDismiss;
   
   [self setNeedsLayout];
+
+  [_delegate didUpdateStyle];
 }
 
 - (void)applyStyleForBackgroundType {
