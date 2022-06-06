@@ -348,7 +348,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   CGFloat textPaddingX = 20.0;
   CGFloat minimumPillInset = 20.0;
   CGFloat maximumPillWidth = self.bounds.size.width - minimumPillInset * 2;
-  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, _style.backgroundStyle.minimumPillWidth));
+  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, _style.backgroundStyle.pillStyle.minimumWidth));
 
   // activity indicator adjustment
   if (_displaysActivityIndicator) {

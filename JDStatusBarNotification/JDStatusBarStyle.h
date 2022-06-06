@@ -116,6 +116,17 @@ NS_SWIFT_NAME(NotificationTextStyle)
 @end
 
 /**
+ *  Defines the appeareance of the pill, when using JDStatusBarBackgroundTypePill
+ */
+NS_SWIFT_NAME(BarPillStyle)
+@interface JDStatusBarPillStyle : NSObject <NSCopying>
+
+/// The minimum with of the pill. Default is 160.0.
+@property (nonatomic, assign) CGFloat minimumWidth;
+
+@end
+
+/**
  *  A Style defines the appeareance of a notification.
  */
 NS_SWIFT_NAME(NotificationBackgroundStyle)
@@ -127,8 +138,8 @@ NS_SWIFT_NAME(NotificationBackgroundStyle)
 /// The background type
 @property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
 
-/// The minimum with of the pill, if using JDStatusBarBackgroundTypePill. Default is 160.0
-@property (nonatomic, assign) CGFloat minimumPillWidth;
+/// A style to modify the appearance of the pill, when using JDStatusBarBackgroundTypePill.
+@property (nonatomic, assign) JDStatusBarPillStyle *pillStyle;
 
 @end
 

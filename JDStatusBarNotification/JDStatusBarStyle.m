@@ -30,6 +30,24 @@
 
 @end
 
+@implementation JDStatusBarPillStyle
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    _minimumWidth = 160.0;
+  }
+  return self;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+  JDStatusBarPillStyle *style = [[[self class] allocWithZone:zone] init];
+  style.minimumWidth = self.minimumWidth;
+  return style;
+}
+
+@end
+
 @implementation JDStatusBarBackgroundStyle
 
 - (instancetype)init {
@@ -37,7 +55,7 @@
   if (self) {
     _backgroundColor = [UIColor whiteColor];
     _backgroundType = JDStatusBarBackgroundTypePill;
-    _minimumPillWidth = 160.0;
+    _pillStyle = [JDStatusBarPillStyle new];
   }
   return self;
 }
@@ -46,7 +64,7 @@
   JDStatusBarBackgroundStyle *style = [[[self class] allocWithZone:zone] init];
   style.backgroundColor = self.backgroundColor;
   style.backgroundType = self.backgroundType;
-  style.minimumPillWidth = self.minimumPillWidth;
+  style.pillStyle = [self.pillStyle copy];
   return style;
 }
 

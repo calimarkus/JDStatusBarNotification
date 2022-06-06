@@ -68,7 +68,7 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.backgroundStyle.backgroundColor = backgroundColor
     style.backgroundStyle.backgroundType = backgroundType
-    style.backgroundStyle.minimumPillWidth = minimumPillWidth
+    style.backgroundStyle.pillStyle.minimumWidth = minimumPillWidth
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
