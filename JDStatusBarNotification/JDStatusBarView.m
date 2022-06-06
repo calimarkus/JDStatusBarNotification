@@ -306,13 +306,24 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   // activity indicator
   if (_displaysActivityIndicator) {
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.x = round((contentRect.size.width - fittedTextWidthForLabel(_textLabel))/2.0 - indicatorFrame.size.width - kActivityIndicatorSpacing);
     indicatorFrame.origin.y = contentRect.origin.y + floor((contentRect.size.height - CGRectGetHeight(indicatorFrame))/2.0);
 
-    // adjust centering
-    CGFloat centerAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
-    _textLabel.frame = CGRectOffset(_textLabel.frame, centerAdjustement, 0);
-    _activityIndicatorView.frame = CGRectOffset(indicatorFrame, centerAdjustement, 0);
+    // x-position
+    CGFloat textWidth = fittedTextWidthForLabel(_textLabel);
+    if (textWidth == 0.0) {
+      indicatorFrame.origin.x = round(contentRect.size.width/2.0 - indicatorFrame.size.width/2.0);
+    } else {
+      indicatorFrame.origin.x = round((contentRect.size.width - textWidth)/2.0 - indicatorFrame.size.width - kActivityIndicatorSpacing);
+    }
+
+    if (textWidth > 0.0) {
+      // adjust centering
+      CGFloat centerAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
+      _textLabel.frame = CGRectOffset(_textLabel.frame, centerAdjustement, 0);
+      _activityIndicatorView.frame = CGRectOffset(indicatorFrame, centerAdjustement, 0);
+    } else {
+      _activityIndicatorView.frame = indicatorFrame;
+    }
   }
 }
 
