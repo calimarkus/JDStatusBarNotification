@@ -6,16 +6,15 @@ import SwiftUI
 @available(iOS 15.0, *)
 class StyleEditorViewFactory: NSObject {
   static let initialText = "You are doing great!"
-  static let initialProgress = 0.55
+  static let initialProgress = 0.87
 
   @objc static func createStyleEditorView() -> UIViewController {
     presentInitialNotification()
-    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: true, progress: initialProgress))
+    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: false, progress: initialProgress))
   }
 
   static func presentInitialNotification() {
     StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: CustomStyle().registerComputedStyle())
-    NotificationPresenter.shared().displayActivityIndicator(true)
     NotificationPresenter.shared().displayProgressBar(percentage: initialProgress)
   }
 }
@@ -37,16 +36,16 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var canSwipeToDismiss: Bool = true
 
-  @Published var pbBarColor: UIColor? = .orange
-  @Published var pbBarHeight: CGFloat = 26.0 { didSet {
+  @Published var pbBarColor: UIColor? = UIColor(red: 0.774822, green: 0.817868, blue: 0.278994, alpha: 1)
+  @Published var pbBarHeight: CGFloat = 6.0 { didSet {
     if pbCornerRadius > 0.0 {
       pbCornerRadius = floor(pbBarHeight / 2.0)
     }
   }}
-  @Published var pbPosition: ProgressBarPosition = .center
-  @Published var pbHorizontalInsets: CGFloat = 6.0
-  @Published var pbCornerRadius: CGFloat = 13.0
-  @Published var pbBarOffset: CGFloat = -1.0
+  @Published var pbPosition: ProgressBarPosition = .bottom
+  @Published var pbHorizontalInsets: CGFloat = 20.0
+  @Published var pbCornerRadius: CGFloat = 3.0
+  @Published var pbBarOffset: CGFloat = -3.0
 
   static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
     return false // a hack to trigger .onChange(of: style) on every change
@@ -348,9 +347,9 @@ struct StyleEditorView: View {
         VStack(alignment: .leading) {
           Text("Position").font(.subheadline)
           Picker("", selection: $style.pbPosition) {
-            Text("Bottom").tag(ProgressBarPosition.bottom)
-            Text("Center").tag(ProgressBarPosition.center)
             Text("Top").tag(ProgressBarPosition.top)
+            Text("Center").tag(ProgressBarPosition.center)
+            Text("Bottom").tag(ProgressBarPosition.bottom)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
