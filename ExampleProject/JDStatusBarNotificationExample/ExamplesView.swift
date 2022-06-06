@@ -75,14 +75,14 @@ struct ExamplesView: View {
             showDefaultNotification("Better call Saul!") { _ in }
           }
         }
-        cell(title: "Animate ProgressBar & hide", subtitle: "Hide bar at 100%") {
+        cell(title: "Animate progress bar & hide", subtitle: "Hide bar at 100%") {
           if !NotificationPresenter.shared().isVisible() {
             showDefaultNotification("Animating Progress…") { presenter in
-              presenter.displayProgressBar(percentage: 0.0)
               presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
                 presenter.dismiss(animated: true)
               }
             }
+            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
           } else {
             NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
             NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
@@ -102,7 +102,7 @@ struct ExamplesView: View {
           .onChange(of: showActivity) { _ in
             if !NotificationPresenter.shared().isVisible() {
               if showActivity {
-                showDefaultNotification("On it…!") { _ in }
+                showDefaultNotification("") { _ in }
                 NotificationPresenter.shared().dismiss(afterDelay: 2.0)
               }
             } else {
@@ -111,14 +111,15 @@ struct ExamplesView: View {
           }.font(.subheadline)
 
         HStack {
-          Text("Progress Bar")
-          Spacer(minLength: 40.0)
+          Text("Progress Bar (\(Int(round(progress*100)))%)")
+          Spacer()
           Slider(value: $progress)
+            .frame(width: 150)
         }
         .onChange(of: progress) { _ in
           if !NotificationPresenter.shared().isVisible() {
             if progress > 0.0 {
-              showDefaultNotification("We're at \(round(progress))%…") { _ in }
+              showDefaultNotification("Making progress…") { _ in }
               NotificationPresenter.shared().dismiss(afterDelay: 2.0)
             }
           } else {

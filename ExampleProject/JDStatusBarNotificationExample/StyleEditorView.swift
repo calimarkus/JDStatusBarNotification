@@ -36,7 +36,11 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var canSwipeToDismiss: Bool = true
 
   @Published var pbBarColor: UIColor? = .orange
-  @Published var pbBarHeight: CGFloat = 26.0
+  @Published var pbBarHeight: CGFloat = 26.0 { didSet {
+    if pbCornerRadius > 0.0 {
+      pbCornerRadius = floor(pbBarHeight / 2.0)
+    }
+  }}
   @Published var pbPosition: ProgressBarPosition = .center
   @Published var pbHorizontalInsets: CGFloat = 6.0
   @Published var pbCornerRadius: CGFloat = 13.0
@@ -193,9 +197,10 @@ struct StyleEditorView: View {
           }.font(.subheadline)
 
         HStack {
-          Text("Progress Bar")
-          Spacer(minLength: 40.0)
+          Text("Progress Bar (\(Int(round(progress*100)))%)")
+          Spacer()
           Slider(value: $progress)
+            .frame(width: 150)
         }
         .onChange(of: progress) { _ in
           if !NotificationPresenter.shared().isVisible() {
@@ -233,7 +238,7 @@ struct StyleEditorView: View {
             style.font.pointSize
           }, set: { size in
             style.font = style.font.withSize(size)
-          }))
+          }), in: 5...36)
           .font(.subheadline)
 
         Stepper("Text Offset Y (\(Int(style.textOffsetY)))",
@@ -319,7 +324,8 @@ struct StyleEditorView: View {
         customColorPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
 
         Stepper("Bar height (\(Int(style.pbBarHeight)))",
-                value: $style.pbBarHeight)
+                value: $style.pbBarHeight,
+                in: 1...99)
           .font(.subheadline)
 
         VStack(alignment: .leading) {
@@ -332,7 +338,8 @@ struct StyleEditorView: View {
         }
 
         Stepper("Corner radius (\(Int(style.pbCornerRadius)))",
-                value: $style.pbCornerRadius)
+                value: $style.pbCornerRadius,
+                in: 0...99)
           .font(.subheadline)
 
         Stepper("Bar Offset Y (\(Int(style.pbBarOffset)))",
@@ -340,7 +347,8 @@ struct StyleEditorView: View {
           .font(.subheadline)
 
         Stepper("Horizontal Insets (\(Int(style.pbHorizontalInsets)))",
-                value: $style.pbHorizontalInsets)
+                value: $style.pbHorizontalInsets,
+                in: 0...999)
           .font(.subheadline)
       }
     }
