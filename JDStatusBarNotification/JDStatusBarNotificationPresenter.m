@@ -84,12 +84,16 @@
 #pragma mark - Simple Presentation
 
 - (JDStatusBarView *)presentWithText:(NSString *)text {
-  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil];
+  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil completion:nil];
+}
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil completion:completion];
 }
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
                    dismissAfterDelay:(NSTimeInterval)delay {
-  return [self presentWithText:text dismissAfterDelay:delay customStyle:nil];
+  return [self presentWithText:text dismissAfterDelay:delay customStyle:nil completion:nil];
 }
 
 #pragma mark - Custom Style Presentation

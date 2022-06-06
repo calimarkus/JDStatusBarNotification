@@ -58,6 +58,17 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (JDStatusBarView *)presentWithText:(NSString *)text NS_SWIFT_NAME(present(text:));
 
 /**
+ *  Present a notification using the default style.
+ *
+ *  @param text The message to display
+ *  @param completion A completion block, which gets called once the animation finishes.
+ *
+ *  @return The presented JDStatusBarView for further customization
+ */
+- (JDStatusBarView *)presentWithText:(NSString *)text
+                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:completion:));
+
+/**
  *  Present a notification using the default style. The notification will
  *  automatically dismiss after the given delay.
  *
