@@ -388,4 +388,18 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   }
 }
 
+#pragma mark - HitTest
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  if (self.userInteractionEnabled) {
+    switch (_style.backgroundStyle.backgroundType) {
+      case JDStatusBarBackgroundTypeClassic:
+        return [super hitTest:point withEvent:event];
+      case JDStatusBarBackgroundTypePill:
+        return [_pillBackgroundView hitTest:[self convertPoint:point toView:_pillBackgroundView] withEvent:event];
+    }
+  }
+  return nil;
+}
+
 @end

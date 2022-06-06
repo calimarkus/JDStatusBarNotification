@@ -80,11 +80,8 @@ static CGFloat navBarHeight(UIWindowScene *windowScene) {
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
   UIView *topBar = _statusBarViewController.statusBarView;
-  if (topBar != nil) {
-    CGRect rect = [self convertRect:topBar.bounds fromView:topBar];
-    if (topBar.userInteractionEnabled && CGRectContainsPoint(rect, point)) {
-      return [topBar hitTest:point withEvent:event];
-    }
+  if (topBar != nil && topBar.userInteractionEnabled) {
+    return [topBar hitTest:[self convertPoint:point toView:topBar] withEvent:event];
   }
   return nil;
 }
