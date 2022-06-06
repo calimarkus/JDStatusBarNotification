@@ -8,7 +8,7 @@
 
 #import "SBExampleViewController.h"
 
-#import "SBCustomStyleViewController.h"
+#import "SBStyleEditorViewController.h"
 
 #if IS_SCENE_BASED_EXAMPLE
   #import "JDSBN_WindowSceneExample-Swift.h"
@@ -27,7 +27,7 @@
   if (@available(iOS 15.0, *)) {
     __weak __typeof(self) weakSelf = self;
     UIViewController *hostingController = [ExamplesViewFactory createExamplesViewWithPresentationHandler:^{
-      [weakSelf.navigationController pushViewController:[[SBCustomStyleViewController alloc] init] animated:YES];
+      [weakSelf.navigationController pushViewController:[[SBStyleEditorViewController alloc] init] animated:YES];
     }];
     [hostingController willMoveToParentViewController:self];
     [self addChildViewController:hostingController];

@@ -1,12 +1,12 @@
 //
-//  SBCustomStyleViewController.m
+//  SBStyleEditorViewController.m
 //  JDStatusBarNotificationExample
 //
 //  Created by Markus on 08.11.13.
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import "SBCustomStyleViewController.h"
+#import "SBStyleEditorViewController.h"
 
 #if IS_SCENE_BASED_EXAMPLE
   #import "JDSBN_WindowSceneExample-Swift.h"
@@ -14,7 +14,7 @@
   #import "JDSBN_ClassicExample-Swift.h"
 #endif
 
-@implementation SBCustomStyleViewController
+@implementation SBStyleEditorViewController
 
 - (void)loadView {
   [super loadView];
@@ -24,8 +24,8 @@
 
   if (@available(iOS 15.0, *)) {
     __weak __typeof(self) weakSelf = self;
-    UIViewController *hostingController = [CustomStyleViewFactory createCustomStyleViewWithPresentationHandler:^{
-      [weakSelf.navigationController pushViewController:[[SBCustomStyleViewController alloc] init] animated:YES];
+    UIViewController *hostingController = [StyleEditorViewFactory createStyleEditorViewWithPresentationHandler:^{
+      [weakSelf.navigationController pushViewController:[[SBStyleEditorViewController alloc] init] animated:YES];
     }];
     [hostingController willMoveToParentViewController:self];
     [self addChildViewController:hostingController];

@@ -1,5 +1,5 @@
 //
-//  SBCustomStyleViewController.h
+//  SBStyleEditorViewController.h
 //  JDStatusBarNotificationExample
 //
 //  Created by Markus on 08.11.13.
@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SBCustomStyleViewController : UIViewController
+@interface SBStyleEditorViewController : UIViewController
 @end

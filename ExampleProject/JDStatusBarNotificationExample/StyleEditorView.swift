@@ -4,17 +4,17 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-class CustomStyleViewFactory: NSObject {
+class StyleEditorViewFactory: NSObject {
 
   static let initialText = "You are doing great!"
 
-  @objc static func createCustomStyleView(presentationHandler: @escaping () -> Void) -> UIViewController {
+  @objc static func createStyleEditorView(presentationHandler: @escaping () -> Void) -> UIViewController {
     presentInitialNotification()
-    return UIHostingController(rootView: CustomStyleView(text: initialText, showActivity: true, showProgress: true))
+    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: true, showProgress: true))
   }
 
   static func presentInitialNotification() {
-    CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: CustomStyle().registerComputedStyle())
+    StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: CustomStyle().registerComputedStyle())
     NotificationPresenter.shared().displayActivityIndicator(true)
     NotificationPresenter.shared().displayProgressBar(percentage: 0.33)
   }
@@ -114,7 +114,7 @@ class CustomStyle: ObservableObject, Equatable {
 }
 
 @available(iOS 15.0, *)
-struct CustomStyleView: View {
+struct StyleEditorView: View {
   @State var text: String
   @State var showActivity: Bool
   @State var showProgress: Bool
@@ -123,7 +123,7 @@ struct CustomStyleView: View {
   weak static var statusBarView: JDStatusBarView? = nil
 
   func presentDefault() {
-    CustomStyleView.statusBarView = NotificationPresenter.shared().present(
+    StyleEditorView.statusBarView = NotificationPresenter.shared().present(
       text: text,
       customStyle: style.registerComputedStyle()
     )
@@ -140,8 +140,8 @@ struct CustomStyleView: View {
       // a hack to trigger live updates
       EmptyView()
         .onChange(of: style) { _ in
-          CustomStyleView.statusBarView?.style = style.computedStyle()
-          CustomStyleView.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+          StyleEditorView.statusBarView?.style = style.computedStyle()
+          StyleEditorView.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
         }
         .onChange(of: style.animationType) { _ in
           presentDefault()
@@ -160,7 +160,7 @@ struct CustomStyleView: View {
         }
 
         buttonRow(title: "Animate progress bar to 100%", subtitle: "Hides at 100%") {
-          CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
+          StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
             presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)
             }
@@ -407,8 +407,8 @@ public struct FontPicker: UIViewControllerRepresentable {
 }
 
 @available(iOS 15.0, *)
-struct CustomStyleView_Previews: PreviewProvider {
+struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    CustomStyleView(text: "Initial Text", showActivity: true, showProgress: true)
+    StyleEditorView(text: "Initial Text", showActivity: true, showProgress: true)
   }
 }
