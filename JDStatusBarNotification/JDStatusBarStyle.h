@@ -127,6 +127,9 @@ NS_SWIFT_NAME(NotificationBackgroundStyle)
 /// The background type
 @property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
 
+/// The minimum with of the pill, if using JDStatusBarBackgroundTypePill. Default is 160.0
+@property (nonatomic, assign) CGFloat minimumPillWidth;
+
 @end
 
 /**

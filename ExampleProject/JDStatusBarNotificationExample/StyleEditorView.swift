@@ -21,14 +21,17 @@ class StyleEditorViewFactory: NSObject {
 }
 
 class CustomStyle: ObservableObject, Equatable {
-  @Published var backgroundColor: UIColor? = .systemTeal
   @Published var textColor: UIColor? = .white
-  @Published var textShadowColor: UIColor? = .systemTeal
-  @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
   @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
   @Published var textOffsetY: CGFloat = 0.0
-  @Published var animationType: AnimationType = .bounce
+  @Published var textShadowColor: UIColor? = .systemTeal
+  @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
+
+  @Published var backgroundColor: UIColor? = .systemTeal
   @Published var backgroundType: BarBackgroundType = .pill
+  @Published var minimumPillWidth: Double = 160.0;
+
+  @Published var animationType: AnimationType = .bounce
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
   @Published var canSwipeToDismiss: Bool = true
 
@@ -61,14 +64,15 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.backgroundStyle.backgroundColor = backgroundColor
     style.backgroundStyle.backgroundType = backgroundType
+    style.backgroundStyle.minimumPillWidth = minimumPillWidth
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
     style.canSwipeToDismiss = canSwipeToDismiss
 
+    style.progressBarStyle.barColor = pbBarColor
     style.progressBarStyle.barHeight = pbBarHeight
     style.progressBarStyle.position = pbPosition
-    style.progressBarStyle.barColor = pbBarColor
     style.progressBarStyle.horizontalInsets = pbHorizontalInsets
     style.progressBarStyle.cornerRadius = pbCornerRadius
     style.progressBarStyle.offsetY = pbBarOffset
@@ -94,6 +98,7 @@ class CustomStyle: ObservableObject, Equatable {
     text.append("""
     style.backgroundStyle.backgroundColor = \(backgroundColor ?? .white)
     style.backgroundStyle.backgroundType = \(backgroundType)
+    style.backgroundStyle.minimumPillWidth = \(minimumPillWidth)
 
     style.animationType = \(animationType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
@@ -284,6 +289,12 @@ struct StyleEditorView: View {
             Text("Classic").tag(BarBackgroundType.classic)
             Text("Pill").tag(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
+        }
+
+        if style.backgroundType == .pill {
+          Stepper("Min Pill Width (\(Int(style.minimumPillWidth)))",
+                  value: $style.minimumPillWidth)
+            .font(.subheadline)
         }
 
         VStack(alignment: .leading) {

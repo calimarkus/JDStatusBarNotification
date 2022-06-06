@@ -37,6 +37,7 @@
   if (self) {
     _backgroundColor = [UIColor whiteColor];
     _backgroundType = JDStatusBarBackgroundTypeClassic;
+    _minimumPillWidth = 160.0;
   }
   return self;
 }
@@ -45,6 +46,7 @@
   JDStatusBarBackgroundStyle *style = [[[self class] allocWithZone:zone] init];
   style.backgroundColor = self.backgroundColor;
   style.backgroundType = self.backgroundType;
+  style.minimumPillWidth = self.minimumPillWidth;
   return style;
 }
 

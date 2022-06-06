@@ -347,8 +347,8 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   CGFloat pillHeight = 36.0;
   CGFloat textPaddingX = 20.0;
   CGFloat minimumPillInset = 20.0;
-  CGFloat maxPillWidth = self.bounds.size.width - minimumPillInset * 2;
-  CGFloat minPillWidth = 160.0;
+  CGFloat maximumPillWidth = self.bounds.size.width - minimumPillInset * 2;
+  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, _style.backgroundStyle.minimumPillWidth));
 
   // activity indicator adjustment
   if (_displaysActivityIndicator) {
@@ -357,7 +357,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 
   // layout pill background
   CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
-  CGFloat pillWidth = round(MAX(minPillWidth, MIN(maxPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2)));
+  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + (contentRect.size.height - pillHeight) / 2.0);
   CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
