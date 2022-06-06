@@ -7,34 +7,8 @@ import SwiftUI
 @available(iOS 15.0, *)
 class ExamplesViewFactory: NSObject {
   @objc static func createExamplesView(presentationHandler: @escaping () -> ()) -> UIViewController {
-    setupCustomStyles()
     presentInitialNotification()
     return UIHostingController(rootView: ExamplesView(customStylePresentationHandler: presentationHandler))
-  }
-
-  static func setupCustomStyles() {
-    NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle1) { style in
-      style.backgroundStyle.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
-      style.textStyle.textColor = .white
-      style.animationType = .fade
-      style.textStyle.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
-      style.progressBarStyle.barColor = UIColor(red: 0.986, green: 0.062, blue: 0.598, alpha: 1.0)
-      style.progressBarStyle.barHeight = 400.0
-      return style
-    }
-
-    NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle2) { style in
-      style.backgroundStyle.backgroundColor = .cyan
-      style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
-      style.animationType = .bounce
-      style.textStyle.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
-      style.progressBarStyle.barColor = UIColor(white: 1.0, alpha: 0.66)
-      style.progressBarStyle.barHeight = 6.0
-      style.progressBarStyle.cornerRadius = 3.0
-      style.progressBarStyle.horizontalInsets = 20.0
-      style.progressBarStyle.position = .center
-      return style
-    }
   }
 
   static func presentInitialNotification() {
@@ -53,25 +27,30 @@ struct ExamplesView: View {
 
   @State var showActivity: Bool = false
   @State var showProgress: Bool = false
+  @State var usePillStyle: Bool = true
 
-  func showDefaultNotificationIfNotPresented(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
-    if !NotificationPresenter.shared().isVisible() {
-      NotificationPresenter.shared().present(text: text, includedStyle: .default, completion: completion)
-      if showActivity {
-        NotificationPresenter.shared().displayActivityIndicator(true)
-      }
-      if showProgress {
-        NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
-      }
-    } else {
-      completion(NotificationPresenter.shared())
+  func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
+    let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .default) { style in
+      style.backgroundStyle.backgroundType = usePillStyle ? .pill : .classic
+      return style
+    }
+    NotificationPresenter.shared().present(text: text, customStyle: styleName, completion: completion)
+    if showActivity {
+      NotificationPresenter.shared().displayActivityIndicator(true)
+    }
+    if showProgress {
+      NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
     }
   }
 
   func showIncludedStyle(_ text: String, style: IncludedStatusBarStyle) {
+    let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: style) { style in
+      style.backgroundStyle.backgroundType = usePillStyle ? .pill : .classic
+      return style
+    }
     NotificationPresenter.shared().present(text: text,
                                            dismissAfterDelay: 3.0,
-                                           includedStyle: style)
+                                           customStyle: styleName)
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
@@ -87,19 +66,29 @@ struct ExamplesView: View {
           if NotificationPresenter.shared().isVisible() {
             NotificationPresenter.shared().dismiss(animated: true)
           } else {
-            showDefaultNotificationIfNotPresented("Better call Saul!") { _ in }
+            showDefaultNotification("Better call Saul!") { _ in }
           }
         }
         cell(title: "Animate ProgressBar & hide", subtitle: "Hide bar at 100%") {
-          showDefaultNotificationIfNotPresented("Animating Progress…") { presenter in
-            presenter.displayProgressBar(percentage: 0.0)
-            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+          if !NotificationPresenter.shared().isVisible() {
+            showDefaultNotification("Animating Progress…") { presenter in
+              presenter.displayProgressBar(percentage: 0.0)
+              presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+                presenter.dismiss(animated: true)
+              }
+            }
+          } else {
+            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+            NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)
             }
           }
         }
         cell(title: "Update Text") {
-          showDefaultNotificationIfNotPresented("") { _ in }
+          if !NotificationPresenter.shared().isVisible() {
+            showDefaultNotification("") { _ in }
+            NotificationPresenter.shared().dismiss(afterDelay: 2.0)
+          }
           NotificationPresenter.shared().updateText("Updated Text…")
         }
 
@@ -107,7 +96,8 @@ struct ExamplesView: View {
           .onChange(of: showActivity) { _ in
             if !NotificationPresenter.shared().isVisible() {
               if showActivity {
-                showDefaultNotificationIfNotPresented("On it…!") { _ in }
+                showDefaultNotification("On it…!") { _ in }
+                NotificationPresenter.shared().dismiss(afterDelay: 2.0)
               }
             } else {
               NotificationPresenter.shared().displayActivityIndicator(showActivity)
@@ -118,11 +108,18 @@ struct ExamplesView: View {
           .onChange(of: showProgress) { _ in
             if !NotificationPresenter.shared().isVisible() {
               if showProgress {
-                showDefaultNotificationIfNotPresented("We're at 33%…") { _ in }
+                showDefaultNotification("We're at 33%…") { _ in }
+                NotificationPresenter.shared().dismiss(afterDelay: 2.0)
               }
             } else {
               NotificationPresenter.shared().displayProgressBar(percentage: showProgress ? 0.33 : 0.0)
             }
+          }.font(.subheadline)
+
+        Toggle("Use Pill Style", isOn: $usePillStyle)
+          .onChange(of: usePillStyle) { _ in
+            showDefaultNotification(usePillStyle ? "Ohhh so shiny!" : "I prefer classic…") { _ in }
+            NotificationPresenter.shared().dismiss(afterDelay: 2.0)
           }.font(.subheadline)
       }
 
@@ -146,18 +143,20 @@ struct ExamplesView: View {
 
       Section("Custom Styles") {
         cell(title: "Present custom style 1", subtitle: "AnimationType.fade + Progress") {
+          setupCustomStyles(usePill: usePillStyle)
           NotificationPresenter.shared().present(text: "Oh, I love it!",
                                                  customStyle: ExamplesView.customStyle1) { presenter in
-            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.5) { presenter in
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: usePillStyle ? 0.66 : 1.2) { presenter in
               presenter.dismiss(animated: true)
             }
           }
         }
 
         cell(title: "Present custom style 2", subtitle: "AnimationType.bounce + Progress") {
+          setupCustomStyles(usePill: usePillStyle)
           NotificationPresenter.shared().present(text: "Level up!",
                                                  customStyle: ExamplesView.customStyle2) { presenter in
-            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.5) { presenter in
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: usePillStyle ? 0.66 : 1.2) { presenter in
               presenter.dismiss(animated: true)
             }
           }
@@ -213,6 +212,33 @@ struct ExamplesView: View {
           .frame(width: 30.0)
       }
     })
+  }
+
+  func setupCustomStyles(usePill: Bool) {
+    NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle1) { style in
+      style.backgroundStyle.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
+      style.backgroundStyle.backgroundType = usePill ? .pill : .classic
+      style.textStyle.textColor = .white
+      style.animationType = .fade
+      style.textStyle.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
+      style.progressBarStyle.barColor = UIColor(red: 0.986, green: 0.062, blue: 0.598, alpha: 1.0)
+      style.progressBarStyle.barHeight = 400.0
+      return style
+    }
+
+    NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle2) { style in
+      style.backgroundStyle.backgroundColor = .cyan
+      style.backgroundStyle.backgroundType = usePill ? .pill : .classic
+      style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
+      style.animationType = .bounce
+      style.textStyle.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
+      style.progressBarStyle.barColor = UIColor(white: 1.0, alpha: 0.66)
+      style.progressBarStyle.barHeight = 6.0
+      style.progressBarStyle.cornerRadius = 3.0
+      style.progressBarStyle.horizontalInsets = 20.0
+      style.progressBarStyle.position = .center
+      return style
+    }
   }
 }
 
