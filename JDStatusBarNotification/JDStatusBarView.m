@@ -43,6 +43,12 @@ static const NSInteger kExpectedSubviewTag = 12321;
   _textLabel.adjustsFontSizeToFitWidth = YES;
   _textLabel.clipsToBounds = YES;
   _textLabel.tag = kExpectedSubviewTag;
+
+#if JDSB_LAYOUT_DEBUGGING
+  _textLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+  _textLabel.layer.borderWidth = 1.0;
+#endif
+
   [self addSubview:_textLabel];
 
   _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -86,6 +92,11 @@ static const NSInteger kExpectedSubviewTag = 12321;
     [_activityIndicatorView sizeToFit];
     _activityIndicatorView.color = _style.textStyle.textColor;
     _activityIndicatorView.tag = kExpectedSubviewTag;
+
+#if JDSB_LAYOUT_DEBUGGING
+    _activityIndicatorView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    _activityIndicatorView.layer.borderWidth = 1.0;
+#endif
 
     [self addSubview:_activityIndicatorView];
   }
