@@ -52,25 +52,26 @@
 
   // update top bar frame
   JDStatusBarView *statusBarView = _statusBarViewController.statusBarView;
-  CGFloat heightIncludingNavBar = rect.size.height + navBarHeight(window.windowScene, statusBarView.style.backgroundStyle.backgroundType);
+  CGFloat heightIncludingNavBar = rect.size.height + navBarHeight(window.windowScene, statusBarView.style);
   statusBarView.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
 
   // relayout progress bar
   [statusBarView setProgressBarPercentage:_statusBarViewController.statusBarView.progressBarPercentage];
 }
 
-static CGFloat navBarHeight(UIWindowScene *windowScene, JDStatusBarBackgroundType backgroundType) {
-  switch (backgroundType) {
+static CGFloat navBarHeight(UIWindowScene *windowScene, JDStatusBarStyle *style) {
+  switch (style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic: {
       if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
           UIInterfaceOrientationIsLandscape(JDStatusBarOrientationForWindowScene(windowScene))) {
         return 32.0;
+      } else {
+        return 44.0;
       }
     }
     case JDStatusBarBackgroundTypePill:
-      break;
+      return style.backgroundStyle.pillStyle.height + style.backgroundStyle.pillStyle.topSpacing;
   }
-  return 44.0;
 }
 
 #pragma mark - JDStatusBarNotificationViewControllerDelegate

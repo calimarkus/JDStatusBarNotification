@@ -306,7 +306,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   // activity indicator
   if (_displaysActivityIndicator) {
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.y = contentRect.origin.y + floor((contentRect.size.height - CGRectGetHeight(indicatorFrame))/2.0);
+    indicatorFrame.origin.y = _textLabel.frame.origin.y + floor((_textLabel.frame.size.height - CGRectGetHeight(indicatorFrame))/2.0);
 
     // x-position
     CGFloat textWidth = fittedTextWidthForLabel(_textLabel);
@@ -343,12 +343,14 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 }
 
 - (void)layoutSubviewsForPillBackground {
+  JDStatusBarPillStyle *pillStyle = _style.backgroundStyle.pillStyle;
+
   // pill layout parameters
-  CGFloat pillHeight = 36.0;
+  CGFloat pillHeight = pillStyle.height;
   CGFloat textPaddingX = 20.0;
   CGFloat minimumPillInset = 20.0;
   CGFloat maximumPillWidth = self.bounds.size.width - minimumPillInset * 2;
-  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, _style.backgroundStyle.pillStyle.minimumWidth));
+  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, pillStyle.minimumWidth));
 
   // activity indicator adjustment
   if (_displaysActivityIndicator) {
@@ -359,7 +361,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
   CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
-  CGFloat pillY = round(contentRect.origin.y + (contentRect.size.height - pillHeight) / 2.0);
+  CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
   _pillBackgroundView.frame = pillFrame;
   _pillBackgroundView.layer.cornerRadius = round(_pillBackgroundView.frame.size.height / 2.0);

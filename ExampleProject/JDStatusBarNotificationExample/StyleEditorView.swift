@@ -29,7 +29,9 @@ class CustomStyle: ObservableObject, Equatable {
 
   @Published var backgroundColor: UIColor? = .systemTeal
   @Published var backgroundType: BarBackgroundType = .pill
-  @Published var minimumPillWidth: Double = 160.0;
+  @Published var minimumPillWidth: Double = 160.0
+  @Published var pillHeight: Double = 36.0
+  @Published var pillSpacingY: Double = 6.0
 
   @Published var animationType: AnimationType = .bounce
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
@@ -69,6 +71,8 @@ class CustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.backgroundColor = backgroundColor
     style.backgroundStyle.backgroundType = backgroundType
     style.backgroundStyle.pillStyle.minimumWidth = minimumPillWidth
+    style.backgroundStyle.pillStyle.height = pillHeight
+    style.backgroundStyle.pillStyle.topSpacing = pillSpacingY
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
@@ -103,6 +107,8 @@ class CustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.backgroundColor = \(backgroundColor ?? .white)
     style.backgroundStyle.backgroundType = \(backgroundType)
     style.backgroundStyle.minimumPillWidth = \(minimumPillWidth)
+    style.backgroundStyle.pillStyle.height = \(pillHeight)
+    style.backgroundStyle.pillStyle.topSpacing = \(pillSpacingY)
 
     style.animationType = \(animationType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
@@ -197,7 +203,7 @@ struct StyleEditorView: View {
           }.font(.subheadline)
 
         HStack {
-          Text("Progress Bar (\(Int(round(progress*100)))%)")
+          Text("Progress Bar (\(Int(round(progress * 100)))%)")
           Spacer()
           Slider(value: $progress)
             .frame(width: 150)
@@ -297,8 +303,19 @@ struct StyleEditorView: View {
         }
 
         if style.backgroundType == .pill {
+          Stepper("Pill height (\(Int(style.pillHeight)))",
+                  value: $style.pillHeight,
+                  in: 20...80)
+            .font(.subheadline)
+
+          Stepper("Pill Spacing Y (\(Int(style.pillSpacingY)))",
+                  value: $style.pillSpacingY,
+                  in: 0...99)
+            .font(.subheadline)
+
           Stepper("Min Pill Width (\(Int(style.minimumPillWidth)))",
-                  value: $style.minimumPillWidth)
+                  value: $style.minimumPillWidth,
+                  in: 0...999)
             .font(.subheadline)
         }
 

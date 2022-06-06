@@ -35,6 +35,8 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
+    _height = 36.0;
+    _topSpacing = 6.0;
     _minimumWidth = 160.0;
   }
   return self;
@@ -42,6 +44,8 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarPillStyle *style = [[[self class] allocWithZone:zone] init];
+  style.height = self.height;
+  style.topSpacing = self.topSpacing;
   style.minimumWidth = self.minimumWidth;
   return style;
 }
