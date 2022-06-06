@@ -84,7 +84,7 @@ class CustomStyle: ObservableObject, Equatable {
     text.append("""
     style.backgroundStyle.backgroundColor = \(backgroundColor ?? .white)
     style.backgroundStyle.backgroundType = \(backgroundType)
-    
+
     style.animationType = \(animationType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
@@ -108,6 +108,9 @@ struct CustomStyleView: View {
   @State var text: String = "You are doing great!"
   @StateObject var style: CustomStyle = .init()
 
+  @State var showActivity: Bool = true
+  @State var showProgress: Bool = true
+
   weak static var statusBarView: JDStatusBarView? = nil
 
   func presentDefault() {
@@ -115,8 +118,12 @@ struct CustomStyleView: View {
       text: text,
       customStyle: style.registerComputedStyle()
     )
-    NotificationPresenter.shared().displayActivityIndicator(true)
-    NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+    if showActivity {
+      NotificationPresenter.shared().displayActivityIndicator(true)
+    }
+    if showProgress {
+      NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+    }
   }
 
   var body: some View {
@@ -135,7 +142,7 @@ struct CustomStyleView: View {
         }
 
       Section {
-        buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide. Activity + 40% progress.") {
+        buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide.") {
           if NotificationPresenter.shared().isVisible() {
             NotificationPresenter.shared().dismiss(animated: true)
           } else {
@@ -143,7 +150,7 @@ struct CustomStyleView: View {
           }
         }
 
-        buttonRow(title: "Present (animate progress bar)", subtitle: "Hides at 100% progress") {
+        buttonRow(title: "Animate progress bar to 100%", subtitle: "Hides at 100%") {
           CustomStyleView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
             presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
               presenter.dismiss(animated: true)
@@ -161,6 +168,24 @@ struct CustomStyleView: View {
             UIPasteboard.general.string = style.styleConfigurationString()
           }
         #endif
+
+        Toggle("Activity Indicator", isOn: $showActivity)
+          .onChange(of: showActivity) { _ in
+            if !NotificationPresenter.shared().isVisible() {
+              presentDefault()
+            } else {
+              NotificationPresenter.shared().displayActivityIndicator(showActivity)
+            }
+          }.font(.subheadline)
+
+        Toggle("Progress Bar (40%)", isOn: $showProgress)
+          .onChange(of: showProgress) { _ in
+            if !NotificationPresenter.shared().isVisible() {
+              presentDefault()
+            } else {
+              NotificationPresenter.shared().displayProgressBar(percentage: showProgress ? 0.4 : 0.0)
+            }
+          }.font(.subheadline)
 
         HStack {
           Spacer()

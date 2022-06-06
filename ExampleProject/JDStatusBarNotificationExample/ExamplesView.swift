@@ -51,9 +51,18 @@ struct ExamplesView: View {
 
   let customStylePresentationHandler: () -> ()
 
-  func showDefaultNotificationIfNotPresented(_ text: String, completion: @escaping (NotificationPresenter)->Void) {
+  @State var showActivity: Bool = false
+  @State var showProgress: Bool = false
+
+  func showDefaultNotificationIfNotPresented(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
     if !NotificationPresenter.shared().isVisible() {
       NotificationPresenter.shared().present(text: text, includedStyle: .default, completion: completion)
+      if showActivity {
+        NotificationPresenter.shared().displayActivityIndicator(true)
+      }
+      if showProgress {
+        NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+      }
     } else {
       completion(NotificationPresenter.shared())
     }
@@ -63,13 +72,23 @@ struct ExamplesView: View {
     NotificationPresenter.shared().present(text: text,
                                            dismissAfterDelay: 3.0,
                                            includedStyle: style)
+    if showActivity {
+      NotificationPresenter.shared().displayActivityIndicator(true)
+    }
+    if showProgress {
+      NotificationPresenter.shared().displayProgressBar(percentage: 0.40)
+    }
   }
 
   var body: some View {
     List {
       Section("Default Style") {
-        cell(title: "Show Notification", subtitle: "Don't autohide") {
-          showDefaultNotificationIfNotPresented("Better call Saul!") { _ in }
+        cell(title: "Present / dismiss", subtitle: "Default style, don't autohide") {
+          if NotificationPresenter.shared().isVisible() {
+            NotificationPresenter.shared().dismiss(animated: true)
+          } else {
+            showDefaultNotificationIfNotPresented("Better call Saul!") { _ in }
+          }
         }
         cell(title: "Animate ProgressBar & hide", subtitle: "Hide bar at 100%") {
           showDefaultNotificationIfNotPresented("Animating Progress…") { presenter in
@@ -79,43 +98,54 @@ struct ExamplesView: View {
             }
           }
         }
-        cell(title: "Show ProgressBar at 33%") {
-          showDefaultNotificationIfNotPresented("1/3 done.") { _ in }
-          NotificationPresenter.shared().displayProgressBar(percentage: 0.33)
-        }
-        cell(title: "Show Activity Indicator") {
-          showDefaultNotificationIfNotPresented("Some Activity…") { _ in }
-          NotificationPresenter.shared().displayActivityIndicator(true)
-        }
         cell(title: "Update Text") {
           showDefaultNotificationIfNotPresented("") { _ in }
           NotificationPresenter.shared().updateText("Updated Text…")
         }
-        cell(title: "Dismiss Notification") {
-          NotificationPresenter.shared().dismiss(animated: true)
-        }
+
+        Toggle("Activity Indicator", isOn: $showActivity)
+          .onChange(of: showActivity) { _ in
+            if !NotificationPresenter.shared().isVisible() {
+              if showActivity {
+                showDefaultNotificationIfNotPresented("On it…!") { _ in }
+              }
+            } else {
+              NotificationPresenter.shared().displayActivityIndicator(showActivity)
+            }
+          }.font(.subheadline)
+
+        Toggle("Progress Bar (33%)", isOn: $showProgress)
+          .onChange(of: showProgress) { _ in
+            if !NotificationPresenter.shared().isVisible() {
+              if showProgress {
+                showDefaultNotificationIfNotPresented("We're at 33%…") { _ in }
+              }
+            } else {
+              NotificationPresenter.shared().displayProgressBar(percentage: showProgress ? 0.33 : 0.0)
+            }
+          }.font(.subheadline)
       }
 
       Section("Included Styles") {
-        cell(title: "Show .error", subtitle: "Duration: 3s") {
+        cell(title: "Present .error", subtitle: "Duration: 3s") {
           showIncludedStyle("No, I don't have the money..", style: .error)
         }
-        cell(title: "Show .warning", subtitle: "Duration: 3s") {
+        cell(title: "Present .warning", subtitle: "Duration: 3s") {
           showIncludedStyle("You know who I am!", style: .warning)
         }
-        cell(title: "Show .success", subtitle: "Duration: 3s") {
+        cell(title: "Present .success", subtitle: "Duration: 3s") {
           showIncludedStyle("That's how we roll!", style: .success)
         }
-        cell(title: "Show .dark", subtitle: "Duration: 3s") {
+        cell(title: "Present .dark", subtitle: "Duration: 3s") {
           showIncludedStyle("Don't mess with me!", style: .dark)
         }
-        cell(title: "Show .matrix", subtitle: "Duration: 3s") {
+        cell(title: "Present .matrix", subtitle: "Duration: 3s") {
           showIncludedStyle("Wake up Neo…", style: .matrix)
         }
       }
 
       Section("Custom Styles") {
-        cell(title: "Show custom style 1", subtitle: "AnimationType.fade + Progress") {
+        cell(title: "Present custom style 1", subtitle: "AnimationType.fade + Progress") {
           NotificationPresenter.shared().present(text: "Oh, I love it!",
                                                  customStyle: ExamplesView.customStyle1) { presenter in
             presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.5) { presenter in
@@ -124,7 +154,7 @@ struct ExamplesView: View {
           }
         }
 
-        cell(title: "Show custom style 2", subtitle: "AnimationType.bounce + Progress") {
+        cell(title: "Present custom style 2", subtitle: "AnimationType.bounce + Progress") {
           NotificationPresenter.shared().present(text: "Level up!",
                                                  customStyle: ExamplesView.customStyle2) { presenter in
             presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.5) { presenter in
@@ -133,7 +163,7 @@ struct ExamplesView: View {
           }
         }
 
-        cell(title: "Show notification with button", subtitle: "Manually customized view") {
+        cell(title: "Present notification with button", subtitle: "Manually customized view") {
           let view = NotificationPresenter.shared().present(text: "")
           view.textLabel.removeFromSuperview()
           let action = UIAction { _ in
