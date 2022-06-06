@@ -262,75 +262,99 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
-#pragma mark - layout
+#pragma mark - Layout
+
+static const NSInteger kActivityIndicatorSpacing = 16.0;
+
+static CGRect contentRectForWindow(UIView *view, CGFloat textOffsetY) {
+  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(view.window).top;
+  if (topLayoutMargin == 0) {
+    topLayoutMargin = JDStatusBarFrameForWindowScene(view.window.windowScene).size.height;
+  }
+
+  CGFloat yPosition = textOffsetY + topLayoutMargin;
+  CGFloat height = view.bounds.size.height - yPosition;
+  return CGRectMake(0, yPosition, view.bounds.size.width, height);
+}
+
+static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
+  NSDictionary *attributes = @{NSFontAttributeName:textLabel.font};
+  return MIN([textLabel.text sizeWithAttributes:attributes].width, CGRectGetWidth(textLabel.frame));
+}
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  
-  // layout margins
-  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(self.window).top;
-  CGFloat labelAdjustment = topLayoutMargin;
-  if (topLayoutMargin == 0) {
-    labelAdjustment = JDStatusBarFrameForWindowScene(self.window.windowScene).size.height;
-  }
-
-  CGFloat pillInset = 20.0;
-  CGFloat labelInset = 30.0;
-  switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic:
-      break;
-    case JDStatusBarBackgroundTypePill:
-      labelInset += pillInset;
-      break;
-  }
 
   // text label
-  CGFloat labelY = _style.textStyle.textOffsetY + labelAdjustment;
-  CGFloat height = self.bounds.size.height - labelAdjustment;
-  CGFloat activitySpacing = 16.0;
-  CGFloat activityWidth = CGRectGetWidth(_activityIndicatorView.frame);
+  CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
+  CGFloat labelInset = 30.0;
   if (_displaysActivityIndicator) {
-    labelInset += activityWidth + activitySpacing;
+    labelInset += CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing;
   }
-  _textLabel.frame = CGRectMake(labelInset, labelY, self.bounds.size.width - labelInset * 2, height);
+  _textLabel.frame = CGRectMake(labelInset, contentRect.origin.y, contentRect.size.width - labelInset * 2, contentRect.size.height);
 
-  // pill background
-  if (_pillBackgroundView) {
-    _pillBackgroundView.frame = CGRectInset(CGRectMake(pillInset, labelY, self.bounds.size.width - pillInset * 2, height), 0.0, 6.0);
-    _pillBackgroundView.layer.cornerRadius = CGRectGetHeight(_pillBackgroundView.frame) / 2.0;
-  }
+  // background type
+  [self layoutSubviewsForBackgroundType];
 
   // progress view
   if (_progressView && _progressView.layer.animationKeys.count == 0) {
     _progressView.frame = [self progressViewRectForPercentage:_progressBarPercentage];
   }
-  
+
   // activity indicator
   if (_activityIndicatorView) {
-    NSDictionary *attributes = @{NSFontAttributeName:_textLabel.font};
-    CGFloat textWidth = MIN([_textLabel.text sizeWithAttributes:attributes].width, CGRectGetWidth(_textLabel.frame));
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.x = round((self.bounds.size.width - textWidth)/2.0) - indicatorFrame.size.width - activitySpacing;
-    indicatorFrame.origin.y = labelY + 1 + floor((CGRectGetHeight(_textLabel.bounds) - CGRectGetHeight(indicatorFrame))/2.0);
+    indicatorFrame.origin.x = round((contentRect.size.width - fittedTextWidthForLabel(_textLabel))/2.0) - indicatorFrame.size.width - kActivityIndicatorSpacing;
+    indicatorFrame.origin.y = contentRect.origin.y + floor((contentRect.size.height - CGRectGetHeight(indicatorFrame))/2.0);
     _activityIndicatorView.frame = indicatorFrame;
   }
+}
 
-  // layer masking
+- (void)layoutSubviewsForBackgroundType {
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic: {
+      _pillBackgroundView.hidden = YES;
       self.layer.mask = nil;
       break;
     }
     case JDStatusBarBackgroundTypePill: {
-      CGRect frame = CGRectInset(CGRectMake(pillInset, labelY, self.bounds.size.width - pillInset * 2, height), 0.0, 6.0);
-      UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:frame
-                                                                 cornerRadius:height / 2.0];
-      CAShapeLayer *maskLayer = [CAShapeLayer layer];
-      maskLayer.path = roundedRectPath.CGPath;
-      self.layer.mask = maskLayer;
+      _pillBackgroundView.hidden = NO;
+      [self layoutSubviewsForPillBackground];
       break;
     }
   }
+}
+
+- (void)layoutSubviewsForPillBackground {
+  // pill layout parameters
+  CGFloat pillHeight = 36.0;
+  CGFloat textPaddingX = 20.0;
+  CGFloat minimumPillInset = 20.0;
+  CGFloat maxPillWidth = self.bounds.size.width - minimumPillInset * 2;
+  CGFloat minPillWidth = 160.0;
+
+  // activity indicator adjustment
+  if (_displaysActivityIndicator) {
+    textPaddingX += CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing;
+  }
+
+  // layout pill background
+  CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
+  CGFloat pillWidth = MAX(minPillWidth, MIN(maxPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2));
+  CGFloat pillX = MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0);
+  CGFloat pillY = contentRect.origin.y + (contentRect.size.height - pillHeight) / 2.0;
+  CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
+  _pillBackgroundView.frame = pillFrame;
+  _pillBackgroundView.layer.cornerRadius = _pillBackgroundView.frame.size.height / 2.0;
+
+  // adjust text label
+  _textLabel.frame = CGRectInset(pillFrame, textPaddingX, 0);
+
+  // mask self to pill size & shape
+  UIBezierPath *roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:pillFrame cornerRadius:pillFrame.size.height / 2.0];
+  CAShapeLayer *maskLayer = [CAShapeLayer layer];
+  maskLayer.path = roundedRectPath.CGPath;
+  self.layer.mask = maskLayer;
 }
 
 #pragma mark - Pan gesture
