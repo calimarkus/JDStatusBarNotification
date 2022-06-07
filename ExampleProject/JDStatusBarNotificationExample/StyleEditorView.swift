@@ -268,18 +268,13 @@ struct StyleEditorView: View {
 
         customColorPicker(title: "Text Color", binding: $style.textColor)
 
-        buttonRow(title: "Add / remove text shadow") {
-          if let _ = style.textShadowColor {
-            style.textShadowColor = nil
-          } else {
-            style.textShadowColor = style.backgroundColor
-          }
-        }.foregroundColor(.primary)
+        optionalColorToggle(title: "Text Shadow", binding: $style.textShadowColor, defaultColor: style.backgroundColor)
 
         if let _ = style.textShadowColor {
-          customColorPicker(title: "Text Shadow Color", binding: $style.textShadowColor)
+          customColorPicker(title: "  Shadow Color", binding: $style.textShadowColor)
+            .font(.caption)
 
-          xyStepper(title: "Text Shadow Offset", binding: $style.textShadowOffset)
+          xyStepper(title: "  Shadow Offset", binding: $style.textShadowOffset)
         }
       }
 
@@ -339,21 +334,30 @@ struct StyleEditorView: View {
                   in: 0...999)
             .font(.subheadline)
 
-          customColorPicker(title: "Pill Border Color", binding: $style.pillBorderColor)
 
-          Stepper("Pill Border Width (\(Int(style.pillBorderWidth)))",
-                  value: $style.pillBorderWidth,
-                  in: 0...99)
-            .font(.subheadline)
+          optionalColorToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: style.textColor)
 
-          customColorPicker(title: "Pill Shadow Color", binding: $style.pillShadowColor)
+          if let _ = style.pillBorderColor {
+            customColorPicker(title: "  Border Color", binding: $style.pillBorderColor)
 
-          Stepper("Pill Shadow Radius (\(Int(style.pillShadowRadius)))",
-                  value: $style.pillShadowRadius,
-                  in: 0...99)
-            .font(.subheadline)
+            Stepper("  Border Width (\(Int(style.pillBorderWidth)))",
+                    value: $style.pillBorderWidth,
+                    in: 0...99)
+              .font(.subheadline)
+          }
 
-          xyStepper(title: "Pill Shadow Offset", binding: $style.pillShadowOffset)
+          optionalColorToggle(title: "Pill shadow", binding: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
+
+          if let _ = style.pillShadowColor {
+            customColorPicker(title: "  Shadow Color", binding: $style.pillShadowColor)
+
+            Stepper("  Shadow Radius (\(Int(style.pillShadowRadius)))",
+                    value: $style.pillShadowRadius,
+                    in: 0...99)
+              .font(.subheadline)
+
+            xyStepper(title: "  Shadow Offset", binding: $style.pillShadowOffset)
+          }
         }
       }
 
@@ -396,6 +400,15 @@ struct StyleEditorView: View {
       binding.wrappedValue?.cgColor ?? UIColor.white.cgColor
     }, set: { val in
       binding.wrappedValue = UIColor(cgColor: val)
+    }))
+    .font(.subheadline)
+  }
+
+  func optionalColorToggle(title: String, binding: Binding<UIColor?>, defaultColor: UIColor?) -> some View {
+    Toggle(title, isOn: Binding(get: {
+      binding.wrappedValue != nil
+    }, set: { on in
+      binding.wrappedValue = on ? defaultColor : nil
     }))
     .font(.subheadline)
   }
