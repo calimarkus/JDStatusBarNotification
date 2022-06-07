@@ -143,7 +143,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (CGRect)progressViewContentRectForBackgroundStyle {
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeClassic:
-      return contentRectForWindow(self, _style.textStyle.textOffsetY);
+      return contentRectForWindow(self);
     case JDStatusBarBackgroundTypePill:
       return _pillBackgroundView.frame;
   }
@@ -164,7 +164,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
       barFrame.origin.y += contentRect.origin.y;
       break;
     case JDStatusBarProgressBarPositionCenter:
-      barFrame.origin.y += contentRect.origin.y + round((contentRect.size.height - barHeight) / 2.0) + 1;
+      barFrame.origin.y += _style.textStyle.textOffsetY + contentRect.origin.y + round((contentRect.size.height - barHeight) / 2.0) + 1;
       break;
     case JDStatusBarProgressBarPositionBottom:
       barFrame.origin.y += contentRect.origin.y + contentRect.size.height - barHeight;
@@ -290,15 +290,14 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 static const NSInteger kActivityIndicatorSpacing = 5.0;
 
-static CGRect contentRectForWindow(UIView *view, CGFloat textOffsetY) {
+static CGRect contentRectForWindow(UIView *view) {
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(view.window).top;
   if (topLayoutMargin == 0) {
     topLayoutMargin = JDStatusBarFrameForWindowScene(view.window.windowScene).size.height;
   }
 
-  CGFloat yPosition = textOffsetY + topLayoutMargin;
-  CGFloat height = view.bounds.size.height - yPosition;
-  return CGRectMake(0, yPosition, view.bounds.size.width, height);
+  CGFloat height = view.bounds.size.height - topLayoutMargin;
+  return CGRectMake(0, topLayoutMargin, view.bounds.size.width, height);
 }
 
 static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
@@ -311,8 +310,8 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 
   // text label
   CGFloat labelInsetX = 30.0;
-  CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
-  _textLabel.frame = CGRectInset(contentRect, labelInsetX, 0);
+  CGRect contentRect = contentRectForWindow(self);
+  _textLabel.frame = CGRectOffset(CGRectInset(contentRect, labelInsetX, 0), 0, _style.textStyle.textOffsetY);
 
   // background type
   [self layoutSubviewsForBackgroundType];
@@ -377,7 +376,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   }
 
   // layout pill
-  CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
+  CGRect contentRect = contentRectForWindow(self);
   CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, fittedTextWidthForLabel(_textLabel) + paddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
