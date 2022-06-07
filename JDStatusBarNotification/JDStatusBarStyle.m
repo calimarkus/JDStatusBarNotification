@@ -38,6 +38,8 @@
     _height = 36.0;
     _topSpacing = 6.0;
     _minimumWidth = 160.0;
+    _borderColor = nil;
+    _borderWidth = 0.0;
     _shadowColor = nil;
     _shadowRadius = 4.0;
     _shadowOffset = CGSizeMake(0, 2);
@@ -50,6 +52,8 @@
   style.height = self.height;
   style.topSpacing = self.topSpacing;
   style.minimumWidth = self.minimumWidth;
+  style.borderColor = self.borderColor;
+  style.borderWidth = self.borderWidth;
   style.shadowColor = self.shadowColor;
   style.shadowRadius = self.shadowRadius;
   style.shadowOffset = self.shadowOffset;

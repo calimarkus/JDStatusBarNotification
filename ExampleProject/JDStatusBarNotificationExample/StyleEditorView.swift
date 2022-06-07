@@ -32,6 +32,8 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var minimumPillWidth: Double = 160.0
   @Published var pillHeight: Double = 36.0
   @Published var pillSpacingY: Double = 6.0
+  @Published var pillBorderColor: UIColor? = nil
+  @Published var pillBorderWidth: Double = 0.0
   @Published var pillShadowColor: UIColor? = UIColor(white: 0.0, alpha: 0.33)
   @Published var pillShadowRadius: Double = 4.0
   @Published var pillShadowOffset: CGSize = .init(width: 0.0, height: 2.0)
@@ -76,6 +78,8 @@ class CustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.pillStyle.minimumWidth = minimumPillWidth
     style.backgroundStyle.pillStyle.height = pillHeight
     style.backgroundStyle.pillStyle.topSpacing = pillSpacingY
+    style.backgroundStyle.pillStyle.borderColor = pillBorderColor
+    style.backgroundStyle.pillStyle.borderWidth = pillBorderWidth
     style.backgroundStyle.pillStyle.shadowColor = pillShadowColor
     style.backgroundStyle.pillStyle.shadowRadius = pillShadowRadius
     style.backgroundStyle.pillStyle.shadowOffset = pillShadowOffset
@@ -115,6 +119,8 @@ class CustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.minimumPillWidth = \(minimumPillWidth)
     style.backgroundStyle.pillStyle.height = \(pillHeight)
     style.backgroundStyle.pillStyle.topSpacing = \(pillSpacingY)
+    style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor ?? .clear)
+    style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
     style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor ?? .clear)
     style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
     style.backgroundStyle.pillStyle.shadowOffset = (\(pillShadowOffset.width), \(pillShadowOffset.height))
@@ -331,6 +337,13 @@ struct StyleEditorView: View {
           Stepper("Min Pill Width (\(Int(style.minimumPillWidth)))",
                   value: $style.minimumPillWidth,
                   in: 0...999)
+            .font(.subheadline)
+
+          customColorPicker(title: "Pill Border Color", binding: $style.pillBorderColor)
+
+          Stepper("Pill Border Width (\(Int(style.pillBorderWidth)))",
+                  value: $style.pillBorderWidth,
+                  in: 0...99)
             .font(.subheadline)
 
           customColorPicker(title: "Pill Shadow Color", binding: $style.pillShadowColor)
