@@ -120,7 +120,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (void)createPillBackgroundViewIfNeeded {
   if (_pillBackgroundView == nil) {
     _pillBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-    _pillBackgroundView.backgroundColor = _style.backgroundStyle.backgroundColor;
     _pillBackgroundView.tag = kExpectedSubviewTag;
     [self addSubview:_pillBackgroundView];
     [self sendSubviewToBack:_pillBackgroundView];
@@ -356,27 +355,31 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 
   // pill layout parameters
   CGFloat pillHeight = pillStyle.height;
-  CGFloat textPaddingX = 20.0;
+  CGFloat paddingX = 20.0;
   CGFloat minimumPillInset = 20.0;
   CGFloat maximumPillWidth = self.bounds.size.width - minimumPillInset * 2;
   CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, pillStyle.minimumWidth));
 
-  // activity indicator adjustment
+  // activity indicator padding adjustment
   if (_displaysActivityIndicator) {
-    textPaddingX += round((CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing) / 2.0);
+    paddingX += round((CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing) / 2.0);
   }
 
-  // layout pill background
+  // layout pill
   CGRect contentRect = contentRectForWindow(self, _style.textStyle.textOffsetY);
-  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, fittedTextWidthForLabel(_textLabel) + textPaddingX * 2)));
+  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, fittedTextWidthForLabel(_textLabel) + paddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
   _pillBackgroundView.frame = pillFrame;
-  _pillBackgroundView.layer.cornerRadius = round(_pillBackgroundView.frame.size.height / 2.0);
 
-  // adjust text label
-  _textLabel.frame = CGRectOffset(CGRectInset(pillFrame, textPaddingX, 0), 0, _style.textStyle.textOffsetY);
+  // layout text label
+  _textLabel.frame = CGRectOffset(CGRectInset(pillFrame, paddingX, 0), 0, _style.textStyle.textOffsetY);
+
+  // setup rounded corners (not using a mask layer, so that we can use shadows on this view)
+  _pillBackgroundView.layer.cornerRadius = round(_pillBackgroundView.frame.size.height / 2.0);
+  _pillBackgroundView.layer.cornerCurve = kCACornerCurveContinuous;
+  _pillBackgroundView.layer.allowsEdgeAntialiasing = YES;
 
   // mask progress to pill size & shape
   _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:pillFrame fromView:self]);
