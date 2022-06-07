@@ -130,6 +130,15 @@ NS_SWIFT_NAME(BarPillStyle)
 /// The minimum with of the pill. Default is 160.0.
 @property (nonatomic, assign) CGFloat minimumWidth;
 
+/// The shadow color of the pill shadow. The default is nil, meaning no shadow.
+@property (nonatomic, strong, nullable) UIColor *shadowColor;
+
+/// The shadow radius of the pill shadow. The default is 4.0.
+@property (nonatomic, assign) CGFloat shadowRadius;
+
+/// The shadow offset for the pill shadow. The default is (0,2).
+@property (nonatomic, assign) CGSize shadowOffset;
+
 @end
 
 /**

@@ -24,13 +24,17 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
   @Published var textOffsetY: CGFloat = 0.0
   @Published var textShadowColor: UIColor? = .systemTeal
-  @Published var textShadowOffset: CGSize = .init(width: 2.0, height: 2.0)
+  @Published var textShadowOffset: CGSize = .init(width: 1.0, height: 2.0)
 
   @Published var backgroundColor: UIColor? = .systemTeal
   @Published var backgroundType: BarBackgroundType = .pill
+
   @Published var minimumPillWidth: Double = 160.0
   @Published var pillHeight: Double = 36.0
   @Published var pillSpacingY: Double = 6.0
+  @Published var pillShadowColor: UIColor? = UIColor(white: 0.0, alpha: 0.33)
+  @Published var pillShadowRadius: Double = 4.0
+  @Published var pillShadowOffset: CGSize = .init(width: 0.0, height: 2.0)
 
   @Published var animationType: AnimationType = .bounce
   @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
@@ -72,6 +76,9 @@ class CustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.pillStyle.minimumWidth = minimumPillWidth
     style.backgroundStyle.pillStyle.height = pillHeight
     style.backgroundStyle.pillStyle.topSpacing = pillSpacingY
+    style.backgroundStyle.pillStyle.shadowColor = pillShadowColor
+    style.backgroundStyle.pillStyle.shadowRadius = pillShadowRadius
+    style.backgroundStyle.pillStyle.shadowOffset = pillShadowOffset
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
@@ -88,7 +95,7 @@ class CustomStyle: ObservableObject, Equatable {
 
   func styleConfigurationString() -> String {
     var text = """
-    style.textStyle.textColor = \(textColor ?? .white)
+    style.textStyle.textColor = \(textColor ?? .clear)
     style.textStyle.font = \(font)
     style.textStyle.textOffsetY = \(textOffsetY)
     """
@@ -97,17 +104,20 @@ class CustomStyle: ObservableObject, Equatable {
       text.append("\n")
       text.append("""
       style.textStyle.textShadowColor = \(color)
-      style.textStyle.textShadowOffset = \(textShadowOffset)
+      style.textStyle.textShadowOffset = (\(textShadowOffset.width), \(textShadowOffset.height))
       """)
     }
 
     text.append("\n\n")
     text.append("""
-    style.backgroundStyle.backgroundColor = \(backgroundColor ?? .white)
+    style.backgroundStyle.backgroundColor = \(backgroundColor ?? .clear)
     style.backgroundStyle.backgroundType = \(backgroundType)
     style.backgroundStyle.minimumPillWidth = \(minimumPillWidth)
     style.backgroundStyle.pillStyle.height = \(pillHeight)
     style.backgroundStyle.pillStyle.topSpacing = \(pillSpacingY)
+    style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor ?? .clear)
+    style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
+    style.backgroundStyle.pillStyle.shadowOffset = (\(pillShadowOffset.width), \(pillShadowOffset.height))
 
     style.animationType = \(animationType)
     style.systemStatusBarStyle = \(systemStatusBarStyle)
@@ -115,7 +125,7 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition)
-    style.progressBarStyle.barColor = \(pbBarColor ?? .white)
+    style.progressBarStyle.barColor = \(pbBarColor ?? .clear)
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
     style.progressBarStyle.offsetY = \(pbBarOffset)
@@ -263,20 +273,7 @@ struct StyleEditorView: View {
         if let _ = style.textShadowColor {
           customColorPicker(title: "Text Shadow Color", binding: $style.textShadowColor)
 
-          VStack(alignment: .leading, spacing: 6.0) {
-            Text("Text Shadow Offset (\(Int(style.textShadowOffset.width))/\(Int(style.textShadowOffset.height)))")
-              .font(.subheadline)
-            HStack(alignment: .center, spacing: 20.0) {
-              Spacer()
-              Stepper("X:", value: $style.textShadowOffset.width)
-                .frame(width: 120)
-                .font(.subheadline)
-              Stepper("Y:", value: $style.textShadowOffset.height)
-                .frame(width: 120)
-                .font(.subheadline)
-              Spacer()
-            }
-          }
+          xyStepper(title: "Text Shadow Offset", binding: $style.textShadowOffset)
         }
       }
 
@@ -301,23 +298,6 @@ struct StyleEditorView: View {
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
-        if style.backgroundType == .pill {
-          Stepper("Pill height (\(Int(style.pillHeight)))",
-                  value: $style.pillHeight,
-                  in: 20...80)
-            .font(.subheadline)
-
-          Stepper("Pill Spacing Y (\(Int(style.pillSpacingY)))",
-                  value: $style.pillSpacingY,
-                  in: 0...99)
-            .font(.subheadline)
-
-          Stepper("Min Pill Width (\(Int(style.minimumPillWidth)))",
-                  value: $style.minimumPillWidth,
-                  in: 0...999)
-            .font(.subheadline)
-        }
-
         VStack(alignment: .leading) {
           Text("System StatusBar Style").font(.subheadline)
           Picker("", selection: $style.systemStatusBarStyle) {
@@ -333,6 +313,34 @@ struct StyleEditorView: View {
             Text("Enabled").tag(true)
             Text("Disabled").tag(false)
           }.font(.subheadline).pickerStyle(.segmented)
+        }
+      }
+
+      if style.backgroundType == .pill {
+        Section("Pill background") {
+          Stepper("Pill height (\(Int(style.pillHeight)))",
+                  value: $style.pillHeight,
+                  in: 20...80)
+            .font(.subheadline)
+
+          Stepper("Pill Spacing Y (\(Int(style.pillSpacingY)))",
+                  value: $style.pillSpacingY,
+                  in: 0...99)
+            .font(.subheadline)
+
+          Stepper("Min Pill Width (\(Int(style.minimumPillWidth)))",
+                  value: $style.minimumPillWidth,
+                  in: 0...999)
+            .font(.subheadline)
+
+          customColorPicker(title: "Pill Shadow Color", binding: $style.pillShadowColor)
+
+          Stepper("Pill Shadow Radius (\(Int(style.pillShadowRadius)))",
+                  value: $style.pillShadowRadius,
+                  in: 0...99)
+            .font(.subheadline)
+
+          xyStepper(title: "Pill Shadow Offset", binding: $style.pillShadowOffset)
         }
       }
 
@@ -377,6 +385,23 @@ struct StyleEditorView: View {
       binding.wrappedValue = UIColor(cgColor: val)
     }))
     .font(.subheadline)
+  }
+
+  func xyStepper(title: String, binding: Binding<CGSize>) -> some View {
+    VStack(alignment: .leading, spacing: 6.0) {
+      Text("\(title) (\(Int(binding.width.wrappedValue))/\(Int(binding.height.wrappedValue)))")
+        .font(.subheadline)
+      HStack(alignment: .center, spacing: 20.0) {
+        Spacer()
+        Stepper("X:", value: binding.width)
+          .frame(width: 120)
+          .font(.subheadline)
+        Stepper("Y:", value: binding.height)
+          .frame(width: 120)
+          .font(.subheadline)
+        Spacer()
+      }
+    }
   }
 
   func buttonRow(title: String, subtitle: String? = nil, action: @escaping () -> Void) -> some View {

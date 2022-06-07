@@ -270,6 +270,13 @@ static const NSInteger kExpectedSubviewTag = 12321;
       self.backgroundColor = [UIColor clearColor];
       [self createPillBackgroundViewIfNeeded];
       _pillBackgroundView.backgroundColor = backgroundStyle.backgroundColor;
+
+      // set shadows
+      JDStatusBarPillStyle *pillStyle = backgroundStyle.pillStyle;
+      _pillBackgroundView.layer.shadowColor = pillStyle.shadowColor.CGColor;
+      _pillBackgroundView.layer.shadowRadius = pillStyle.shadowColor ? pillStyle.shadowRadius : 0.0;
+      _pillBackgroundView.layer.shadowOpacity = pillStyle.shadowColor ? 1.0 : 0.0;
+      _pillBackgroundView.layer.shadowOffset = pillStyle.shadowColor ? pillStyle.shadowOffset : CGSizeZero;
       break;
     }
   }
