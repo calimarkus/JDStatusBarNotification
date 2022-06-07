@@ -1,6 +1,50 @@
 //
 //
 
+extension AnimationType: RawRepresentable {
+  var rawValue: String {
+    switch self {
+      case .none: return ".none"
+      case .move: return ".move"
+      case .fade: return ".fade"
+      case .bounce: return ".bounce"
+      default: return "?"
+    }
+  }
+}
+
+extension BarBackgroundType: RawRepresentable {
+  var rawValue: String {
+    switch self {
+      case .classic: return ".classic"
+      case .pill: return ".pill"
+      default: return "?"
+    }
+  }
+}
+
+extension StatusBarSystemStyle: RawRepresentable {
+  var rawValue: String {
+    switch self {
+      case .default: return ".default"
+      case .lightContent: return ".lightContent"
+      case .darkContent: return ".darkContent"
+      default: return "?"
+    }
+  }
+}
+
+extension ProgressBarPosition: RawRepresentable {
+  var rawValue: String {
+    switch self {
+      case .top: return ".top"
+      case .center: return ".center"
+      case .bottom: return ".bottom"
+      default: return "?"
+    }
+  }
+}
+
 class CustomStyle: ObservableObject, Equatable {
   @Published var textColor: UIColor? = .white
   @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
@@ -81,39 +125,39 @@ class CustomStyle: ObservableObject, Equatable {
 
   func styleConfigurationString() -> String {
     var text = """
-    style.textStyle.textColor = \(textColor ?? .clear)
-    style.textStyle.font = \(font)
+    style.textStyle.textColor = \(readableRGBAColorString(textColor))
+    style.textStyle.font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))
     style.textStyle.textOffsetY = \(textOffsetY)
     """
 
     if let color = textShadowColor {
       text.append("\n")
       text.append("""
-      style.textStyle.textShadowColor = \(color)
+      style.textStyle.textShadowColor = \(readableRGBAColorString(color))
       style.textStyle.textShadowOffset = (\(textShadowOffset.width), \(textShadowOffset.height))
       """)
     }
 
     text.append("\n\n")
     text.append("""
-    style.backgroundStyle.backgroundColor = \(backgroundColor ?? .clear)
-    style.backgroundStyle.backgroundType = \(backgroundType)
+    style.backgroundStyle.backgroundColor = \(readableRGBAColorString(backgroundColor))
+    style.backgroundStyle.backgroundType = \(backgroundType.rawValue)
     style.backgroundStyle.minimumPillWidth = \(minimumPillWidth)
     style.backgroundStyle.pillStyle.height = \(pillHeight)
     style.backgroundStyle.pillStyle.topSpacing = \(pillSpacingY)
-    style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor ?? .clear)
+    style.backgroundStyle.pillStyle.borderColor = \(readableRGBAColorString(pillBorderColor))
     style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
-    style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor ?? .clear)
+    style.backgroundStyle.pillStyle.shadowColor = \(readableRGBAColorString(pillShadowColor))
     style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
     style.backgroundStyle.pillStyle.shadowOffset = (\(pillShadowOffset.width), \(pillShadowOffset.height))
 
-    style.animationType = \(animationType)
-    style.systemStatusBarStyle = \(systemStatusBarStyle)
+    style.animationType = \(animationType.rawValue)
+    style.systemStatusBarStyle = \(systemStatusBarStyle.rawValue)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
-    style.progressBarStyle.position = \(pbPosition)
-    style.progressBarStyle.barColor = \(pbBarColor ?? .clear)
+    style.progressBarStyle.position = \(pbPosition.rawValue)
+    style.progressBarStyle.barColor = \(readableRGBAColorString(pbBarColor))
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
     style.progressBarStyle.offsetY = \(pbBarOffset)
@@ -122,5 +166,20 @@ class CustomStyle: ObservableObject, Equatable {
     text.append("\n")
 
     return text
+  }
+
+  func readableRGBAColorString(_ color: UIColor?) -> String {
+    if let color = color {
+      var red: CGFloat = 0
+      var green: CGFloat = 0
+      var blue: CGFloat = 0
+      var alpha: CGFloat = 0
+      color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+      if #available(iOS 14.0, *) {
+        return "UIColor(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)) // \"\(color.accessibilityName)\""
+      }
+    }
+
+    return "nil"
   }
 }
