@@ -9,12 +9,7 @@
 #import "SBExampleViewController.h"
 
 #import "SBStyleEditorViewController.h"
-
-#if IS_SCENE_BASED_EXAMPLE
-  #import "JDSBN_WindowSceneExample-Swift.h"
-#else
-  #import "JDSBN_ClassicExample-Swift.h"
-#endif
+#import "Swift-To-ObjC-Header.h"
 
 @implementation SBExampleViewController {
   UIViewController *_hostingController;
