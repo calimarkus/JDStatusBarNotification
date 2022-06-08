@@ -242,6 +242,7 @@ struct ExamplesView: View {
       style.backgroundStyle.backgroundColor = .cyan
       style.backgroundStyle.backgroundType = usePill ? .pill : .classic
       style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
+      style.textStyle.textOffsetY = 3.0
       style.animationType = .bounce
       style.textStyle.font = UIFont(name: "DINCondensed-Bold", size: 17.0)!
       style.progressBarStyle.barColor = UIColor(white: 1.0, alpha: 0.66)
