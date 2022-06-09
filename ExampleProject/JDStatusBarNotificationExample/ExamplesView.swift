@@ -144,21 +144,13 @@ struct ExamplesView: View {
       }
 
       Section("Included Styles") {
-        cell(title: "Present .error", subtitle: "Duration: 3s") {
-          showIncludedStyle("No, I don't have the money..", style: .error)
-        }
-        cell(title: "Present .warning", subtitle: "Duration: 3s") {
-          showIncludedStyle("You know who I am!", style: .warning)
-        }
-        cell(title: "Present .success", subtitle: "Duration: 3s") {
-          showIncludedStyle("That's how we roll!", style: .success)
-        }
-        cell(title: "Present .dark", subtitle: "Duration: 3s") {
-          showIncludedStyle("Don't mess with me!", style: .dark)
-        }
-        cell(title: "Present .matrix", subtitle: "Duration: 3s") {
-          showIncludedStyle("Wake up Neo…", style: .matrix)
-        }
+        includedStyleCell("Uh huh.", style: .default)
+        includedStyleCell("It's time.", style: .light)
+        includedStyleCell("Don't mess with me!", style: .dark)
+        includedStyleCell("That's how we roll!", style: .success)
+        includedStyleCell("You know who I am!", style: .warning)
+        includedStyleCell("Uh oh, that didn't work..", style: .error)
+        includedStyleCell("Wake up Neo…", style: .matrix)
       }
 
       Section("Custom Styles") {
@@ -233,6 +225,12 @@ struct ExamplesView: View {
           .frame(width: 30.0)
       }
     })
+  }
+
+  func includedStyleCell(_ text: String, style: IncludedStatusBarStyle) -> some View {
+    cell(title: "Present \(style.rawValue)", subtitle: "Duration: 3s") {
+      showIncludedStyle(text, style: style)
+    }
   }
 
   func setupCustomStyles(_ backgroundType: BarBackgroundType) {

@@ -12,18 +12,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, JDStatusBarIncludedStyle) {
-  /// This style has a red background with a white Helvetica label.
-  JDStatusBarIncludedStyleError,
-  /// This style has a yellow background with a gray Helvetica label.
-  JDStatusBarIncludedStyleWarning,
-  /// This style has a green background with a white Helvetica label.
-  JDStatusBarIncludedStyleSuccess,
-  /// This style has a black background with a green bold Courier label.
-  JDStatusBarIncludedStyleMatrix,
-  /// This style has a white background with a gray Helvetica label.
+  /// A dynamic style matching the .light style in light mode and .dark in dark mode.
   JDStatusBarIncludedStyleDefault,
-  /// This style has a nearly black background with a nearly white Helvetica label.
+  /// A white background with a gray text.
+  JDStatusBarIncludedStyleLight,
+  /// A nearly black background with a nearly white text.
   JDStatusBarIncludedStyleDark,
+  /// A green background with a white text.
+  JDStatusBarIncludedStyleSuccess,
+  /// A yellow background with a gray text.
+  JDStatusBarIncludedStyleWarning,
+  /// A red background with a white text.
+  JDStatusBarIncludedStyleError,
+  /// A black background with a green bold monospace text..
+  JDStatusBarIncludedStyleMatrix,
 } NS_SWIFT_NAME(IncludedStatusBarStyle);
 
 typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
@@ -82,7 +84,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-/// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored.
+/// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored. The default is .default.
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
 /// Defines if the bar can be dismissed by the user or not (by swiping up). Default is true.
@@ -96,7 +98,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 NS_SWIFT_NAME(NotificationTextStyle)
 @interface JDStatusBarTextStyle : NSObject <NSCopying>
 
-/// The text color of the notification label. Default is .gray
+/// The text color of the notification label. Default is .gray and adjusts for dark mode.
 @property (nonatomic, strong, nullable) UIColor *textColor;
 
 /// The font of the notification label, the default is UIFontTextStyleFootnote.

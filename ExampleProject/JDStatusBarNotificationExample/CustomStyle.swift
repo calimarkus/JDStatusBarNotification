@@ -1,6 +1,21 @@
 //
 //
 
+extension IncludedStatusBarStyle: RawRepresentable {
+  var rawValue: String {
+    switch self {
+      case .default: return ".default"
+      case .light: return ".light"
+      case .dark: return ".dark"
+      case .success: return ".success"
+      case .warning: return ".warning"
+      case .error: return ".error"
+      case .matrix: return ".matrix"
+      default: return "?"
+    }
+  }
+}
+
 extension BarAnimationType: RawRepresentable {
   var rawValue: String {
     switch self {

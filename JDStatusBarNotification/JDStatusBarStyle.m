@@ -12,7 +12,16 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _textColor = [UIColor grayColor];
+    _textColor = [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+      switch (traitCollection.userInterfaceStyle) {
+        case UIUserInterfaceStyleUnspecified:
+        case UIUserInterfaceStyleLight:
+          return [UIColor grayColor];
+        case UIUserInterfaceStyleDark:
+          return [UIColor colorWithWhite:0.95 alpha:1.0];
+      }
+    }];
+
     _font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     _textShadowColor = nil;
     _textShadowOffset = CGSizeMake(1.0, 2.0);
@@ -70,7 +79,16 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _backgroundColor = [UIColor whiteColor];
+    _backgroundColor = [UIColor colorWithDynamicProvider:^UIColor *(UITraitCollection *traitCollection) {
+      switch (traitCollection.userInterfaceStyle) {
+        case UIUserInterfaceStyleUnspecified:
+        case UIUserInterfaceStyleLight:
+          return [UIColor whiteColor];
+        case UIUserInterfaceStyleDark:
+          return [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
+      }
+    }];
+
     _backgroundType = JDStatusBarBackgroundTypePill;
     _pillStyle = [JDStatusBarPillStyle new];
   }
@@ -123,7 +141,7 @@
     _textStyle = [JDStatusBarTextStyle new];
     _backgroundStyle = [JDStatusBarBackgroundStyle new];
     _animationType = JDStatusBarAnimationTypeMove;
-    _systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
+    _systemStatusBarStyle = JDStatusBarSystemStyleDefault;
     _progressBarStyle = [JDStatusBarProgressBarStyle new];
     _canSwipeToDismiss = YES;
   }
