@@ -195,11 +195,7 @@
   return [_styleCache addStyleNamed:styleName basedOnStyle:basedOnStyle prepare:prepareBlock];
 }
 
-#pragma mark - Others
-
-- (void)updateText:(NSString *)text {
-  [_overlayWindow.statusBarViewController.statusBarView setText:text];
-}
+#pragma mark - Progress Bar
 
 - (void)displayProgressBarWithPercentage:(CGFloat)percentage {
   [_overlayWindow.statusBarViewController.statusBarView setProgressBarPercentage:percentage];
@@ -217,9 +213,16 @@
     }
   }];
 }
+#pragma mark - Activity Indicator
 
 - (void)displayActivityIndicator:(BOOL)show {
   [_overlayWindow.statusBarViewController.statusBarView setDisplaysActivityIndicator:show];
+}
+
+#pragma mark - Others
+
+- (void)updateText:(NSString *)text {
+  [_overlayWindow.statusBarViewController.statusBarView setText:text];
 }
 
 - (BOOL)isVisible {

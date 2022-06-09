@@ -227,14 +227,7 @@ NS_SWIFT_NAME(NotificationPresenter)
                basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
                     prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:basedOnIncludedStyle:prepare:));
 
-#pragma mark - Others
-
-/**
- *  Updates the text of an existing notification without any animation.
- *
- *  @param text The new message to display
- */
-- (void)updateText:(NSString *)text;
+#pragma mark - Progress Bar
 
 /**
  *  Displays a progress bar according to the current progressBarStyle. Displays the given percentage immediately without any animation.
@@ -254,12 +247,23 @@ NS_SWIFT_NAME(NotificationPresenter)
                      animationDuration:(CGFloat)animationDuration
                             completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(animateProgressBar(toPercentage:animationDuration:completion:));
 
+#pragma mark - Activity Indicator
+
 /**
  *  Displays an activity indicator in front of the notification text. It will have the same color as the text color of the current style.
  *
  *  @param show  Show or hide the activity indicator.
  */
 - (void)displayActivityIndicator:(BOOL)show;
+
+#pragma mark - Others
+
+/**
+ *  Updates the text of an existing notification without any animation.
+ *
+ *  @param text The new message to display
+ */
+- (void)updateText:(NSString *)text;
 
 /**
  *  Check if any notification is currently displayed.
