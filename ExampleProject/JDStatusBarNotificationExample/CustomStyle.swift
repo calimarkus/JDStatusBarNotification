@@ -46,38 +46,68 @@ extension ProgressBarPosition: RawRepresentable {
 }
 
 class CustomStyle: ObservableObject, Equatable {
-  @Published var textColor: UIColor? = .white
-  @Published var font: UIFont = .init(name: "Futura-Medium", size: 15.0)!
-  @Published var textOffsetY: CGFloat = 0.0
-  @Published var textShadowColor: UIColor? = .systemTeal
-  @Published var textShadowOffset: CGSize = .init(width: 1.0, height: 2.0)
+  @Published var textColor: UIColor?
+  @Published var font: UIFont
+  @Published var textOffsetY: CGFloat
+  @Published var textShadowColor: UIColor?
+  @Published var textShadowOffset: CGSize
 
-  @Published var backgroundColor: UIColor? = .systemTeal
-  @Published var backgroundType: BarBackgroundType = .pill
+  @Published var backgroundColor: UIColor?
+  @Published var backgroundType: BarBackgroundType
 
-  @Published var minimumPillWidth: Double = 160.0
-  @Published var pillHeight: Double = 36.0
-  @Published var pillSpacingY: Double = 6.0
-  @Published var pillBorderColor: UIColor? = nil
-  @Published var pillBorderWidth: Double = 0.0
-  @Published var pillShadowColor: UIColor? = UIColor(white: 0.0, alpha: 0.33)
-  @Published var pillShadowRadius: Double = 4.0
-  @Published var pillShadowOffset: CGSize = .init(width: 0.0, height: 2.0)
+  @Published var minimumPillWidth: Double
+  @Published var pillHeight: Double
+  @Published var pillSpacingY: Double
+  @Published var pillBorderColor: UIColor?
+  @Published var pillBorderWidth: Double
+  @Published var pillShadowColor: UIColor?
+  @Published var pillShadowRadius: Double
+  @Published var pillShadowOffset: CGSize
 
-  @Published var animationType: AnimationType = .bounce
-  @Published var systemStatusBarStyle: StatusBarSystemStyle = .lightContent
-  @Published var canSwipeToDismiss: Bool = true
+  @Published var animationType: AnimationType
+  @Published var systemStatusBarStyle: StatusBarSystemStyle
+  @Published var canSwipeToDismiss: Bool
 
-  @Published var pbBarColor: UIColor? = UIColor(red: 0.774822, green: 0.817868, blue: 0.278994, alpha: 1)
-  @Published var pbBarHeight: CGFloat = 6.0 { didSet {
+  @Published var pbBarColor: UIColor?
+  @Published var pbBarHeight: CGFloat { didSet {
     if pbCornerRadius > 0.0 {
       pbCornerRadius = floor(pbBarHeight / 2.0)
     }
   }}
-  @Published var pbPosition: ProgressBarPosition = .bottom
-  @Published var pbHorizontalInsets: CGFloat = 20.0
-  @Published var pbCornerRadius: CGFloat = 3.0
-  @Published var pbBarOffset: CGFloat = -3.0
+  @Published var pbPosition: ProgressBarPosition
+  @Published var pbHorizontalInsets: CGFloat
+  @Published var pbCornerRadius: CGFloat
+  @Published var pbBarOffset: CGFloat
+
+  init(_ defaultStyle: StatusBarStyle) {
+    textColor = UIColor(white: 0.1, alpha: 1.0)
+    font = .systemFont(ofSize: 14.0)
+    textOffsetY = defaultStyle.textStyle.textOffsetY
+    textShadowColor = defaultStyle.textStyle.textShadowColor
+    textShadowOffset = defaultStyle.textStyle.textShadowOffset
+
+    backgroundColor = UIColor(red: 0.7960, green: 0.9411, blue: 0.9999, alpha: 1.0) // "light cyan blue"
+    backgroundType = defaultStyle.backgroundStyle.backgroundType
+    minimumPillWidth = 200.0
+    pillHeight = 50.0
+    pillSpacingY = 2.0
+    pillBorderColor = defaultStyle.backgroundStyle.pillStyle.borderColor
+    pillBorderWidth = defaultStyle.backgroundStyle.pillStyle.borderWidth
+    pillShadowColor = UIColor(white: 0.0, alpha: 0.08)
+    pillShadowRadius = defaultStyle.backgroundStyle.pillStyle.shadowRadius
+    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
+
+    animationType = .bounce
+    systemStatusBarStyle = .default
+    canSwipeToDismiss = defaultStyle.canSwipeToDismiss
+
+    pbBarColor = UIColor(red: 0.00392, green: 0.4313, blue: 0.5607, alpha: 1.0) // "dark cyan"
+    pbBarHeight = 3.0
+    pbPosition = .bottom
+    pbHorizontalInsets = 20.0
+    pbCornerRadius = 1.0
+    pbBarOffset = -7.0
+  }
 
   static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
     return false // a hack to trigger .onChange(of: style) on every change

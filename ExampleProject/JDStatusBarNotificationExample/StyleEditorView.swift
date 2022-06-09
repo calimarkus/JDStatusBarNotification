@@ -7,14 +7,15 @@ import SwiftUI
 class StyleEditorViewFactory: NSObject {
   static let initialText = "You are doing great!"
   static let initialProgress = 0.87
+  static let customStyle: CustomStyle = CustomStyle(StatusBarStyle())
 
   @objc static func createStyleEditorView() -> UIViewController {
     presentInitialNotification()
-    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: false, progress: initialProgress))
+    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: false, progress: initialProgress, style: customStyle))
   }
 
   static func presentInitialNotification() {
-    StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: CustomStyle().registerComputedStyle())
+    StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: customStyle.registerComputedStyle())
     NotificationPresenter.shared().displayProgressBar(percentage: initialProgress)
   }
 }
@@ -24,7 +25,7 @@ struct StyleEditorView: View {
   @State var text: String
   @State var showActivity: Bool
   @State var progress: Double
-  @StateObject var style: CustomStyle = .init()
+  @StateObject var style: CustomStyle
 
   weak static var statusBarView: JDStatusBarView? = nil
 
@@ -210,8 +211,7 @@ struct StyleEditorView: View {
                   in: 0...999)
             .font(.subheadline)
 
-
-          optionalColorToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: style.textColor)
+          optionalColorToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: .black)
 
           if let _ = style.pillBorderColor {
             customColorPicker(title: "  Border Color", binding: $style.pillBorderColor)
@@ -375,6 +375,6 @@ public struct FontPicker: UIViewControllerRepresentable {
 @available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33)
+    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle()))
   }
 }
