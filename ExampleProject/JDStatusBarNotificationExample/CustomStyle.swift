@@ -123,35 +123,51 @@ class CustomStyle: ObservableObject, Equatable {
     return style
   }
 
+  @SimpleStringBuilder
   func styleConfigurationString() -> String {
-    var text = """
+    """
     style.textStyle.textColor = \(readableRGBAColorString(textColor))
     style.textStyle.font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))
     style.textStyle.textOffsetY = \(textOffsetY)
     """
 
-    if let color = textShadowColor {
-      text.append("\n")
-      text.append("""
-      style.textStyle.textShadowColor = \(readableRGBAColorString(color))
-      style.textStyle.textShadowOffset = (\(textShadowOffset.width), \(textShadowOffset.height))
-      """)
+    if let textShadowColor = textShadowColor {
+      """
+      style.textStyle.textShadowColor = \(readableRGBAColorString(textShadowColor))
+      style.textStyle.textShadowOffset = CGSize(width: \(textShadowOffset.width), height: \(textShadowOffset.height))
+      """
     }
 
-    text.append("\n\n")
-    text.append("""
-    style.backgroundStyle.backgroundColor = \(readableRGBAColorString(backgroundColor))
+    """
+    \nstyle.backgroundStyle.backgroundColor = \(readableRGBAColorString(backgroundColor))
     style.backgroundStyle.backgroundType = \(backgroundType.rawValue)
-    style.backgroundStyle.minimumPillWidth = \(minimumPillWidth)
-    style.backgroundStyle.pillStyle.height = \(pillHeight)
-    style.backgroundStyle.pillStyle.topSpacing = \(pillSpacingY)
-    style.backgroundStyle.pillStyle.borderColor = \(readableRGBAColorString(pillBorderColor))
-    style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
-    style.backgroundStyle.pillStyle.shadowColor = \(readableRGBAColorString(pillShadowColor))
-    style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
-    style.backgroundStyle.pillStyle.shadowOffset = (\(pillShadowOffset.width), \(pillShadowOffset.height))
+    """
 
-    style.animationType = \(animationType.rawValue)
+    if backgroundType == .pill {
+      """
+      \nstyle.backgroundStyle.pillStyle.minimumWidth = \(minimumPillWidth)
+      style.backgroundStyle.pillStyle.height = \(pillHeight)
+      style.backgroundStyle.pillStyle.topSpacing = \(pillSpacingY)
+      """
+
+      if let pillBorderColor = pillBorderColor {
+        """
+        style.backgroundStyle.pillStyle.borderColor = \(readableRGBAColorString(pillBorderColor))
+        style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
+        """
+      }
+
+      if let pillShadowColor = pillShadowColor {
+        """
+        style.backgroundStyle.pillStyle.shadowColor = \(readableRGBAColorString(pillShadowColor))
+        style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
+        style.backgroundStyle.pillStyle.shadowOffset = CGSize(width: \(pillShadowOffset.width), height: \(pillShadowOffset.height))
+        """
+      }
+    }
+
+    """
+    \nstyle.animationType = \(animationType.rawValue)
     style.systemStatusBarStyle = \(systemStatusBarStyle.rawValue)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
 
@@ -161,11 +177,7 @@ class CustomStyle: ObservableObject, Equatable {
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
     style.progressBarStyle.offsetY = \(pbBarOffset)
-    """)
-
-    text.append("\n")
-
-    return text
+    """
   }
 
   func readableRGBAColorString(_ color: UIColor?) -> String {
@@ -181,5 +193,16 @@ class CustomStyle: ObservableObject, Equatable {
     }
 
     return "nil"
+  }
+}
+
+@resultBuilder
+enum SimpleStringBuilder {
+  static func buildBlock(_ parts: String?...) -> String {
+    parts.compactMap { $0 }.joined(separator: "\n")
+  }
+
+  static func buildOptional(_ component: String?) -> String? {
+    return component
   }
 }
