@@ -39,7 +39,7 @@
     _topSpacing = 6.0;
     _minimumWidth = 160.0;
     _borderColor = nil;
-    _borderWidth = 0.0;
+    _borderWidth = 2.0;
     _shadowColor = nil;
     _shadowRadius = 4.0;
     _shadowOffset = CGSizeMake(0, 2);

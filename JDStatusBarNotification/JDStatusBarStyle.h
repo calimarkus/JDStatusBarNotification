@@ -133,7 +133,7 @@ NS_SWIFT_NAME(BarPillStyle)
 /// The border color of the pill. The default is nil, meaning no border.
 @property (nonatomic, strong, nullable) UIColor *borderColor;
 
-/// The width of the pill border. The default is 0.0.
+/// The width of the pill border. The default is 2.0.
 @property (nonatomic, assign) CGFloat borderWidth;
 
 /// The shadow color of the pill shadow. The default is nil, meaning no shadow.

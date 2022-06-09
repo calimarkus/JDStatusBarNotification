@@ -274,7 +274,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
       // set border
       _pillBackgroundView.layer.borderColor = pillStyle.borderColor.CGColor;
-      _pillBackgroundView.layer.borderWidth = pillStyle.borderWidth;
+      _pillBackgroundView.layer.borderWidth = pillStyle.borderColor ? pillStyle.borderWidth : 0.0;
 
       // set shadows
       _pillBackgroundView.layer.shadowColor = pillStyle.shadowColor.CGColor;
