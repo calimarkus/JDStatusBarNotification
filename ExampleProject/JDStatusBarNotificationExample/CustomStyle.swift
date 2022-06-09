@@ -30,7 +30,7 @@ extension BarAnimationType: RawRepresentable {
 extension BarBackgroundType: RawRepresentable {
   var rawValue: String {
     switch self {
-      case .classic: return ".classic"
+      case .fullWidth: return ".fullWidth"
       case .pill: return ".pill"
       default: return "?"
     }

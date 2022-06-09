@@ -133,8 +133,8 @@ struct ExamplesView: View {
         VStack(alignment: .leading) {
           Text("BackgroundStyle").font(.subheadline)
           Picker("", selection: $backgroundType) {
-            Text("Classic").tag(BarBackgroundType.classic)
-            Text("Pill").tag(BarBackgroundType.pill)
+            Text(BarBackgroundType.fullWidth.rawValue).tag(BarBackgroundType.fullWidth)
+            Text(BarBackgroundType.pill.rawValue).tag(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
         }
         .onChange(of: backgroundType) { _ in
@@ -176,7 +176,7 @@ struct ExamplesView: View {
 
         cell(title: "Present notification with button", subtitle: "Manually customized view") {
           let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .default) { style in
-            style.backgroundStyle.backgroundType = .classic
+            style.backgroundStyle.backgroundType = .fullWidth
             return style
           }
           let view = NotificationPresenter.shared().present(text: "", customStyle: styleName)
@@ -268,7 +268,7 @@ struct ExamplesView: View {
     switch backgroundType {
       case .pill:
         return 0.66
-      case .classic:
+      case .fullWidth:
         fallthrough
       default:
         return 1.2

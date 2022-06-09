@@ -171,8 +171,8 @@ struct StyleEditorView: View {
         VStack(alignment: .leading) {
           Text("BackgroundStyle").font(.subheadline)
           Picker("", selection: $style.backgroundType) {
-            Text("Classic").tag(BarBackgroundType.classic)
-            Text("Pill").tag(BarBackgroundType.pill)
+            Text(BarBackgroundType.fullWidth.rawValue).tag(BarBackgroundType.fullWidth)
+            Text(BarBackgroundType.pill.rawValue).tag(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 

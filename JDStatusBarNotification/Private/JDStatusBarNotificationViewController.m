@@ -154,7 +154,7 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
   switch (_statusBarView.style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic:
+    case JDStatusBarBackgroundTypeFullWidth:
       switch (_statusBarView.style.systemStatusBarStyle) {
         case JDStatusBarSystemStyleDefault:
           return [self defaultStatusBarStyle];

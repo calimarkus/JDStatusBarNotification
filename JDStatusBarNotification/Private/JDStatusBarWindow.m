@@ -61,7 +61,7 @@
 
 static CGFloat navBarHeight(UIWindowScene *windowScene, JDStatusBarStyle *style) {
   switch (style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic: {
+    case JDStatusBarBackgroundTypeFullWidth: {
       if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
           UIInterfaceOrientationIsLandscape(JDStatusBarOrientationForWindowScene(windowScene))) {
         return 32.0;

@@ -142,7 +142,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 - (CGRect)progressViewContentRectForBackgroundStyle {
   switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic:
+    case JDStatusBarBackgroundTypeFullWidth:
       return contentRectForWindow(self);
     case JDStatusBarBackgroundTypePill:
       return _pillBackgroundView.frame;
@@ -264,7 +264,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (void)applyStyleForBackgroundType {
   JDStatusBarBackgroundStyle *backgroundStyle = _style.backgroundStyle;
   switch (backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic:
+    case JDStatusBarBackgroundTypeFullWidth:
       self.backgroundColor = backgroundStyle.backgroundColor;
       break;
     case JDStatusBarBackgroundTypePill: {
@@ -348,7 +348,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 
 - (void)layoutSubviewsForBackgroundType {
   switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeClassic: {
+    case JDStatusBarBackgroundTypeFullWidth: {
       _pillBackgroundView.hidden = YES;
       _progressView.layer.mask = nil;
       break;
@@ -437,7 +437,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
   if (self.userInteractionEnabled) {
     switch (_style.backgroundStyle.backgroundType) {
-      case JDStatusBarBackgroundTypeClassic:
+      case JDStatusBarBackgroundTypeFullWidth:
         return [super hitTest:point withEvent:event];
       case JDStatusBarBackgroundTypePill:
         return [_pillBackgroundView hitTest:[self convertPoint:point toView:_pillBackgroundView] withEvent:event];
