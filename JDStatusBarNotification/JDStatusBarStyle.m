@@ -141,7 +141,7 @@
     _textStyle = [JDStatusBarTextStyle new];
     _backgroundStyle = [JDStatusBarBackgroundStyle new];
     _animationType = JDStatusBarAnimationTypeMove;
-    _systemStatusBarStyle = JDStatusBarSystemStyleDefault;
+    _systemStatusBarStyle = JDStatusBarSystemStyleDefaultStyle;
     _progressBarStyle = [JDStatusBarProgressBarStyle new];
     _canSwipeToDismiss = YES;
   }

@@ -179,7 +179,7 @@ struct StyleEditorView: View {
         VStack(alignment: .leading) {
           Text("System StatusBar Style").font(.subheadline)
           Picker("", selection: $style.systemStatusBarStyle) {
-            EnumPickerOptionView(StatusBarSystemStyle.default)
+            EnumPickerOptionView(StatusBarSystemStyle.defaultStyle)
             EnumPickerOptionView(StatusBarSystemStyle.lightContent)
             EnumPickerOptionView(StatusBarSystemStyle.darkContent)
           }.font(.subheadline).pickerStyle(.segmented)

@@ -10,7 +10,7 @@ protocol StringRepresentable {
 extension IncludedStatusBarStyle: StringRepresentable {
   var stringValue: String {
     switch self {
-      case .default: return ".default"
+      case .defaultStyle: return ".defaultStyle"
       case .light: return ".light"
       case .dark: return ".dark"
       case .success: return ".success"
@@ -46,7 +46,7 @@ extension BarBackgroundType: StringRepresentable {
 extension StatusBarSystemStyle: StringRepresentable {
   var stringValue: String {
     switch self {
-      case .default: return ".default"
+      case .defaultStyle: return ".defaultStyle"
       case .lightContent: return ".lightContent"
       case .darkContent: return ".darkContent"
       default: return "?"

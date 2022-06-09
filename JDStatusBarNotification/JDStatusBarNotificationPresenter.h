@@ -88,7 +88,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param text The message to display
  *  @param styleName The name of the style. You can use previously added custom styles.
- *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *  (e.g. JDStatusBarIncludedStyleDefaultStyle, etc.). If this is nil, or the no style can be found,, the default style will be used.
  *
  *  @return The presented JDStatusBarView for further customization
  */
@@ -101,7 +101,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param text The message to display
  *  @param styleName The name of the style. You can use previously added custom styles.
- *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *  (e.g. JDStatusBarIncludedStyleDefaultStyle, etc.). If this is nil, or the no style can be found,, the default style will be used.
  *  @param completion A completion block, which gets called once the animation finishes.
  *
  *  @return The presented JDStatusBarView for further customization
@@ -117,7 +117,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @param text The message to display
  *  @param delay The delay in seconds, before the notification should be dismissed.
  *  @param styleName The name of the style. You can use previously added custom styles.
- *  (e.g. JDStatusBarIncludedStyleDefault, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *  (e.g. JDStatusBarIncludedStyleDefaultStyle, etc.). If this is nil, or the no style can be found,, the default style will be used.
  *
  *  @return The presented JDStatusBarView for further customization
  */

@@ -30,7 +30,7 @@ struct ExamplesView: View {
   @State var backgroundType: BarBackgroundType = .pill
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
-    let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .default) { style in
+    let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
@@ -144,7 +144,7 @@ struct ExamplesView: View {
       }
 
       Section("Included Styles") {
-        includedStyleCell("Uh huh.", style: .default)
+        includedStyleCell("Uh huh.", style: .defaultStyle)
         includedStyleCell("It's time.", style: .light)
         includedStyleCell("Don't mess with me!", style: .dark)
         includedStyleCell("That's how we roll!", style: .success)
@@ -175,7 +175,7 @@ struct ExamplesView: View {
         }
 
         cell(title: "Present notification with button", subtitle: "Manually customized view") {
-          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .default) { style in
+          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = .fullWidth
             return style
           }

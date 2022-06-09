@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, JDStatusBarIncludedStyle) {
   /// A dynamic style matching the .light style in light mode and .dark in dark mode.
-  JDStatusBarIncludedStyleDefault,
+  JDStatusBarIncludedStyleDefaultStyle,
   /// A white background with a gray text.
   JDStatusBarIncludedStyleLight,
   /// A nearly black background with a nearly white text.
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
 
 typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
   /// Match the current viewController / window
-  JDStatusBarSystemStyleDefault,
+  JDStatusBarSystemStyleDefaultStyle,
   /// Force light status bar contents (UIStatusBarStyleLightContent)
   JDStatusBarSystemStyleLightContent,
   /// Force dark status bar contents (UIStatusBarStyleDarkContent)
@@ -84,7 +84,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-/// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored. The default is .default.
+/// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored. The default is .defaultStyle.
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
 /// Defines if the bar can be dismissed by the user or not (by swiping up). Default is true.

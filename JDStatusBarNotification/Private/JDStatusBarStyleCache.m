@@ -46,7 +46,7 @@
 
 static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
   switch (style) {
-    case JDStatusBarIncludedStyleDefault:
+    case JDStatusBarIncludedStyleDefaultStyle:
       return [JDStatusBarStyle new];
 
     case JDStatusBarIncludedStyleLight: {

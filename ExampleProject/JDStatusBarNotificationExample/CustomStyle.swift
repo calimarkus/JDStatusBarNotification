@@ -54,7 +54,7 @@ class CustomStyle: ObservableObject, Equatable {
     pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
 
     animationType = .bounce
-    systemStatusBarStyle = .default
+    systemStatusBarStyle = .defaultStyle
     canSwipeToDismiss = defaultStyle.canSwipeToDismiss
 
     pbBarColor = UIColor(red: 0.00392, green: 0.4313, blue: 0.5607, alpha: 1.0) // "dark cyan"
