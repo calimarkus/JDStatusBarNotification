@@ -6,7 +6,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 class StyleEditorViewFactory: NSObject {
   static let initialText = "You are doing great!"
-  static let initialProgress = 0.87
+  static let initialProgress = 0.33
   static let customStyle: CustomStyle = CustomStyle(StatusBarStyle())
 
   @objc static func createStyleEditorView() -> UIViewController {
@@ -15,8 +15,9 @@ class StyleEditorViewFactory: NSObject {
   }
 
   static func presentInitialNotification() {
-    StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: customStyle.registerComputedStyle())
-    NotificationPresenter.shared().displayProgressBar(percentage: initialProgress)
+    StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: customStyle.registerComputedStyle(), completion: { presenter in
+      presenter.displayProgressBar(percentage: initialProgress, animationDuration: 0.22)
+    })
   }
 }
 
@@ -68,7 +69,7 @@ struct StyleEditorView: View {
 
         buttonRow(title: "Animate progress bar to 100%", subtitle: "Hides at 100%") {
           StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
-            presenter.displayProgressBar(percentage: 1.0, animationDuration: 1.0) { presenter in
+            presenter.displayProgressBar(percentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
               presenter.dismiss(animated: true)
             }
           }

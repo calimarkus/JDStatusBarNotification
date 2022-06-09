@@ -188,7 +188,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [_progressView.layer removeAllAnimations];
 
   // reset view
-  if (_progressBarPercentage == 0.0) {
+  if (_progressBarPercentage == 0.0 && animationDuration == 0.0) {
     _progressView.hidden = YES;
     _progressView.frame = [self progressViewRectForPercentage:0.0];
     return;
