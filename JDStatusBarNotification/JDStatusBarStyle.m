@@ -14,6 +14,9 @@
   if (self) {
     _textColor = [UIColor grayColor];
     _font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    _textShadowColor = nil;
+    _textShadowOffset = CGSizeMake(1.0, 2.0);
+    _textOffsetY = 0.0;
   }
   return self;
 }
@@ -35,14 +38,14 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _height = 36.0;
-    _topSpacing = 6.0;
-    _minimumWidth = 160.0;
+    _height = 44.0;
+    _topSpacing = 2.0;
+    _minimumWidth = 180.0;
     _borderColor = nil;
     _borderWidth = 2.0;
     _shadowColor = nil;
     _shadowRadius = 4.0;
-    _shadowOffset = CGSizeMake(0, 2);
+    _shadowOffset = CGSizeMake(0.0, 2.0);
   }
   return self;
 }
@@ -94,7 +97,7 @@
     _horizontalInsets = 20.0;
     _cornerRadius = 1.0;
     _position = JDStatusBarProgressBarPositionBottom;
-    _offsetY = -3.0;
+    _offsetY = -5.0;
   }
   return self;
 }

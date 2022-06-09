@@ -82,10 +82,10 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
-/// The UIStatusBarStyle, which should be used during presentation. If you use JDStatusBarBackgroundTypePill, this is ignored.
+/// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored.
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
-/// Defines if the bar can be dismissed by the user or not (by swiping up)
+/// Defines if the bar can be dismissed by the user or not (by swiping up). Default is true.
 @property (nonatomic, assign) BOOL canSwipeToDismiss;
 
 @end
@@ -96,7 +96,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 NS_SWIFT_NAME(NotificationTextStyle)
 @interface JDStatusBarTextStyle : NSObject <NSCopying>
 
-/// The text color of the notification label
+/// The text color of the notification label. Default is .gray
 @property (nonatomic, strong, nullable) UIColor *textColor;
 
 /// The font of the notification label, the default is UIFontTextStyleFootnote.
@@ -105,7 +105,7 @@ NS_SWIFT_NAME(NotificationTextStyle)
 /// The text shadow color, the default is nil, meaning no shadow.
 @property (nonatomic, strong, nullable) UIColor *textShadowColor;
 
-/// The text shadow offset of the notification label.
+/// The text shadow offset of the notification label. Default is (1, 2)
 @property (nonatomic, assign) CGSize textShadowOffset;
 
 /// Offsets the text label on the y-axis. Default is 0.0.
@@ -114,18 +114,18 @@ NS_SWIFT_NAME(NotificationTextStyle)
 @end
 
 /**
- *  Defines the appeareance of the pill, when using JDStatusBarBackgroundTypePill
+ *  Defines the appeareance of the pill, when using BarBackgroundType.pill
  */
 NS_SWIFT_NAME(BarPillStyle)
 @interface JDStatusBarPillStyle : NSObject <NSCopying>
 
-/// The height of the pill. Default is 36.0.
+/// The height of the pill. Default is 44.0.
 @property (nonatomic, assign) CGFloat height;
 
-/// The spacing between the pill and the statusbar or top of the screen.. Default is 6.0.
+/// The spacing between the pill and the statusbar or top of the screen.. Default is 2.0.
 @property (nonatomic, assign) CGFloat topSpacing;
 
-/// The minimum with of the pill. Default is 160.0.
+/// The minimum with of the pill. Default is 180.0.
 @property (nonatomic, assign) CGFloat minimumWidth;
 
 /// The border color of the pill. The default is nil, meaning no border.
@@ -140,7 +140,7 @@ NS_SWIFT_NAME(BarPillStyle)
 /// The shadow radius of the pill shadow. The default is 4.0.
 @property (nonatomic, assign) CGFloat shadowRadius;
 
-/// The shadow offset for the pill shadow. The default is (0,2).
+/// The shadow offset for the pill shadow. The default is (0, 2).
 @property (nonatomic, assign) CGSize shadowOffset;
 
 @end
@@ -154,10 +154,10 @@ NS_SWIFT_NAME(NotificationBackgroundStyle)
 /// The background color of the notification bar
 @property (nonatomic, strong, nullable) UIColor *backgroundColor;
 
-/// The background type
+/// The background type. Default is .pill
 @property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
 
-/// A style to modify the appearance of the pill, when using JDStatusBarBackgroundTypePill.
+/// A style to modify the appearance of the pill, when using BarBackgroundType.pill.
 @property (nonatomic, strong) JDStatusBarPillStyle *pillStyle;
 
 @end
@@ -171,19 +171,19 @@ NS_SWIFT_NAME(ProgressBarStyle)
 /// The background color of the progress bar (on top of the notification bar)
 @property (nonatomic, strong, nullable) UIColor *barColor;
 
-/// The height of the progress bar. Default is 1.0. The applied value will have a minimum of 0.5 and a maximum full status bar height.
+/// The height of the progress bar. Default is 2.0. The applied value will have a minimum of 0.5 and a maximum full status bar height.
 @property (nonatomic, assign) CGFloat barHeight;
 
-/// The position of the progress bar. Default is JDStatusBarProgressBarPositionBottom
+/// The position of the progress bar. Default is .bottom
 @property (nonatomic, assign) JDStatusBarProgressBarPosition position;
 
-/// The insets of the progress bar. Default is 0.0
+/// The insets of the progress bar. Default is 20.0
 @property (nonatomic, assign) CGFloat horizontalInsets;
 
-/// Offsets the progress bar on the  y-axis. Default is 0.0.
+/// Offsets the progress bar on the  y-axis. Default is -5.0.
 @property (nonatomic, assign) CGFloat offsetY;
 
-/// The corner radius of the progress bar. Default is 0.0
+/// The corner radius of the progress bar. Default is 1.0
 @property (nonatomic, assign) CGFloat cornerRadius;
 
 @end
