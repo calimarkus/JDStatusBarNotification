@@ -133,8 +133,8 @@ struct ExamplesView: View {
         VStack(alignment: .leading) {
           Text("BackgroundStyle").font(.subheadline)
           Picker("", selection: $backgroundType) {
-            Text(BarBackgroundType.fullWidth.rawValue).tag(BarBackgroundType.fullWidth)
-            Text(BarBackgroundType.pill.rawValue).tag(BarBackgroundType.pill)
+            Text(BarBackgroundType.fullWidth.stringValue).tag(BarBackgroundType.fullWidth)
+            Text(BarBackgroundType.pill.stringValue).tag(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
         }
         .onChange(of: backgroundType) { _ in
@@ -228,7 +228,7 @@ struct ExamplesView: View {
   }
 
   func includedStyleCell(_ text: String, style: IncludedStatusBarStyle) -> some View {
-    cell(title: "Present \(style.rawValue)", subtitle: "Duration: 3s") {
+    cell(title: "Present \(style.stringValue)", subtitle: "Duration: 3s") {
       showIncludedStyle(text, style: style)
     }
   }

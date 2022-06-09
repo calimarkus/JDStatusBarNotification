@@ -1,64 +1,6 @@
 //
 //
 
-extension IncludedStatusBarStyle: RawRepresentable {
-  var rawValue: String {
-    switch self {
-      case .default: return ".default"
-      case .light: return ".light"
-      case .dark: return ".dark"
-      case .success: return ".success"
-      case .warning: return ".warning"
-      case .error: return ".error"
-      case .matrix: return ".matrix"
-      default: return "?"
-    }
-  }
-}
-
-extension BarAnimationType: RawRepresentable {
-  var rawValue: String {
-    switch self {
-      case .move: return ".move"
-      case .fade: return ".fade"
-      case .bounce: return ".bounce"
-      default: return "?"
-    }
-  }
-}
-
-extension BarBackgroundType: RawRepresentable {
-  var rawValue: String {
-    switch self {
-      case .fullWidth: return ".fullWidth"
-      case .pill: return ".pill"
-      default: return "?"
-    }
-  }
-}
-
-extension StatusBarSystemStyle: RawRepresentable {
-  var rawValue: String {
-    switch self {
-      case .default: return ".default"
-      case .lightContent: return ".lightContent"
-      case .darkContent: return ".darkContent"
-      default: return "?"
-    }
-  }
-}
-
-extension ProgressBarPosition: RawRepresentable {
-  var rawValue: String {
-    switch self {
-      case .top: return ".top"
-      case .center: return ".center"
-      case .bottom: return ".bottom"
-      default: return "?"
-    }
-  }
-}
-
 class CustomStyle: ObservableObject, Equatable {
   @Published var textColor: UIColor?
   @Published var font: UIFont
@@ -184,7 +126,7 @@ class CustomStyle: ObservableObject, Equatable {
 
     """
     \nstyle.backgroundStyle.backgroundColor = \(readableRGBAColorString(backgroundColor))
-    style.backgroundStyle.backgroundType = \(backgroundType.rawValue)
+    style.backgroundStyle.backgroundType = \(backgroundType.stringValue)
     """
 
     if backgroundType == .pill {
@@ -211,12 +153,12 @@ class CustomStyle: ObservableObject, Equatable {
     }
 
     """
-    \nstyle.animationType = \(animationType.rawValue)
-    style.systemStatusBarStyle = \(systemStatusBarStyle.rawValue)
+    \nstyle.animationType = \(animationType.stringValue)
+    style.systemStatusBarStyle = \(systemStatusBarStyle.stringValue)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
-    style.progressBarStyle.position = \(pbPosition.rawValue)
+    style.progressBarStyle.position = \(pbPosition.stringValue)
     style.progressBarStyle.barColor = \(readableRGBAColorString(pbBarColor))
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
