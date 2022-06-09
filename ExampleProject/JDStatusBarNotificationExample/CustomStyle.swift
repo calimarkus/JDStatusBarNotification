@@ -1,10 +1,9 @@
 //
 //
 
-extension AnimationType: RawRepresentable {
+extension BarAnimationType: RawRepresentable {
   var rawValue: String {
     switch self {
-      case .none: return ".none"
       case .move: return ".move"
       case .fade: return ".fade"
       case .bounce: return ".bounce"
@@ -64,7 +63,7 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var pillShadowRadius: Double
   @Published var pillShadowOffset: CGSize
 
-  @Published var animationType: AnimationType
+  @Published var animationType: BarAnimationType
   @Published var systemStatusBarStyle: StatusBarSystemStyle
   @Published var canSwipeToDismiss: Bool
 

@@ -162,10 +162,9 @@ struct StyleEditorView: View {
         VStack(alignment: .leading) {
           Text("AnimationStyle").font(.subheadline)
           Picker("", selection: $style.animationType) {
-            Text("None").tag(AnimationType.none)
-            Text("Move").tag(AnimationType.move)
-            Text("Fade").tag(AnimationType.fade)
-            Text("Bounce").tag(AnimationType.bounce)
+            Text("Move").tag(BarAnimationType.move)
+            Text("Fade").tag(BarAnimationType.fade)
+            Text("Bounce").tag(BarAnimationType.bounce)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 

@@ -198,6 +198,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [self createProgressViewIfNeeded];
   _progressView.hidden = NO;
 
+
   // update progressView frame
   CGRect frame = [self progressViewRectForPercentage:_progressBarPercentage];
 

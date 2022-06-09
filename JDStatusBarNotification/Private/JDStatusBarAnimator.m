@@ -40,30 +40,19 @@
     view.transform = CGAffineTransformMakeTranslation(0, -view.frame.size.height);
   }
 
-  // setup animation
-  dispatch_block_t animations = ^{
-    view.alpha = 1.0;
-    view.transform = CGAffineTransformIdentity;
-  };
-
   // animate in
-  BOOL animationsEnabled = (style != JDStatusBarAnimationTypeNone && duration > 0.0);
-  if (animationsEnabled) {
-    if (style.animationType == JDStatusBarAnimationTypeBounce) {
-      _animateInCompletionBlock = completion;
-      [self animateInWithBounceAnimation];
-    } else {
-      [UIView animateWithDuration:duration animations:animations completion:^(BOOL finished) {
-        if (finished && completion != nil) {
-          completion();
-        }
-      }];
-    }
+  if (style.animationType == JDStatusBarAnimationTypeBounce) {
+    _animateInCompletionBlock = completion;
+    [self animateInWithBounceAnimation];
   } else {
-    animations();
-    if (completion) {
-      completion();
-    }
+    [UIView animateWithDuration:duration animations:^{
+      view.alpha = 1.0;
+      view.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+      if (finished && completion != nil) {
+        completion();
+      }
+    }];
   }
 }
 
@@ -104,29 +93,18 @@
   JDStatusBarStyle *style = _statusBarView.style;
   JDStatusBarView *view = _statusBarView;
 
-  // setup animation
-  dispatch_block_t animations = ^{
+  // animate out
+  [UIView animateWithDuration:duration animations:^{
     if (style.animationType == JDStatusBarAnimationTypeFade) {
       view.alpha = 0.0;
     } else {
       view.transform = CGAffineTransformMakeTranslation(0, - view.frame.size.height);
     }
-  };
-
-  // animate out
-  BOOL animationsEnabled = (style != JDStatusBarAnimationTypeNone && duration > 0.0);
-  if (animationsEnabled) {
-    [UIView animateWithDuration:duration animations:animations completion:^(BOOL finished) {
-      if (finished && completion != nil) {
-        completion();
-      }
-    }];
-  } else {
-    animations();
-    if (completion) {
+  } completion:^(BOOL finished) {
+    if (finished && completion != nil) {
       completion();
     }
-  }
+  }];
 }
 
 #pragma mark - CAAnimationDelegate

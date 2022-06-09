@@ -34,15 +34,13 @@ typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
 } NS_SWIFT_NAME(BarBackgroundType);
 
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
-  /// Notification won't animate
-  JDStatusBarAnimationTypeNone,
   /// Notification will move in from the top, and move out again to the top
   JDStatusBarAnimationTypeMove,
   /// Notification will fall down from the top and bounce a little bit
   JDStatusBarAnimationTypeBounce,
   /// Notification will fade in and fade out
   JDStatusBarAnimationTypeFade,
-} NS_SWIFT_NAME(AnimationType);
+} NS_SWIFT_NAME(BarAnimationType);
 
 typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
   /// progress bar will be at the bottom of the status bar
