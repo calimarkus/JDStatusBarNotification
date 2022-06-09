@@ -205,13 +205,13 @@
   [_overlayWindow.statusBarViewController.statusBarView setProgressBarPercentage:percentage];
 }
 
-- (void)displayProgressBarWithPercentage:(CGFloat)percentage
-                       animationDuration:(CGFloat)animationDuration
-                              completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (void)animateProgressBarToPercentage:(CGFloat)percentage
+                     animationDuration:(CGFloat)animationDuration
+                            completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   __weak __typeof(self) weakSelf = self;
-  [_overlayWindow.statusBarViewController.statusBarView setProgressBarPercentage:percentage
-                                                               animationDuration:animationDuration
-                                                                      completion:^{
+  [_overlayWindow.statusBarViewController.statusBarView animateProgressBarToPercentage:percentage
+                                                                     animationDuration:animationDuration
+                                                                            completion:^{
     if (completion) {
       completion(weakSelf);
     }

@@ -78,14 +78,14 @@ struct ExamplesView: View {
         cell(title: "Animate progress bar & hide", subtitle: "Hide bar at 100%") {
           if !NotificationPresenter.shared().isVisible() {
             showDefaultNotification("Animating Progress…") { presenter in
-              presenter.displayProgressBar(percentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+              presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
                 presenter.dismiss(animated: true)
               }
             }
             NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
           } else {
             NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-            NotificationPresenter.shared().displayProgressBar(percentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+            NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss(animated: true)
             }
           }
@@ -166,7 +166,7 @@ struct ExamplesView: View {
           setupCustomStyles(backgroundType)
           NotificationPresenter.shared().present(text: "Oh, I love it!",
                                                  customStyle: ExamplesView.customStyle1) { presenter in
-            presenter.displayProgressBar(percentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss(animated: true)
             }
           }
@@ -176,7 +176,7 @@ struct ExamplesView: View {
           setupCustomStyles(backgroundType)
           NotificationPresenter.shared().present(text: "Level up!",
                                                  customStyle: ExamplesView.customStyle2) { presenter in
-            presenter.displayProgressBar(percentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss(animated: true)
             }
           }

@@ -175,12 +175,12 @@ static const NSInteger kExpectedSubviewTag = 12321;
 }
 
 - (void)setProgressBarPercentage:(CGFloat)percentage {
-  [self setProgressBarPercentage:percentage animationDuration:0.0 completion:nil];
+  [self animateProgressBarToPercentage:percentage animationDuration:0.0 completion:nil];
 }
 
-- (void)setProgressBarPercentage:(CGFloat)percentage
-               animationDuration:(CGFloat)animationDuration
-                      completion:(void(^ _Nullable)(void))completion {
+- (void)animateProgressBarToPercentage:(CGFloat)percentage
+                     animationDuration:(CGFloat)animationDuration
+                            completion:(void(^ _Nullable)(void))completion {
   // clamp progress
   _progressBarPercentage = MIN(1.0, MAX(0.0, percentage));
 

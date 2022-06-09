@@ -243,16 +243,16 @@ NS_SWIFT_NAME(NotificationPresenter)
  */
 - (void)displayProgressBarWithPercentage:(CGFloat)percentage NS_SWIFT_NAME(displayProgressBar(percentage:));
 /**
- *  Displays a progress bar according to the current progressBarStyle. Animates to the provided
- *  percentage using the provided animationDuration. It starts from the current percentage.
+ *  Displays a progress bar according to the current progressBarStyle. Animates the percentage to the provided
+ *  target value using the provided animationDuration. It starts from the currently set percentage.
  *
  *  @param percentage Relative progress from 0.0 to 1.0
- *  @param animationDuration The duration of the animation from the current percentage to the provided percentage.
+ *  @param animationDuration The duration of the animation from the current percentage to the provided percentage. A value of 0.0 is equivalent to calling displayProgressBar.
  *  @param completion A completion block, which gets called once the animation finishes.
  */
-- (void)displayProgressBarWithPercentage:(CGFloat)percentage
-                       animationDuration:(CGFloat)animationDuration
-                              completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(displayProgressBar(percentage:animationDuration:completion:));
+- (void)animateProgressBarToPercentage:(CGFloat)percentage
+                     animationDuration:(CGFloat)animationDuration
+                            completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(animateProgressBar(toPercentage:animationDuration:completion:));
 
 /**
  *  Displays an activity indicator in front of the notification text. It will have the same color as the text color of the current style.
