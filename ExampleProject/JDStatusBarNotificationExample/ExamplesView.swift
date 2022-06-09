@@ -133,8 +133,8 @@ struct ExamplesView: View {
         VStack(alignment: .leading) {
           Text("BackgroundStyle").font(.subheadline)
           Picker("", selection: $backgroundType) {
-            Text(BarBackgroundType.fullWidth.stringValue).tag(BarBackgroundType.fullWidth)
-            Text(BarBackgroundType.pill.stringValue).tag(BarBackgroundType.pill)
+            EnumPickerOptionView(BarBackgroundType.fullWidth)
+            EnumPickerOptionView(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
         }
         .onChange(of: backgroundType) { _ in

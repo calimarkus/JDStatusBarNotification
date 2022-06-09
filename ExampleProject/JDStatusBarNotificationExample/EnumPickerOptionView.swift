@@ -1,6 +1,8 @@
 //
 //
 
+import SwiftUI
+
 protocol StringRepresentable {
   var stringValue: String { get }
 }
@@ -59,6 +61,31 @@ extension ProgressBarPosition: StringRepresentable {
       case .center: return ".center"
       case .bottom: return ".bottom"
       default: return "?"
+    }
+  }
+}
+
+struct EnumPickerOptionView<T: StringRepresentable>: View where T: Hashable {
+  var representable: T
+
+  init(_ representable: T) {
+    self.representable = representable
+  }
+
+  var body: some View {
+    Text(representable.stringValue).tag(representable)
+  }
+}
+
+@available(iOS 15.0, *)
+struct EnumPickerOptionView_Previews: PreviewProvider {
+  static var previews: some View {
+    Form {
+      Picker("Test", selection: .constant(IncludedStatusBarStyle.light)) {
+        EnumPickerOptionView(IncludedStatusBarStyle.light)
+        EnumPickerOptionView(IncludedStatusBarStyle.dark)
+      }
+      .pickerStyle(.inline)
     }
   }
 }

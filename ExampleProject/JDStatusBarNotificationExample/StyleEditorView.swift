@@ -7,7 +7,7 @@ import SwiftUI
 class StyleEditorViewFactory: NSObject {
   static let initialText = "You are doing great!"
   static let initialProgress = 0.33
-  static let customStyle: CustomStyle = CustomStyle(StatusBarStyle())
+  static let customStyle: CustomStyle = .init(StatusBarStyle())
 
   @objc static func createStyleEditorView() -> UIViewController {
     presentInitialNotification()
@@ -162,26 +162,26 @@ struct StyleEditorView: View {
         VStack(alignment: .leading) {
           Text("AnimationStyle").font(.subheadline)
           Picker("", selection: $style.animationType) {
-            Text("Move").tag(BarAnimationType.move)
-            Text("Fade").tag(BarAnimationType.fade)
-            Text("Bounce").tag(BarAnimationType.bounce)
+            EnumPickerOptionView(BarAnimationType.move)
+            EnumPickerOptionView(BarAnimationType.fade)
+            EnumPickerOptionView(BarAnimationType.bounce)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
         VStack(alignment: .leading) {
           Text("BackgroundStyle").font(.subheadline)
           Picker("", selection: $style.backgroundType) {
-            Text(BarBackgroundType.fullWidth.stringValue).tag(BarBackgroundType.fullWidth)
-            Text(BarBackgroundType.pill.stringValue).tag(BarBackgroundType.pill)
+            EnumPickerOptionView(BarBackgroundType.fullWidth)
+            EnumPickerOptionView(BarBackgroundType.pill)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
         VStack(alignment: .leading) {
           Text("System StatusBar Style").font(.subheadline)
           Picker("", selection: $style.systemStatusBarStyle) {
-            Text("Default").tag(StatusBarSystemStyle.default)
-            Text("Light").tag(StatusBarSystemStyle.lightContent)
-            Text("Dark").tag(StatusBarSystemStyle.darkContent)
+            EnumPickerOptionView(StatusBarSystemStyle.default)
+            EnumPickerOptionView(StatusBarSystemStyle.lightContent)
+            EnumPickerOptionView(StatusBarSystemStyle.darkContent)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
@@ -248,9 +248,9 @@ struct StyleEditorView: View {
         VStack(alignment: .leading) {
           Text("Position").font(.subheadline)
           Picker("", selection: $style.pbPosition) {
-            Text("Top").tag(ProgressBarPosition.top)
-            Text("Center").tag(ProgressBarPosition.center)
-            Text("Bottom").tag(ProgressBarPosition.bottom)
+            EnumPickerOptionView(ProgressBarPosition.top)
+            EnumPickerOptionView(ProgressBarPosition.center)
+            EnumPickerOptionView(ProgressBarPosition.bottom)
           }.font(.subheadline).pickerStyle(.segmented)
         }
 
