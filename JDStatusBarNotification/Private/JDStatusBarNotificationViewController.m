@@ -52,37 +52,13 @@ JDStatusBarViewDelegate
   [topBar setProgressBarPercentage:0.0];
   [topBar setDisplaysActivityIndicator:NO];
 
-  // cancel previous dismissing & remove animations
+  // reset dismiss timer & completion
   [_dismissTimer invalidate];
   _dismissTimer = nil;
   _dismissCompletionBlock = nil;
-  _animateInCompletionBlock = nil;
-  [topBar.layer removeAllAnimations];
-
-  // prepare animation
-  if (style.animationType == JDStatusBarAnimationTypeFade) {
-    topBar.alpha = 0.0;
-    topBar.transform = CGAffineTransformIdentity;
-  } else {
-    topBar.alpha = 1.0;
-    topBar.transform = CGAffineTransformMakeTranslation(0, -topBar.frame.size.height);
-  }
 
   // animate in
-  BOOL animationsEnabled = (style.animationType != JDStatusBarAnimationTypeNone);
-  if (animationsEnabled && style.animationType == JDStatusBarAnimationTypeBounce) {
-    _animateInCompletionBlock = completion;
-    [self animateInWithBounceAnimation];
-  } else {
-    [UIView animateWithDuration:(animationsEnabled ? 0.4 : 0.0) animations:^{
-      topBar.alpha = 1.0;
-      topBar.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-      if (completion) {
-        completion();
-      }
-    }];
-  }
+  [self animateInWithDuration:0.4 completion:completion];
 
   return topBar;
 }
@@ -126,37 +102,62 @@ JDStatusBarViewDelegate
   JDStatusBarView *topBar = self.statusBarView;
   topBar.panGestureRecognizer.enabled = NO;
 
-  // check animation type
-  if (_statusBarView.style.animationType == JDStatusBarAnimationTypeNone) {
-    duration = 0.0;
-  }
-
   // animate out
-  dispatch_block_t animation = ^{
-    if (self->_statusBarView.style.animationType == JDStatusBarAnimationTypeFade) {
-      topBar.alpha = 0.0;
-    } else {
-      topBar.transform = CGAffineTransformMakeTranslation(0, - topBar.frame.size.height);
-    }
-  };
-
   __weak __typeof(self) weakSelf = self;
-  void(^animationCompletion)(BOOL) = ^(BOOL finished) {
+  [self animateOutWithDuration:duration completion:^(BOOL succeeded) {
     [weakSelf.delegate didDismissStatusBar];
     if (completion != nil) {
       completion();
     }
-  };
-
-  if (duration > 0.0) {
-    [UIView animateWithDuration:duration animations:animation completion:animationCompletion];
-  } else {
-    animation();
-    animationCompletion(YES);
-  }
+  }];
 }
 
-#pragma mark - Bounce Animation
+#pragma mark - Animations
+
+- (void)animateInWithDuration:(CGFloat)duration
+                   completion:(JDStatusBarNotificationViewControllerCompletion)completion {
+  JDStatusBarStyle *style = _statusBarView.style;
+  JDStatusBarView *topBar = _statusBarView;
+
+  // reset old animation state
+  _animateInCompletionBlock = nil;
+  [topBar.layer removeAllAnimations];
+
+  // set initial view state
+  if (style.animationType == JDStatusBarAnimationTypeFade) {
+    topBar.alpha = 0.0;
+    topBar.transform = CGAffineTransformIdentity;
+  } else {
+    topBar.alpha = 1.0;
+    topBar.transform = CGAffineTransformMakeTranslation(0, -topBar.frame.size.height);
+  }
+
+  // setup animation
+  dispatch_block_t animations = ^{
+    topBar.alpha = 1.0;
+    topBar.transform = CGAffineTransformIdentity;
+  };
+
+  // animate in
+  BOOL animationsEnabled = (style != JDStatusBarAnimationTypeNone && duration > 0.0);
+  if (animationsEnabled) {
+    if (style.animationType == JDStatusBarAnimationTypeBounce) {
+      _animateInCompletionBlock = completion;
+      [self animateInWithBounceAnimation];
+    } else {
+      [UIView animateWithDuration:duration animations:animations completion:^(BOOL finished) {
+        if (completion) {
+          completion();
+        }
+      }];
+    }
+  } else {
+    animations();
+    if (completion) {
+      completion();
+    }
+  }
+}
 
 - (void)animateInWithBounceAnimation {
   JDStatusBarView *topBar = self.statusBarView;
@@ -188,6 +189,32 @@ JDStatusBarViewDelegate
   animation.delegate = self;
   [topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
   [topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
+}
+
+- (void)animateOutWithDuration:(CGFloat)duration
+                    completion:(void(^)(BOOL succeeded))completion {
+  JDStatusBarStyle *style = _statusBarView.style;
+  JDStatusBarView *topBar = _statusBarView;
+
+  // setup animation
+  dispatch_block_t animations = ^{
+    if (style.animationType == JDStatusBarAnimationTypeFade) {
+      topBar.alpha = 0.0;
+    } else {
+      topBar.transform = CGAffineTransformMakeTranslation(0, - topBar.frame.size.height);
+    }
+  };
+
+  // animate out
+  BOOL animationsEnabled = (style != JDStatusBarAnimationTypeNone && duration > 0.0);
+  if (animationsEnabled) {
+    [UIView animateWithDuration:duration animations:animations completion:completion];
+  } else {
+    animations();
+    if (completion) {
+      completion(YES);
+    }
+  }
 }
 
 #pragma mark - CAAnimationDelegate
