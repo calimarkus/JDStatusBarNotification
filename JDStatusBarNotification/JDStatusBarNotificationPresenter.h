@@ -166,6 +166,23 @@ NS_SWIFT_NAME(NotificationPresenter)
                    dismissAfterDelay:(NSTimeInterval)delay
                        includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
 
+#pragma mark - Custom View Presentation
+
+/**
+ *  Present a notification using a custom subview. It will be layouted correctly according to the
+ *  selected style & the current device state (rotation, status bar visibility, etc.). The background
+ *  will still be styled & layouted according to the provided style.
+ *
+ *  @param view A custom UIView to display as notification
+ *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.
+ *  @param completion A completion block, which gets called once the animation finishes.
+ *
+ *  @return The presented UIView for further customization
+ */
+- (UIView *)presentWithCustomView:(UIView *)customView
+                        styleName:(NSString * _Nullable)styleName
+                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(customView:style:completion:));
+
 #pragma mark - Dismissal
 
 /**

@@ -158,6 +158,17 @@
   return view;
 }
 
+#pragma mark - Custom View Presentation
+
+- (UIView *)presentWithCustomView:(UIView *)customView
+                        styleName:(NSString * _Nullable)styleName
+                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  JDStatusBarStyle *style = [_styleCache styleForName:styleName];
+  JDStatusBarView *view = [self presentWithText:@"" style:style completion:completion];
+  view.customSubview = customView;
+  return view;
+}
+
 #pragma mark - Dismissal
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay {

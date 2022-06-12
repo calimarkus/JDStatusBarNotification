@@ -174,19 +174,21 @@ struct ExamplesView: View {
           }
         }
 
-        cell(title: "Present notification with button", subtitle: "Manually customized view") {
-          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
-            style.backgroundStyle.backgroundType = backgroundType
-            return style
-          }
-          let view = NotificationPresenter.shared().present(text: "", customStyle: styleName)
+        cell(title: "Present notification with a button", subtitle: "Utilizing a custom view") {
+          // create button
           let action = UIAction { _ in
             NotificationPresenter.shared().dismiss(animated: true)
           }
           let button = UIButton(type: .system, primaryAction: action)
           button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin]
           button.setTitle("Dismiss!", for: .normal)
-          view.customSubview = button;
+
+          // present
+          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+            style.backgroundStyle.backgroundType = backgroundType
+            return style
+          }
+          NotificationPresenter.shared().present(customView: button, style: styleName)
         }
 
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
