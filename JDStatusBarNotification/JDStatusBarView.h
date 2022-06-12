@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
                      animationDuration:(CGFloat)animationDuration
                             completion:(void(^ _Nullable)(void))completion;
 
+/// Set a custom view, which will be correctly layouted according to the selected style & the current device state (rotation, status bar visibility, etc.)
+@property (nonatomic, strong, nullable) UIView *customSubview;
+
 // default init unavailable
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;

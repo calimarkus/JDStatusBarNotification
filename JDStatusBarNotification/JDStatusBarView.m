@@ -58,9 +58,11 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 - (void)resetSubviewsIfNeeded {
   // remove subviews added from outside
-  for (UIView *subview in self.subviews) {
-    if (subview.tag != kExpectedSubviewTag) {
-      [subview removeFromSuperview];
+  for (UIView *view in [NSArray arrayWithObjects:self, _textLabel, _pillBackgroundView /* can be nil */, nil]) {
+    for (UIView *subview in view.subviews) {
+      if (subview.tag != kExpectedSubviewTag) {
+        [subview removeFromSuperview];
+      }
     }
   }
 
@@ -77,6 +79,9 @@ static const NSInteger kExpectedSubviewTag = 12321;
   if (_activityIndicatorView.superview != self) {
     [self insertSubview:_activityIndicatorView aboveSubview:_textLabel];
   }
+
+  // reset custom view
+  _customSubview = nil;
 
   // ensure pan recognizer is setup
   _panGestureRecognizer.enabled = YES;
@@ -218,7 +223,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
-#pragma mark - properties
+#pragma mark - Text
 
 - (NSString *)text {
   return _textLabel.text ?: @"";
@@ -230,6 +235,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   
   [self setNeedsLayout];
 }
+
+#pragma mark - Style
 
 - (void)setStyle:(JDStatusBarStyle *)style {
   _style = style;
@@ -287,6 +294,24 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
+#pragma mark - Custom Subview
+
+- (void)setCustomSubview:(UIView *)customSubview {
+  [_customSubview removeFromSuperview];
+  _customSubview = customSubview;
+
+  switch (_style.backgroundStyle.backgroundType) {
+    case JDStatusBarBackgroundTypeFullWidth:
+      [self addSubview:_customSubview];
+      break;
+    case JDStatusBarBackgroundTypePill:
+      [_pillBackgroundView addSubview:_customSubview];
+      break;
+  }
+
+  [self setNeedsLayout];
+}
+
 #pragma mark - Layout
 
 static const NSInteger kActivityIndicatorSpacing = 5.0;
@@ -313,6 +338,9 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   CGFloat labelInsetX = 30.0;
   CGRect contentRect = contentRectForWindow(self);
   _textLabel.frame = CGRectOffset(CGRectInset(contentRect, labelInsetX, 0), 0, _style.textStyle.textOffsetY);
+
+  // layout custom view, if provided
+  _customSubview.frame = contentRect;
 
   // background type
   [self layoutSubviewsForBackgroundType];
@@ -351,6 +379,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
     case JDStatusBarBackgroundTypeFullWidth: {
       _pillBackgroundView.hidden = YES;
       _progressView.layer.mask = nil;
+      _customSubview.layer.mask = nil;
       break;
     }
     case JDStatusBarBackgroundTypePill: {
@@ -383,6 +412,12 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
   _pillBackgroundView.frame = pillFrame;
+
+  // layout custom view, if provided
+  if (_customSubview) {
+    _customSubview.frame = CGRectMake(0, 0, pillWidth, pillHeight);
+    _customSubview.layer.mask = roundRectMaskForRectAndRadius([_customSubview convertRect:pillFrame fromView:self]);
+  }
 
   // layout text label
   _textLabel.frame = CGRectOffset(CGRectInset(pillFrame, paddingX, 0), 0, _style.textStyle.textOffsetY);
