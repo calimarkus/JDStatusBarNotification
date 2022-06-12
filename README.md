@@ -1,8 +1,8 @@
 # JDStatusBarNotification
 
 Highly customizable notifications displayed below the status bar for both notch and no-notch devices.
-Customizable colors, fonts & animations. Can show an activity indicator, a progress bar & custom views.
-iOS 13+. Swift ready!
+Customizable colors, fonts & animations. Drag to dismiss. Landscape / portrait. Can show an activity indicator,
+a progress bar & custom views. iOS 13+. Swift ready!
 
 Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
@@ -93,7 +93,7 @@ NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .s
 
 You have the option to create fully customized styles - or to even present custom views.
 
-The closure provides a copy of the default style, which can be modified as you like. See the `JDStatusBarStyle` class (or the style editor in the example project) for all options and documentation. You can use the example project's style editor to create a style and then export the code to configure that style.
+The closures of `updateDefaultStyle()` and `addStyle(styleName: String)` provide a copy of the default style, which can then be modified. See the `JDStatusBarStyle` class (or the style editor in the example project) for all options and documentation. You can also use the example project's style editor to create a style visually and then export the code to configure that style.
 
 ```swift
 // update default style
@@ -106,18 +106,29 @@ NotificationPresenter.shared().updateDefaultStyle { style in
 }
 
 // set a named custom style
-NotificationPresenter.shared().addStyle(styleName: "xxx", prepare: { style in
+NotificationPresenter.shared().addStyle(styleName: "xxx") { style in
    // ...
+   return style
 }
-
-// present a custom view
-var anyView: UIView = ...
-NotificationPresenter.shared().present(customView: anyView)
 ```
 
 #### Style Editor
 
 Checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code.
+
+| Customize | about | everything.. |
+| ------------- | ------------- | ------------- |
+| ![1](https://user-images.githubusercontent.com/807039/173234009-759d10a6-aee5-4866-aa76-cebd6124aa3e.jpeg) | ![2](https://user-images.githubusercontent.com/807039/173234015-d13185c4-8376-452d-beab-affb8f438772.jpeg) | ![3](https://user-images.githubusercontent.com/807039/173234016-1381b3a3-a605-4ac1-8fbb-8ee4af061f6a.jpeg) |
+
+#### Custom View
+
+![customView](https://user-images.githubusercontent.com/807039/173234544-7a75edbe-00b1-437b-8651-2e63a1ba63c8.gif)  ![customView2](https://user-images.githubusercontent.com/807039/173234636-b3745101-0723-4342-9a3a-32a868ea820e.gif)
+
+```swift
+// present a custom view
+var anyView: UIView = ...
+NotificationPresenter.shared().present(customView: anyView)
+```
 
 #### Background Styles
 
