@@ -61,7 +61,7 @@ struct StyleEditorView: View {
       Section {
         buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide.") {
           if NotificationPresenter.shared().isVisible() {
-            NotificationPresenter.shared().dismiss(animated: true)
+            NotificationPresenter.shared().dismiss()
           } else {
             presentDefault()
           }
@@ -70,7 +70,7 @@ struct StyleEditorView: View {
         buttonRow(title: "Animate progress bar to 100%", subtitle: "Hides at 100%") {
           StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
-              presenter.dismiss(animated: true)
+              presenter.dismiss()
             }
           } as? JDStatusBarView
         }
@@ -371,6 +371,7 @@ public struct FontPicker: UIViewControllerRepresentable {
     public func fontPickerViewControllerDidPickFont(_ viewController: UIFontPickerViewController) {
       guard let descriptor = viewController.selectedFontDescriptor else { return }
       $font.wrappedValue = UIFont(descriptor: descriptor, size: font.pointSize)
+      parent.presentationMode.wrappedValue.dismiss()
     }
 
     public func fontPickerViewControllerDidCancel(_ viewController: UIFontPickerViewController) {

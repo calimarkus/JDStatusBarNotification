@@ -70,7 +70,7 @@ struct ExamplesView: View {
       Section("Default Style") {
         cell(title: "Present / dismiss", subtitle: "Default style, don't autohide") {
           if NotificationPresenter.shared().isVisible() {
-            NotificationPresenter.shared().dismiss(animated: true)
+            NotificationPresenter.shared().dismiss()
           } else {
             showDefaultNotification("Better call Saul!") { _ in }
           }
@@ -79,14 +79,14 @@ struct ExamplesView: View {
           if !NotificationPresenter.shared().isVisible() {
             showDefaultNotification("Animating Progress…") { presenter in
               presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-                presenter.dismiss(animated: true)
+                presenter.dismiss()
               }
             }
             NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
           } else {
             NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
             NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss(animated: true)
+              presenter.dismiss()
             }
           }
         }
@@ -159,7 +159,7 @@ struct ExamplesView: View {
           NotificationPresenter.shared().present(text: "Oh, I love it!",
                                                  customStyle: ExamplesView.customStyle1) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss(animated: true)
+              presenter.dismiss()
             }
           }
         }
@@ -169,7 +169,7 @@ struct ExamplesView: View {
           NotificationPresenter.shared().present(text: "Level up!",
                                                  customStyle: ExamplesView.customStyle2) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss(animated: true)
+              presenter.dismiss()
             }
           }
         }
@@ -177,7 +177,7 @@ struct ExamplesView: View {
         cell(title: "Present notification with a button", subtitle: "Utilizing a custom view") {
           // create button
           let action = UIAction { _ in
-            NotificationPresenter.shared().dismiss(animated: true)
+            NotificationPresenter.shared().dismiss()
           }
           let button = UIButton(type: .system, primaryAction: action)
           button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin]
