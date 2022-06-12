@@ -5,7 +5,6 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
+#import "JDStatusBarStyle.h"
 #import "JDStatusBarNotificationPresenter.h"
 #import "JDStatusBarPrepareStyleBlock.h"
-#import "JDStatusBarStyle.h"
-#import "JDStatusBarView.h"
