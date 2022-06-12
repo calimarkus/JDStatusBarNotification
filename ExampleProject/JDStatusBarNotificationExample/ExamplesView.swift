@@ -259,6 +259,7 @@ struct ExamplesView: View {
       style.progressBarStyle.cornerRadius = 3.0
       style.progressBarStyle.horizontalInsets = 20.0
       style.progressBarStyle.position = .center
+      style.progressBarStyle.offsetY = -2.0
       return style
     }
   }
