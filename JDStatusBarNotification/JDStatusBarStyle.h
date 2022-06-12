@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarIncludedStyle) {
 } NS_SWIFT_NAME(IncludedStatusBarStyle);
 
 typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
-  /// The background covers the full display width, as the full status bar & navbar height.
+  /// The background covers the full display width and the full status bar & navbar height.
   JDStatusBarBackgroundTypeFullWidth,
   /// The background is a floating pill around the text.
   JDStatusBarBackgroundTypePill,
