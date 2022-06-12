@@ -53,7 +53,7 @@
 #pragma mark - Core Presentation logic
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
-                              style:(JDStatusBarStyle *)style
+                               style:(JDStatusBarStyle *)style
                           completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   if(_overlayWindow == nil) {
     _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
@@ -83,44 +83,44 @@
 
 #pragma mark - Simple Presentation
 
-- (JDStatusBarView *)presentWithText:(NSString *)text {
+- (UIView *)presentWithText:(NSString *)text {
   return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil completion:nil];
 }
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithText:(NSString *)text
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil completion:completion];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay {
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay {
   return [self presentWithText:text dismissAfterDelay:delay customStyle:nil completion:nil];
 }
 
 #pragma mark - Custom Style Presentation
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                         customStyle:(NSString * _Nullable)styleName {
+- (UIView *)presentWithText:(NSString *)text
+                customStyle:(NSString * _Nullable)styleName {
   return [self presentWithText:text dismissAfterDelay:0.0 customStyle:styleName completion:nil];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                         customStyle:(NSString * _Nullable)styleName
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithText:(NSString *)text
+                customStyle:(NSString * _Nullable)styleName
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   return [self presentWithText:text dismissAfterDelay:0.0 customStyle:styleName completion:completion];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay
-                         customStyle:(NSString * _Nullable)styleName {
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay
+                customStyle:(NSString * _Nullable)styleName {
   return [self presentWithText:text dismissAfterDelay:delay customStyle:styleName completion:nil];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay
-                         customStyle:(NSString * _Nullable)styleName
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay
+                customStyle:(NSString * _Nullable)styleName
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
-  JDStatusBarView *view = [self presentWithText:text style:style completion:completion];
+  UIView *view = [self presentWithText:text style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }
@@ -129,29 +129,29 @@
 
 #pragma mark - Included Style Presentation
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle {
+- (UIView *)presentWithText:(NSString *)text
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle {
   return [self presentWithText:text dismissAfterDelay:0.0 includedStyle:includedStyle completion:nil];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithText:(NSString *)text
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   return [self presentWithText:text dismissAfterDelay:0.0 includedStyle:includedStyle completion:completion];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle {
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle {
   return [self presentWithText:text dismissAfterDelay:delay includedStyle:includedStyle completion:nil];
 }
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
-  JDStatusBarView *view = [self presentWithText:text style:style completion:completion];
+  UIView *view = [self presentWithText:text style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }

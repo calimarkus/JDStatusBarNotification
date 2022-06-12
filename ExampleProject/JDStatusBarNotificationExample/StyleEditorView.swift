@@ -17,7 +17,7 @@ class StyleEditorViewFactory: NSObject {
   static func presentInitialNotification() {
     StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: customStyle.registerComputedStyle(), completion: { presenter in
       presenter.animateProgressBar(toPercentage: initialProgress, animationDuration: 0.22)
-    })
+    }) as? JDStatusBarView
   }
 }
 
@@ -34,7 +34,7 @@ struct StyleEditorView: View {
     StyleEditorView.statusBarView = NotificationPresenter.shared().present(
       text: text,
       customStyle: style.registerComputedStyle()
-    )
+    ) as? JDStatusBarView
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
@@ -72,7 +72,7 @@ struct StyleEditorView: View {
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
               presenter.dismiss(animated: true)
             }
-          }
+          } as? JDStatusBarView
         }
 
         #if targetEnvironment(simulator)

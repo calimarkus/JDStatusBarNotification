@@ -163,15 +163,17 @@
 			children = (
 				7E1C283128520F56004315CC /* JDStatusBarAnimator.h */,
 				7E1C283228520F56004315CC /* JDStatusBarAnimator.m */,
-				7ED140952848513800593D6F /* JDStatusBarStyleCache.h */,
-				7ED140962848513800593D6F /* JDStatusBarStyleCache.m */,
 				7EBE34102844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.h */,
 				7EBE340E2844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m */,
 				7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */,
 				7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */,
 				7EBE340C2844CA2D0096CD55 /* JDStatusBarNotificationViewController.h */,
 				7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */,
+				7ED140952848513800593D6F /* JDStatusBarStyleCache.h */,
+				7ED140962848513800593D6F /* JDStatusBarStyleCache.m */,
 				7ED14094284847FB00593D6F /* JDStatusBarView_Private.h */,
+				D25B0FA3184F343600B8174B /* JDStatusBarView.h */,
+				D25B0FA4184F343600B8174B /* JDStatusBarView.m */,
 				7ED140902847557600593D6F /* JDStatusBarWindow.h */,
 				7ED140912847557600593D6F /* JDStatusBarWindow.m */,
 				7EBE34112844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.h */,
@@ -252,8 +254,6 @@
 				7EBE341C2844CFA90096CD55 /* JDStatusBarPrepareStyleBlock.h */,
 				D25B0FA6184F364100B8174B /* JDStatusBarStyle.h */,
 				D25B0FA7184F364100B8174B /* JDStatusBarStyle.m */,
-				D25B0FA3184F343600B8174B /* JDStatusBarView.h */,
-				D25B0FA4184F343600B8174B /* JDStatusBarView.m */,
 				7EBE340B2844CA2D0096CD55 /* Private */,
 			);
 			name = JDStatusBarNotification;

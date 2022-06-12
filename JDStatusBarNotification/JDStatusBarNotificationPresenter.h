@@ -12,7 +12,6 @@
 #import "JDStatusBarPrepareStyleBlock.h"
 #import "JDStatusBarStyle.h"
 
-@class JDStatusBarView;
 @class JDStatusBarNotificationPresenter;
 
 typedef void (^ _Nullable JDStatusBarNotificationPresenterCompletionBlock)(JDStatusBarNotificationPresenter * _Nonnull presenter);
@@ -53,9 +52,9 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param text The message to display
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text NS_SWIFT_NAME(present(text:));
+- (UIView *)presentWithText:(NSString *)text NS_SWIFT_NAME(present(text:));
 
 /**
  *  Present a notification using the default style.
@@ -63,10 +62,10 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @param text The message to display
  *  @param completion A completion block, which gets called once the animation finishes.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:completion:));
+- (UIView *)presentWithText:(NSString *)text
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:completion:));
 
 /**
  *  Present a notification using the default style. The notification will
@@ -75,10 +74,10 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @param text The message to display
  *  @param delay The delay in seconds, before the notification should be dismissed automatically.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(present(text:dismissAfterDelay:));
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(present(text:dismissAfterDelay:));
 
 #pragma mark - Custom Style Presentation
 
@@ -87,28 +86,26 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param styleName The name of the style. You can use previously added custom styles.
- *  (e.g. JDStatusBarIncludedStyleDefaultStyle, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                         customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:customStyle:));
+- (UIView *)presentWithText:(NSString *)text
+                customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:customStyle:));
 
 /**
  *  Present a notification using the specified style.
  *  If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param styleName The name of the style. You can use previously added custom styles.
- *  (e.g. JDStatusBarIncludedStyleDefaultStyle, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.
  *  @param completion A completion block, which gets called once the animation finishes.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                         customStyle:(NSString * _Nullable)styleName
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:customStyle:completion:));
+- (UIView *)presentWithText:(NSString *)text
+                customStyle:(NSString * _Nullable)styleName
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:customStyle:completion:));
 
 /**
  *  Present a notification using the specified style.The notification will dismiss after the
@@ -116,14 +113,13 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param text The message to display
  *  @param delay The delay in seconds, before the notification should be dismissed.
- *  @param styleName The name of the style. You can use previously added custom styles.
- *  (e.g. JDStatusBarIncludedStyleDefaultStyle, etc.). If this is nil, or the no style can be found,, the default style will be used.
+ *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay
-                         customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:customStyle:));
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay
+                customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:customStyle:));
 
 #pragma mark - Included Style Presentation
 
@@ -134,10 +130,10 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @param text The message to display
  *  @param style The included style that should be used.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:));
+- (UIView *)presentWithText:(NSString *)text
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:));
 /**
  *  Present a notification using the specified style.
  *  If no style exists for the provided name, the defaultStyle is used.
@@ -146,11 +142,11 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @param style The included style that should be used.
  *  @param completion A completion block, which gets called once the animation finishes.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:includedStyle:completion:));
+- (UIView *)presentWithText:(NSString *)text
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:includedStyle:completion:));
 
 /**
  *  Present a notification using the specified style.The notification will dismiss after the
@@ -160,11 +156,11 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @param delay The delay in seconds, before the notification should be dismissed.
  *  @param style The included style that should be used.
  *
- *  @return The presented JDStatusBarView for further customization
+ *  @return The presented UIView for further customization
  */
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                   dismissAfterDelay:(NSTimeInterval)delay
-                       includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
+- (UIView *)presentWithText:(NSString *)text
+          dismissAfterDelay:(NSTimeInterval)delay
+              includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
 
 #pragma mark - Custom View Presentation
 
