@@ -85,11 +85,7 @@ NotificationPresenter.shared().displayActivityIndicator(true)
     
 ### Using alternative styles
 
-There's a few included styles you can easily use:
-
-![styles](https://user-images.githubusercontent.com/807039/172004375-789e050c-b0c9-465c-a1d0-4c76bc00f935.jpg)
-
-Example usage:
+There's a few included styles you can easily use with the following API:
 
 ```swift
 NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .success)
