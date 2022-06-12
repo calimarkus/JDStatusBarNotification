@@ -1,8 +1,10 @@
 # JDStatusBarNotification
 
-Easy, customizable notifications displayed below the status bar for notch and no-notch devices.
-Customizable colors, fonts and animations. Supports displaying a progress bar and/or an activity indicator.
-Please open a [Github issue], if you think anything is missing or wrong.
+Highly customizable notifications displayed below the status bar for both notch and no-notch devices.
+Customizable colors, fonts & animations. Can show an activity indicator, a progress bar & custom views.
+iOS 13+. Swift ready!
+
+Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
 | Drag to dismiss | Activity & Progress Bars | Custom styles |
 | ------------- | ------------- | ------------- |
@@ -14,53 +16,43 @@ Please open a [Github issue], if you think anything is missing or wrong.
 
 ## Installation
 
-#### CocoaPods:
-
-`pod 'JDStatusBarNotification'`
-
-(For infos on cocoapods, have a look at the [cocoapods website])
-
-#### Manually:
-
-1. Drag the `JDStatusBarNotification/JDStatusBarNotification` folder into your project.
-2. Add `#include "JDStatusBarNotification.h"`, where you want to use it
-
-#### Carthage:
-
-`github "calimarkus/JDStatusBarNotification"`
-
-(more infos on Carthage [here](https://github.com/Carthage/Carthage))
-
-## Beware: App Rejections (pre iOS 13.0 I think)
-
-Some people informed me, that their apps got rejected for using status bar overlays (for violating 10.1/10.3).
-All cases I'm aware of are listed here:
-
-- [@goelv](https://github.com/goelv) in [#15](https://github.com/calimarkus/JDStatusBarNotification/issues/15)
-- [@dskyu](https://github.com/dskyu) in [#30](https://github.com/calimarkus/JDStatusBarNotification/issues/30)
-- [@graceydb](https://github.com/graceydb) in [#49](https://github.com/calimarkus/JDStatusBarNotification/issues/49)
-- [@hongdong](https://github.com/hongdong) in [#91](https://github.com/calimarkus/JDStatusBarNotification/issues/91)
+- [**CocoaPods:**](https://guides.cocoapods.org)
+  - `pod 'JDStatusBarNotification'`
+- [**Carthage:**](https://github.com/Carthage/Carthage)
+  - `github "calimarkus/JDStatusBarNotification"`
+- **Manually:**
+  - Copy the `JDStatusBarNotification/JDStatusBarNotification` folder into your project.
 
 ## Usage
 
-JDStatusBarNotification is a singleton. You don't need to initialize it anywhere.
-Just use the following class methods:
+`NotificationPresenter` is a singleton. You don't need to initialize it anywhere.
+All examples are Swift code, but the class can be used in Objective-C as well.
+Also checkout the example project, which also includes a convenient style editor.
 
-### Showing a notification
-    
-```objc
-+ (JDStatusBarView *)showWithStatus:(NSString *)status;
-+ (JDStatusBarView *)showWithStatus:(NSString *)status
-                      dismissAfter:(NSTimeInterval)timeInterval;
+You can use the presenter like in the following examples:
+
+### Showing a text notification
+
+It's as simple as this:
+
+```swift
+NotificationPresenter.shared().present(text: "Hello World")
+
+// with completion
+NotificationPresenter.shared().present(text: "Hello World") { presenter in
+   // ...
+}
 ```
-
-The return value will be the notification view. You can just ignore it, but if you need further customization, this is where you can access the view.
 
 ### Dismissing a notification
 
-```objc
-+ (void)dismiss;
-+ (void)dismissAfter:(NSTimeInterval)delay;
+```swift
+NotificationPresenter.shared().dismiss(animated: true)
+
+// with completion
+NotificationPresenter.shared().dismiss(afterDelay: 0.5) { presenter in
+   // ...
+}
 ```
     
 ### Showing progress
@@ -68,84 +60,91 @@ The return value will be the notification view. You can just ignore it, but if y
 ![progress](https://user-images.githubusercontent.com/807039/172003585-bf8e7284-9e2e-4de2-ab88-7fce086d65a6.gif)
 
 
-```objc
-+ (void)showProgress:(CGFloat)progress;  // Range: 0.0 - 1.0
+```swift
+NotificationPresenter.shared().displayProgressBar(percentage: 0.5)
+
+// or animated
+NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: 1.0) { presenter in
+   // ...
+}
 ```
     
 ### Showing activity
 
 ![activity](https://user-images.githubusercontent.com/807039/172003589-d0513124-9b72-4e3f-89f0-278bf4c66226.gif)
 
-```objc
-+ (void)showActivityIndicator:(BOOL)show
-               indicatorStyle:(UIActivityIndicatorViewStyle)style;
+```swift
+NotificationPresenter.shared().displayActivityIndicator(true)
 ```
     
-### Showing a notification with alternative styles
+### Using alternative styles
 
-Included styles:
+There's a few included styles you can easily use:
 
 ![styles](https://user-images.githubusercontent.com/807039/172004375-789e050c-b0c9-465c-a1d0-4c76bc00f935.jpg)
 
-Use them with the following methods:
+Example usage:
 
-```objc
-+ (JDStatusBarView *)showWithStatus:(NSString *)status
-                         styleName:(NSString*)styleName;
-
-+ (JDStatusBarView *)showWithStatus:(NSString *)status
-                      dismissAfter:(NSTimeInterval)timeInterval
-                         styleName:(NSString*)styleName;
+```swift
+NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .success)
 ```
-                 
-To present a notification using a custom style, use the `identifier` you specified in `addStyleNamed:prepare:`. See Customization below.
 
 ## Customization
 
-```objc
-+ (void)setDefaultStyle:(JDPrepareStyleBlock)prepareBlock;
+You have the option to create fully customized styles - or to even present custom views.
 
-+ (NSString *)addStyleNamed:(NSString*)identifier
-                   prepare:(JDPrepareStyleBlock)prepareBlock;
+The closure provides a copy of the default style, which can be modified as you like. See the `JDStatusBarStyle` class (or the style editor in the example project) for all options and documentation. You can use the example project's style editor to create a style and then export the code to configure that style.
+
+```swift
+// update default style
+NotificationPresenter.shared().updateDefaultStyle { style in
+   style.backgroundStyle.backgroundColor = .red
+   style.textStyle.textColor = .white
+   style.textStyle.font = UIFont.preferredFont(forTextStyle: .title3)
+   // and many more options
+   return style
+}
+
+// set a named custom style
+NotificationPresenter.shared().addStyle(styleName: "xxx", prepare: { style in
+   // ...
+}
+
+// present a custom view
+var anyView: UIView = ...
+NotificationPresenter.shared().present(customView: anyView)
 ```
 
+#### Style Editor
 
-The `prepareBlock` gives you a copy of the default style, which can be modified as you like:
+Checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code.
+
+#### Background Styles
+
+There's two supported background styles:
 
 ```objc
-[JDStatusBarNotification addStyleNamed:<#identifier#> prepare:^JDStatusBarStyle*(JDStatusBarStyle *style) {
-   // main properties
-   style.barColor = <#color#>;
-   style.textColor = <#color#>;
-   style.font = <#font#>;
-   
-   // advanced properties
-   style.animationType = <#type#>;
-   style.textShadow = <#shadow#>;
-   style.textVerticalPositionAdjustment = <#adjustment#>;
-
-   // progress bar
-   style.progressBarColor = <#color#>;
-   style.progressBarHeight = <#height#>;
-   style.progressBarPosition = <#position#>;
-
-   return style;
-}];
+typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
+  /// The background covers the full display width and the full status bar & navbar height.
+  JDStatusBarBackgroundTypeFullWidth,
+  /// The background is a floating pill around the text.
+  JDStatusBarBackgroundTypePill,
+} NS_SWIFT_NAME(BarBackgroundType);
 ```
 
 #### Animation Types
 
+The supported animation types:
+
 ```objc
 typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
-  /// Notification won't animate
-  JDStatusBarAnimationTypeNone,
   /// Notification will move in from the top, and move out again to the top
   JDStatusBarAnimationTypeMove,
   /// Notification will fall down from the top and bounce a little bit
   JDStatusBarAnimationTypeBounce,
   /// Notification will fade in and fade out
   JDStatusBarAnimationTypeFade,
-};
+} NS_SWIFT_NAME(BarAnimationType);
 ```
 
 ## Twitter
@@ -154,10 +153,6 @@ I'm [@calimarkus](http://twitter.com/calimarkus) on Twitter. Feel free to [post 
 
 [![tweetbutton](https://user-images.githubusercontent.com/807039/170856086-2c283e68-a44f-4a9f-b327-bd5a7c654455.png)](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/calimarkus/JDStatusBarNotification&via=calimarkus)
 
-[Github issue]: https://github.com/calimarkus/JDStatusBarNotification/issues
-[cocoapods website]: http://cocoapods.org
-
 ## Credits
 
-Based on KGStatusBar by Kevin Gibbon
-
+Originally based on `KGStatusBar` by Kevin Gibbon
