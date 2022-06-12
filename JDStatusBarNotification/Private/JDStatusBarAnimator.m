@@ -27,7 +27,7 @@
   JDStatusBarStyle *style = _statusBarView.style;
   JDStatusBarView *view = _statusBarView;
 
-  // reset old animation state
+  // reset animation state
   _animateInCompletionBlock = nil;
   [view.layer removeAllAnimations];
 
@@ -37,7 +37,7 @@
     view.transform = CGAffineTransformIdentity;
   } else {
     view.alpha = 1.0;
-    view.transform = CGAffineTransformMakeTranslation(0, -view.frame.size.height);
+    view.transform = CGAffineTransformMakeTranslation(0, - CGRectGetHeight(view.bounds));
   }
 
   // animate in
@@ -98,7 +98,7 @@
     if (style.animationType == JDStatusBarAnimationTypeFade) {
       view.alpha = 0.0;
     } else {
-      view.transform = CGAffineTransformMakeTranslation(0, - view.frame.size.height);
+      view.transform = CGAffineTransformMakeTranslation(0, - CGRectGetHeight(view.bounds));
     }
   } completion:^(BOOL finished) {
     if (finished && completion != nil) {
