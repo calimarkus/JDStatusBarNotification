@@ -23,7 +23,7 @@
 	<key>ExampleIsWindowSceneBased</key>
 	<true/>
 	<key>ExampleViewControllerTitle</key>
-	<string>WindowScene Example</string>
+	<string>Scene Example</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
