@@ -5,7 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIApplication (MainWindow)
+@interface UIApplication (JDSB_MainWindow)
 
 - (UIWindow *)jdsb_mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow;
 

@@ -1,9 +1,9 @@
 //
 //
 
-#import "UIApplication+MainWindow.h"
+#import "UIApplication+JDSB_MainWindow.h"
 
-@implementation UIApplication (MainWindow)
+@implementation UIApplication (JDSB_MainWindow)
 
 // we don't want the keyWindow, since it could be our own window
 - (UIWindow *)jdsb_mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow {
