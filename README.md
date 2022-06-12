@@ -6,6 +6,12 @@ a progress bar & custom views. iOS 13+. Swift ready!
 
 Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
+Pill styles:
+
+![examples](https://user-images.githubusercontent.com/807039/173235966-64407449-6570-4e9c-83b4-8645a97ec83b.jpg)
+
+Full-Width styles:
+
 | Drag to dismiss | Activity & Progress Bars | Custom styles |
 | ------------- | ------------- | ------------- |
 | ![1](https://user-images.githubusercontent.com/807039/172001713-74d8c212-cd58-4687-8d6b-472e1bdb944d.gif) | ![3](https://user-images.githubusercontent.com/807039/172001734-be3c4e36-46b6-4f9f-a3d5-59a51e5db675.gif) | ![2](https://user-images.githubusercontent.com/807039/172001727-65aa6374-beeb-4a5c-adac-7e1967236b63.gif) |
