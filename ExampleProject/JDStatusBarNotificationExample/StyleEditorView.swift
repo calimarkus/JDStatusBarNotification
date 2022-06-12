@@ -76,7 +76,7 @@ struct StyleEditorView: View {
         }
 
         #if targetEnvironment(simulator)
-          buttonRow(title: "Print style", subtitle: "Print current style config to \nthe console & copy it to the pasteboard.") {
+          buttonRow(title: "Print style config", subtitle: "Print code to configure style to the console & copy it to the pasteboard.") {
             print(style.styleConfigurationString())
             UIPasteboard.general.string = style.styleConfigurationString()
           }
@@ -85,6 +85,24 @@ struct StyleEditorView: View {
             UIPasteboard.general.string = style.styleConfigurationString()
           }
         #endif
+
+        HStack {
+          Spacer()
+          Text("Keep the notification presented to see any changes live!")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+          Spacer()
+        }.disabled(true)
+      }
+
+      Section("State") {
+        VStack(alignment: .leading, spacing: 3.0) {
+          Text("Text".uppercased())
+            .font(.caption)
+            .foregroundColor(.secondary)
+          TextField("Text", text: $text)
+            .font(.subheadline)
+        }
 
         Toggle("Activity Indicator", isOn: $showActivity)
           .onChange(of: showActivity) { _ in
@@ -108,19 +126,39 @@ struct StyleEditorView: View {
             NotificationPresenter.shared().displayProgressBar(percentage: progress)
           }
         }.font(.subheadline)
-
-        HStack {
-          Spacer()
-          Text("Keep the notification presented to see any changes live!")
-            .font(.caption2)
-            .foregroundColor(.secondary)
-          Spacer()
-        }.disabled(true)
       }
 
-      Section("Text") {
-        TextField("Text", text: $text)
-          .font(.subheadline)
+      Section("Notification Bar Style") {
+        customColorPicker(title: "Background Color", binding: $style.backgroundColor)
+
+        PickerFactory.build(title: "BarAnimationType", binding: $style.animationType) {
+          EnumPickerOptionView(BarAnimationType.move)
+          EnumPickerOptionView(BarAnimationType.fade)
+          EnumPickerOptionView(BarAnimationType.bounce)
+        }
+
+        PickerFactory.build(title: "BarBackgroundType", binding: $style.backgroundType) {
+          EnumPickerOptionView(BarBackgroundType.fullWidth)
+          EnumPickerOptionView(BarBackgroundType.pill)
+        }
+
+        if style.backgroundType != .pill {
+          PickerFactory.build(title: "StatusBarSystemStyle", binding: $style.systemStatusBarStyle) {
+            EnumPickerOptionView(StatusBarSystemStyle.defaultStyle)
+            EnumPickerOptionView(StatusBarSystemStyle.lightContent)
+            EnumPickerOptionView(StatusBarSystemStyle.darkContent)
+          }
+        }
+
+        VStack(alignment: .leading, spacing: 6.0) {
+          PickerFactory.build(title: "Swipe to dismiss", binding: $style.canSwipeToDismiss) {
+            Text("Enabled").tag(true)
+            Text("Disabled").tag(false)
+          }
+        }
+      }
+
+      Section("Text Style") {
         NavigationLink(destination: {
           FontPicker(font: $style.font)
         }, label: {
@@ -156,46 +194,8 @@ struct StyleEditorView: View {
         }
       }
 
-      Section("Notification Bar") {
-        customColorPicker(title: "Background Color", binding: $style.backgroundColor)
-
-        VStack(alignment: .leading) {
-          Text("AnimationStyle").font(.subheadline)
-          Picker("", selection: $style.animationType) {
-            EnumPickerOptionView(BarAnimationType.move)
-            EnumPickerOptionView(BarAnimationType.fade)
-            EnumPickerOptionView(BarAnimationType.bounce)
-          }.font(.subheadline).pickerStyle(.segmented)
-        }
-
-        VStack(alignment: .leading) {
-          Text("BackgroundStyle").font(.subheadline)
-          Picker("", selection: $style.backgroundType) {
-            EnumPickerOptionView(BarBackgroundType.fullWidth)
-            EnumPickerOptionView(BarBackgroundType.pill)
-          }.font(.subheadline).pickerStyle(.segmented)
-        }
-
-        VStack(alignment: .leading) {
-          Text("System StatusBar Style").font(.subheadline)
-          Picker("", selection: $style.systemStatusBarStyle) {
-            EnumPickerOptionView(StatusBarSystemStyle.defaultStyle)
-            EnumPickerOptionView(StatusBarSystemStyle.lightContent)
-            EnumPickerOptionView(StatusBarSystemStyle.darkContent)
-          }.font(.subheadline).pickerStyle(.segmented)
-        }
-
-        VStack(alignment: .leading) {
-          Text("Swipe to dismiss").font(.subheadline)
-          Picker("", selection: $style.canSwipeToDismiss) {
-            Text("Enabled").tag(true)
-            Text("Disabled").tag(false)
-          }.font(.subheadline).pickerStyle(.segmented)
-        }
-      }
-
       if style.backgroundType == .pill {
-        Section("Pill background") {
+        Section("Pill background Style") {
           Stepper("Pill height (\(Int(style.pillHeight)))",
                   value: $style.pillHeight,
                   in: 20...80)
@@ -237,7 +237,7 @@ struct StyleEditorView: View {
         }
       }
 
-      Section("Progress Bar") {
+      Section("Progress Bar Style") {
         customColorPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
 
         Stepper("Bar height (\(Int(style.pbBarHeight)))",
@@ -245,13 +245,10 @@ struct StyleEditorView: View {
                 in: 1...99)
           .font(.subheadline)
 
-        VStack(alignment: .leading) {
-          Text("Position").font(.subheadline)
-          Picker("", selection: $style.pbPosition) {
-            EnumPickerOptionView(ProgressBarPosition.top)
-            EnumPickerOptionView(ProgressBarPosition.center)
-            EnumPickerOptionView(ProgressBarPosition.bottom)
-          }.font(.subheadline).pickerStyle(.segmented)
+        PickerFactory.build(title: "ProgressBarPosition", binding: $style.pbPosition) {
+          EnumPickerOptionView(ProgressBarPosition.top)
+          EnumPickerOptionView(ProgressBarPosition.center)
+          EnumPickerOptionView(ProgressBarPosition.bottom)
         }
 
         Stepper("Corner radius (\(Int(style.pbCornerRadius)))",
@@ -316,6 +313,7 @@ struct StyleEditorView: View {
             Text(subtitle)
               .font(.caption)
               .foregroundColor(.secondary)
+              .lineLimit(3)
           }
         }
         Spacer()
@@ -323,6 +321,19 @@ struct StyleEditorView: View {
           .frame(width: 30.0)
       }
     })
+  }
+}
+
+struct PickerFactory<T, SomeView> where T: Hashable, SomeView: View {
+  static func build(title: String, binding: Binding<T>, @ViewBuilder content: () -> SomeView) -> some View {
+    VStack(alignment: .leading, spacing: 6.0) {
+      Text(title)
+        .font(.subheadline)
+        .padding(.top, 4.0)
+      Picker("", selection: binding) {
+        content()
+      }.pickerStyle(.segmented)
+    }
   }
 }
 
@@ -360,7 +371,6 @@ public struct FontPicker: UIViewControllerRepresentable {
     public func fontPickerViewControllerDidPickFont(_ viewController: UIFontPickerViewController) {
       guard let descriptor = viewController.selectedFontDescriptor else { return }
       $font.wrappedValue = UIFont(descriptor: descriptor, size: font.pointSize)
-      parent.presentationMode.wrappedValue.dismiss()
     }
 
     public func fontPickerViewControllerDidCancel(_ viewController: UIFontPickerViewController) {
@@ -375,6 +385,7 @@ public struct FontPicker: UIViewControllerRepresentable {
 @available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle()))
+    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle())).preferredColorScheme(.light)
+    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle())).preferredColorScheme(.dark)
   }
 }

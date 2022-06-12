@@ -130,8 +130,8 @@ struct ExamplesView: View {
           }
         }.font(.subheadline)
 
-        VStack(alignment: .leading) {
-          Text("BackgroundStyle").font(.subheadline)
+        VStack(alignment: .leading, spacing: 6.0) {
+          Text("BarBackgroundType").font(.subheadline)
           Picker("", selection: $backgroundType) {
             EnumPickerOptionView(BarBackgroundType.fullWidth)
             EnumPickerOptionView(BarBackgroundType.pill)
