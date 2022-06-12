@@ -6,7 +6,6 @@
 //
 
 #import "JDStatusBarView.h"
-#import "JDStatusBarView_Private.h"
 
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarLayoutMarginHelper.h"

@@ -97,7 +97,6 @@
 		7EBE341C2844CFA90096CD55 /* JDStatusBarPrepareStyleBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarPrepareStyleBlock.h; sourceTree = "<group>"; };
 		7ED140902847557600593D6F /* JDStatusBarWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarWindow.h; sourceTree = "<group>"; };
 		7ED140912847557600593D6F /* JDStatusBarWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarWindow.m; sourceTree = "<group>"; };
-		7ED14094284847FB00593D6F /* JDStatusBarView_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView_Private.h; sourceTree = "<group>"; };
 		7ED140952848513800593D6F /* JDStatusBarStyleCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyleCache.h; sourceTree = "<group>"; };
 		7ED140962848513800593D6F /* JDStatusBarStyleCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyleCache.m; sourceTree = "<group>"; };
 		7EE516D428470CC300685DDF /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
@@ -171,7 +170,6 @@
 				7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */,
 				7ED140952848513800593D6F /* JDStatusBarStyleCache.h */,
 				7ED140962848513800593D6F /* JDStatusBarStyleCache.m */,
-				7ED14094284847FB00593D6F /* JDStatusBarView_Private.h */,
 				D25B0FA3184F343600B8174B /* JDStatusBarView.h */,
 				D25B0FA4184F343600B8174B /* JDStatusBarView.m */,
 				7ED140902847557600593D6F /* JDStatusBarWindow.h */,

@@ -6,7 +6,6 @@
 #import "JDStatusBarAnimator.h"
 #import "JDStatusBarStyle.h"
 #import "JDStatusBarView.h"
-#import "JDStatusBarView_Private.h"
 #import "UIApplication+JDSB_MainWindow.h"
 
 @interface JDStatusBarNotificationViewController () <JDStatusBarViewDelegate>
