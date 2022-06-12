@@ -182,6 +182,19 @@ NS_SWIFT_NAME(NotificationPresenter)
 #pragma mark - Dismissal
 
 /**
+ *  Dismisses any currently displayed notification immediately using an animation.
+ */
+- (void)dismiss;
+
+/**
+ *  Dismisses any currently displayed notification immediately using an animation.
+ *  The completion block is called once the dismiss animation finishes.
+ *
+ *  @param completion A completion block, which gets called once the dismiss animation finishes.
+ */
+- (void)dismissWithCompletion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(dismiss(completion:));
+
+/**
  *  Dismisses any currently displayed notification immediately.
  *
  *  @param animated If set, the notification will be dismissed according to the currently set StatusBarStyle

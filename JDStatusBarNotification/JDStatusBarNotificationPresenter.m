@@ -171,6 +171,27 @@
 
 #pragma mark - Dismissal
 
+- (void)dismiss {
+  [self dismissAnimated:YES completion:nil];
+}
+
+- (void)dismissWithCompletion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  [self dismissAnimated:YES completion:completion];
+}
+
+- (void)dismissAnimated:(BOOL)animated {
+  [self dismissAnimated:animated completion:nil];
+}
+
+- (void)dismissAnimated:(BOOL)animated completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  __weak __typeof(self) weakSelf = self;
+  [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 completion:^{
+    if (completion) {
+      completion(weakSelf);
+    }
+  }];
+}
+
 - (void)dismissAfterDelay:(NSTimeInterval)delay {
   [_overlayWindow.statusBarViewController dismissAfterDelay:delay completion:nil];
 }
@@ -183,10 +204,6 @@
       completion(weakSelf);
     }
   }];
-}
-
-- (void)dismissAnimated:(BOOL)animated {
-  [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 completion:nil];
 }
 
 #pragma mark - Style Management API
