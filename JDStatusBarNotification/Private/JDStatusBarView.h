@@ -29,7 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL displaysActivityIndicator;
 @property (nonatomic, assign) CGFloat progressBarPercentage;
 
-/// Set a custom view, which will be correctly layouted according to the selected style & the current device state (rotation, status bar visibility, etc.)
+/// The custom subview will be layouted according to the selected style (as well as the current device state like rotation, status bar visibility, etc..)
+/// It won't overlap the statusbar (if visible). It covers the full width of the screen. The height is defined by the selected style.
 @property (nonatomic, strong, nullable) UIView *customSubview;
 
 - (void)animateProgressBarToPercentage:(CGFloat)percentage
