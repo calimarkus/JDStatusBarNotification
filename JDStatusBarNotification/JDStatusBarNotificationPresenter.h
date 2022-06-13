@@ -128,7 +128,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param style The included style that should be used.
+ *  @param includedStyle The included style that should be used.
  *
  *  @return The presented UIView for further customization
  */
@@ -139,7 +139,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  If no style exists for the provided name, the defaultStyle is used.
  *
  *  @param text The message to display
- *  @param style The included style that should be used.
+ *  @param includedStyle The included style that should be used.
  *  @param completion A completion block, which gets called once the animation finishes.
  *
  *  @return The presented UIView for further customization
@@ -154,7 +154,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param text The message to display
  *  @param delay The delay in seconds, before the notification should be dismissed.
- *  @param style The included style that should be used.
+ *  @param includedStyle The included style that should be used.
  *
  *  @return The presented UIView for further customization
  */
@@ -169,7 +169,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  selected style & the current device state (rotation, status bar visibility, etc.). The background
  *  will still be styled & layouted according to the provided style.
  *
- *  @param view A custom UIView to display as notification
+ *  @param customView A custom UIView to display as notification
  *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.
  *  @param completion A completion block, which gets called once the animation finishes.
  *
@@ -244,7 +244,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  If a style with the same name already exists, it will be replaced.
  *
  *  @param styleName  The styleName which will later be used to reference the added style.
- *  @param includedStyle  The style that you want to base your style on.
+ *  @param basedOnStyle  The style that you want to base your style on.
  *  @param prepareBlock  Provides the specified style instance for further customization.
  *
  *  @return Returns the styleName, so this can be used directly within a presentation call.
