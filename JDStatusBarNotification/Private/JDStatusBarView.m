@@ -225,10 +225,12 @@ static const NSInteger kExpectedSubviewTag = 12321;
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth:
       self.backgroundColor = _style.backgroundStyle.backgroundColor;
+      _pillView.hidden = YES;
       break;
     case JDStatusBarBackgroundTypePill: {
       self.backgroundColor = [UIColor clearColor];
       _pillView.backgroundColor = _style.backgroundStyle.backgroundColor;
+      _pillView.hidden = NO;
       [self setPillStyle:style.backgroundStyle.pillStyle];
       break;
     }
@@ -337,11 +339,12 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth:
       _contentView.frame = contentRectForWindow(self);
-      [self resetPillStyle];
+      [self resetPillViewLayerAndMasks];
       break;
     case JDStatusBarBackgroundTypePill:
       _contentView.frame = [self pillContentRectForContentRect:contentRectForWindow(self)];
-      [self styleViewsForPillStyle];
+      _pillView.frame = _contentView.bounds;
+      [self stylePillViewLayerAndMasksForNewBounds];
       break;
   }
 
@@ -401,16 +404,12 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   }
 }
 
-- (void)resetPillStyle {
-  _pillView.hidden = YES;
+- (void)resetPillViewLayerAndMasks {
   _progressView.layer.mask = nil;
   _customSubview.layer.mask = nil;
 }
 
-- (void)styleViewsForPillStyle {
-  _pillView.hidden = NO;
-  _pillView.frame = _contentView.bounds;
-
+- (void)stylePillViewLayerAndMasksForNewBounds {
   // setup rounded corners (not using a mask layer, so that we can use shadows on this view)
   _pillView.layer.cornerRadius = round(_pillView.frame.size.height / 2.0);
   _pillView.layer.cornerCurve = kCACornerCurveContinuous;
