@@ -16,7 +16,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 @implementation JDStatusBarView {
   UIActivityIndicatorView *_activityIndicatorView;
   UIView *_progressView;
-  UIView *_pillBackgroundView;
+  UIView *_pillView;
   JDStatusBarStyle *_style;
 }
 
@@ -57,7 +57,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 - (void)resetSubviewsIfNeeded {
   // remove subviews added from outside
-  for (UIView *view in [NSArray arrayWithObjects:self, _textLabel, _pillBackgroundView /* can be nil */, nil]) {
+  for (UIView *view in [NSArray arrayWithObjects:self, _textLabel, _pillView /* can be nil */, nil]) {
     for (UIView *subview in view.subviews) {
       if (subview.tag != kExpectedSubviewTag) {
         [subview removeFromSuperview];
@@ -69,8 +69,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   if (_textLabel.superview != self) {
     [self addSubview:_textLabel];
   }
-  if (_pillBackgroundView.superview != self) {
-    [self insertSubview:_pillBackgroundView belowSubview:_textLabel];
+  if (_pillView.superview != self) {
+    [self insertSubview:_pillView belowSubview:_textLabel];
   }
   if (_progressView.superview != self) {
     [self insertSubview:_progressView belowSubview:_textLabel];
@@ -119,14 +119,14 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [self setNeedsLayout];
 }
 
-#pragma mark - pill background
+#pragma mark - pill view
 
-- (void)createPillBackgroundViewIfNeeded {
-  if (_pillBackgroundView == nil) {
-    _pillBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-    _pillBackgroundView.tag = kExpectedSubviewTag;
-    [self addSubview:_pillBackgroundView];
-    [self sendSubviewToBack:_pillBackgroundView];
+- (void)createPillViewIfNeeded {
+  if (_pillView == nil) {
+    _pillView = [[UIView alloc] initWithFrame:CGRectZero];
+    _pillView.tag = kExpectedSubviewTag;
+    [self addSubview:_pillView];
+    [self sendSubviewToBack:_pillView];
   }
 }
 
@@ -140,7 +140,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
     _progressView.frame = [self progressViewRectForPercentage:0.0];
     _progressView.tag = kExpectedSubviewTag;
     [self insertSubview:_progressView belowSubview:_textLabel];
-    [self sendSubviewToBack:_pillBackgroundView];
+    [self sendSubviewToBack:_pillView];
   }
 }
 
@@ -149,7 +149,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
     case JDStatusBarBackgroundTypeFullWidth:
       return contentRectForWindow(self);
     case JDStatusBarBackgroundTypePill:
-      return _pillBackgroundView.frame;
+      return _pillView.frame;
   }
 }
 
@@ -268,29 +268,34 @@ static const NSInteger kExpectedSubviewTag = 12321;
 }
 
 - (void)applyStyleForBackgroundType {
-  JDStatusBarBackgroundStyle *backgroundStyle = _style.backgroundStyle;
-  switch (backgroundStyle.backgroundType) {
+  switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth:
-      self.backgroundColor = backgroundStyle.backgroundColor;
+      self.backgroundColor = _style.backgroundStyle.backgroundColor;
       break;
     case JDStatusBarBackgroundTypePill: {
-      JDStatusBarPillStyle *pillStyle = backgroundStyle.pillStyle;
       self.backgroundColor = [UIColor clearColor];
-      [self createPillBackgroundViewIfNeeded];
-      _pillBackgroundView.backgroundColor = backgroundStyle.backgroundColor;
-
-      // set border
-      _pillBackgroundView.layer.borderColor = pillStyle.borderColor.CGColor;
-      _pillBackgroundView.layer.borderWidth = pillStyle.borderColor ? pillStyle.borderWidth : 0.0;
-
-      // set shadows
-      _pillBackgroundView.layer.shadowColor = pillStyle.shadowColor.CGColor;
-      _pillBackgroundView.layer.shadowRadius = pillStyle.shadowColor ? pillStyle.shadowRadius : 0.0;
-      _pillBackgroundView.layer.shadowOpacity = pillStyle.shadowColor ? 1.0 : 0.0;
-      _pillBackgroundView.layer.shadowOffset = pillStyle.shadowColor ? pillStyle.shadowOffset : CGSizeZero;
+      [self createAndStylePillView];
       break;
     }
   }
+}
+
+- (void)createAndStylePillView {
+  JDStatusBarBackgroundStyle *backgroundStyle = _style.backgroundStyle;
+  JDStatusBarPillStyle *pillStyle = backgroundStyle.pillStyle;
+
+  [self createPillViewIfNeeded];
+  _pillView.backgroundColor = backgroundStyle.backgroundColor;
+
+  // set border
+  _pillView.layer.borderColor = pillStyle.borderColor.CGColor;
+  _pillView.layer.borderWidth = pillStyle.borderColor ? pillStyle.borderWidth : 0.0;
+
+  // set shadows
+  _pillView.layer.shadowColor = pillStyle.shadowColor.CGColor;
+  _pillView.layer.shadowRadius = pillStyle.shadowColor ? pillStyle.shadowRadius : 0.0;
+  _pillView.layer.shadowOpacity = pillStyle.shadowColor ? 1.0 : 0.0;
+  _pillView.layer.shadowOffset = pillStyle.shadowColor ? pillStyle.shadowOffset : CGSizeZero;
 }
 
 #pragma mark - Custom Subview
@@ -304,7 +309,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
       [self addSubview:_customSubview];
       break;
     case JDStatusBarBackgroundTypePill:
-      [_pillBackgroundView addSubview:_customSubview];
+      [_pillView addSubview:_customSubview];
       break;
   }
 
@@ -376,20 +381,20 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
 - (void)layoutSubviewsForBackgroundType {
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth: {
-      _pillBackgroundView.hidden = YES;
+      _pillView.hidden = YES;
       _progressView.layer.mask = nil;
       _customSubview.layer.mask = nil;
       break;
     }
     case JDStatusBarBackgroundTypePill: {
-      _pillBackgroundView.hidden = NO;
-      [self layoutSubviewsForPillBackground];
+      _pillView.hidden = NO;
+      [self layoutSubviewsForPillStyle];
       break;
     }
   }
 }
 
-- (void)layoutSubviewsForPillBackground {
+- (void)layoutSubviewsForPillStyle {
   JDStatusBarPillStyle *pillStyle = _style.backgroundStyle.pillStyle;
 
   // pill layout parameters
@@ -410,7 +415,7 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   CGRect pillFrame = CGRectMake(pillX, pillY, pillWidth, pillHeight);
-  _pillBackgroundView.frame = pillFrame;
+  _pillView.frame = pillFrame;
 
   // layout custom view, if provided
   if (_customSubview) {
@@ -422,9 +427,9 @@ static CGFloat fittedTextWidthForLabel(UILabel *textLabel) {
   _textLabel.frame = CGRectOffset(CGRectInset(pillFrame, paddingX, 0), 0, _style.textStyle.textOffsetY);
 
   // setup rounded corners (not using a mask layer, so that we can use shadows on this view)
-  _pillBackgroundView.layer.cornerRadius = round(_pillBackgroundView.frame.size.height / 2.0);
-  _pillBackgroundView.layer.cornerCurve = kCACornerCurveContinuous;
-  _pillBackgroundView.layer.allowsEdgeAntialiasing = YES;
+  _pillView.layer.cornerRadius = round(_pillView.frame.size.height / 2.0);
+  _pillView.layer.cornerCurve = kCACornerCurveContinuous;
+  _pillView.layer.allowsEdgeAntialiasing = YES;
 
   // mask progress to pill size & shape
   _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:pillFrame fromView:self]);
@@ -474,7 +479,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       case JDStatusBarBackgroundTypeFullWidth:
         return [super hitTest:point withEvent:event];
       case JDStatusBarBackgroundTypePill:
-        return [_pillBackgroundView hitTest:[self convertPoint:point toView:_pillBackgroundView] withEvent:event];
+        return [_pillView hitTest:[self convertPoint:point toView:_pillView] withEvent:event];
     }
   }
   return nil;
