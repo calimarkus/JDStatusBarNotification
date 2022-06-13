@@ -33,9 +33,17 @@ Full-Width styles:
 
 `NotificationPresenter` is a singleton. You don't need to initialize it anywhere.
 All examples are Swift code, but the class can be used in Objective-C as well.
-Also checkout the example project, which also includes a convenient style editor.
+Also checkout the example project, which has many examples and includes a convenient style editor.
 
-You can use the presenter like in the following examples:
+Here's some usage examples:
+
+### Initial Setup
+
+If you app uses a `UIWindowScene` you have to let the `NotificationPresenter` know about it, before you present any notifications (otherwise they won't show up at all). If your app doesn't use window scenes, no initial setup is needed.
+
+```swift
+NotificationPresenter.shared().setWindowScene(windowScene)
+```
 
 ### Showing a text notification
 
@@ -63,8 +71,7 @@ NotificationPresenter.shared().dismiss(afterDelay: 0.5) { presenter in
     
 ### Showing progress
 
-![progress](https://user-images.githubusercontent.com/807039/172003585-bf8e7284-9e2e-4de2-ab88-7fce086d65a6.gif)
-
+![progress](https://user-images.githubusercontent.com/807039/173359598-bcd5c6c9-939d-4660-972e-a230cb1efcfe.gif)
 
 ```swift
 NotificationPresenter.shared().displayProgressBar(percentage: 0.5)
@@ -77,7 +84,7 @@ NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDu
     
 ### Showing activity
 
-![activity](https://user-images.githubusercontent.com/807039/172003589-d0513124-9b72-4e3f-89f0-278bf4c66226.gif)
+![activity](https://user-images.githubusercontent.com/807039/173359085-a6ab34b3-13ca-469b-8df2-669f273929cc.gif)
 
 ```swift
 NotificationPresenter.shared().displayActivityIndicator(true)
