@@ -53,6 +53,9 @@
 		7ED140982848513800593D6F /* JDStatusBarStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDStatusBarStyleCache.m */; };
 		7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
 		7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
+		7EEDBE142856EDD9007747AA /* StatusBarPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */; };
+		7EEDBE152856EDD9007747AA /* StatusBarPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */; };
+		7EEDBE162856EDD9007747AA /* StatusBarPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */; };
 		7EFD778D2843461D000BFBF1 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
 		7EFD778F2843461D000BFBF1 /* JDStatusBarNotificationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C11820216300DA0E53 /* JDStatusBarNotificationPresenter.m */; };
 		7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
@@ -102,6 +105,7 @@
 		7EE516D428470CC300685DDF /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
 		7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarManagerHelper.m; sourceTree = "<group>"; };
 		7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarManagerHelper.h; sourceTree = "<group>"; };
+		7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviews.swift; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN_WindowSceneExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_WindowSceneExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
 		7EFD77A428434906000BFBF1 /* SBSceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSceneDelegate.h; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				7E67050C284A4BE900AD58E1 /* ExamplesView.swift */,
 				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
 				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
+				7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */,
 				7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */,
 				7E2F3BBA284F6144002B2181 /* CustomStyle.swift */,
 				7E670512284B177B00AD58E1 /* StyleEditorView.swift */,
@@ -402,6 +407,7 @@
 				7EA91CB0284EF3AF00F32F09 /* SBExampleViewController.m in Sources */,
 				7EA91CB1284EF3AF00F32F09 /* JDStatusBarStyle.m in Sources */,
 				7EA91CB2284EF3AF00F32F09 /* StyleEditorView.swift in Sources */,
+				7EEDBE162856EDD9007747AA /* StatusBarPreviews.swift in Sources */,
 				7EA91CB3284EF3AF00F32F09 /* ExamplesView.swift in Sources */,
 				7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */,
 				7EA91CB5284EF3AF00F32F09 /* UIApplication+JDSB_MainWindow.m in Sources */,
@@ -428,6 +434,7 @@
 				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
 				7EFD77912843461D000BFBF1 /* JDStatusBarStyle.m in Sources */,
 				7E670514284B177B00AD58E1 /* StyleEditorView.swift in Sources */,
+				7EEDBE152856EDD9007747AA /* StatusBarPreviews.swift in Sources */,
 				7E67050E284A4BE900AD58E1 /* ExamplesView.swift in Sources */,
 				7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */,
 				7EBE34132844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m in Sources */,
@@ -445,6 +452,7 @@
 				D264F89D1820213200DA0E53 /* main.m in Sources */,
 				D25B0FA5184F343700B8174B /* JDStatusBarView.m in Sources */,
 				7E1C2837285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
+				7EEDBE142856EDD9007747AA /* StatusBarPreviews.swift in Sources */,
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
 				7E67050D284A4BE900AD58E1 /* ExamplesView.swift in Sources */,
 				7ED140972848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
