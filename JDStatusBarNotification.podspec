@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '13.0'
   s.source               = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
   s.source_files         = 'JDStatusBarNotification/**/*'
-  s.private_header_files = 'JDStatusBarNotification/Private/*'
+  s.private_header_files = 'JDStatusBarNotification/Private/*.h'
   
 end
