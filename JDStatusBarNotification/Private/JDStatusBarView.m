@@ -296,9 +296,9 @@ static CGRect contentRectForWindow(UIView *view) {
   return CGRectMake(0, topLayoutMargin, view.bounds.size.width, height);
 }
 
-static CGFloat fittedTextWidthForLabel(UILabel *textLabel, CGFloat maxWidth) {
+static CGFloat realTextWidthForLabel(UILabel *textLabel) {
   NSDictionary *attributes = @{NSFontAttributeName:textLabel.font};
-  return MIN([textLabel.text sizeWithAttributes:attributes].width, maxWidth);
+  return [textLabel.text sizeWithAttributes:attributes].width;
 }
 
 static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
@@ -324,7 +324,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   }
 
   // layout pill
-  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, fittedTextWidthForLabel(_textLabel, maximumPillWidth) + paddingX * 2)));
+  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, realTextWidthForLabel(_textLabel) + paddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   return CGRectMake(pillX, pillY, pillWidth, pillHeight);
@@ -334,22 +334,26 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   [super layoutSubviews];
 
   // content view
-  CGFloat labelInsetX = 0.0;
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth:
-      labelInsetX = 30.0;
       _contentView.frame = contentRectForWindow(self);
       [self resetPillStyle];
       break;
     case JDStatusBarBackgroundTypePill:
-      labelInsetX = 20.0;
       _contentView.frame = [self pillContentRectForContentRect:contentRectForWindow(self)];
       [self styleViewsForPillStyle];
       break;
   }
 
   // text label
-  _textLabel.frame = CGRectOffset(CGRectInset(_contentView.bounds, labelInsetX, 0), 0, _style.textStyle.textOffsetY);
+  CGFloat labelInsetX = 20.0;
+  CGRect innerContentRect = CGRectInset(_contentView.bounds, labelInsetX, 0);
+  CGFloat realTextWidth = realTextWidthForLabel(_textLabel);
+  CGFloat textWidth = MIN(realTextWidth, CGRectGetWidth(innerContentRect));
+  _textLabel.frame = CGRectMake(round((CGRectGetWidth(_contentView.bounds) - textWidth) / 2.0),
+                                _style.textStyle.textOffsetY,
+                                textWidth,
+                                CGRectGetHeight(_contentView.bounds));
 
   // custom subview
   _customSubview.frame = _contentView.bounds;
@@ -365,21 +369,35 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
     indicatorFrame.origin.y = _textLabel.frame.origin.y + floor((_textLabel.frame.size.height - CGRectGetHeight(indicatorFrame))/2.0);
 
     // x-position
-    CGFloat textWidth = fittedTextWidthForLabel(_textLabel, CGRectGetWidth(_textLabel.frame));
     if (textWidth == 0.0) {
+      // simply center
       indicatorFrame.origin.x = round(_contentView.bounds.size.width/2.0 - indicatorFrame.size.width/2.0);
     } else {
-      indicatorFrame.origin.x = round((_contentView.bounds.size.width - textWidth)/2.0 - indicatorFrame.size.width - kActivityIndicatorSpacing);
+      CGFloat centerAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
+
+      // position in front of text
+      indicatorFrame.origin.x = CGRectGetMinX(_textLabel.frame) - CGRectGetWidth(indicatorFrame) - kActivityIndicatorSpacing + centerAdjustement;
+
+      // adjust text label
+      CGRect textRect = _textLabel.frame;
+      textRect.origin.x += centerAdjustement;
+
+      // maintain max-bounds
+      CGFloat diffLeft = indicatorFrame.origin.x - CGRectGetMinX(innerContentRect);
+      if (diffLeft < 0.0) {
+        indicatorFrame.origin.x = CGRectGetMinX(innerContentRect);
+        textRect.origin.x += ABS(diffLeft);
+      }
+      CGFloat diffRight = CGRectGetMaxX(innerContentRect) - CGRectGetMaxX(textRect);
+      if (diffRight < 0.0) {
+        textRect.size.width -= ABS(diffRight);
+      }
+
+      // adjust text
+      _textLabel.frame = textRect;
     }
 
-    if (textWidth > 0.0) {
-      // adjust centering
-      CGFloat centerAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
-      _textLabel.frame = CGRectOffset(_textLabel.frame, centerAdjustement, 0);
-      _activityIndicatorView.frame = CGRectOffset(indicatorFrame, centerAdjustement, 0);
-    } else {
-      _activityIndicatorView.frame = indicatorFrame;
-    }
+    _activityIndicatorView.frame = indicatorFrame;
   }
 }
 
