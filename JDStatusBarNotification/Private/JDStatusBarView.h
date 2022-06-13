@@ -29,23 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL displaysActivityIndicator;
 @property (nonatomic, assign) CGFloat progressBarPercentage;
 
-/// The custom subview will be layouted according to the selected style (as well as the current device state like rotation, status bar visibility, etc..)
-/// It won't overlap the statusbar (if visible). It covers the full width of the screen. The height is defined by the selected style.
+/// The custom subview will be layouted according to the selected style (as well as the current device
+/// state like rotation, status bar visibility, etc..) It never overlaps the statusbar. The height & width is defined
+/// by the selected style. In the pill style the view will match the pill size.
 @property (nonatomic, strong, nullable) UIView *customSubview;
 
 - (void)animateProgressBarToPercentage:(CGFloat)percentage
                      animationDuration:(CGFloat)animationDuration
                             completion:(void(^ _Nullable)(void))completion;
-
-- (void)resetSubviewsIfNeeded;
-
-// designated initializer
-- (instancetype)initWithStyle:(JDStatusBarStyle *)style;
-
-// default init unavailable
-- (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
-- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
 @end
 

@@ -17,10 +17,10 @@
   JDStatusBarAnimator *_animator;
 }
 
-- (instancetype)initWithStyle:(JDStatusBarStyle *)style {
+- (instancetype)init {
   self = [super init];
   if (self) {
-    _statusBarView = [[JDStatusBarView alloc] initWithStyle:style];
+    _statusBarView = [JDStatusBarView new];
     _statusBarView.delegate = self;
 
     _animator = [[JDStatusBarAnimator alloc] initWithStatusBarView:_statusBarView];
@@ -41,7 +41,6 @@
                                style:(JDStatusBarStyle *)style
                           completion:(JDStatusBarNotificationViewControllerCompletion)completion {
   JDStatusBarView *topBar = _statusBarView;
-  [topBar resetSubviewsIfNeeded];
 
   // update status & style
   [topBar setText:text];

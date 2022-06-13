@@ -24,8 +24,9 @@ struct StatusBarPreview: UIViewRepresentable {
   }
 
   func makeUIView(context: Context) -> UIView {
-    let view = JDStatusBarView(style: self.style)
+    let view = JDStatusBarView()
     view.text = self.text
+    view.style = self.style
     view.displaysActivityIndicator = self.activity
     view.progressBarPercentage = self.progress
     return view
@@ -50,7 +51,7 @@ struct StatusBarPreview_Previews: PreviewProvider {
       }.frame(height: 66)
 
       StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
-                       progress: 0.0) { style in
+                       progress: 0.5) { style in
         style.backgroundStyle.backgroundType = .fullWidth
       }.frame(height: 66)
 
@@ -63,7 +64,7 @@ struct StatusBarPreview_Previews: PreviewProvider {
       }.frame(height: 66)
 
       StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
-                       progress: 0.0).frame(height: 66)
+                       progress: 0.5).frame(height: 66)
 
       Spacer()
     }

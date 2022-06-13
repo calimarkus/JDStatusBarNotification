@@ -23,7 +23,7 @@
   }
 
   if (self) {
-    _statusBarViewController = [[JDStatusBarNotificationViewController alloc] initWithStyle:style];
+    _statusBarViewController = [JDStatusBarNotificationViewController new];
     _statusBarViewController.delegate = self;
     self.rootViewController = _statusBarViewController;
 
@@ -31,8 +31,6 @@
     self.backgroundColor = [UIColor clearColor];
     self.userInteractionEnabled = YES;
     self.windowLevel = UIWindowLevelStatusBar;
-
-    [self updateFramesForStatusBarFrame:JDStatusBarFrameForWindowScene(windowScene)];
   }
   return self;
 }
