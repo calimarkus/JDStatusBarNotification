@@ -46,13 +46,17 @@ struct StyleEditorView: View {
     }
   }
 
+  func updateStyleOfPresentedView() {
+    StyleEditorView.statusBarView?.style = style.computedStyle()
+    StyleEditorView.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+  }
+
   var body: some View {
     Form {
       // a hack to trigger live updates
       EmptyView()
         .onChange(of: style) { _ in
-          StyleEditorView.statusBarView?.style = style.computedStyle()
-          StyleEditorView.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+          updateStyleOfPresentedView()
         }
         .onChange(of: style.animationType) { _ in
           presentDefault()
@@ -143,7 +147,7 @@ struct StyleEditorView: View {
       }
 
       Section("Notification Bar Style") {
-        customColorPicker(title: "Background Color", binding: $style.backgroundColor)
+        OptionalColorViewFactory.buildPicker(title: "Background Color", binding: $style.backgroundColor)
 
         PickerFactory.build(title: "BarAnimationType", binding: $style.animationType) {
           EnumPickerOptionView(BarAnimationType.move)
@@ -173,38 +177,14 @@ struct StyleEditorView: View {
       }
 
       Section("Text Style") {
-        NavigationLink(destination: {
-          FontPicker(font: $style.font)
-        }, label: {
-          HStack {
-            Text("Font").font(.subheadline)
-            Spacer()
-            Text("\(style.font.fontDescriptor.postscriptName)")
-              .font(.caption)
-          }
-        })
+        TextStyleForm(style: style.textStyle, defaultShadowColor: style.backgroundColor) {
+          updateStyleOfPresentedView()
+        }
+      }
 
-        Stepper("Font size (\(Int(style.font.pointSize)) pt)", value:
-          Binding<CGFloat>(get: {
-            style.font.pointSize
-          }, set: { size in
-            style.font = style.font.withSize(size)
-          }), in: 5...36)
-          .font(.subheadline)
-
-        Stepper("Text Offset Y (\(Int(style.textOffsetY)))",
-                value: $style.textOffsetY)
-          .font(.subheadline)
-
-        customColorPicker(title: "Text Color", binding: $style.textColor)
-
-        optionalColorToggle(title: "Text Shadow", binding: $style.textShadowColor, defaultColor: style.backgroundColor)
-
-        if let _ = style.textShadowColor {
-          customColorPicker(title: "  Shadow Color", binding: $style.textShadowColor)
-            .font(.caption)
-
-          xyStepper(title: "  Shadow Offset", binding: $style.textShadowOffset)
+      Section("Subtitle Style") {
+        TextStyleForm(style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
+          updateStyleOfPresentedView()
         }
       }
 
@@ -225,10 +205,10 @@ struct StyleEditorView: View {
                   in: 0...999)
             .font(.subheadline)
 
-          optionalColorToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: .black)
+          OptionalColorViewFactory.buildToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: .black)
 
           if let _ = style.pillBorderColor {
-            customColorPicker(title: "  Border Color", binding: $style.pillBorderColor)
+            OptionalColorViewFactory.buildPicker(title: "  Border Color", binding: $style.pillBorderColor)
 
             Stepper("  Border Width (\(Int(style.pillBorderWidth)))",
                     value: $style.pillBorderWidth,
@@ -236,23 +216,23 @@ struct StyleEditorView: View {
               .font(.subheadline)
           }
 
-          optionalColorToggle(title: "Pill shadow", binding: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
+          OptionalColorViewFactory.buildToggle(title: "Pill shadow", binding: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
 
           if let _ = style.pillShadowColor {
-            customColorPicker(title: "  Shadow Color", binding: $style.pillShadowColor)
+            OptionalColorViewFactory.buildPicker(title: "  Shadow Color", binding: $style.pillShadowColor)
 
             Stepper("  Shadow Radius (\(Int(style.pillShadowRadius)))",
                     value: $style.pillShadowRadius,
                     in: 0...99)
               .font(.subheadline)
 
-            xyStepper(title: "  Shadow Offset", binding: $style.pillShadowOffset)
+            CGSizeStepperFactory.build(title: "  Shadow Offset", binding: $style.pillShadowOffset)
           }
         }
       }
 
       Section("Progress Bar Style") {
-        customColorPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
+        OptionalColorViewFactory.buildPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
 
         Stepper("Bar height (\(Int(style.pbBarHeight)))",
                 value: $style.pbBarHeight,
@@ -282,41 +262,6 @@ struct StyleEditorView: View {
     }
   }
 
-  func customColorPicker(title: String, binding: Binding<UIColor?>) -> some View {
-    ColorPicker(title, selection: Binding<CGColor>(get: {
-      binding.wrappedValue?.cgColor ?? UIColor.white.cgColor
-    }, set: { val in
-      binding.wrappedValue = UIColor(cgColor: val)
-    }))
-    .font(.subheadline)
-  }
-
-  func optionalColorToggle(title: String, binding: Binding<UIColor?>, defaultColor: UIColor?) -> some View {
-    Toggle(title, isOn: Binding(get: {
-      binding.wrappedValue != nil
-    }, set: { on in
-      binding.wrappedValue = on ? defaultColor : nil
-    }))
-    .font(.subheadline)
-  }
-
-  func xyStepper(title: String, binding: Binding<CGSize>) -> some View {
-    VStack(alignment: .leading, spacing: 6.0) {
-      Text("\(title) (\(Int(binding.width.wrappedValue))/\(Int(binding.height.wrappedValue)))")
-        .font(.subheadline)
-      HStack(alignment: .center, spacing: 20.0) {
-        Spacer()
-        Stepper("X:", value: binding.width)
-          .frame(width: 120)
-          .font(.subheadline)
-        Stepper("Y:", value: binding.height)
-          .frame(width: 120)
-          .font(.subheadline)
-        Spacer()
-      }
-    }
-  }
-
   func buttonRow(title: String, subtitle: String? = nil, action: @escaping () -> Void) -> some View {
     Button(action: action, label: {
       HStack {
@@ -335,6 +280,46 @@ struct StyleEditorView: View {
           .frame(width: 30.0)
       }
     })
+  }
+}
+
+@available(iOS 15.0, *)
+enum OptionalColorViewFactory {
+  static func buildPicker(title: String, binding: Binding<UIColor?>) -> some View {
+    ColorPicker(title, selection: Binding<CGColor>(get: {
+      binding.wrappedValue?.cgColor ?? UIColor.white.cgColor
+    }, set: { val in
+      binding.wrappedValue = UIColor(cgColor: val)
+    }))
+    .font(.subheadline)
+  }
+
+  static func buildToggle(title: String, binding: Binding<UIColor?>, defaultColor: UIColor?) -> some View {
+    Toggle(title, isOn: Binding(get: {
+      binding.wrappedValue != nil
+    }, set: { on in
+      binding.wrappedValue = on ? defaultColor : nil
+    }))
+    .font(.subheadline)
+  }
+}
+
+enum CGSizeStepperFactory {
+  static func build(title: String, binding: Binding<CGSize>) -> some View {
+    VStack(alignment: .leading, spacing: 6.0) {
+      Text("\(title) (\(Int(binding.width.wrappedValue))/\(Int(binding.height.wrappedValue)))")
+        .font(.subheadline)
+      HStack(alignment: .center, spacing: 20.0) {
+        Spacer()
+        Stepper("X:", value: binding.width)
+          .frame(width: 120)
+          .font(.subheadline)
+        Stepper("Y:", value: binding.height)
+          .frame(width: 120)
+          .font(.subheadline)
+        Spacer()
+      }
+    }
   }
 }
 

@@ -1,12 +1,57 @@
 //
 //
 
-class CustomStyle: ObservableObject, Equatable {
-  @Published var textColor: UIColor?
+import Combine
+
+class CustomTextStyle: ObservableObject, Equatable {
   @Published var font: UIFont
+  @Published var textColor: UIColor?
   @Published var textOffsetY: CGFloat
   @Published var textShadowColor: UIColor?
   @Published var textShadowOffset: CGSize
+
+  init(_ textStyle: NotificationTextStyle) {
+    font = textStyle.font
+    textColor = textStyle.textColor
+    textOffsetY = textStyle.textOffsetY
+    textShadowColor = textStyle.textShadowColor
+    textShadowOffset = textStyle.textShadowOffset
+  }
+
+  static func == (lhs: CustomTextStyle, rhs: CustomTextStyle) -> Bool {
+    return false // a hack to trigger .onChange(of: style) on every change
+  }
+
+  func computedStyle() -> NotificationTextStyle {
+    let style = NotificationTextStyle()
+    style.textColor = textColor
+    style.font = font
+    style.textOffsetY = textOffsetY
+    style.textShadowColor = textShadowColor
+    style.textShadowOffset = textShadowOffset
+    return style
+  }
+
+  @SimpleStringBuilder
+  func styleConfigurationString(propertyName: String) -> String {
+    """
+    style.\(propertyName).textColor = \(textColor?.readableRGBAColorString() ?? "nil")
+    style.\(propertyName).font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))
+    style.\(propertyName).textOffsetY = \(textOffsetY)
+    """
+
+    if let textShadowColor = textShadowColor {
+      """
+      style.\(propertyName).textShadowColor = \(textShadowColor.readableRGBAColorString())
+      style.\(propertyName).textShadowOffset = CGSize(width: \(textShadowOffset.width), height: \(textShadowOffset.height))
+      """
+    }
+  }
+}
+
+class CustomStyle: ObservableObject, Equatable {
+  @Published var textStyle: CustomTextStyle
+  @Published var subtitleStyle: CustomTextStyle
 
   @Published var backgroundColor: UIColor?
   @Published var backgroundType: BarBackgroundType
@@ -36,11 +81,14 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var pbBarOffset: CGFloat
 
   init(_ defaultStyle: StatusBarStyle) {
-    textColor = UIColor(white: 0.1, alpha: 1.0)
-    font = .systemFont(ofSize: 14.0)
-    textOffsetY = defaultStyle.textStyle.textOffsetY
-    textShadowColor = defaultStyle.textStyle.textShadowColor
-    textShadowOffset = defaultStyle.textStyle.textShadowOffset
+    let text = CustomTextStyle(defaultStyle.textStyle)
+    text.textColor = UIColor(white: 0.1, alpha: 1.0)
+    text.font = .systemFont(ofSize: 14.0)
+    textStyle = text
+
+    let subtitle = CustomTextStyle(defaultStyle.subtitleStyle)
+    subtitle.textColor = UIColor(white: 0.1, alpha: 0.66)
+    subtitleStyle = subtitle
 
     backgroundColor = UIColor(red: 0.7960, green: 0.9411, blue: 0.9999, alpha: 1.0) // "light cyan blue"
     backgroundType = defaultStyle.backgroundStyle.backgroundType
@@ -79,11 +127,9 @@ class CustomStyle: ObservableObject, Equatable {
 
   func computedStyle() -> StatusBarStyle {
     let style = StatusBarStyle()
-    style.textStyle.textColor = textColor
-    style.textStyle.font = font
-    style.textStyle.textOffsetY = textOffsetY
-    style.textStyle.textShadowColor = textShadowColor
-    style.textStyle.textShadowOffset = textShadowOffset
+
+    style.textStyle = textStyle.computedStyle()
+    style.subtitleStyle = subtitleStyle.computedStyle()
 
     style.backgroundStyle.backgroundColor = backgroundColor
     style.backgroundStyle.backgroundType = backgroundType
@@ -106,26 +152,18 @@ class CustomStyle: ObservableObject, Equatable {
     style.progressBarStyle.horizontalInsets = pbHorizontalInsets
     style.progressBarStyle.cornerRadius = pbCornerRadius
     style.progressBarStyle.offsetY = pbBarOffset
+
     return style
   }
 
   @SimpleStringBuilder
   func styleConfigurationString() -> String {
-    """
-    style.textStyle.textColor = \(readableRGBAColorString(textColor))
-    style.textStyle.font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))
-    style.textStyle.textOffsetY = \(textOffsetY)
-    """
-
-    if let textShadowColor = textShadowColor {
-      """
-      style.textStyle.textShadowColor = \(readableRGBAColorString(textShadowColor))
-      style.textStyle.textShadowOffset = CGSize(width: \(textShadowOffset.width), height: \(textShadowOffset.height))
-      """
-    }
+    textStyle.styleConfigurationString(propertyName: "textStyle")
+    ""
+    subtitleStyle.styleConfigurationString(propertyName: "subtitleStyle")
 
     """
-    \nstyle.backgroundStyle.backgroundColor = \(readableRGBAColorString(backgroundColor))
+    \nstyle.backgroundStyle.backgroundColor = \(backgroundColor?.readableRGBAColorString() ?? "nil")
     style.backgroundStyle.backgroundType = \(backgroundType.stringValue)
     """
 
@@ -138,14 +176,14 @@ class CustomStyle: ObservableObject, Equatable {
 
       if let pillBorderColor = pillBorderColor {
         """
-        style.backgroundStyle.pillStyle.borderColor = \(readableRGBAColorString(pillBorderColor))
+        style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor.readableRGBAColorString())
         style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
         """
       }
 
       if let pillShadowColor = pillShadowColor {
         """
-        style.backgroundStyle.pillStyle.shadowColor = \(readableRGBAColorString(pillShadowColor))
+        style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor.readableRGBAColorString())
         style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
         style.backgroundStyle.pillStyle.shadowOffset = CGSize(width: \(pillShadowOffset.width), height: \(pillShadowOffset.height))
         """
@@ -159,26 +197,11 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition.stringValue)
-    style.progressBarStyle.barColor = \(readableRGBAColorString(pbBarColor))
+    style.progressBarStyle.barColor = \(pbBarColor?.readableRGBAColorString() ?? "nil")
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
     style.progressBarStyle.offsetY = \(pbBarOffset)
     """
-  }
-
-  func readableRGBAColorString(_ color: UIColor?) -> String {
-    if let color = color {
-      var red: CGFloat = 0
-      var green: CGFloat = 0
-      var blue: CGFloat = 0
-      var alpha: CGFloat = 0
-      color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-      if #available(iOS 14.0, *) {
-        return "UIColor(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)) // \"\(color.accessibilityName)\""
-      }
-    }
-
-    return "nil"
   }
 }
 
@@ -190,5 +213,20 @@ enum SimpleStringBuilder {
 
   static func buildOptional(_ component: String?) -> String? {
     return component
+  }
+}
+
+extension UIColor {
+  func readableRGBAColorString() -> String {
+    var red: CGFloat = 0
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    var alpha: CGFloat = 0
+    getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+    if #available(iOS 14.0, *) {
+      return "UIColor(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)) // \"\(self.accessibilityName)\""
+    } else {
+      return "??"
+    }
   }
 }
