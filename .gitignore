@@ -18,3 +18,7 @@ profile
 DerivedData
 .xcconfig
 ExampleProject/Pods/
+
+# SPM
+.build
+.swiftpm
