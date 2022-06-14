@@ -72,8 +72,11 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 NS_SWIFT_NAME(StatusBarStyle)
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
-/// The styling of the text
+/// The styling of the title label (Defaults: UIFontTextStyleFootnote, color: .gray and adjusts for dark mode)
 @property (nonatomic, strong) JDStatusBarTextStyle *textStyle;
+
+/// The styling of the subtitle label (Defaults: UIFontTextStyleCaption1, color: title color at 66% opacity)
+@property (nonatomic, strong) JDStatusBarTextStyle *subtitleStyle;
 
 /// The styling of the background
 @property (nonatomic, strong) JDStatusBarBackgroundStyle *backgroundStyle;
@@ -98,10 +101,10 @@ NS_SWIFT_NAME(StatusBarStyle)
 NS_SWIFT_NAME(NotificationTextStyle)
 @interface JDStatusBarTextStyle : NSObject <NSCopying>
 
-/// The text color of the notification label. Default is .gray and adjusts for dark mode.
+/// The color of the  label.
 @property (nonatomic, strong, nullable) UIColor *textColor;
 
-/// The font of the notification label, the default is UIFontTextStyleFootnote.
+/// The font of the label.
 @property (nonatomic, strong) UIFont *font;
 
 /// The text shadow color, the default is nil, meaning no shadow.

@@ -267,24 +267,12 @@ static const NSInteger kExpectedSubviewTag = 12321;
     }
   }
 
-  // style title
-  JDStatusBarTextStyle *textStyle = style.textStyle;
-  _titleLabel.textColor = textStyle.textColor;
-  _titleLabel.font = textStyle.font;
-  if (textStyle.textShadowColor != nil) {
-    _titleLabel.shadowColor = textStyle.textShadowColor;
-    _titleLabel.shadowOffset = textStyle.textShadowOffset;
-  } else {
-    _titleLabel.shadowColor = nil;
-    _titleLabel.shadowOffset = CGSizeZero;
-  }
-
-  // style subtitle
-  _subtitleLabel.textColor = [textStyle.textColor colorWithAlphaComponent:0.66];
-  _subtitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+  // style labels
+  applyTextStyleForLabel(style.textStyle, _titleLabel);
+  applyTextStyleForLabel(style.subtitleStyle, _subtitleLabel);
 
   // activity indicator
-  _activityIndicatorView.color = textStyle.textColor;
+  _activityIndicatorView.color = style.textStyle.textColor;
 
   // progress view
   _progressView.backgroundColor = style.progressBarStyle.barColor;
@@ -296,6 +284,18 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [self resetSubviews];
   [self setNeedsLayout];
   [_delegate didUpdateStyle];
+}
+
+void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
+  label.textColor = textStyle.textColor;
+  label.font = textStyle.font;
+  if (textStyle.textShadowColor != nil) {
+    label.shadowColor = textStyle.textShadowColor;
+    label.shadowOffset = textStyle.textShadowOffset;
+  } else {
+    label.shadowColor = nil;
+    label.shadowOffset = CGSizeZero;
+  }
 }
 
 - (void)setPillStyle:(JDStatusBarPillStyle *)pillStyle {
@@ -451,7 +451,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 
     // set subtitle frame
     _subtitleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame),
-                                      CGRectGetMaxY(_titleLabel.frame) + subtitleSpacing,
+                                      CGRectGetMaxY(_titleLabel.frame) + subtitleSpacing + _style.subtitleStyle.textOffsetY,
                                       CGRectGetWidth(_titleLabel.frame),
                                       subtitleSize.height);
   }

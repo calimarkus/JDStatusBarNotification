@@ -139,6 +139,11 @@
   self = [super init];
   if (self) {
     _textStyle = [JDStatusBarTextStyle new];
+
+    _subtitleStyle = [JDStatusBarTextStyle new];
+    _subtitleStyle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    _subtitleStyle.textColor = [_textStyle.textColor colorWithAlphaComponent:0.66];
+
     _backgroundStyle = [JDStatusBarBackgroundStyle new];
     _animationType = JDStatusBarAnimationTypeMove;
     _systemStatusBarStyle = JDStatusBarSystemStyleDefaultStyle;
