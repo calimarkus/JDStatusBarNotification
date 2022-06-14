@@ -44,12 +44,6 @@
   return self;
 }
 
-#pragma mark - Window Scene
-
-- (void)setWindowScene:(UIWindowScene *)windowScene {
-  _windowScene = windowScene;
-}
-
 #pragma mark - Core Presentation logic
 
 - (JDStatusBarView *)presentWithText:(NSString *)text
@@ -255,6 +249,12 @@
 
 - (BOOL)isVisible {
   return (_overlayWindow != nil);
+}
+
+#pragma mark - Window Scene
+
+- (void)setWindowScene:(UIWindowScene *)windowScene {
+  _windowScene = windowScene;
 }
 
 @end

@@ -7,9 +7,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIApplication (JDSB_MainWindow)
 
-- (UIWindow *)jdsb_mainApplicationWindowIgnoringWindow:(UIWindow *)ignoringWindow;
+- (UIWindow * _Nullable)jdsb_mainApplicationWindowIgnoringWindow:(UIWindow * _Nullable)ignoringWindow;
 
-- (UIViewController *)jdsb_mainControllerIgnoringViewController:(UIViewController *)viewController;
+- (UIViewController * _Nullable)jdsb_mainControllerIgnoringViewController:(UIViewController * _Nullable)viewController;
 
 @end
 

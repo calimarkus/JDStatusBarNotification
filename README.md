@@ -39,14 +39,6 @@ Also checkout the example project, which has many examples and includes a conven
 
 Here's some usage examples:
 
-### Initial Setup
-
-If you app uses a `UIWindowScene` you have to let the `NotificationPresenter` know about it, before you present any notifications (otherwise they won't show up at all). If your app doesn't use window scenes, no initial setup is needed.
-
-```swift
-NotificationPresenter.shared().setWindowScene(windowScene)
-```
-
 ### Showing a text notification
 
 It's as simple as this:
@@ -98,6 +90,17 @@ There's a few included styles you can easily use with the following API:
 
 ```swift
 NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .success)
+```
+
+## Troubleshooting
+
+### No notifications are showing up
+
+If your app uses a `UIWindowScene` the `NotificationPresenter` needs to know about it before you present any notifications.
+The library attempts to find the correct WindowScene automatically, but that might fail. If it fails no notifications will show up at all. You can explicitly set the window scene to resolve this:
+
+```swift
+NotificationPresenter.shared().setWindowScene(windowScene)
 ```
 
 ## Customization

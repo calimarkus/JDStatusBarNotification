@@ -36,15 +36,6 @@ NS_SWIFT_NAME(NotificationPresenter)
 
 + (instancetype)sharedPresenter;
 
-#pragma mark - WindowScene
-
-/**
- *  This needs to be set once, if you are using window scenes in your app, otherwise the notifications won't show up at all.
- *
- *  @param windowScene The windowScene in which the notifcation should be presented.
- */
-- (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
-
 #pragma mark - Simple Presentation
 
 /**
@@ -297,6 +288,16 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @return YES, if a notification is currently displayed. Otherwise NO.
  */
 - (BOOL)isVisible;
+
+#pragma mark - WindowScene
+
+/**
+ *  This lets you set an explicit WindowScene, in which notifications should be presented.
+ *  It is usually inferred automatically, but if that doesn't work for your setup, you can set one explciitly.
+ *
+ *  @param windowScene The windowScene in which the notifcation should be presented.
+ */
+- (void)setWindowScene:(UIWindowScene * _Nullable)windowScene;
 
 
 @end

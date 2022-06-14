@@ -16,6 +16,11 @@
 
 - (instancetype)initWithStyle:(JDStatusBarStyle *)style
                   windowScene:(UIWindowScene * _Nullable)windowScene {
+  // attempt to infer window scene
+  if (windowScene == nil) {
+    windowScene = [[UIApplication sharedApplication] jdsb_mainApplicationWindowIgnoringWindow:nil].windowScene;
+  }
+
   if (windowScene != nil) {
     self = [super initWithWindowScene:windowScene];
   } else {

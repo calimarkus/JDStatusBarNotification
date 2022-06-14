@@ -16,8 +16,6 @@
     _window = [[UIWindow alloc] initWithWindowScene:windowScene];
     _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[SBExampleViewController alloc] init]];
     [_window makeKeyAndVisible];
-    
-    [[JDStatusBarNotificationPresenter sharedPresenter] setWindowScene:windowScene];
   }
 }
 
