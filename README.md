@@ -22,6 +22,8 @@ Full-Width styles:
 
 ## Installation
 
+- [**SwiftPM:**](https://github.com/apple/swift-package-manager)
+  - Xcode -> File -> Add packages: `git@github.com:calimarkus/JDStatusBarNotification.git`
 - [**CocoaPods:**](https://guides.cocoapods.org)
   - `pod 'JDStatusBarNotification'`
 - [**Carthage:**](https://github.com/Carthage/Carthage)
