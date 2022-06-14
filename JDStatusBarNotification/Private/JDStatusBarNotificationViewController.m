@@ -96,10 +96,6 @@
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
-  // disable pan gesture
-  JDStatusBarView *topBar = self.statusBarView;
-  topBar.panGestureRecognizer.enabled = NO;
-
   // animate out
   __weak __typeof(self) weakSelf = self;
   [_animator animateOutWithDuration:duration completion:^ {

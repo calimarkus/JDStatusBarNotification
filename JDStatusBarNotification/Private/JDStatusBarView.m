@@ -14,15 +14,16 @@
 static const NSInteger kExpectedSubviewTag = 12321;
 
 @implementation JDStatusBarView {
-  UIActivityIndicatorView *_activityIndicatorView;
-  UIView *_contentView;
-  UIView *_progressView;
-  UIView *_pillView;
   JDStatusBarStyle *_style;
-}
 
-@synthesize textLabel = _textLabel;
-@synthesize panGestureRecognizer = _panGestureRecognizer;
+  UIView *_contentView;
+  UIView *_pillView;
+  UIView *_progressView;
+  UILabel *_textLabel;
+  UIActivityIndicatorView *_activityIndicatorView;
+
+  UIPanGestureRecognizer *_panGestureRecognizer;
+}
 
 - (instancetype)init {
   self = [super init];

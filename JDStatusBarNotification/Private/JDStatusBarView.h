@@ -23,9 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nonnull) NSString *text;
 @property (nonatomic, strong, nonnull) JDStatusBarStyle *style;
 
-@property (nonatomic, strong, readonly, nonnull) UILabel *textLabel;
-@property (nonatomic, strong, readonly, nonnull) UIPanGestureRecognizer *panGestureRecognizer;
-
 @property (nonatomic, assign) BOOL displaysActivityIndicator;
 @property (nonatomic, assign) CGFloat progressBarPercentage;
 
