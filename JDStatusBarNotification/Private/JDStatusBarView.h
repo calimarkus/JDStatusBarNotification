@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, nullable) id<JDStatusBarViewDelegate> delegate;
 
-@property (nonatomic, strong, nonnull) NSString *text;
+@property (nonatomic, strong, nullable) NSString *title;
+@property (nonatomic, strong, nullable) NSString *subtitle;
 @property (nonatomic, strong, nonnull) JDStatusBarStyle *style;
 
 @property (nonatomic, assign) BOOL displaysActivityIndicator;

@@ -21,9 +21,10 @@ typedef void (^ _Nullable JDStatusBarNotificationViewControllerCompletion)(void)
 @property (nonatomic, strong, readonly) JDStatusBarView *statusBarView;
 @property (nonatomic, weak) id<JDStatusBarNotificationViewControllerDelegate> delegate;
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                               style:(JDStatusBarStyle *)style
-                          completion:(JDStatusBarNotificationViewControllerCompletion)completion;
+- (JDStatusBarView *)presentWithTitle:(NSString * _Nullable)title
+                             subtitle:(NSString * _Nullable)subtitle
+                                style:(JDStatusBarStyle *)style
+                           completion:(JDStatusBarNotificationViewControllerCompletion)completion;
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
                completion:(JDStatusBarNotificationViewControllerCompletion)completion;

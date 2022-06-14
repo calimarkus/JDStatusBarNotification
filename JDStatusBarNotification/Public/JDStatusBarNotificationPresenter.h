@@ -283,6 +283,15 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (void)updateText:(NSString *)text;
 
 /**
+ *  Updates the title & subtitle of an existing notification without any animation.
+ *
+ *  @param title The new title to display
+ *  @param subtitle The new subtitle to display
+ */
+- (void)updateTitle:(NSString *)title
+           subtitle:(NSString * _Nullable)subtitle;
+
+/**
  *  Check if any notification is currently displayed.
  *
  *  @return YES, if a notification is currently displayed. Otherwise NO.

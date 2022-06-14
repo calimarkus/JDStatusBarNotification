@@ -19,7 +19,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   UIView *_contentView;
   UIView *_pillView;
   UIView *_progressView;
-  UILabel *_textLabel;
+  UILabel *_titleLabel;
+  UILabel *_subtitleLabel;
   UIActivityIndicatorView *_activityIndicatorView;
 
   UIPanGestureRecognizer *_panGestureRecognizer;
@@ -36,14 +37,33 @@ static const NSInteger kExpectedSubviewTag = 12321;
 #pragma mark - view setup
 
 - (void)setupView {
-  UILabel *textLabel = [UILabel new];
-  textLabel.tag = kExpectedSubviewTag;
-  textLabel.backgroundColor = [UIColor clearColor];
-  textLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-  textLabel.textAlignment = NSTextAlignmentCenter;
-  textLabel.adjustsFontSizeToFitWidth = YES;
-  textLabel.clipsToBounds = YES;
-  _textLabel = textLabel;
+  UILabel *titleLabel = [UILabel new];
+  titleLabel.tag = kExpectedSubviewTag;
+  titleLabel.backgroundColor = [UIColor clearColor];
+  titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+  titleLabel.textAlignment = NSTextAlignmentCenter;
+  titleLabel.adjustsFontSizeToFitWidth = YES;
+  titleLabel.clipsToBounds = YES;
+  _titleLabel = titleLabel;
+
+#if JDSB_LAYOUT_DEBUGGING
+  _titleLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+  _titleLabel.layer.borderWidth = 1.0;
+#endif
+
+  UILabel *subtitleLabel = [UILabel new];
+  subtitleLabel.tag = kExpectedSubviewTag;
+  subtitleLabel.backgroundColor = [UIColor clearColor];
+  subtitleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+  subtitleLabel.textAlignment = NSTextAlignmentCenter;
+  subtitleLabel.adjustsFontSizeToFitWidth = YES;
+  subtitleLabel.clipsToBounds = YES;
+  _subtitleLabel = subtitleLabel;
+
+#if JDSB_LAYOUT_DEBUGGING
+  _subtitleLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
+  _subtitleLabel.layer.borderWidth = 1.0;
+#endif
 
   UIView *pillView = [[UIView alloc] initWithFrame:CGRectZero];
   pillView.backgroundColor = [UIColor clearColor];
@@ -54,11 +74,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
   contentView.tag = kExpectedSubviewTag;
   _contentView = contentView;
 
-#if JDSB_LAYOUT_DEBUGGING
-  _textLabel.layer.borderColor = [UIColor darkGrayColor].CGColor;
-  _textLabel.layer.borderWidth = 1.0;
-#endif
-
   _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
   _panGestureRecognizer.enabled = YES;
   [self addGestureRecognizer:_panGestureRecognizer];
@@ -66,7 +81,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 - (void)resetSubviews {
   // remove subviews added from outside
-  for (UIView *view in [NSArray arrayWithObjects:self, _contentView, _textLabel, _pillView, nil]) {
+  for (UIView *view in [NSArray arrayWithObjects:self, _contentView, _titleLabel, _subtitleLabel, _pillView, nil]) {
     for (UIView *subview in view.subviews) {
       if (subview.tag != kExpectedSubviewTag) {
         [subview removeFromSuperview];
@@ -81,7 +96,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [self addSubview:_contentView];
   [_contentView addSubview:_pillView];
   [_contentView addSubview:_progressView];
-  [_contentView addSubview:_textLabel];
+  [_contentView addSubview:_titleLabel];
+  [_contentView addSubview:_subtitleLabel];
   [_contentView addSubview:_activityIndicatorView];
 
   // ensure pan recognizer is setup
@@ -118,6 +134,9 @@ static const NSInteger kExpectedSubviewTag = 12321;
     [_activityIndicatorView stopAnimating];
   }
 
+  _titleLabel.textAlignment = _displaysActivityIndicator ? NSTextAlignmentLeft : NSTextAlignmentCenter;
+  _subtitleLabel.textAlignment = _titleLabel.textAlignment;
+
   _activityIndicatorView.hidden = !displaysActivityIndicator;
   [self setNeedsLayout];
 }
@@ -132,7 +151,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
     _progressView.frame = [self progressViewRectForPercentage:0.0];
     _progressView.tag = kExpectedSubviewTag;
 
-    [_contentView insertSubview:_progressView belowSubview:_textLabel];
+    [_contentView insertSubview:_progressView belowSubview:_titleLabel];
     [self setNeedsLayout];
   }
 }
@@ -206,13 +225,24 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 #pragma mark - Text
 
-- (NSString *)text {
-  return _textLabel.text ?: @"";
+- (NSString *)title {
+  return _titleLabel.text;
 }
 
-- (void)setText:(NSString *)text {
-  _textLabel.accessibilityLabel = text;
-  _textLabel.text = text;
+- (void)setTitle:(NSString *)title {
+  _titleLabel.accessibilityLabel = title;
+  _titleLabel.text = title;
+
+  [self setNeedsLayout];
+}
+
+- (NSString *)subtitle {
+  return _subtitleLabel.text;
+}
+
+- (void)setSubtitle:(NSString *)subtitle {
+  _subtitleLabel.accessibilityLabel = subtitle;
+  _subtitleLabel.text = subtitle;
 
   [self setNeedsLayout];
 }
@@ -237,17 +267,21 @@ static const NSInteger kExpectedSubviewTag = 12321;
     }
   }
 
-  // style label
+  // style title
   JDStatusBarTextStyle *textStyle = style.textStyle;
-  _textLabel.textColor = textStyle.textColor;
-  _textLabel.font = textStyle.font;
+  _titleLabel.textColor = textStyle.textColor;
+  _titleLabel.font = textStyle.font;
   if (textStyle.textShadowColor != nil) {
-    _textLabel.shadowColor = textStyle.textShadowColor;
-    _textLabel.shadowOffset = textStyle.textShadowOffset;
+    _titleLabel.shadowColor = textStyle.textShadowColor;
+    _titleLabel.shadowOffset = textStyle.textShadowOffset;
   } else {
-    _textLabel.shadowColor = nil;
-    _textLabel.shadowOffset = CGSizeZero;
+    _titleLabel.shadowColor = nil;
+    _titleLabel.shadowOffset = CGSizeZero;
   }
+
+  // style subtitle
+  _subtitleLabel.textColor = [textStyle.textColor colorWithAlphaComponent:0.66];
+  _subtitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 
   // activity indicator
   _activityIndicatorView.color = textStyle.textColor;
@@ -299,9 +333,9 @@ static CGRect contentRectForWindow(UIView *view) {
   return CGRectMake(0, topLayoutMargin, view.bounds.size.width, height);
 }
 
-static CGFloat realTextWidthForLabel(UILabel *textLabel) {
+static CGSize realTextSizeForLabel(UILabel *textLabel) {
   NSDictionary *attributes = @{NSFontAttributeName:textLabel.font};
-  return [textLabel.text sizeWithAttributes:attributes].width;
+  return [textLabel.text sizeWithAttributes:attributes];
 }
 
 static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
@@ -327,7 +361,8 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   }
 
   // layout pill
-  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, realTextWidthForLabel(_textLabel) + paddingX * 2)));
+  CGFloat maxTextWidth = MAX(realTextSizeForLabel(_titleLabel).width, realTextSizeForLabel(_subtitleLabel).width);
+  CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, maxTextWidth + paddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   return CGRectMake(pillX, pillY, pillWidth, pillHeight);
@@ -349,15 +384,19 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       break;
   }
 
-  // text label
+  // title label
   CGFloat labelInsetX = 20.0;
+  CGFloat subtitleSpacing = 1.0;
   CGRect innerContentRect = CGRectInset(_contentView.bounds, labelInsetX, 0);
-  CGFloat realTextWidth = realTextWidthForLabel(_textLabel);
-  CGFloat textWidth = MIN(realTextWidth, CGRectGetWidth(innerContentRect));
-  _textLabel.frame = CGRectMake(round((CGRectGetWidth(_contentView.bounds) - textWidth) / 2.0),
-                                _style.textStyle.textOffsetY,
-                                textWidth,
-                                CGRectGetHeight(_contentView.bounds));
+  CGSize titleSize = realTextSizeForLabel(_titleLabel);
+  CGFloat titleWidth = MIN(titleSize.width, CGRectGetWidth(innerContentRect));
+  CGSize subtitleSize = realTextSizeForLabel(_subtitleLabel);
+  CGFloat subtitleWidth = MIN(subtitleSize.width, CGRectGetWidth(innerContentRect));
+  CGFloat combinedMaxTextWidth = MAX(titleWidth, subtitleWidth);
+  _titleLabel.frame = CGRectMake(round((CGRectGetWidth(_contentView.bounds) - combinedMaxTextWidth) / 2.0),
+                                 round((CGRectGetHeight(_contentView.bounds) - titleSize.height) / 2.0 + _style.textStyle.textOffsetY),
+                                 combinedMaxTextWidth,
+                                 titleSize.height);
 
   // custom subview
   _customSubview.frame = _contentView.bounds;
@@ -370,21 +409,21 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   // activity indicator
   if (_displaysActivityIndicator) {
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.y = _textLabel.frame.origin.y + floor((_textLabel.frame.size.height - CGRectGetHeight(indicatorFrame))/2.0);
+    indicatorFrame.origin.y = _titleLabel.frame.origin.y + floor((_titleLabel.frame.size.height - CGRectGetHeight(indicatorFrame))/2.0);
 
     // x-position
-    if (textWidth == 0.0) {
+    if (titleWidth == 0.0) {
       // simply center
       indicatorFrame.origin.x = round(_contentView.bounds.size.width/2.0 - indicatorFrame.size.width/2.0);
     } else {
-      CGFloat centerAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
+      CGFloat centerXAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
 
       // position in front of text
-      indicatorFrame.origin.x = CGRectGetMinX(_textLabel.frame) - CGRectGetWidth(indicatorFrame) - kActivityIndicatorSpacing + centerAdjustement;
+      indicatorFrame.origin.x = CGRectGetMinX(_titleLabel.frame) - CGRectGetWidth(indicatorFrame) - kActivityIndicatorSpacing + centerXAdjustement;
 
       // adjust text label
-      CGRect textRect = _textLabel.frame;
-      textRect.origin.x += centerAdjustement;
+      CGRect textRect = _titleLabel.frame;
+      textRect.origin.x += centerXAdjustement;
 
       // maintain max-bounds
       CGFloat diffLeft = indicatorFrame.origin.x - CGRectGetMinX(innerContentRect);
@@ -398,10 +437,23 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       }
 
       // adjust text
-      _textLabel.frame = textRect;
+      _titleLabel.frame = textRect;
     }
 
     _activityIndicatorView.frame = indicatorFrame;
+  }
+
+  // subtitle label
+  if (_subtitleLabel.text.length > 0) {
+    // adjust title y centering
+    CGFloat centerYAdjustement = round((subtitleSize.height + subtitleSpacing) / 2.0);
+    _titleLabel.frame = CGRectOffset(_titleLabel.frame, 0, -centerYAdjustement);
+
+    // set subtitle frame
+    _subtitleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame),
+                                      CGRectGetMaxY(_titleLabel.frame) + subtitleSpacing,
+                                      CGRectGetWidth(_titleLabel.frame),
+                                      subtitleSize.height);
   }
 }
 

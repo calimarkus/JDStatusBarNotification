@@ -37,13 +37,15 @@
 
 #pragma mark - Presentation
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                               style:(JDStatusBarStyle *)style
-                          completion:(JDStatusBarNotificationViewControllerCompletion)completion {
+- (JDStatusBarView *)presentWithTitle:(NSString *)title
+                             subtitle:(NSString *)subtitle
+                                style:(JDStatusBarStyle *)style
+                           completion:(JDStatusBarNotificationViewControllerCompletion)completion {
   JDStatusBarView *topBar = _statusBarView;
 
   // update status & style
-  [topBar setText:text];
+  [topBar setTitle:title];
+  [topBar setSubtitle:subtitle];
   [topBar setStyle:style];
 
   // reset progress & activity

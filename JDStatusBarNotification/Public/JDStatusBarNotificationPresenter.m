@@ -46,15 +46,16 @@
 
 #pragma mark - Core Presentation logic
 
-- (JDStatusBarView *)presentWithText:(NSString *)text
-                               style:(JDStatusBarStyle *)style
-                          completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (JDStatusBarView *)presentWithTitle:(NSString *)title
+                             subtitle:(NSString *)subtitle
+                                style:(JDStatusBarStyle *)style
+                           completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   if(_overlayWindow == nil) {
     _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
     _overlayWindow.delegate = self;
   }
 
-  JDStatusBarView *view = [_overlayWindow.statusBarViewController presentWithText:text style:style completion:^{
+  JDStatusBarView *view = [_overlayWindow.statusBarViewController presentWithTitle:title subtitle:subtitle style:style completion:^{
     if (completion) {
       completion(self);
     }
@@ -114,7 +115,7 @@
                 customStyle:(NSString * _Nullable)styleName
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
-  UIView *view = [self presentWithText:text style:style completion:completion];
+  UIView *view = [self presentWithTitle:text subtitle:nil style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }
@@ -145,7 +146,7 @@
               includedStyle:(JDStatusBarIncludedStyle)includedStyle
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
-  UIView *view = [self presentWithText:text style:style completion:completion];
+  UIView *view = [self presentWithTitle:text subtitle:nil style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }
@@ -158,7 +159,7 @@
                         styleName:(NSString * _Nullable)styleName
                        completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
-  JDStatusBarView *view = [self presentWithText:@"" style:style completion:completion];
+  JDStatusBarView *view = [self presentWithTitle:nil subtitle:nil style:style completion:completion];
   view.customSubview = customView;
   return view;
 }
@@ -244,7 +245,13 @@
 #pragma mark - Others
 
 - (void)updateText:(NSString *)text {
-  [_overlayWindow.statusBarViewController.statusBarView setText:text];
+  [_overlayWindow.statusBarViewController.statusBarView setTitle:text];
+}
+
+- (void)updateTitle:(NSString *)title
+           subtitle:(NSString *)subtitle {
+  [_overlayWindow.statusBarViewController.statusBarView setTitle:title];
+  [_overlayWindow.statusBarViewController.statusBarView setSubtitle:subtitle];
 }
 
 - (BOOL)isVisible {

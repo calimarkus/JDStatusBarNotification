@@ -24,6 +24,7 @@ class StyleEditorViewFactory: NSObject {
 @available(iOS 15.0, *)
 struct StyleEditorView: View {
   @State var text: String
+  @State var subtitle: String = ""
   @State var showActivity: Bool
   @State var progress: Double
   @StateObject var style: CustomStyle
@@ -35,6 +36,7 @@ struct StyleEditorView: View {
       text: text,
       customStyle: style.registerComputedStyle()
     ) as? JDStatusBarView
+    NotificationPresenter.shared().updateTitle(text, subtitle: subtitle)
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
@@ -56,6 +58,9 @@ struct StyleEditorView: View {
         }
         .onChange(of: text) { _ in
           NotificationPresenter.shared().updateText(text)
+        }
+        .onChange(of: subtitle) { _ in
+          NotificationPresenter.shared().updateTitle(text, subtitle: subtitle)
         }
 
       Section {
@@ -97,10 +102,18 @@ struct StyleEditorView: View {
 
       Section("State") {
         VStack(alignment: .leading, spacing: 3.0) {
-          Text("Text".uppercased())
+          Text("Title".uppercased())
             .font(.caption)
             .foregroundColor(.secondary)
-          TextField("Text", text: $text)
+          TextField("Empty", text: $text)
+            .font(.subheadline)
+        }
+
+        VStack(alignment: .leading, spacing: 3.0) {
+          Text("Subtitle".uppercased())
+            .font(.caption)
+            .foregroundColor(.secondary)
+          TextField("Empty", text: $subtitle)
             .font(.subheadline)
         }
 
