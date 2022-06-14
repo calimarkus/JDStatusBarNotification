@@ -79,43 +79,55 @@
 #pragma mark - Simple Presentation
 
 - (UIView *)presentWithText:(NSString *)text {
-  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil completion:nil];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 customStyle:nil completion:nil];
 }
 - (UIView *)presentWithText:(NSString *)text
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:nil completion:completion];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 customStyle:nil completion:completion];
 }
-
+- (UIView *)presentWithTitle:(NSString *)title
+                    subtitle:(NSString * _Nullable)subtitle
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  return [self presentWithTitle:title subtitle:subtitle dismissAfterDelay:0.0 customStyle:nil completion:completion];
+}
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay {
-  return [self presentWithText:text dismissAfterDelay:delay customStyle:nil completion:nil];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:delay customStyle:nil completion:nil];
 }
 
 #pragma mark - Custom Style Presentation
 
 - (UIView *)presentWithText:(NSString *)text
                 customStyle:(NSString * _Nullable)styleName {
-  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:styleName completion:nil];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 customStyle:styleName completion:nil];
 }
 
 - (UIView *)presentWithText:(NSString *)text
                 customStyle:(NSString * _Nullable)styleName
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  return [self presentWithText:text dismissAfterDelay:0.0 customStyle:styleName completion:completion];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 customStyle:styleName completion:completion];
+}
+
+- (UIView *)presentWithTitle:(NSString *)text
+                    subtitle:(NSString * _Nullable)subtitle
+                 customStyle:(NSString * _Nullable)styleName
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  return [self presentWithTitle:text subtitle:subtitle dismissAfterDelay:0.0 customStyle:styleName completion:completion];
 }
 
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay
                 customStyle:(NSString * _Nullable)styleName {
-  return [self presentWithText:text dismissAfterDelay:delay customStyle:styleName completion:nil];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:delay customStyle:styleName completion:nil];
 }
 
-- (UIView *)presentWithText:(NSString *)text
-          dismissAfterDelay:(NSTimeInterval)delay
-                customStyle:(NSString * _Nullable)styleName
-                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithTitle:(NSString *)title
+                    subtitle:(NSString * _Nullable)subtitle
+           dismissAfterDelay:(NSTimeInterval)delay
+                 customStyle:(NSString * _Nullable)styleName
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForName:styleName];
-  UIView *view = [self presentWithTitle:text subtitle:nil style:style completion:completion];
+  UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }
@@ -126,27 +138,35 @@
 
 - (UIView *)presentWithText:(NSString *)text
               includedStyle:(JDStatusBarIncludedStyle)includedStyle {
-  return [self presentWithText:text dismissAfterDelay:0.0 includedStyle:includedStyle completion:nil];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 includedStyle:includedStyle completion:nil];
 }
 
 - (UIView *)presentWithText:(NSString *)text
               includedStyle:(JDStatusBarIncludedStyle)includedStyle
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  return [self presentWithText:text dismissAfterDelay:0.0 includedStyle:includedStyle completion:completion];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 includedStyle:includedStyle completion:completion];
+}
+
+- (UIView *)presentWithTitle:(NSString *)title
+                    subtitle:(NSString * _Nullable)subtitle
+               includedStyle:(JDStatusBarIncludedStyle)includedStyle
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  return [self presentWithTitle:title subtitle:subtitle dismissAfterDelay:0.0 includedStyle:includedStyle completion:completion];
 }
 
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay
               includedStyle:(JDStatusBarIncludedStyle)includedStyle {
-  return [self presentWithText:text dismissAfterDelay:delay includedStyle:includedStyle completion:nil];
+  return [self presentWithTitle:text subtitle:nil dismissAfterDelay:delay includedStyle:includedStyle completion:nil];
 }
 
-- (UIView *)presentWithText:(NSString *)text
-          dismissAfterDelay:(NSTimeInterval)delay
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle
-                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (UIView *)presentWithTitle:(NSString *)title
+                    subtitle:(NSString *)subtitle
+           dismissAfterDelay:(NSTimeInterval)delay
+               includedStyle:(JDStatusBarIncludedStyle)includedStyle
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
-  UIView *view = [self presentWithTitle:text subtitle:nil style:style completion:completion];
+  UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }

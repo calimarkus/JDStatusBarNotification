@@ -59,6 +59,19 @@ NS_SWIFT_NAME(NotificationPresenter)
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:completion:));
 
 /**
+ *  Present a notification using the default style.
+ *
+ *  @param title The new title to display
+ *  @param subtitle The new subtitle to display
+ *  @param completion A completion block, which gets called once the animation finishes.
+ *
+ *  @return The presented UIView for further customization
+ */
+- (UIView *)presentWithTitle:(NSString *)title
+                    subtitle:(NSString * _Nullable)subtitle
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:completion:));
+
+/**
  *  Present a notification using the default style. The notification will
  *  automatically dismiss after the given delay.
  *
@@ -97,6 +110,22 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (UIView *)presentWithText:(NSString *)text
                 customStyle:(NSString * _Nullable)styleName
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:customStyle:completion:));
+
+/**
+ *  Present a notification using the specified style.
+ *  If no style exists for the provided name, the defaultStyle is used.
+ *
+ *  @param title The new title to display
+ *  @param subtitle The new subtitle to display
+ *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.
+ *  @param completion A completion block, which gets called once the animation finishes.
+ *
+ *  @return The presented UIView for further customization
+ */
+- (UIView *)presentWithTitle:(NSString *)text
+                    subtitle:(NSString * _Nullable)subtitle
+                 customStyle:(NSString * _Nullable)styleName
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:customStyle:completion:));
 
 /**
  *  Present a notification using the specified style.The notification will dismiss after the
@@ -138,6 +167,21 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (UIView *)presentWithText:(NSString *)text
               includedStyle:(JDStatusBarIncludedStyle)includedStyle
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:includedStyle:completion:));
+/**
+ *  Present a notification using the specified style.
+ *  If no style exists for the provided name, the defaultStyle is used.
+ *
+ *  @param title The new title to display
+ *  @param subtitle The new subtitle to display
+ *  @param includedStyle The included style that should be used.
+ *  @param completion A completion block, which gets called once the animation finishes.
+ *
+ *  @return The presented UIView for further customization
+ */
+- (UIView *)presentWithTitle:(NSString *)title
+                    subtitle:(NSString * _Nullable)subtitle
+               includedStyle:(JDStatusBarIncludedStyle)includedStyle
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:includedStyle:completion:));
 
 /**
  *  Present a notification using the specified style.The notification will dismiss after the

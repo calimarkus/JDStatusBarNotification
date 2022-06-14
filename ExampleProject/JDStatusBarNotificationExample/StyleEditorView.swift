@@ -33,10 +33,11 @@ struct StyleEditorView: View {
 
   func presentDefault() {
     StyleEditorView.statusBarView = NotificationPresenter.shared().present(
-      text: text,
+      title: text,
+      subtitle: subtitle,
       customStyle: style.registerComputedStyle()
     ) as? JDStatusBarView
-    NotificationPresenter.shared().updateTitle(text, subtitle: subtitle)
+
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
