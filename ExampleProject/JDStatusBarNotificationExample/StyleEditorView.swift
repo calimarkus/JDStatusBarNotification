@@ -231,6 +231,23 @@ struct StyleEditorView: View {
         }
       }
 
+      Section("Left View Style") {
+        Stepper("Spacing (\(Int(style.leftViewSpacing)))",
+                value: $style.leftViewSpacing,
+                in: 0...99)
+          .font(.subheadline)
+
+        VStack(alignment: .leading, spacing: 6.0) {
+          Picker("Alignment", selection: $style.leftViewAlignment) {
+            Group {
+              EnumPickerOptionView(BarLeftViewAlignment.left)
+              EnumPickerOptionView(BarLeftViewAlignment.centerWithText)
+              EnumPickerOptionView(BarLeftViewAlignment.centerWithTextUnlessSubtitleExists)
+            }.font(.caption)
+          }.font(.subheadline)
+        }
+      }
+
       Section("Progress Bar Style") {
         OptionalColorViewFactory.buildPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
 
@@ -324,7 +341,10 @@ enum CGSizeStepperFactory {
 }
 
 struct PickerFactory<T, SomeView> where T: Hashable, SomeView: View {
-  static func build(title: String, binding: Binding<T>, @ViewBuilder content: () -> SomeView) -> some View {
+  static func build(title: String,
+                    binding: Binding<T>,
+                    @ViewBuilder content: () -> SomeView) -> some View
+  {
     VStack(alignment: .leading, spacing: 6.0) {
       Text(title)
         .font(.subheadline)

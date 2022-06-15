@@ -69,6 +69,9 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var systemStatusBarStyle: StatusBarSystemStyle
   @Published var canSwipeToDismiss: Bool
 
+  @Published var leftViewSpacing: Double
+  @Published var leftViewAlignment: BarLeftViewAlignment
+
   @Published var pbBarColor: UIColor?
   @Published var pbBarHeight: CGFloat { didSet {
     if pbCornerRadius > 0.0 {
@@ -104,6 +107,9 @@ class CustomStyle: ObservableObject, Equatable {
     animationType = .bounce
     systemStatusBarStyle = .defaultStyle
     canSwipeToDismiss = defaultStyle.canSwipeToDismiss
+
+    leftViewSpacing = defaultStyle.leftViewStyle.spacing
+    leftViewAlignment = defaultStyle.leftViewStyle.alignment
 
     pbBarColor = UIColor(red: 0.00392, green: 0.4313, blue: 0.5607, alpha: 1.0) // "dark cyan"
     pbBarHeight = 3.0
@@ -145,6 +151,9 @@ class CustomStyle: ObservableObject, Equatable {
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
     style.canSwipeToDismiss = canSwipeToDismiss
+
+    style.leftViewStyle.spacing = leftViewSpacing
+    style.leftViewStyle.alignment = leftViewAlignment
 
     style.progressBarStyle.barColor = pbBarColor
     style.progressBarStyle.barHeight = pbBarHeight
@@ -194,6 +203,9 @@ class CustomStyle: ObservableObject, Equatable {
     \nstyle.animationType = \(animationType.stringValue)
     style.systemStatusBarStyle = \(systemStatusBarStyle.stringValue)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
+
+    style.leftViewStyle.spacing = \(leftViewSpacing)
+    style.leftViewStyle.alignment = \(leftViewAlignment.stringValue)
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition.stringValue)

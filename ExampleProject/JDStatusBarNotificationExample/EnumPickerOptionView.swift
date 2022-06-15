@@ -54,6 +54,17 @@ extension StatusBarSystemStyle: StringRepresentable {
   }
 }
 
+extension BarLeftViewAlignment: StringRepresentable {
+  var stringValue: String {
+    switch self {
+      case .left: return ".left"
+      case .centerWithText: return ".centerWithText"
+      case .centerWithTextUnlessSubtitleExists: return ".centerWithTextUnlessSubtitleExists"
+      default: return "?"
+    }
+  }
+}
+
 extension ProgressBarPosition: StringRepresentable {
   var stringValue: String {
     switch self {
