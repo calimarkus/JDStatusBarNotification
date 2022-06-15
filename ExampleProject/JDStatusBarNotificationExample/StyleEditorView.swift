@@ -101,6 +101,7 @@ struct StyleEditorView: View {
           Text("Keep the notification presented to see any changes live!")
             .font(.caption2)
             .foregroundColor(.secondary)
+            .multilineTextAlignment(.center)
           Spacer()
         }.disabled(true)
       }
@@ -251,6 +252,15 @@ struct StyleEditorView: View {
             }.font(.caption)
           }.font(.subheadline)
         }
+
+        HStack {
+          Spacer()
+          Text("The activity indicator is also considered a \"left view\" and thus also affected by these settings.")
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .multilineTextAlignment(.center)
+          Spacer()
+        }.disabled(true)
       }
 
       Section("Progress Bar Style") {
