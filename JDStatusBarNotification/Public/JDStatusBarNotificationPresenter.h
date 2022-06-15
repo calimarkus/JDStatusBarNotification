@@ -308,14 +308,25 @@ NS_SWIFT_NAME(NotificationPresenter)
                      animationDuration:(CGFloat)animationDuration
                             completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(animateProgressBar(toPercentage:animationDuration:completion:));
 
-#pragma mark - Activity Indicator
+#pragma mark - Left View
 
 /**
- *  Displays an activity indicator in front of the notification text. It will have the same color as the text color of the current style.
+ *  Displays an activity indicator as the notifications left view.
+ *  It will have the same color as the text color of the current style.
+ *  The layout is defined by the left view style.
  *
  *  @param show  Show or hide the activity indicator.
  */
 - (void)displayActivityIndicator:(BOOL)show;
+
+/**
+ *  Displays a view on the left side of the text.
+ *  The layout is defined by the left view style.
+ *
+ *  @param leftView A custom UIView to display on the left side of the text.
+ *  E.g. an icon / image / profile picture etc. A nil value removes an existing leftView.
+ */
+- (void)displayLeftView:(UIView * _Nullable)leftView;
 
 #pragma mark - Others
 

@@ -256,10 +256,14 @@
     }
   }];
 }
-#pragma mark - Activity Indicator
+#pragma mark - Left View
 
 - (void)displayActivityIndicator:(BOOL)show {
   [_overlayWindow.statusBarViewController.statusBarView setDisplaysActivityIndicator:show];
+}
+
+- (void)displayLeftView:(UIView * _Nullable)leftView {
+  [_overlayWindow.statusBarViewController.statusBarView setLeftView:leftView];
 }
 
 #pragma mark - Others
