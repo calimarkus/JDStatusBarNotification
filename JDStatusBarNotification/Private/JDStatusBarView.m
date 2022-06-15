@@ -91,6 +91,9 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
   // reset custom subview
   _customSubview = nil;
+  if (_leftView != _activityIndicatorView) {
+    _leftView = nil;
+  }
 
   // ensure expected subviews are set
   [self addSubview:_contentView];
@@ -250,7 +253,6 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
 #pragma mark - Left View
 
 - (void)setLeftView:(UIView *)leftView {
-  leftView.tag = kExpectedSubviewTag;
   [_leftView removeFromSuperview];
   _leftView = leftView;
   [_contentView addSubview:leftView];
@@ -420,6 +422,10 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
                                  combinedMaxTextWidth,
                                  titleSize.height);
 
+  // reset text alignment
+  _titleLabel.textAlignment = NSTextAlignmentCenter;
+  _subtitleLabel.textAlignment = NSTextAlignmentCenter;
+
   // progress view
   if (_progressView && _progressView.layer.animationKeys.count == 0) {
     _progressView.frame = progressViewRectForPercentage(_contentView.bounds, _progressBarPercentage, _style);
@@ -428,17 +434,23 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
   // left view
   if (_leftView != nil) {
     CGRect leftViewFrame = _leftView.frame;
-    CGFloat widthAndSpacing = CGRectGetWidth(leftViewFrame) + _style.leftViewStyle.spacing;
+
+    // fit left view into notification
+    if (_leftView != _activityIndicatorView) {
+      leftViewFrame.size = [_leftView sizeThatFits:innerContentRect.size];
+    }
 
     // center vertically
     leftViewFrame.origin.y = round((CGRectGetHeight(_contentView.bounds) - CGRectGetHeight(leftViewFrame)) / 2.0 + _style.textStyle.textOffsetY);
 
     // x-position
+    BOOL shouldCenterLeftView = shouldCenterLeftViewForStyle(_style.leftViewStyle, _subtitleLabel.text.length > 0);
     if (combinedMaxTextWidth == 0.0) {
       // center horizontally
       leftViewFrame.origin.x = round(_contentView.bounds.size.width/2.0 - leftViewFrame.size.width/2.0);
-    } else if(shouldCenterLeftViewForStyle(_style.leftViewStyle, _subtitleLabel.text.length > 0)) {
+    } else if(shouldCenterLeftView) {
       // position left view in front of text and center together with text
+      CGFloat widthAndSpacing = CGRectGetWidth(leftViewFrame) + _style.leftViewStyle.spacing;
       _titleLabel.frame = CGRectOffset(_titleLabel.frame, round(widthAndSpacing / 2.0), 0);
       leftViewFrame.origin.x = MAX(CGRectGetMinX(innerContentRect), CGRectGetMinX(_titleLabel.frame) - widthAndSpacing);
     } else {
@@ -448,6 +460,10 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
 
     _leftView.frame = leftViewFrame;
 
+    // update text alignment
+    _titleLabel.textAlignment = shouldCenterLeftView ? NSTextAlignmentLeft : NSTextAlignmentCenter;
+    _subtitleLabel.textAlignment = _titleLabel.textAlignment;
+
     // avoid left view/text overlap and respect max bounds
     if (combinedMaxTextWidth > 0.0 && CGRectGetMinX(leftViewFrame) == CGRectGetMinX(innerContentRect)) {
       CGRect titleRect = _titleLabel.frame;
@@ -455,8 +471,10 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
       viewAndSpacing.size.width += _style.leftViewStyle.spacing;
       CGRect intersection = CGRectIntersection(viewAndSpacing, titleRect);
       if (!CGRectIsNull(intersection)) {
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
+        _subtitleLabel.textAlignment = NSTextAlignmentLeft;
         titleRect.origin.x += CGRectGetWidth(intersection);
-        titleRect.size.width -= CGRectGetWidth(intersection) * 2;
+        titleRect.size.width -= CGRectGetWidth(intersection);
         _titleLabel.frame = titleRect;
       }
     }
