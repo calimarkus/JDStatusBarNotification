@@ -204,23 +204,6 @@ struct ExamplesView: View {
           }
         }
 
-        cell(title: "Present notification with a button", subtitle: "A custom notification view") {
-          // create button
-          let action = UIAction { _ in
-            NotificationPresenter.shared().dismiss()
-          }
-          let button = UIButton(type: .system, primaryAction: action)
-          button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin]
-          button.setTitle("Dismiss!", for: .normal)
-
-          // present
-          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
-            style.backgroundStyle.backgroundType = backgroundType
-            return style
-          }
-          NotificationPresenter.shared().present(customView: button, style: styleName)
-        }
-
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
           showIncludedStyle("This is 1/2!", style: .dark)
           NotificationPresenter.shared().displayActivityIndicator(true)
@@ -231,6 +214,49 @@ struct ExamplesView: View {
             NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
             presenter.dismiss(afterDelay: 1.0)
           }
+        }
+      }
+
+      Section("Custom Views") {
+        cell(title: "Present a button", subtitle: "A custom notification view") {
+          // create button
+          let button = UIButton(type: .system, primaryAction: UIAction { _ in
+            NotificationPresenter.shared().dismiss()
+          })
+          button.setTitle("Dismiss!", for: .normal)
+
+          // present
+          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+            style.backgroundStyle.backgroundType = backgroundType
+            return style
+          }
+          NotificationPresenter.shared().present(customView: button, style: styleName)
+        }
+
+        cell(title: "Present with icon", subtitle: "A custom left view") {
+          // create icon
+          let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
+          image.tintColor = UIColor.orange
+          image.sizeToFit()
+
+          // present
+          NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: NotificationPresenter.shared().addStyle(styleName: "tmp", prepare: { style in
+            style.backgroundStyle.backgroundColor = UIColor.darkGray
+            style.textStyle.textColor = UIColor.white
+            style.subtitleStyle.textColor = UIColor.lightGray
+
+            style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
+            style.textStyle.textOffsetY = 1
+            style.subtitleStyle.font = UIFont.systemFont(ofSize: 12.0)
+            style.subtitleStyle.textOffsetY = -3
+
+            style.leftViewStyle.alignment = .left
+            style.leftViewStyle.spacing = 6.0
+            style.leftViewStyle.offsetX = -8.0
+            return style
+          }))
+          NotificationPresenter.shared().displayLeftView(image)
+          NotificationPresenter.shared().dismiss(afterDelay: 2.5)
         }
       }
     }
