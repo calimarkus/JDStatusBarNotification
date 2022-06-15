@@ -20,13 +20,17 @@ class ExamplesViewFactory: NSObject {
 
 @available(iOS 15.0, *)
 struct ExamplesView: View {
-  static let customStyle1 = "Custom1"
-  static let customStyle2 = "Custom2"
+  enum CustomStyle: String, RawRepresentable, CaseIterable {
+    case custom1
+    case custom2
+    case custom3
+  }
 
   let customStylePresentationHandler: () -> ()
 
   @State var progress = 0.0
   @State var showActivity = false
+  @State var showSubtitle = false
   @State var backgroundType: BarBackgroundType = .pill
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
@@ -34,7 +38,11 @@ struct ExamplesView: View {
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
-    NotificationPresenter.shared().present(text: text, customStyle: styleName, completion: completion)
+    NotificationPresenter.shared().present(title: text,
+                                           subtitle: showSubtitle ? "{subtitle}" : nil,
+                                           customStyle: styleName,
+                                           completion: completion)
+
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
@@ -48,9 +56,11 @@ struct ExamplesView: View {
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
-    NotificationPresenter.shared().present(text: text,
-                                           dismissAfterDelay: 3.0,
+    NotificationPresenter.shared().present(title: text,
+                                           subtitle: showSubtitle ? "{subtitle}" : nil,
                                            customStyle: styleName)
+    NotificationPresenter.shared().dismiss(afterDelay: 3.0)
+
     if showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
@@ -100,6 +110,15 @@ struct ExamplesView: View {
           }
           NotificationPresenter.shared().updateText("Updated Text…")
         }
+
+        Toggle("Show subtitle", isOn: $showSubtitle)
+          .onChange(of: showSubtitle) { on in
+            if on, !NotificationPresenter.shared().isVisible() {
+              showDefaultNotification("Look!") { _ in }
+              NotificationPresenter.shared().dismiss(afterDelay: 2.0)
+            }
+            NotificationPresenter.shared().updateSubtitle(on ? "I am a subtitle" : nil)
+          }.font(.subheadline)
 
         Toggle("Activity Indicator", isOn: $showActivity)
           .onChange(of: showActivity) { _ in
@@ -154,27 +173,38 @@ struct ExamplesView: View {
       }
 
       Section("Custom Styles") {
-        cell(title: "Present custom style 1", subtitle: "AnimationType.fade + Progress") {
+        cell(title: "Present custom style \"Love it!\"", subtitle: "AnimationType.fade + Progress") {
           setupCustomStyles(backgroundType)
-          NotificationPresenter.shared().present(text: "Oh, I love it!",
-                                                 customStyle: ExamplesView.customStyle1) { presenter in
+          NotificationPresenter.shared().present(text: "Love it!",
+                                                 customStyle: CustomStyle.custom1.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
           }
         }
 
-        cell(title: "Present custom style 2", subtitle: "AnimationType.bounce + Progress") {
+        cell(title: "Present custom style \"Level Up\"", subtitle: "AnimationType.bounce + Progress") {
           setupCustomStyles(backgroundType)
           NotificationPresenter.shared().present(text: "Level up!",
-                                                 customStyle: ExamplesView.customStyle2) { presenter in
+                                                 customStyle: CustomStyle.custom2.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
           }
         }
 
-        cell(title: "Present notification with a button", subtitle: "Utilizing a custom view") {
+        cell(title: "Present custom style \"Looks good\"", subtitle: "Subtitle + Progress") {
+          setupCustomStyles(backgroundType)
+          NotificationPresenter.shared().present(title: "Damn",
+                                                 subtitle: "This looks gooood!",
+                                                 customStyle: CustomStyle.custom3.rawValue) { presenter in
+            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+              presenter.dismiss()
+            }
+          }
+        }
+
+        cell(title: "Present notification with a button", subtitle: "A custom notification view") {
           // create button
           let action = UIAction { _ in
             NotificationPresenter.shared().dismiss()
@@ -233,12 +263,12 @@ struct ExamplesView: View {
   }
 
   func setupCustomStyles(_ backgroundType: BarBackgroundType) {
-    NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle1) { style in
+    NotificationPresenter.shared().addStyle(styleName: CustomStyle.custom1.rawValue) { style in
       style.backgroundStyle.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
       style.backgroundStyle.backgroundType = backgroundType
       style.textStyle.textColor = .white
       style.animationType = .fade
-      style.textStyle.font = UIFont(name: "SnellRoundhand-Bold", size: 17.0)!
+      style.textStyle.font = UIFont(name: "SnellRoundhand-Bold", size: 20.0)!
       style.progressBarStyle.barColor = UIColor(red: 0.986, green: 0.062, blue: 0.598, alpha: 1.0)
       style.progressBarStyle.barHeight = 400.0
       style.progressBarStyle.cornerRadius = 0.0
@@ -247,7 +277,7 @@ struct ExamplesView: View {
       return style
     }
 
-    NotificationPresenter.shared().addStyle(styleName: ExamplesView.customStyle2) { style in
+    NotificationPresenter.shared().addStyle(styleName: CustomStyle.custom2.rawValue) { style in
       style.backgroundStyle.backgroundColor = .cyan
       style.backgroundStyle.backgroundType = backgroundType
       style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
@@ -260,6 +290,25 @@ struct ExamplesView: View {
       style.progressBarStyle.horizontalInsets = 20.0
       style.progressBarStyle.position = .center
       style.progressBarStyle.offsetY = -2.0
+      return style
+    }
+
+    NotificationPresenter.shared().addStyle(styleName: CustomStyle.custom3.rawValue) { style in
+      style.backgroundStyle.backgroundColor = UIColor(red: 0.9999999403953552, green: 0.3843138813972473, blue: 0.31372547149658203, alpha: 1.0) // "red"
+      style.backgroundStyle.backgroundType = backgroundType
+      style.textStyle.textColor = UIColor(red: 0.9999999403953552, green: 1.0000001192092896, blue: 1.0000001192092896, alpha: 1.0) // "white"
+      style.textStyle.font = UIFont(name: "Noteworthy", size: 13.0)!
+      style.textStyle.textOffsetY = 2.0
+      style.subtitleStyle.textColor = UIColor(red: 0.48235297203063965, green: 0.16078439354896545, blue: -6.016343867543128e-09, alpha: 1.0) // "dark red orange"
+      style.subtitleStyle.font = UIFont(name: "Noteworthy", size: 14.0)!
+      style.subtitleStyle.textOffsetY = -6.0
+      style.systemStatusBarStyle = .darkContent
+      style.progressBarStyle.barHeight = 4.0
+      style.progressBarStyle.barColor = UIColor(red: 0.8194038271903992, green: 6.258426310523646e-07, blue: 0.003213257063180208, alpha: 1.0) // "dark red"
+      style.progressBarStyle.horizontalInsets = 0.0
+      style.progressBarStyle.cornerRadius = 2.0
+      style.progressBarStyle.offsetY = 0.0
+
       return style
     }
   }

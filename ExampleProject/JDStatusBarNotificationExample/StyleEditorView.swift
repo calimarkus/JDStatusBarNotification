@@ -65,7 +65,7 @@ struct StyleEditorView: View {
           NotificationPresenter.shared().updateText(text)
         }
         .onChange(of: subtitle) { _ in
-          NotificationPresenter.shared().updateTitle(text, subtitle: subtitle)
+          NotificationPresenter.shared().updateSubtitle(subtitle)
         }
 
       Section {

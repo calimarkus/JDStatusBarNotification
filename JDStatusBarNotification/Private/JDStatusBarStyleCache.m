@@ -69,6 +69,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
       style.textStyle.textColor = [UIColor whiteColor];
+      style.subtitleStyle.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
       style.progressBarStyle.barColor = [UIColor redColor];
       return style;
     }
@@ -77,6 +78,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
       style.textStyle.textColor = [UIColor darkGrayColor];
+      style.subtitleStyle.textColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.75];
       style.progressBarStyle.barColor = style.textStyle.textColor;
       return style;
     }
@@ -85,6 +87,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
       JDStatusBarStyle *style = [JDStatusBarStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
       style.textStyle.textColor = [UIColor whiteColor];
+      style.subtitleStyle.textColor = [UIColor colorWithRed:0.2 green:0.5 blue:0.2 alpha:1.0];
       style.progressBarStyle.barColor = [UIColor colorWithRed:0.106 green:0.594 blue:0.319 alpha:1.000];
       return style;
     }
@@ -94,6 +97,8 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
       style.backgroundStyle.backgroundColor = [UIColor blackColor];
       style.textStyle.textColor = [UIColor greenColor];
       style.textStyle.font = [UIFont fontWithName:@"Courier-Bold" size:14.0];
+      style.subtitleStyle.textColor = [UIColor whiteColor];
+      style.subtitleStyle.font = [UIFont fontWithName:@"Courier" size:12.0];
       style.progressBarStyle.barColor = [UIColor greenColor];
       style.systemStatusBarStyle = JDStatusBarSystemStyleLightContent;
       return style;

@@ -268,9 +268,7 @@
   [_overlayWindow.statusBarViewController.statusBarView setTitle:text];
 }
 
-- (void)updateTitle:(NSString *)title
-           subtitle:(NSString *)subtitle {
-  [_overlayWindow.statusBarViewController.statusBarView setTitle:title];
+- (void)updateSubtitle:(NSString *)subtitle {
   [_overlayWindow.statusBarViewController.statusBarView setSubtitle:subtitle];
 }
 
