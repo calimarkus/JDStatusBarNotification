@@ -55,7 +55,7 @@
 
   // update top bar frame
   JDStatusBarView *statusBarView = _statusBarViewController.statusBarView;
-  CGFloat heightIncludingNavBar = rect.size.height + contentHeight(window.windowScene, statusBarView.style);
+  CGFloat heightIncludingNavBar = rect.size.height + contentHeight(window.windowScene, statusBarView.style, rect);
   statusBarView.transform = CGAffineTransformIdentity;
   statusBarView.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
 
@@ -63,7 +63,7 @@
   [statusBarView setProgressBarPercentage:_statusBarViewController.statusBarView.progressBarPercentage];
 }
 
-static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarStyle *style) {
+static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarStyle *style, CGRect statusBarRect) {
   switch (style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth: {
       if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
@@ -73,8 +73,15 @@ static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarStyle *style
         return 44.0; // match navbar height
       }
     }
-    case JDStatusBarBackgroundTypePill:
-      return style.backgroundStyle.pillStyle.height + style.backgroundStyle.pillStyle.topSpacing;
+    case JDStatusBarBackgroundTypePill: {
+      CGFloat notchAdjustment = 0.0;
+      if (statusBarRect.size.height > 20.0) {
+        notchAdjustment = -7.0; // this matches the positioning of a similar system notification
+      } else {
+        notchAdjustment += 3.0; // for no-notch devices, default to a minimum spacing
+      }
+      return style.backgroundStyle.pillStyle.height + style.backgroundStyle.pillStyle.topSpacing + notchAdjustment;
+    }
   }
 }
 

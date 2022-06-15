@@ -69,9 +69,9 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _height = 44.0;
-    _topSpacing = 2.0;
-    _minimumWidth = 180.0;
+    _height = 50.0;
+    _topSpacing = 0.0;
+    _minimumWidth = 200.0;
     _borderColor = nil;
     _borderWidth = 2.0;
     _shadowColor = nil;

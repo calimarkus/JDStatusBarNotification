@@ -155,13 +155,13 @@ NS_SWIFT_NAME(NotificationTextStyle)
 NS_SWIFT_NAME(BarPillStyle)
 @interface JDStatusBarPillStyle : NSObject <NSCopying>
 
-/// The height of the pill. Default is 44.0.
+/// The height of the pill. Default is 50.0.
 @property (nonatomic, assign) CGFloat height;
 
-/// The spacing between the pill and the statusbar or top of the screen.. Default is 2.0.
+/// The spacing between the pill and the statusbar or top of the screen.. Default is 0.0.
 @property (nonatomic, assign) CGFloat topSpacing;
 
-/// The minimum with of the pill. Default is 180.0.
+/// The minimum with of the pill. Default is 200.0.
 @property (nonatomic, assign) CGFloat minimumWidth;
 
 /// The border color of the pill. The default is nil, meaning no border.
