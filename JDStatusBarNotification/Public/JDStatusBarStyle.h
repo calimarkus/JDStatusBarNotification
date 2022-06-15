@@ -63,9 +63,9 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 } NS_SWIFT_NAME(StatusBarSystemStyle);
 
 typedef NS_ENUM(NSInteger, JDStatusBarLeftViewAlignment) {
-  /// Always align left
+  /// Always align left. Text is center aligned unlless it touches the left view. Then text turns left aligned too.
   JDStatusBarLeftViewAlignmentLeft,
-  /// Center together with text
+  /// Center together with text. Text is left aligned.
   JDStatusBarLeftViewAlignmentCenterWithText,
   /// Center together with text if no subtitle is set, otherwise left-align.
   JDStatusBarLeftViewAlignmentCenterWithTextUnlessSubtitleExists,
