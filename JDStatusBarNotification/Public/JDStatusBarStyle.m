@@ -42,6 +42,26 @@
 
 @end
 
+@implementation JDStatusBarLeftViewStyle
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    _spacing = 5.0;
+    _alignment = JDStatusBarLeftViewAlignmentCenterWithTextUnlessSubtitleExists;
+  }
+  return self;
+}
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+  JDStatusBarLeftViewStyle *style = [[[self class] allocWithZone:zone] init];
+  style.spacing = _spacing;
+  style.alignment = _alignment;
+  return style;
+}
+
+@end
+
 @implementation JDStatusBarPillStyle
 
 - (instancetype)init {
@@ -145,9 +165,11 @@
     _subtitleStyle.textColor = [_textStyle.textColor colorWithAlphaComponent:0.66];
 
     _backgroundStyle = [JDStatusBarBackgroundStyle new];
+    _progressBarStyle = [JDStatusBarProgressBarStyle new];
+    _leftViewStyle = [JDStatusBarLeftViewStyle new];
+
     _animationType = JDStatusBarAnimationTypeMove;
     _systemStatusBarStyle = JDStatusBarSystemStyleDefaultStyle;
-    _progressBarStyle = [JDStatusBarProgressBarStyle new];
     _canSwipeToDismiss = YES;
   }
   return self;
@@ -157,9 +179,10 @@
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.textStyle = [self.textStyle copy];
   style.backgroundStyle = [self.backgroundStyle copy];
+  style.progressBarStyle = [self.progressBarStyle copy];
+  style.leftViewStyle = [self.leftViewStyle copy];
   style.animationType = self.animationType;
   style.systemStatusBarStyle = self.systemStatusBarStyle;
-  style.progressBarStyle = [self.progressBarStyle copy];
   style.canSwipeToDismiss = self.canSwipeToDismiss;
   return style;
 }

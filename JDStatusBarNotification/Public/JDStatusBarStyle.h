@@ -62,8 +62,18 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
   JDStatusBarSystemStyleDarkContent
 } NS_SWIFT_NAME(StatusBarSystemStyle);
 
+typedef NS_ENUM(NSInteger, JDStatusBarLeftViewAlignment) {
+  /// Always align left
+  JDStatusBarLeftViewAlignmentLeft,
+  /// Center together with text
+  JDStatusBarLeftViewAlignmentCenterWithText,
+  /// Center together with text if no subtitle is set, otherwise left-align.
+  JDStatusBarLeftViewAlignmentCenterWithTextUnlessSubtitleExists,
+} NS_SWIFT_NAME(BarLeftViewAlignment);
+
 @class JDStatusBarBackgroundStyle;
 @class JDStatusBarProgressBarStyle;
+@class JDStatusBarLeftViewStyle;
 @class JDStatusBarTextStyle;
 
 /**
@@ -84,6 +94,9 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The styling of the progress bar
 @property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
 
+/// The styling of the left view, if used. This also applies to the activity indicator.
+@property (nonatomic, strong) JDStatusBarLeftViewStyle *leftViewStyle;
+
 /// The animation for presentation & dismissal
 @property (nonatomic, assign) JDStatusBarAnimationType animationType;
 
@@ -96,7 +109,22 @@ NS_SWIFT_NAME(StatusBarStyle)
 @end
 
 /**
- *  A Style defines the appeareance of a notification.
+ *  Defines the appeareance of a left view, if set. It also applies to the activity indicator.
+ */
+NS_SWIFT_NAME(NotificationLeftViewStyle)
+@interface JDStatusBarLeftViewStyle : NSObject <NSCopying>
+
+/// The minimum distance between the left view and the text. Defaults to 5.0.
+@property (nonatomic, assign) CGFloat spacing;
+
+/// The alignment of the left view. The default is .centerWithTextUnlessSubtitleExists.
+/// If no text is set, the left view is always centered.
+@property (nonatomic, assign) JDStatusBarLeftViewAlignment alignment;
+
+@end
+
+/**
+ *  Defines the appeareance of a text label.
  */
 NS_SWIFT_NAME(NotificationTextStyle)
 @interface JDStatusBarTextStyle : NSObject <NSCopying>
@@ -151,7 +179,7 @@ NS_SWIFT_NAME(BarPillStyle)
 @end
 
 /**
- *  A Style defines the appeareance of a notification.
+ *  Defines the appeareance of the notification background.
  */
 NS_SWIFT_NAME(NotificationBackgroundStyle)
 @interface JDStatusBarBackgroundStyle : NSObject <NSCopying>
@@ -168,7 +196,7 @@ NS_SWIFT_NAME(NotificationBackgroundStyle)
 @end
 
 /**
- *  A Style defines the appeareance of a notification.
+ *  Defines the appeareance of the progress bar.
  */
 NS_SWIFT_NAME(ProgressBarStyle)
 @interface JDStatusBarProgressBarStyle : NSObject <NSCopying>

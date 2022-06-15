@@ -16,10 +16,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
 @implementation JDStatusBarView {
   JDStatusBarStyle *_style;
 
-  // move to style
-  CGFloat _leftViewSpacing;
-  BOOL _alwaysAlignLeftViewLeft;
-
   UIView *_contentView;
   UIView *_pillView;
   UIView *_progressView;
@@ -34,8 +30,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
   self = [super init];
   if (self) {
     [self setupView];
-    _leftViewSpacing = 5.0;
-    _alwaysAlignLeftViewLeft = true;
   }
   return self;
 }
@@ -371,7 +365,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 
   // left view padding adjustment
   if (_leftView != nil) {
-    paddingX += round((CGRectGetWidth(_leftView.frame) + _leftViewSpacing) / 2.0);
+    paddingX += round((CGRectGetWidth(_leftView.frame) + _style.leftViewStyle.spacing) / 2.0);
   }
 
   // layout pill
@@ -380,6 +374,17 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);
   return CGRectMake(pillX, pillY, pillWidth, pillHeight);
+}
+
+BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL hasSubtitle) {
+  switch (leftViewStyle.alignment) {
+    case JDStatusBarLeftViewAlignmentCenterWithText:
+      return YES;
+    case JDStatusBarLeftViewAlignmentLeft:
+      return NO;
+    case JDStatusBarLeftViewAlignmentCenterWithTextUnlessSubtitleExists:
+      return hasSubtitle ? NO : YES;
+  }
 }
 
 - (void)layoutSubviews {
@@ -423,7 +428,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   // left view
   if (_leftView != nil) {
     CGRect leftViewFrame = _leftView.frame;
-    CGFloat widthAndSpacing = CGRectGetWidth(leftViewFrame) + _leftViewSpacing;
+    CGFloat widthAndSpacing = CGRectGetWidth(leftViewFrame) + _style.leftViewStyle.spacing;
 
     // center vertically
     leftViewFrame.origin.y = round((CGRectGetHeight(_contentView.bounds) - CGRectGetHeight(leftViewFrame)) / 2.0 + _style.textStyle.textOffsetY);
@@ -432,21 +437,22 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
     if (combinedMaxTextWidth == 0.0) {
       // center horizontally
       leftViewFrame.origin.x = round(_contentView.bounds.size.width/2.0 - leftViewFrame.size.width/2.0);
-    } else if (subtitleWidth > 0) {
-      // left-align left view
-      leftViewFrame.origin.x = innerContentRect.origin.x;
-    } else {
+    } else if(shouldCenterLeftViewForStyle(_style.leftViewStyle, _subtitleLabel.text.length > 0)) {
       // position left view in front of text and center together with text
       _titleLabel.frame = CGRectOffset(_titleLabel.frame, round(widthAndSpacing / 2.0), 0);
       leftViewFrame.origin.x = MAX(CGRectGetMinX(innerContentRect), CGRectGetMinX(_titleLabel.frame) - widthAndSpacing);
+    } else {
+      // left-align left view
+      leftViewFrame.origin.x = innerContentRect.origin.x;
     }
+
     _leftView.frame = leftViewFrame;
 
     // avoid left view/text overlap and respect max bounds
     if (combinedMaxTextWidth > 0.0 && CGRectGetMinX(leftViewFrame) == CGRectGetMinX(innerContentRect)) {
       CGRect titleRect = _titleLabel.frame;
       CGRect viewAndSpacing = leftViewFrame;
-      viewAndSpacing.size.width += _leftViewSpacing;
+      viewAndSpacing.size.width += _style.leftViewStyle.spacing;
       CGRect intersection = CGRectIntersection(viewAndSpacing, titleRect);
       if (!CGRectIsNull(intersection)) {
         titleRect.origin.x += CGRectGetWidth(intersection);
