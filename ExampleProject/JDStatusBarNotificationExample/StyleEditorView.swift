@@ -237,6 +237,11 @@ struct StyleEditorView: View {
                 in: 0...99)
           .font(.subheadline)
 
+        Stepper("Offset X (\(Int(style.leftViewOffsetX)))",
+                value: $style.leftViewOffsetX,
+                in: -99...99)
+          .font(.subheadline)
+
         VStack(alignment: .leading, spacing: 6.0) {
           Picker("Alignment", selection: $style.leftViewAlignment) {
             Group {
