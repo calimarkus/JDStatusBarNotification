@@ -45,7 +45,8 @@ struct StatusBarPreview_Previews: PreviewProvider {
     VStack(spacing: 8.0) {
       StatusBarPreview("Full Width Style - Light") { style in
         style.backgroundStyle.backgroundType = .fullWidth
-      }.frame(height: 66)
+      }
+      .frame(height: 100)
 
       StatusBarPreview("Full Width Style - Dark", subtitle: "Test", progress: 0.88, activity: false) { style in
         style.backgroundStyle.backgroundColor = .darkGray
@@ -54,12 +55,12 @@ struct StatusBarPreview_Previews: PreviewProvider {
         style.progressBarStyle.barColor = .magenta
         style.progressBarStyle.offsetY = 0.0
         style.progressBarStyle.horizontalInsets = 0.0
-      }.frame(height: 66)
+      }.frame(height: 100)
 
       StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
                        progress: 0.5) { style in
         style.backgroundStyle.backgroundType = .fullWidth
-      }.frame(height: 66)
+      }.frame(height: 100)
 
       StatusBarPreview("Pill Style - Light", subtitle: "Test II") { style in
         style.progressBarStyle.offsetY = 0.0
@@ -100,5 +101,6 @@ struct StatusBarPreview_Previews: PreviewProvider {
       Spacer()
     }
     .background(Color(uiColor: UIColor.systemGray5))
+    .ignoresSafeArea()
   }
 }
