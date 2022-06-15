@@ -237,14 +237,15 @@ struct ExamplesView: View {
           // create icon
           let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
           image.tintColor = UIColor.orange
+          image.sizeToFit()
 
           // present
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: NotificationPresenter.shared().addStyle(styleName: "tmp", prepare: { style in
             style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
-            style.backgroundStyle.pillStyle.minimumWidth = 40;
-
-            style.leftViewStyle.alignment = .centerWithText
+            style.backgroundStyle.pillStyle.minimumWidth = 200.0;
+            style.backgroundStyle.pillStyle.height = 50.0
             style.leftViewStyle.spacing = 10.0
+            style.leftViewStyle.offsetX = -8.0
 
             style.textStyle.textColor = UIColor.white
             style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
@@ -252,7 +253,6 @@ struct ExamplesView: View {
 
             style.subtitleStyle.textColor = UIColor.lightGray
             style.subtitleStyle.font = UIFont.systemFont(ofSize: 12.0)
-            style.subtitleStyle.textOffsetY = -3
             return style
           }))
           NotificationPresenter.shared().displayLeftView(image)

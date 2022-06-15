@@ -255,6 +255,11 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   _leftView = leftView;
   [_contentView addSubview:leftView];
   [self setNeedsLayout];
+
+#if JDSB_LAYOUT_DEBUGGING
+  _leftView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+  _leftView.layer.borderWidth = 1.0;
+#endif
 }
 
 #pragma mark - Custom Subview
@@ -466,9 +471,11 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
     _titleLabel.textAlignment = shouldCenterLeftView ? NSTextAlignmentLeft : NSTextAlignmentCenter;
     _subtitleLabel.textAlignment = _titleLabel.textAlignment;
 
-    // avoid left view/text overlap and respect max bounds
-    if (combinedMaxTextWidth > 0.0 && CGRectGetMinX(leftViewFrame) == CGRectGetMinX(innerContentRect)) {
+    // title adjustments
+    if (combinedMaxTextWidth > 0.0) {
       CGRect titleRect = _titleLabel.frame;
+
+      // avoid left view/text overlap
       CGRect viewAndSpacing = leftViewFrame;
       viewAndSpacing.size.width += _style.leftViewStyle.spacing;
       CGRect intersection = CGRectIntersection(viewAndSpacing, titleRect);
@@ -476,9 +483,12 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _subtitleLabel.textAlignment = NSTextAlignmentLeft;
         titleRect.origin.x += CGRectGetWidth(intersection);
-        titleRect.size.width -= CGRectGetWidth(intersection);
-        _titleLabel.frame = titleRect;
       }
+
+      // respect inner bounds
+      titleRect.size.width = MIN(titleRect.size.width, CGRectGetMaxX(innerContentRect) - titleRect.origin.x);
+
+      _titleLabel.frame = titleRect;
     }
   }
 
