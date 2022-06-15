@@ -22,8 +22,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
   UILabel *_titleLabel;
   UILabel *_subtitleLabel;
   UIActivityIndicatorView *_activityIndicatorView;
-
-  UIPanGestureRecognizer *_panGestureRecognizer;
 }
 
 - (instancetype)init {

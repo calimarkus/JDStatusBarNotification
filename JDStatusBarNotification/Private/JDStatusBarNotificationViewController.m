@@ -98,6 +98,8 @@
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
+  _statusBarView.panGestureRecognizer.enabled = NO;
+
   // animate out
   __weak __typeof(self) weakSelf = self;
   [_animator animateOutWithDuration:duration completion:^ {
