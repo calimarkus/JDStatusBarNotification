@@ -41,7 +41,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
   titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
   titleLabel.textAlignment = NSTextAlignmentCenter;
   titleLabel.adjustsFontSizeToFitWidth = YES;
-  titleLabel.clipsToBounds = YES;
   _titleLabel = titleLabel;
 
 #if JDSB_LAYOUT_DEBUGGING
@@ -55,7 +54,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
   subtitleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
   subtitleLabel.textAlignment = NSTextAlignmentCenter;
   subtitleLabel.adjustsFontSizeToFitWidth = YES;
-  subtitleLabel.clipsToBounds = YES;
   _subtitleLabel = subtitleLabel;
 
 #if JDSB_LAYOUT_DEBUGGING
