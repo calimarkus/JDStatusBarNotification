@@ -437,6 +437,9 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
 
     // fit left view into notification
     if (_leftView != _activityIndicatorView) {
+      if (CGRectIsEmpty(leftViewFrame)) {
+        leftViewFrame = CGRectMake(0, 0, innerContentRect.size.height, innerContentRect.size.height);
+      }
       leftViewFrame.size = [_leftView sizeThatFits:innerContentRect.size];
     }
 

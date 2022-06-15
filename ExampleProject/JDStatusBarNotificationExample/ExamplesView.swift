@@ -237,7 +237,6 @@ struct ExamplesView: View {
           // create icon
           let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
           image.tintColor = UIColor.orange
-          image.sizeToFit()
 
           // present
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: NotificationPresenter.shared().addStyle(styleName: "tmp", prepare: { style in
