@@ -458,6 +458,7 @@ BOOL shouldCenterLeftViewForStyle(JDStatusBarLeftViewStyle *leftViewStyle, BOOL 
       leftViewFrame.origin.x = innerContentRect.origin.x;
     }
 
+    leftViewFrame = CGRectOffset(leftViewFrame, _style.leftViewStyle.offsetX, 0);
     _leftView.frame = leftViewFrame;
 
     // update text alignment

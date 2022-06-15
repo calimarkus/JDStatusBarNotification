@@ -117,6 +117,9 @@ NS_SWIFT_NAME(NotificationLeftViewStyle)
 /// The minimum distance between the left view and the text. Defaults to 5.0.
 @property (nonatomic, assign) CGFloat spacing;
 
+/// An optional offset to adjust the left views x position. Default 0.0.
+@property (nonatomic, assign) CGFloat offsetX;
+
 /// The alignment of the left view. The default is .centerWithTextUnlessSubtitleExists.
 /// If no text is set, the left view is always centered.
 @property (nonatomic, assign) JDStatusBarLeftViewAlignment alignment;
