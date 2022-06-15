@@ -134,9 +134,6 @@ static const NSInteger kExpectedSubviewTag = 12321;
     [_activityIndicatorView stopAnimating];
   }
 
-  _titleLabel.textAlignment = _displaysActivityIndicator ? NSTextAlignmentLeft : NSTextAlignmentCenter;
-  _subtitleLabel.textAlignment = _titleLabel.textAlignment;
-
   _activityIndicatorView.hidden = !displaysActivityIndicator;
   [self setNeedsLayout];
 }
@@ -148,7 +145,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
     _progressView = [[UIView alloc] initWithFrame:CGRectZero];
     _progressView.backgroundColor = _style.progressBarStyle.barColor;
     _progressView.layer.cornerRadius = _style.progressBarStyle.cornerRadius;
-    _progressView.frame = [self progressViewRectForPercentage:0.0];
+    _progressView.frame = progressViewRectForPercentage(_contentView.bounds, 0.0, _style);
     _progressView.tag = kExpectedSubviewTag;
 
     [_contentView insertSubview:_progressView belowSubview:_titleLabel];
@@ -156,21 +153,20 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
-- (CGRect)progressViewRectForPercentage:(CGFloat)percentage {
-  JDStatusBarProgressBarStyle *progressBarStyle = _style.progressBarStyle;
+CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDStatusBarStyle *style) {
+  JDStatusBarProgressBarStyle *progressBarStyle = style.progressBarStyle;
 
   // calculate progressView frame
-  CGRect contentRect = _contentView.bounds;
   CGFloat barHeight = MIN(contentRect.size.height, MAX(0.5, progressBarStyle.barHeight));
   CGFloat width = round((contentRect.size.width - 2 * progressBarStyle.horizontalInsets) * percentage);
   CGRect barFrame = CGRectMake(progressBarStyle.horizontalInsets, progressBarStyle.offsetY, width, barHeight);
 
   // calculate y-position
-  switch (_style.progressBarStyle.position) {
+  switch (progressBarStyle.position) {
     case JDStatusBarProgressBarPositionTop:
       break;
     case JDStatusBarProgressBarPositionCenter:
-      barFrame.origin.y += _style.textStyle.textOffsetY + round((contentRect.size.height - barHeight) / 2.0) + 1;
+      barFrame.origin.y += style.textStyle.textOffsetY + round((contentRect.size.height - barHeight) / 2.0) + 1;
       break;
     case JDStatusBarProgressBarPositionBottom:
       barFrame.origin.y += contentRect.size.height - barHeight;
@@ -196,7 +192,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   // reset view
   if (_progressBarPercentage == 0.0 && animationDuration == 0.0) {
     _progressView.hidden = YES;
-    _progressView.frame = [self progressViewRectForPercentage:0.0];
+    _progressView.frame = progressViewRectForPercentage(_contentView.bounds, 0.0, _style);
     return;
   }
 
@@ -205,7 +201,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   _progressView.hidden = NO;
 
   // update progressView frame
-  CGRect frame = [self progressViewRectForPercentage:_progressBarPercentage];
+  CGRect frame = progressViewRectForPercentage(_contentView.bounds, _progressBarPercentage, _style);
 
   if (animationDuration == 0.0) {
     _progressView.frame = frame;
@@ -232,6 +228,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (void)setTitle:(NSString *)title {
   _titleLabel.accessibilityLabel = title;
   _titleLabel.text = title;
+  _titleLabel.hidden = (title.length == 0);
 
   [self setNeedsLayout];
 }
@@ -243,6 +240,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (void)setSubtitle:(NSString *)subtitle {
   _subtitleLabel.accessibilityLabel = subtitle;
   _subtitleLabel.text = subtitle;
+  _subtitleLabel.hidden = (subtitle.length == 0);
 
   [self setNeedsLayout];
 }
@@ -384,6 +382,9 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       break;
   }
 
+  // custom subview always matches full content view
+  _customSubview.frame = _contentView.bounds;
+
   // title label
   CGFloat labelInsetX = 20.0;
   CGFloat subtitleSpacing = 1.0;
@@ -398,49 +399,45 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
                                  combinedMaxTextWidth,
                                  titleSize.height);
 
-  // custom subview
-  _customSubview.frame = _contentView.bounds;
-
   // progress view
   if (_progressView && _progressView.layer.animationKeys.count == 0) {
-    _progressView.frame = [self progressViewRectForPercentage:_progressBarPercentage];
+    _progressView.frame = progressViewRectForPercentage(_contentView.bounds, _progressBarPercentage, _style);
   }
 
   // activity indicator
   if (_displaysActivityIndicator) {
     CGRect indicatorFrame = _activityIndicatorView.frame;
-    indicatorFrame.origin.y = _titleLabel.frame.origin.y + floor((_titleLabel.frame.size.height - CGRectGetHeight(indicatorFrame))/2.0);
+    CGFloat indicatorWidthAndSpacing = CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing;
+
+    // center vertically
+    indicatorFrame.origin.y = round((CGRectGetHeight(_contentView.bounds) - CGRectGetHeight(indicatorFrame)) / 2.0 + _style.textStyle.textOffsetY);
 
     // x-position
-    if (titleWidth == 0.0) {
-      // simply center
+    if (combinedMaxTextWidth == 0.0) {
+      // center horizontally
       indicatorFrame.origin.x = round(_contentView.bounds.size.width/2.0 - indicatorFrame.size.width/2.0);
+    } else if (subtitleWidth > 0) {
+      // left-align activity indicator
+      indicatorFrame.origin.x = innerContentRect.origin.x;
     } else {
-      CGFloat centerXAdjustement = round((CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing) / 2.0);
-
-      // position in front of text
-      indicatorFrame.origin.x = CGRectGetMinX(_titleLabel.frame) - CGRectGetWidth(indicatorFrame) - kActivityIndicatorSpacing + centerXAdjustement;
-
-      // adjust text label
-      CGRect textRect = _titleLabel.frame;
-      textRect.origin.x += centerXAdjustement;
-
-      // maintain max-bounds
-      CGFloat diffLeft = indicatorFrame.origin.x - CGRectGetMinX(innerContentRect);
-      if (diffLeft < 0.0) {
-        indicatorFrame.origin.x = CGRectGetMinX(innerContentRect);
-        textRect.origin.x += ABS(diffLeft);
-      }
-      CGFloat diffRight = CGRectGetMaxX(innerContentRect) - CGRectGetMaxX(textRect);
-      if (diffRight < 0.0) {
-        textRect.size.width -= ABS(diffRight);
-      }
-
-      // adjust text
-      _titleLabel.frame = textRect;
+      // position in front of text and center text + activity together
+      _titleLabel.frame = CGRectOffset(_titleLabel.frame, round(indicatorWidthAndSpacing / 2.0), 0);
+      indicatorFrame.origin.x = MAX(CGRectGetMinX(innerContentRect), CGRectGetMinX(_titleLabel.frame) - indicatorWidthAndSpacing);
     }
-
     _activityIndicatorView.frame = indicatorFrame;
+
+    // avoid activity/text overlap and respect max bounds
+    if (combinedMaxTextWidth > 0.0 && CGRectGetMinX(indicatorFrame) == CGRectGetMinX(innerContentRect)) {
+      CGRect titleRect = _titleLabel.frame;
+      CGRect indicatorAndSpacing = indicatorFrame;
+      indicatorAndSpacing.size.width += kActivityIndicatorSpacing;
+      CGRect intersection = CGRectIntersection(indicatorAndSpacing, titleRect);
+      if (!CGRectIsNull(intersection)) {
+        titleRect.origin.x += CGRectGetWidth(intersection);
+        titleRect.size.width -= CGRectGetWidth(intersection) * 2;
+        _titleLabel.frame = titleRect;
+      }
+    }
   }
 
   // subtitle label

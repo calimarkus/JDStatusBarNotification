@@ -72,23 +72,30 @@ struct StatusBarPreview_Previews: PreviewProvider {
         style.progressBarStyle.barColor = .magenta
       }.frame(height: 50)
 
-      StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
-                       progress: 1.0) { style in
-        style.progressBarStyle.offsetY = 0.0
-      }.frame(height: 50)
+      VStack(spacing: 4.0) {
+        StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
+                         progress: 1.0) { style in
+          style.progressBarStyle.offsetY = 0.0
+        }.frame(height: 50)
 
-      StatusBarPreview("Title", subtitle:"The quick brown fox jumps over the lazy dog. (Longer text test)",
-                       progress: 1.0) { style in
-        style.progressBarStyle.offsetY = 0.0
-      }.frame(height: 50)
+        StatusBarPreview("FYI", subtitle: "Short one.",
+                         progress: 1.0) { style in
+          style.progressBarStyle.offsetY = 0.0
+        }.frame(height: 50)
 
-      StatusBarPreview("Title", subtitle:"The quick brown fox jumps over the lazy dog. (Longer text test)", progress: 1.0, activity: false) { style in
-        style.progressBarStyle.offsetY = 0.0
-      }.frame(height: 50)
+        StatusBarPreview("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)",
+                         progress: 1.0) { style in
+          style.progressBarStyle.offsetY = 0.0
+        }.frame(height: 50)
 
-      StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)", subtitle: "Short one", progress: 1.0, activity: false) { style in
-        style.progressBarStyle.offsetY = 0.0
-      }.frame(height: 50)
+        StatusBarPreview("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)", progress: 1.0, activity: false) { style in
+          style.progressBarStyle.offsetY = 0.0
+        }.frame(height: 50)
+
+        StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)", subtitle: "Short one", progress: 1.0, activity: false) { style in
+          style.progressBarStyle.offsetY = 0.0
+        }.frame(height: 50)
+      }
 
       Spacer()
     }
