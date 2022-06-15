@@ -172,6 +172,42 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
 } NS_SWIFT_NAME(BarAnimationType);
 ```
 
+## Changelog
+
+### 2.0.1
+
+New:
+
+- Subtitle support (customizable)
+- Generic left view support (think icons, profile pictures, etc.), customizable layout
+
+Fixes:
+
+- WindowScene inferred automatically (no need to set it explicitly anymore)
+- Disable drag-to-dismiss during dismiss animation
+- Tweaked default style pill size & positioning
+- Don't clip text to bounds
+
+### 2.0.0
+
+Big release. Many bugfixes, expanded public API, new features. Modernized outdated codebase - more or less a full rewrite.
+This is a breaking API release. Old code using this library won't compile without any changes after upgrading.
+Those changes should be pretty easy to make though - mostly new naming.
+
+New features:
+
+- A pill shaped layout (the legacy layout is still available as "full width", the half height layout is gone)
+- Drag-to-dismiss + general support for user interaction on the notification
+- Easy progress bar animation through public API
+- Custom view presentation
+- Presentation when no status bar is visible
+- More robust layouting of text & activity indicator
+- Support for apps that use window scenes
+- Explicit Swift naming for all public APIs + Swift example project
+- Full fledged style editor in example project + config export
+- Many bug fixes
+
+
 ## Twitter
 
 I'm [@calimarkus](http://twitter.com/calimarkus) on Twitter. Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDStatusBarNotification&text=Simple%20and%20customizable%20statusbar%20notifications%20for%20iOS!%20Check%20it%20out.%20https://github.com/calimarkus/JDStatusBarNotification&via=calimarkus), if you like JDStatusBarNotification.  
