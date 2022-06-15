@@ -108,11 +108,11 @@
   return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 customStyle:styleName completion:completion];
 }
 
-- (UIView *)presentWithTitle:(NSString *)text
+- (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
                  customStyle:(NSString * _Nullable)styleName
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  return [self presentWithTitle:text subtitle:subtitle dismissAfterDelay:0.0 customStyle:styleName completion:completion];
+  return [self presentWithTitle:title subtitle:subtitle dismissAfterDelay:0.0 customStyle:styleName completion:completion];
 }
 
 - (UIView *)presentWithText:(NSString *)text

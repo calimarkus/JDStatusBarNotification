@@ -122,7 +122,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @return The presented UIView for further customization
  */
-- (UIView *)presentWithTitle:(NSString *)text
+- (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
                  customStyle:(NSString * _Nullable)styleName
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:customStyle:completion:));
