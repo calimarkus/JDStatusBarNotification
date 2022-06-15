@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// by the selected style. In the pill style the view will match the pill size.
 @property (nonatomic, strong, nullable) UIView *customSubview;
 
+/// A left view will be displayed left of the text. The layout can be adjusted using the leftViewStyle.
+@property (nonatomic, strong, nullable) UIView *leftView;
+
 - (void)animateProgressBarToPercentage:(CGFloat)percentage
                      animationDuration:(CGFloat)animationDuration
                             completion:(void(^ _Nullable)(void))completion;

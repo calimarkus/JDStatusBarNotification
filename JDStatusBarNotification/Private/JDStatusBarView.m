@@ -16,6 +16,10 @@ static const NSInteger kExpectedSubviewTag = 12321;
 @implementation JDStatusBarView {
   JDStatusBarStyle *_style;
 
+  // move to style
+  CGFloat _leftViewSpacing;
+  BOOL _alwaysAlignLeftViewLeft;
+
   UIView *_contentView;
   UIView *_pillView;
   UIView *_progressView;
@@ -30,6 +34,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
   self = [super init];
   if (self) {
     [self setupView];
+    _leftViewSpacing = 5.0;
+    _alwaysAlignLeftViewLeft = true;
   }
   return self;
 }
@@ -98,7 +104,9 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [_contentView addSubview:_progressView];
   [_contentView addSubview:_titleLabel];
   [_contentView addSubview:_subtitleLabel];
-  [_contentView addSubview:_activityIndicatorView];
+  if (_leftView) {
+    [_contentView addSubview:_leftView];
+  }
 
   // ensure pan recognizer is setup
   _panGestureRecognizer.enabled = YES;
@@ -114,28 +122,26 @@ static const NSInteger kExpectedSubviewTag = 12321;
     [_activityIndicatorView sizeToFit];
     _activityIndicatorView.color = _style.textStyle.textColor;
     _activityIndicatorView.tag = kExpectedSubviewTag;
-
-#if JDSB_LAYOUT_DEBUGGING
-    _activityIndicatorView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    _activityIndicatorView.layer.borderWidth = 1.0;
-#endif
-
-    [_contentView addSubview:_activityIndicatorView];
   }
 }
 
+- (BOOL)displaysActivityIndicator {
+  return _leftView == _activityIndicatorView;
+}
+
 - (void)setDisplaysActivityIndicator:(BOOL)displaysActivityIndicator {
-  _displaysActivityIndicator = displaysActivityIndicator;
+  _activityIndicatorView.hidden = !displaysActivityIndicator;
 
   if (displaysActivityIndicator) {
     [self createActivityIndicatorViewIfNeeded];
     [_activityIndicatorView startAnimating];
+    [self setLeftView:_activityIndicatorView];
   } else {
     [_activityIndicatorView stopAnimating];
+    if (_leftView == _activityIndicatorView) {
+      [self setLeftView:nil];
+    }
   }
-
-  _activityIndicatorView.hidden = !displaysActivityIndicator;
-  [self setNeedsLayout];
 }
 
 #pragma mark - progress bar
@@ -219,7 +225,7 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   }
 }
 
-#pragma mark - Text
+#pragma mark - Title
 
 - (NSString *)title {
   return _titleLabel.text;
@@ -233,6 +239,8 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   [self setNeedsLayout];
 }
 
+#pragma mark - Subtitle
+
 - (NSString *)subtitle {
   return _subtitleLabel.text;
 }
@@ -242,6 +250,25 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   _subtitleLabel.text = subtitle;
   _subtitleLabel.hidden = (subtitle.length == 0);
 
+  [self setNeedsLayout];
+}
+
+#pragma mark - Left View
+
+- (void)setLeftView:(UIView *)leftView {
+  leftView.tag = kExpectedSubviewTag;
+  [_leftView removeFromSuperview];
+  _leftView = leftView;
+  [_contentView addSubview:leftView];
+  [self setNeedsLayout];
+}
+
+#pragma mark - Custom Subview
+
+- (void)setCustomSubview:(UIView *)customSubview {
+  [_customSubview removeFromSuperview];
+  _customSubview = customSubview;
+  [_contentView addSubview:customSubview];
   [self setNeedsLayout];
 }
 
@@ -308,18 +335,7 @@ void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
   _pillView.layer.shadowOffset = pillStyle.shadowColor ? pillStyle.shadowOffset : CGSizeZero;
 }
 
-#pragma mark - Custom Subview
-
-- (void)setCustomSubview:(UIView *)customSubview {
-  [_customSubview removeFromSuperview];
-  _customSubview = customSubview;
-  [_contentView addSubview:_customSubview];
-  [self setNeedsLayout];
-}
-
 #pragma mark - Layout
-
-static const NSInteger kActivityIndicatorSpacing = 5.0;
 
 static CGRect contentRectForWindow(UIView *view) {
   CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(view.window).top;
@@ -353,9 +369,9 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   CGFloat maximumPillWidth = contentRect.size.width - minimumPillInset * 2;
   CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, pillStyle.minimumWidth));
 
-  // activity indicator padding adjustment
-  if (_displaysActivityIndicator) {
-    paddingX += round((CGRectGetWidth(_activityIndicatorView.frame) + kActivityIndicatorSpacing) / 2.0);
+  // left view padding adjustment
+  if (_leftView != nil) {
+    paddingX += round((CGRectGetWidth(_leftView.frame) + _leftViewSpacing) / 2.0);
   }
 
   // layout pill
@@ -404,34 +420,34 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
     _progressView.frame = progressViewRectForPercentage(_contentView.bounds, _progressBarPercentage, _style);
   }
 
-  // activity indicator
-  if (_displaysActivityIndicator) {
-    CGRect indicatorFrame = _activityIndicatorView.frame;
-    CGFloat indicatorWidthAndSpacing = CGRectGetWidth(indicatorFrame) + kActivityIndicatorSpacing;
+  // left view
+  if (_leftView != nil) {
+    CGRect leftViewFrame = _leftView.frame;
+    CGFloat widthAndSpacing = CGRectGetWidth(leftViewFrame) + _leftViewSpacing;
 
     // center vertically
-    indicatorFrame.origin.y = round((CGRectGetHeight(_contentView.bounds) - CGRectGetHeight(indicatorFrame)) / 2.0 + _style.textStyle.textOffsetY);
+    leftViewFrame.origin.y = round((CGRectGetHeight(_contentView.bounds) - CGRectGetHeight(leftViewFrame)) / 2.0 + _style.textStyle.textOffsetY);
 
     // x-position
     if (combinedMaxTextWidth == 0.0) {
       // center horizontally
-      indicatorFrame.origin.x = round(_contentView.bounds.size.width/2.0 - indicatorFrame.size.width/2.0);
+      leftViewFrame.origin.x = round(_contentView.bounds.size.width/2.0 - leftViewFrame.size.width/2.0);
     } else if (subtitleWidth > 0) {
-      // left-align activity indicator
-      indicatorFrame.origin.x = innerContentRect.origin.x;
+      // left-align left view
+      leftViewFrame.origin.x = innerContentRect.origin.x;
     } else {
-      // position in front of text and center text + activity together
-      _titleLabel.frame = CGRectOffset(_titleLabel.frame, round(indicatorWidthAndSpacing / 2.0), 0);
-      indicatorFrame.origin.x = MAX(CGRectGetMinX(innerContentRect), CGRectGetMinX(_titleLabel.frame) - indicatorWidthAndSpacing);
+      // position left view in front of text and center together with text
+      _titleLabel.frame = CGRectOffset(_titleLabel.frame, round(widthAndSpacing / 2.0), 0);
+      leftViewFrame.origin.x = MAX(CGRectGetMinX(innerContentRect), CGRectGetMinX(_titleLabel.frame) - widthAndSpacing);
     }
-    _activityIndicatorView.frame = indicatorFrame;
+    _leftView.frame = leftViewFrame;
 
-    // avoid activity/text overlap and respect max bounds
-    if (combinedMaxTextWidth > 0.0 && CGRectGetMinX(indicatorFrame) == CGRectGetMinX(innerContentRect)) {
+    // avoid left view/text overlap and respect max bounds
+    if (combinedMaxTextWidth > 0.0 && CGRectGetMinX(leftViewFrame) == CGRectGetMinX(innerContentRect)) {
       CGRect titleRect = _titleLabel.frame;
-      CGRect indicatorAndSpacing = indicatorFrame;
-      indicatorAndSpacing.size.width += kActivityIndicatorSpacing;
-      CGRect intersection = CGRectIntersection(indicatorAndSpacing, titleRect);
+      CGRect viewAndSpacing = leftViewFrame;
+      viewAndSpacing.size.width += _leftViewSpacing;
+      CGRect intersection = CGRectIntersection(viewAndSpacing, titleRect);
       if (!CGRectIsNull(intersection)) {
         titleRect.origin.x += CGRectGetWidth(intersection);
         titleRect.size.width -= CGRectGetWidth(intersection) * 2;
