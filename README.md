@@ -6,11 +6,11 @@ a progress bar & custom views. iOS 13+. Swift ready!
 
 Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
-Pill styles:
+Here's some examples of the possibilities (the pill style is the default):
 
 ![examples](https://user-images.githubusercontent.com/807039/173831886-d7c8cca9-9274-429d-b924-78f21a4f6092.jpg)
 
-Full-Width styles:
+Full-Width styles in action (the pill styles support the same features / animations):
 
 | Drag to dismiss | Activity & Progress Bars | Custom styles |
 | ------------- | ------------- | ------------- |
@@ -130,9 +130,7 @@ NotificationPresenter.shared().addStyle(styleName: "xxx") { style in
 
 Checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code.
 
-| Customize | about | everything.. |
-| ------------- | ------------- | ------------- |
-| ![1](https://user-images.githubusercontent.com/807039/173234009-759d10a6-aee5-4866-aa76-cebd6124aa3e.jpeg) | ![2](https://user-images.githubusercontent.com/807039/173234015-d13185c4-8376-452d-beab-affb8f438772.jpeg) | ![3](https://user-images.githubusercontent.com/807039/173234016-1381b3a3-a605-4ac1-8fbb-8ee4af061f6a.jpeg) |
+![styleditor](https://user-images.githubusercontent.com/807039/173832850-296a0f49-244c-415d-af1c-f1c5f6f32e9f.jpg)
 
 #### Custom View
 
