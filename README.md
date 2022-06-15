@@ -1,6 +1,6 @@
 # JDStatusBarNotification
 
-Highly customizable notifications displayed below the status bar for both notch and no-notch devices.
+Highly customizable & feature rich notifications displayed below the status bar for both notch and no-notch devices.
 Customizable colors, fonts & animations. Drag to dismiss. Landscape / portrait. Can show an activity indicator,
 a progress bar & custom views. iOS 13+. Swift ready!
 
@@ -8,7 +8,7 @@ Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotificati
 
 Pill styles:
 
-![examples](https://user-images.githubusercontent.com/807039/173235966-64407449-6570-4e9c-83b4-8645a97ec83b.jpg)
+![examples](https://user-images.githubusercontent.com/807039/173831886-d7c8cca9-9274-429d-b924-78f21a4f6092.jpg)
 
 Full-Width styles:
 
