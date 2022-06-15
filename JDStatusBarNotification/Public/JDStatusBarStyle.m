@@ -178,6 +178,7 @@
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.textStyle = [self.textStyle copy];
+  style.subtitleStyle = [self.subtitleStyle copy];
   style.backgroundStyle = [self.backgroundStyle copy];
   style.progressBarStyle = [self.progressBarStyle copy];
   style.leftViewStyle = [self.leftViewStyle copy];
