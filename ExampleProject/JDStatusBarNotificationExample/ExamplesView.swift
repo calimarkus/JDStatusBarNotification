@@ -240,18 +240,19 @@ struct ExamplesView: View {
 
           // present
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: NotificationPresenter.shared().addStyle(styleName: "tmp", prepare: { style in
-            style.backgroundStyle.backgroundColor = UIColor.darkGray
-            style.textStyle.textColor = UIColor.white
-            style.subtitleStyle.textColor = UIColor.lightGray
+            style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
+            style.backgroundStyle.pillStyle.minimumWidth = 40;
 
+            style.leftViewStyle.alignment = .centerWithText
+            style.leftViewStyle.spacing = 10.0
+
+            style.textStyle.textColor = UIColor.white
             style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
             style.textStyle.textOffsetY = 1
+
+            style.subtitleStyle.textColor = UIColor.lightGray
             style.subtitleStyle.font = UIFont.systemFont(ofSize: 12.0)
             style.subtitleStyle.textOffsetY = -3
-
-            style.leftViewStyle.alignment = .left
-            style.leftViewStyle.spacing = 6.0
-            style.leftViewStyle.offsetX = -8.0
             return style
           }))
           NotificationPresenter.shared().displayLeftView(image)
