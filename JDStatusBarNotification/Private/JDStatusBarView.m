@@ -362,7 +362,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   CGFloat paddingX = 20.0;
   CGFloat minimumPillInset = 20.0;
   CGFloat maximumPillWidth = contentRect.size.width - minimumPillInset * 2;
-  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(0.0, pillStyle.minimumWidth));
+  CGFloat minimumPillWidth = MIN(maximumPillWidth, MAX(pillHeight, pillStyle.minimumWidth));
 
   // left view padding adjustment
   if (_leftView != nil) {

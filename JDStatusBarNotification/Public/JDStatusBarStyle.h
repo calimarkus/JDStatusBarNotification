@@ -160,6 +160,7 @@ NS_SWIFT_NAME(BarPillStyle)
 @property (nonatomic, assign) CGFloat topSpacing;
 
 /// The minimum with of the pill. Default is 200.0.
+/// If this is lower than the pill height, the pill height is used as minimum width.
 @property (nonatomic, assign) CGFloat minimumWidth;
 
 /// The border color of the pill. The default is nil, meaning no border.
