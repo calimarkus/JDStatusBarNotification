@@ -49,7 +49,7 @@
   if (self) {
     _spacing = 5.0;
     _offsetX = 0.0;
-    _alignment = JDStatusBarLeftViewAlignmentCenterWithTextUnlessSubtitleExists;
+    _alignment = JDStatusBarLeftViewAlignmentCenterWithText;
   }
   return self;
 }

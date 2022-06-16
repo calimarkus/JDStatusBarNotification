@@ -59,7 +59,6 @@ extension BarLeftViewAlignment: StringRepresentable {
     switch self {
       case .left: return ".left"
       case .centerWithText: return ".centerWithText"
-      case .centerWithTextUnlessSubtitleExists: return ".centerWithTextUnlessSubtitleExists"
       default: return "?"
     }
   }

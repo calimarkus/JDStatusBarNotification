@@ -244,6 +244,7 @@ struct ExamplesView: View {
             style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
             style.backgroundStyle.pillStyle.minimumWidth = 200.0;
             style.backgroundStyle.pillStyle.height = 50.0
+            style.leftViewStyle.alignment = .left
             style.leftViewStyle.spacing = 10.0
             style.leftViewStyle.offsetX = -8.0
 

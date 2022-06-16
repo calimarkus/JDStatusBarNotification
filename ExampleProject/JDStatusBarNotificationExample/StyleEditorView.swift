@@ -243,14 +243,9 @@ struct StyleEditorView: View {
                 in: -99...99)
           .font(.subheadline)
 
-        VStack(alignment: .leading, spacing: 6.0) {
-          Picker("Alignment", selection: $style.leftViewAlignment) {
-            Group {
-              EnumPickerOptionView(BarLeftViewAlignment.left)
-              EnumPickerOptionView(BarLeftViewAlignment.centerWithText)
-              EnumPickerOptionView(BarLeftViewAlignment.centerWithTextUnlessSubtitleExists)
-            }.font(.caption)
-          }.font(.subheadline)
+        PickerFactory.build(title: "Alignment", binding: $style.leftViewAlignment) {
+          EnumPickerOptionView(BarLeftViewAlignment.left)
+          EnumPickerOptionView(BarLeftViewAlignment.centerWithText)
         }
 
         HStack {

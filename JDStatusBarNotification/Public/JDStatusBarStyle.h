@@ -63,12 +63,10 @@ typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
 } NS_SWIFT_NAME(StatusBarSystemStyle);
 
 typedef NS_ENUM(NSInteger, JDStatusBarLeftViewAlignment) {
-  /// Always align left. Text is center aligned unlless it touches the left view. Then text turns left aligned too.
+  /// Always align left. Text is center aligned unlless it touches the left view. If it does touch the left view, the text turns left aligned too.
   JDStatusBarLeftViewAlignmentLeft,
   /// Center together with text. Text is left aligned.
   JDStatusBarLeftViewAlignmentCenterWithText,
-  /// Center together with text if no subtitle is set, otherwise left-align.
-  JDStatusBarLeftViewAlignmentCenterWithTextUnlessSubtitleExists,
 } NS_SWIFT_NAME(BarLeftViewAlignment);
 
 @class JDStatusBarBackgroundStyle;
@@ -120,7 +118,7 @@ NS_SWIFT_NAME(NotificationLeftViewStyle)
 /// An optional offset to adjust the left views x position. Default 0.0.
 @property (nonatomic, assign) CGFloat offsetX;
 
-/// The alignment of the left view. The default is .centerWithTextUnlessSubtitleExists.
+/// The alignment of the left view. The default is .centerWithText
 /// If no text is set, the left view is always centered.
 @property (nonatomic, assign) JDStatusBarLeftViewAlignment alignment;
 
