@@ -337,7 +337,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SB;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Markus;
 				TargetAttributes = {
 					7EA91CA8284EF3AF00F32F09 = {
@@ -672,6 +672,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
