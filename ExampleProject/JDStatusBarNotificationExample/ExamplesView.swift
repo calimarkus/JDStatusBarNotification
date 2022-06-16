@@ -124,8 +124,13 @@ struct ExamplesView: View {
           .onChange(of: showActivity) { _ in
             if !NotificationPresenter.shared().isVisible() {
               if showActivity {
-                showDefaultNotification("") { _ in }
-                NotificationPresenter.shared().dismiss(afterDelay: 2.0)
+                let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+                  style.backgroundStyle.backgroundType = backgroundType
+                  style.backgroundStyle.pillStyle.minimumWidth = 0.0
+                  return style
+                }
+                NotificationPresenter.shared().present(text: "", dismissAfterDelay: 2.0, customStyle: styleName)
+                NotificationPresenter.shared().displayActivityIndicator(true)
               }
             } else {
               NotificationPresenter.shared().displayActivityIndicator(showActivity)
