@@ -24,6 +24,7 @@ struct ExamplesView: View {
     case custom1
     case custom2
     case custom3
+    case icon
   }
 
   let customStylePresentationHandler: () -> ()
@@ -179,7 +180,7 @@ struct ExamplesView: View {
 
       Section("Custom Styles") {
         cell(title: "Present custom style \"Love it!\"", subtitle: "AnimationType.fade + Progress") {
-          setupCustomStyles(backgroundType)
+          setupCustomStyles()
           NotificationPresenter.shared().present(text: "Love it!",
                                                  customStyle: CustomStyle.custom1.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
@@ -189,7 +190,7 @@ struct ExamplesView: View {
         }
 
         cell(title: "Present custom style \"Level Up\"", subtitle: "AnimationType.bounce + Progress") {
-          setupCustomStyles(backgroundType)
+          setupCustomStyles()
           NotificationPresenter.shared().present(text: "Level up!",
                                                  customStyle: CustomStyle.custom2.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
@@ -199,7 +200,7 @@ struct ExamplesView: View {
         }
 
         cell(title: "Present custom style \"Looks good\"", subtitle: "Subtitle + Progress") {
-          setupCustomStyles(backgroundType)
+          setupCustomStyles()
           NotificationPresenter.shared().present(title: "Damn",
                                                  subtitle: "This looks gooood!",
                                                  customStyle: CustomStyle.custom3.rawValue) { presenter in
@@ -245,22 +246,8 @@ struct ExamplesView: View {
           image.sizeToFit()
 
           // present
-          NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: NotificationPresenter.shared().addStyle(styleName: "tmp", prepare: { style in
-            style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
-            style.backgroundStyle.pillStyle.minimumWidth = 200.0;
-            style.backgroundStyle.pillStyle.height = 50.0
-            style.leftViewStyle.alignment = .left
-            style.leftViewStyle.spacing = 10.0
-            style.leftViewStyle.offsetX = -8.0
-
-            style.textStyle.textColor = UIColor.white
-            style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
-            style.textStyle.textOffsetY = 1
-
-            style.subtitleStyle.textColor = UIColor.lightGray
-            style.subtitleStyle.font = UIFont.systemFont(ofSize: 12.0)
-            return style
-          }))
+          setupCustomStyles()
+          NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: CustomStyle.icon.rawValue)
           NotificationPresenter.shared().displayLeftView(image)
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)
         }
@@ -294,7 +281,7 @@ struct ExamplesView: View {
     }
   }
 
-  func setupCustomStyles(_ backgroundType: BarBackgroundType) {
+  func setupCustomStyles() {
     NotificationPresenter.shared().addStyle(styleName: CustomStyle.custom1.rawValue) { style in
       style.backgroundStyle.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
       style.backgroundStyle.backgroundType = backgroundType
@@ -343,6 +330,32 @@ struct ExamplesView: View {
 
       return style
     }
+
+    NotificationPresenter.shared().addStyle(styleName: CustomStyle.icon.rawValue, prepare: { style in
+      style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
+      style.backgroundStyle.backgroundType = backgroundType
+      style.backgroundStyle.pillStyle.minimumWidth = 200.0
+      style.backgroundStyle.pillStyle.height = 50.0
+      style.systemStatusBarStyle = .lightContent
+
+      switch backgroundType {
+        case .pill:
+          style.leftViewStyle.alignment = .left
+          style.leftViewStyle.spacing = 10.0
+          style.leftViewStyle.offsetX = -8.0
+        default:
+          style.leftViewStyle.spacing = 10.0
+          style.leftViewStyle.alignment = .centerWithText
+      }
+
+      style.textStyle.textColor = UIColor.white
+      style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
+      style.textStyle.textOffsetY = 1
+
+      style.subtitleStyle.textColor = UIColor.lightGray
+      style.subtitleStyle.font = UIFont.systemFont(ofSize: 12.0)
+      return style
+    })
   }
 
   func animationDurationForCurrentStyle() -> Double {
