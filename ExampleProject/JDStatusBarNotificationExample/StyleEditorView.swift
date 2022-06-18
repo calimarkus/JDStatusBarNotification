@@ -5,17 +5,18 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 class StyleEditorViewFactory: NSObject {
-  static let initialText = "You are doing great!"
-  static let initialProgress = 0.33
+  static let initialText = "You're great!"
+  static let initialSubtitle = "I mean it"
+  static let initialProgress = 0.5
   static let customStyle: CustomStyle = .init(StatusBarStyle())
 
   @objc static func createStyleEditorView() -> UIViewController {
     presentInitialNotification()
-    return UIHostingController(rootView: StyleEditorView(text: initialText, showActivity: false, progress: initialProgress, style: customStyle))
+    return UIHostingController(rootView: StyleEditorView(text: initialText, subtitle: initialSubtitle, showActivity: false, progress: initialProgress, style: customStyle))
   }
 
   static func presentInitialNotification() {
-    StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: initialText, customStyle: customStyle.registerComputedStyle(), completion: { presenter in
+    StyleEditorView.statusBarView = NotificationPresenter.shared().present(title: initialText, subtitle:initialSubtitle, customStyle: customStyle.registerComputedStyle(), completion: { presenter in
       presenter.animateProgressBar(toPercentage: initialProgress, animationDuration: 0.22)
     }) as? JDStatusBarView
   }
@@ -24,7 +25,7 @@ class StyleEditorViewFactory: NSObject {
 @available(iOS 15.0, *)
 struct StyleEditorView: View {
   @State var text: String
-  @State var subtitle: String = ""
+  @State var subtitle: String
   @State var showActivity: Bool
   @State var progress: Double
   @StateObject var style: CustomStyle
@@ -415,7 +416,7 @@ public struct FontPicker: UIViewControllerRepresentable {
 @available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle())).preferredColorScheme(.light)
-    StyleEditorView(text: "Initial Text", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle())).preferredColorScheme(.dark)
+    StyleEditorView(text: "Initial Text", subtitle: "", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle())).preferredColorScheme(.light)
+    StyleEditorView(text: "Initial Text", subtitle: "", showActivity: true, progress: 0.33, style: CustomStyle(StatusBarStyle())).preferredColorScheme(.dark)
   }
 }

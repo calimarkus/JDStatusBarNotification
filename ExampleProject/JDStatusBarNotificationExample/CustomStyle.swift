@@ -88,6 +88,7 @@ class CustomStyle: ObservableObject, Equatable {
     let text = CustomTextStyle(defaultStyle.textStyle)
     text.textColor = UIColor(white: 0.1, alpha: 1.0)
     text.font = .systemFont(ofSize: 14.0)
+    text.textOffsetY = -4.0
     textStyle = text
 
     let subtitle = CustomTextStyle(defaultStyle.subtitleStyle)
@@ -113,12 +114,12 @@ class CustomStyle: ObservableObject, Equatable {
     leftViewOffsetX = defaultStyle.leftViewStyle.offsetX
     leftViewAlignment = defaultStyle.leftViewStyle.alignment
 
-    pbBarColor = UIColor(red: 0.00392, green: 0.4313, blue: 0.5607, alpha: 1.0) // "dark cyan"
-    pbBarHeight = 3.0
+    pbBarColor = UIColor(red: 0.3, green: 0.31, blue: 0.52, alpha: 1.0) // "dark cyan blue"
+    pbBarHeight = 4.0
     pbPosition = .bottom
     pbHorizontalInsets = 20.0
-    pbCornerRadius = 1.0
-    pbBarOffset = -7.0
+    pbCornerRadius = 2.0
+    pbBarOffset = -4.0
   }
 
   static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
