@@ -103,7 +103,7 @@ class CustomStyle: ObservableObject, Equatable {
     pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
 
     animationType = .bounce
-    systemStatusBarStyle = .defaultStyle
+    systemStatusBarStyle = .darkContent
     canSwipeToDismiss = defaultStyle.canSwipeToDismiss
 
     leftViewSpacing = defaultStyle.leftViewStyle.spacing
