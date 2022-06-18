@@ -157,7 +157,7 @@ struct StyleEditorView: View {
         }.font(.subheadline)
       }
 
-      Section("Notification Bar Style") {
+      Section("Bar Style") {
         OptionalColorPicker(title: "Background Color", color: $style.backgroundColor)
 
         SegmentedPicker(title: "BarAnimationType", value: $style.animationType) {
@@ -187,7 +187,7 @@ struct StyleEditorView: View {
         }
       }
 
-      Section("Text Style") {
+      Section("Title Style") {
         TextStyleForm(style: style.textStyle, defaultShadowColor: style.backgroundColor) {
           updateStyleOfPresentedView()
         }
@@ -200,7 +200,7 @@ struct StyleEditorView: View {
       }
 
       if style.backgroundType == .pill {
-        Section("Pill background Style") {
+        Section("Pill Style") {
           TextFieldStepper(title: "Pill Height", binding: $style.pillHeight, range: 20...80)
           TextFieldStepper(title: "Pill Spacing Y", binding: $style.pillSpacingY, range: 0...99)
           TextFieldStepper(title: "Min Pill Width", binding: $style.minimumPillWidth, range: 0...999)

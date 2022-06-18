@@ -32,9 +32,9 @@ struct TextStyleForm: View {
       style.font = style.font.withSize(size)
     }), range: 5 ... 36)
 
-    TextFieldStepper(title: "Text Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
-    OptionalColorPicker(title: "Text Color", color: $style.textColor)
-    OptionalColorToggle(title: "Text Shadow", color: $style.textShadowColor, defaultColor: defaultShadowColor)
+    TextFieldStepper(title: "Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
+    OptionalColorPicker(title: "Color", color: $style.textColor)
+    OptionalColorToggle(title: "Shadow", color: $style.textShadowColor, defaultColor: defaultShadowColor)
 
     if let _ = style.textShadowColor {
       OptionalColorPicker(title: "  Shadow Color", color: $style.textShadowColor)
