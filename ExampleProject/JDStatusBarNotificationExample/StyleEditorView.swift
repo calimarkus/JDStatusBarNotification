@@ -29,6 +29,7 @@ struct StyleEditorView: View {
   @State var showActivity: Bool
   @State var progress: Double
   @StateObject var style: CustomStyle
+  @State var editingTitle: Bool = true
 
   weak static var statusBarView: JDStatusBarView? = nil
 
@@ -187,15 +188,19 @@ struct StyleEditorView: View {
         }
       }
 
-      Section("Title Style") {
-        TextStyleForm(style: style.textStyle, defaultShadowColor: style.backgroundColor) {
-          updateStyleOfPresentedView()
+      Section("Text Style") {
+        SegmentedPicker(title: "", value: $editingTitle) {
+          Text("Title").tag(true)
+          Text("Subtitle").tag(false)
         }
-      }
-
-      Section("Subtitle Style") {
-        TextStyleForm(style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
-          updateStyleOfPresentedView()
+        if editingTitle {
+          TextStyleForm(style: style.textStyle, defaultShadowColor: style.backgroundColor) {
+            updateStyleOfPresentedView()
+          }
+        } else {
+          TextStyleForm(style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
+            updateStyleOfPresentedView()
+          }
         }
       }
 

@@ -62,9 +62,11 @@ struct SegmentedPicker<T, SomeView>: View where T: Hashable, SomeView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6.0) {
-      Text(title)
-        .font(.subheadline)
-        .padding(.top, 4.0)
+      if title.count > 0 {
+        Text(title)
+          .font(.subheadline)
+          .padding(.top, 4.0)
+      }
       Picker("", selection: $value) {
         content()
       }.pickerStyle(.segmented)
