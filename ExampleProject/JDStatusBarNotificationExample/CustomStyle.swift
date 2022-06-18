@@ -35,14 +35,14 @@ class CustomTextStyle: ObservableObject, Equatable {
   @SimpleStringBuilder
   func styleConfigurationString(propertyName: String) -> String {
     """
-    style.\(propertyName).textColor = \(textColor?.readableRGBAColorString() ?? "nil")
+    style.\(propertyName).textColor = \(textColor?.readableRGBAColorString ?? "nil")
     style.\(propertyName).font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))
     style.\(propertyName).textOffsetY = \(textOffsetY)
     """
 
     if let textShadowColor = textShadowColor {
       """
-      style.\(propertyName).textShadowColor = \(textShadowColor.readableRGBAColorString())
+      style.\(propertyName).textShadowColor = \(textShadowColor.readableRGBAColorString)
       style.\(propertyName).textShadowOffset = CGSize(width: \(textShadowOffset.width), height: \(textShadowOffset.height))
       """
     }
@@ -172,7 +172,7 @@ class CustomStyle: ObservableObject, Equatable {
     subtitleStyle.styleConfigurationString(propertyName: "subtitleStyle")
 
     """
-    \nstyle.backgroundStyle.backgroundColor = \(backgroundColor?.readableRGBAColorString() ?? "nil")
+    \nstyle.backgroundStyle.backgroundColor = \(backgroundColor?.readableRGBAColorString ?? "nil")
     style.backgroundStyle.backgroundType = \(backgroundType.stringValue)
     """
 
@@ -185,14 +185,14 @@ class CustomStyle: ObservableObject, Equatable {
 
       if let pillBorderColor = pillBorderColor {
         """
-        style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor.readableRGBAColorString())
+        style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor.readableRGBAColorString)
         style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
         """
       }
 
       if let pillShadowColor = pillShadowColor {
         """
-        style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor.readableRGBAColorString())
+        style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor.readableRGBAColorString)
         style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
         style.backgroundStyle.pillStyle.shadowOffset = CGSize(width: \(pillShadowOffset.width), height: \(pillShadowOffset.height))
         """
@@ -210,7 +210,7 @@ class CustomStyle: ObservableObject, Equatable {
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition.stringValue)
-    style.progressBarStyle.barColor = \(pbBarColor?.readableRGBAColorString() ?? "nil")
+    style.progressBarStyle.barColor = \(pbBarColor?.readableRGBAColorString ?? "nil")
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
     style.progressBarStyle.offsetY = \(pbBarOffset)
@@ -230,7 +230,7 @@ enum SimpleStringBuilder {
 }
 
 extension UIColor {
-  func readableRGBAColorString() -> String {
+  var readableRGBAColorString: String {
     var red: CGFloat = 0
     var green: CGFloat = 0
     var blue: CGFloat = 0
