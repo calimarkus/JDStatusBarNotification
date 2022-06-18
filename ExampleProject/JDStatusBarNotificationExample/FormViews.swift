@@ -4,37 +4,49 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-enum OptionalColorViewFactory {
-  static func buildPicker(title: String, binding: Binding<UIColor?>) -> some View {
-    ColorPicker(title, selection: Binding<CGColor>(get: {
-      binding.wrappedValue?.cgColor ?? UIColor.white.cgColor
-    }, set: { val in
-      binding.wrappedValue = UIColor(cgColor: val)
-    }))
-    .font(.subheadline)
-  }
+struct OptionalColorPicker: View {
+  var title: String
+  @Binding var color: UIColor?
 
-  static func buildToggle(title: String, binding: Binding<UIColor?>, defaultColor: UIColor?) -> some View {
-    Toggle(title, isOn: Binding(get: {
-      binding.wrappedValue != nil
-    }, set: { on in
-      binding.wrappedValue = on ? defaultColor : nil
+  var body: some View {
+    ColorPicker(title, selection: Binding<CGColor>(get: {
+      color?.cgColor ?? UIColor.white.cgColor
+    }, set: { val in
+      color = UIColor(cgColor: val)
     }))
     .font(.subheadline)
   }
 }
 
-enum CGSizeStepperFactory {
-  static func build(title: String, binding: Binding<CGSize>) -> some View {
+struct OptionalColorToggle: View {
+  var title: String
+  @Binding var color: UIColor?
+  var defaultColor: UIColor?
+
+  var body: some View {
+    Toggle(title, isOn: Binding(get: {
+      color != nil
+    }, set: { on in
+      color = on ? defaultColor : nil
+    }))
+    .font(.subheadline)
+  }
+}
+
+struct CGSizeStepper: View {
+  var title: String
+  @Binding var size: CGSize
+
+  var body: some View {
     VStack(alignment: .leading, spacing: 6.0) {
-      Text("\(title) (\(Int(binding.width.wrappedValue))/\(Int(binding.height.wrappedValue)))")
+      Text("\(title) (\(Int(size.width))/\(Int(size.height)))")
         .font(.subheadline)
       HStack(alignment: .center, spacing: 20.0) {
         Spacer()
-        Stepper("X:", value: binding.width)
+        Stepper("X:", value: $size.width)
           .frame(width: 120)
           .font(.subheadline)
-        Stepper("Y:", value: binding.height)
+        Stepper("Y:", value: $size.height)
           .frame(width: 120)
           .font(.subheadline)
         Spacer()
@@ -43,16 +55,17 @@ enum CGSizeStepperFactory {
   }
 }
 
-struct PickerFactory<T, SomeView> where T: Hashable, SomeView: View {
-  static func build(title: String,
-                    binding: Binding<T>,
-                    @ViewBuilder content: () -> SomeView) -> some View
-  {
+struct SegmentedPicker<T, SomeView>: View where T: Hashable, SomeView: View {
+  var title: String
+  @Binding var value: T
+  @ViewBuilder var content: () -> SomeView
+
+  var body: some View {
     VStack(alignment: .leading, spacing: 6.0) {
       Text(title)
         .font(.subheadline)
         .padding(.top, 4.0)
-      Picker("", selection: binding) {
+      Picker("", selection: $value) {
         content()
       }.pickerStyle(.segmented)
     }
@@ -69,7 +82,7 @@ struct TextFieldStepper: View {
 
   var body: some View {
     HStack {
-      Stepper(title, value: binding, in: range, onEditingChanged: { val in
+      Stepper(title, value: binding, in: range, onEditingChanged: { _ in
         isFocused = false
       })
       .font(.subheadline)
@@ -91,12 +104,12 @@ struct TextFieldStepper: View {
 struct FormFactory_Previews: PreviewProvider {
   static var previews: some View {
     Form {
-      OptionalColorViewFactory.buildPicker(title: "Color picker", binding: .constant(.red))
-      OptionalColorViewFactory.buildToggle(title: "Color resetting toggle", binding: .constant(nil), defaultColor: .blue)
+      OptionalColorPicker(title: "Color picker", color: .constant(.red))
+      OptionalColorToggle(title: "Color resetting toggle", color: .constant(nil), defaultColor: .blue)
 
-      CGSizeStepperFactory.build(title: "CGSize Control", binding: .constant(CGSize(width: 20, height: 20)))
+      CGSizeStepper(title: "CGSize Control", size: .constant(CGSize(width: 20, height: 20)))
 
-      PickerFactory.build(title: "Inline Picker", binding: .constant(1)) {
+      SegmentedPicker(title: "Inline Picker", value: .constant(1)) {
         Text("one").tag(1)
         Text("two").tag(2)
         Text("three").tag(3)

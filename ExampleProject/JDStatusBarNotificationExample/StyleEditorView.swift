@@ -158,21 +158,21 @@ struct StyleEditorView: View {
       }
 
       Section("Notification Bar Style") {
-        OptionalColorViewFactory.buildPicker(title: "Background Color", binding: $style.backgroundColor)
+        OptionalColorPicker(title: "Background Color", color: $style.backgroundColor)
 
-        PickerFactory.build(title: "BarAnimationType", binding: $style.animationType) {
+        SegmentedPicker(title: "BarAnimationType", value: $style.animationType) {
           EnumPickerOptionView(BarAnimationType.move)
           EnumPickerOptionView(BarAnimationType.fade)
           EnumPickerOptionView(BarAnimationType.bounce)
         }
 
-        PickerFactory.build(title: "BarBackgroundType", binding: $style.backgroundType) {
+        SegmentedPicker(title: "BarBackgroundType", value: $style.backgroundType) {
           EnumPickerOptionView(BarBackgroundType.fullWidth)
           EnumPickerOptionView(BarBackgroundType.pill)
         }
 
         if style.backgroundType != .pill {
-          PickerFactory.build(title: "StatusBarSystemStyle", binding: $style.systemStatusBarStyle) {
+          SegmentedPicker(title: "StatusBarSystemStyle", value: $style.systemStatusBarStyle) {
             EnumPickerOptionView(StatusBarSystemStyle.defaultStyle)
             EnumPickerOptionView(StatusBarSystemStyle.lightContent)
             EnumPickerOptionView(StatusBarSystemStyle.darkContent)
@@ -180,7 +180,7 @@ struct StyleEditorView: View {
         }
 
         VStack(alignment: .leading, spacing: 6.0) {
-          PickerFactory.build(title: "Swipe to dismiss", binding: $style.canSwipeToDismiss) {
+          SegmentedPicker(title: "Swipe to dismiss", value: $style.canSwipeToDismiss) {
             Text("Enabled").tag(true)
             Text("Disabled").tag(false)
           }
@@ -205,17 +205,17 @@ struct StyleEditorView: View {
           TextFieldStepper(title: "Pill Spacing Y", binding: $style.pillSpacingY, range: 0...99)
           TextFieldStepper(title: "Min Pill Width", binding: $style.minimumPillWidth, range: 0...999)
 
-          OptionalColorViewFactory.buildToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: .black)
+          OptionalColorToggle(title: "Pill Border", color: $style.pillBorderColor, defaultColor: .black)
           if let _ = style.pillBorderColor {
-            OptionalColorViewFactory.buildPicker(title: "  Border Color", binding: $style.pillBorderColor)
+            OptionalColorPicker(title: "  Border Color", color: $style.pillBorderColor)
             TextFieldStepper(title: "  Border Width", binding: $style.pillBorderWidth, range: 0...20)
           }
 
-          OptionalColorViewFactory.buildToggle(title: "Pill shadow", binding: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
+          OptionalColorToggle(title: "Pill shadow", color: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
           if let _ = style.pillShadowColor {
-            OptionalColorViewFactory.buildPicker(title: "  Shadow Color", binding: $style.pillShadowColor)
+            OptionalColorPicker(title: "  Shadow Color", color: $style.pillShadowColor)
             TextFieldStepper(title: "  Shadow Radius", binding: $style.pillShadowRadius, range: 0...99)
-            CGSizeStepperFactory.build(title: "  Shadow Offset", binding: $style.pillShadowOffset)
+            CGSizeStepper(title: "  Shadow Offset", size: $style.pillShadowOffset)
           }
         }
       }
@@ -224,7 +224,7 @@ struct StyleEditorView: View {
         TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
         TextFieldStepper(title: "Offset X", binding: $style.leftViewOffsetX, range: -99...99)
 
-        PickerFactory.build(title: "Alignment", binding: $style.leftViewAlignment) {
+        SegmentedPicker(title: "Alignment", value: $style.leftViewAlignment) {
           EnumPickerOptionView(BarLeftViewAlignment.left)
           EnumPickerOptionView(BarLeftViewAlignment.centerWithText)
         }
@@ -240,7 +240,7 @@ struct StyleEditorView: View {
       }
 
       Section("Progress Bar Style") {
-        OptionalColorViewFactory.buildPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
+        OptionalColorPicker(title: "Progress Bar Color", color: $style.pbBarColor)
 
         TextFieldStepper(title: "Bar height", binding: $style.pbBarHeight, range: 1...99)
           .onChange(of: style.pbBarHeight) { val in
@@ -253,7 +253,7 @@ struct StyleEditorView: View {
         TextFieldStepper(title: "Bar Offset Y", binding: $style.pbBarOffset, range: -99...99)
         TextFieldStepper(title: "Horizontal Insets", binding: $style.pbHorizontalInsets, range: 0...99)
 
-        PickerFactory.build(title: "ProgressBarPosition", binding: $style.pbPosition) {
+        SegmentedPicker(title: "ProgressBarPosition", value: $style.pbPosition) {
           EnumPickerOptionView(ProgressBarPosition.top)
           EnumPickerOptionView(ProgressBarPosition.center)
           EnumPickerOptionView(ProgressBarPosition.bottom)

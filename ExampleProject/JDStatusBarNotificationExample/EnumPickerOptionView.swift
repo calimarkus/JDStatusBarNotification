@@ -91,7 +91,7 @@ struct EnumPickerOptionView<T: StringRepresentable>: View where T: Hashable {
 struct EnumPickerOptionView_Previews: PreviewProvider {
   static var previews: some View {
     Form {
-      PickerFactory.build(title: "Test", binding: .constant(IncludedStatusBarStyle.dark)) {
+      SegmentedPicker(title: "Test", value: .constant(IncludedStatusBarStyle.dark)) {
         EnumPickerOptionView(IncludedStatusBarStyle.light)
         EnumPickerOptionView(IncludedStatusBarStyle.dark)
       }

@@ -33,16 +33,13 @@ struct TextStyleForm: View {
     }), range: 5 ... 36)
 
     TextFieldStepper(title: "Text Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
-
-    OptionalColorViewFactory.buildPicker(title: "Text Color", binding: $style.textColor)
-
-    OptionalColorViewFactory.buildToggle(title: "Text Shadow", binding: $style.textShadowColor, defaultColor: defaultShadowColor)
+    OptionalColorPicker(title: "Text Color", color: $style.textColor)
+    OptionalColorToggle(title: "Text Shadow", color: $style.textShadowColor, defaultColor: defaultShadowColor)
 
     if let _ = style.textShadowColor {
-      OptionalColorViewFactory.buildPicker(title: "  Shadow Color", binding: $style.textShadowColor)
+      OptionalColorPicker(title: "  Shadow Color", color: $style.textShadowColor)
         .font(.caption)
-
-      CGSizeStepperFactory.build(title: "  Shadow Offset", binding: $style.textShadowOffset)
+      CGSizeStepper(title: "  Shadow Offset", size: $style.textShadowOffset)
     }
   }
 }
