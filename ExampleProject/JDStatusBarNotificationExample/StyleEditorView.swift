@@ -16,7 +16,7 @@ class StyleEditorViewFactory: NSObject {
   }
 
   static func presentInitialNotification() {
-    StyleEditorView.statusBarView = NotificationPresenter.shared().present(title: initialText, subtitle:initialSubtitle, customStyle: customStyle.registerComputedStyle(), completion: { presenter in
+    StyleEditorView.statusBarView = NotificationPresenter.shared().present(title: initialText, subtitle: initialSubtitle, customStyle: customStyle.registerComputedStyle(), completion: { presenter in
       presenter.animateProgressBar(toPercentage: initialProgress, animationDuration: 0.22)
     }) as? JDStatusBarView
   }
@@ -32,17 +32,19 @@ struct StyleEditorView: View {
 
   weak static var statusBarView: JDStatusBarView? = nil
 
-  func presentDefault() {
+  func presentDefault(allowActivity: Bool = true, allowProgress: Bool = true, completion: @escaping () -> Void) {
     StyleEditorView.statusBarView = NotificationPresenter.shared().present(
       title: text,
       subtitle: subtitle,
       customStyle: style.registerComputedStyle()
-    ) as? JDStatusBarView
+    ) { _ in
+      completion()
+    } as? JDStatusBarView
 
-    if showActivity {
+    if allowActivity && showActivity {
       NotificationPresenter.shared().displayActivityIndicator(true)
     }
-    if progress > 0.0 {
+    if allowProgress && progress > 0.0 {
       NotificationPresenter.shared().displayProgressBar(percentage: progress)
     }
   }
@@ -60,7 +62,7 @@ struct StyleEditorView: View {
           updateStyleOfPresentedView()
         }
         .onChange(of: style.animationType) { _ in
-          presentDefault()
+          presentDefault {}
         }
         .onChange(of: text) { _ in
           NotificationPresenter.shared().updateText(text)
@@ -74,16 +76,23 @@ struct StyleEditorView: View {
           if NotificationPresenter.shared().isVisible() {
             NotificationPresenter.shared().dismiss()
           } else {
-            presentDefault()
+            presentDefault {}
           }
         }
 
-        buttonRow(title: "Animate progress bar to 100%", subtitle: "Hides at 100%") {
-          StyleEditorView.statusBarView = NotificationPresenter.shared().present(text: text, customStyle: style.registerComputedStyle()) { presenter in
-            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
+        buttonRow(title: "Animate progress (0% to 100%)", subtitle: "Hides at 100%") {
+          if !NotificationPresenter.shared().isVisible() {
+            presentDefault(allowProgress: false) {
+              NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
+                presenter.dismiss()
+              }
+            }
+          } else {
+            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+            NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
               presenter.dismiss()
             }
-          } as? JDStatusBarView
+          }
         }
 
         #if targetEnvironment(simulator)
@@ -127,7 +136,7 @@ struct StyleEditorView: View {
         Toggle("Activity Indicator", isOn: $showActivity)
           .onChange(of: showActivity) { _ in
             if !NotificationPresenter.shared().isVisible() {
-              presentDefault()
+              presentDefault {}
             } else {
               NotificationPresenter.shared().displayActivityIndicator(showActivity)
             }
@@ -141,7 +150,7 @@ struct StyleEditorView: View {
         }
         .onChange(of: progress) { _ in
           if !NotificationPresenter.shared().isVisible() {
-            presentDefault()
+            presentDefault {}
           } else {
             NotificationPresenter.shared().displayProgressBar(percentage: progress)
           }
