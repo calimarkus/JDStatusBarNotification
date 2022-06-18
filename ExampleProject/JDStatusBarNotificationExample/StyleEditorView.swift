@@ -201,57 +201,28 @@ struct StyleEditorView: View {
 
       if style.backgroundType == .pill {
         Section("Pill background Style") {
-          Stepper("Pill height (\(Int(style.pillHeight)))",
-                  value: $style.pillHeight,
-                  in: 20...80)
-            .font(.subheadline)
-
-          Stepper("Pill Spacing Y (\(Int(style.pillSpacingY)))",
-                  value: $style.pillSpacingY,
-                  in: 0...99)
-            .font(.subheadline)
-
-          Stepper("Min Pill Width (\(Int(style.minimumPillWidth)))",
-                  value: $style.minimumPillWidth,
-                  in: 0...999)
-            .font(.subheadline)
+          TextFieldStepper(title: "Pill Height", binding: $style.pillHeight, range: 20...80)
+          TextFieldStepper(title: "Pill Spacing Y", binding: $style.pillSpacingY, range: 0...99)
+          TextFieldStepper(title: "Min Pill Width", binding: $style.minimumPillWidth, range: 0...999)
 
           OptionalColorViewFactory.buildToggle(title: "Pill Border", binding: $style.pillBorderColor, defaultColor: .black)
-
           if let _ = style.pillBorderColor {
             OptionalColorViewFactory.buildPicker(title: "  Border Color", binding: $style.pillBorderColor)
-
-            Stepper("  Border Width (\(Int(style.pillBorderWidth)))",
-                    value: $style.pillBorderWidth,
-                    in: 0...99)
-              .font(.subheadline)
+            TextFieldStepper(title: "  Border Width", binding: $style.pillBorderWidth, range: 0...20)
           }
 
           OptionalColorViewFactory.buildToggle(title: "Pill shadow", binding: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
-
           if let _ = style.pillShadowColor {
             OptionalColorViewFactory.buildPicker(title: "  Shadow Color", binding: $style.pillShadowColor)
-
-            Stepper("  Shadow Radius (\(Int(style.pillShadowRadius)))",
-                    value: $style.pillShadowRadius,
-                    in: 0...99)
-              .font(.subheadline)
-
+            TextFieldStepper(title: "  Shadow Radius", binding: $style.pillShadowRadius, range: 0...99)
             CGSizeStepperFactory.build(title: "  Shadow Offset", binding: $style.pillShadowOffset)
           }
         }
       }
 
       Section("Left View Style") {
-        Stepper("Spacing (\(Int(style.leftViewSpacing)))",
-                value: $style.leftViewSpacing,
-                in: 0...99)
-          .font(.subheadline)
-
-        Stepper("Offset X (\(Int(style.leftViewOffsetX)))",
-                value: $style.leftViewOffsetX,
-                in: -99...99)
-          .font(.subheadline)
+        TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
+        TextFieldStepper(title: "Offset X", binding: $style.leftViewOffsetX, range: -99...99)
 
         PickerFactory.build(title: "Alignment", binding: $style.leftViewAlignment) {
           EnumPickerOptionView(BarLeftViewAlignment.left)
@@ -271,30 +242,22 @@ struct StyleEditorView: View {
       Section("Progress Bar Style") {
         OptionalColorViewFactory.buildPicker(title: "Progress Bar Color", binding: $style.pbBarColor)
 
-        Stepper("Bar height (\(Int(style.pbBarHeight)))",
-                value: $style.pbBarHeight,
-                in: 1...99)
-          .font(.subheadline)
+        TextFieldStepper(title: "Bar height", binding: $style.pbBarHeight, range: 1...99)
+          .onChange(of: style.pbBarHeight) { val in
+            if style.pbCornerRadius > 0.0 {
+              style.pbCornerRadius = floor(val / 2.0)
+            }
+          }
+
+        TextFieldStepper(title: "Corner radius", binding: $style.pbCornerRadius, range: 0...99)
+        TextFieldStepper(title: "Bar Offset Y", binding: $style.pbBarOffset, range: -99...99)
+        TextFieldStepper(title: "Horizontal Insets", binding: $style.pbHorizontalInsets, range: 0...99)
 
         PickerFactory.build(title: "ProgressBarPosition", binding: $style.pbPosition) {
           EnumPickerOptionView(ProgressBarPosition.top)
           EnumPickerOptionView(ProgressBarPosition.center)
           EnumPickerOptionView(ProgressBarPosition.bottom)
         }
-
-        Stepper("Corner radius (\(Int(style.pbCornerRadius)))",
-                value: $style.pbCornerRadius,
-                in: 0...99)
-          .font(.subheadline)
-
-        Stepper("Bar Offset Y (\(Int(style.pbBarOffset)))",
-                value: $style.pbBarOffset)
-          .font(.subheadline)
-
-        Stepper("Horizontal Insets (\(Int(style.pbHorizontalInsets)))",
-                value: $style.pbHorizontalInsets,
-                in: 0...999)
-          .font(.subheadline)
       }
     }
   }

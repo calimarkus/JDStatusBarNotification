@@ -26,17 +26,13 @@ struct TextStyleForm: View {
       }
     })
 
-    Stepper("Font size (\(Int(style.font.pointSize)) pt)", value:
-      Binding<CGFloat>(get: {
-        style.font.pointSize
-      }, set: { size in
-        style.font = style.font.withSize(size)
-      }), in: 5 ... 36)
-      .font(.subheadline)
+    TextFieldStepper(title: "Font size", binding: Binding<Double>(get: {
+      style.font.pointSize
+    }, set: { size in
+      style.font = style.font.withSize(size)
+    }), range: 5 ... 36)
 
-    Stepper("Text Offset Y (\(Int(style.textOffsetY)))",
-            value: $style.textOffsetY)
-      .font(.subheadline)
+    TextFieldStepper(title: "Text Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
 
     OptionalColorViewFactory.buildPicker(title: "Text Color", binding: $style.textColor)
 

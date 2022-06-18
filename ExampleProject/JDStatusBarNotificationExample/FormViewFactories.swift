@@ -60,6 +60,34 @@ struct PickerFactory<T, SomeView> where T: Hashable, SomeView: View {
 }
 
 @available(iOS 15.0, *)
+struct TextFieldStepper: View {
+  var title: String
+  var binding: Binding<Double>
+  var range: ClosedRange<Double> = -999 ... 999
+
+  @FocusState private var isFocused: Bool
+
+  var body: some View {
+    HStack {
+      Stepper(title, value: binding, in: range, onEditingChanged: { val in
+        isFocused = false
+      })
+      .font(.subheadline)
+      TextField(value: binding, format: .number) {
+        EmptyView()
+      }
+      .frame(width: 50)
+      .textFieldStyle(.roundedBorder)
+      .font(.subheadline)
+      .focused($isFocused)
+      .onChange(of: binding.wrappedValue, perform: { newValue in
+        binding.wrappedValue = min(range.upperBound, max(range.lowerBound, newValue))
+      })
+    }
+  }
+}
+
+@available(iOS 15.0, *)
 struct FormFactory_Previews: PreviewProvider {
   static var previews: some View {
     Form {
@@ -73,7 +101,8 @@ struct FormFactory_Previews: PreviewProvider {
         Text("two").tag(2)
         Text("three").tag(3)
       }
+
+      TextFieldStepper(title: "Stepper + Textfield", binding: .constant(23))
     }
   }
 }
-

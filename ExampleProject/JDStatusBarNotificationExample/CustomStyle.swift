@@ -6,7 +6,7 @@ import Combine
 class CustomTextStyle: ObservableObject, Equatable {
   @Published var font: UIFont
   @Published var textColor: UIColor?
-  @Published var textOffsetY: CGFloat
+  @Published var textOffsetY: Double
   @Published var textShadowColor: UIColor?
   @Published var textShadowOffset: CGSize
 
@@ -74,15 +74,11 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var leftViewAlignment: BarLeftViewAlignment
 
   @Published var pbBarColor: UIColor?
-  @Published var pbBarHeight: CGFloat { didSet {
-    if pbCornerRadius > 0.0 {
-      pbCornerRadius = floor(pbBarHeight / 2.0)
-    }
-  }}
+  @Published var pbBarHeight: Double
   @Published var pbPosition: ProgressBarPosition
-  @Published var pbHorizontalInsets: CGFloat
-  @Published var pbCornerRadius: CGFloat
-  @Published var pbBarOffset: CGFloat
+  @Published var pbHorizontalInsets: Double
+  @Published var pbCornerRadius: Double
+  @Published var pbBarOffset: Double
 
   init(_ defaultStyle: StatusBarStyle) {
     let text = CustomTextStyle(defaultStyle.textStyle)
