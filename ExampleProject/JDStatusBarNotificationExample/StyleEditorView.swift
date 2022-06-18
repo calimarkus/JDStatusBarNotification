@@ -162,14 +162,14 @@ struct StyleEditorView: View {
         OptionalColorPicker(title: "Background Color", color: $style.backgroundColor)
 
         SegmentedPicker(title: "BarAnimationType", value: $style.animationType) {
+          EnumPickerOptionView(BarAnimationType.bounce)
           EnumPickerOptionView(BarAnimationType.move)
           EnumPickerOptionView(BarAnimationType.fade)
-          EnumPickerOptionView(BarAnimationType.bounce)
         }
 
         SegmentedPicker(title: "BarBackgroundType", value: $style.backgroundType) {
-          EnumPickerOptionView(BarBackgroundType.fullWidth)
           EnumPickerOptionView(BarBackgroundType.pill)
+          EnumPickerOptionView(BarBackgroundType.fullWidth)
         }
 
         if style.backgroundType != .pill {
