@@ -4,7 +4,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct TextStyleForm: View {
+struct TextStyleEditorView: View {
   @ObservedObject var style: CustomTextStyle
   let defaultShadowColor: UIColor?
   let onChange: () -> Void
@@ -45,10 +45,10 @@ struct TextStyleForm: View {
 }
 
 @available(iOS 15.0, *)
-struct TextStyleForm_Previews: PreviewProvider {
+struct TextStyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
     Form {
-      TextStyleForm(
+      TextStyleEditorView(
         style: CustomTextStyle(StatusBarStyle().textStyle),
         defaultShadowColor: nil
       ) {}
