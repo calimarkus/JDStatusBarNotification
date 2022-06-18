@@ -99,8 +99,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
     [_contentView addSubview:_leftView];
   }
 
-  // ensure pan recognizer is setup
-  _panGestureRecognizer.enabled = YES;
+  // ensure pan recognizer is added
   [self addGestureRecognizer:_panGestureRecognizer];
 }
 
