@@ -130,7 +130,7 @@ NotificationPresenter.shared().addStyle(styleName: "xxx") { style in
 
 Checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code.
 
-![styleditor](https://user-images.githubusercontent.com/807039/173832850-296a0f49-244c-415d-af1c-f1c5f6f32e9f.jpg)
+![style-editor](https://user-images.githubusercontent.com/807039/174438815-4e3de17f-eb15-4281-b786-c1bfce7415da.jpg)
 
 #### Custom View
 
@@ -189,12 +189,12 @@ Fixes:
 ### 2.0.0
 
 Big release. Many bugfixes, expanded public API, new features. Modernized outdated codebase - more or less a full rewrite.
-This is a breaking API release. Old code using this library won't compile without any changes after upgrading.
-Those changes should be pretty easy to make though - mostly new naming.
+This is a breaking API release. Existing code using previous versions of this library will require some adjustments.
+Those adjustments should be simple though - mostly new API naming.
 
 New features:
 
-- A pill shaped layout (the legacy layout is still available as "full width", the half height layout is gone)
+- A pill shaped layout (original layout available as "full-width" layout)
 - Drag-to-dismiss + general support for user interaction on the notification
 - Easy progress bar animation through public API
 - Custom view presentation
@@ -204,6 +204,15 @@ New features:
 - Explicit Swift naming for all public APIs + Swift example project
 - Full fledged style editor in example project + config export
 - Many bug fixes
+
+Breaking changes:
+
+- Non-notch device layout matches notch device layout now
+- Removed: `JDStatusBarHeightForIPhoneXHalf` layout
+- Removed: `BarAnimationTypeNone`
+- Removed: `ProgressBarPositionBelow`, `JDStatusBarProgressBarPositionNavBar`
+- Included styles moved to explicit API, instead of `styleName` API
+- `JDStatusBarView` internals no longer exposed, custom view APIs added instead.
 
 
 ## Twitter
