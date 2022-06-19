@@ -185,9 +185,12 @@
   style.backgroundStyle = [self.backgroundStyle copy];
   style.progressBarStyle = [self.progressBarStyle copy];
   style.leftViewStyle = [self.leftViewStyle copy];
+
   style.animationType = self.animationType;
   style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.canSwipeToDismiss = self.canSwipeToDismiss;
+  style.canDismissDuringUserInteraction = self.canDismissDuringUserInteraction;
+
   return style;
 }
 
