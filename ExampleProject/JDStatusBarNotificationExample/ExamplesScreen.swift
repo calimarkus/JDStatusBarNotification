@@ -177,18 +177,6 @@ struct ExamplesScreen: View {
         customStyleCell("Looks good", subtitle: "Subtitle + Activity", style: .looksGood)
         customStyleCell("Small Pill", subtitle: "Modified pill size + Progress", style: .smallPill)
         customStyleCell("Style Editor Style", subtitle: "Subtitle + Progress", style: .editor)
-
-        cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
-          showIncludedStyle("This is 1/2!", style: .dark)
-          NotificationPresenter.shared().displayActivityIndicator(true)
-          NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-          NotificationPresenter.shared().dismiss(afterDelay: 1.0) { presenter in
-            showIncludedStyle("✅ This is 2/2!", style: .dark)
-            NotificationPresenter.shared().displayActivityIndicator(false)
-            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-            presenter.dismiss(afterDelay: 1.0)
-          }
-        }
       }
 
       Section("Custom Views") {
@@ -218,6 +206,20 @@ struct ExamplesScreen: View {
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: ExampleStyle.iconLeftView.rawValue)
           NotificationPresenter.shared().displayLeftView(image)
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)
+        }
+      }
+
+      Section("Sequencing") {
+        cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
+          showIncludedStyle("This is 1/2!", style: .dark)
+          NotificationPresenter.shared().displayActivityIndicator(true)
+          NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+          NotificationPresenter.shared().dismiss(afterDelay: 1.0) { presenter in
+            showIncludedStyle("✅ This is 2/2!", style: .dark)
+            NotificationPresenter.shared().displayActivityIndicator(false)
+            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+            presenter.dismiss(afterDelay: 1.0)
+          }
         }
       }
     }
