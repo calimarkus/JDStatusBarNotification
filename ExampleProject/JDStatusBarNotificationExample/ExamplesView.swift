@@ -6,15 +6,16 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 class ExamplesViewFactory: NSObject {
-  @objc static func createExamplesView(presentationHandler: @escaping () -> ()) -> UIViewController {
-    presentInitialNotification()
-    return UIHostingController(rootView: ExamplesView(customStylePresentationHandler: presentationHandler))
-  }
-
-  static func presentInitialNotification() {
-    NotificationPresenter.shared().present(text: "👋 Hello World!",
+  @objc static func createExamplesView() -> UIViewController {
+    let text = "👋 Hello World!"
+    NotificationPresenter.shared().present(text: text,
                                            dismissAfterDelay: 2.5,
                                            includedStyle: IncludedStatusBarStyle.matrix)
+    return UIHostingController(rootView:
+      NavigationView {
+        ExamplesView()
+      }
+    )
   }
 }
 
@@ -26,8 +27,6 @@ struct ExamplesView: View {
     case custom3
     case icon
   }
-
-  let customStylePresentationHandler: () -> ()
 
   @State var progress = 0.0
   @State var showActivity = false
@@ -73,8 +72,17 @@ struct ExamplesView: View {
   var body: some View {
     List {
       Section {
-        cell(title: "Style Editor", subtitle: "Get creative & create your own style!") {
-          customStylePresentationHandler()
+        NavigationLink {
+          StyleEditorView()
+        } label: {
+          VStack(alignment: .leading) {
+            Text("Style Editor")
+              .font(.subheadline)
+              .foregroundColor(.primary)
+            Text("Get creative & create your own style!")
+              .font(.caption2)
+              .foregroundColor(.secondary)
+          }
         }
       }
 
@@ -253,6 +261,8 @@ struct ExamplesView: View {
         }
       }
     }
+    .navigationTitle(Bundle.main.object(forInfoDictionaryKey: "ExampleViewControllerTitle") as? String ?? "")
+    .navigationBarTitleDisplayMode(.inline)
   }
 
   func cell(title: String, subtitle: String? = nil, action: @escaping () -> ()) -> some View {
@@ -379,8 +389,8 @@ extension NavigationLink where Label == EmptyView, Destination == EmptyView {
 @available(iOS 15.0, *)
 struct ExamplesView_Previews: PreviewProvider {
   static var previews: some View {
-    ExamplesView {
-      //
+    NavigationView {
+      ExamplesView()
     }
   }
 }

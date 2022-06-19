@@ -8,7 +8,6 @@
 
 #import "SBExampleViewController.h"
 
-#import "SBStyleEditorViewController.h"
 #import "Swift-To-ObjC-Header.h"
 
 @implementation SBExampleViewController {
@@ -16,17 +15,12 @@
 }
 
 - (void)loadView {
-  self.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ExampleViewControllerTitle"];
-
   self.view = [[UIView alloc] init];
   self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.view.backgroundColor = [UIColor systemGray6Color];
 
   if (@available(iOS 15.0, *)) {
-    __weak __typeof(self) weakSelf = self;
-    UIViewController *hostingController = [ExamplesViewFactory createExamplesViewWithPresentationHandler:^{
-      [weakSelf.navigationController pushViewController:[[SBStyleEditorViewController alloc] init] animated:YES];
-    }];
+    UIViewController *hostingController = [ExamplesViewFactory createExamplesView];
     [hostingController willMoveToParentViewController:self];
     [self addChildViewController:hostingController];
     [self.view addSubview:hostingController.view];

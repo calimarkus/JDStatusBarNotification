@@ -47,7 +47,6 @@
 		7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
 		7EA91CB5284EF3AF00F32F09 /* UIApplication+JDSB_MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340D2844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m */; };
 		7EA91CB6284EF3AF00F32F09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
-		7EA91CB7284EF3AF00F32F09 /* SBStyleEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B579182D03E90042B5B4 /* SBStyleEditorViewController.m */; };
 		7EA91CB8284EF3AF00F32F09 /* JDStatusBarLayoutMarginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340E2844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m */; };
 		7EA91CB9284EF3AF00F32F09 /* JDStatusBarNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340F2844CA2D0096CD55 /* JDStatusBarNotificationViewController.m */; };
 		7EA91CBB284EF3AF00F32F09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
@@ -71,7 +70,6 @@
 		7EEDBE162856EDD9007747AA /* StatusBarPreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */; };
 		7EFD778D2843461D000BFBF1 /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDStatusBarView.m */; };
 		7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
-		7EFD77942843461D000BFBF1 /* SBStyleEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B579182D03E90042B5B4 /* SBStyleEditorViewController.m */; };
 		7EFD77982843461D000BFBF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		7EFD77992843461D000BFBF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		7EFD779B2843461D000BFBF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
@@ -86,7 +84,6 @@
 		D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
 		D264F8A31820213200DA0E53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
 		D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
-		D294B57B182D03E90042B5B4 /* SBStyleEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D294B579182D03E90042B5B4 /* SBStyleEditorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,8 +135,6 @@
 		D264F8A21820213200DA0E53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D264F8C31820219F00DA0E53 /* SBExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBExampleViewController.h; sourceTree = "<group>"; };
 		D264F8C41820219F00DA0E53 /* SBExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBExampleViewController.m; sourceTree = "<group>"; };
-		D294B578182D03E90042B5B4 /* SBStyleEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStyleEditorViewController.h; sourceTree = "<group>"; };
-		D294B579182D03E90042B5B4 /* SBStyleEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStyleEditorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,9 +242,9 @@
 				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
 				7EFD77A428434906000BFBF1 /* SBSceneDelegate.h */,
 				7EFD77A528434906000BFBF1 /* SBSceneDelegate.m */,
-				7E67050C284A4BE900AD58E1 /* ExamplesView.swift */,
 				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
 				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
+				7E67050C284A4BE900AD58E1 /* ExamplesView.swift */,
 				7EEDBE132856EDD9007747AA /* StatusBarPreviews.swift */,
 				7E2F3BBA284F6144002B2181 /* CustomStyle.swift */,
 				7E670512284B177B00AD58E1 /* StyleEditorView.swift */,
@@ -257,8 +252,6 @@
 				7E0FCB74285DAEB200E7CB78 /* FontPicker.swift */,
 				7E0FCB78285DAEE800E7CB78 /* FormViews.swift */,
 				7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */,
-				D294B578182D03E90042B5B4 /* SBStyleEditorViewController.h */,
-				D294B579182D03E90042B5B4 /* SBStyleEditorViewController.m */,
 				7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */,
 				D264F8A21820213200DA0E53 /* Images.xcassets */,
 				D264F8971820213200DA0E53 /* Supporting Files */,
@@ -438,7 +431,6 @@
 				7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */,
 				7EA91CB5284EF3AF00F32F09 /* UIApplication+JDSB_MainWindow.m in Sources */,
 				7EA91CB6284EF3AF00F32F09 /* main.m in Sources */,
-				7EA91CB7284EF3AF00F32F09 /* SBStyleEditorViewController.m in Sources */,
 				7EA91CB8284EF3AF00F32F09 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				7EA91CB9284EF3AF00F32F09 /* JDStatusBarNotificationViewController.m in Sources */,
 			);
@@ -468,7 +460,6 @@
 				7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */,
 				7EBE34132844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m in Sources */,
 				7EFD77A728434A03000BFBF1 /* main.m in Sources */,
-				7EFD77942843461D000BFBF1 /* SBStyleEditorViewController.m in Sources */,
 				7EBE34152844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				7EBE34172844CA2D0096CD55 /* JDStatusBarNotificationViewController.m in Sources */,
 			);
@@ -497,7 +488,6 @@
 				7EBE34142844CA2D0096CD55 /* JDStatusBarLayoutMarginHelper.m in Sources */,
 				7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */,
 				7ED140922847557600593D6F /* JDStatusBarWindow.m in Sources */,
-				D294B57B182D03E90042B5B4 /* SBStyleEditorViewController.m in Sources */,
 				7EBE34122844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m in Sources */,
 				7EBE34162844CA2D0096CD55 /* JDStatusBarNotificationViewController.m in Sources */,
 			);
