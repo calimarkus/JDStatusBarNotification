@@ -241,6 +241,8 @@ struct ExamplesScreen: View {
           }
         }
         Spacer()
+
+        // a hack to get disclosure icons on these table rows
         NavigationLink.empty
           .frame(width: 30.0)
           .foregroundColor(useAccentColor ? .accentColor : .secondary)
