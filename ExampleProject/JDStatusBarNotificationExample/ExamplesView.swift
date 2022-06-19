@@ -78,23 +78,23 @@ struct ExamplesView: View {
           VStack(alignment: .leading) {
             Text("Style Editor")
               .font(.subheadline)
-              .foregroundColor(.primary)
+              .foregroundColor(.accentColor)
             Text("Get creative & create your own style!")
               .font(.caption2)
               .foregroundColor(.secondary)
           }
-        }
+        }.foregroundColor(.accentColor)
       }
 
       Section("Default Style") {
-        cell(title: "Present / dismiss", subtitle: "Default style, don't autohide") {
+        cell(title: "Present / dismiss", subtitle: "Default style, don't autohide", useAccentColor: true) {
           if NotificationPresenter.shared().isVisible() {
             NotificationPresenter.shared().dismiss()
           } else {
             showDefaultNotification("Better call Saul!") { _ in }
           }
         }
-        cell(title: "Animate progress bar & hide", subtitle: "Hide bar at 100%") {
+        cell(title: "Animate progress bar & hide", subtitle: "Hide bar at 100%", useAccentColor: true) {
           if !NotificationPresenter.shared().isVisible() {
             showDefaultNotification("Animating Progress…") { presenter in
               presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
@@ -112,14 +112,6 @@ struct ExamplesView: View {
       }
 
       Section("Settings") {
-        cell(title: "Update Text") {
-          if !NotificationPresenter.shared().isVisible() {
-            showDefaultNotification("") { _ in }
-            NotificationPresenter.shared().dismiss(afterDelay: 2.0)
-          }
-          NotificationPresenter.shared().updateText("Updated Text…")
-        }
-
         Toggle("Show subtitle", isOn: $showSubtitle)
           .onChange(of: showSubtitle) { on in
             if on, !NotificationPresenter.shared().isVisible() {
@@ -265,22 +257,23 @@ struct ExamplesView: View {
     .navigationBarTitleDisplayMode(.inline)
   }
 
-  func cell(title: String, subtitle: String? = nil, action: @escaping () -> ()) -> some View {
+  func cell(title: String, subtitle: String? = nil, useAccentColor: Bool = false, action: @escaping () -> ()) -> some View {
     Button(action: action, label: {
       HStack {
         VStack(alignment: .leading) {
           Text(title)
             .font(.subheadline)
-            .foregroundColor(.primary)
+            .foregroundColor(useAccentColor ? .accentColor : .primary)
           if let subtitle = subtitle {
             Text(subtitle)
               .font(.caption2)
               .foregroundColor(.secondary)
           }
         }
-        Spacer()
-        NavigationLink.empty
-          .frame(width: 30.0)
+          Spacer()
+          NavigationLink.empty
+            .frame(width: 30.0)
+            .foregroundColor(useAccentColor ? .accentColor : .secondary)
       }
     })
   }
