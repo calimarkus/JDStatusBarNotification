@@ -161,7 +161,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Custom Styles" id="PL0-o2-v50">
+                            <tableViewSection headerTitle="Custom Style Examples" id="PL0-o2-v50">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="rlt-37-xrl">
                                         <rect key="frame" x="20" y="851" width="374" height="43.5"/>

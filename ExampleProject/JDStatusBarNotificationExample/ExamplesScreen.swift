@@ -171,7 +171,7 @@ struct ExamplesScreen: View {
         includedStyleCell("Wake up Neo…", style: .matrix)
       }
 
-      Section("Custom Styles") {
+      Section("Custom Style Examples") {
         customStyleCell("Love it!", subtitle: "AnimationType.fade + Progress", style: .loveIt)
         customStyleCell("Level Up!", subtitle: "AnimationType.bounce + Progress", style: .levelUp)
         customStyleCell("Looks good", subtitle: "Subtitle + Activity", style: .looksGood)
@@ -179,7 +179,7 @@ struct ExamplesScreen: View {
         customStyleCell("Style Editor Style", subtitle: "Subtitle + Progress", style: .editor)
       }
 
-      Section("Custom Views") {
+      Section("Custom View Examples") {
         cell(title: "Present a button", subtitle: "A custom notification view") {
           // create button
           let button = UIButton(type: .system, primaryAction: UIAction { _ in
@@ -209,7 +209,7 @@ struct ExamplesScreen: View {
         }
       }
 
-      Section("Sequencing") {
+      Section("Sequencing Example") {
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
           showIncludedStyle("This is 1/2!", style: .dark)
           NotificationPresenter.shared().displayActivityIndicator(true)
