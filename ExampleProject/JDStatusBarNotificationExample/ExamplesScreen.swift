@@ -73,7 +73,7 @@ struct ExamplesScreen: View {
     List {
       Section {
         NavigationLink {
-          StyleEditorView()
+          StyleEditorScreen()
         } label: {
           VStack(alignment: .leading) {
             Text("Style Editor")

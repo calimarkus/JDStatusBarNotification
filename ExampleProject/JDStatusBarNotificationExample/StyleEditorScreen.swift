@@ -4,7 +4,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-struct StyleEditorView: View {
+struct StyleEditorScreen: View {
   @State var text: String = "You're great!"
   @State var subtitle: String = "I mean it"
   @State var showActivity: Bool = false
@@ -15,7 +15,7 @@ struct StyleEditorView: View {
   weak static var statusBarView: JDStatusBarView? = nil
 
   func presentDefault(allowActivity: Bool = true, allowProgress: Bool = true, completion: @escaping () -> Void) {
-    StyleEditorView.statusBarView = NotificationPresenter.shared().present(
+    StyleEditorScreen.statusBarView = NotificationPresenter.shared().present(
       title: text,
       subtitle: subtitle,
       customStyle: style.registerComputedStyle()
@@ -32,8 +32,8 @@ struct StyleEditorView: View {
   }
 
   func updateStyleOfPresentedView() {
-    StyleEditorView.statusBarView?.style = style.computedStyle()
-    StyleEditorView.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
+    StyleEditorScreen.statusBarView?.style = style.computedStyle()
+    StyleEditorScreen.statusBarView?.window?.rootViewController?.setNeedsStatusBarAppearanceUpdate()
   }
 
   var body: some View {
@@ -276,7 +276,7 @@ struct StyleEditorView: View {
 @available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    StyleEditorView().preferredColorScheme(.light)
-    StyleEditorView().preferredColorScheme(.dark)
+    StyleEditorScreen().preferredColorScheme(.light)
+    StyleEditorScreen().preferredColorScheme(.dark)
   }
 }
