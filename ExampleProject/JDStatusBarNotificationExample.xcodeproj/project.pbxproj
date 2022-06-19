@@ -94,7 +94,7 @@
 		7E1C283228520F56004315CC /* JDStatusBarAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarAnimator.m; sourceTree = "<group>"; };
 		7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPickerOptionView.swift; sourceTree = "<group>"; };
 		7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableCustomStyle.swift; sourceTree = "<group>"; };
-		7E67050A284A4BE900AD58E1 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E67050A284A4BE900AD58E1 /* ObjC-to-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjC-to-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
 		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */ = {
 			isa = PBXGroup;
 			children = (
-				7E67050A284A4BE900AD58E1 /* Swift-Bridging-Header.h */,
+				7E67050A284A4BE900AD58E1 /* ObjC-to-Swift-Bridging-Header.h */,
 				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
 				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
 				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
@@ -526,7 +526,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
@@ -550,7 +549,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
@@ -569,7 +567,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
@@ -589,7 +586,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
@@ -644,6 +640,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -694,6 +691,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -712,7 +710,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
@@ -732,7 +729,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "JDSBN_${TARGET_NAME}";
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/Swift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
