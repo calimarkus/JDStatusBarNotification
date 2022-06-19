@@ -22,10 +22,11 @@ class ExamplesScreenFactory: NSObject {
 @available(iOS 15.0, *)
 struct ExamplesScreen: View {
   enum ExampleStyle: String, RawRepresentable, CaseIterable {
-    case custom1
-    case custom2
-    case custom3
-    case icon
+    case loveIt
+    case levelUp
+    case looksGood
+    case smallPill
+    case iconLeftView
   }
 
   @State var progress = 0.0
@@ -179,31 +180,38 @@ struct ExamplesScreen: View {
       }
 
       Section("Custom Styles") {
-        cell(title: "Present custom style \"Love it!\"", subtitle: "AnimationType.fade + Progress") {
+        cell(title: "Love it!", subtitle: "AnimationType.fade + Progress") {
           setupCustomStyles()
           NotificationPresenter.shared().present(text: "Love it!",
-                                                 customStyle: ExampleStyle.custom1.rawValue) { presenter in
+                                                 customStyle: ExampleStyle.loveIt.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
           }
         }
 
-        cell(title: "Present custom style \"Level Up\"", subtitle: "AnimationType.bounce + Progress") {
+        cell(title: "Level Up", subtitle: "AnimationType.bounce + Progress") {
           setupCustomStyles()
           NotificationPresenter.shared().present(text: "Level up!",
-                                                 customStyle: ExampleStyle.custom2.rawValue) { presenter in
+                                                 customStyle: ExampleStyle.levelUp.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
           }
         }
 
-        cell(title: "Present custom style \"Looks good\"", subtitle: "Subtitle + Progress") {
+        cell(title: "Looks good", subtitle: "Subtitle + Activity") {
           setupCustomStyles()
-          NotificationPresenter.shared().present(title: "Damn",
-                                                 subtitle: "This looks gooood!",
-                                                 customStyle: ExampleStyle.custom3.rawValue) { presenter in
+          NotificationPresenter.shared().present(title: "Presenting",
+                                                 subtitle: "This is looking good",
+                                                 customStyle: ExampleStyle.looksGood.rawValue)
+          NotificationPresenter.shared().displayActivityIndicator(true)
+          NotificationPresenter.shared().dismiss(afterDelay: 2.0)
+        }
+
+        cell(title: "Small Pill", subtitle: "Modified pill size + Progress") {
+          setupCustomStyles()
+          NotificationPresenter.shared().present(text: "Oh, hello there!", customStyle: ExampleStyle.smallPill.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
@@ -247,7 +255,7 @@ struct ExamplesScreen: View {
 
           // present
           setupCustomStyles()
-          NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: ExampleStyle.icon.rawValue)
+          NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: ExampleStyle.iconLeftView.rawValue)
           NotificationPresenter.shared().displayLeftView(image)
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)
         }
@@ -285,7 +293,7 @@ struct ExamplesScreen: View {
   }
 
   func setupCustomStyles() {
-    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.custom1.rawValue) { style in
+    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.loveIt.rawValue) { style in
       style.backgroundStyle.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
       style.backgroundStyle.backgroundType = backgroundType
       style.textStyle.textColor = .white
@@ -299,7 +307,7 @@ struct ExamplesScreen: View {
       return style
     }
 
-    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.custom2.rawValue) { style in
+    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.levelUp.rawValue) { style in
       style.backgroundStyle.backgroundColor = .cyan
       style.backgroundStyle.backgroundType = backgroundType
       style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
@@ -315,11 +323,11 @@ struct ExamplesScreen: View {
       return style
     }
 
-    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.custom3.rawValue) { style in
+    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.looksGood.rawValue) { style in
       style.backgroundStyle.backgroundColor = UIColor(red: 0.9999999403953552, green: 0.3843138813972473, blue: 0.31372547149658203, alpha: 1.0) // "red"
       style.backgroundStyle.backgroundType = backgroundType
-      style.textStyle.textColor = UIColor(red: 0.9999999403953552, green: 1.0000001192092896, blue: 1.0000001192092896, alpha: 1.0) // "white"
-      style.textStyle.font = UIFont(name: "Noteworthy", size: 13.0)!
+      style.textStyle.textColor = .black
+      style.textStyle.font = UIFont(name: "Noteworthy-Bold", size: 13.0)!
       style.textStyle.textOffsetY = 2.0
       style.subtitleStyle.textColor = UIColor(red: 0.48235297203063965, green: 0.16078439354896545, blue: -6.016343867543128e-09, alpha: 1.0) // "dark red orange"
       style.subtitleStyle.font = UIFont(name: "Noteworthy", size: 14.0)!
@@ -334,7 +342,35 @@ struct ExamplesScreen: View {
       return style
     }
 
-    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.icon.rawValue, prepare: { style in
+    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.smallPill.rawValue) { style in
+      style.textStyle.textColor = UIColor(red: 0.003921307157725096, green: 0.11372547596693039, blue: 0.34117642045021057, alpha: 1.0) // "dark blue"
+      style.textStyle.font = UIFont(name: ".AppleSystemUIFont", size: 14.0)!
+      style.textStyle.textOffsetY = -3.0
+
+      style.subtitleStyle.textColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.66) // "dark gray"
+      style.subtitleStyle.font = UIFont(name: ".AppleSystemUIFont", size: 11.0)!
+
+      style.backgroundStyle.backgroundColor = UIColor(red: 0.960784375667572, green: 0.9254902005195618, blue: -9.626150188069005e-08, alpha: 1.0) // "light vibrant yellow"
+      style.backgroundStyle.backgroundType = .pill
+
+      style.backgroundStyle.pillStyle.minimumWidth = 0.0
+      style.backgroundStyle.pillStyle.height = 32.0
+      style.backgroundStyle.pillStyle.topSpacing = 14.0
+      style.backgroundStyle.pillStyle.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.33) // "black"
+      style.backgroundStyle.pillStyle.shadowRadius = 4.0
+      style.backgroundStyle.pillStyle.shadowOffset = CGSize(width: 0.0, height: 2.0)
+
+      style.progressBarStyle.barHeight = 4.0
+      style.progressBarStyle.position = .bottom
+      style.progressBarStyle.barColor = UIColor(red: 0.3, green: 0.31, blue: 0.52, alpha: 1.0) // "dark blue"
+      style.progressBarStyle.horizontalInsets = 20.0
+      style.progressBarStyle.cornerRadius = 2.0
+      style.progressBarStyle.offsetY = -3.0
+
+      return style
+    }
+
+    NotificationPresenter.shared().addStyle(styleName: ExampleStyle.iconLeftView.rawValue, prepare: { style in
       style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
       style.backgroundStyle.backgroundType = backgroundType
       style.backgroundStyle.pillStyle.minimumWidth = 200.0
