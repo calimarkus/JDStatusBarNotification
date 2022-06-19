@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class JDStatusBarStyle;
 
 @protocol JDStatusBarViewDelegate <NSObject>
-- (void)statusBarViewDidPanToDismiss;
 - (void)didUpdateStyle;
+- (void)touchesEnded;
 @end
 
 @interface JDStatusBarView : UIView
@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL displaysActivityIndicator;
 @property (nonatomic, assign) CGFloat progressBarPercentage;
 
+@property (nonatomic, assign) BOOL hasActiveTouch;
 @property (nonatomic, strong, nonnull) UIPanGestureRecognizer *panGestureRecognizer;
 
 /// The custom subview will be layouted according to the selected style (as well as the current device

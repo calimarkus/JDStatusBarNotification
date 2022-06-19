@@ -12,6 +12,7 @@
 @end
 
 @implementation JDStatusBarNotificationViewController {
+  BOOL _forceDismissalOnTouchesEnded;
   NSTimer *_dismissTimer;
   JDStatusBarNotificationViewControllerCompletion _dismissCompletionBlock;
   JDStatusBarAnimator *_animator;
@@ -22,6 +23,7 @@
   if (self) {
     _statusBarView = [JDStatusBarView new];
     _statusBarView.delegate = self;
+    [_statusBarView.panGestureRecognizer addTarget:self action:@selector(panGestureRecognized:)];
 
     _animator = [[JDStatusBarAnimator alloc] initWithStatusBarView:_statusBarView];
   }
@@ -65,12 +67,45 @@
 
 #pragma mark - JDStatusBarViewDelegate
 
-- (void)statusBarViewDidPanToDismiss {
-  [self dismissWithDuration:0.25 completion:nil];
-}
-
 - (void)didUpdateStyle {
   [_delegate didUpdateStyle];
+}
+
+- (void)touchesEnded {
+  if (_forceDismissalOnTouchesEnded) {
+    [self forceDismiss];
+  }
+}
+
+#pragma mark - Pan gesture
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
+  if (recognizer.isEnabled) {
+    CGPoint translation = [recognizer translationInView:_statusBarView];
+    switch (recognizer.state) {
+      case UIGestureRecognizerStateBegan:
+        [recognizer setTranslation:CGPointZero inView:_statusBarView];
+        break;
+      case UIGestureRecognizerStateChanged: {
+        _statusBarView.transform = CGAffineTransformMakeTranslation(0, MIN(translation.y, 0.0));
+        break;
+      }
+      case UIGestureRecognizerStateEnded:
+      case UIGestureRecognizerStateCancelled:
+      case UIGestureRecognizerStateFailed:
+        if (!_forceDismissalOnTouchesEnded && translation.y > -(_statusBarView.bounds.size.height * 0.20)) {
+          // animate back in place
+          [UIView animateWithDuration:0.22 animations:^{
+            self->_statusBarView.transform = CGAffineTransformIdentity;
+          }];
+        } else {
+          // dismiss
+          [self forceDismiss];
+        }
+      default:
+        break;
+    }
+  }
 }
 
 #pragma mark - Dismissal
@@ -98,16 +133,41 @@
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
-  _statusBarView.panGestureRecognizer.enabled = NO;
+  if (![self hasActiveTouches]) {
+    _statusBarView.panGestureRecognizer.enabled = NO;
 
-  // animate out
-  __weak __typeof(self) weakSelf = self;
-  [_animator animateOutWithDuration:duration completion:^ {
-    [weakSelf.delegate didDismissStatusBar];
-    if (completion != nil) {
-      completion();
+    // animate out
+    __weak __typeof(self) weakSelf = self;
+    [_animator animateOutWithDuration:duration completion:^ {
+      [weakSelf.delegate didDismissStatusBar];
+      if (completion != nil) {
+        completion();
+      }
+    }];
+  } else {
+    _dismissCompletionBlock = completion;
+    _forceDismissalOnTouchesEnded = YES;
+  }
+}
+
+- (void)forceDismiss {
+  JDStatusBarNotificationViewControllerCompletion block = _dismissCompletionBlock;
+  _dismissCompletionBlock = nil;
+  [self dismissWithDuration:0.25 completion:block];
+}
+
+- (BOOL)hasActiveTouches {
+  if (_statusBarView.hasActiveTouch) {
+    return YES;
+  } else {
+    switch (_statusBarView.panGestureRecognizer.state) {
+      case UIGestureRecognizerStateBegan:
+      case UIGestureRecognizerStateChanged:
+        return YES;
+      default:
+        return NO;
     }
-  }];
+  }
 }
 
 #pragma mark - Rotation handling

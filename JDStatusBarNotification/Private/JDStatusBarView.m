@@ -68,7 +68,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   contentView.tag = kExpectedSubviewTag;
   _contentView = contentView;
 
-  _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+  _panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
   _panGestureRecognizer.enabled = YES;
   [self addGestureRecognizer:_panGestureRecognizer];
 }
@@ -515,35 +515,6 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   }
 }
 
-#pragma mark - Pan gesture
-
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
-  if (recognizer.isEnabled) {
-    CGPoint translation = [recognizer translationInView:self];
-    switch (recognizer.state) {
-      case UIGestureRecognizerStateBegan:
-        [recognizer setTranslation:CGPointZero inView:self];
-        break;
-      case UIGestureRecognizerStateChanged: {
-        self.transform = CGAffineTransformMakeTranslation(0, MIN(translation.y, 0.0));
-        break;
-      }
-      case UIGestureRecognizerStateEnded:
-      case UIGestureRecognizerStateCancelled:
-      case UIGestureRecognizerStateFailed:
-        if (translation.y > -(self.bounds.size.height * 0.20)) {
-          [UIView animateWithDuration:0.22 animations:^{
-            self.transform = CGAffineTransformIdentity;
-          }];
-        } else {
-          [self.delegate statusBarViewDidPanToDismiss];
-        }
-      default:
-        break;
-    }
-  }
-}
-
 #pragma mark - HitTest
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
@@ -551,6 +522,28 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
     return [_contentView hitTest:[self convertPoint:point toView:_contentView] withEvent:event];
   }
   return nil;
+}
+
+#pragma mark - UIResponder
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [super touchesBegan:touches withEvent:event];
+  _hasActiveTouch = YES;
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [super touchesEnded:touches withEvent:event];
+  _hasActiveTouch = NO;
+  [self.delegate touchesEnded];
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [super touchesCancelled:touches withEvent:event];
+  _hasActiveTouch = NO;
 }
 
 @end
