@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E0FCB75285DAEB200E7CB78 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPicker.swift */; };
-		7E0FCB76285DAEB200E7CB78 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPicker.swift */; };
-		7E0FCB77285DAEB200E7CB78 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPicker.swift */; };
+		7E0FCB75285DAEB200E7CB78 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
+		7E0FCB76285DAEB200E7CB78 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
+		7E0FCB77285DAEB200E7CB78 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
 		7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
 		7E0FCB7A285DAEE800E7CB78 /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
 		7E0FCB7B285DAEE800E7CB78 /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
@@ -87,7 +87,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7E0FCB74285DAEB200E7CB78 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
+		7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
 		7E0FCB78285DAEE800E7CB78 /* FormViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViews.swift; sourceTree = "<group>"; };
 		7E1C283128520F56004315CC /* JDStatusBarAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarAnimator.h; sourceTree = "<group>"; };
 		7E1C283228520F56004315CC /* JDStatusBarAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarAnimator.m; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 				7E2F3BBA284F6144002B2181 /* CustomStyle.swift */,
 				7E670512284B177B00AD58E1 /* StyleEditorView.swift */,
 				7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */,
-				7E0FCB74285DAEB200E7CB78 /* FontPicker.swift */,
+				7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */,
 				7E0FCB78285DAEE800E7CB78 /* FormViews.swift */,
 				7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */,
 				7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */,
@@ -413,7 +413,7 @@
 			files = (
 				7EA91CAA284EF3AF00F32F09 /* JDStatusBarManagerHelper.m in Sources */,
 				7EA91CAB284EF3AF00F32F09 /* JDStatusBarWindow.m in Sources */,
-				7E0FCB77285DAEB200E7CB78 /* FontPicker.swift in Sources */,
+				7E0FCB77285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBD284F6144002B2181 /* CustomStyle.swift in Sources */,
 				7E0FCB7B285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				7E8C519B28585BE400C7C003 /* JDStatusBarStyle.m in Sources */,
@@ -442,7 +442,7 @@
 			files = (
 				7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */,
 				7ED140932847557600593D6F /* JDStatusBarWindow.m in Sources */,
-				7E0FCB76285DAEB200E7CB78 /* FontPicker.swift in Sources */,
+				7E0FCB76285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBC284F6144002B2181 /* CustomStyle.swift in Sources */,
 				7E0FCB7A285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				7E8C519A28585BE400C7C003 /* JDStatusBarStyle.m in Sources */,
@@ -478,7 +478,7 @@
 				7ED140972848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
 				7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
-				7E0FCB75285DAEB200E7CB78 /* FontPicker.swift in Sources */,
+				7E0FCB75285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E1C283328520F56004315CC /* JDStatusBarAnimator.m in Sources */,
 				7E670513284B177B00AD58E1 /* StyleEditorView.swift in Sources */,
 				7E8C519C28585BE400C7C003 /* JDStatusBarNotificationPresenter.m in Sources */,

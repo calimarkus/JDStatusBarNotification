@@ -16,7 +16,7 @@ struct TextStyleEditorView: View {
       }
 
     NavigationLink(destination: {
-      FontPicker(font: $style.font)
+      FontPickerView(font: $style.font)
     }, label: {
       HStack {
         Text("Font").font(.subheadline)

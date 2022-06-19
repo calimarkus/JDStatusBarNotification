@@ -4,7 +4,7 @@
 import SwiftUI
 
 @available(iOS 15.0, *)
-public struct FontPicker: UIViewControllerRepresentable {
+public struct FontPickerView: UIViewControllerRepresentable {
   @Environment(\.presentationMode) var presentationMode
   @Binding var font: UIFont
 
@@ -12,7 +12,7 @@ public struct FontPicker: UIViewControllerRepresentable {
     self._font = font
   }
 
-  public func makeUIViewController(context: UIViewControllerRepresentableContext<FontPicker>) -> UIFontPickerViewController {
+  public func makeUIViewController(context: UIViewControllerRepresentableContext<FontPickerView>) -> UIFontPickerViewController {
     let configuration = UIFontPickerViewController.Configuration()
     configuration.includeFaces = true
     let vc = UIFontPickerViewController(configuration: configuration)
@@ -21,15 +21,15 @@ public struct FontPicker: UIViewControllerRepresentable {
     return vc
   }
 
-  public func makeCoordinator() -> FontPicker.Coordinator {
+  public func makeCoordinator() -> FontPickerView.Coordinator {
     return Coordinator(self, font: $font)
   }
 
   public class Coordinator: NSObject, UIFontPickerViewControllerDelegate {
-    var parent: FontPicker
+    var parent: FontPickerView
     @Binding var font: UIFont
 
-    init(_ parent: FontPicker, font: Binding<UIFont>) {
+    init(_ parent: FontPickerView, font: Binding<UIFont>) {
       self.parent = parent
       self._font = font
     }
@@ -46,5 +46,5 @@ public struct FontPicker: UIViewControllerRepresentable {
   }
 
   public func updateUIViewController(_ uiViewController: UIFontPickerViewController,
-                                     context: UIViewControllerRepresentableContext<FontPicker>) {}
+                                     context: UIViewControllerRepresentableContext<FontPickerView>) {}
 }
