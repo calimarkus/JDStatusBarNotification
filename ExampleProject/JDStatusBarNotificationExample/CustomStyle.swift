@@ -36,7 +36,7 @@ class CustomTextStyle: ObservableObject, Equatable {
   func styleConfigurationString(propertyName: String) -> String {
     """
     style.\(propertyName).textColor = \(textColor?.readableRGBAColorString ?? "nil")
-    style.\(propertyName).font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))
+    style.\(propertyName).font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))!
     style.\(propertyName).textOffsetY = \(textOffsetY)
     """
 
