@@ -49,7 +49,7 @@ class CustomTextStyle: ObservableObject, Equatable {
   }
 }
 
-class CustomStyle: ObservableObject, Equatable {
+class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var textStyle: CustomTextStyle
   @Published var subtitleStyle: CustomTextStyle
 
@@ -118,7 +118,7 @@ class CustomStyle: ObservableObject, Equatable {
     pbBarOffset = defaultStyle.progressBarStyle.offsetY
   }
 
-  static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {
+  static func == (lhs: ObservableCustomStyle, rhs: ObservableCustomStyle) -> Bool {
     return false // a hack to trigger .onChange(of: style) on every change
   }
 
