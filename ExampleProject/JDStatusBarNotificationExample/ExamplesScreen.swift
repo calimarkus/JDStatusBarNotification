@@ -172,52 +172,11 @@ struct ExamplesScreen: View {
       }
 
       Section("Custom Styles") {
-        cell(title: "Love it!", subtitle: "AnimationType.fade + Progress") {
-          ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(text: "Love it!", customStyle: ExampleStyle.loveIt.rawValue) { presenter in
-            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss()
-            }
-          }
-          NotificationPresenter.shared().displayActivityIndicator(showActivity)
-        }
-
-        cell(title: "Level Up", subtitle: "AnimationType.bounce + Progress") {
-          ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(text: "Level up!", customStyle: ExampleStyle.levelUp.rawValue) { presenter in
-            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss()
-            }
-          }
-          NotificationPresenter.shared().displayActivityIndicator(showActivity)
-        }
-
-        cell(title: "Looks good", subtitle: "Subtitle + Activity") {
-          ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(title: "Presenting", subtitle: "This is looking good", customStyle: ExampleStyle.looksGood.rawValue)
-          NotificationPresenter.shared().displayActivityIndicator(true)
-          NotificationPresenter.shared().dismiss(afterDelay: 2.0)
-        }
-
-        cell(title: "Small Pill", subtitle: "Modified pill size + Progress") {
-          ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(text: "Oh, hello there!", customStyle: ExampleStyle.smallPill.rawValue) { presenter in
-            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss()
-            }
-          }
-          NotificationPresenter.shared().displayActivityIndicator(showActivity)
-        }
-
-        cell(title: "Style Editor Style", subtitle: "Subtitle + Progress") {
-          ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(title: "Edit me", subtitle: "in the Style Editor", customStyle: ExampleStyle.editor.rawValue) { presenter in
-            presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss()
-            }
-          }
-          NotificationPresenter.shared().displayActivityIndicator(showActivity)
-        }
+        customStyleCell("Love it!", subtitle: "AnimationType.fade + Progress", style: .loveIt)
+        customStyleCell("Level Up!", subtitle: "AnimationType.bounce + Progress", style: .levelUp)
+        customStyleCell("Looks good", subtitle: "Subtitle + Activity", style: .looksGood)
+        customStyleCell("Small Pill", subtitle: "Modified pill size + Progress", style: .smallPill)
+        customStyleCell("Style Editor Style", subtitle: "Subtitle + Progress", style: .editor)
 
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
           showIncludedStyle("This is 1/2!", style: .dark)
@@ -255,7 +214,7 @@ struct ExamplesScreen: View {
           image.sizeToFit()
 
           // present
-          ExampleStyle.registerStyles(for: backgroundType)
+          ExampleStyle.iconLeftView.register(for: backgroundType)
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: ExampleStyle.iconLeftView.rawValue)
           NotificationPresenter.shared().displayLeftView(image)
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)
@@ -293,14 +252,27 @@ struct ExamplesScreen: View {
     }
   }
 
+  func customStyleCell(_ title:String, subtitle:String? = nil, style: ExampleStyle) -> some View {
+    let content = style.exampleContent
+    return cell(title: "Present: \(title)", subtitle: subtitle) {
+      style.register(for: backgroundType)
+      NotificationPresenter.shared().present(title: content.title, subtitle: content.subtitle, customStyle: style.rawValue) { presenter in
+        presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+          presenter.dismiss()
+        }
+      }
+      NotificationPresenter.shared().displayActivityIndicator(showActivity)
+    }
+  }
+
   func animationDurationForCurrentStyle() -> Double {
     switch backgroundType {
       case .pill:
-        return 0.66
+        return 0.75
       case .fullWidth:
         fallthrough
       default:
-        return 1.2
+        return 1.25
     }
   }
 }

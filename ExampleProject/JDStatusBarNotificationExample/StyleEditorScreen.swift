@@ -9,7 +9,7 @@ struct StyleEditorScreen: View {
   @State var subtitle: String = "I mean it"
   @State var showActivity: Bool = false
   @State var progress: Double = 0.5
-  @StateObject var style: ObservableCustomStyle = .init(ExampleStyle.editorStyle())
+  @StateObject var style: ObservableCustomStyle = .init(ExampleStyle.editor.buildStyle())
   @State var editingTitle: Bool = true
 
   weak static var statusBarView: JDStatusBarView? = nil
