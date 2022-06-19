@@ -172,6 +172,13 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
 
 ## Changelog
 
+### 2.0.2
+
+- New: Prevent dismissal during user interaction (hold or pan), configurable.
+- New: Use pill height as minimum pill width.
+- Breaking change: Remove `.centerWithTextUnlessSubtitleExists`, default to `.centerWithText`.
+- Fix `.canSwipeToDismiss` - it can now be disabled again.
+
 ### 2.0.1
 
 New:
