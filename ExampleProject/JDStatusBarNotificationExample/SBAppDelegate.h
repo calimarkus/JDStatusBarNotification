@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SBAppDelegate : UIResponder <UIApplicationDelegate>
+@end
 
-@property (strong, nonatomic) UIWindow *window;
-
+@interface SBSceneDelegate : UIResponder <UIWindowSceneDelegate>
 @end
