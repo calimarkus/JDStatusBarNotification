@@ -5,22 +5,22 @@ import Foundation
 import SwiftUI
 
 @available(iOS 15.0, *)
-class ExamplesViewFactory: NSObject {
-  @objc static func createExamplesView() -> UIViewController {
+class ExamplesScreenFactory: NSObject {
+  @objc static func createExamplesScreen() -> UIViewController {
     let text = "👋 Hello World!"
     NotificationPresenter.shared().present(text: text,
                                            dismissAfterDelay: 2.5,
                                            includedStyle: IncludedStatusBarStyle.matrix)
     return UIHostingController(rootView:
       NavigationView {
-        ExamplesView()
+        ExamplesScreen()
       }
     )
   }
 }
 
 @available(iOS 15.0, *)
-struct ExamplesView: View {
+struct ExamplesScreen: View {
   enum ExampleStyle: String, RawRepresentable, CaseIterable {
     case custom1
     case custom2
@@ -380,10 +380,10 @@ extension NavigationLink where Label == EmptyView, Destination == EmptyView {
 }
 
 @available(iOS 15.0, *)
-struct ExamplesView_Previews: PreviewProvider {
+struct ExamplesScreen_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      ExamplesView()
+      ExamplesScreen()
     }
   }
 }

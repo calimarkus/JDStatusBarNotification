@@ -20,7 +20,7 @@
   self.view.backgroundColor = [UIColor systemGray6Color];
 
   if (@available(iOS 15.0, *)) {
-    UIViewController *hostingController = [ExamplesViewFactory createExamplesView];
+    UIViewController *hostingController = [ExamplesScreenFactory createExamplesScreen];
     [hostingController willMoveToParentViewController:self];
     [self addChildViewController:hostingController];
     [self.view addSubview:hostingController.view];
