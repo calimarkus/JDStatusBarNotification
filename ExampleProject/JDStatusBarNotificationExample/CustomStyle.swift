@@ -81,41 +81,41 @@ class CustomStyle: ObservableObject, Equatable {
   @Published var pbBarOffset: Double
 
   init(_ defaultStyle: StatusBarStyle) {
-    let text = CustomTextStyle(defaultStyle.textStyle)
-    text.textColor = UIColor(white: 0.1, alpha: 1.0)
-    text.font = .systemFont(ofSize: 14.0)
-    text.textOffsetY = -4.0
-    textStyle = text
+    // text
+    textStyle = CustomTextStyle(defaultStyle.textStyle)
+    subtitleStyle = CustomTextStyle(defaultStyle.subtitleStyle)
 
-    let subtitle = CustomTextStyle(defaultStyle.subtitleStyle)
-    subtitle.textColor = UIColor(white: 0.1, alpha: 0.66)
-    subtitleStyle = subtitle
-
-    backgroundColor = UIColor(red: 0.7960, green: 0.9411, blue: 0.9999, alpha: 1.0) // "light cyan blue"
+    // background
+    backgroundColor = defaultStyle.backgroundStyle.backgroundColor
     backgroundType = defaultStyle.backgroundStyle.backgroundType
-    minimumPillWidth = 200.0
-    pillHeight = 50.0
-    pillSpacingY = 2.0
+    minimumPillWidth = defaultStyle.backgroundStyle.pillStyle.minimumWidth
+
+    // pill
+    pillHeight = defaultStyle.backgroundStyle.pillStyle.height
+    pillSpacingY = defaultStyle.backgroundStyle.pillStyle.topSpacing
     pillBorderColor = defaultStyle.backgroundStyle.pillStyle.borderColor
     pillBorderWidth = defaultStyle.backgroundStyle.pillStyle.borderWidth
-    pillShadowColor = UIColor(white: 0.0, alpha: 0.08)
+    pillShadowColor = defaultStyle.backgroundStyle.pillStyle.shadowColor
     pillShadowRadius = defaultStyle.backgroundStyle.pillStyle.shadowRadius
     pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
 
+    // bar
     animationType = .bounce
     systemStatusBarStyle = .darkContent
     canSwipeToDismiss = defaultStyle.canSwipeToDismiss
 
+    // left view
     leftViewSpacing = defaultStyle.leftViewStyle.spacing
     leftViewOffsetX = defaultStyle.leftViewStyle.offsetX
     leftViewAlignment = defaultStyle.leftViewStyle.alignment
 
-    pbBarColor = UIColor(red: 0.3, green: 0.31, blue: 0.52, alpha: 1.0) // "dark cyan blue"
-    pbBarHeight = 4.0
-    pbPosition = .bottom
-    pbHorizontalInsets = 20.0
-    pbCornerRadius = 2.0
-    pbBarOffset = -4.0
+    // progress bar
+    pbBarColor = defaultStyle.progressBarStyle.barColor
+    pbBarHeight = defaultStyle.progressBarStyle.barHeight
+    pbPosition = defaultStyle.progressBarStyle.position
+    pbHorizontalInsets = defaultStyle.progressBarStyle.horizontalInsets
+    pbCornerRadius = defaultStyle.progressBarStyle.cornerRadius
+    pbBarOffset = defaultStyle.progressBarStyle.offsetY
   }
 
   static func == (lhs: CustomStyle, rhs: CustomStyle) -> Bool {

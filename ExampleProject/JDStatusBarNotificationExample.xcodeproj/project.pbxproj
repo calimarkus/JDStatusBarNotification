@@ -26,6 +26,9 @@
 		7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
 		7E670513284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
 		7E670514284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
+		7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
+		7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
+		7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E8B9AEF283B6FD300507BC1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
 		7E8C519928585BE400C7C003 /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519728585BE400C7C003 /* JDStatusBarStyle.m */; };
 		7E8C519A28585BE400C7C003 /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519728585BE400C7C003 /* JDStatusBarStyle.m */; };
@@ -96,6 +99,7 @@
 		7E67050A284A4BE900AD58E1 /* Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
+		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
 		7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7E8C519328585BE400C7C003 /* JDStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyle.h; sourceTree = "<group>"; };
 		7E8C519428585BE400C7C003 /* JDStatusBarNotificationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationPresenter.h; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 				7EFD77A528434906000BFBF1 /* SBSceneDelegate.m */,
 				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
 				7E2F3BBA284F6144002B2181 /* CustomStyle.swift */,
+				7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */,
 				7E6FBC20285EB4D300A63FEF /* Screens */,
 				7E6FBC1F285EB4C600A63FEF /* Views */,
 				7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */,
@@ -444,6 +449,7 @@
 				7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */,
 				7EA91CB3284EF3AF00F32F09 /* ExamplesScreen.swift in Sources */,
 				7E8C519E28585BE400C7C003 /* JDStatusBarNotificationPresenter.m in Sources */,
+				7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 				7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */,
 				7EA91CB5284EF3AF00F32F09 /* UIApplication+JDSB_MainWindow.m in Sources */,
 				7EA91CB6284EF3AF00F32F09 /* main.m in Sources */,
@@ -473,6 +479,7 @@
 				7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */,
 				7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
 				7E8C519D28585BE400C7C003 /* JDStatusBarNotificationPresenter.m in Sources */,
+				7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 				7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */,
 				7EBE34132844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m in Sources */,
 				7EFD77A728434A03000BFBF1 /* main.m in Sources */,
@@ -493,6 +500,7 @@
 				7E67050D284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
 				7ED140972848513800593D6F /* JDStatusBarStyleCache.m in Sources */,
 				7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */,
+				7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
 				7E0FCB75285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E1C283328520F56004315CC /* JDStatusBarAnimator.m in Sources */,
