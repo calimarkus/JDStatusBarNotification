@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-struct StatusBarPreview: UIViewRepresentable {
+struct StatusBarPreviewView: UIViewRepresentable {
   var title: String?
   var subtitle: String?
   var style: StatusBarStyle
@@ -40,15 +40,15 @@ struct StatusBarPreview: UIViewRepresentable {
 }
 
 @available(iOS 15.0, *)
-struct StatusBarPreview_Previews: PreviewProvider {
+struct StatusBarPreviewView_Previews: PreviewProvider {
   static var previews: some View {
     VStack(spacing: 8.0) {
-      StatusBarPreview("Full Width Style - Light") { style in
+      StatusBarPreviewView("Full Width Style - Light") { style in
         style.backgroundStyle.backgroundType = .fullWidth
       }
       .frame(height: 100)
 
-      StatusBarPreview("Full Width Style - Dark", subtitle: "Test", progress: 0.88, activity: false) { style in
+      StatusBarPreviewView("Full Width Style - Dark", subtitle: "Test", progress: 0.88, activity: false) { style in
         style.backgroundStyle.backgroundColor = .darkGray
         style.textStyle.textColor = .white
         style.backgroundStyle.backgroundType = .fullWidth
@@ -57,43 +57,43 @@ struct StatusBarPreview_Previews: PreviewProvider {
         style.progressBarStyle.horizontalInsets = 0.0
       }.frame(height: 100)
 
-      StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
+      StatusBarPreviewView("The quick brown fox jumps over the lazy dog. (Longer text test)",
                        progress: 0.5) { style in
         style.backgroundStyle.backgroundType = .fullWidth
       }.frame(height: 100)
 
-      StatusBarPreview("Pill Style - Light", subtitle: "Test II") { style in
+      StatusBarPreviewView("Pill Style - Light", subtitle: "Test II") { style in
         style.progressBarStyle.offsetY = 0.0
         style.progressBarStyle.horizontalInsets = 0.0
       }.frame(height: 50)
 
-      StatusBarPreview("Pill Style - Dark", progress: 0.88, activity: false) { style in
+      StatusBarPreviewView("Pill Style - Dark", progress: 0.88, activity: false) { style in
         style.backgroundStyle.backgroundColor = .darkGray
         style.textStyle.textColor = .white
         style.progressBarStyle.barColor = .magenta
       }.frame(height: 50)
 
       VStack(spacing: 4.0) {
-        StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)",
+        StatusBarPreviewView("The quick brown fox jumps over the lazy dog. (Longer text test)",
                          progress: 1.0) { style in
           style.progressBarStyle.offsetY = 0.0
         }.frame(height: 50)
 
-        StatusBarPreview("FYI", subtitle: "Short one.",
+        StatusBarPreviewView("FYI", subtitle: "Short one.",
                          progress: 1.0) { style in
           style.progressBarStyle.offsetY = 0.0
         }.frame(height: 50)
 
-        StatusBarPreview("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)",
+        StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)",
                          progress: 1.0) { style in
           style.progressBarStyle.offsetY = 0.0
         }.frame(height: 50)
 
-        StatusBarPreview("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)", progress: 1.0, activity: false) { style in
+        StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)", progress: 1.0, activity: false) { style in
           style.progressBarStyle.offsetY = 0.0
         }.frame(height: 50)
 
-        StatusBarPreview("The quick brown fox jumps over the lazy dog. (Longer text test)", subtitle: "Short one", progress: 1.0, activity: false) { style in
+        StatusBarPreviewView("The quick brown fox jumps over the lazy dog. (Longer text test)", subtitle: "Short one", progress: 1.0, activity: false) { style in
           style.progressBarStyle.offsetY = 0.0
         }.frame(height: 50)
       }
