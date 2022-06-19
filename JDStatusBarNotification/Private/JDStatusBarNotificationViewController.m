@@ -133,7 +133,7 @@
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
-  if (![self hasActiveTouches]) {
+  if ([self canDismiss]) {
     _statusBarView.panGestureRecognizer.enabled = NO;
 
     // animate out
@@ -156,16 +156,20 @@
   [self dismissWithDuration:0.25 completion:block];
 }
 
-- (BOOL)hasActiveTouches {
+- (BOOL)canDismiss {
+  if (_statusBarView.style.canDismissDuringUserInteraction) {
+    return YES; // allow dismissal during interaction
+  }
+
   if (_statusBarView.hasActiveTouch) {
-    return YES;
+    return NO;
   } else {
     switch (_statusBarView.panGestureRecognizer.state) {
       case UIGestureRecognizerStateBegan:
       case UIGestureRecognizerStateChanged:
-        return YES;
-      default:
         return NO;
+      default:
+        return YES;
     }
   }
 }

@@ -173,6 +173,7 @@
     _animationType = JDStatusBarAnimationTypeMove;
     _systemStatusBarStyle = JDStatusBarSystemStyleDefaultStyle;
     _canSwipeToDismiss = YES;
+    _canDismissDuringUserInteraction = NO;
   }
   return self;
 }

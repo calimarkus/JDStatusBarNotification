@@ -161,11 +161,14 @@ struct StyleEditorScreen: View {
           }
         }
 
-        VStack(alignment: .leading, spacing: 6.0) {
-          SegmentedPicker(title: "Swipe to dismiss", value: $style.canSwipeToDismiss) {
-            Text("Enabled").tag(true)
-            Text("Disabled").tag(false)
-          }
+        SegmentedPicker(title: "Swipe to dismiss", value: $style.canSwipeToDismiss) {
+          Text("Enabled").tag(true)
+          Text("Disabled").tag(false)
+        }
+
+        SegmentedPicker(title: "Dismissal during taps/pans", value: $style.canDismissDuringUserInteraction) {
+          Text("Enabled").tag(true)
+          Text("Disabled").tag(false)
         }
       }
 

@@ -104,6 +104,13 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// Defines if the bar can be dismissed by the user or not (by swiping up). Default is true.
 @property (nonatomic, assign) BOOL canSwipeToDismiss;
 
+/// Defines if the bar can be dismissed while the user touches or pans the view.
+///
+/// The default is NO, meaning that a banner stays presented as long as a touch is active.
+/// Once the touch is released, the view will be dismised if a dismiss call was made.
+/// A passed in dismiss completion block will still be executed, once the dismissal happens.
+@property (nonatomic, assign) BOOL canDismissDuringUserInteraction;
+
 @end
 
 /**
