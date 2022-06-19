@@ -175,11 +175,11 @@ struct StyleEditorScreen: View {
           Text("Subtitle").tag(false)
         }
         if editingTitle {
-          TextStyleEditorView(style: style.textStyle, defaultShadowColor: style.backgroundColor) {
+          TextStyleEditorView(title: "Title", style: style.textStyle, defaultShadowColor: style.backgroundColor) {
             updateStyleOfPresentedView()
           }
         } else {
-          TextStyleEditorView(style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
+          TextStyleEditorView(title: "Subtitle", style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
             updateStyleOfPresentedView()
           }
         }

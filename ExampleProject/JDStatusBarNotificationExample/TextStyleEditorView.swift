@@ -5,6 +5,7 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct TextStyleEditorView: View {
+  let title: String
   @ObservedObject var style: CustomTextStyle
   let defaultShadowColor: UIColor?
   let onChange: () -> Void
@@ -15,16 +16,20 @@ struct TextStyleEditorView: View {
         onChange()
       }
 
-    NavigationLink(destination: {
-      FontPickerView(font: $style.font)
-    }, label: {
-      HStack {
-        Text("Font").font(.subheadline)
-        Spacer()
-        Text("\(style.font.fontDescriptor.postscriptName)")
-          .font(.caption)
+    NavigationLink(
+      destination: {
+        FontPickerView(font: $style.font)
+          .navigationTitle("\(title) Font")
+      },
+      label: {
+        HStack {
+          Text("Font").font(.subheadline)
+          Spacer()
+          Text("\(style.font.fontDescriptor.postscriptName)")
+            .font(.caption)
+        }
       }
-    })
+    )
 
     TextFieldStepper(title: "Font size", binding: Binding<Double>(get: {
       style.font.pointSize
@@ -49,6 +54,7 @@ struct TextStyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
     Form {
       TextStyleEditorView(
+        title: "Title",
         style: CustomTextStyle(StatusBarStyle().textStyle),
         defaultShadowColor: nil
       ) {}
