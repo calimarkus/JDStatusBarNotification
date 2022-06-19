@@ -174,29 +174,27 @@ struct ExamplesScreen: View {
       Section("Custom Styles") {
         cell(title: "Love it!", subtitle: "AnimationType.fade + Progress") {
           ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(text: "Love it!",
-                                                 customStyle: ExampleStyle.loveIt.rawValue) { presenter in
+          NotificationPresenter.shared().present(text: "Love it!", customStyle: ExampleStyle.loveIt.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
           }
+          NotificationPresenter.shared().displayActivityIndicator(showActivity)
         }
 
         cell(title: "Level Up", subtitle: "AnimationType.bounce + Progress") {
           ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(text: "Level up!",
-                                                 customStyle: ExampleStyle.levelUp.rawValue) { presenter in
+          NotificationPresenter.shared().present(text: "Level up!", customStyle: ExampleStyle.levelUp.rawValue) { presenter in
             presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
               presenter.dismiss()
             }
           }
+          NotificationPresenter.shared().displayActivityIndicator(showActivity)
         }
 
         cell(title: "Looks good", subtitle: "Subtitle + Activity") {
           ExampleStyle.registerStyles(for: backgroundType)
-          NotificationPresenter.shared().present(title: "Presenting",
-                                                 subtitle: "This is looking good",
-                                                 customStyle: ExampleStyle.looksGood.rawValue)
+          NotificationPresenter.shared().present(title: "Presenting", subtitle: "This is looking good", customStyle: ExampleStyle.looksGood.rawValue)
           NotificationPresenter.shared().displayActivityIndicator(true)
           NotificationPresenter.shared().dismiss(afterDelay: 2.0)
         }
@@ -208,6 +206,7 @@ struct ExamplesScreen: View {
               presenter.dismiss()
             }
           }
+          NotificationPresenter.shared().displayActivityIndicator(showActivity)
         }
 
         cell(title: "Style Editor Style", subtitle: "Subtitle + Progress") {
@@ -217,6 +216,7 @@ struct ExamplesScreen: View {
               presenter.dismiss()
             }
           }
+          NotificationPresenter.shared().displayActivityIndicator(showActivity)
         }
 
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
