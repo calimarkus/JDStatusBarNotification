@@ -16,6 +16,9 @@
   NSTimer *_dismissTimer;
   JDStatusBarNotificationViewControllerCompletion _dismissCompletionBlock;
   JDStatusBarAnimator *_animator;
+
+  CGFloat _panInitialY;
+  CGFloat _panMaxY;
 }
 
 - (instancetype)init {
@@ -81,19 +84,29 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
   if (recognizer.isEnabled) {
-    CGPoint translation = [recognizer translationInView:_statusBarView];
     switch (recognizer.state) {
       case UIGestureRecognizerStateBegan:
         [recognizer setTranslation:CGPointZero inView:_statusBarView];
+        _panMaxY = 0.0;
+        _panInitialY = [recognizer locationInView:_statusBarView].y;
         break;
       case UIGestureRecognizerStateChanged: {
-        _statusBarView.transform = CGAffineTransformMakeTranslation(0, MIN(translation.y, 0.0));
+        CGPoint translation = [recognizer translationInView:_statusBarView];
+        _panMaxY = MAX(_panMaxY, translation.y);
+
+        // rubber banding downwards + immediate upwards movement even after rubber banding
+        CGFloat limit = 4.0;
+        CGFloat yPos = (translation.y <= _panMaxY
+                        ? (_panMaxY > 0 ? translation.y - _panMaxY + limit * (1 + log10(_panMaxY/limit)) : translation.y)
+                        : limit * (1 + log10(_panMaxY/limit)));
+        _statusBarView.transform = CGAffineTransformMakeTranslation(0, yPos);
         break;
       }
       case UIGestureRecognizerStateEnded:
       case UIGestureRecognizerStateCancelled:
-      case UIGestureRecognizerStateFailed:
-        if (!_forceDismissalOnTouchesEnded && translation.y > -(_statusBarView.bounds.size.height * 0.20)) {
+      case UIGestureRecognizerStateFailed: {
+        CGFloat relativeMovement = (_statusBarView.transform.ty / _panInitialY);
+        if (!_forceDismissalOnTouchesEnded && -relativeMovement < 0.25) {
           // animate back in place
           [UIView animateWithDuration:0.22 animations:^{
             self->_statusBarView.transform = CGAffineTransformIdentity;
@@ -102,6 +115,7 @@
           // dismiss
           [self forceDismiss];
         }
+      }
       default:
         break;
     }
