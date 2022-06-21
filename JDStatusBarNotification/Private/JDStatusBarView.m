@@ -13,6 +13,9 @@
 
 static const NSInteger kExpectedSubviewTag = 12321;
 
+@interface JDStatusBarView () <UIGestureRecognizerDelegate>
+@end
+
 @implementation JDStatusBarView {
   JDStatusBarStyle *_style;
 
@@ -68,8 +71,15 @@ static const NSInteger kExpectedSubviewTag = 12321;
   contentView.tag = kExpectedSubviewTag;
   _contentView = contentView;
 
+  _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
+  _longPressGestureRecognizer.minimumPressDuration = 0.0;
+  _longPressGestureRecognizer.enabled = YES;
+  _longPressGestureRecognizer.delegate = self;
+  [self addGestureRecognizer:_longPressGestureRecognizer];
+
   _panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
   _panGestureRecognizer.enabled = YES;
+  _panGestureRecognizer.delegate = self;
   [self addGestureRecognizer:_panGestureRecognizer];
 }
 
@@ -99,7 +109,8 @@ static const NSInteger kExpectedSubviewTag = 12321;
     [_contentView addSubview:_leftView];
   }
 
-  // ensure pan recognizer is added
+  // ensure gesture recognizers are added
+  [self addGestureRecognizer:_longPressGestureRecognizer];
   [self addGestureRecognizer:_panGestureRecognizer];
 }
 
@@ -524,26 +535,10 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   return nil;
 }
 
-#pragma mark - UIResponder
+#pragma mark - UIGestureRecognizerDelegate
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-  [super touchesBegan:touches withEvent:event];
-  _hasActiveTouch = YES;
-}
-
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-  [super touchesMoved:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-  [super touchesEnded:touches withEvent:event];
-  _hasActiveTouch = NO;
-  [self.delegate touchesEnded];
-}
-
-- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-  [super touchesCancelled:touches withEvent:event];
-  _hasActiveTouch = NO;
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+  return (otherGestureRecognizer == _longPressGestureRecognizer);
 }
 
 @end

@@ -27,6 +27,7 @@
     _statusBarView = [JDStatusBarView new];
     _statusBarView.delegate = self;
     [_statusBarView.panGestureRecognizer addTarget:self action:@selector(panGestureRecognized:)];
+    [_statusBarView.longPressGestureRecognizer addTarget:self action:@selector(longPressGestureRecognized:)];
 
     _animator = [[JDStatusBarAnimator alloc] initWithStatusBarView:_statusBarView];
   }
@@ -74,17 +75,13 @@
   [_delegate didUpdateStyle];
 }
 
-- (void)touchesEnded {
-  if (_forceDismissalOnTouchesEnded) {
-    [self forceDismiss];
-  }
-}
-
 #pragma mark - Pan gesture
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
   if (recognizer.isEnabled) {
     switch (recognizer.state) {
+      case UIGestureRecognizerStatePossible:
+        break;
       case UIGestureRecognizerStateBegan:
         [recognizer setTranslation:CGPointZero inView:_statusBarView];
         _panMaxY = 0.0;
@@ -116,6 +113,18 @@
           [self forceDismiss];
         }
       }
+    }
+  }
+}
+
+- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer {
+  if (recognizer.isEnabled) {
+    switch (recognizer.state)
+      case UIGestureRecognizerStateEnded: {
+        if (_forceDismissalOnTouchesEnded) {
+          [self forceDismiss];
+        }
+        break;
       default:
         break;
     }
@@ -175,16 +184,23 @@
     return YES; // allow dismissal during interaction
   }
 
-  if (_statusBarView.hasActiveTouch) {
+  // prevent dismissal during interaction
+  if (isGestureRecognizerActive(_statusBarView.longPressGestureRecognizer)
+      || isGestureRecognizerActive(_statusBarView.panGestureRecognizer)) {
     return NO;
-  } else {
-    switch (_statusBarView.panGestureRecognizer.state) {
-      case UIGestureRecognizerStateBegan:
-      case UIGestureRecognizerStateChanged:
-        return NO;
-      default:
-        return YES;
-    }
+  }
+
+  // allow otherwise
+  return YES;
+}
+
+static BOOL isGestureRecognizerActive(UIGestureRecognizer *gestureRecognizer) {
+  switch (gestureRecognizer.state) {
+    case UIGestureRecognizerStateBegan:
+    case UIGestureRecognizerStateChanged:
+      return YES;
+    default:
+      return NO;
   }
 }
 
