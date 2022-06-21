@@ -3,8 +3,8 @@ Pod::Spec.new do |s|
   s.name         = 'JDStatusBarNotification'
   s.version      = '2.0.2'
   
-  s.summary      = 'Highly customizable & feature rich notifications displayed below the status bar.'
-  s.description  = 'Highly customizable & feature rich notifications displayed below the status bar for both notch and no-notch devices. Customizable colors, fonts & animations. Can show an activity indicator, a progress bar & custom views. iOS 13+. Swift ready!'
+  s.summary      = 'Highly customizable & feature rich notifications displayed below the status bar. Swift ready!'
+  s.description  = 'Highly customizable & feature rich notifications displayed below the status bar. Customizable colors, fonts & animations. Supports notch and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. Can display a subtitle, an activity indicator, a progress bar & custom views out of the box. iOS 13+. Swift ready!'
   
   s.homepage     = 'https://github.com/calimarkus/JDStatusBarNotification'
   s.license      = { :type => 'MIT' }
