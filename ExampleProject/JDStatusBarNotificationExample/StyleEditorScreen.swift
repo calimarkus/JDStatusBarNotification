@@ -161,15 +161,11 @@ struct StyleEditorScreen: View {
           }
         }
 
-        SegmentedPicker(title: "Swipe to dismiss", value: $style.canSwipeToDismiss) {
-          Text("Enabled").tag(true)
-          Text("Disabled").tag(false)
-        }
+        Toggle("Allow Swipe-To-Dismiss", isOn: $style.canSwipeToDismiss)
+          .font(.subheadline)
 
-        SegmentedPicker(title: "Dismissal during taps/pans", value: $style.canDismissDuringUserInteraction) {
-          Text("Enabled").tag(true)
-          Text("Disabled").tag(false)
-        }
+        Toggle("Allow dismissal during taps/pans", isOn: $style.canDismissDuringUserInteraction)
+          .font(.subheadline)
       }
 
       Section("Text Style") {
