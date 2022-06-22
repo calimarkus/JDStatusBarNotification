@@ -109,16 +109,18 @@
 
 #pragma mark - CAAnimationDelegate
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-  JDStatusBarView *topBar = _statusBarView;
-  topBar.transform = CGAffineTransformIdentity;
-  [topBar.layer removeAllAnimations];
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)finished {
+  if (finished) {
+    JDStatusBarView *topBar = _statusBarView;
+    topBar.transform = CGAffineTransformIdentity;
+    [topBar.layer removeAllAnimations];
 
-  if (_animateInCompletionBlock) {
-    JDStatusBarAnimatorCompletion completion = _animateInCompletionBlock;
-    _animateInCompletionBlock = nil;
-    if (completion) {
-      completion();
+    if (_animateInCompletionBlock) {
+      JDStatusBarAnimatorCompletion completion = _animateInCompletionBlock;
+      _animateInCompletionBlock = nil;
+      if (completion) {
+        completion();
+      }
     }
   }
 }
