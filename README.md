@@ -170,12 +170,35 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
 
 ## Changelog
 
+### 2.0.3
+
+New:
+
+- Added rubber-banding effect when panning down on notification (.pill style only)
+- Explicitly customizable ActivityIndicator color
+- Ability to disable Tap-To-Hold behavior
+- Added leftView Y offset (more positioning control)
+
+Fixes:
+
+- Fix broken `.canDismissDuringUserInteraction` - it can now be disabled again.
+- Fix failing animation on presentation calls during ongoing presentation
+- Fix progress bar sometimes not showing up
+
 ### 2.0.2
 
-- New: Prevent dismissal during user interaction (hold or pan), configurable.
-- New: Use pill height as minimum pill width.
-- Breaking change: Remove `.centerWithTextUnlessSubtitleExists`, default to `.centerWithText`.
+New:
+
+- Prevent dismissal during user interaction (hold or pan), configurable.
+- Use pill height as minimum pill width.
+
+Fixes:
+
 - Fix `.canSwipeToDismiss` - it can now be disabled again.
+
+Breaking Changes:
+
+- Remove `.centerWithTextUnlessSubtitleExists`, default to `.centerWithText`.
 
 ### 2.0.1
 
@@ -197,7 +220,7 @@ Big release. Many bugfixes, expanded public API, new features. Modernized outdat
 This is a breaking API release. Existing code using previous versions of this library will require some adjustments.
 Those adjustments should be simple though - mostly new API naming.
 
-New features:
+New:
 
 - A pill shaped layout (original layout available as "full-width" layout)
 - Drag-to-dismiss + general support for user interaction on the notification
