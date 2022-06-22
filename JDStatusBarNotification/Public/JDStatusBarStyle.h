@@ -81,9 +81,13 @@ NS_SWIFT_NAME(StatusBarStyle)
 @interface JDStatusBarStyle : NSObject <NSCopying>
 
 /// The styling of the title label (Defaults: UIFontTextStyleFootnote, color: .gray and adjusts for dark mode)
+///
+/// The title's .textOffsetY affects both the title, the subtitle and the left view. And also the progressBar when using .center positioning.
 @property (nonatomic, strong) JDStatusBarTextStyle *textStyle;
 
 /// The styling of the subtitle label (Defaults: UIFontTextStyleCaption1, color: title color at 66% opacity)
+///
+/// The subtitle's .textOffsetY affects only the subtitle.
 @property (nonatomic, strong) JDStatusBarTextStyle *subtitleStyle;
 
 /// The styling of the background

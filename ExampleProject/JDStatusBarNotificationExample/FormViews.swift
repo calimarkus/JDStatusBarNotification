@@ -3,6 +3,22 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
+struct InfoLabel: View {
+  let text: String
+
+  var body: some View {
+    HStack {
+      Spacer(minLength: 0.0)
+      Text(text)
+        .font(.caption2)
+        .foregroundColor(.secondary)
+        .multilineTextAlignment(.center)
+      Spacer(minLength: 0.0)
+    }.disabled(true)
+  }
+}
+
 @available(iOS 15.0, *)
 struct OptionalColorPicker: View {
   var title: String
@@ -118,6 +134,8 @@ struct FormFactory_Previews: PreviewProvider {
       }
 
       TextFieldStepper(title: "Stepper + Textfield", binding: .constant(23))
+
+      InfoLabel(text: "But let me tell ya, these settings need careful consideration. So better be careful!")
     }
   }
 }

@@ -88,14 +88,7 @@ struct StyleEditorScreen: View {
           }
         #endif
 
-        HStack {
-          Spacer()
-          Text("Keep the notification presented to see any changes live!")
-            .font(.caption2)
-            .foregroundColor(.secondary)
-            .multilineTextAlignment(.center)
-          Spacer()
-        }.disabled(true)
+        InfoLabel(text: "Keep the notification presented to see any changes live!")
       }
 
       Section("State") {
@@ -142,23 +135,23 @@ struct StyleEditorScreen: View {
       Section("Bar Style") {
         OptionalColorPicker(title: "Background Color", color: $style.backgroundColor)
 
-        SegmentedPicker(title: "BarAnimationType", value: $style.animationType) {
-          EnumPickerOptionView(BarAnimationType.bounce)
-          EnumPickerOptionView(BarAnimationType.move)
-          EnumPickerOptionView(BarAnimationType.fade)
-        }
-
-        SegmentedPicker(title: "BarBackgroundType", value: $style.backgroundType) {
+        SegmentedPicker(title: "Background Type", value: $style.backgroundType) {
           EnumPickerOptionView(BarBackgroundType.pill)
           EnumPickerOptionView(BarBackgroundType.fullWidth)
         }
 
         if style.backgroundType != .pill {
-          SegmentedPicker(title: "StatusBarSystemStyle", value: $style.systemStatusBarStyle) {
+          SegmentedPicker(title: "StatusBar System Style", value: $style.systemStatusBarStyle) {
             EnumPickerOptionView(StatusBarSystemStyle.defaultStyle)
             EnumPickerOptionView(StatusBarSystemStyle.lightContent)
             EnumPickerOptionView(StatusBarSystemStyle.darkContent)
           }
+        }
+
+        SegmentedPicker(title: "Animation Type", value: $style.animationType) {
+          EnumPickerOptionView(BarAnimationType.bounce)
+          EnumPickerOptionView(BarAnimationType.move)
+          EnumPickerOptionView(BarAnimationType.fade)
         }
 
         Toggle("Allow Swipe-To-Dismiss", isOn: $style.canSwipeToDismiss)
@@ -174,11 +167,13 @@ struct StyleEditorScreen: View {
           Text("Subtitle").tag(false)
         }
         if editingTitle {
-          TextStyleEditorView(title: "Title", style: style.textStyle, defaultShadowColor: style.backgroundColor) {
+          let info = "The title's \"Offset Y\" affects both the title, the subtitle and the left view. And also the progressBar when using .center positioning."
+          TextStyleEditorView(title: "Title", offsetInfo: info, style: style.textStyle, defaultShadowColor: style.backgroundColor) {
             updateStyleOfPresentedView()
           }
         } else {
-          TextStyleEditorView(title: "Subtitle", style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
+          let info = "The subtitle's \"Offset Y\" affects only the subtitle."
+          TextStyleEditorView(title: "Subtitle", offsetInfo: info, style: style.subtitleStyle, defaultShadowColor: style.backgroundColor) {
             updateStyleOfPresentedView()
           }
         }
@@ -206,23 +201,16 @@ struct StyleEditorScreen: View {
       }
 
       Section("Left View Style") {
-        TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
-
-        CGPointStepper(title: "Offset", point: $style.leftViewOffset)
-
         SegmentedPicker(title: "Alignment", value: $style.leftViewAlignment) {
           EnumPickerOptionView(BarLeftViewAlignment.left)
           EnumPickerOptionView(BarLeftViewAlignment.centerWithText)
         }
 
-        HStack {
-          Spacer()
-          Text("The activity indicator is also considered a \"left view\" and thus also affected by these settings.")
-            .font(.caption2)
-            .foregroundColor(.secondary)
-            .multilineTextAlignment(.center)
-          Spacer()
-        }.disabled(true)
+        TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
+
+        CGPointStepper(title: "Offset", point: $style.leftViewOffset)
+
+        InfoLabel(text: "The activity indicator is also considered a \"left view\" and thus also affected by these settings.")
       }
 
       Section("Progress Bar Style") {

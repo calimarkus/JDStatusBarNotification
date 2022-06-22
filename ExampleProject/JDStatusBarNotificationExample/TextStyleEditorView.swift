@@ -6,6 +6,7 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct TextStyleEditorView: View {
   let title: String
+  let offsetInfo: String
   @ObservedObject var style: CustomTextStyle
   let defaultShadowColor: UIColor?
   let onChange: () -> Void
@@ -15,6 +16,8 @@ struct TextStyleEditorView: View {
       .onChange(of: style) { _ in
         onChange()
       }
+
+    OptionalColorPicker(title: "Text Color", color: $style.textColor)
 
     NavigationLink(
       destination: {
@@ -38,7 +41,6 @@ struct TextStyleEditorView: View {
     }), range: 5 ... 36)
 
     TextFieldStepper(title: "Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
-    OptionalColorPicker(title: "Color", color: $style.textColor)
     OptionalColorToggle(title: "Shadow", color: $style.shadowColor, defaultColor: defaultShadowColor)
 
     if let _ = style.shadowColor {
@@ -46,6 +48,8 @@ struct TextStyleEditorView: View {
         .font(.caption)
       CGPointStepper(title: "  Shadow Offset", point: $style.shadowOffset)
     }
+
+    InfoLabel(text: offsetInfo)
   }
 }
 
@@ -55,6 +59,7 @@ struct TextStyleEditorView_Previews: PreviewProvider {
     Form {
       TextStyleEditorView(
         title: "Title",
+        offsetInfo: "Let me explain to you how to use this offset value. It might have some unexpected side effects!?",
         style: CustomTextStyle(StatusBarStyle().textStyle),
         defaultShadowColor: nil
       ) {}
