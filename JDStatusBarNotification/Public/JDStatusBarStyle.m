@@ -48,16 +48,24 @@
   self = [super init];
   if (self) {
     _spacing = 5.0;
-    _offsetX = 0.0;
+    _offset = CGSizeZero;
     _alignment = JDStatusBarLeftViewAlignmentCenterWithText;
   }
   return self;
 }
 
+- (CGFloat)offsetX {
+  return _offset.width;
+}
+
+- (void)setOffsetX:(CGFloat)offsetX {
+  _offset.width = offsetX;
+}
+
 - (instancetype)copyWithZone:(NSZone *)zone {
   JDStatusBarLeftViewStyle *style = [[[self class] allocWithZone:zone] init];
   style.spacing = _spacing;
-  style.offsetX = _offsetX;
+  style.offset = _offset;
   style.alignment = _alignment;
   return style;
 }

@@ -465,7 +465,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       }
     }
 
-    leftViewFrame = CGRectOffset(leftViewFrame, _style.leftViewStyle.offsetX, 0);
+    leftViewFrame = CGRectOffset(leftViewFrame, _style.leftViewStyle.offset.width, _style.leftViewStyle.offset.height);
     _leftView.frame = leftViewFrame;
 
     // title adjustments

@@ -207,7 +207,8 @@ struct StyleEditorScreen: View {
 
       Section("Left View Style") {
         TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
-        TextFieldStepper(title: "Offset X", binding: $style.leftViewOffsetX, range: -99...99)
+
+        CGSizeStepper(title: "Offset", size: $style.leftViewOffset)
 
         SegmentedPicker(title: "Alignment", value: $style.leftViewAlignment) {
           EnumPickerOptionView(BarLeftViewAlignment.left)

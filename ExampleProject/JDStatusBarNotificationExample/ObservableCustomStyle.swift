@@ -71,7 +71,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var canDismissDuringUserInteraction: Bool
 
   @Published var leftViewSpacing: Double
-  @Published var leftViewOffsetX: Double
+  @Published var leftViewOffset: CGSize
   @Published var leftViewAlignment: BarLeftViewAlignment
 
   @Published var pbBarColor: UIColor?
@@ -108,7 +108,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
 
     // left view
     leftViewSpacing = defaultStyle.leftViewStyle.spacing
-    leftViewOffsetX = defaultStyle.leftViewStyle.offsetX
+    leftViewOffset = defaultStyle.leftViewStyle.offset
     leftViewAlignment = defaultStyle.leftViewStyle.alignment
 
     // progress bar
@@ -155,7 +155,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.canDismissDuringUserInteraction = canDismissDuringUserInteraction
 
     style.leftViewStyle.spacing = leftViewSpacing
-    style.leftViewStyle.offsetX = leftViewOffsetX
+    style.leftViewStyle.offset = leftViewOffset
     style.leftViewStyle.alignment = leftViewAlignment
 
     style.progressBarStyle.barColor = pbBarColor
@@ -209,7 +209,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.canDismissDuringUserInteraction = \(canDismissDuringUserInteraction)
 
     style.leftViewStyle.spacing = \(leftViewSpacing)
-    style.leftViewStyle.offsetX = \(leftViewOffsetX)
+    style.leftViewStyle.offset = CGSize(width: \(leftViewOffset.width), height: \(leftViewOffset.height))
     style.leftViewStyle.alignment = \(leftViewAlignment.stringValue)
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
