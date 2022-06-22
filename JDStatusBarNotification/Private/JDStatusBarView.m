@@ -308,8 +308,9 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   _progressView.backgroundColor = style.progressBarStyle.barColor;
   _progressView.layer.cornerRadius = style.progressBarStyle.cornerRadius;
 
-  // enable/disable gesture recognizer
+  // enable/disable gesture recognizers
   _panGestureRecognizer.enabled = style.canSwipeToDismiss;
+  _longPressGestureRecognizer.enabled = style.canTapToHold;
 
   [self resetSubviews];
   [self setNeedsLayout];

@@ -105,14 +105,23 @@ NS_SWIFT_NAME(StatusBarStyle)
 /// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored. The default is .defaultStyle.
 @property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
 
-/// Defines if the bar can be dismissed by the user or not (by swiping up). Default is true.
+/// Defines if the bar can be dismissed by the user swiping up. Default is true.
+///
+/// Under the hood this enables/disables the internal PanGestureRecognizer.
 @property (nonatomic, assign) BOOL canSwipeToDismiss;
 
-/// Defines if the bar can be dismissed while the user touches or pans the view.
+/// Defines if the bar can be touched to prevent a dismissal until the tap is released. Default is true.
 ///
-/// The default is NO, meaning that a banner stays presented as long as a touch is active.
-/// Once the touch is released, the view will be dismised if a dismiss call was made.
-/// A passed in dismiss completion block will still be executed, once the dismissal happens.
+/// Both .canTapToHold and .canDismissDuringUserInteraction has to be true to have tap-to-hold working.
+/// You might want to disable .canTapToHold, if you are utilizing a custom view that wants to handle touches itself (e.g. a button).
+/// Under the hood this enables/disables the internal LongPressGestureRecognizer.
+@property (nonatomic, assign) BOOL canTapToHold;
+
+/// Defines if the bar is allowed to be dismissed while the user touches or pans the view.
+///
+/// The default is false, meaning that a banner stays presented as long as a touch / pan is active.
+/// Once the touch is released, the view will be dismised if a dismiss call was made during the interaction.
+/// Any passed-in dismiss completion block will still be executed, once the actual dismissal happened.
 @property (nonatomic, assign) BOOL canDismissDuringUserInteraction;
 
 @end

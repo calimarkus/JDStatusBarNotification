@@ -205,6 +205,7 @@
     _animationType = JDStatusBarAnimationTypeMove;
     _systemStatusBarStyle = JDStatusBarSystemStyleDefaultStyle;
     _canSwipeToDismiss = YES;
+    _canTapToHold = YES;
     _canDismissDuringUserInteraction = NO;
   }
   return self;
@@ -221,6 +222,7 @@
   style.animationType = self.animationType;
   style.systemStatusBarStyle = self.systemStatusBarStyle;
   style.canSwipeToDismiss = self.canSwipeToDismiss;
+  style.canTapToHold = self.canTapToHold;
   style.canDismissDuringUserInteraction = self.canDismissDuringUserInteraction;
 
   return style;

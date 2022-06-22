@@ -200,9 +200,13 @@ NS_SWIFT_NAME(NotificationPresenter)
 #pragma mark - Custom View Presentation
 
 /**
- *  Present a notification using a custom subview. It will be layouted correctly according to the
- *  selected style & the current device state (rotation, status bar visibility, etc.). The background
- *  will still be styled & layouted according to the provided style.
+ *  Present a notification using a custom subview.
+ *
+ *  It will be layouted correctly according to the selected style & the current device
+ *  state (rotation, status bar visibility, etc.). The background will still be styled & layouted
+ *  according to the provided style. If your custom view requires custom touch handling,
+ *  make sure to set style.canTapToHold to false. If you don't do this, your custom view won't
+ *  receive any touches, as the internal gestureRecognizer would receive them.
  *
  *  @param customView A custom UIView to display as notification
  *  @param styleName The name of the style. You can use previously added custom styles. If this is nil, or the no style can be found,, the default style will be used.

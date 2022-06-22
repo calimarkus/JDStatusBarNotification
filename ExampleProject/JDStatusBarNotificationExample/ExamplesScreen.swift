@@ -190,6 +190,7 @@ struct ExamplesScreen: View {
           // present
           let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
+            style.canTapToHold = false // this ensure the button can receive touches
             return style
           }
           NotificationPresenter.shared().present(customView: button, style: styleName)
