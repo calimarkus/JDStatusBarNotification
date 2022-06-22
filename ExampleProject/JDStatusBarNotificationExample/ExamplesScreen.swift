@@ -199,8 +199,6 @@ struct ExamplesScreen: View {
         cell(title: "Present with icon", subtitle: "A custom left view") {
           // create icon
           let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
-          image.tintColor = UIColor.orange
-          image.sizeToFit()
 
           // present
           ExampleStyle.iconLeftView.register(for: backgroundType)

@@ -204,6 +204,8 @@ struct StyleEditorScreen: View {
       }
 
       Section("Left View Style") {
+        OptionalColorPicker(title: "Tint Color", color: $style.leftViewTintColor)
+
         SegmentedPicker(title: "Alignment", value: $style.leftViewAlignment) {
           EnumPickerOptionView(BarLeftViewAlignment.left)
           EnumPickerOptionView(BarLeftViewAlignment.centerWithText)

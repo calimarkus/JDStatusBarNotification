@@ -65,6 +65,7 @@
   if (self) {
     _spacing = 5.0;
     _offset = CGPointZero;
+    _tintColor = nil;
     _alignment = JDStatusBarLeftViewAlignmentCenterWithText;
   }
   return self;
@@ -82,6 +83,7 @@
   JDStatusBarLeftViewStyle *style = [[[self class] allocWithZone:zone] init];
   style.spacing = _spacing;
   style.offset = _offset;
+  style.tintColor = _tintColor;
   style.alignment = _alignment;
   return style;
 }

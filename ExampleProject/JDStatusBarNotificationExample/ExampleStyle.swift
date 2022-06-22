@@ -122,6 +122,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         style.leftViewStyle.alignment = .left
         style.leftViewStyle.spacing = 10.0
         style.leftViewStyle.offset.x = -8.0
+        style.leftViewStyle.tintColor = UIColor.orange
         style.textStyle.textColor = UIColor.white
         style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
         style.textStyle.textOffsetY = 1

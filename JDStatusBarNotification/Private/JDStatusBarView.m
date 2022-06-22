@@ -121,7 +121,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
     _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
     [_activityIndicatorView sizeToFit];
-    _activityIndicatorView.color = _style.textStyle.textColor;
+    _activityIndicatorView.color = _style.leftViewStyle.tintColor ?: _style.textStyle.textColor;
     _activityIndicatorView.tag = kExpectedSubviewTag;
   }
 }
@@ -259,6 +259,9 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
 - (void)setLeftView:(UIView *)leftView {
   [_leftView removeFromSuperview];
   _leftView = leftView;
+  if (_style.leftViewStyle.tintColor) {
+    _leftView.tintColor = _style.leftViewStyle.tintColor;
+  }
   [_contentView addSubview:leftView];
   [self setNeedsLayout];
 
@@ -302,7 +305,10 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   applyTextStyleForLabel(style.subtitleStyle, _subtitleLabel);
 
   // activity indicator
-  _activityIndicatorView.color = style.textStyle.textColor;
+  _activityIndicatorView.color = _style.leftViewStyle.tintColor ?: _style.textStyle.textColor;
+  if (_style.leftViewStyle.tintColor) {
+    _leftView.tintColor = _style.leftViewStyle.tintColor;
+  }
 
   // progress view
   _progressView.backgroundColor = style.progressBarStyle.barColor;

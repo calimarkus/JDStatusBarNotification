@@ -73,6 +73,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
 
   @Published var leftViewSpacing: Double
   @Published var leftViewOffset: CGPoint
+  @Published var leftViewTintColor: UIColor?
   @Published var leftViewAlignment: BarLeftViewAlignment
 
   @Published var pbBarColor: UIColor?
@@ -111,6 +112,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     // left view
     leftViewSpacing = defaultStyle.leftViewStyle.spacing
     leftViewOffset = defaultStyle.leftViewStyle.offset
+    leftViewTintColor = defaultStyle.leftViewStyle.tintColor
     leftViewAlignment = defaultStyle.leftViewStyle.alignment
 
     // progress bar
@@ -159,6 +161,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
 
     style.leftViewStyle.spacing = leftViewSpacing
     style.leftViewStyle.offset = leftViewOffset
+    style.leftViewStyle.tintColor = leftViewTintColor
     style.leftViewStyle.alignment = leftViewAlignment
 
     style.progressBarStyle.barColor = pbBarColor
@@ -214,6 +217,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
 
     style.leftViewStyle.spacing = \(leftViewSpacing)
     style.leftViewStyle.offset = \(leftViewOffset.initString)
+    style.leftViewStyle.tintColor = \(leftViewTintColor?.initString ?? "nil")
     style.leftViewStyle.alignment = \(leftViewAlignment.stringValue)
 
     style.progressBarStyle.barHeight = \(pbBarHeight)

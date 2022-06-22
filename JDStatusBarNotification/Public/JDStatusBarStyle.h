@@ -82,6 +82,7 @@ NS_SWIFT_NAME(StatusBarStyle)
 
 /// The styling of the title label (Defaults: UIFontTextStyleFootnote, color: .gray and adjusts for dark mode)
 ///
+/// The title's .textColor is also used for the activity indicator, unless an explicit leftViewStyle.tintColor is set.
 /// The title's .textOffsetY affects both the title, the subtitle and the left view. And also the progressBar when using .center positioning.
 @property (nonatomic, strong) JDStatusBarTextStyle *textStyle;
 
@@ -140,6 +141,12 @@ NS_SWIFT_NAME(NotificationLeftViewStyle)
 
 /// An optional offset to adjust the left views position. Default is CGPointZero.
 @property (nonatomic, assign) CGPoint offset;
+
+/// Sets the tint color of the left view. Default is nil.
+///
+/// This applies to the activity indicator, or a custom left view. The activity indicator
+/// defaults to the title text color, if no tintColor is specified.
+@property (nonatomic, strong, nullable) UIColor *tintColor;
 
 /// The alignment of the left view. The default is .centerWithText
 /// If no text is set, the left view is always centered.

@@ -316,8 +316,10 @@ NS_SWIFT_NAME(NotificationPresenter)
 
 /**
  *  Displays an activity indicator as the notifications left view.
- *  It will have the same color as the text color of the current style.
- *  The layout is defined by the left view style.
+ *
+ *  It will have the same color as the text color of the current style by default.
+ *  The color can also be set explicitly by using the leftViewStyle.tintColor.
+ *  The layout is also defined by the leftViewStyle.
  *
  *  @param show  Show or hide the activity indicator.
  */
