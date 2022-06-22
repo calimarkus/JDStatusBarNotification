@@ -157,6 +157,9 @@ struct StyleEditorScreen: View {
         Toggle("Allow Swipe-To-Dismiss", isOn: $style.canSwipeToDismiss)
           .font(.subheadline)
 
+        Toggle("Allow Tap-To-Hold", isOn: $style.canTapToHold)
+          .font(.subheadline)
+
         Toggle("Allow dismissal during taps/pans", isOn: $style.canDismissDuringUserInteraction)
           .font(.subheadline)
       }

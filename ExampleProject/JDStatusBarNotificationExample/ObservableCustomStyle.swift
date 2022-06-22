@@ -68,6 +68,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var animationType: BarAnimationType
   @Published var systemStatusBarStyle: StatusBarSystemStyle
   @Published var canSwipeToDismiss: Bool
+  @Published var canTapToHold: Bool
   @Published var canDismissDuringUserInteraction: Bool
 
   @Published var leftViewSpacing: Double
@@ -104,6 +105,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     animationType = .bounce
     systemStatusBarStyle = .darkContent
     canSwipeToDismiss = defaultStyle.canSwipeToDismiss
+    canTapToHold = defaultStyle.canTapToHold
     canDismissDuringUserInteraction = defaultStyle.canDismissDuringUserInteraction
 
     // left view
@@ -152,6 +154,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
     style.canSwipeToDismiss = canSwipeToDismiss
+    style.canTapToHold = canTapToHold
     style.canDismissDuringUserInteraction = canDismissDuringUserInteraction
 
     style.leftViewStyle.spacing = leftViewSpacing
@@ -206,6 +209,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     \nstyle.animationType = \(animationType.stringValue)
     style.systemStatusBarStyle = \(systemStatusBarStyle.stringValue)
     style.canSwipeToDismiss = \(canSwipeToDismiss)
+    style.canTapToHold = \(canTapToHold)
     style.canDismissDuringUserInteraction = \(canDismissDuringUserInteraction)
 
     style.leftViewStyle.spacing = \(leftViewSpacing)
