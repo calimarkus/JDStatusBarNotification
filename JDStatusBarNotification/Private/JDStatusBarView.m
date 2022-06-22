@@ -395,17 +395,22 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  // content view
+  // content & pill view
   switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeFullWidth:
+    case JDStatusBarBackgroundTypeFullWidth: {
       _contentView.frame = contentRectForWindow(self);
-      [self resetPillViewLayerAndMasks];
       break;
-    case JDStatusBarBackgroundTypePill:
+    }
+    case JDStatusBarBackgroundTypePill: {
       _contentView.frame = [self pillContentRectForContentRect:contentRectForWindow(self)];
       _pillView.frame = _contentView.bounds;
-      [self stylePillViewLayerAndMasksForNewBounds];
+
+      // setup rounded corners (not using a mask layer, so that we can use shadows on this view)
+      _pillView.layer.cornerRadius = round(_pillView.frame.size.height / 2.0);
+      _pillView.layer.cornerCurve = kCACornerCurveContinuous;
+      _pillView.layer.allowsEdgeAntialiasing = YES;
       break;
+    }
   }
 
   // custom subview always matches full content view
@@ -509,25 +514,27 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   // update text alignment
   _titleLabel.textAlignment = textAlignment;
   _subtitleLabel.textAlignment = textAlignment;
+
+  // update masks (after layout is done)
+  [self setupLayerMasksForPillStyleIfNeeded];
 }
 
-- (void)resetPillViewLayerAndMasks {
-  _progressView.layer.mask = nil;
-  _customSubview.layer.mask = nil;
-}
-
-- (void)stylePillViewLayerAndMasksForNewBounds {
-  // setup rounded corners (not using a mask layer, so that we can use shadows on this view)
-  _pillView.layer.cornerRadius = round(_pillView.frame.size.height / 2.0);
-  _pillView.layer.cornerCurve = kCACornerCurveContinuous;
-  _pillView.layer.allowsEdgeAntialiasing = YES;
-
-  // mask progress to pill size & shape
-  if (_progressView) {
-    _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:_pillView.frame fromView:_pillView.superview]);
-  }
-  if (_customSubview) {
-    _customSubview.layer.mask = roundRectMaskForRectAndRadius([_customSubview convertRect:_pillView.frame fromView:_pillView.superview]);
+- (void)setupLayerMasksForPillStyleIfNeeded {
+  // mask progress view & custom subview to pill size & shape
+  switch (_style.backgroundStyle.backgroundType) {
+    case JDStatusBarBackgroundTypeFullWidth: {
+      _progressView.layer.mask = nil;
+      _customSubview.layer.mask = nil;
+      break;
+    }
+    case JDStatusBarBackgroundTypePill: {
+      if (_progressView) {
+        _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:_pillView.frame fromView:_pillView.superview]);
+      }
+      if (_customSubview) {
+        _customSubview.layer.mask = roundRectMaskForRectAndRadius([_customSubview convertRect:_pillView.frame fromView:_pillView.superview]);
+      }
+    }
   }
 }
 
