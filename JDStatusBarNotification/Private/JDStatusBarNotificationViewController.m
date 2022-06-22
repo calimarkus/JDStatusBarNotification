@@ -77,7 +77,7 @@
 
 #pragma mark - Pan gesture
 
-static BOOL rubberBandingAllowedForBackgroundType(JDStatusBarBackgroundType type) {
+static BOOL canRubberBandForBackgroundType(JDStatusBarBackgroundType type) {
   switch (type) {
     case JDStatusBarBackgroundTypeFullWidth:
       return NO;
@@ -100,18 +100,16 @@ static BOOL rubberBandingAllowedForBackgroundType(JDStatusBarBackgroundType type
         CGPoint translation = [recognizer translationInView:_statusBarView];
         _panMaxY = MAX(_panMaxY, translation.y);
 
-        if (rubberBandingAllowedForBackgroundType(_statusBarView.style.backgroundStyle.backgroundType)) {
-          // rubber banding downwards + immediate upwards movement even after rubber banding
-          CGFloat limit = 4.0;
-          CGFloat rubberBanding = _panMaxY > 0 ? limit * (1 + log10(_panMaxY/limit)) : 0.0;
-          CGFloat yPos = (translation.y <= _panMaxY
-                          ? translation.y - _panMaxY + rubberBanding
-                          : rubberBanding);
-          _statusBarView.transform = CGAffineTransformMakeTranslation(0, yPos);
-        } else {
-          // only allow upwards movement
-          _statusBarView.transform = CGAffineTransformMakeTranslation(0, MIN(0.0, translation.y));
-        }
+        // rubber banding downwards + immediate upwards movement even after rubber banding
+        BOOL canRubberBand = canRubberBandForBackgroundType(_statusBarView.style.backgroundStyle.backgroundType);
+        CGFloat rubberBandingLimit = 4.0;
+        CGFloat rubberBanding = (_panMaxY > 0 && canRubberBand
+                                 ? rubberBandingLimit * (1 + log10(_panMaxY/rubberBandingLimit))
+                                 : 0.0);
+        CGFloat yPos = (translation.y <= _panMaxY
+                        ? translation.y - _panMaxY + rubberBanding
+                        : rubberBanding);
+        _statusBarView.transform = CGAffineTransformMakeTranslation(0, yPos);
         break;
       }
       case UIGestureRecognizerStateEnded:
