@@ -7,15 +7,15 @@ class CustomTextStyle: ObservableObject, Equatable {
   @Published var font: UIFont
   @Published var textColor: UIColor?
   @Published var textOffsetY: Double
-  @Published var textShadowColor: UIColor?
-  @Published var textShadowOffset: CGSize
+  @Published var shadowColor: UIColor?
+  @Published var shadowOffset: CGPoint
 
   init(_ textStyle: NotificationTextStyle) {
     font = textStyle.font
     textColor = textStyle.textColor
     textOffsetY = textStyle.textOffsetY
-    textShadowColor = textStyle.textShadowColor
-    textShadowOffset = textStyle.textShadowOffset
+    shadowColor = textStyle.shadowColor
+    shadowOffset = textStyle.shadowOffset
   }
 
   static func == (lhs: CustomTextStyle, rhs: CustomTextStyle) -> Bool {
@@ -27,23 +27,23 @@ class CustomTextStyle: ObservableObject, Equatable {
     style.textColor = textColor
     style.font = font
     style.textOffsetY = textOffsetY
-    style.textShadowColor = textShadowColor
-    style.textShadowOffset = textShadowOffset
+    style.shadowColor = shadowColor
+    style.shadowOffset = shadowOffset
     return style
   }
 
   @SimpleStringBuilder
   func styleConfigurationString(propertyName: String) -> String {
     """
-    style.\(propertyName).textColor = \(textColor?.readableRGBAColorString ?? "nil")
-    style.\(propertyName).font = UIFont(name: \"\(font.familyName)\", size: \(font.pointSize))!
+    style.\(propertyName).textColor = \(textColor?.initString ?? "nil")
+    style.\(propertyName).font = \(font.initString)
     style.\(propertyName).textOffsetY = \(textOffsetY)
     """
 
-    if let textShadowColor = textShadowColor {
+    if let textShadowColor = shadowColor {
       """
-      style.\(propertyName).textShadowColor = \(textShadowColor.readableRGBAColorString)
-      style.\(propertyName).textShadowOffset = CGSize(width: \(textShadowOffset.width), height: \(textShadowOffset.height))
+      style.\(propertyName).shadowColor = \(textShadowColor.initString)
+      style.\(propertyName).shadowOffset = \(shadowOffset.initString)
       """
     }
   }
@@ -63,7 +63,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var pillBorderWidth: Double
   @Published var pillShadowColor: UIColor?
   @Published var pillShadowRadius: Double
-  @Published var pillShadowOffset: CGSize
+  @Published var pillShadowOffset: CGPoint
 
   @Published var animationType: BarAnimationType
   @Published var systemStatusBarStyle: StatusBarSystemStyle
@@ -71,7 +71,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var canDismissDuringUserInteraction: Bool
 
   @Published var leftViewSpacing: Double
-  @Published var leftViewOffset: CGSize
+  @Published var leftViewOffset: CGPoint
   @Published var leftViewAlignment: BarLeftViewAlignment
 
   @Published var pbBarColor: UIColor?
@@ -98,7 +98,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     pillBorderWidth = defaultStyle.backgroundStyle.pillStyle.borderWidth
     pillShadowColor = defaultStyle.backgroundStyle.pillStyle.shadowColor
     pillShadowRadius = defaultStyle.backgroundStyle.pillStyle.shadowRadius
-    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
+    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffsetXY
 
     // bar
     animationType = .bounce
@@ -147,7 +147,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.pillStyle.borderWidth = pillBorderWidth
     style.backgroundStyle.pillStyle.shadowColor = pillShadowColor
     style.backgroundStyle.pillStyle.shadowRadius = pillShadowRadius
-    style.backgroundStyle.pillStyle.shadowOffset = pillShadowOffset
+    style.backgroundStyle.pillStyle.shadowOffsetXY = pillShadowOffset
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
@@ -175,7 +175,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     subtitleStyle.styleConfigurationString(propertyName: "subtitleStyle")
 
     """
-    \nstyle.backgroundStyle.backgroundColor = \(backgroundColor?.readableRGBAColorString ?? "nil")
+    \nstyle.backgroundStyle.backgroundColor = \(backgroundColor?.initString ?? "nil")
     style.backgroundStyle.backgroundType = \(backgroundType.stringValue)
     """
 
@@ -188,16 +188,16 @@ class ObservableCustomStyle: ObservableObject, Equatable {
 
       if let pillBorderColor = pillBorderColor {
         """
-        style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor.readableRGBAColorString)
+        style.backgroundStyle.pillStyle.borderColor = \(pillBorderColor.initString)
         style.backgroundStyle.pillStyle.borderWidth = \(pillBorderWidth)
         """
       }
 
       if let pillShadowColor = pillShadowColor {
         """
-        style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor.readableRGBAColorString)
+        style.backgroundStyle.pillStyle.shadowColor = \(pillShadowColor.initString)
         style.backgroundStyle.pillStyle.shadowRadius = \(pillShadowRadius)
-        style.backgroundStyle.pillStyle.shadowOffset = CGSize(width: \(pillShadowOffset.width), height: \(pillShadowOffset.height))
+        style.backgroundStyle.pillStyle.shadowOffsetXY = \(pillShadowOffset.initString)
         """
       }
     }
@@ -209,12 +209,12 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.canDismissDuringUserInteraction = \(canDismissDuringUserInteraction)
 
     style.leftViewStyle.spacing = \(leftViewSpacing)
-    style.leftViewStyle.offset = CGSize(width: \(leftViewOffset.width), height: \(leftViewOffset.height))
+    style.leftViewStyle.offset = \(leftViewOffset.initString)
     style.leftViewStyle.alignment = \(leftViewAlignment.stringValue)
 
     style.progressBarStyle.barHeight = \(pbBarHeight)
     style.progressBarStyle.position = \(pbPosition.stringValue)
-    style.progressBarStyle.barColor = \(pbBarColor?.readableRGBAColorString ?? "nil")
+    style.progressBarStyle.barColor = \(pbBarColor?.initString ?? "nil")
     style.progressBarStyle.horizontalInsets = \(pbHorizontalInsets)
     style.progressBarStyle.cornerRadius = \(pbCornerRadius)
     style.progressBarStyle.offsetY = \(pbBarOffset)
@@ -234,7 +234,7 @@ enum SimpleStringBuilder {
 }
 
 extension UIColor {
-  var readableRGBAColorString: String {
+  var initString: String {
     var red: CGFloat = 0
     var green: CGFloat = 0
     var blue: CGFloat = 0
@@ -245,5 +245,17 @@ extension UIColor {
     } else {
       return "??"
     }
+  }
+}
+
+extension CGPoint {
+  var initString: String {
+    return "CGPoint(x: \(self.x), y: \(self.y))"
+  }
+}
+
+extension UIFont {
+  var initString: String {
+    return "UIFont(name: \"\(self.familyName)\", size: \(self.pointSize))!"
   }
 }

@@ -103,7 +103,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         style.backgroundStyle.pillStyle.topSpacing = 14.0
         style.backgroundStyle.pillStyle.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.33) // "black"
         style.backgroundStyle.pillStyle.shadowRadius = 4.0
-        style.backgroundStyle.pillStyle.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        style.backgroundStyle.pillStyle.shadowOffsetXY = CGPoint(x: 0.0, y: 2.0)
 
         style.progressBarStyle.barHeight = 4.0
         style.progressBarStyle.position = .bottom
@@ -121,7 +121,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         style.systemStatusBarStyle = .lightContent
         style.leftViewStyle.alignment = .left
         style.leftViewStyle.spacing = 10.0
-        style.leftViewStyle.offset.width = -8.0
+        style.leftViewStyle.offset.x = -8.0
         style.textStyle.textColor = UIColor.white
         style.textStyle.font = UIFont.boldSystemFont(ofSize: 13.0)
         style.textStyle.textOffsetY = 1

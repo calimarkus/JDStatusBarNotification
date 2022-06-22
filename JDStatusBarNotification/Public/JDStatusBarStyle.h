@@ -125,8 +125,8 @@ NS_SWIFT_NAME(NotificationLeftViewStyle)
 /// An optional offset to adjust the left views x position. Default 0.0.
 @property (nonatomic, assign) CGFloat offsetX __deprecated_msg("deprecated, use .offset.width instead");
 
-/// An optional offset to adjust the left views position. Default is CGSizeZero.
-@property (nonatomic, assign) CGSize offset;
+/// An optional offset to adjust the left views position. Default is CGPointZero.
+@property (nonatomic, assign) CGPoint offset;
 
 /// The alignment of the left view. The default is .centerWithText
 /// If no text is set, the left view is always centered.
@@ -147,10 +147,16 @@ NS_SWIFT_NAME(NotificationTextStyle)
 @property (nonatomic, strong) UIFont *font;
 
 /// The text shadow color, the default is nil, meaning no shadow.
-@property (nonatomic, strong, nullable) UIColor *textShadowColor;
+@property (nonatomic, strong, nullable) UIColor *textShadowColor __deprecated_msg("deprecated, use .shadowColor instead");
 
 /// The text shadow offset of the notification label. Default is (1, 2)
-@property (nonatomic, assign) CGSize textShadowOffset;
+@property (nonatomic, assign) CGSize textShadowOffset __deprecated_msg("deprecated, use .shadowOffset instead");
+
+/// The text shadow color, the default is nil, meaning no shadow.
+@property (nonatomic, strong, nullable) UIColor *shadowColor;
+
+/// The text shadow offset of the notification label. Default is (1, 2)
+@property (nonatomic, assign) CGPoint shadowOffset;
 
 /// Offsets the text label on the y-axis. Default is 0.0.
 @property (nonatomic, assign) CGFloat textOffsetY;
@@ -186,7 +192,10 @@ NS_SWIFT_NAME(BarPillStyle)
 @property (nonatomic, assign) CGFloat shadowRadius;
 
 /// The shadow offset for the pill shadow. The default is (0, 2).
-@property (nonatomic, assign) CGSize shadowOffset;
+@property (nonatomic, assign) CGSize shadowOffset __deprecated_msg("deprecated, use .shadowOffsetXY instead");
+
+/// The shadow offset for the pill shadow. The default is (0, 2).
+@property (nonatomic, assign) CGPoint shadowOffsetXY;
 
 @end
 

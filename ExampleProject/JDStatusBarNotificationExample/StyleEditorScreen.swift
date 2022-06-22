@@ -200,7 +200,7 @@ struct StyleEditorScreen: View {
           if let _ = style.pillShadowColor {
             OptionalColorPicker(title: "  Shadow Color", color: $style.pillShadowColor)
             TextFieldStepper(title: "  Shadow Radius", binding: $style.pillShadowRadius, range: 0...99)
-            CGSizeStepper(title: "  Shadow Offset", size: $style.pillShadowOffset)
+            CGPointStepper(title: "  Shadow Offset", point: $style.pillShadowOffset)
           }
         }
       }
@@ -208,7 +208,7 @@ struct StyleEditorScreen: View {
       Section("Left View Style") {
         TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
 
-        CGSizeStepper(title: "Offset", size: $style.leftViewOffset)
+        CGPointStepper(title: "Offset", point: $style.leftViewOffset)
 
         SegmentedPicker(title: "Alignment", value: $style.leftViewAlignment) {
           EnumPickerOptionView(BarLeftViewAlignment.left)

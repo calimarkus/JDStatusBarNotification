@@ -23,8 +23,8 @@
     }];
 
     _font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    _textShadowColor = nil;
-    _textShadowOffset = CGSizeMake(1.0, 2.0);
+    _shadowColor = nil;
+    _shadowOffset = CGPointMake(1.0, 2.0);
     _textOffsetY = 0.0;
   }
   return self;
@@ -34,10 +34,26 @@
   JDStatusBarTextStyle *style = [[[self class] allocWithZone:zone] init];
   style.textColor = self.textColor;
   style.font = self.font;
-  style.textShadowColor = self.textShadowColor;
-  style.textShadowOffset = self.textShadowOffset;
+  style.shadowColor = self.shadowColor;
+  style.shadowOffset = self.shadowOffset;
   style.textOffsetY = self.textOffsetY;
   return style;
+}
+
+- (CGSize)textShadowOffset {
+  return CGSizeMake(_shadowOffset.x, _shadowOffset.y);
+}
+
+- (void)setTextShadowOffset:(CGSize)textShadowOffset {
+  _shadowOffset = CGPointMake(textShadowOffset.width, textShadowOffset.height);
+}
+
+- (UIColor *)textShadowColor {
+  return _shadowColor;
+}
+
+- (void)setTextShadowColor:(UIColor *)textShadowColor {
+  _shadowColor = textShadowColor;
 }
 
 @end
@@ -48,18 +64,18 @@
   self = [super init];
   if (self) {
     _spacing = 5.0;
-    _offset = CGSizeZero;
+    _offset = CGPointZero;
     _alignment = JDStatusBarLeftViewAlignmentCenterWithText;
   }
   return self;
 }
 
 - (CGFloat)offsetX {
-  return _offset.width;
+  return _offset.x;
 }
 
 - (void)setOffsetX:(CGFloat)offsetX {
-  _offset.width = offsetX;
+  _offset.x = offsetX;
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
@@ -84,7 +100,7 @@
     _borderWidth = 2.0;
     _shadowColor = nil;
     _shadowRadius = 4.0;
-    _shadowOffset = CGSizeMake(0.0, 2.0);
+    _shadowOffsetXY = CGPointMake(0.0, 2.0);
   }
   return self;
 }
@@ -98,8 +114,16 @@
   style.borderWidth = self.borderWidth;
   style.shadowColor = self.shadowColor;
   style.shadowRadius = self.shadowRadius;
-  style.shadowOffset = self.shadowOffset;
+  style.shadowOffsetXY = self.shadowOffsetXY;
   return style;
+}
+
+- (CGSize)shadowOffset {
+  return CGSizeMake(_shadowOffsetXY.x, _shadowOffsetXY.y);
+}
+
+- (void)setShadowOffset:(CGSize)shadowOffset {
+  _shadowOffsetXY = CGPointMake(shadowOffset.width, shadowOffset.height);
 }
 
 @end

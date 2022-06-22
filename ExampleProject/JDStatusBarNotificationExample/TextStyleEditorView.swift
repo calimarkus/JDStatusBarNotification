@@ -39,12 +39,12 @@ struct TextStyleEditorView: View {
 
     TextFieldStepper(title: "Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
     OptionalColorPicker(title: "Color", color: $style.textColor)
-    OptionalColorToggle(title: "Shadow", color: $style.textShadowColor, defaultColor: defaultShadowColor)
+    OptionalColorToggle(title: "Shadow", color: $style.shadowColor, defaultColor: defaultShadowColor)
 
-    if let _ = style.textShadowColor {
-      OptionalColorPicker(title: "  Shadow Color", color: $style.textShadowColor)
+    if let _ = style.shadowColor {
+      OptionalColorPicker(title: "  Shadow Color", color: $style.shadowColor)
         .font(.caption)
-      CGSizeStepper(title: "  Shadow Offset", size: $style.textShadowOffset)
+      CGPointStepper(title: "  Shadow Offset", point: $style.shadowOffset)
     }
   }
 }

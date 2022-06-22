@@ -33,20 +33,20 @@ struct OptionalColorToggle: View {
   }
 }
 
-struct CGSizeStepper: View {
+struct CGPointStepper: View {
   var title: String
-  @Binding var size: CGSize
+  @Binding var point: CGPoint
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6.0) {
-      Text("\(title) (\(Int(size.width))/\(Int(size.height)))")
+      Text("\(title) (\(Int(point.x))/\(Int(point.y)))")
         .font(.subheadline)
       HStack(alignment: .center, spacing: 20.0) {
         Spacer()
-        Stepper("X:", value: $size.width)
+        Stepper("X:", value: $point.x)
           .frame(width: 120)
           .font(.subheadline)
-        Stepper("Y:", value: $size.height)
+        Stepper("Y:", value: $point.y)
           .frame(width: 120)
           .font(.subheadline)
         Spacer()
@@ -109,7 +109,7 @@ struct FormFactory_Previews: PreviewProvider {
       OptionalColorPicker(title: "Color picker", color: .constant(.red))
       OptionalColorToggle(title: "Color resetting toggle", color: .constant(nil), defaultColor: .blue)
 
-      CGSizeStepper(title: "CGSize Control", size: .constant(CGSize(width: 20, height: 20)))
+      CGPointStepper(title: "CGPoint Control", point: .constant(CGPoint(x: 20, y: 20)))
 
       SegmentedPicker(title: "Inline Picker", value: .constant(1)) {
         Text("one").tag(1)

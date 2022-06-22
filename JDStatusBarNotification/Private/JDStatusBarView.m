@@ -316,12 +316,16 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   [_delegate didUpdateStyle];
 }
 
+CGSize sizeFromPoint(CGPoint point) {
+  return CGSizeMake(point.x, point.y);
+}
+
 void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
   label.textColor = textStyle.textColor;
   label.font = textStyle.font;
-  if (textStyle.textShadowColor != nil) {
-    label.shadowColor = textStyle.textShadowColor;
-    label.shadowOffset = textStyle.textShadowOffset;
+  if (textStyle.shadowColor != nil) {
+    label.shadowColor = textStyle.shadowColor;
+    label.shadowOffset = sizeFromPoint(textStyle.shadowOffset);
   } else {
     label.shadowColor = nil;
     label.shadowOffset = CGSizeZero;
@@ -337,7 +341,7 @@ void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
   _pillView.layer.shadowColor = pillStyle.shadowColor.CGColor;
   _pillView.layer.shadowRadius = pillStyle.shadowColor ? pillStyle.shadowRadius : 0.0;
   _pillView.layer.shadowOpacity = pillStyle.shadowColor ? 1.0 : 0.0;
-  _pillView.layer.shadowOffset = pillStyle.shadowColor ? pillStyle.shadowOffset : CGSizeZero;
+  _pillView.layer.shadowOffset = sizeFromPoint(pillStyle.shadowColor ? pillStyle.shadowOffsetXY : CGPointZero);
 }
 
 #pragma mark - Layout
@@ -465,7 +469,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       }
     }
 
-    leftViewFrame = CGRectOffset(leftViewFrame, _style.leftViewStyle.offset.width, _style.leftViewStyle.offset.height);
+    leftViewFrame = CGRectOffset(leftViewFrame, _style.leftViewStyle.offset.x, _style.leftViewStyle.offset.y);
     _leftView.frame = leftViewFrame;
 
     // title adjustments
