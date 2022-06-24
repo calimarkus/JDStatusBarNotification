@@ -1,0 +1,98 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [2.0.3] - 2022-06-22
+
+### Added
+
+- Added rubber-banding effect when panning down on notification (.pill style only)
+- Explicitly customizable ActivityIndicator color
+- Ability to disable Tap-To-Hold behavior
+- Added leftView Y offset (more positioning control)
+
+### Fixed
+
+- Fix broken `.canDismissDuringUserInteraction` - it can now be disabled again.
+- Fix failing animation on presentation calls during ongoing presentation
+- Fix progress bar sometimes not showing up
+
+## [2.0.2] - 2022-06-19
+
+### Added
+
+- Prevent dismissal during user interaction (hold or pan), configurable.
+- Use pill height as minimum pill width.
+
+### Fixed
+
+- Fix `.canSwipeToDismiss` - it can now be disabled again.
+
+### Changed
+
+- Remove `.centerWithTextUnlessSubtitleExists`, default to `.centerWithText`.
+
+## [2.0.1] - 2022-06-15
+
+### Added
+
+- Subtitle support (customizable)
+- Generic left view support (think icons, profile pictures, etc.), customizable layout
+
+### Fixed
+
+- WindowScene inferred automatically (no need to set it explicitly anymore)
+- Disable drag-to-dismiss during dismiss animation
+- Tweaked default style pill size & positioning
+- Don't clip text to bounds
+
+## [2.0.0] - 2022-06-14
+
+Big release. Many bugfixes, expanded public API, new features. Modernized outdated codebase - more or less a full rewrite.
+This is a breaking API release. Existing code using previous versions of this library will require some adjustments.
+Those adjustments should be simple though - mostly new API naming.
+
+### Added
+
+- A pill shaped layout (original layout available as "full-width" layout)
+- Drag-to-dismiss + general support for user interaction on the notification
+- Easy progress bar animation through public API
+- Custom view presentation
+- Presentation when no status bar is visible
+- More robust layouting of text & activity indicator
+- Support for apps that use window scenes
+- Explicit Swift naming for all public APIs + Swift example project
+- Full fledged style editor in example project + config export
+
+### Fixed
+
+- Many bug fixes
+
+### Changed
+
+- Non-notch device layout matches notch device layout now
+- Included styles moved to explicit API, instead of `styleName` API
+- `JDStatusBarView` internals no longer exposed, custom view APIs added instead.
+
+### Removed
+
+- `JDStatusBarHeightForIPhoneXHalf` layout
+- `BarAnimationTypeNone`
+- `ProgressBarPositionBelow`, `JDStatusBarProgressBarPositionNavBar`
+
+## [1.6.1] - 2019-12-13
+
+Old version based on original release. No release notes available.
+
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.3...HEAD
+[2.0.3]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.2...2.0.3
+[2.0.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.1...2.0.2
+[2.0.1]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.0...2.0.1
+[2.0.0]: https://github.com/calimarkus/JDStatusBarNotification/compare/1.6.1...2.0.0
+[1.6.1]: https://github.com/calimarkus/JDStatusBarNotification/releases/tag/1.6.1
+

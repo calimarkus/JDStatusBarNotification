@@ -170,78 +170,7 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
 
 ## Changelog
 
-### 2.0.3
-
-New:
-
-- Added rubber-banding effect when panning down on notification (.pill style only)
-- Explicitly customizable ActivityIndicator color
-- Ability to disable Tap-To-Hold behavior
-- Added leftView Y offset (more positioning control)
-
-Fixes:
-
-- Fix broken `.canDismissDuringUserInteraction` - it can now be disabled again.
-- Fix failing animation on presentation calls during ongoing presentation
-- Fix progress bar sometimes not showing up
-
-### 2.0.2
-
-New:
-
-- Prevent dismissal during user interaction (hold or pan), configurable.
-- Use pill height as minimum pill width.
-
-Fixes:
-
-- Fix `.canSwipeToDismiss` - it can now be disabled again.
-
-Breaking Changes:
-
-- Remove `.centerWithTextUnlessSubtitleExists`, default to `.centerWithText`.
-
-### 2.0.1
-
-New:
-
-- Subtitle support (customizable)
-- Generic left view support (think icons, profile pictures, etc.), customizable layout
-
-Fixes:
-
-- WindowScene inferred automatically (no need to set it explicitly anymore)
-- Disable drag-to-dismiss during dismiss animation
-- Tweaked default style pill size & positioning
-- Don't clip text to bounds
-
-### 2.0.0
-
-Big release. Many bugfixes, expanded public API, new features. Modernized outdated codebase - more or less a full rewrite.
-This is a breaking API release. Existing code using previous versions of this library will require some adjustments.
-Those adjustments should be simple though - mostly new API naming.
-
-New:
-
-- A pill shaped layout (original layout available as "full-width" layout)
-- Drag-to-dismiss + general support for user interaction on the notification
-- Easy progress bar animation through public API
-- Custom view presentation
-- Presentation when no status bar is visible
-- More robust layouting of text & activity indicator
-- Support for apps that use window scenes
-- Explicit Swift naming for all public APIs + Swift example project
-- Full fledged style editor in example project + config export
-- Many bug fixes
-
-Breaking changes:
-
-- Non-notch device layout matches notch device layout now
-- Removed: `JDStatusBarHeightForIPhoneXHalf` layout
-- Removed: `BarAnimationTypeNone`
-- Removed: `ProgressBarPositionBelow`, `JDStatusBarProgressBarPositionNavBar`
-- Included styles moved to explicit API, instead of `styleName` API
-- `JDStatusBarView` internals no longer exposed, custom view APIs added instead.
-
+See [CHANGELOG.md](CHANGELOG.md)
 
 ## Twitter
 
