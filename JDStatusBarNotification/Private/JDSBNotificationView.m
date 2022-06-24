@@ -8,7 +8,7 @@
 #import "JDSBNotificationView.h"
 
 #import "JDStatusBarNotificationStyle.h"
-#import "JDStatusBarManagerHelper.h"
+#import "JDSystemStatusBarHelpers.h"
 
 static const NSInteger kExpectedSubviewTag = 12321;
 

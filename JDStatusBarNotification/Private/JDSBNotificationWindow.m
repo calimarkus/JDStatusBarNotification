@@ -7,7 +7,7 @@
 #import "JDSBNotificationView.h"
 #import "JDStatusBarNotificationStyle.h"
 #import "UIApplication+JDSB_MainWindow.h"
-#import "JDStatusBarManagerHelper.h"
+#import "JDSystemStatusBarHelpers.h"
 
 @interface JDSBNotificationWindow () <JDSBNotificationViewControllerDelegate>
 @end

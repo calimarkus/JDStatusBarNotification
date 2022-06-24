@@ -39,7 +39,7 @@
 		7E8C51A02858857200C7C003 /* TextStyleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */; };
 		7E8C51A12858857200C7C003 /* TextStyleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */; };
 		7E8C51A22858857200C7C003 /* TextStyleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */; };
-		7EA91CAA284EF3AF00F32F09 /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
+		7EA91CAA284EF3AF00F32F09 /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */; };
 		7EA91CAB284EF3AF00F32F09 /* JDSBNotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDSBNotificationWindow.m */; };
 		7EA91CAD284EF3AF00F32F09 /* JDSBNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDSBNotificationView.m */; };
 		7EA91CAF284EF3AF00F32F09 /* JDSBNotificationStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDSBNotificationStyleCache.m */; };
@@ -62,8 +62,8 @@
 		7ED140932847557600593D6F /* JDSBNotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDSBNotificationWindow.m */; };
 		7ED140972848513800593D6F /* JDSBNotificationStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDSBNotificationStyleCache.m */; };
 		7ED140982848513800593D6F /* JDSBNotificationStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDSBNotificationStyleCache.m */; };
-		7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
-		7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */; };
+		7EE516D7284711C900685DDF /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */; };
+		7EE516D8284711C900685DDF /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */; };
 		7EEDBE142856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
@@ -112,8 +112,8 @@
 		7ED140912847557600593D6F /* JDSBNotificationWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationWindow.m; sourceTree = "<group>"; };
 		7ED140952848513800593D6F /* JDSBNotificationStyleCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationStyleCache.h; sourceTree = "<group>"; };
 		7ED140962848513800593D6F /* JDSBNotificationStyleCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationStyleCache.m; sourceTree = "<group>"; };
-		7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarManagerHelper.m; sourceTree = "<group>"; };
-		7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarManagerHelper.h; sourceTree = "<group>"; };
+		7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSystemStatusBarHelpers.m; sourceTree = "<group>"; };
+		7EE516D6284711C900685DDF /* JDSystemStatusBarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSystemStatusBarHelpers.h; sourceTree = "<group>"; };
 		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN_WindowSceneExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_WindowSceneExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 				7EBE340F2844CA2D0096CD55 /* JDSBNotificationViewController.m */,
 				7ED140902847557600593D6F /* JDSBNotificationWindow.h */,
 				7ED140912847557600593D6F /* JDSBNotificationWindow.m */,
-				7EE516D6284711C900685DDF /* JDStatusBarManagerHelper.h */,
-				7EE516D5284711C900685DDF /* JDStatusBarManagerHelper.m */,
+				7EE516D6284711C900685DDF /* JDSystemStatusBarHelpers.h */,
+				7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */,
 				7EBE34112844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.h */,
 				7EBE340D2844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m */,
 			);
@@ -417,7 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA91CAA284EF3AF00F32F09 /* JDStatusBarManagerHelper.m in Sources */,
+				7EA91CAA284EF3AF00F32F09 /* JDSystemStatusBarHelpers.m in Sources */,
 				7EA91CAB284EF3AF00F32F09 /* JDSBNotificationWindow.m in Sources */,
 				7E0FCB77285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
@@ -445,7 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EE516D8284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */,
+				7EE516D8284711C900685DDF /* JDSystemStatusBarHelpers.m in Sources */,
 				7ED140932847557600593D6F /* JDSBNotificationWindow.m in Sources */,
 				7E0FCB76285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
@@ -490,7 +490,7 @@
 				7E2F3BBB284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
 				7E8C51A02858857200C7C003 /* TextStyleEditorView.swift in Sources */,
 				7E8C519928585BE400C7C003 /* JDStatusBarNotificationStyle.m in Sources */,
-				7EE516D7284711C900685DDF /* JDStatusBarManagerHelper.m in Sources */,
+				7EE516D7284711C900685DDF /* JDSystemStatusBarHelpers.m in Sources */,
 				7ED140922847557600593D6F /* JDSBNotificationWindow.m in Sources */,
 				7EBE34122844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m in Sources */,
 				7EBE34162844CA2D0096CD55 /* JDSBNotificationViewController.m in Sources */,

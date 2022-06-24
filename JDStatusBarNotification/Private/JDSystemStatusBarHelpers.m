@@ -1,7 +1,7 @@
 //
 //
 
-#import "JDStatusBarManagerHelper.h"
+#import "JDSystemStatusBarHelpers.h"
 
 CGRect JDStatusBarFrameForWindowScene(UIWindowScene *_Nullable windowScene) {
   if (windowScene != nil) {
