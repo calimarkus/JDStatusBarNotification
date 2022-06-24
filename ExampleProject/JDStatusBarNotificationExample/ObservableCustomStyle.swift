@@ -10,7 +10,7 @@ class CustomTextStyle: ObservableObject, Equatable {
   @Published var shadowColor: UIColor?
   @Published var shadowOffset: CGPoint
 
-  init(_ textStyle: NotificationTextStyle) {
+  init(_ textStyle: StatusBarNotificationTextStyle) {
     font = textStyle.font
     textColor = textStyle.textColor
     textOffsetY = textStyle.textOffsetY
@@ -22,8 +22,8 @@ class CustomTextStyle: ObservableObject, Equatable {
     return false // a hack to trigger .onChange(of: style) on every change
   }
 
-  func computedStyle() -> NotificationTextStyle {
-    let style = NotificationTextStyle()
+  func computedStyle() -> StatusBarNotificationTextStyle {
+    let style = StatusBarNotificationTextStyle()
     style.textColor = textColor
     style.font = font
     style.textOffsetY = textOffsetY
@@ -54,7 +54,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var subtitleStyle: CustomTextStyle
 
   @Published var backgroundColor: UIColor?
-  @Published var backgroundType: BarBackgroundType
+  @Published var backgroundType: StatusBarNotificationBackgroundType
 
   @Published var minimumPillWidth: Double
   @Published var pillHeight: Double
@@ -65,8 +65,8 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var pillShadowRadius: Double
   @Published var pillShadowOffset: CGPoint
 
-  @Published var animationType: BarAnimationType
-  @Published var systemStatusBarStyle: StatusBarSystemStyle
+  @Published var animationType: StatusBarNotificationAnimationType
+  @Published var systemStatusBarStyle: StatusBarNotificationSystemBarStyle
   @Published var canSwipeToDismiss: Bool
   @Published var canTapToHold: Bool
   @Published var canDismissDuringUserInteraction: Bool
@@ -74,11 +74,11 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var leftViewSpacing: Double
   @Published var leftViewOffset: CGPoint
   @Published var leftViewTintColor: UIColor?
-  @Published var leftViewAlignment: BarLeftViewAlignment
+  @Published var leftViewAlignment: StatusBarNotificationLeftViewAlignment
 
   @Published var pbBarColor: UIColor?
   @Published var pbBarHeight: Double
-  @Published var pbPosition: ProgressBarPosition
+  @Published var pbPosition: StatusBarNotificationProgressBarPosition
   @Published var pbHorizontalInsets: Double
   @Published var pbCornerRadius: Double
   @Published var pbBarOffset: Double

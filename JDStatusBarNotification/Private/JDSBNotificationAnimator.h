@@ -7,7 +7,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ _Nullable JDStatusBarAnimatorCompletion)(void);
+typedef void (^ _Nullable JDSBNotificationAnimatorCompletion)(void) NS_SWIFT_NAME(_SBNotificationAnimatorCompletion);
 
 NS_SWIFT_NAME(_SBNotificationAnimator)
 @interface JDSBNotificationAnimator : NSObject
@@ -18,10 +18,10 @@ NS_SWIFT_NAME(_SBNotificationAnimator)
 - (instancetype)initWithStatusBarView:(JDSBNotificationView *)statusBarView;
 
 - (void)animateInWithDuration:(CGFloat)duration
-                   completion:(JDStatusBarAnimatorCompletion)completion;
+                   completion:(JDSBNotificationAnimatorCompletion)completion;
 
 - (void)animateOutWithDuration:(CGFloat)duration
-                    completion:(JDStatusBarAnimatorCompletion)completion;
+                    completion:(JDSBNotificationAnimatorCompletion)completion;
 
 @end
 

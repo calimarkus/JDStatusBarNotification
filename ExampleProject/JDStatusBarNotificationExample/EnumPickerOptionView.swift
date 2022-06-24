@@ -7,7 +7,7 @@ protocol StringRepresentable {
   var stringValue: String { get }
 }
 
-extension IncludedStatusBarStyle: StringRepresentable {
+extension IncludedStatusBarNotificationStyle: StringRepresentable {
   var stringValue: String {
     switch self {
       case .defaultStyle: return ".defaultStyle"
@@ -22,7 +22,7 @@ extension IncludedStatusBarStyle: StringRepresentable {
   }
 }
 
-extension BarAnimationType: StringRepresentable {
+extension StatusBarNotificationAnimationType: StringRepresentable {
   var stringValue: String {
     switch self {
       case .move: return ".move"
@@ -33,7 +33,7 @@ extension BarAnimationType: StringRepresentable {
   }
 }
 
-extension BarBackgroundType: StringRepresentable {
+extension StatusBarNotificationBackgroundType: StringRepresentable {
   var stringValue: String {
     switch self {
       case .fullWidth: return ".fullWidth"
@@ -43,7 +43,7 @@ extension BarBackgroundType: StringRepresentable {
   }
 }
 
-extension StatusBarSystemStyle: StringRepresentable {
+extension StatusBarNotificationSystemBarStyle: StringRepresentable {
   var stringValue: String {
     switch self {
       case .defaultStyle: return ".defaultStyle"
@@ -54,7 +54,7 @@ extension StatusBarSystemStyle: StringRepresentable {
   }
 }
 
-extension BarLeftViewAlignment: StringRepresentable {
+extension StatusBarNotificationLeftViewAlignment: StringRepresentable {
   var stringValue: String {
     switch self {
       case .left: return ".left"
@@ -64,7 +64,7 @@ extension BarLeftViewAlignment: StringRepresentable {
   }
 }
 
-extension ProgressBarPosition: StringRepresentable {
+extension StatusBarNotificationProgressBarPosition: StringRepresentable {
   var stringValue: String {
     switch self {
       case .top: return ".top"
@@ -91,9 +91,9 @@ struct EnumPickerOptionView<T: StringRepresentable>: View where T: Hashable {
 struct EnumPickerOptionView_Previews: PreviewProvider {
   static var previews: some View {
     Form {
-      SegmentedPicker(title: "Test", value: .constant(IncludedStatusBarStyle.dark)) {
-        EnumPickerOptionView(IncludedStatusBarStyle.light)
-        EnumPickerOptionView(IncludedStatusBarStyle.dark)
+      SegmentedPicker(title: "Test", value: .constant(IncludedStatusBarNotificationStyle.dark)) {
+        EnumPickerOptionView(IncludedStatusBarNotificationStyle.light)
+        EnumPickerOptionView(IncludedStatusBarNotificationStyle.dark)
       }
     }
   }

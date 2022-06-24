@@ -160,7 +160,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 }
 
 CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDStatusBarNotificationStyle *style) {
-  JDStatusBarProgressBarStyle *progressBarStyle = style.progressBarStyle;
+  JDStatusBarNotificationProgressBarStyle *progressBarStyle = style.progressBarStyle;
 
   // calculate progressView frame
   CGFloat barHeight = MIN(contentRect.size.height, MAX(0.5, progressBarStyle.barHeight));
@@ -169,12 +169,12 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
 
   // calculate y-position
   switch (progressBarStyle.position) {
-    case JDStatusBarProgressBarPositionTop:
+    case JDStatusBarNotificationProgressBarPositionTop:
       break;
-    case JDStatusBarProgressBarPositionCenter:
+    case JDStatusBarNotificationProgressBarPositionCenter:
       barFrame.origin.y += style.textStyle.textOffsetY + round((contentRect.size.height - barHeight) / 2.0) + 1;
       break;
-    case JDStatusBarProgressBarPositionBottom:
+    case JDStatusBarNotificationProgressBarPositionBottom:
       barFrame.origin.y += contentRect.size.height - barHeight;
       break;
   }
@@ -286,11 +286,11 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
 
   // background
   switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeFullWidth:
+    case JDStatusBarNotificationBackgroundTypeFullWidth:
       self.backgroundColor = _style.backgroundStyle.backgroundColor;
       _pillView.hidden = YES;
       break;
-    case JDStatusBarBackgroundTypePill: {
+    case JDStatusBarNotificationBackgroundTypePill: {
       self.backgroundColor = [UIColor clearColor];
       _pillView.backgroundColor = _style.backgroundStyle.backgroundColor;
       _pillView.hidden = NO;
@@ -326,7 +326,7 @@ CGSize sizeFromPoint(CGPoint point) {
   return CGSizeMake(point.x, point.y);
 }
 
-void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
+void applyTextStyleForLabel(JDStatusBarNotificationTextStyle *textStyle, UILabel *label) {
   label.textColor = textStyle.textColor;
   label.font = textStyle.font;
   if (textStyle.shadowColor != nil) {
@@ -338,7 +338,7 @@ void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
   }
 }
 
-- (void)setPillStyle:(JDStatusBarPillStyle *)pillStyle {
+- (void)setPillStyle:(JDStatusBarNotificationPillStyle *)pillStyle {
   // set border
   _pillView.layer.borderColor = pillStyle.borderColor.CGColor;
   _pillView.layer.borderWidth = pillStyle.borderColor ? pillStyle.borderWidth : 0.0;
@@ -376,7 +376,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 }
 
 - (CGRect)pillContentRectForContentRect:(CGRect)contentRect {
-  JDStatusBarPillStyle *pillStyle = _style.backgroundStyle.pillStyle;
+  JDStatusBarNotificationPillStyle *pillStyle = _style.backgroundStyle.pillStyle;
 
   // pill layout parameters
   CGFloat pillHeight = pillStyle.height;
@@ -403,11 +403,11 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 
   // content & pill view
   switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeFullWidth: {
+    case JDStatusBarNotificationBackgroundTypeFullWidth: {
       _contentView.frame = contentRectForWindow(self);
       break;
     }
-    case JDStatusBarBackgroundTypePill: {
+    case JDStatusBarNotificationBackgroundTypePill: {
       _contentView.frame = [self pillContentRectForContentRect:contentRectForWindow(self)];
       _pillView.frame = _contentView.bounds;
 
@@ -465,7 +465,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       leftViewFrame.origin.x = round(_contentView.bounds.size.width/2.0 - leftViewFrame.size.width/2.0);
     } else {
       switch (_style.leftViewStyle.alignment) {
-        case JDStatusBarLeftViewAlignmentCenterWithText: {
+        case JDStatusBarNotificationLeftViewAlignmentCenterWithText: {
           // position left view in front of text and center together with text
           CGFloat widthAndSpacing = CGRectGetWidth(leftViewFrame) + _style.leftViewStyle.spacing;
           _titleLabel.frame = CGRectOffset(_titleLabel.frame, round(widthAndSpacing / 2.0), 0);
@@ -473,7 +473,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
           textAlignment = NSTextAlignmentLeft;
           break;
         }
-        case JDStatusBarLeftViewAlignmentLeft: {
+        case JDStatusBarNotificationLeftViewAlignmentLeft: {
           // left-align left view
           leftViewFrame.origin.x = innerContentRect.origin.x;
           break;
@@ -528,12 +528,12 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 - (void)setupLayerMasksForPillStyleIfNeeded {
   // mask progress view & custom subview to pill size & shape
   switch (_style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeFullWidth: {
+    case JDStatusBarNotificationBackgroundTypeFullWidth: {
       _progressView.layer.mask = nil;
       _customSubview.layer.mask = nil;
       break;
     }
-    case JDStatusBarBackgroundTypePill: {
+    case JDStatusBarNotificationBackgroundTypePill: {
       if (_progressView) {
         _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:_pillView.frame fromView:_pillView.superview]);
       }

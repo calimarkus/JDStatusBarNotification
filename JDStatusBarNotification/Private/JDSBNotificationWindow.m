@@ -65,7 +65,7 @@
 
 static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotificationStyle *style, CGRect statusBarRect) {
   switch (style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeFullWidth: {
+    case JDStatusBarNotificationBackgroundTypeFullWidth: {
       if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
           UIInterfaceOrientationIsLandscape(JDStatusBarOrientationForWindowScene(windowScene))) {
         return 32.0; // match navbar height
@@ -73,7 +73,7 @@ static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotification
         return 44.0; // match navbar height
       }
     }
-    case JDStatusBarBackgroundTypePill: {
+    case JDStatusBarNotificationBackgroundTypePill: {
       CGFloat notchAdjustment = 0.0;
       if (statusBarRect.size.height > 20.0) {
         notchAdjustment = -7.0; // this matches the positioning of a similar system notification

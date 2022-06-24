@@ -7,7 +7,7 @@
 
 #import "JDStatusBarNotificationStyle.h"
 
-@implementation JDStatusBarTextStyle
+@implementation JDStatusBarNotificationTextStyle
 
 - (instancetype)init {
   self = [super init];
@@ -31,7 +31,7 @@
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-  JDStatusBarTextStyle *style = [[[self class] allocWithZone:zone] init];
+  JDStatusBarNotificationTextStyle *style = [[[self class] allocWithZone:zone] init];
   style.textColor = self.textColor;
   style.font = self.font;
   style.shadowColor = self.shadowColor;
@@ -58,7 +58,7 @@
 
 @end
 
-@implementation JDStatusBarLeftViewStyle
+@implementation JDStatusBarNotificationLeftViewStyle
 
 - (instancetype)init {
   self = [super init];
@@ -66,7 +66,7 @@
     _spacing = 5.0;
     _offset = CGPointZero;
     _tintColor = nil;
-    _alignment = JDStatusBarLeftViewAlignmentCenterWithText;
+    _alignment = JDStatusBarNotificationLeftViewAlignmentCenterWithText;
   }
   return self;
 }
@@ -80,7 +80,7 @@
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-  JDStatusBarLeftViewStyle *style = [[[self class] allocWithZone:zone] init];
+  JDStatusBarNotificationLeftViewStyle *style = [[[self class] allocWithZone:zone] init];
   style.spacing = _spacing;
   style.offset = _offset;
   style.tintColor = _tintColor;
@@ -90,7 +90,7 @@
 
 @end
 
-@implementation JDStatusBarPillStyle
+@implementation JDStatusBarNotificationPillStyle
 
 - (instancetype)init {
   self = [super init];
@@ -108,7 +108,7 @@
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-  JDStatusBarPillStyle *style = [[[self class] allocWithZone:zone] init];
+  JDStatusBarNotificationPillStyle *style = [[[self class] allocWithZone:zone] init];
   style.height = self.height;
   style.topSpacing = self.topSpacing;
   style.minimumWidth = self.minimumWidth;
@@ -130,7 +130,7 @@
 
 @end
 
-@implementation JDStatusBarBackgroundStyle
+@implementation JDStatusBarNotificationBackgroundStyle
 
 - (instancetype)init {
   self = [super init];
@@ -145,14 +145,14 @@
       }
     }];
 
-    _backgroundType = JDStatusBarBackgroundTypePill;
-    _pillStyle = [JDStatusBarPillStyle new];
+    _backgroundType = JDStatusBarNotificationBackgroundTypePill;
+    _pillStyle = [JDStatusBarNotificationPillStyle new];
   }
   return self;
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-  JDStatusBarBackgroundStyle *style = [[[self class] allocWithZone:zone] init];
+  JDStatusBarNotificationBackgroundStyle *style = [[[self class] allocWithZone:zone] init];
   style.backgroundColor = self.backgroundColor;
   style.backgroundType = self.backgroundType;
   style.pillStyle = [self.pillStyle copy];
@@ -161,7 +161,7 @@
 
 @end
 
-@implementation JDStatusBarProgressBarStyle
+@implementation JDStatusBarNotificationProgressBarStyle
 
 - (instancetype)init {
   self = [super init];
@@ -170,14 +170,14 @@
     _barHeight = 2.0;
     _horizontalInsets = 20.0;
     _cornerRadius = 1.0;
-    _position = JDStatusBarProgressBarPositionBottom;
+    _position = JDStatusBarNotificationProgressBarPositionBottom;
     _offsetY = -5.0;
   }
   return self;
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-  JDStatusBarProgressBarStyle *style = [[[self class] allocWithZone:zone] init];
+  JDStatusBarNotificationProgressBarStyle *style = [[[self class] allocWithZone:zone] init];
   style.barColor = self.barColor;
   style.barHeight = self.barHeight;
   style.position = self.position;
@@ -194,18 +194,18 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _textStyle = [JDStatusBarTextStyle new];
+    _textStyle = [JDStatusBarNotificationTextStyle new];
 
-    _subtitleStyle = [JDStatusBarTextStyle new];
+    _subtitleStyle = [JDStatusBarNotificationTextStyle new];
     _subtitleStyle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     _subtitleStyle.textColor = [_textStyle.textColor colorWithAlphaComponent:0.66];
 
-    _backgroundStyle = [JDStatusBarBackgroundStyle new];
-    _progressBarStyle = [JDStatusBarProgressBarStyle new];
-    _leftViewStyle = [JDStatusBarLeftViewStyle new];
+    _backgroundStyle = [JDStatusBarNotificationBackgroundStyle new];
+    _progressBarStyle = [JDStatusBarNotificationProgressBarStyle new];
+    _leftViewStyle = [JDStatusBarNotificationLeftViewStyle new];
 
-    _animationType = JDStatusBarAnimationTypeMove;
-    _systemStatusBarStyle = JDStatusBarSystemStyleDefaultStyle;
+    _animationType = JDStatusBarNotificationAnimationTypeMove;
+    _systemStatusBarStyle = JDStatusBarNotificationSystemBarStyleDefaultStyle;
     _canSwipeToDismiss = YES;
     _canTapToHold = YES;
     _canDismissDuringUserInteraction = NO;

@@ -10,7 +10,7 @@ class ExamplesScreenFactory: NSObject {
     let text = "👋 Hello World!"
     NotificationPresenter.shared().present(text: text,
                                            dismissAfterDelay: 2.5,
-                                           includedStyle: IncludedStatusBarStyle.matrix)
+                                           includedStyle: IncludedStatusBarNotificationStyle.matrix)
     return UIHostingController(rootView:
       NavigationView {
         ExamplesScreen()
@@ -24,7 +24,7 @@ struct ExamplesScreen: View {
   @State var progress = 0.0
   @State var showActivity = false
   @State var showSubtitle = false
-  @State var backgroundType: BarBackgroundType = .pill
+  @State var backgroundType: StatusBarNotificationBackgroundType = .pill
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
     let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
@@ -44,7 +44,7 @@ struct ExamplesScreen: View {
     }
   }
 
-  func showIncludedStyle(_ text: String, style: IncludedStatusBarStyle) {
+  func showIncludedStyle(_ text: String, style: IncludedStatusBarNotificationStyle) {
     let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: style) { style in
       style.backgroundStyle.backgroundType = backgroundType
       return style
@@ -151,8 +151,8 @@ struct ExamplesScreen: View {
         VStack(alignment: .leading, spacing: 6.0) {
           Text("BarBackgroundType").font(.subheadline)
           Picker("", selection: $backgroundType) {
-            EnumPickerOptionView(BarBackgroundType.pill)
-            EnumPickerOptionView(BarBackgroundType.fullWidth)
+            EnumPickerOptionView(StatusBarNotificationBackgroundType.pill)
+            EnumPickerOptionView(StatusBarNotificationBackgroundType.fullWidth)
           }.font(.subheadline).pickerStyle(.segmented)
         }
         .onChange(of: backgroundType) { _ in
@@ -249,7 +249,7 @@ struct ExamplesScreen: View {
     })
   }
 
-  func includedStyleCell(_ text: String, style: IncludedStatusBarStyle) -> some View {
+  func includedStyleCell(_ text: String, style: IncludedStatusBarNotificationStyle) -> some View {
     cell(title: "Present \(style.stringValue)", subtitle: "Duration: 3s") {
       showIncludedStyle(text, style: style)
     }

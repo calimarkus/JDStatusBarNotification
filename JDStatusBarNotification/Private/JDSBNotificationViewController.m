@@ -8,7 +8,7 @@
 #import "JDSBNotificationView.h"
 #import "UIApplication+JDSB_MainWindow.h"
 
-@interface JDSBNotificationViewController () <JDStatusBarViewDelegate>
+@interface JDSBNotificationViewController () <JDSBNotificationViewDelegate>
 @end
 
 @implementation JDSBNotificationViewController {
@@ -69,7 +69,7 @@
   return topBar;
 }
 
-#pragma mark - JDStatusBarViewDelegate
+#pragma mark - JDSBNotificationViewDelegate
 
 - (void)didUpdateStyle {
   [_delegate didUpdateStyle];
@@ -77,11 +77,11 @@
 
 #pragma mark - Pan gesture
 
-static BOOL canRubberBandForBackgroundType(JDStatusBarBackgroundType type) {
+static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType type) {
   switch (type) {
-    case JDStatusBarBackgroundTypeFullWidth:
+    case JDStatusBarNotificationBackgroundTypeFullWidth:
       return NO;
-    case JDStatusBarBackgroundTypePill:
+    case JDStatusBarNotificationBackgroundTypePill:
       return YES;
   }
 }
@@ -259,16 +259,16 @@ static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
   switch (_statusBarView.style.backgroundStyle.backgroundType) {
-    case JDStatusBarBackgroundTypeFullWidth:
+    case JDStatusBarNotificationBackgroundTypeFullWidth:
       switch (_statusBarView.style.systemStatusBarStyle) {
-        case JDStatusBarSystemStyleDefaultStyle:
+        case JDStatusBarNotificationSystemBarStyleDefaultStyle:
           return [self defaultStatusBarStyle];
-        case JDStatusBarSystemStyleLightContent:
+        case JDStatusBarNotificationSystemBarStyleLightContent:
           return UIStatusBarStyleLightContent;
-        case JDStatusBarSystemStyleDarkContent:
+        case JDStatusBarNotificationSystemBarStyleDarkContent:
           return UIStatusBarStyleDarkContent;
       }
-    case JDStatusBarBackgroundTypePill:
+    case JDStatusBarNotificationBackgroundTypePill:
       // the pills should not change the system status bar
       return [self defaultStatusBarStyle];
   }

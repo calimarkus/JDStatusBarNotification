@@ -11,15 +11,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class JDStatusBarNotificationStyle;
 
-NS_SWIFT_NAME(StatusBarViewDelegate)
-@protocol JDStatusBarViewDelegate <NSObject>
+NS_SWIFT_NAME(_SBNotificationViewDelegate)
+@protocol JDSBNotificationViewDelegate <NSObject>
 - (void)didUpdateStyle;
 @end
 
 NS_SWIFT_NAME(_SBNotificationView)
 @interface JDSBNotificationView : UIView
 
-@property (nonatomic, weak, nullable) id<JDStatusBarViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<JDSBNotificationViewDelegate> delegate;
 
 @property (nonatomic, strong, nullable) NSString *title;
 @property (nonatomic, strong, nullable) NSString *subtitle;

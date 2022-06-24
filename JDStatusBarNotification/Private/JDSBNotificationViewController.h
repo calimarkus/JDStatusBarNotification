@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ _Nullable JDSBNotificationViewControllerCompletion)(void);
+typedef void (^ _Nullable JDSBNotificationViewControllerCompletion)(void) NS_SWIFT_NAME(_SBNotificationViewControllerCompletion);
 
 NS_SWIFT_NAME(_SBNotificationViewControllerDelegate)
 @protocol JDSBNotificationViewControllerDelegate

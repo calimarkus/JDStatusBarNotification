@@ -3,25 +3,25 @@
 
 #import <Foundation/Foundation.h>
 
-#import "JDStatusBarPrepareStyleBlock.h"
+#import "JDStatusBarNotificationPresenterPrepareStyleBlock.h"
 #import "JDStatusBarNotificationStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(SBNotificationStyleCache)
+NS_SWIFT_NAME(_SBNotificationStyleCache)
 @interface JDSBNotificationStyleCache : NSObject
 
 - (JDStatusBarNotificationStyle *)styleForName:(NSString *)styleName;
-- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarIncludedStyle)style;
+- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarNotificationIncludedStyle)style;
 
-- (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
+- (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
 - (NSString *)addStyleNamed:(NSString *)styleName
-                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
 - (NSString *)addStyleNamed:(NSString*)styleName
-               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
-                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
+               basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
 @end
 

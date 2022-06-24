@@ -7,4 +7,4 @@
 
 #import "JDStatusBarNotificationStyle.h"
 #import "JDStatusBarNotificationPresenter.h"
-#import "JDStatusBarPrepareStyleBlock.h"
+#import "JDStatusBarNotificationPresenterPrepareStyleBlock.h"

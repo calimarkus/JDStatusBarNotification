@@ -137,33 +137,33 @@
 #pragma mark - Included Style Presentation
 
 - (UIView *)presentWithText:(NSString *)text
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle {
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle {
   return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 includedStyle:includedStyle completion:nil];
 }
 
 - (UIView *)presentWithText:(NSString *)text
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   return [self presentWithTitle:text subtitle:nil dismissAfterDelay:0.0 includedStyle:includedStyle completion:completion];
 }
 
 - (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
-               includedStyle:(JDStatusBarIncludedStyle)includedStyle
+               includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   return [self presentWithTitle:title subtitle:subtitle dismissAfterDelay:0.0 includedStyle:includedStyle completion:completion];
 }
 
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle {
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle {
   return [self presentWithTitle:text subtitle:nil dismissAfterDelay:delay includedStyle:includedStyle completion:nil];
 }
 
 - (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString *)subtitle
            dismissAfterDelay:(NSTimeInterval)delay
-               includedStyle:(JDStatusBarIncludedStyle)includedStyle
+               includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarNotificationStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
   UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
@@ -223,18 +223,18 @@
 
 #pragma mark - Style Management API
 
-- (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock {
+- (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock {
   [_styleCache updateDefaultStyle:prepareBlock];
 }
 
 - (NSString *)addStyleNamed:(NSString *)styleName
-                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock {
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock {
   return [_styleCache addStyleNamed:styleName prepare:prepareBlock];
 }
 
 - (NSString *)addStyleNamed:(NSString*)styleName
-               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
-                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock {
+               basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock {
   return [_styleCache addStyleNamed:styleName basedOnStyle:basedOnStyle prepare:prepareBlock];
 }
 

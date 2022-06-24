@@ -7,72 +7,70 @@
 
 #import <UIKit/UIKit.h>
 
-#import "JDStatusBarPrepareStyleBlock.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, JDStatusBarIncludedStyle) {
+typedef NS_ENUM(NSInteger, JDStatusBarNotificationIncludedStyle) {
   /// A dynamic style matching the .light style in light mode and .dark in dark mode.
-  JDStatusBarIncludedStyleDefaultStyle,
+  JDStatusBarNotificationIncludedStyleDefaultStyle,
   /// A white background with a gray text.
-  JDStatusBarIncludedStyleLight,
+  JDStatusBarNotificationIncludedStyleLight,
   /// A nearly black background with a nearly white text.
-  JDStatusBarIncludedStyleDark,
+  JDStatusBarNotificationIncludedStyleDark,
   /// A green background with a white text.
-  JDStatusBarIncludedStyleSuccess,
+  JDStatusBarNotificationIncludedStyleSuccess,
   /// A yellow background with a gray text.
-  JDStatusBarIncludedStyleWarning,
+  JDStatusBarNotificationIncludedStyleWarning,
   /// A red background with a white text.
-  JDStatusBarIncludedStyleError,
+  JDStatusBarNotificationIncludedStyleError,
   /// A black background with a green bold monospace text..
-  JDStatusBarIncludedStyleMatrix,
-} NS_SWIFT_NAME(IncludedStatusBarStyle);
+  JDStatusBarNotificationIncludedStyleMatrix,
+} NS_SWIFT_NAME(IncludedStatusBarNotificationStyle);
 
-typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
+typedef NS_ENUM(NSInteger, JDStatusBarNotificationBackgroundType) {
   /// The background covers the full display width and the full status bar & navbar height.
-  JDStatusBarBackgroundTypeFullWidth,
+  JDStatusBarNotificationBackgroundTypeFullWidth,
   /// The background is a floating pill around the text.
-  JDStatusBarBackgroundTypePill,
-} NS_SWIFT_NAME(BarBackgroundType);
+  JDStatusBarNotificationBackgroundTypePill,
+} NS_SWIFT_NAME(StatusBarNotificationBackgroundType);
 
-typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
+typedef NS_ENUM(NSInteger, JDStatusBarNotificationAnimationType) {
   /// Notification will move in from the top, and move out again to the top
-  JDStatusBarAnimationTypeMove,
+  JDStatusBarNotificationAnimationTypeMove,
   /// Notification will fall down from the top and bounce a little bit
-  JDStatusBarAnimationTypeBounce,
+  JDStatusBarNotificationAnimationTypeBounce,
   /// Notification will fade in and fade out
-  JDStatusBarAnimationTypeFade,
-} NS_SWIFT_NAME(BarAnimationType);
+  JDStatusBarNotificationAnimationTypeFade,
+} NS_SWIFT_NAME(StatusBarNotificationAnimationType);
 
-typedef NS_ENUM(NSInteger, JDStatusBarProgressBarPosition) {
+typedef NS_ENUM(NSInteger, JDStatusBarNotificationProgressBarPosition) {
   /// progress bar will be at the bottom of the status bar
-  JDStatusBarProgressBarPositionBottom,
+  JDStatusBarNotificationProgressBarPositionBottom,
   /// progress bar will be at the center of the status bar
-  JDStatusBarProgressBarPositionCenter,
+  JDStatusBarNotificationProgressBarPositionCenter,
   /// progress bar will be at the top of the status bar
-  JDStatusBarProgressBarPositionTop
-} NS_SWIFT_NAME(ProgressBarPosition);
+  JDStatusBarNotificationProgressBarPositionTop
+} NS_SWIFT_NAME(StatusBarNotificationProgressBarPosition);
 
-typedef NS_ENUM(NSInteger, JDStatusBarSystemStyle) {
+typedef NS_ENUM(NSInteger, JDStatusBarNotificationSystemBarStyle) {
   /// Match the current viewController / window
-  JDStatusBarSystemStyleDefaultStyle,
+  JDStatusBarNotificationSystemBarStyleDefaultStyle,
   /// Force light status bar contents (UIStatusBarStyleLightContent)
-  JDStatusBarSystemStyleLightContent,
+  JDStatusBarNotificationSystemBarStyleLightContent,
   /// Force dark status bar contents (UIStatusBarStyleDarkContent)
-  JDStatusBarSystemStyleDarkContent
-} NS_SWIFT_NAME(StatusBarSystemStyle);
+  JDStatusBarNotificationSystemBarStyleDarkContent
+} NS_SWIFT_NAME(StatusBarNotificationSystemBarStyle);
 
-typedef NS_ENUM(NSInteger, JDStatusBarLeftViewAlignment) {
+typedef NS_ENUM(NSInteger, JDStatusBarNotificationLeftViewAlignment) {
   /// Always align left. Text is center aligned unlless it touches the left view. If it does touch the left view, the text turns left aligned too.
-  JDStatusBarLeftViewAlignmentLeft,
+  JDStatusBarNotificationLeftViewAlignmentLeft,
   /// Center together with text. Text is left aligned.
-  JDStatusBarLeftViewAlignmentCenterWithText,
-} NS_SWIFT_NAME(BarLeftViewAlignment);
+  JDStatusBarNotificationLeftViewAlignmentCenterWithText,
+} NS_SWIFT_NAME(StatusBarNotificationLeftViewAlignment);
 
-@class JDStatusBarBackgroundStyle;
-@class JDStatusBarProgressBarStyle;
-@class JDStatusBarLeftViewStyle;
-@class JDStatusBarTextStyle;
+@class JDStatusBarNotificationBackgroundStyle;
+@class JDStatusBarNotificationProgressBarStyle;
+@class JDStatusBarNotificationLeftViewStyle;
+@class JDStatusBarNotificationTextStyle;
 
 /**
  *  A Style defines the appeareance of a notification.
@@ -84,27 +82,27 @@ NS_SWIFT_NAME(StatusBarNotificationStyle)
 ///
 /// The title's .textColor is also used for the activity indicator, unless an explicit leftViewStyle.tintColor is set.
 /// The title's .textOffsetY affects both the title, the subtitle and the left view. And also the progressBar when using .center positioning.
-@property (nonatomic, strong) JDStatusBarTextStyle *textStyle;
+@property (nonatomic, strong) JDStatusBarNotificationTextStyle *textStyle;
 
 /// The styling of the subtitle label (Defaults: UIFontTextStyleCaption1, color: title color at 66% opacity)
 ///
 /// The subtitle's .textOffsetY affects only the subtitle.
-@property (nonatomic, strong) JDStatusBarTextStyle *subtitleStyle;
+@property (nonatomic, strong) JDStatusBarNotificationTextStyle *subtitleStyle;
 
 /// The styling of the background
-@property (nonatomic, strong) JDStatusBarBackgroundStyle *backgroundStyle;
+@property (nonatomic, strong) JDStatusBarNotificationBackgroundStyle *backgroundStyle;
 
 /// The styling of the progress bar
-@property (nonatomic, strong) JDStatusBarProgressBarStyle *progressBarStyle;
+@property (nonatomic, strong) JDStatusBarNotificationProgressBarStyle *progressBarStyle;
 
 /// The styling of the left view, if used. This also applies to the activity indicator.
-@property (nonatomic, strong) JDStatusBarLeftViewStyle *leftViewStyle;
+@property (nonatomic, strong) JDStatusBarNotificationLeftViewStyle *leftViewStyle;
 
 /// The animation for presentation & dismissal
-@property (nonatomic, assign) JDStatusBarAnimationType animationType;
+@property (nonatomic, assign) JDStatusBarNotificationAnimationType animationType;
 
 /// The UIStatusBarStyle, which should be used during presentation. If you use BarBackgroundType.pill, this is ignored. The default is .defaultStyle.
-@property (nonatomic, assign) JDStatusBarSystemStyle systemStatusBarStyle;
+@property (nonatomic, assign) JDStatusBarNotificationSystemBarStyle systemStatusBarStyle;
 
 /// Defines if the bar can be dismissed by the user swiping up. Default is true.
 ///
@@ -130,8 +128,8 @@ NS_SWIFT_NAME(StatusBarNotificationStyle)
 /**
  *  Defines the appeareance of a left view, if set. It also applies to the activity indicator.
  */
-NS_SWIFT_NAME(NotificationLeftViewStyle)
-@interface JDStatusBarLeftViewStyle : NSObject <NSCopying>
+NS_SWIFT_NAME(StatusBarNotificationLeftViewStyle)
+@interface JDStatusBarNotificationLeftViewStyle : NSObject <NSCopying>
 
 /// The minimum distance between the left view and the text. Defaults to 5.0.
 @property (nonatomic, assign) CGFloat spacing;
@@ -150,15 +148,15 @@ NS_SWIFT_NAME(NotificationLeftViewStyle)
 
 /// The alignment of the left view. The default is .centerWithText
 /// If no text is set, the left view is always centered.
-@property (nonatomic, assign) JDStatusBarLeftViewAlignment alignment;
+@property (nonatomic, assign) JDStatusBarNotificationLeftViewAlignment alignment;
 
 @end
 
 /**
  *  Defines the appeareance of a text label.
  */
-NS_SWIFT_NAME(NotificationTextStyle)
-@interface JDStatusBarTextStyle : NSObject <NSCopying>
+NS_SWIFT_NAME(StatusBarNotificationTextStyle)
+@interface JDStatusBarNotificationTextStyle : NSObject <NSCopying>
 
 /// The color of the  label.
 @property (nonatomic, strong, nullable) UIColor *textColor;
@@ -186,8 +184,8 @@ NS_SWIFT_NAME(NotificationTextStyle)
 /**
  *  Defines the appeareance of the pill, when using BarBackgroundType.pill
  */
-NS_SWIFT_NAME(BarPillStyle)
-@interface JDStatusBarPillStyle : NSObject <NSCopying>
+NS_SWIFT_NAME(StatusBarNotificationPillStyle)
+@interface JDStatusBarNotificationPillStyle : NSObject <NSCopying>
 
 /// The height of the pill. Default is 50.0.
 @property (nonatomic, assign) CGFloat height;
@@ -222,25 +220,25 @@ NS_SWIFT_NAME(BarPillStyle)
 /**
  *  Defines the appeareance of the notification background.
  */
-NS_SWIFT_NAME(NotificationBackgroundStyle)
-@interface JDStatusBarBackgroundStyle : NSObject <NSCopying>
+NS_SWIFT_NAME(StatusBarNotificationBackgroundStyle)
+@interface JDStatusBarNotificationBackgroundStyle : NSObject <NSCopying>
 
 /// The background color of the notification bar
 @property (nonatomic, strong, nullable) UIColor *backgroundColor;
 
 /// The background type. Default is .pill
-@property (nonatomic, assign) JDStatusBarBackgroundType backgroundType;
+@property (nonatomic, assign) JDStatusBarNotificationBackgroundType backgroundType;
 
 /// A style to modify the appearance of the pill, when using BarBackgroundType.pill.
-@property (nonatomic, strong) JDStatusBarPillStyle *pillStyle;
+@property (nonatomic, strong) JDStatusBarNotificationPillStyle *pillStyle;
 
 @end
 
 /**
  *  Defines the appeareance of the progress bar.
  */
-NS_SWIFT_NAME(ProgressBarStyle)
-@interface JDStatusBarProgressBarStyle : NSObject <NSCopying>
+NS_SWIFT_NAME(StatusBarNotificationProgressBarStyle)
+@interface JDStatusBarNotificationProgressBarStyle : NSObject <NSCopying>
 
 /// The background color of the progress bar (on top of the notification bar)
 @property (nonatomic, strong, nullable) UIColor *barColor;
@@ -249,7 +247,7 @@ NS_SWIFT_NAME(ProgressBarStyle)
 @property (nonatomic, assign) CGFloat barHeight;
 
 /// The position of the progress bar. Default is .bottom
-@property (nonatomic, assign) JDStatusBarProgressBarPosition position;
+@property (nonatomic, assign) JDStatusBarNotificationProgressBarPosition position;
 
 /// The insets of the progress bar. Default is 20.0
 @property (nonatomic, assign) CGFloat horizontalInsets;

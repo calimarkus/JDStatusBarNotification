@@ -136,22 +136,22 @@ struct StyleEditorScreen: View {
         OptionalColorPicker(title: "Background Color", color: $style.backgroundColor)
 
         SegmentedPicker(title: "Background Type", value: $style.backgroundType) {
-          EnumPickerOptionView(BarBackgroundType.pill)
-          EnumPickerOptionView(BarBackgroundType.fullWidth)
+          EnumPickerOptionView(StatusBarNotificationBackgroundType.pill)
+          EnumPickerOptionView(StatusBarNotificationBackgroundType.fullWidth)
         }
 
         if style.backgroundType != .pill {
           SegmentedPicker(title: "StatusBar System Style", value: $style.systemStatusBarStyle) {
-            EnumPickerOptionView(StatusBarSystemStyle.defaultStyle)
-            EnumPickerOptionView(StatusBarSystemStyle.lightContent)
-            EnumPickerOptionView(StatusBarSystemStyle.darkContent)
+            EnumPickerOptionView(StatusBarNotificationSystemBarStyle.defaultStyle)
+            EnumPickerOptionView(StatusBarNotificationSystemBarStyle.lightContent)
+            EnumPickerOptionView(StatusBarNotificationSystemBarStyle.darkContent)
           }
         }
 
         SegmentedPicker(title: "Animation Type", value: $style.animationType) {
-          EnumPickerOptionView(BarAnimationType.bounce)
-          EnumPickerOptionView(BarAnimationType.move)
-          EnumPickerOptionView(BarAnimationType.fade)
+          EnumPickerOptionView(StatusBarNotificationAnimationType.bounce)
+          EnumPickerOptionView(StatusBarNotificationAnimationType.move)
+          EnumPickerOptionView(StatusBarNotificationAnimationType.fade)
         }
 
         Toggle("Allow Swipe-To-Dismiss", isOn: $style.canSwipeToDismiss)
@@ -207,8 +207,8 @@ struct StyleEditorScreen: View {
         OptionalColorPicker(title: "Tint Color", color: $style.leftViewTintColor)
 
         SegmentedPicker(title: "Alignment", value: $style.leftViewAlignment) {
-          EnumPickerOptionView(BarLeftViewAlignment.left)
-          EnumPickerOptionView(BarLeftViewAlignment.centerWithText)
+          EnumPickerOptionView(StatusBarNotificationLeftViewAlignment.left)
+          EnumPickerOptionView(StatusBarNotificationLeftViewAlignment.centerWithText)
         }
 
         TextFieldStepper(title: "Spacing", binding: $style.leftViewSpacing, range: 0...99)
@@ -232,10 +232,10 @@ struct StyleEditorScreen: View {
         TextFieldStepper(title: "Bar Offset Y", binding: $style.pbBarOffset, range: -99...99)
         TextFieldStepper(title: "Horizontal Insets", binding: $style.pbHorizontalInsets, range: 0...99)
 
-        SegmentedPicker(title: "ProgressBarPosition", value: $style.pbPosition) {
-          EnumPickerOptionView(ProgressBarPosition.top)
-          EnumPickerOptionView(ProgressBarPosition.center)
-          EnumPickerOptionView(ProgressBarPosition.bottom)
+        SegmentedPicker(title: "StatusBarNotificationProgressBarPosition", value: $style.pbPosition) {
+          EnumPickerOptionView(StatusBarNotificationProgressBarPosition.top)
+          EnumPickerOptionView(StatusBarNotificationProgressBarPosition.center)
+          EnumPickerOptionView(StatusBarNotificationProgressBarPosition.bottom)
         }
       }
     }

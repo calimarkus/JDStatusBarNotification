@@ -9,12 +9,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "JDStatusBarPrepareStyleBlock.h"
+#import "JDStatusBarNotificationPresenterPrepareStyleBlock.h"
 #import "JDStatusBarNotificationStyle.h"
 
 @class JDStatusBarNotificationPresenter;
 
-typedef void (^ _Nullable JDStatusBarNotificationPresenterCompletionBlock)(JDStatusBarNotificationPresenter * _Nonnull presenter);
+typedef void (^ _Nullable JDStatusBarNotificationPresenterCompletionBlock)(JDStatusBarNotificationPresenter * _Nonnull presenter) NS_SWIFT_NAME(NotificationPresenterCompletion);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -154,7 +154,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @return The presented UIView for further customization
  */
 - (UIView *)presentWithText:(NSString *)text
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:));
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:));
 /**
  *  Present a notification using the specified style.
  *  If no style exists for the provided name, the defaultStyle is used.
@@ -166,7 +166,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @return The presented UIView for further customization
  */
 - (UIView *)presentWithText:(NSString *)text
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:includedStyle:completion:));
 /**
  *  Present a notification using the specified style.
@@ -181,7 +181,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  */
 - (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
-               includedStyle:(JDStatusBarIncludedStyle)includedStyle
+               includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:includedStyle:completion:));
 
 /**
@@ -196,7 +196,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  */
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay
-              includedStyle:(JDStatusBarIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
 
 #pragma mark - Custom View Presentation
 
@@ -265,7 +265,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *
  *  @param prepareBlock Provides the existing defaultStyle instance for further customization.
  */
-- (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
+- (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
 /**
  *  Adds a new custom style, which can be used in future presentations by utilizing the same styleName.
@@ -277,7 +277,7 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @return Returns the styleName, so this can be used directly within a presentation call.
  */
 - (NSString *)addStyleNamed:(NSString*)styleName
-                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:prepare:));
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:prepare:));
 
 /**
  *  Adds a new custom style, which can be used in future presentations by utilizing the same styleName.
@@ -290,8 +290,8 @@ NS_SWIFT_NAME(NotificationPresenter)
  *  @return Returns the styleName, so this can be used directly within a presentation call.
  */
 - (NSString *)addStyleNamed:(NSString*)styleName
-               basedOnStyle:(JDStatusBarIncludedStyle)basedOnStyle
-                    prepare:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:basedOnIncludedStyle:prepare:));
+               basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:basedOnIncludedStyle:prepare:));
 
 #pragma mark - Progress Bar
 

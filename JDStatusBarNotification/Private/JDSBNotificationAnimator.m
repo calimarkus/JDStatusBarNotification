@@ -11,7 +11,7 @@
 
 @implementation JDSBNotificationAnimator {
   JDSBNotificationView *_statusBarView;
-  JDStatusBarAnimatorCompletion _animateInCompletionBlock;
+  JDSBNotificationAnimatorCompletion _animateInCompletionBlock;
 }
 
 - (instancetype)initWithStatusBarView:(JDSBNotificationView *)statusBarView {
@@ -23,7 +23,7 @@
 }
 
 - (void)animateInWithDuration:(CGFloat)duration
-                   completion:(JDStatusBarAnimatorCompletion)completion {
+                   completion:(JDSBNotificationAnimatorCompletion)completion {
   JDStatusBarNotificationStyle *style = _statusBarView.style;
   JDSBNotificationView *view = _statusBarView;
 
@@ -32,7 +32,7 @@
   [view.layer removeAllAnimations];
 
   // set initial view state
-  if (style.animationType == JDStatusBarAnimationTypeFade) {
+  if (style.animationType == JDStatusBarNotificationAnimationTypeFade) {
     view.alpha = 0.0;
     view.transform = CGAffineTransformIdentity;
   } else {
@@ -41,7 +41,7 @@
   }
 
   // animate in
-  if (style.animationType == JDStatusBarAnimationTypeBounce) {
+  if (style.animationType == JDStatusBarNotificationAnimationTypeBounce) {
     _animateInCompletionBlock = completion;
     [self animateInWithBounceAnimation];
   } else {
@@ -89,13 +89,13 @@
 }
 
 - (void)animateOutWithDuration:(CGFloat)duration
-                    completion:(JDStatusBarAnimatorCompletion)completion {
+                    completion:(JDSBNotificationAnimatorCompletion)completion {
   JDStatusBarNotificationStyle *style = _statusBarView.style;
   JDSBNotificationView *view = _statusBarView;
 
   // animate out
   [UIView animateWithDuration:duration animations:^{
-    if (style.animationType == JDStatusBarAnimationTypeFade) {
+    if (style.animationType == JDStatusBarNotificationAnimationTypeFade) {
       view.alpha = 0.0;
     } else {
       view.transform = CGAffineTransformMakeTranslation(0, - CGRectGetHeight(view.bounds));
@@ -116,7 +116,7 @@
     [topBar.layer removeAllAnimations];
 
     if (_animateInCompletionBlock) {
-      JDStatusBarAnimatorCompletion completion = _animateInCompletionBlock;
+      JDSBNotificationAnimatorCompletion completion = _animateInCompletionBlock;
       _animateInCompletionBlock = nil;
       if (completion) {
         completion();

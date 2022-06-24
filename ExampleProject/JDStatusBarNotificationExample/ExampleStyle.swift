@@ -31,7 +31,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
     }
   }
 
-  func register(for backgroundType: BarBackgroundType) {
+  func register(for backgroundType: StatusBarNotificationBackgroundType) {
     let style = buildStyle()
     style.backgroundStyle.backgroundType = backgroundType
     NotificationPresenter.shared().addStyle(styleName: rawValue) { _ in
