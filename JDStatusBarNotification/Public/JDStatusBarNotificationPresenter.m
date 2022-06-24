@@ -9,18 +9,18 @@
 
 #import "JDStatusBarNotificationPresenter.h"
 
-#import "JDStatusBarStyleCache.h"
-#import "JDStatusBarNotificationViewController.h"
-#import "JDStatusBarView.h"
-#import "JDStatusBarWindow.h"
+#import "JDSBNotificationView.h"
+#import "JDSBNotificationViewController.h"
+#import "JDSBNotificationStyleCache.h"
+#import "JDSBNotificationWindow.h"
 
-@interface JDStatusBarNotificationPresenter () <JDStatusBarWindowDelegate>
+@interface JDStatusBarNotificationPresenter () <JDSBNotificationWindowDelegate>
 @end
 
 @implementation JDStatusBarNotificationPresenter {
   UIWindowScene *_windowScene;
-  JDStatusBarWindow *_overlayWindow;
-  JDStatusBarStyleCache *_styleCache;
+  JDSBNotificationWindow *_overlayWindow;
+  JDSBNotificationStyleCache *_styleCache;
 }
 
 #pragma mark - Singleton
@@ -39,23 +39,23 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _styleCache = [[JDStatusBarStyleCache alloc] init];
+    _styleCache = [[JDSBNotificationStyleCache alloc] init];
   }
   return self;
 }
 
 #pragma mark - Core Presentation logic
 
-- (JDStatusBarView *)presentWithTitle:(NSString *)title
+- (JDSBNotificationView *)presentWithTitle:(NSString *)title
                              subtitle:(NSString *)subtitle
                                 style:(JDStatusBarNotificationStyle *)style
                            completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   if(_overlayWindow == nil) {
-    _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
+    _overlayWindow = [[JDSBNotificationWindow alloc] initWithStyle:style windowScene:_windowScene];
     _overlayWindow.delegate = self;
   }
 
-  JDStatusBarView *view = [_overlayWindow.statusBarViewController presentWithTitle:title subtitle:subtitle style:style completion:^{
+  JDSBNotificationView *view = [_overlayWindow.statusBarViewController presentWithTitle:title subtitle:subtitle style:style completion:^{
     if (completion) {
       completion(self);
     }
@@ -67,7 +67,7 @@
   return view;
 }
 
-#pragma mark - JDStatusBarWindowDelegate
+#pragma mark - JDSBNotificationWindowDelegate
 
 - (void)didDismissStatusBar {
   [_overlayWindow removeFromSuperview];
@@ -179,7 +179,7 @@
                         styleName:(NSString * _Nullable)styleName
                        completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarNotificationStyle *style = [_styleCache styleForName:styleName];
-  JDStatusBarView *view = [self presentWithTitle:nil subtitle:nil style:style completion:completion];
+  JDSBNotificationView *view = [self presentWithTitle:nil subtitle:nil style:style completion:completion];
   view.customSubview = customView;
   return view;
 }

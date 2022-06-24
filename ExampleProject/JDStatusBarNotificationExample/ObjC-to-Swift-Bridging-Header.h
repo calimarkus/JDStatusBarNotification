@@ -3,4 +3,4 @@
 //
 
 #import "JDStatusBarNotification.h"
-#import "JDStatusBarView.h"
+#import "JDSBNotificationView.h"

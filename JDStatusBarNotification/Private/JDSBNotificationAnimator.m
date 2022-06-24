@@ -1,20 +1,20 @@
 //
 //
 
-#import "JDStatusBarAnimator.h"
+#import "JDSBNotificationAnimator.h"
 
 #import "JDStatusBarNotificationStyle.h"
-#import "JDStatusBarView.h"
+#import "JDSBNotificationView.h"
 
-@interface JDStatusBarAnimator () <CAAnimationDelegate>
+@interface JDSBNotificationAnimator () <CAAnimationDelegate>
 @end
 
-@implementation JDStatusBarAnimator {
-  JDStatusBarView *_statusBarView;
+@implementation JDSBNotificationAnimator {
+  JDSBNotificationView *_statusBarView;
   JDStatusBarAnimatorCompletion _animateInCompletionBlock;
 }
 
-- (instancetype)initWithStatusBarView:(JDStatusBarView *)statusBarView {
+- (instancetype)initWithStatusBarView:(JDSBNotificationView *)statusBarView {
   self = [super init];
   if (self) {
     _statusBarView = statusBarView;
@@ -25,7 +25,7 @@
 - (void)animateInWithDuration:(CGFloat)duration
                    completion:(JDStatusBarAnimatorCompletion)completion {
   JDStatusBarNotificationStyle *style = _statusBarView.style;
-  JDStatusBarView *view = _statusBarView;
+  JDSBNotificationView *view = _statusBarView;
 
   // reset animation state
   _animateInCompletionBlock = nil;
@@ -57,7 +57,7 @@
 }
 
 - (void)animateInWithBounceAnimation {
-  JDStatusBarView *topBar = _statusBarView;
+  JDSBNotificationView *topBar = _statusBarView;
 
   // easing function (based on github.com/robb/RBBAnimation)
   CGFloat(^RBBEasingFunctionEaseOutBounce)(CGFloat) = ^CGFloat(CGFloat t) {
@@ -91,7 +91,7 @@
 - (void)animateOutWithDuration:(CGFloat)duration
                     completion:(JDStatusBarAnimatorCompletion)completion {
   JDStatusBarNotificationStyle *style = _statusBarView.style;
-  JDStatusBarView *view = _statusBarView;
+  JDSBNotificationView *view = _statusBarView;
 
   // animate out
   [UIView animateWithDuration:duration animations:^{
@@ -111,7 +111,7 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)finished {
   if (finished) {
-    JDStatusBarView *topBar = _statusBarView;
+    JDSBNotificationView *topBar = _statusBarView;
     topBar.transform = CGAffineTransformIdentity;
     [topBar.layer removeAllAnimations];
 

@@ -27,7 +27,7 @@ struct StatusBarPreviewView: UIViewRepresentable {
   }
 
   func makeUIView(context: Context) -> UIView {
-    let view = JDStatusBarView()
+    let view = _SBNotificationView()
     view.title = self.title
     view.subtitle = self.subtitle
     view.style = self.style

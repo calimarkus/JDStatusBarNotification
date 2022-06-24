@@ -8,7 +8,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JDStatusBarStyleCache : NSObject
+NS_SWIFT_NAME(SBNotificationStyleCache)
+@interface JDSBNotificationStyleCache : NSObject
 
 - (JDStatusBarNotificationStyle *)styleForName:(NSString *)styleName;
 - (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarIncludedStyle)style;

@@ -1,11 +1,11 @@
 //
 //
 
-#import "JDStatusBarStyleCache.h"
+#import "JDSBNotificationStyleCache.h"
 
 #import "JDStatusBarNotificationStyle.h"
 
-@implementation JDStatusBarStyleCache {
+@implementation JDSBNotificationStyleCache {
   JDStatusBarNotificationStyle *_defaultStyle;
   NSMutableDictionary *_userStyles;
 }

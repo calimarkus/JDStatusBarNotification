@@ -3,18 +3,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class JDStatusBarView;
+@class JDSBNotificationView;
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^ _Nullable JDStatusBarAnimatorCompletion)(void);
 
-@interface JDStatusBarAnimator : NSObject
+NS_SWIFT_NAME(_SBNotificationAnimator)
+@interface JDSBNotificationAnimator : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
-- (instancetype)initWithStatusBarView:(JDStatusBarView *)statusBarView;
+- (instancetype)initWithStatusBarView:(JDSBNotificationView *)statusBarView;
 
 - (void)animateInWithDuration:(CGFloat)duration
                    completion:(JDStatusBarAnimatorCompletion)completion;

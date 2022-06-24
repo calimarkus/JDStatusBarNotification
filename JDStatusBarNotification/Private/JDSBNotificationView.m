@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import "JDStatusBarView.h"
+#import "JDSBNotificationView.h"
 
 #import "JDStatusBarNotificationStyle.h"
 #import "JDStatusBarLayoutMarginHelper.h"
@@ -13,10 +13,10 @@
 
 static const NSInteger kExpectedSubviewTag = 12321;
 
-@interface JDStatusBarView () <UIGestureRecognizerDelegate>
+@interface JDSBNotificationView () <UIGestureRecognizerDelegate>
 @end
 
-@implementation JDStatusBarView {
+@implementation JDSBNotificationView {
   JDStatusBarNotificationStyle *_style;
 
   UIView *_contentView;

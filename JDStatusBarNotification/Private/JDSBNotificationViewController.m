@@ -1,21 +1,21 @@
 //
 //
 
-#import "JDStatusBarNotificationViewController.h"
+#import "JDSBNotificationViewController.h"
 
-#import "JDStatusBarAnimator.h"
+#import "JDSBNotificationAnimator.h"
 #import "JDStatusBarNotificationStyle.h"
-#import "JDStatusBarView.h"
+#import "JDSBNotificationView.h"
 #import "UIApplication+JDSB_MainWindow.h"
 
-@interface JDStatusBarNotificationViewController () <JDStatusBarViewDelegate>
+@interface JDSBNotificationViewController () <JDStatusBarViewDelegate>
 @end
 
-@implementation JDStatusBarNotificationViewController {
+@implementation JDSBNotificationViewController {
   BOOL _forceDismissalOnTouchesEnded;
   NSTimer *_dismissTimer;
-  JDStatusBarNotificationViewControllerCompletion _dismissCompletionBlock;
-  JDStatusBarAnimator *_animator;
+  JDSBNotificationViewControllerCompletion _dismissCompletionBlock;
+  JDSBNotificationAnimator *_animator;
 
   CGFloat _panInitialY;
   CGFloat _panMaxY;
@@ -24,12 +24,12 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _statusBarView = [JDStatusBarView new];
+    _statusBarView = [JDSBNotificationView new];
     _statusBarView.delegate = self;
     [_statusBarView.panGestureRecognizer addTarget:self action:@selector(panGestureRecognized:)];
     [_statusBarView.longPressGestureRecognizer addTarget:self action:@selector(longPressGestureRecognized:)];
 
-    _animator = [[JDStatusBarAnimator alloc] initWithStatusBarView:_statusBarView];
+    _animator = [[JDSBNotificationAnimator alloc] initWithStatusBarView:_statusBarView];
   }
   return self;
 }
@@ -43,11 +43,11 @@
 
 #pragma mark - Presentation
 
-- (JDStatusBarView *)presentWithTitle:(NSString *)title
+- (JDSBNotificationView *)presentWithTitle:(NSString *)title
                              subtitle:(NSString *)subtitle
                                 style:(JDStatusBarNotificationStyle *)style
-                           completion:(JDStatusBarNotificationViewControllerCompletion)completion {
-  JDStatusBarView *topBar = _statusBarView;
+                           completion:(JDSBNotificationViewControllerCompletion)completion {
+  JDSBNotificationView *topBar = _statusBarView;
 
   // update status & style
   [topBar setTitle:title];
@@ -147,7 +147,7 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarBackgroundType type) {
 #pragma mark - Dismissal
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-             completion:(JDStatusBarNotificationViewControllerCompletion)completion {
+             completion:(JDSBNotificationViewControllerCompletion)completion {
   [_dismissTimer invalidate];
 
   _dismissCompletionBlock = [completion copy];
@@ -159,13 +159,13 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarBackgroundType type) {
 }
 
 - (void)dismissTimerFired:(NSTimer *)timer {
-  JDStatusBarNotificationViewControllerCompletion block = _dismissCompletionBlock;
+  JDSBNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
   [self dismissWithDuration:0.4 completion:block];
 }
 
 - (void)dismissWithDuration:(CGFloat)duration
-                 completion:(JDStatusBarNotificationViewControllerCompletion)completion {
+                 completion:(JDSBNotificationViewControllerCompletion)completion {
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
@@ -187,7 +187,7 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarBackgroundType type) {
 }
 
 - (void)forceDismiss {
-  JDStatusBarNotificationViewControllerCompletion block = _dismissCompletionBlock;
+  JDSBNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
   [self dismissWithDuration:0.25 completion:block];
 }

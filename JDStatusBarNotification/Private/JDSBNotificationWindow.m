@@ -1,18 +1,18 @@
 //
 //
 
-#import "JDStatusBarWindow.h"
+#import "JDSBNotificationWindow.h"
 
-#import "JDStatusBarNotificationViewController.h"
-#import "JDStatusBarView.h"
+#import "JDSBNotificationViewController.h"
+#import "JDSBNotificationView.h"
 #import "JDStatusBarNotificationStyle.h"
 #import "UIApplication+JDSB_MainWindow.h"
 #import "JDStatusBarManagerHelper.h"
 
-@interface JDStatusBarWindow () <JDStatusBarNotificationViewControllerDelegate>
+@interface JDSBNotificationWindow () <JDSBNotificationViewControllerDelegate>
 @end
 
-@implementation JDStatusBarWindow
+@implementation JDSBNotificationWindow
 
 - (instancetype)initWithStyle:(JDStatusBarNotificationStyle *)style
                   windowScene:(UIWindowScene * _Nullable)windowScene {
@@ -28,7 +28,7 @@
   }
 
   if (self) {
-    _statusBarViewController = [JDStatusBarNotificationViewController new];
+    _statusBarViewController = [JDSBNotificationViewController new];
     _statusBarViewController.delegate = self;
     self.rootViewController = _statusBarViewController;
 
@@ -54,7 +54,7 @@
   }
 
   // update top bar frame
-  JDStatusBarView *statusBarView = _statusBarViewController.statusBarView;
+  JDSBNotificationView *statusBarView = _statusBarViewController.statusBarView;
   CGFloat heightIncludingNavBar = rect.size.height + contentHeight(window.windowScene, statusBarView.style, rect);
   statusBarView.transform = CGAffineTransformIdentity;
   statusBarView.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
@@ -85,7 +85,7 @@ static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotification
   }
 }
 
-#pragma mark - JDStatusBarNotificationViewControllerDelegate
+#pragma mark - JDSBNotificationViewControllerDelegate
 
 - (void)animationsForViewTransitionToSize:(CGSize)size {
   // update window & statusbar

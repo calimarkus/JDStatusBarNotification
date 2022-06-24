@@ -4,18 +4,20 @@
 #import <UIKit/UIKit.h>
 
 @class JDStatusBarNotificationStyle;
-@class JDStatusBarNotificationViewController;
+@class JDSBNotificationViewController;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol JDStatusBarWindowDelegate <NSObject>
+NS_SWIFT_NAME(_SBNotificationWindowDelegate)
+@protocol JDSBNotificationWindowDelegate <NSObject>
 - (void)didDismissStatusBar;
 @end
 
-@interface JDStatusBarWindow : UIWindow
+NS_SWIFT_NAME(_SBNotificationWindow)
+@interface JDSBNotificationWindow : UIWindow
 
-@property (nonatomic, strong) JDStatusBarNotificationViewController *statusBarViewController;
-@property (nonatomic, weak) id<JDStatusBarWindowDelegate> delegate;
+@property (nonatomic, strong) JDSBNotificationViewController *statusBarViewController;
+@property (nonatomic, weak) id<JDSBNotificationWindowDelegate> delegate;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
