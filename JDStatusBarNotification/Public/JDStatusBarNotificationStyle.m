@@ -1,11 +1,11 @@
 //
-//  JDStatusBarStyle.m
+//  JDStatusBarNotificationStyle.m
 //
 //  Created by Markus on 04.12.13.
 //  Copyright (c) 2013 Markus. All rights reserved.
 //
 
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 
 @implementation JDStatusBarTextStyle
 
@@ -189,7 +189,7 @@
 
 @end
 
-@implementation JDStatusBarStyle
+@implementation JDStatusBarNotificationStyle
 
 - (instancetype)init {
   self = [super init];
@@ -214,7 +214,7 @@
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-  JDStatusBarStyle *style = [[[self class] allocWithZone:zone] init];
+  JDStatusBarNotificationStyle *style = [[[self class] allocWithZone:zone] init];
   style.textStyle = [self.textStyle copy];
   style.subtitleStyle = [self.subtitleStyle copy];
   style.backgroundStyle = [self.backgroundStyle copy];

@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #import "JDStatusBarPrepareStyleBlock.h"
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 
 @class JDStatusBarNotificationPresenter;
 

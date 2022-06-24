@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class JDStatusBarStyle;
+@class JDStatusBarNotificationStyle;
 
 @protocol JDStatusBarViewDelegate <NSObject>
 - (void)didUpdateStyle;
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString *title;
 @property (nonatomic, strong, nullable) NSString *subtitle;
-@property (nonatomic, strong, nonnull) JDStatusBarStyle *style;
+@property (nonatomic, strong, nonnull) JDStatusBarNotificationStyle *style;
 
 @property (nonatomic, assign) BOOL displaysActivityIndicator;
 @property (nonatomic, assign) CGFloat progressBarPercentage;

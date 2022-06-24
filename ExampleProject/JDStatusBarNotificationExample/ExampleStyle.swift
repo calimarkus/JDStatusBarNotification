@@ -39,10 +39,10 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
     }
   }
 
-  func buildStyle() -> StatusBarStyle {
+  func buildStyle() -> StatusBarNotificationStyle {
     switch self {
       case .loveIt:
-        let style = StatusBarStyle()
+        let style = StatusBarNotificationStyle()
         style.backgroundStyle.backgroundColor = UIColor(red: 0.797, green: 0.0, blue: 0.662, alpha: 1.0)
         style.textStyle.textColor = .white
         style.animationType = .fade
@@ -55,7 +55,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         return style
 
       case .levelUp:
-        let style = StatusBarStyle()
+        let style = StatusBarNotificationStyle()
         style.backgroundStyle.backgroundColor = .cyan
         style.textStyle.textColor = UIColor(red: 0.056, green: 0.478, blue: 0.998, alpha: 1.0)
         style.textStyle.textOffsetY = 3.0
@@ -70,7 +70,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         return style
 
       case .looksGood:
-        let style = StatusBarStyle()
+        let style = StatusBarNotificationStyle()
         style.backgroundStyle.backgroundColor = UIColor(red: 0.9999999403953552, green: 0.3843138813972473, blue: 0.31372547149658203, alpha: 1.0) // "red"
         style.textStyle.textColor = .black
         style.textStyle.font = UIFont(name: "Noteworthy-Bold", size: 13.0)!
@@ -88,7 +88,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         return style
 
       case .smallPill:
-        let style = StatusBarStyle()
+        let style = StatusBarNotificationStyle()
         style.textStyle.textColor = UIColor(red: 0.003921307157725096, green: 0.11372547596693039, blue: 0.34117642045021057, alpha: 1.0) // "dark blue"
         style.textStyle.font = UIFont(name: ".AppleSystemUIFont", size: 14.0)!
         style.textStyle.textOffsetY = -3.0
@@ -114,7 +114,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         return style
 
       case .iconLeftView:
-        let style = StatusBarStyle()
+        let style = StatusBarNotificationStyle()
         style.backgroundStyle.backgroundColor = UIColor(white: 0.15, alpha: 1.0)
         style.backgroundStyle.pillStyle.minimumWidth = 200.0
         style.backgroundStyle.pillStyle.height = 50.0
@@ -132,7 +132,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
         return style
 
       case .editor:
-        let style = StatusBarStyle()
+        let style = StatusBarNotificationStyle()
 
         style.textStyle.textColor = UIColor(white: 0.1, alpha: 1.0)
         style.textStyle.font = .systemFont(ofSize: 14.0)

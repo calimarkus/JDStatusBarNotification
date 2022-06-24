@@ -83,7 +83,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   @Published var pbCornerRadius: Double
   @Published var pbBarOffset: Double
 
-  init(_ defaultStyle: StatusBarStyle) {
+  init(_ defaultStyle: StatusBarNotificationStyle) {
     // text
     textStyle = CustomTextStyle(defaultStyle.textStyle)
     subtitleStyle = CustomTextStyle(defaultStyle.subtitleStyle)
@@ -136,8 +136,8 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     return styleName
   }
 
-  func computedStyle() -> StatusBarStyle {
-    let style = StatusBarStyle()
+  func computedStyle() -> StatusBarNotificationStyle {
+    let style = StatusBarNotificationStyle()
 
     style.textStyle = textStyle.computedStyle()
     style.subtitleStyle = subtitleStyle.computedStyle()

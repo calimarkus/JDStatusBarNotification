@@ -3,27 +3,27 @@
 
 #import "JDStatusBarStyleCache.h"
 
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 
 @implementation JDStatusBarStyleCache {
-  JDStatusBarStyle *_defaultStyle;
+  JDStatusBarNotificationStyle *_defaultStyle;
   NSMutableDictionary *_userStyles;
 }
 
 - (instancetype)init {
   self = [super init];
   if (self) {
-    _defaultStyle = [JDStatusBarStyle new];
+    _defaultStyle = [JDStatusBarNotificationStyle new];
     _userStyles = [NSMutableDictionary dictionary];
   }
   return self;
 }
 
-- (JDStatusBarStyle *)styleForName:(NSString *)styleName {
+- (JDStatusBarNotificationStyle *)styleForName:(NSString *)styleName {
   return (_userStyles[styleName] ?: _defaultStyle);
 }
 
-- (JDStatusBarStyle *)styleForIncludedStyle:(JDStatusBarIncludedStyle)style {
+- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarIncludedStyle)style {
   return includedStyle(style);
 }
 
@@ -44,13 +44,13 @@
   return styleName;
 }
 
-static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
+static JDStatusBarNotificationStyle *includedStyle(JDStatusBarIncludedStyle style) {
   switch (style) {
     case JDStatusBarIncludedStyleDefaultStyle:
-      return [JDStatusBarStyle new];
+      return [JDStatusBarNotificationStyle new];
 
     case JDStatusBarIncludedStyleLight: {
-      JDStatusBarStyle *style = [JDStatusBarStyle new];
+      JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
       style.backgroundStyle.backgroundColor = [UIColor whiteColor];
       style.textStyle.textColor = [UIColor grayColor];
       style.systemStatusBarStyle = JDStatusBarSystemStyleDarkContent;
@@ -58,7 +58,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
     }
 
     case JDStatusBarIncludedStyleDark: {
-      JDStatusBarStyle *style = [JDStatusBarStyle new];
+      JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.050 green:0.078 blue:0.120 alpha:1.000];
       style.textStyle.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
       style.systemStatusBarStyle = JDStatusBarSystemStyleLightContent;
@@ -66,7 +66,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
     }
 
     case JDStatusBarIncludedStyleError: {
-      JDStatusBarStyle *style = [JDStatusBarStyle new];
+      JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.588 green:0.118 blue:0.000 alpha:1.000];
       style.textStyle.textColor = [UIColor whiteColor];
       style.subtitleStyle.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
@@ -75,7 +75,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
     }
 
     case JDStatusBarIncludedStyleWarning: {
-      JDStatusBarStyle *style = [JDStatusBarStyle new];
+      JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.900 green:0.734 blue:0.034 alpha:1.000];
       style.textStyle.textColor = [UIColor darkGrayColor];
       style.subtitleStyle.textColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.75];
@@ -84,7 +84,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
     }
 
     case JDStatusBarIncludedStyleSuccess: {
-      JDStatusBarStyle *style = [JDStatusBarStyle new];
+      JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
       style.backgroundStyle.backgroundColor = [UIColor colorWithRed:0.588 green:0.797 blue:0.000 alpha:1.000];
       style.textStyle.textColor = [UIColor whiteColor];
       style.subtitleStyle.textColor = [UIColor colorWithRed:0.2 green:0.5 blue:0.2 alpha:1.0];
@@ -93,7 +93,7 @@ static JDStatusBarStyle *includedStyle(JDStatusBarIncludedStyle style) {
     }
 
     case JDStatusBarIncludedStyleMatrix: {
-      JDStatusBarStyle *style = [JDStatusBarStyle new];
+      JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
       style.backgroundStyle.backgroundColor = [UIColor blackColor];
       style.textStyle.textColor = [UIColor greenColor];
       style.textStyle.font = [UIFont fontWithName:@"Courier-Bold" size:14.0];

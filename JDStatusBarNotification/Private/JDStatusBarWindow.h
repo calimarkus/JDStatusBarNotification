@@ -3,7 +3,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class JDStatusBarStyle;
+@class JDStatusBarNotificationStyle;
 @class JDStatusBarNotificationViewController;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
 
-- (instancetype)initWithStyle:(JDStatusBarStyle *)style
+- (instancetype)initWithStyle:(JDStatusBarNotificationStyle *)style
                   windowScene:(UIWindowScene * _Nullable)windowScene;
 
 @end

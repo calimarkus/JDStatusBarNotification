@@ -48,7 +48,7 @@
 
 - (JDStatusBarView *)presentWithTitle:(NSString *)title
                              subtitle:(NSString *)subtitle
-                                style:(JDStatusBarStyle *)style
+                                style:(JDStatusBarNotificationStyle *)style
                            completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   if(_overlayWindow == nil) {
     _overlayWindow = [[JDStatusBarWindow alloc] initWithStyle:style windowScene:_windowScene];
@@ -126,7 +126,7 @@
            dismissAfterDelay:(NSTimeInterval)delay
                  customStyle:(NSString * _Nullable)styleName
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  JDStatusBarStyle *style = [_styleCache styleForName:styleName];
+  JDStatusBarNotificationStyle *style = [_styleCache styleForName:styleName];
   UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
@@ -165,7 +165,7 @@
            dismissAfterDelay:(NSTimeInterval)delay
                includedStyle:(JDStatusBarIncludedStyle)includedStyle
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  JDStatusBarStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
+  JDStatusBarNotificationStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
   UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
@@ -178,7 +178,7 @@
 - (UIView *)presentWithCustomView:(UIView *)customView
                         styleName:(NSString * _Nullable)styleName
                        completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  JDStatusBarStyle *style = [_styleCache styleForName:styleName];
+  JDStatusBarNotificationStyle *style = [_styleCache styleForName:styleName];
   JDStatusBarView *view = [self presentWithTitle:nil subtitle:nil style:style completion:completion];
   view.customSubview = customView;
   return view;

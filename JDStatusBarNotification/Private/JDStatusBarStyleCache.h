@@ -4,14 +4,14 @@
 #import <Foundation/Foundation.h>
 
 #import "JDStatusBarPrepareStyleBlock.h"
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JDStatusBarStyleCache : NSObject
 
-- (JDStatusBarStyle *)styleForName:(NSString *)styleName;
-- (JDStatusBarStyle *)styleForIncludedStyle:(JDStatusBarIncludedStyle)style;
+- (JDStatusBarNotificationStyle *)styleForName:(NSString *)styleName;
+- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarIncludedStyle)style;
 
 - (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarPrepareStyleBlock)prepareBlock;
 

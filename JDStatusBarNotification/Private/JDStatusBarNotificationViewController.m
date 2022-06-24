@@ -4,7 +4,7 @@
 #import "JDStatusBarNotificationViewController.h"
 
 #import "JDStatusBarAnimator.h"
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 #import "JDStatusBarView.h"
 #import "UIApplication+JDSB_MainWindow.h"
 
@@ -45,7 +45,7 @@
 
 - (JDStatusBarView *)presentWithTitle:(NSString *)title
                              subtitle:(NSString *)subtitle
-                                style:(JDStatusBarStyle *)style
+                                style:(JDStatusBarNotificationStyle *)style
                            completion:(JDStatusBarNotificationViewControllerCompletion)completion {
   JDStatusBarView *topBar = _statusBarView;
 

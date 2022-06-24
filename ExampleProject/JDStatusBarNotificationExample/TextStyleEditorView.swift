@@ -60,7 +60,7 @@ struct TextStyleEditorView_Previews: PreviewProvider {
       TextStyleEditorView(
         title: "Title",
         offsetInfo: "Let me explain to you how to use this offset value. It might have some unexpected side effects!?",
-        style: CustomTextStyle(StatusBarStyle().textStyle),
+        style: CustomTextStyle(StatusBarNotificationStyle().textStyle),
         defaultShadowColor: nil
       ) {}
     }

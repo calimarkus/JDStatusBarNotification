@@ -4,7 +4,7 @@
 #import <UIKit/UIKit.h>
 
 @class JDStatusBarView;
-@class JDStatusBarStyle;
+@class JDStatusBarNotificationStyle;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +23,7 @@ typedef void (^ _Nullable JDStatusBarNotificationViewControllerCompletion)(void)
 
 - (JDStatusBarView *)presentWithTitle:(NSString * _Nullable)title
                              subtitle:(NSString * _Nullable)subtitle
-                                style:(JDStatusBarStyle *)style
+                                style:(JDStatusBarNotificationStyle *)style
                            completion:(JDStatusBarNotificationViewControllerCompletion)completion;
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay

@@ -3,7 +3,7 @@
 
 #import "JDStatusBarAnimator.h"
 
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 #import "JDStatusBarView.h"
 
 @interface JDStatusBarAnimator () <CAAnimationDelegate>
@@ -24,7 +24,7 @@
 
 - (void)animateInWithDuration:(CGFloat)duration
                    completion:(JDStatusBarAnimatorCompletion)completion {
-  JDStatusBarStyle *style = _statusBarView.style;
+  JDStatusBarNotificationStyle *style = _statusBarView.style;
   JDStatusBarView *view = _statusBarView;
 
   // reset animation state
@@ -90,7 +90,7 @@
 
 - (void)animateOutWithDuration:(CGFloat)duration
                     completion:(JDStatusBarAnimatorCompletion)completion {
-  JDStatusBarStyle *style = _statusBarView.style;
+  JDStatusBarNotificationStyle *style = _statusBarView.style;
   JDStatusBarView *view = _statusBarView;
 
   // animate out

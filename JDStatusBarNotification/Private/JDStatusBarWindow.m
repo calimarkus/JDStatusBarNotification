@@ -5,7 +5,7 @@
 
 #import "JDStatusBarNotificationViewController.h"
 #import "JDStatusBarView.h"
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 #import "UIApplication+JDSB_MainWindow.h"
 #import "JDStatusBarManagerHelper.h"
 
@@ -14,7 +14,7 @@
 
 @implementation JDStatusBarWindow
 
-- (instancetype)initWithStyle:(JDStatusBarStyle *)style
+- (instancetype)initWithStyle:(JDStatusBarNotificationStyle *)style
                   windowScene:(UIWindowScene * _Nullable)windowScene {
   // attempt to infer window scene
   if (windowScene == nil) {
@@ -63,7 +63,7 @@
   [statusBarView setProgressBarPercentage:_statusBarViewController.statusBarView.progressBarPercentage];
 }
 
-static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarStyle *style, CGRect statusBarRect) {
+static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotificationStyle *style, CGRect statusBarRect) {
   switch (style.backgroundStyle.backgroundType) {
     case JDStatusBarBackgroundTypeFullWidth: {
       if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&

@@ -8,16 +8,16 @@
 #ifndef JDStatusBarPrepareStyleBlock_h
 #define JDStatusBarPrepareStyleBlock_h
 
-@class JDStatusBarStyle;
+@class JDStatusBarNotificationStyle;
 
 /**
  *  A block that is used to define the appearance of a notification.
- *  A JDStatusBarStyle instance defines the notification appeareance.
+ *  A JDStatusBarNotificationStyle instance defines the notification appeareance.
  *
- *  @param style The current default JDStatusBarStyle instance.
+ *  @param style The current default JDStatusBarNotificationStyle instance.
  *
- *  @return The modified JDStatusBarStyle instance.
+ *  @return The modified JDStatusBarNotificationStyle instance.
  */
-typedef JDStatusBarStyle * _Nonnull(^JDStatusBarPrepareStyleBlock)(JDStatusBarStyle * _Nonnull style);
+typedef JDStatusBarNotificationStyle * _Nonnull(^JDStatusBarPrepareStyleBlock)(JDStatusBarNotificationStyle * _Nonnull style);
 
 #endif /* JDStatusBarPrepareStyleBlock_h */

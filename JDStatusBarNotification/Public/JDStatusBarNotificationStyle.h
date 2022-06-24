@@ -1,5 +1,5 @@
 //
-//  JDStatusBarStyle.h
+//  JDStatusBarNotificationStyle.h
 //
 //  Created by Markus on 04.12.13.
 //  Copyright (c) 2013 Markus. All rights reserved.
@@ -77,8 +77,8 @@ typedef NS_ENUM(NSInteger, JDStatusBarLeftViewAlignment) {
 /**
  *  A Style defines the appeareance of a notification.
  */
-NS_SWIFT_NAME(StatusBarStyle)
-@interface JDStatusBarStyle : NSObject <NSCopying>
+NS_SWIFT_NAME(StatusBarNotificationStyle)
+@interface JDStatusBarNotificationStyle : NSObject <NSCopying>
 
 /// The styling of the title label (Defaults: UIFontTextStyleFootnote, color: .gray and adjusts for dark mode)
 ///

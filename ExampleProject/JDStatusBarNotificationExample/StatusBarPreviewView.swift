@@ -6,7 +6,7 @@ import SwiftUI
 struct StatusBarPreviewView: UIViewRepresentable {
   var title: String?
   var subtitle: String?
-  var style: StatusBarStyle
+  var style: StatusBarNotificationStyle
   var progress: Double
   var activity: Bool
 
@@ -14,11 +14,11 @@ struct StatusBarPreviewView: UIViewRepresentable {
        subtitle: String? = nil,
        progress: Double = 0.33,
        activity: Bool = true,
-       style: ((StatusBarStyle) -> Void)? = nil)
+       style: ((StatusBarNotificationStyle) -> Void)? = nil)
   {
     self.title = title
     self.subtitle = subtitle
-    self.style = StatusBarStyle()
+    self.style = StatusBarNotificationStyle()
     self.progress = progress
     self.activity = activity
     if let style = style {

@@ -7,7 +7,7 @@
 
 #import "JDStatusBarView.h"
 
-#import "JDStatusBarStyle.h"
+#import "JDStatusBarNotificationStyle.h"
 #import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarManagerHelper.h"
 
@@ -17,7 +17,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 @end
 
 @implementation JDStatusBarView {
-  JDStatusBarStyle *_style;
+  JDStatusBarNotificationStyle *_style;
 
   UIView *_contentView;
   UIView *_pillView;
@@ -160,7 +160,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   }
 }
 
-CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDStatusBarStyle *style) {
+CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDStatusBarNotificationStyle *style) {
   JDStatusBarProgressBarStyle *progressBarStyle = style.progressBarStyle;
 
   // calculate progressView frame
@@ -282,7 +282,7 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
 
 #pragma mark - Style
 
-- (void)setStyle:(JDStatusBarStyle *)style {
+- (void)setStyle:(JDStatusBarNotificationStyle *)style {
   _style = style;
 
   // background
