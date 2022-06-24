@@ -8,7 +8,6 @@
 #import "JDSBNotificationView.h"
 
 #import "JDStatusBarNotificationStyle.h"
-#import "JDStatusBarLayoutMarginHelper.h"
 #import "JDStatusBarManagerHelper.h"
 
 static const NSInteger kExpectedSubviewTag = 12321;
@@ -354,13 +353,14 @@ void applyTextStyleForLabel(JDStatusBarTextStyle *textStyle, UILabel *label) {
 #pragma mark - Layout
 
 static CGRect contentRectForWindow(UIView *view) {
-  CGFloat topLayoutMargin = JDStatusBarRootVCLayoutMarginForWindow(view.window).top;
-  if (topLayoutMargin == 0) {
-    topLayoutMargin = JDStatusBarFrameForWindowScene(view.window.windowScene).size.height;
+  CGFloat topLayoutMargins = view.superview.layoutMargins.top;
+  if (topLayoutMargins <= 8) {
+    // ignore default margins, fallback to system status bar height
+    topLayoutMargins = JDStatusBarFrameForWindowScene(view.window.windowScene).size.height;
   }
 
-  CGFloat height = view.bounds.size.height - topLayoutMargin;
-  return CGRectMake(0, topLayoutMargin, view.bounds.size.width, height);
+  CGFloat height = view.bounds.size.height - topLayoutMargins;
+  return CGRectMake(0, topLayoutMargins, view.bounds.size.width, height);
 }
 
 static CGSize realTextSizeForLabel(UILabel *textLabel) {
