@@ -10,14 +10,12 @@
 
 @class JDStatusBarNotificationStyle;
 
-/**
- *  A block that is used to define the appearance of a notification.
- *  A JDStatusBarNotificationStyle instance defines the notification appeareance.
- *
- *  @param style The current default JDStatusBarNotificationStyle instance.
- *
- *  @return The modified JDStatusBarNotificationStyle instance.
- */
+/// Creates a modified copy of an existing ``JDStatusBarNotificationStyle`` instance.
+///
+/// - Parameter style: The current default ``JDStatusBarNotificationStyle`` instance.
+///
+/// - Returns: The modified ``JDStatusBarNotificationStyle`` instance.
+///
 typedef JDStatusBarNotificationStyle * _Nonnull(^JDStatusBarNotificationPresenterPrepareStyleBlock)(JDStatusBarNotificationStyle * _Nonnull style) NS_SWIFT_NAME(NotificationPresenterPrepareStyleClosure);
 
 #endif /* JDStatusBarNotificationPresenterPrepareStyleBlock_h */
