@@ -137,7 +137,7 @@ NS_SWIFT_NAME(NotificationLeftViewStyle)
 @property (nonatomic, assign) CGFloat spacing;
 
 /// An optional offset to adjust the left views x position. Default 0.0.
-@property (nonatomic, assign) CGFloat offsetX __deprecated_msg("deprecated, use .offset.width instead");
+@property (nonatomic, assign) CGFloat offsetX __deprecated_msg("deprecated, use .offset.x instead");
 
 /// An optional offset to adjust the left views position. Default is CGPointZero.
 @property (nonatomic, assign) CGPoint offset;

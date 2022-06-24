@@ -19,14 +19,15 @@ typedef void (^ _Nullable JDStatusBarNotificationPresenterCompletionBlock)(JDSta
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  The NotificationPresenter let's you present text notification below the statusBar.
- *  You can customize the style & animations or even retrieve the presented view for further customization.
- *  It also supports displaying an activity indicator and / or an animated progress bar.
+ *  The NotificationPresenter let's you present notifications below the statusBar.
+ *  You can customize the style (colors, fonts, etc.) and animations. It supports notch
+ *  and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. It can display a
+ *  title, a subtitle, an activity indicator, an animated progress bar & custom views out of the box.
  *
  *  While a notification is displayed, a separate window is presented on top of your application window.
- *  Upon dismissal this window is fully removed from the memory. The presenter class itself is a singleton,
- *  which will stay in memory for the lifetime of your application, once it was used. That includes the
- *  DefaultStyle and any custom StatusBarStyles that were setup by the user.
+ *  Upon dismissal this window & all it's views are fully removed from memory. The presenter class itself is
+ *  a singleton though, which will stay in memory for the lifetime of your application once it was used. That
+ *  includes the DefaultStyle and any custom StatusBarStyles that were setup by the user.
  */
 NS_SWIFT_NAME(NotificationPresenter)
 @interface JDStatusBarNotificationPresenter : NSObject
