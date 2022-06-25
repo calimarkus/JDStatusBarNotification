@@ -23,8 +23,6 @@
 		7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7E5402C5286708850079C579 /* JDStatusBarNotification.docc */; };
-		7E5402CA286708850079C579 /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
-		7E5402CB286708850079C579 /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7E5402D1286708E70079C579 /* JDStatusBarNotificationPresenter.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519428585BE400C7C003 /* JDStatusBarNotificationPresenter.h */; };
 		7E5402D2286708E70079C579 /* JDStatusBarNotificationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519828585BE400C7C003 /* JDStatusBarNotificationPresenter.m */; };
 		7E5402D3286708E70079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519628585BE400C7C003 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */; };
@@ -111,30 +109,6 @@
 		D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7E5402C8286708850079C579 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D264F8851820213200DA0E53 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E5402C1286708840079C579;
-			remoteInfo = JDStatusBarNotification;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7E5402CF286708850079C579 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7E5402CB286708850079C579 /* JDStatusBarNotification.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
 		7E0FCB78285DAEE800E7CB78 /* FormViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViews.swift; sourceTree = "<group>"; };
@@ -215,7 +189,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E5402CA286708850079C579 /* JDStatusBarNotification.framework in Frameworks */,
 				D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */,
 				D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */,
 			);
@@ -435,12 +408,10 @@
 				D264F8891820213200DA0E53 /* Sources */,
 				D264F88A1820213200DA0E53 /* Frameworks */,
 				D264F88B1820213200DA0E53 /* Resources */,
-				7E5402CF286708850079C579 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7E5402C9286708850079C579 /* PBXTargetDependency */,
 			);
 			name = ClassicExample;
 			productName = JDStatusBarNotificationExample;
@@ -646,14 +617,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7E5402C9286708850079C579 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7E5402C1286708840079C579 /* JDStatusBarNotification */;
-			targetProxy = 7E5402C8286708850079C579 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7E5402CD286708850079C579 /* Debug */ = {
