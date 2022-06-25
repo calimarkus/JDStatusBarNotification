@@ -49,23 +49,19 @@ struct OptionalColorToggle: View {
   }
 }
 
+@available(iOS 15.0, *)
 struct CGPointStepper: View {
   var title: String
   @Binding var point: CGPoint
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 6.0) {
-      Text("\(title) (\(Int(point.x))/\(Int(point.y)))")
+    HStack(alignment: .center, spacing: 6.0) {
+      Text(title)
         .font(.subheadline)
-      HStack(alignment: .center, spacing: 20.0) {
-        Spacer()
-        Stepper("X:", value: $point.x)
-          .frame(width: 120)
-          .font(.subheadline)
-        Stepper("Y:", value: $point.y)
-          .frame(width: 120)
-          .font(.subheadline)
-        Spacer()
+      Spacer()
+      VStack(alignment: .trailing, spacing: 7.0) {
+        TextFieldStepper(title: "X:", binding: $point.x.native, fixedSizeStepper: true)
+        TextFieldStepper(title: "Y:", binding: $point.y.native, fixedSizeStepper: true)
       }
     }
   }
@@ -95,6 +91,7 @@ struct TextFieldStepper: View {
   var title: String
   var binding: Binding<Double>
   var range: ClosedRange<Double> = -999 ... 999
+  var fixedSizeStepper: Bool = false
 
   @FocusState private var isFocused: Bool
 
@@ -104,6 +101,10 @@ struct TextFieldStepper: View {
         isFocused = false
       })
       .font(.subheadline)
+      .lineLimit(2)
+      .minimumScaleFactor(0.8)
+      .fixedSize(horizontal: fixedSizeStepper, vertical: fixedSizeStepper)
+
       TextField(value: binding, format: .number) {
         EmptyView()
       }
@@ -125,15 +126,16 @@ struct FormFactory_Previews: PreviewProvider {
       OptionalColorPicker(title: "Color picker", color: .constant(.red))
       OptionalColorToggle(title: "Color resetting toggle", color: .constant(nil), defaultColor: .blue)
 
-      CGPointStepper(title: "CGPoint Control", point: .constant(CGPoint(x: 20, y: 20)))
+      TextFieldStepper(title: "Stepper + Textfield I", binding: .constant(1))
+      TextFieldStepper(title: "Stepper + Textfield II with some additional text", binding: .constant(23))
+
+      CGPointStepper(title: "CGPoint", point: .constant(CGPoint(x: 20, y: 20)))
 
       SegmentedPicker(title: "Inline Picker", value: .constant(1)) {
         Text("one").tag(1)
         Text("two").tag(2)
         Text("three").tag(3)
       }
-
-      TextFieldStepper(title: "Stepper + Textfield", binding: .constant(23))
 
       InfoLabel(text: "But let me tell ya, these settings need careful consideration. So better be careful!")
     }
