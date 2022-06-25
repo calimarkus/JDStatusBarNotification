@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2022-06-26
+
+tl;dr: A documentation update.
+
+### Added
+
+- Overhauled all public API documentation
+- Converted documentation to docc syntax
+- Published hosted [API documentation](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/) on GitHub pages
+
+### Changed
+
+- Renamed: `JDStatusBarStyle` -> `JDStatusBarNotificationStyle` & sub-style classes.
+  (Note: If you initalize styles in your codebase this is a breaking change. The current API design doesn't expect users to initialize styles, but it is possible to do so.)
+- Renamed private classes and enums and their swift naming for more consistency.
+
 ## [2.0.3] - 2022-06-22
 
 ### Added
@@ -89,7 +105,8 @@ Those adjustments should be simple though - mostly new API naming.
 
 Old version based on original release. No release notes available.
 
-[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.3...HEAD
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.4...HEAD
+[2.0.4]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.0...2.0.1
