@@ -22,6 +22,33 @@
 		7E2F3BBB284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
+		7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7E5402C5286708850079C579 /* JDStatusBarNotification.docc */; };
+		7E5402CA286708850079C579 /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
+		7E5402CB286708850079C579 /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7E5402D1286708E70079C579 /* JDStatusBarNotificationPresenter.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519428585BE400C7C003 /* JDStatusBarNotificationPresenter.h */; };
+		7E5402D2286708E70079C579 /* JDStatusBarNotificationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519828585BE400C7C003 /* JDStatusBarNotificationPresenter.m */; };
+		7E5402D3286708E70079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519628585BE400C7C003 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */; };
+		7E5402D4286708E70079C579 /* JDStatusBarNotificationStyle.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519328585BE400C7C003 /* JDStatusBarNotificationStyle.h */; };
+		7E5402D5286708E70079C579 /* JDStatusBarNotificationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519728585BE400C7C003 /* JDStatusBarNotificationStyle.m */; };
+		7E5402D6286708E70079C579 /* JDSBNotificationAnimator.h in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C283128520F56004315CC /* JDSBNotificationAnimator.h */; };
+		7E5402D7286708E70079C579 /* JDSBNotificationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C283228520F56004315CC /* JDSBNotificationAnimator.m */; };
+		7E5402D8286708E70079C579 /* JDSBNotificationStyleCache.h in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140952848513800593D6F /* JDSBNotificationStyleCache.h */; };
+		7E5402D9286708E70079C579 /* JDSBNotificationStyleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140962848513800593D6F /* JDSBNotificationStyleCache.m */; };
+		7E5402DA286708E70079C579 /* JDSBNotificationView.h in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA3184F343600B8174B /* JDSBNotificationView.h */; };
+		7E5402DB286708E70079C579 /* JDSBNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDSBNotificationView.m */; };
+		7E5402DC286708E70079C579 /* JDSBNotificationViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340C2844CA2D0096CD55 /* JDSBNotificationViewController.h */; };
+		7E5402DD286708E70079C579 /* JDSBNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340F2844CA2D0096CD55 /* JDSBNotificationViewController.m */; };
+		7E5402DE286708E70079C579 /* JDSBNotificationWindow.h in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140902847557600593D6F /* JDSBNotificationWindow.h */; };
+		7E5402DF286708E70079C579 /* JDSBNotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED140912847557600593D6F /* JDSBNotificationWindow.m */; };
+		7E5402E0286708E70079C579 /* JDSystemStatusBarHelpers.h in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D6284711C900685DDF /* JDSystemStatusBarHelpers.h */; };
+		7E5402E1286708E70079C579 /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */; };
+		7E5402E2286708E70079C579 /* UIApplication+JDSB_MainWindow.h in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE34112844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.h */; };
+		7E5402E3286708E70079C579 /* UIApplication+JDSB_MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340D2844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m */; };
+		7E5402E4286709010079C579 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519528585BE400C7C003 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E5402E5286709560079C579 /* JDStatusBarNotificationPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519428585BE400C7C003 /* JDStatusBarNotificationPresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E5402E6286709590079C579 /* JDStatusBarNotificationStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519328585BE400C7C003 /* JDStatusBarNotificationStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E5402E72867095C0079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519628585BE400C7C003 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E5402E9286742390079C579 /* Framework-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5402E8286742390079C579 /* Framework-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E67050D284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
 		7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
 		7E670513284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
@@ -84,6 +111,30 @@
 		D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7E5402C8286708850079C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D264F8851820213200DA0E53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E5402C1286708840079C579;
+			remoteInfo = JDStatusBarNotification;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7E5402CF286708850079C579 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7E5402CB286708850079C579 /* JDStatusBarNotification.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
 		7E0FCB78285DAEE800E7CB78 /* FormViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViews.swift; sourceTree = "<group>"; };
@@ -91,6 +142,9 @@
 		7E1C283228520F56004315CC /* JDSBNotificationAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationAnimator.m; sourceTree = "<group>"; };
 		7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPickerOptionView.swift; sourceTree = "<group>"; };
 		7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableCustomStyle.swift; sourceTree = "<group>"; };
+		7E5402C2286708840079C579 /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E5402C5286708850079C579 /* JDStatusBarNotification.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JDStatusBarNotification.docc; sourceTree = "<group>"; };
+		7E5402E8286742390079C579 /* Framework-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Framework-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E67050A284A4BE900AD58E1 /* ObjC-to-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjC-to-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
@@ -132,6 +186,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E5402BF286708840079C579 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA91CBA284EF3AF00F32F09 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E5402CA286708850079C579 /* JDStatusBarNotification.framework in Frameworks */,
 				D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */,
 				D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */,
 			);
@@ -162,6 +224,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E5402C3286708850079C579 /* JDStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				7E5402E8286742390079C579 /* Framework-Bridging-Header.h */,
+				7E5402C5286708850079C579 /* JDStatusBarNotification.docc */,
+			);
+			path = JDStatusBarNotification;
+			sourceTree = "<group>";
+		};
 		7E6FBC1F285EB4C600A63FEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +294,7 @@
 			children = (
 				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
 				D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */,
+				7E5402C3286708850079C579 /* JDStatusBarNotification */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
 				D264F88E1820213200DA0E53 /* Products */,
 			);
@@ -234,6 +306,7 @@
 				D264F88D1820213200DA0E53 /* JDSBN_ClassicExample.app */,
 				7EFD77A12843461D000BFBF1 /* JDSBN_WindowSceneExample.app */,
 				7EA91CC3284EF3AF00F32F09 /* JDSBN_LayoutDebugging.app */,
+				7E5402C2286708840079C579 /* JDStatusBarNotification.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,7 +360,40 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		7E5402BD286708840079C579 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E5402E9286742390079C579 /* Framework-Bridging-Header.h in Headers */,
+				7E5402E4286709010079C579 /* JDStatusBarNotification.h in Headers */,
+				7E5402E5286709560079C579 /* JDStatusBarNotificationPresenter.h in Headers */,
+				7E5402E72867095C0079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */,
+				7E5402E6286709590079C579 /* JDStatusBarNotificationStyle.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		7E5402C1286708840079C579 /* JDStatusBarNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E5402CC286708850079C579 /* Build configuration list for PBXNativeTarget "JDStatusBarNotification" */;
+			buildPhases = (
+				7E5402BD286708840079C579 /* Headers */,
+				7E5402BE286708840079C579 /* Sources */,
+				7E5402BF286708840079C579 /* Frameworks */,
+				7E5402C0286708840079C579 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JDStatusBarNotification;
+			productName = JDStatusBarNotification;
+			productReference = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		7EA91CA8284EF3AF00F32F09 /* LayoutDebugging */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EA91CC0284EF3AF00F32F09 /* Build configuration list for PBXNativeTarget "LayoutDebugging" */;
@@ -329,10 +435,12 @@
 				D264F8891820213200DA0E53 /* Sources */,
 				D264F88A1820213200DA0E53 /* Frameworks */,
 				D264F88B1820213200DA0E53 /* Resources */,
+				7E5402CF286708850079C579 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7E5402C9286708850079C579 /* PBXTargetDependency */,
 			);
 			name = ClassicExample;
 			productName = JDStatusBarNotificationExample;
@@ -349,6 +457,11 @@
 				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Markus;
 				TargetAttributes = {
+					7E5402C1286708840079C579 = {
+						CreatedOnToolsVersion = 14.0;
+						DevelopmentTeam = 8M37KCPR2Q;
+						ProvisioningStyle = Automatic;
+					};
 					7EA91CA8284EF3AF00F32F09 = {
 						DevelopmentTeam = 8M37KCPR2Q;
 					};
@@ -378,11 +491,19 @@
 				D264F88C1820213200DA0E53 /* ClassicExample */,
 				7EFD778A2843461D000BFBF1 /* WindowSceneExample */,
 				7EA91CA8284EF3AF00F32F09 /* LayoutDebugging */,
+				7E5402C1286708840079C579 /* JDStatusBarNotification */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E5402C0286708840079C579 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA91CBD284EF3AF00F32F09 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,6 +534,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E5402BE286708840079C579 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E5402D1286708E70079C579 /* JDStatusBarNotificationPresenter.h in Sources */,
+				7E5402D2286708E70079C579 /* JDStatusBarNotificationPresenter.m in Sources */,
+				7E5402D3286708E70079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Sources */,
+				7E5402D4286708E70079C579 /* JDStatusBarNotificationStyle.h in Sources */,
+				7E5402D5286708E70079C579 /* JDStatusBarNotificationStyle.m in Sources */,
+				7E5402D6286708E70079C579 /* JDSBNotificationAnimator.h in Sources */,
+				7E5402D7286708E70079C579 /* JDSBNotificationAnimator.m in Sources */,
+				7E5402D8286708E70079C579 /* JDSBNotificationStyleCache.h in Sources */,
+				7E5402D9286708E70079C579 /* JDSBNotificationStyleCache.m in Sources */,
+				7E5402DA286708E70079C579 /* JDSBNotificationView.h in Sources */,
+				7E5402DB286708E70079C579 /* JDSBNotificationView.m in Sources */,
+				7E5402DC286708E70079C579 /* JDSBNotificationViewController.h in Sources */,
+				7E5402DD286708E70079C579 /* JDSBNotificationViewController.m in Sources */,
+				7E5402DE286708E70079C579 /* JDSBNotificationWindow.h in Sources */,
+				7E5402DF286708E70079C579 /* JDSBNotificationWindow.m in Sources */,
+				7E5402E0286708E70079C579 /* JDSystemStatusBarHelpers.h in Sources */,
+				7E5402E1286708E70079C579 /* JDSystemStatusBarHelpers.m in Sources */,
+				7E5402E2286708E70079C579 /* UIApplication+JDSB_MainWindow.h in Sources */,
+				7E5402E3286708E70079C579 /* UIApplication+JDSB_MainWindow.m in Sources */,
+				7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA91CA9284EF3AF00F32F09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,7 +647,98 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7E5402C9286708850079C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E5402C1286708840079C579 /* JDStatusBarNotification */;
+			targetProxy = 7E5402C8286708850079C579 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7E5402CD286708850079C579 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DOCC_EXTRACT_OBJC_INFO_FOR_SWIFT_SYMBOLS = NO;
+				DOCC_EXTRACT_SWIFT_INFO_FOR_OBJC_SYMBOLS = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Markus. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = calimarkus.JDStatusBarNotification;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Framework-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7E5402CE286708850079C579 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DOCC_EXTRACT_OBJC_INFO_FOR_SWIFT_SYMBOLS = NO;
+				DOCC_EXTRACT_SWIFT_INFO_FOR_OBJC_SYMBOLS = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Markus. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = calimarkus.JDStatusBarNotification;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Framework-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		7EA91CC1284EF3AF00F32F09 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -728,6 +967,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E5402CC286708850079C579 /* Build configuration list for PBXNativeTarget "JDStatusBarNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E5402CD286708850079C579 /* Debug */,
+				7E5402CE286708850079C579 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7EA91CC0284EF3AF00F32F09 /* Build configuration list for PBXNativeTarget "LayoutDebugging" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
