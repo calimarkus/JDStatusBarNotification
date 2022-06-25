@@ -29,6 +29,14 @@ Full-Width styles in action (the pill styles support the same features / animati
 - **Manually:**
   - Copy the `JDStatusBarNotification/JDStatusBarNotification` folder into your project.
 
+## Documentation
+
+Find the [class documentation](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification) hosted on Github.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md)
+
 ## Usage
 
 `NotificationPresenter` is a singleton. You don't need to initialize it anywhere.
@@ -167,10 +175,6 @@ typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
   JDStatusBarAnimationTypeFade,
 } NS_SWIFT_NAME(BarAnimationType);
 ```
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md)
 
 ## Twitter
 
