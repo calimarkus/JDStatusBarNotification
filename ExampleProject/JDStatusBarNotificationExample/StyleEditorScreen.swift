@@ -194,7 +194,7 @@ struct StyleEditorScreen: View {
             TextFieldStepper(title: "  Border Width", binding: $style.pillBorderWidth, range: 0...20)
           }
 
-          OptionalColorToggle(title: "Pill shadow", color: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
+          OptionalColorToggle(title: "Pill Shadow", color: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
           if let _ = style.pillShadowColor {
             OptionalColorPicker(title: "  Shadow Color", color: $style.pillShadowColor)
             TextFieldStepper(title: "  Shadow Radius", binding: $style.pillShadowRadius, range: 0...99)
@@ -219,20 +219,20 @@ struct StyleEditorScreen: View {
       }
 
       Section("Progress Bar Style") {
-        OptionalColorPicker(title: "Progress Bar Color", color: $style.pbBarColor)
+        OptionalColorPicker(title: "Bar Color", color: $style.pbBarColor)
 
-        TextFieldStepper(title: "Bar height", binding: $style.pbBarHeight, range: 1...99)
+        TextFieldStepper(title: "Bar Height", binding: $style.pbBarHeight, range: 1...99)
           .onChange(of: style.pbBarHeight) { val in
             if style.pbCornerRadius > 0.0 {
               style.pbCornerRadius = floor(val / 2.0)
             }
           }
 
-        TextFieldStepper(title: "Corner radius", binding: $style.pbCornerRadius, range: 0...99)
+        TextFieldStepper(title: "Corner Radius", binding: $style.pbCornerRadius, range: 0...99)
         TextFieldStepper(title: "Bar Offset Y", binding: $style.pbBarOffset, range: -99...99)
         TextFieldStepper(title: "Horizontal Insets", binding: $style.pbHorizontalInsets, range: 0...99)
 
-        SegmentedPicker(title: "StatusBarNotificationProgressBarPosition", value: $style.pbPosition) {
+        SegmentedPicker(title: "Bar Position", value: $style.pbPosition) {
           EnumPickerOptionView(StatusBarNotificationProgressBarPosition.top)
           EnumPickerOptionView(StatusBarNotificationProgressBarPosition.center)
           EnumPickerOptionView(StatusBarNotificationProgressBarPosition.bottom)
