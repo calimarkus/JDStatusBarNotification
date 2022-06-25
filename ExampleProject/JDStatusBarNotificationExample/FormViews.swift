@@ -34,18 +34,23 @@ struct OptionalColorPicker: View {
   }
 }
 
-struct OptionalColorToggle: View {
+@available(iOS 14.0, *)
+struct OptionalColorToggle<SomeView>: View where SomeView: View {
   var title: String
   @Binding var color: UIColor?
   var defaultColor: UIColor?
+  @ViewBuilder var content: SomeView
 
   var body: some View {
-    Toggle(title, isOn: Binding(get: {
+    DisclosureGroup(title, isExpanded: Binding(get: {
       color != nil
     }, set: { on in
       color = on ? defaultColor : nil
-    }))
+    })) {
+      content
+    }
     .font(.subheadline)
+    .accentColor(.secondary)
   }
 }
 
@@ -70,7 +75,7 @@ struct CGPointStepper: View {
 struct SegmentedPicker<T, SomeView>: View where T: Hashable, SomeView: View {
   var title: String
   @Binding var value: T
-  @ViewBuilder var content: () -> SomeView
+  @ViewBuilder var content: SomeView
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6.0) {
@@ -80,7 +85,7 @@ struct SegmentedPicker<T, SomeView>: View where T: Hashable, SomeView: View {
           .padding(.top, 4.0)
       }
       Picker("", selection: $value) {
-        content()
+        content
       }.pickerStyle(.segmented)
     }
   }
@@ -124,7 +129,10 @@ struct FormFactory_Previews: PreviewProvider {
   static var previews: some View {
     Form {
       OptionalColorPicker(title: "Color picker", color: .constant(.red))
-      OptionalColorToggle(title: "Color resetting toggle", color: .constant(nil), defaultColor: .blue)
+      OptionalColorToggle(title: "Color resetting toggle", color: .constant(nil), defaultColor: .blue) {
+        Text("I am")
+        Text("hidden")
+      }
 
       TextFieldStepper(title: "Stepper + Textfield I", binding: .constant(1))
       TextFieldStepper(title: "Stepper + Textfield II with some additional text", binding: .constant(23))

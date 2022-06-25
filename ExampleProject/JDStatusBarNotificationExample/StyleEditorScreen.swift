@@ -188,17 +188,15 @@ struct StyleEditorScreen: View {
           TextFieldStepper(title: "Pill Spacing Y", binding: $style.pillSpacingY, range: 0...99)
           TextFieldStepper(title: "Min Pill Width", binding: $style.minimumPillWidth, range: 0...999)
 
-          OptionalColorToggle(title: "Pill Border", color: $style.pillBorderColor, defaultColor: .black)
-          if let _ = style.pillBorderColor {
-            OptionalColorPicker(title: "  Border Color", color: $style.pillBorderColor)
-            TextFieldStepper(title: "  Border Width", binding: $style.pillBorderWidth, range: 0...20)
+          OptionalColorToggle(title: "Pill Border", color: $style.pillBorderColor, defaultColor: .black) {
+            OptionalColorPicker(title: "Color", color: $style.pillBorderColor)
+            TextFieldStepper(title: "Width", binding: $style.pillBorderWidth, range: 0...20)
           }
 
-          OptionalColorToggle(title: "Pill Shadow", color: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33))
-          if let _ = style.pillShadowColor {
-            OptionalColorPicker(title: "  Shadow Color", color: $style.pillShadowColor)
-            TextFieldStepper(title: "  Shadow Radius", binding: $style.pillShadowRadius, range: 0...99)
-            CGPointStepper(title: "  Shadow Offset", point: $style.pillShadowOffset)
+          OptionalColorToggle(title: "Pill Shadow", color: $style.pillShadowColor, defaultColor: UIColor(white: 0.0, alpha: 0.33)) {
+            OptionalColorPicker(title: "Color", color: $style.pillShadowColor)
+            TextFieldStepper(title: "Radius", binding: $style.pillShadowRadius, range: 0...99)
+            CGPointStepper(title: "Offset", point: $style.pillShadowOffset)
           }
         }
       }
@@ -269,7 +267,6 @@ struct StyleEditorScreen: View {
 @available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
-    StyleEditorScreen().preferredColorScheme(.light)
-    StyleEditorScreen().preferredColorScheme(.dark)
+    StyleEditorScreen()
   }
 }

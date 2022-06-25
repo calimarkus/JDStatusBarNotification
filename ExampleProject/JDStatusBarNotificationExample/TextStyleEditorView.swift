@@ -41,12 +41,10 @@ struct TextStyleEditorView: View {
     }), range: 5 ... 36)
 
     TextFieldStepper(title: "Offset Y", binding: $style.textOffsetY, range: -30 ... 30)
-    OptionalColorToggle(title: "Shadow", color: $style.shadowColor, defaultColor: defaultShadowColor)
-
-    if let _ = style.shadowColor {
-      OptionalColorPicker(title: "  Shadow Color", color: $style.shadowColor)
-        .font(.caption)
-      CGPointStepper(title: "  Shadow Offset", point: $style.shadowOffset)
+    OptionalColorToggle(title: "Shadow", color: $style.shadowColor, defaultColor: defaultShadowColor) {
+        OptionalColorPicker(title: "Color", color: $style.shadowColor)
+          .font(.caption)
+        CGPointStepper(title: "Offset", point: $style.shadowOffset)
     }
 
     InfoLabel(text: offsetInfo)
@@ -61,7 +59,7 @@ struct TextStyleEditorView_Previews: PreviewProvider {
         title: "Title",
         offsetInfo: "Let me explain to you how to use this offset value. It might have some unexpected side effects!?",
         style: CustomTextStyle(StatusBarNotificationStyle().textStyle),
-        defaultShadowColor: nil
+        defaultShadowColor: UIColor.red
       ) {}
     }
   }
