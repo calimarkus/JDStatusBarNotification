@@ -3,6 +3,9 @@
 
 #import "JDSystemStatusBarHelpers.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 CGRect JDStatusBarFrameForWindowScene(UIWindowScene *_Nullable windowScene) {
   if (windowScene != nil) {
     return [[windowScene statusBarManager] statusBarFrame];
@@ -18,3 +21,5 @@ UIInterfaceOrientation JDStatusBarOrientationForWindowScene(UIWindowScene *_Null
     return [[UIApplication sharedApplication] statusBarOrientation];
   }
 }
+
+#pragma clang diagnostic pop
