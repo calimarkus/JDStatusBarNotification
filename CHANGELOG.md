@@ -7,15 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 2022-06-27
+
+Pure documentation update.
+
 ## [2.0.4] - 2022-06-26
 
 tl;dr: A documentation update.
 
 ### Added
 
-- Overhauled all public API documentation
-- Converted documentation to docc syntax
-- Published hosted [API documentation](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/) on GitHub pages
+- Overhauled all public API documentation & converted it to the docc syntax
 
 ### Changed
 
