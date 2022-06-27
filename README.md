@@ -100,19 +100,24 @@ NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .s
 
 ### Using a custom UIView
 
+If you want full control over the notification content and styling, you can use your own custom UIView.
+
 ![customView](https://user-images.githubusercontent.com/807039/173234544-7a75edbe-00b1-437b-8651-2e63a1ba63c8.gif)  ![customView2](https://user-images.githubusercontent.com/807039/173234636-b3745101-0723-4342-9a3a-32a868ea820e.gif)
 
 ```swift
 // present a custom view
-var anyView: UIView = ...
-NotificationPresenter.shared().present(customView: anyView)
+let button = UIButton(type: .system, primaryAction: UIAction { _ in
+  NotificationPresenter.shared().dismiss()
+})
+button.setTitle("Dismiss!", for: .normal)
+NotificationPresenter.shared().present(customView: button)
 ```
 
 ## Customization
 
-You have the option to create fully customized styles - or to even present custom views.
+You have the option to easily create & use fully customized styles.
 
-The closures of `updateDefaultStyle()` and `addStyle(styleName: String)` provide a copy of the default style, which can then be modified. See the `JDStatusBarStyle` class (or the style editor in the example project) for all options and documentation. You can also use the example project's style editor to create a style visually and then export the code to configure that style.
+The closures of [`updateDefaultStyle()`](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/notificationpresenter/updatedefaultstyle(_:)) and [`addStyle(styleName: String)`](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/notificationpresenter/addstyle(stylename:prepare:)) provide a copy of the default style, which can then be modified. See the [`JDStatusBarStyle` class documentation](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/statusbarnotificationstyle) for all options.
 
 ```swift
 // update default style
@@ -133,7 +138,7 @@ NotificationPresenter.shared().addStyle(styleName: "xxx") { style in
 
 ### Style Editor
 
-Checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code.
+Or checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code for the newly created style to easily use it in your app.
 
 ![style-editor](https://user-images.githubusercontent.com/807039/174438815-4e3de17f-eb15-4281-b786-c1bfce7415da.jpg)
 
