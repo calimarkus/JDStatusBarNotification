@@ -9,7 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.5] - 2022-06-27
 
-Pure documentation update.
+tl;dr: Another documentation update.
+
+### Changed
+
+- Changed Swift Package `swift-tools-version` to 5.3
+- Added `.spi.yml` for better Swift Package Index integration
 
 ## [2.0.4] - 2022-06-26
 
@@ -107,7 +112,8 @@ Those adjustments should be simple though - mostly new API naming.
 
 Old version based on original release. No release notes available.
 
-[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.4...HEAD
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.5...HEAD
+[2.0.5]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.1...2.0.2
