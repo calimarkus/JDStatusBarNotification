@@ -37,7 +37,7 @@ Find the [class documentation](http://calimarkus.github.io/JDStatusBarNotificati
 
 See [CHANGELOG.md](CHANGELOG.md)
 
-## Usage
+## Getting started
 
 `NotificationPresenter` is a singleton. You don't need to initialize it anywhere.
 All examples are Swift code, but the class can be used in Objective-C as well.
@@ -98,15 +98,14 @@ There's a few included styles you can easily use with the following API:
 NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .success)
 ```
 
-## Troubleshooting
+### Using a custom UIView
 
-### No notifications are showing up
-
-If your app uses a `UIWindowScene` the `NotificationPresenter` needs to know about it before you present any notifications.
-The library attempts to find the correct WindowScene automatically, but that might fail. If it fails no notifications will show up at all. You can explicitly set the window scene to resolve this:
+![customView](https://user-images.githubusercontent.com/807039/173234544-7a75edbe-00b1-437b-8651-2e63a1ba63c8.gif)  ![customView2](https://user-images.githubusercontent.com/807039/173234636-b3745101-0723-4342-9a3a-32a868ea820e.gif)
 
 ```swift
-NotificationPresenter.shared().setWindowScene(windowScene)
+// present a custom view
+var anyView: UIView = ...
+NotificationPresenter.shared().present(customView: anyView)
 ```
 
 ## Customization
@@ -132,48 +131,45 @@ NotificationPresenter.shared().addStyle(styleName: "xxx") { style in
 }
 ```
 
-#### Style Editor
+### Style Editor
 
 Checkout the example project, which contains a full style editor. You can tweak all customization options within the app, see the changes live and even export the configuration code.
 
 ![style-editor](https://user-images.githubusercontent.com/807039/174438815-4e3de17f-eb15-4281-b786-c1bfce7415da.jpg)
 
-#### Custom View
-
-![customView](https://user-images.githubusercontent.com/807039/173234544-7a75edbe-00b1-437b-8651-2e63a1ba63c8.gif)  ![customView2](https://user-images.githubusercontent.com/807039/173234636-b3745101-0723-4342-9a3a-32a868ea820e.gif)
-
-```swift
-// present a custom view
-var anyView: UIView = ...
-NotificationPresenter.shared().present(customView: anyView)
-```
-
-#### Background Styles
+### Background Styles
 
 There's two supported background styles:
 
-```objc
-typedef NS_ENUM(NSInteger, JDStatusBarBackgroundType) {
-  /// The background covers the full display width and the full status bar & navbar height.
-  JDStatusBarBackgroundTypeFullWidth,
-  /// The background is a floating pill around the text.
-  JDStatusBarBackgroundTypePill,
-} NS_SWIFT_NAME(BarBackgroundType);
+```swift
+/// The background is a floating pill around the text. The pill size and appearance can be customized. This is the default.
+StatusBarNotificationBackgroundType.pill
+/// The background covers the full display width and the full status bar + navbar height.
+StatusBarNotificationBackgroundType.fullWidth
 ```
 
-#### Animation Types
+### Animation Types
 
 The supported animation types:
 
-```objc
-typedef NS_ENUM(NSInteger, JDStatusBarAnimationType) {
-  /// Notification will move in from the top, and move out again to the top
-  JDStatusBarAnimationTypeMove,
-  /// Notification will fall down from the top and bounce a little bit
-  JDStatusBarAnimationTypeBounce,
-  /// Notification will fade in and fade out
-  JDStatusBarAnimationTypeFade,
-} NS_SWIFT_NAME(BarAnimationType);
+```swift
+/// Slide in from the top of the screen and slide back out to the top. This is the default.
+StatusBarNotificationAnimationType.move,
+/// Fade-in and fade-out in place. No movement animation.
+StatusBarNotificationAnimationType.fade,
+/// Fall down from the top and bounce a little bit, before coming to a rest. Slides back out to the top.
+StatusBarNotificationAnimationType.bounce,
+```
+
+## Troubleshooting
+
+### No notifications are showing up
+
+If your app uses a `UIWindowScene` the `NotificationPresenter` needs to know about it before you present any notifications.
+The library attempts to find the correct WindowScene automatically, but that might fail. If it fails no notifications will show up at all. You can explicitly set the window scene to resolve this:
+
+```swift
+NotificationPresenter.shared().setWindowScene(windowScene)
 ```
 
 ## Twitter
