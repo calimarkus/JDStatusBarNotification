@@ -69,30 +69,45 @@ NotificationPresenter.shared().dismiss(afterDelay: 0.5) { presenter in
 }
 ```
     
-### Showing progress
-
-![progress](https://user-images.githubusercontent.com/807039/173359598-bcd5c6c9-939d-4660-972e-a230cb1efcfe.gif)
-
-```swift
-NotificationPresenter.shared().displayProgressBar(percentage: 0.5)
-
-// or animated
-NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: 1.0) { presenter in
-   // ...
-}
-```
-    
 ### Showing activity
 
-![activity](https://user-images.githubusercontent.com/807039/173359085-a6ab34b3-13ca-469b-8df2-669f273929cc.gif)
+![activity](https://user-images.githubusercontent.com/807039/175884729-c6255d41-4728-4bcb-bf72-fb12db01b5d5.gif)
 
 ```swift
+NotificationPresenter.shared().present(text: "")
 NotificationPresenter.shared().displayActivityIndicator(true)
 ```
     
-### Using alternative styles
+### Showing a custom left view
+
+![leftview](https://user-images.githubusercontent.com/807039/175884751-c93ffd31-a436-43d2-9eed-82d7cb23d8f6.gif)
+
+```swift
+let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
+NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected")
+NotificationPresenter.shared().displayLeftView(image)
+```
+    
+### Showing progress
+
+![progress](https://user-images.githubusercontent.com/807039/175886588-e1aba466-85fa-4e32-951a-cd368c7d553d.gif)
+
+```swift
+NotificationPresenter.shared().present(text: "Animating Progress…") { presenter in
+  presenter.animateProgressBar(toPercentage: 1.0, animationDuration: 0.75) { presenter in
+    presenter.dismiss()
+  }
+}
+
+// or set an explicit percentage manually (without animation)
+NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+```
+    
+### Using other included styles
 
 There's a few included styles you can easily use with the following API:
+
+![itworks](https://user-images.githubusercontent.com/807039/175888059-3beeb659-b561-4e7c-9c66-6fbc683ae152.jpg)
 
 ```swift
 NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .success)
