@@ -2,40 +2,32 @@
 
 ## Topics
 
-### Choosing an animation type
+### Notification Bar Behavior
 
 - ``animationType``
-- ``JDStatusBarNotificationAnimationType``
-
-### Styling the background
-
-- ``backgroundStyle``
-- ``JDStatusBarNotificationBackgroundStyle``
-- ``JDStatusBarNotificationBackgroundType``
-- ``JDStatusBarNotificationPillStyle``
-- ``systemStatusBarStyle``
-- ``JDStatusBarNotificationSystemBarStyle``
+- ``canDismissDuringUserInteraction``
+- ``canSwipeToDismiss``
+- ``canTapToHold``
 
 ### Styling the text
 
 - ``textStyle``
 - ``subtitleStyle``
-- ``JDStatusBarNotificationTextStyle``
 
-### Styling the progress bar
+### Styling the background
+
+- ``backgroundStyle``
+- ``systemStatusBarStyle``
+
+### Styling supplementary views
 
 - ``progressBarStyle``
-- ``JDStatusBarNotificationProgressBarStyle``
-- ``JDStatusBarNotificationProgressBarPosition``
-
-### Styling a left view (or acitivity indicator)
-
 - ``leftViewStyle``
-- ``JDStatusBarNotificationLeftViewStyle``
+
+### Style Enumerations
+
+- ``JDStatusBarNotificationAnimationType``
+- ``JDStatusBarNotificationBackgroundType``
+- ``JDStatusBarNotificationSystemBarStyle``
 - ``JDStatusBarNotificationLeftViewAlignment``
-
-### Notification Bar Behavior
-
-- ``canDismissDuringUserInteraction``
-- ``canSwipeToDismiss``
-- ``canTapToHold``
+- ``JDStatusBarNotificationProgressBarPosition``

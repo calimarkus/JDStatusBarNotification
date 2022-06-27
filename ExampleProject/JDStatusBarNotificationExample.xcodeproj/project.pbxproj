@@ -42,7 +42,6 @@
 		7E5402E1286708E70079C579 /* JDSystemStatusBarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE516D5284711C900685DDF /* JDSystemStatusBarHelpers.m */; };
 		7E5402E2286708E70079C579 /* UIApplication+JDSB_MainWindow.h in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE34112844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.h */; };
 		7E5402E3286708E70079C579 /* UIApplication+JDSB_MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE340D2844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m */; };
-		7E5402E4286709010079C579 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519528585BE400C7C003 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5402E5286709560079C579 /* JDStatusBarNotificationPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519428585BE400C7C003 /* JDStatusBarNotificationPresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5402E6286709590079C579 /* JDStatusBarNotificationStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519328585BE400C7C003 /* JDStatusBarNotificationStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5402E72867095C0079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519628585BE400C7C003 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,6 +91,7 @@
 		7EEDBE142856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
+		7EF8C5EB2869559700DE1045 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519528585BE400C7C003 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EFD778D2843461D000BFBF1 /* JDSBNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDSBNotificationView.m */; };
 		7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 		7EFD77982843461D000BFBF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
@@ -339,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E5402E9286742390079C579 /* Framework-Bridging-Header.h in Headers */,
-				7E5402E4286709010079C579 /* JDStatusBarNotification.h in Headers */,
+				7EF8C5EB2869559700DE1045 /* JDStatusBarNotification.h in Headers */,
 				7E5402E5286709560079C579 /* JDStatusBarNotificationPresenter.h in Headers */,
 				7E5402E72867095C0079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */,
 				7E5402E6286709590079C579 /* JDStatusBarNotificationStyle.h in Headers */,

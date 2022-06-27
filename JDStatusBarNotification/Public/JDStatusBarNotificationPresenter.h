@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
  * and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. It can display a
  * title, a subtitle, an activity indicator, an animated progress bar & custom views out of the box.
  *
+ * To customize the appearance, see the *Customize the style* section. To see all customization
+ * options, see the ``JDStatusBarNotificationStyle`` documentation.
+ *
  * While a notification is displayed, a separate window is presented on top of your application
  * window. Upon dismissal this window, its view controller and all its views are removed from
  * memory. The presenter class itself is a singleton which will stay in memory for the lifetime of
@@ -283,14 +286,13 @@ NS_SWIFT_NAME(NotificationPresenter)
 #pragma mark - Style Modification
 
 /// Defines a new default style.
-///
 /// The new style will be used in all future presentations that have no specific style specified.
 ///
 /// - Parameter prepareBlock: Provides the current default ``JDStatusBarNotificationStyle`` instance for further customization.
 ///
 - (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
-/// Adds a new custom style.
+/// Adds a new custom style. This can be used by referencing it using the `styleName`.
 ///
 /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``presentWithText:customStyle:``.
 /// If a style with the same name already exists, it will be replaced.
@@ -304,7 +306,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (NSString *)addStyleNamed:(NSString*)styleName
                     prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:prepare:));
 
-/// Adds a new custom style based on a specific included style.
+/// Adds a new custom style based on a specific included style. This can be used by referencing it using the `styleName`.
 ///
 /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``presentWithText:customStyle:``.
 /// If a style with the same name already exists, it will be replaced.
@@ -331,7 +333,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (void)displayProgressBarWithPercentage:(CGFloat)percentage NS_SWIFT_NAME(displayProgressBar(percentage:));
 
-/// Displays a progress bar and animates to the provided `percentage`.
+/// Displays a progress bar and animates it to the provided `percentage`.
 ///
 /// Animates the progress bar from the currently set `percentage` to the provided `percentage` using the provided `animationDuration`.
 /// The progress bar will be styled according to the current ``JDStatusBarNotificationProgressBarStyle``.
@@ -387,7 +389,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 
 #pragma mark - WindowScene
 
-/// Lets you set an explicit `UIWindowScene`, in which notifications should be presented.
+/// Lets you set an explicit `UIWindowScene`, in which notifications should be presented. In most cases you don't need to set this.
 ///
 /// The `UIWindowScene` is usually inferred automatically, but if that doesn't work for your setup, you can set it explicitly.
 ///

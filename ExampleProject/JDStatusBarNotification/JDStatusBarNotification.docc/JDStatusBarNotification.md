@@ -6,15 +6,10 @@ Highly customizable & feature rich notifications displayed below the status bar.
 
 ## Topics
 
-### Getting started
-
-- ``JDStatusBarNotificationPresenter/sharedPresenter``
-
 ### Notification Presenter
 
 - ``JDStatusBarNotificationPresenter``
 - ``JDStatusBarNotificationPresenterCompletionBlock``
-- ``JDStatusBarNotificationPresenterPrepareStyleBlock``
 
 ### Notification Style
 
