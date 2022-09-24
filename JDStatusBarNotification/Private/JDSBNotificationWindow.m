@@ -75,10 +75,12 @@ static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotification
     }
     case JDStatusBarNotificationBackgroundTypePill: {
       CGFloat notchAdjustment = 0.0;
-      if (statusBarRect.size.height > 20.0) {
+      if (statusBarRect.size.height >= 54.0) {
+        notchAdjustment = 0.0; // for the dynamic island, utilize the default positioning
+      } else if (statusBarRect.size.height > 20.0) {
         notchAdjustment = -7.0; // this matches the positioning of a similar system notification
       } else {
-        notchAdjustment += 3.0; // for no-notch devices, default to a minimum spacing
+        notchAdjustment = 3.0; // for no-notch devices, default to a minimum spacing
       }
       return style.backgroundStyle.pillStyle.height + style.backgroundStyle.pillStyle.topSpacing + notchAdjustment;
     }

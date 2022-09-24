@@ -100,7 +100,7 @@ enum ExampleStyle: String, RawRepresentable, CaseIterable {
 
         style.backgroundStyle.pillStyle.minimumWidth = 0.0
         style.backgroundStyle.pillStyle.height = 32.0
-        style.backgroundStyle.pillStyle.topSpacing = 14.0
+        style.backgroundStyle.pillStyle.topSpacing = 2.0
         style.backgroundStyle.pillStyle.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.33) // "black"
         style.backgroundStyle.pillStyle.shadowRadius = 4.0
         style.backgroundStyle.pillStyle.shadowOffsetXY = CGPoint(x: 0.0, y: 2.0)
