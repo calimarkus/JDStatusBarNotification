@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   
   # basics
   s.name      = 'JDStatusBarNotification'
-  s.version   = '2.0.6'
+  s.version   = '2.0.7'
   s.platform  = :ios, '13.0'
   s.license   = { :type => 'MIT' }
   s.author    = { 'Markus Emrich' => 'markus.emrich@gmail.com' }  
