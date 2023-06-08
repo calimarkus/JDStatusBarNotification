@@ -243,7 +243,7 @@ static BOOL isGestureRecognizerActive(UIGestureRecognizer *gestureRecognizer) {
 
 #pragma mark - System StatusBar Management
 
-static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled() {
+static BOOL JDUIViewControllerBasedStatusBarAppearanceEnabled(void) {
   static BOOL enabled = YES;
   static dispatch_once_t onceToken;
 
