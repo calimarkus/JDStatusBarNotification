@@ -22,7 +22,7 @@ let package = Package(
             sources: ["JDStatusBarNotification/"],
             publicHeadersPath: "JDStatusBarNotification/Public/",
             cSettings: [
-                .headerSearchPath("**"),
+                .headerSearchPath("JDStatusBarNotification/Private/"),
             ]),
     ]
 )
