@@ -26,8 +26,8 @@
 
 ### Style Enumerations
 
-- ``JDStatusBarNotificationAnimationType``
-- ``JDStatusBarNotificationBackgroundType``
-- ``JDStatusBarNotificationSystemBarStyle``
-- ``JDStatusBarNotificationLeftViewAlignment``
-- ``JDStatusBarNotificationProgressBarPosition``
+- ``StatusBarNotificationAnimationType``
+- ``StatusBarNotificationBackgroundType``
+- ``StatusBarNotificationSystemBarStyle``
+- ``StatusBarNotificationLeftViewAlignment``
+- ``StatusBarNotificationProgressBarPosition``

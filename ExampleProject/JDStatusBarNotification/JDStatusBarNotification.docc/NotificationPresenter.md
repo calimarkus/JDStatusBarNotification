@@ -4,59 +4,59 @@
 
 ### Retrieve the presenter
 
-- ``sharedPresenter``
+- ``shared()``
 
 ### Present a notification
 
-- ``presentWithText:``
-- ``presentWithText:completion:``
-- ``presentWithTitle:subtitle:completion:``
-- ``presentWithText:dismissAfterDelay:``
+- ``present(text:)``
+- ``present(text:completion:)``
+- ``present(title:subtitle:completion:)``
+- ``present(text:dismissAfterDelay:)``
 
 ### Present a notification (using a custom style)
 
-- ``presentWithText:customStyle:``
-- ``presentWithText:customStyle:completion:``
-- ``presentWithTitle:subtitle:customStyle:completion:``
-- ``presentWithText:dismissAfterDelay:customStyle:``
+- ``present(text:customStyle:)``
+- ``present(text:customStyle:completion:)``
+- ``present(title:subtitle:customStyle:completion:)``
+- ``present(text:dismissAfterDelay:customStyle:)``
 
 ### Present a notification (using an included style)
 
-- ``JDStatusBarNotificationIncludedStyle``
-- ``presentWithText:includedStyle:``
-- ``presentWithText:includedStyle:completion:``
-- ``presentWithTitle:subtitle:includedStyle:completion:``
-- ``presentWithText:dismissAfterDelay:includedStyle:``
+- ``IncludedStatusBarNotificationStyle``
+- ``present(text:includedStyle:)``
+- ``present(text:includedStyle:completion:)``
+- ``present(title:subtitle:includedStyle:completion:)``
+- ``present(text:dismissAfterDelay:includedStyle:)``
 
 ### Present a notification (using a custom view)
 
-- ``presentWithCustomView:styleName:completion:``
+- ``present(customView:style:completion:)``
 
 ### Dismiss a notification
 
-- ``dismiss``
-- ``dismissWithCompletion:``
-- ``dismissAnimated:``
-- ``dismissAfterDelay:``
-- ``dismissAfterDelay:completion:``
+- ``dismiss()``
+- ``dismiss(completion:)``
+- ``dismiss(animated:)``
+- ``dismiss(afterDelay:)``
+- ``dismiss(afterDelay:completion:)``
 
 ### Customize the style (Appearance & Behavior)
 
-- ``updateDefaultStyle:``
-- ``addStyleNamed:prepare:``
-- ``addStyleNamed:basedOnStyle:prepare:``
-- ``JDStatusBarNotificationPresenterPrepareStyleBlock``
+- ``updateDefaultStyle(_:)``
+- ``addStyle(styleName:prepare:)``
+- ``addStyle(styleName:basedOnIncludedStyle:prepare:)``
+- ``NotificationPresenterPrepareStyleClosure``
 
 ### Display supplementary views
 
-- ``displayProgressBarWithPercentage:``
-- ``animateProgressBarToPercentage:animationDuration:completion:``
-- ``displayActivityIndicator:``
-- ``displayLeftView:``
+- ``displayProgressBar(percentage:)``
+- ``animateProgressBar(toPercentage:animationDuration:completion:)``
+- ``displayActivityIndicator(_:)``
+- ``displayLeftView(_:)``
 
 ### Additional Presenter APIs
 
-- ``updateText:``
-- ``updateSubtitle:``
-- ``isVisible``
-- ``setWindowScene:``
+- ``updateText(_:)``
+- ``updateSubtitle(_:)``
+- ``isVisible()``
+- ``setWindowScene(_:)``

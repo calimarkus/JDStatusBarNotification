@@ -14,14 +14,14 @@ Highly customizable & feature rich notifications displayed below the status bar.
 
 ### Notification Presenter
 
-- ``JDStatusBarNotificationPresenter``
-- ``JDStatusBarNotificationPresenterCompletionBlock``
+- ``NotificationPresenter``
+- ``NotificationPresenterCompletion``
 
 ### Notification Style
 
-- ``JDStatusBarNotificationStyle``
-- ``JDStatusBarNotificationTextStyle``
-- ``JDStatusBarNotificationBackgroundStyle``
-- ``JDStatusBarNotificationPillStyle``
-- ``JDStatusBarNotificationProgressBarStyle``
-- ``JDStatusBarNotificationLeftViewStyle``
+- ``StatusBarNotificationStyle``
+- ``StatusBarNotificationTextStyle``
+- ``StatusBarNotificationBackgroundStyle``
+- ``StatusBarNotificationPillStyle``
+- ``StatusBarNotificationProgressBarStyle``
+- ``StatusBarNotificationLeftViewStyle``
