@@ -128,6 +128,8 @@ button.setTitle("Dismiss!", for: .normal)
 NotificationPresenter.shared().present(customView: button)
 ```
 
+Note: For buttons to work you need to create a custom style and set `style.canTapToHold = false`, so that the button can receive touches.
+
 ## Customization
 
 You have the option to easily create & use fully customized styles.
