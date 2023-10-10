@@ -8,9 +8,20 @@
 
 CGRect JDStatusBarFrameForWindowScene(UIWindowScene *_Nullable windowScene) {
   if (windowScene != nil) {
-    return [[windowScene statusBarManager] statusBarFrame];
-  } else {
+      if (([[windowScene statusBarManager] statusBarFrame].size.height > 0.0) || ([windowScene.windows firstObject] == nil)) {
+          return [[windowScene statusBarManager] statusBarFrame];
+      } else {
+          UIWindow *window = [windowScene.windows firstObject];
+          CGFloat top = window.safeAreaInsets.top;
+          CGFloat width = [UIScreen mainScreen].bounds.size.width;
+          return CGRectMake(0, 0, width, top);
+      }
+  } else if (([[UIApplication sharedApplication] statusBarFrame].size.height > 0.0) || ([[UIApplication sharedApplication] delegate].window == nil)) {
     return [[UIApplication sharedApplication] statusBarFrame];
+  } else {
+      CGFloat top = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.top;
+      CGFloat width = [UIScreen mainScreen].bounds.size.width;
+      return CGRectMake(0, 0, width, top);
   }
 }
 
