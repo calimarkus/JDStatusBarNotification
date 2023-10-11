@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.9] - 2023-10-11
+
+### Changed
+
+- Reworked layouting & sizing of the notification
+    - This fixes the presentation, when no statusbar is visible
+    - This fixes the .fullWidth presentation on dynamic island devices
+    - This fixes the .fullWidth style presentation in landscape for all devices
+
 ## [2.0.8] - 2023-06-08
 
 ### Changed
@@ -130,7 +139,8 @@ Those adjustments should be simple though - mostly new API naming.
 
 Old version based on original release. No release notes available.
 
-[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.8...HEAD
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.9...HEAD
+[2.0.9]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.8...2.0.9
 [2.0.8]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.7...2.0.8
 [2.0.7]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.6...2.0.7
 [2.0.6]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.5...2.0.6
