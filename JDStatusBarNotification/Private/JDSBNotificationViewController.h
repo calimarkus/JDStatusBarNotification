@@ -12,7 +12,7 @@ typedef void (^ _Nullable JDSBNotificationViewControllerCompletion)(void) NS_SWI
 
 NS_SWIFT_NAME(_SBNotificationViewControllerDelegate)
 @protocol JDSBNotificationViewControllerDelegate
-- (void)animationsForViewTransitionToSize:(CGSize)size;
+- (void)relayoutWindowAndStatusBarView;
 - (void)didDismissStatusBar;
 - (void)didUpdateStyle;
 @end

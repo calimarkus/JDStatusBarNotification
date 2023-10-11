@@ -235,7 +235,7 @@ static BOOL isGestureRecognizerActive(UIGestureRecognizer *gestureRecognizer) {
   [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
   [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-    [self.delegate animationsForViewTransitionToSize:size];
+    [self.delegate relayoutWindowAndStatusBarView];
   } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
     //
   }];

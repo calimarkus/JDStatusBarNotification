@@ -8,7 +8,6 @@
 #import "JDSBNotificationView.h"
 
 #import "JDStatusBarNotificationStyle.h"
-#import "JDSystemStatusBarHelpers.h"
 
 static const NSInteger kExpectedSubviewTag = 12321;
 
@@ -352,13 +351,8 @@ void applyTextStyleForLabel(JDStatusBarNotificationTextStyle *textStyle, UILabel
 
 #pragma mark - Layout
 
-static CGRect contentRectForWindow(UIView *view) {
-  CGFloat topLayoutMargins = view.superview.layoutMargins.top;
-  if (topLayoutMargins <= 8) {
-    // ignore default margins, fallback to system status bar height
-    topLayoutMargins = JDStatusBarFrameForWindowScene(view.window.windowScene).size.height;
-  }
-
+static CGRect contentRectForViewMinusSafeAreaInsets(UIView *view) {
+  CGFloat topLayoutMargins = view.window.safeAreaInsets.top;
   CGFloat height = view.bounds.size.height - topLayoutMargins;
   return CGRectMake(0, topLayoutMargins, view.bounds.size.width, height);
 }
@@ -404,11 +398,11 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   // content & pill view
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarNotificationBackgroundTypeFullWidth: {
-      _contentView.frame = contentRectForWindow(self);
+      _contentView.frame = contentRectForViewMinusSafeAreaInsets(self);
       break;
     }
     case JDStatusBarNotificationBackgroundTypePill: {
-      _contentView.frame = [self pillContentRectForContentRect:contentRectForWindow(self)];
+      _contentView.frame = [self pillContentRectForContentRect:contentRectForViewMinusSafeAreaInsets(self)];
       _pillView.frame = _contentView.bounds;
 
       // setup rounded corners (not using a mask layer, so that we can use shadows on this view)

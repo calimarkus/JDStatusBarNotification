@@ -7,7 +7,6 @@
 #import "JDSBNotificationView.h"
 #import "JDStatusBarNotificationStyle.h"
 #import "UIApplication+JDSB_MainWindow.h"
-#import "JDSystemStatusBarHelpers.h"
 
 @interface JDSBNotificationWindow () <JDSBNotificationViewControllerDelegate>
 @end
@@ -42,42 +41,37 @@
 
 #pragma mark - Sizing
 
-- (void)updateFramesForStatusBarFrame:(CGRect)rect {
+- (void)relayoutWindowAndStatusBarView {
   // match main window transform & frame
   UIWindow *window = [[UIApplication sharedApplication] jdsb_mainApplicationWindowIgnoringWindow:self];
   self.transform = window.transform;
   self.frame = window.frame;
 
-  // default to window width
-  if (CGRectIsEmpty(rect)) {
-    rect = CGRectMake(0, 0, window.frame.size.width, 0.0);
-  }
-
-  // update top bar frame
-  JDSBNotificationView *statusBarView = _statusBarViewController.statusBarView;
-  CGFloat heightIncludingNavBar = rect.size.height + contentHeight(window.windowScene, statusBarView.style, rect);
+  // resize statusBarView
+  JDSBNotificationView *const statusBarView = _statusBarViewController.statusBarView;
+  const CGFloat safeAreaInset = self.safeAreaInsets.top;
+  const CGFloat heightIncludingNavBar = safeAreaInset + contentHeight(statusBarView.style, safeAreaInset);
   statusBarView.transform = CGAffineTransformIdentity;
-  statusBarView.frame = CGRectMake(0, 0, rect.size.width, heightIncludingNavBar);
+  statusBarView.frame = CGRectMake(0, 0, window.frame.size.width, heightIncludingNavBar);
 
   // relayout progress bar
   [statusBarView setProgressBarPercentage:_statusBarViewController.statusBarView.progressBarPercentage];
 }
 
-static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotificationStyle *style, CGRect statusBarRect) {
+static CGFloat contentHeight(JDStatusBarNotificationStyle *style, CGFloat safeAreaInset) {
   switch (style.backgroundStyle.backgroundType) {
     case JDStatusBarNotificationBackgroundTypeFullWidth: {
-      if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) &&
-          UIInterfaceOrientationIsLandscape(JDStatusBarOrientationForWindowScene(windowScene))) {
-        return 32.0; // match navbar height
+      if (safeAreaInset >= 54.0) {
+        return 38.66; // for dynamic island devices, this ensures the navbar separator stays visible
       } else {
-        return 44.0; // match navbar height
+        return 44.0; // default navbar height
       }
     }
     case JDStatusBarNotificationBackgroundTypePill: {
       CGFloat notchAdjustment = 0.0;
-      if (statusBarRect.size.height >= 54.0) {
+      if (safeAreaInset >= 54.0) {
         notchAdjustment = 0.0; // for the dynamic island, utilize the default positioning
-      } else if (statusBarRect.size.height > 20.0) {
+      } else if (safeAreaInset > 20.0) {
         notchAdjustment = -7.0; // this matches the positioning of a similar system notification
       } else {
         notchAdjustment = 3.0; // for no-notch devices, default to a minimum spacing
@@ -89,17 +83,12 @@ static CGFloat contentHeight(UIWindowScene *windowScene, JDStatusBarNotification
 
 #pragma mark - JDSBNotificationViewControllerDelegate
 
-- (void)animationsForViewTransitionToSize:(CGSize)size {
-  // update window & statusbar
-  [self updateFramesForStatusBarFrame:CGRectMake(0, 0, size.width, JDStatusBarFrameForWindowScene(self.windowScene).size.height)];
-}
-
 - (void)didDismissStatusBar {
   [self.delegate didDismissStatusBar];
 }
 
 - (void)didUpdateStyle {
-  [self updateFramesForStatusBarFrame:JDStatusBarFrameForWindowScene(self.windowScene)];
+  [self relayoutWindowAndStatusBarView];
 }
 
 #pragma mark - HitTest
