@@ -12,9 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Reworked layouting & sizing of the notification
-    - This fixes the presentation, when no statusbar is visible
-    - This fixes the .fullWidth presentation on dynamic island devices
-    - This fixes the .fullWidth style presentation in landscape for all devices
+    - Fix the presentation, when no statusbar is visible (#130)
+    - Fix pill position with flexible pill heights across devices (#122)
+    - Fix the .fullWidth presentation on dynamic island devices
+    - Fix the .fullWidth style presentation in landscape for all devices
 
 ## [2.0.8] - 2023-06-08
 
