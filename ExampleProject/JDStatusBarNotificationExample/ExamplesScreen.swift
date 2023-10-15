@@ -3,6 +3,7 @@
 
 import Foundation
 import SwiftUI
+import JDStatusBarNotification
 
 @available(iOS 15.0, *)
 class ExamplesScreenFactory: NSObject {
@@ -196,7 +197,7 @@ struct ExamplesScreen: View {
           NotificationPresenter.shared().present(customView: button, style: styleName)
         }
 
-        cell(title: "Present with icon", subtitle: "A custom left view") {
+        cell(title: "Present custom left icon", subtitle: "A custom left view") {
           // create icon
           let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
 
@@ -204,6 +205,42 @@ struct ExamplesScreen: View {
           ExampleStyle.iconLeftView.register(for: backgroundType)
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: ExampleStyle.iconLeftView.rawValue)
           NotificationPresenter.shared().displayLeftView(image)
+          NotificationPresenter.shared().dismiss(afterDelay: 2.5)
+        }
+      
+        cell(title: "SwiftUI View", subtitle: "A custom view displaying a Swift View") {
+
+          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+            style.backgroundStyle.backgroundType = backgroundType
+            style.backgroundStyle.backgroundColor = .orange
+            return style
+          }
+
+          NotificationPresenter.shared().presentSwiftView(style: styleName) {
+            HStack {
+              Spacer()
+
+              Image(systemName: "swift")
+
+              Spacer()
+                .frame(width: 10.0)
+
+              VStack(alignment: .leading, spacing: 0.0) {
+                Text("Swift Views!")
+                  .font(.caption)
+                  .bold()
+                Text("Easy custom layouts")
+                  .font(.caption)
+                  .foregroundColor(.secondary)
+                  .lineLimit(1)
+              }
+
+              Spacer()
+            }
+            .padding(6.0)
+            .padding([.leading, .trailing], 10.0)
+          }
+          
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)
         }
       }

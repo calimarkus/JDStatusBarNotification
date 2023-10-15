@@ -516,21 +516,23 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   _subtitleLabel.textAlignment = textAlignment;
 
   // update masks (after layout is done)
-  [self setupLayerMasksForPillStyleIfNeeded];
+  [self setupClippingAndLayerMasksForSubviews];
 }
 
-- (void)setupLayerMasksForPillStyleIfNeeded {
+- (void)setupClippingAndLayerMasksForSubviews {
   // mask progress view & custom subview to pill size & shape
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarNotificationBackgroundTypeFullWidth: {
       _progressView.layer.mask = nil;
       _customSubview.layer.mask = nil;
+      _customSubview.clipsToBounds = YES;
       break;
     }
     case JDStatusBarNotificationBackgroundTypePill: {
       if (_progressView) {
         _progressView.layer.mask = roundRectMaskForRectAndRadius([_progressView convertRect:_pillView.frame fromView:_pillView.superview]);
       }
+      _customSubview.clipsToBounds = NO;
       if (_customSubview) {
         _customSubview.layer.mask = roundRectMaskForRectAndRadius([_customSubview convertRect:_pillView.frame fromView:_pillView.superview]);
       }
