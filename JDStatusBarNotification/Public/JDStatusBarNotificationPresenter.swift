@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+class NotificationPresenterSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {
+  let hostingController: UIHostingController<Content>
+
+  init(hostingController: UIHostingController<Content>) {
+    self.hostingController = hostingController
+  }
+
+  func sizeThatFits(in size: CGSize) -> CGSize {
+    return hostingController.sizeThatFits(in: size)
+  }
+}
+
 extension NotificationPresenter {
 
   public func presentSwiftView(style: String? = nil,
@@ -14,7 +26,10 @@ extension NotificationPresenter {
                         completion: NotificationPresenterCompletion? = nil) {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
-    self.present(customView: controller.view, style: style, completion: completion)
+    self.present(customView: controller.view,
+                 sizingController: NotificationPresenterSizingController(hostingController: controller),
+                 style: style,
+                 completion: completion)
   }
   
 }

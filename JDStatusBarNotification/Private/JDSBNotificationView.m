@@ -93,6 +93,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
   // reset custom subview
   _customSubview = nil;
+  _customSubviewSizingController = nil;
   if (_leftView != _activityIndicatorView) {
     _leftView = nil;
   }
@@ -278,6 +279,11 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   [self setNeedsLayout];
 }
 
+- (void)setCustomSubviewSizingController:(id<JDStatusBarNotificationPresenterCustomViewSizingController>)customSubviewSizingController {
+  _customSubviewSizingController = customSubviewSizingController;
+  [self setNeedsLayout];
+}
+
 #pragma mark - Style
 
 - (void)setStyle:(JDStatusBarNotificationStyle *)style {
@@ -386,6 +392,12 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
 
   // layout pill
   CGFloat maxTextWidth = MAX(realTextSizeForLabel(_titleLabel).width, realTextSizeForLabel(_subtitleLabel).width);
+  if (_customSubview) {
+    const CGSize sizeThatFits = (_customSubviewSizingController
+                                 ? [_customSubviewSizingController sizeThatFits:contentRect.size]
+                                 : [_customSubview sizeThatFits:contentRect.size]);
+    maxTextWidth = MAX(maxTextWidth, sizeThatFits.width);
+  }
   CGFloat pillWidth = round(MAX(minimumPillWidth, MIN(maximumPillWidth, maxTextWidth + paddingX * 2)));
   CGFloat pillX = round(MAX(minimumPillInset, (CGRectGetWidth(self.bounds) - pillWidth)/2.0));
   CGFloat pillY = round(contentRect.origin.y + contentRect.size.height - pillHeight);

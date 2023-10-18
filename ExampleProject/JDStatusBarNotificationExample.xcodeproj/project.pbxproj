@@ -17,6 +17,7 @@
 		7E1C2838285226F5004315CC /* EnumPickerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */; };
 		7E1C2839285226F5004315CC /* EnumPickerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */; };
 		7E2A4E852AE70A4B001F0DB0 /* JDStatusBarNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB914CF2ADC11F4004B3435 /* JDStatusBarNotificationPresenter.swift */; };
+		7E2A4E8D2AE99D70001F0DB0 /* JDStatusBarNotificationPresenterCustomViewSizingController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E2A4E8C2AE99D70001F0DB0 /* JDStatusBarNotificationPresenterCustomViewSizingController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E2F3BBB284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
@@ -110,6 +111,7 @@
 		7E1C283128520F56004315CC /* JDSBNotificationAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationAnimator.h; sourceTree = "<group>"; };
 		7E1C283228520F56004315CC /* JDSBNotificationAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationAnimator.m; sourceTree = "<group>"; };
 		7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPickerOptionView.swift; sourceTree = "<group>"; };
+		7E2A4E8C2AE99D70001F0DB0 /* JDStatusBarNotificationPresenterCustomViewSizingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationPresenterCustomViewSizingController.h; sourceTree = "<group>"; };
 		7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableCustomStyle.swift; sourceTree = "<group>"; };
 		7E5402C2286708840079C579 /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5402C5286708850079C579 /* JDStatusBarNotification.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JDStatusBarNotification.docc; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				7E8C519628585BE400C7C003 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h */,
 				7E8C519328585BE400C7C003 /* JDStatusBarNotificationStyle.h */,
 				7E8C519728585BE400C7C003 /* JDStatusBarNotificationStyle.m */,
+				7E2A4E8C2AE99D70001F0DB0 /* JDStatusBarNotificationPresenterCustomViewSizingController.h */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				7E5402E5286709560079C579 /* JDStatusBarNotificationPresenter.h in Headers */,
 				7E5402E72867095C0079C579 /* JDStatusBarNotificationPresenterPrepareStyleBlock.h in Headers */,
 				7E5402E6286709590079C579 /* JDStatusBarNotificationStyle.h in Headers */,
+				7E2A4E8D2AE99D70001F0DB0 /* JDStatusBarNotificationPresenterCustomViewSizingController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

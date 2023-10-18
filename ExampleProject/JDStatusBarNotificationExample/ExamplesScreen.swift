@@ -239,6 +239,7 @@ struct ExamplesScreen: View {
             }
             .padding(6.0)
             .padding([.leading, .trailing], 10.0)
+            .fixedSize()
           }
           
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)

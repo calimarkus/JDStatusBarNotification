@@ -11,6 +11,7 @@
 
 #import <JDStatusBarNotification/JDStatusBarNotificationPresenterPrepareStyleBlock.h>
 #import <JDStatusBarNotification/JDStatusBarNotificationStyle.h>
+#import <JDStatusBarNotification/JDStatusBarNotificationPresenterCustomViewSizingController.h>
 
 @class JDStatusBarNotificationPresenter;
 
@@ -241,6 +242,27 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (UIView *)presentWithCustomView:(UIView *)customView
                         styleName:(NSString * _Nullable)styleName
                        completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(customView:style:completion:));
+
+/// Present a notification using a custom subview.
+///
+/// The `customView` will be layouted correctly according to the selected style & the current device
+/// state (rotation, status bar visibility, etc.). The background will still be styled & layouted
+/// according to the provided style. If your custom view requires custom touch handling,
+/// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't
+/// receive any touches, as the internal `gestureRecognizer` would receive them.
+///
+/// - Parameters:
+///   - customView: A custom UIView to display as notification content.
+///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyleNamed:prepare:``.
+///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
+///   - completion: A ``JDStatusBarNotificationPresenterCompletionBlock``, which gets called once the presentation animation finishes.
+///
+/// - Returns: The presented UIView for further customization
+///
+- (UIView *)presentWithCustomView:(UIView *)customView
+                 sizingController:(id<JDStatusBarNotificationPresenterCustomViewSizingController> _Nullable)sizingController
+                        styleName:(NSString * _Nullable)styleName
+                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(customView:sizingController:style:completion:));
 
 #pragma mark - Dismissal
 

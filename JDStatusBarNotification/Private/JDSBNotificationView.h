@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import <JDStatusBarNotification/JDStatusBarNotificationPresenterCustomViewSizingController.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class JDStatusBarNotificationStyle;
@@ -35,6 +37,7 @@ NS_SWIFT_NAME(_SBNotificationView)
 /// state like rotation, status bar visibility, etc..) It never overlaps the statusbar. The height & width is defined
 /// by the selected style. In the pill style the view will match the pill size.
 @property (nonatomic, strong, nullable) UIView *customSubview;
+@property (nonatomic, strong, nullable) id<JDStatusBarNotificationPresenterCustomViewSizingController> customSubviewSizingController;
 
 /// A left view will be displayed left of the text. The layout can be adjusted using the leftViewStyle.
 @property (nonatomic, strong, nullable) UIView *leftView;

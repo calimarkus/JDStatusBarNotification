@@ -178,9 +178,20 @@
 - (UIView *)presentWithCustomView:(UIView *)customView
                         styleName:(NSString * _Nullable)styleName
                        completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  return [self presentWithCustomView:customView
+                    sizingController:nil
+                           styleName:styleName
+                          completion:completion];
+}
+
+- (UIView *)presentWithCustomView:(UIView *)customView
+                 sizingController:(id<JDStatusBarNotificationPresenterCustomViewSizingController> _Nullable)sizingController
+                        styleName:(NSString * _Nullable)styleName
+                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarNotificationStyle *style = [_styleCache styleForName:styleName];
   JDSBNotificationView *view = [self presentWithTitle:nil subtitle:nil style:style completion:completion];
   view.customSubview = customView;
+  view.customSubviewSizingController = sizingController;
   return view;
 }
 
