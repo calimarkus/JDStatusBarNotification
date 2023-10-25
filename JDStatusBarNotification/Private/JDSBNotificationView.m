@@ -393,6 +393,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   // layout pill
   CGFloat maxTextWidth = MAX(realTextSizeForLabel(_titleLabel).width, realTextSizeForLabel(_subtitleLabel).width);
   if (_customSubview) {
+    paddingX = 0.0; // let the custom view control all padding
     const CGSize sizeThatFits = (_customSubviewSizingController
                                  ? [_customSubviewSizingController sizeThatFits:contentRect.size]
                                  : [_customSubview sizeThatFits:contentRect.size]);

@@ -162,6 +162,102 @@ struct ExamplesScreen: View {
         }
       }
 
+      Section("SwiftUI Examples") {
+
+        cell(title: "Simple text", subtitle: "A custom view displaying a SwiftUI text") {
+
+          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+            style.backgroundStyle.backgroundType = backgroundType
+            style.backgroundStyle.backgroundColor = .systemMint
+            style.backgroundStyle.pillStyle.minimumWidth = 20.0
+            return style
+          }
+
+          NotificationPresenter.shared().presentSwiftView(style: styleName) {
+            Text("👋 This is SwiftUI!")
+              .font(.subheadline.bold())
+              .padding([.leading, .trailing], 20.0)
+              .fixedSize()
+          }
+
+          NotificationPresenter.shared().dismiss(afterDelay: 2.5)
+        }
+
+        cell(title: "Two row layout + Icon", subtitle: "A custom view displaying a Swift View") {
+
+          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+            style.backgroundStyle.backgroundType = backgroundType
+            style.backgroundStyle.backgroundColor = .systemIndigo
+            style.backgroundStyle.pillStyle.minimumWidth = 20.0
+            return style
+          }
+
+          NotificationPresenter.shared().presentSwiftView(style: styleName) {
+            HStack {
+              Spacer()
+
+              Image(systemName: "swift")
+                .foregroundColor(.white)
+
+              Spacer()
+                .frame(width: 10.0)
+
+              VStack(alignment: .leading, spacing: 0.0) {
+                Text("Swift Views!")
+                  .font(.caption.bold())
+                  .foregroundColor(.white)
+                Text("Easy custom layouts")
+                  .font(.caption)
+                  .foregroundColor(.white.opacity(0.5))
+                  .lineLimit(1)
+              }
+
+              Spacer()
+            }
+            .padding([.leading, .trailing], 20.0)
+            .fixedSize()
+          }
+
+          NotificationPresenter.shared().dismiss(afterDelay: 2.5)
+        }
+
+        if #available(iOS 16.0, *) { // Gradient is iOS 16+
+          cell(title: "Gradient & Icon", subtitle: "A custom SwiftUI background") {
+
+            let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
+              style.backgroundStyle.backgroundType = backgroundType
+              style.backgroundStyle.backgroundColor = UIColor(.orange)
+              style.backgroundStyle.pillStyle.minimumWidth = 20.0
+              return style
+            }
+
+            NotificationPresenter.shared().presentSwiftView(style: styleName) {
+              let inner = VStack {
+                Spacer()
+                Image(systemName: "swift")
+                  .foregroundStyle(.white)
+                Spacer()
+              }.padding([.leading, .trailing], 14.0)
+
+              Group {
+                if backgroundType == .fullWidth {
+                  HStack {
+                    Spacer()
+                    inner
+                    Spacer()
+                  }
+                } else {
+                  inner
+                }
+              }
+              .background(Gradient(colors: [.orange, .red]))
+            }
+
+            NotificationPresenter.shared().dismiss(afterDelay: 2.5)
+          }
+        }
+      }
+
       Section("Included Styles") {
         includedStyleCell("Uh huh.", style: .defaultStyle)
         includedStyleCell("It's time.", style: .light)
@@ -205,43 +301,6 @@ struct ExamplesScreen: View {
           ExampleStyle.iconLeftView.register(for: backgroundType)
           NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected", customStyle: ExampleStyle.iconLeftView.rawValue)
           NotificationPresenter.shared().displayLeftView(image)
-          NotificationPresenter.shared().dismiss(afterDelay: 2.5)
-        }
-      
-        cell(title: "SwiftUI View", subtitle: "A custom view displaying a Swift View") {
-
-          let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
-            style.backgroundStyle.backgroundType = backgroundType
-            style.backgroundStyle.backgroundColor = .orange
-            return style
-          }
-
-          NotificationPresenter.shared().presentSwiftView(style: styleName) {
-            HStack {
-              Spacer()
-
-              Image(systemName: "swift")
-
-              Spacer()
-                .frame(width: 10.0)
-
-              VStack(alignment: .leading, spacing: 0.0) {
-                Text("Swift Views!")
-                  .font(.caption)
-                  .bold()
-                Text("Easy custom layouts")
-                  .font(.caption)
-                  .foregroundColor(.secondary)
-                  .lineLimit(1)
-              }
-
-              Spacer()
-            }
-            .padding(6.0)
-            .padding([.leading, .trailing], 10.0)
-            .fixedSize()
-          }
-          
           NotificationPresenter.shared().dismiss(afterDelay: 2.5)
         }
       }
