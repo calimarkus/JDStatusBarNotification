@@ -28,14 +28,14 @@ static const NSInteger kExpectedSubviewTag = 12321;
 - (instancetype)init {
   self = [super init];
   if (self) {
-    [self setupView];
+    [self _setupView];
   }
   return self;
 }
 
 #pragma mark - view setup
 
-- (void)setupView {
+- (void)_setupView {
   UILabel *titleLabel = [UILabel new];
   titleLabel.tag = kExpectedSubviewTag;
   titleLabel.backgroundColor = [UIColor clearColor];
@@ -81,7 +81,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   [self addGestureRecognizer:_panGestureRecognizer];
 }
 
-- (void)resetSubviews {
+- (void)_resetSubviews {
   // remove subviews added from outside
   for (UIView *view in [NSArray arrayWithObjects:self, _contentView, _titleLabel, _subtitleLabel, _pillView, nil]) {
     for (UIView *subview in view.subviews) {
@@ -115,7 +115,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 #pragma mark - acitivity indicator
 
-- (void)createActivityIndicatorViewIfNeeded {
+- (void)_createActivityIndicatorViewIfNeeded {
   if (_activityIndicatorView == nil) {
     _activityIndicatorView = [UIActivityIndicatorView new];
     _activityIndicatorView.transform = CGAffineTransformMakeScale(0.7, 0.7);
@@ -133,7 +133,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
   _activityIndicatorView.hidden = !displaysActivityIndicator;
 
   if (displaysActivityIndicator) {
-    [self createActivityIndicatorViewIfNeeded];
+    [self _createActivityIndicatorViewIfNeeded];
     [_activityIndicatorView startAnimating];
     [self setLeftView:_activityIndicatorView];
   } else {
@@ -146,7 +146,7 @@ static const NSInteger kExpectedSubviewTag = 12321;
 
 #pragma mark - progress bar
 
-- (void)createProgressViewIfNeeded {
+- (void)_createProgressViewIfNeeded {
   if (_progressView == nil) {
     _progressView = [[UIView alloc] initWithFrame:CGRectZero];
     _progressView.backgroundColor = _style.progressBarStyle.barColor;
@@ -203,7 +203,7 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   }
 
   // create view & reset state
-  [self createProgressViewIfNeeded];
+  [self _createProgressViewIfNeeded];
   _progressView.hidden = NO;
 
   // update progressView frame
@@ -322,7 +322,7 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   _panGestureRecognizer.enabled = style.canSwipeToDismiss;
   _longPressGestureRecognizer.enabled = style.canTapToHold;
 
-  [self resetSubviews];
+  [self _resetSubviews];
   [self setNeedsLayout];
   [_delegate didUpdateStyle];
 }
@@ -375,7 +375,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   return maskLayer;
 }
 
-- (CGRect)pillContentRectForContentRect:(CGRect)contentRect {
+- (CGRect)_pillContentRectForContentRect:(CGRect)contentRect {
   JDStatusBarNotificationPillStyle *pillStyle = _style.backgroundStyle.pillStyle;
 
   // pill layout parameters
@@ -414,7 +414,7 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
       break;
     }
     case JDStatusBarNotificationBackgroundTypePill: {
-      _contentView.frame = [self pillContentRectForContentRect:contentRectForViewMinusSafeAreaInsets(self)];
+      _contentView.frame = [self _pillContentRectForContentRect:contentRectForViewMinusSafeAreaInsets(self)];
       _pillView.frame = _contentView.bounds;
 
       // setup rounded corners (not using a mask layer, so that we can use shadows on this view)
@@ -528,10 +528,10 @@ static CALayer *roundRectMaskForRectAndRadius(CGRect rect) {
   _subtitleLabel.textAlignment = textAlignment;
 
   // update masks (after layout is done)
-  [self setupClippingAndLayerMasksForSubviews];
+  [self _setupClippingAndLayerMasksForSubviews];
 }
 
-- (void)setupClippingAndLayerMasksForSubviews {
+- (void)_setupClippingAndLayerMasksForSubviews {
   // mask progress view & custom subview to pill size & shape
   switch (_style.backgroundStyle.backgroundType) {
     case JDStatusBarNotificationBackgroundTypeFullWidth: {

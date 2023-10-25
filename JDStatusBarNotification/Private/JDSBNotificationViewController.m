@@ -26,8 +26,8 @@
   if (self) {
     _statusBarView = [JDSBNotificationView new];
     _statusBarView.delegate = self;
-    [_statusBarView.panGestureRecognizer addTarget:self action:@selector(panGestureRecognized:)];
-    [_statusBarView.longPressGestureRecognizer addTarget:self action:@selector(longPressGestureRecognized:)];
+    [_statusBarView.panGestureRecognizer addTarget:self action:@selector(_panGestureRecognized:)];
+    [_statusBarView.longPressGestureRecognizer addTarget:self action:@selector(_longPressGestureRecognized:)];
 
     _animator = [[JDSBNotificationAnimator alloc] initWithStatusBarView:_statusBarView];
   }
@@ -72,7 +72,7 @@
 #pragma mark - JDSBNotificationViewDelegate
 
 - (void)didUpdateStyle {
-  [_delegate didUpdateStyle];
+  [self.delegate relayoutWindowAndStatusBarView];
 }
 
 #pragma mark - Pan gesture
@@ -86,7 +86,7 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
   }
 }
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
+- (void)_panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
   if (recognizer.isEnabled) {
     switch (recognizer.state) {
       case UIGestureRecognizerStatePossible:
@@ -123,19 +123,19 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
           }];
         } else {
           // dismiss
-          [self forceDismiss];
+          [self _forceDismiss];
         }
       }
     }
   }
 }
 
-- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer {
+- (void)_longPressGestureRecognized:(UILongPressGestureRecognizer *)recognizer {
   if (recognizer.isEnabled) {
     switch (recognizer.state)
       case UIGestureRecognizerStateEnded: {
         if (_forceDismissalOnTouchesEnded) {
-          [self forceDismiss];
+          [self _forceDismiss];
         }
         break;
       default:
@@ -153,12 +153,12 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
   _dismissCompletionBlock = [completion copy];
   _dismissTimer = [NSTimer scheduledTimerWithTimeInterval:delay
                                                    target:self
-                                                 selector:@selector(dismissTimerFired:)
+                                                 selector:@selector(_dismissTimerFired:)
                                                  userInfo:nil
                                                   repeats:NO];
 }
 
-- (void)dismissTimerFired:(NSTimer *)timer {
+- (void)_dismissTimerFired:(NSTimer *)timer {
   JDSBNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
   [self dismissWithDuration:0.4 completion:block];
@@ -169,7 +169,7 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
-  if ([self canDismiss]) {
+  if ([self _canDismiss]) {
     _statusBarView.panGestureRecognizer.enabled = NO;
 
     // animate out
@@ -186,13 +186,13 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
   }
 }
 
-- (void)forceDismiss {
+- (void)_forceDismiss {
   JDSBNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
   [self dismissWithDuration:0.25 completion:block];
 }
 
-- (BOOL)canDismiss {
+- (BOOL)_canDismiss {
   if (_statusBarView.style.canDismissDuringUserInteraction) {
     return YES; // allow dismissal during interaction
   }

@@ -43,7 +43,7 @@
   // animate in
   if (style.animationType == JDStatusBarNotificationAnimationTypeBounce) {
     _animateInCompletionBlock = completion;
-    [self animateInWithBounceAnimation];
+    animateInWithBounceAnimation(_statusBarView, self);
   } else {
     [UIView animateWithDuration:duration animations:^{
       view.alpha = 1.0;
@@ -56,9 +56,7 @@
   }
 }
 
-- (void)animateInWithBounceAnimation {
-  JDSBNotificationView *topBar = _statusBarView;
-
+void animateInWithBounceAnimation(JDSBNotificationView *topBar, id<CAAnimationDelegate> delegate) {
   // easing function (based on github.com/robb/RBBAnimation)
   CGFloat(^RBBEasingFunctionEaseOutBounce)(CGFloat) = ^CGFloat(CGFloat t) {
     if (t < 4.0 / 11.0) return pow(11.0 / 4.0, 2) * pow(t, 2);
@@ -83,7 +81,7 @@
   animation.values = values;
   animation.removedOnCompletion = NO;
   animation.fillMode = kCAFillModeForwards;
-  animation.delegate = self;
+  animation.delegate = delegate;
   [topBar.layer setValue:@(toCenterY) forKeyPath:animation.keyPath];
   [topBar.layer addAnimation:animation forKey:@"JDBounceAnimation"];
 }

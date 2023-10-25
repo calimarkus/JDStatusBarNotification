@@ -39,7 +39,7 @@
   return self;
 }
 
-#pragma mark - Sizing
+#pragma mark - JDSBNotificationViewControllerDelegate
 
 - (void)relayoutWindowAndStatusBarView {
   // match main window transform & frame
@@ -81,14 +81,8 @@ static CGFloat contentHeight(JDStatusBarNotificationStyle *style, CGFloat safeAr
   }
 }
 
-#pragma mark - JDSBNotificationViewControllerDelegate
-
 - (void)didDismissStatusBar {
   [self.delegate didDismissStatusBar];
-}
-
-- (void)didUpdateStyle {
-  [self relayoutWindowAndStatusBarView];
 }
 
 #pragma mark - HitTest

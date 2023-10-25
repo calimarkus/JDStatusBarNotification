@@ -14,7 +14,6 @@ NS_SWIFT_NAME(_SBNotificationViewControllerDelegate)
 @protocol JDSBNotificationViewControllerDelegate
 - (void)relayoutWindowAndStatusBarView;
 - (void)didDismissStatusBar;
-- (void)didUpdateStyle;
 @end
 
 NS_SWIFT_NAME(_SBNotificationViewController)
