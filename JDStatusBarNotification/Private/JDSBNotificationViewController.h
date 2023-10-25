@@ -12,7 +12,6 @@ typedef void (^ _Nullable JDSBNotificationViewControllerCompletion)(void) NS_SWI
 
 NS_SWIFT_NAME(_SBNotificationViewControllerDelegate)
 @protocol JDSBNotificationViewControllerDelegate
-- (void)relayoutWindowAndStatusBarView;
 - (void)didDismissStatusBar;
 @end
 
@@ -21,11 +20,12 @@ NS_SWIFT_NAME(_SBNotificationViewController)
 
 @property (nonatomic, strong, readonly) JDSBNotificationView *statusBarView;
 @property (nonatomic, weak) id<JDSBNotificationViewControllerDelegate> delegate;
+@property (nonatomic, weak) UIWindow *jdsb_window;
 
 - (JDSBNotificationView *)presentWithTitle:(NSString * _Nullable)title
-                             subtitle:(NSString * _Nullable)subtitle
-                                style:(JDStatusBarNotificationStyle *)style
-                           completion:(JDSBNotificationViewControllerCompletion)completion;
+                                  subtitle:(NSString * _Nullable)subtitle
+                                     style:(JDStatusBarNotificationStyle *)style
+                                completion:(JDSBNotificationViewControllerCompletion)completion;
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
                completion:(JDSBNotificationViewControllerCompletion)completion;
