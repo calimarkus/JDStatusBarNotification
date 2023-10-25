@@ -2,8 +2,8 @@
 //
 
 import Foundation
-import SwiftUI
 import JDStatusBarNotification
+import SwiftUI
 
 @available(iOS 15.0, *)
 class ExamplesScreenFactory: NSObject {
@@ -163,9 +163,7 @@ struct ExamplesScreen: View {
       }
 
       Section("SwiftUI Examples") {
-
         cell(title: "Simple text", subtitle: "A custom view displaying a SwiftUI text") {
-
           let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemMint
@@ -184,7 +182,6 @@ struct ExamplesScreen: View {
         }
 
         cell(title: "Two row layout + Icon", subtitle: "A custom view displaying a Swift View") {
-
           let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemIndigo
@@ -223,7 +220,6 @@ struct ExamplesScreen: View {
 
         if #available(iOS 16.0, *) { // Gradient is iOS 16+
           cell(title: "Gradient & Icon", subtitle: "A custom SwiftUI background") {
-
             let styleName = NotificationPresenter.shared().addStyle(styleName: "tmp", basedOnIncludedStyle: .defaultStyle) { style in
               style.backgroundStyle.backgroundType = backgroundType
               style.backgroundStyle.backgroundColor = UIColor(.orange)
@@ -352,7 +348,7 @@ struct ExamplesScreen: View {
     }
   }
 
-  func customStyleCell(_ title:String, subtitle:String? = nil, style: ExampleStyle) -> some View {
+  func customStyleCell(_ title: String, subtitle: String? = nil, style: ExampleStyle) -> some View {
     let content = style.exampleContent
     return cell(title: "Present: \(title)", subtitle: subtitle) {
       style.register(for: backgroundType)

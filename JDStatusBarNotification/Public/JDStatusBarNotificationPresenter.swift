@@ -19,17 +19,16 @@ class NotificationPresenterSizingController<Content>: NotificationPresenterCusto
   }
 }
 
-extension NotificationPresenter {
-
-  public func presentSwiftView(style: String? = nil,
+public extension NotificationPresenter {
+  func presentSwiftView(style: String? = nil,
                         @ViewBuilder viewBuilder: () -> some View,
-                        completion: NotificationPresenterCompletion? = nil) {
+                        completion: NotificationPresenterCompletion? = nil)
+  {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
-    self.present(customView: controller.view,
-                 sizingController: NotificationPresenterSizingController(hostingController: controller),
-                 style: style,
-                 completion: completion)
+    present(customView: controller.view,
+            sizingController: NotificationPresenterSizingController(hostingController: controller),
+            style: style,
+            completion: completion)
   }
-  
 }
