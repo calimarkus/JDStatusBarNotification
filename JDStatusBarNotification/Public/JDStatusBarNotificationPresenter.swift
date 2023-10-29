@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate class NotificationPresenterSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {
+private class NotificationPresenterSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {
   let hostingController: UIHostingController<Content>
 
   init(hostingController: UIHostingController<Content>) {
@@ -27,15 +27,15 @@ public extension NotificationPresenter {
   ///            If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - viewBuilder: A ViewBuilder closure to build your custom SwiftUI view.
   ///   - completion: A ``JDStatusBarNotificationPresenterCompletionBlock``, which gets called once the presentation animation finishes.
-  func presentSwiftView(style: String? = nil,
+  func presentSwiftView(styleName: String? = nil,
                         @ViewBuilder viewBuilder: () -> some View,
                         completion: NotificationPresenterCompletion? = nil)
   {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
-    present(customView: controller.view,
-            sizingController: NotificationPresenterSizingController(hostingController: controller),
-            style: style,
-            completion: completion)
+    __present(withCustomView: controller.view,
+              sizingController: NotificationPresenterSizingController(hostingController: controller),
+              styleName: styleName,
+              completion: completion)
   }
 }
