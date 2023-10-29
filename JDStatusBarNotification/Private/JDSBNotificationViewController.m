@@ -43,20 +43,20 @@
 
 #pragma mark - Presentation
 
-- (JDSBNotificationView *)presentWithTitle:(NSString *)title
-                             subtitle:(NSString *)subtitle
-                                style:(JDStatusBarNotificationStyle *)style
-                           completion:(JDSBNotificationViewControllerCompletion)completion {
+- (JDSBNotificationView *)presentWithStyle:(JDStatusBarNotificationStyle *)style
+                                completion:(JDSBNotificationViewControllerCompletion)completion {
   JDSBNotificationView *topBar = _statusBarView;
 
-  // update status & style
-  [topBar setTitle:title];
-  [topBar setSubtitle:subtitle];
-  [topBar setStyle:style];
+  // reset text
+  [topBar setTitle:nil];
+  [topBar setSubtitle:nil];
 
   // reset progress & activity
   [topBar setProgressBarPercentage:0.0];
   [topBar setDisplaysActivityIndicator:NO];
+
+  // set style
+  [topBar setStyle:style];
 
   // reset dismiss timer & completion
   [_dismissTimer invalidate];

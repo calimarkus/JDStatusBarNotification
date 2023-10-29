@@ -47,20 +47,23 @@
 #pragma mark - Core Presentation logic
 
 - (JDSBNotificationView *)presentWithTitle:(NSString *)title
-                             subtitle:(NSString *)subtitle
-                                style:(JDStatusBarNotificationStyle *)style
-                           completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+                                  subtitle:(NSString *)subtitle
+                                     style:(JDStatusBarNotificationStyle *)style
+                                completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   if(_overlayWindow == nil) {
     _overlayWindow = [[JDSBNotificationWindow alloc] initWithStyle:style
                                                        windowScene:_windowScene
                                                           delegate:self];
   }
 
-  JDSBNotificationView *view = [_overlayWindow.statusBarViewController presentWithTitle:title subtitle:subtitle style:style completion:^{
+  JDSBNotificationView *view = [_overlayWindow.statusBarViewController presentWithStyle:style completion:^{
     if (completion) {
       completion(self);
     }
   }];
+
+  [view setTitle:title];
+  [view setSubtitle:subtitle];
 
   [_overlayWindow setHidden:NO];
   [_overlayWindow.statusBarViewController setNeedsStatusBarAppearanceUpdate];

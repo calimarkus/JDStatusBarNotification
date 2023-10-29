@@ -22,9 +22,7 @@ NS_SWIFT_NAME(_SBNotificationViewController)
 @property (nonatomic, weak) id<JDSBNotificationViewControllerDelegate> delegate;
 @property (nonatomic, weak) UIWindow *jdsb_window;
 
-- (JDSBNotificationView *)presentWithTitle:(NSString * _Nullable)title
-                                  subtitle:(NSString * _Nullable)subtitle
-                                     style:(JDStatusBarNotificationStyle *)style
+- (JDSBNotificationView *)presentWithStyle:(JDStatusBarNotificationStyle *)style
                                 completion:(JDSBNotificationViewControllerCompletion)completion;
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
