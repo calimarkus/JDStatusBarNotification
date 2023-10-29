@@ -6,6 +6,13 @@
 
 - ``shared()``
 
+### Present a notification in Swift
+
+- ``present(_:subtitle:delay:styleName:completion:)``
+- ``present(_:subtitle:delay:includedStyle:completion:)``
+- ``presentCustomView(_:sizingController:styleName:completion:)``
+- ``presentSwiftView(styleName:viewBuilder:completion:)``
+
 ### Present a notification
 
 - ``present(text:)``
@@ -42,10 +49,12 @@
 - ``dismiss(animated:)``
 - ``dismiss(afterDelay:)``
 - ``dismiss(afterDelay:completion:)``
+- ``dismiss(delay:completion:)``
 
 ### Customize the style (Appearance & Behavior)
 
 - ``updateDefaultStyle(_:)``
+- ``addStyle(named:usingStyle:prepare:)``
 - ``addStyle(styleName:prepare:)``
 - ``addStyle(styleName:basedOnIncludedStyle:prepare:)``
 - ``NotificationPresenterPrepareStyleClosure``

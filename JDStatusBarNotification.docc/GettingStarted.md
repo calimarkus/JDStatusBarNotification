@@ -102,7 +102,7 @@ NotificationPresenter.shared().present(customView: button)
 
 You have the option to easily create & use fully customized styles.
 
-The closures of ``JDStatusBarNotification/NotificationPresenter/updateDefaultStyle(_:)`` and ``JDStatusBarNotification/NotificationPresenter/addStyle(styleName:prepare:)`` provide a copy of
+The closures of ``JDStatusBarNotification/NotificationPresenter/updateDefaultStyle(_:)`` and ``JDStatusBarNotification/NotificationPresenter/addStyle(named:usingStyle:prepare:)`` provide a copy of
 the default style, which can then be modified. See the ``JDStatusBarNotification/StatusBarNotificationStyle`` API for all options.
 
 **Swift:**

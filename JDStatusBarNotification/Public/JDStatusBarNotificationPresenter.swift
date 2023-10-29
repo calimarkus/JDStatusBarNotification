@@ -26,7 +26,7 @@ public extension NotificationPresenter {
   ///   - title: The text to display as title
   ///   - subtitle: The text to display as subtitle
   ///   - delay: The delay in seconds, before the notification should be dismissed.
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyleNamed(_:prepare:)``.
+  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
@@ -82,7 +82,7 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - view: A custom UIView to display as notification content.
   ///   - sizingController: An optional controller conforming to ``NotificationPresenterCustomViewSizingController``, which controls the size of a presented custom view.
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyleNamed(_:prepare:)``.
+  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes.
   ///
@@ -103,7 +103,7 @@ public extension NotificationPresenter {
   /// Present a notification using a custom SwiftUI view.
   ///
   /// - Parameters:
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyleNamed(_:prepare:)``.
+  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///            If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - viewBuilder: A ViewBuilder closure to build your custom SwiftUI view.
   ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes.
@@ -139,7 +139,7 @@ public extension NotificationPresenter {
   /// Adds a new named style - based on an included style, if given.
   /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
   ///
-  /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(title:styleName:completion:)``.
+  /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:delay:styleName:completion:)``.
   /// If a style with the same name already exists, it will be replaced.
   ///
   /// - Parameters:
