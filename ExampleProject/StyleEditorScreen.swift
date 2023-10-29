@@ -16,9 +16,9 @@ struct StyleEditorScreen: View {
 
   func presentDefault(allowActivity: Bool = true, allowProgress: Bool = true, completion: @escaping () -> Void) {
     StyleEditorScreen.statusBarView = NotificationPresenter.shared().present(
-      title: text,
+      text,
       subtitle: subtitle,
-      customStyle: style.registerComputedStyle()
+      styleName: style.registerComputedStyle()
     ) { _ in
       completion()
     } as? _SBNotificationView

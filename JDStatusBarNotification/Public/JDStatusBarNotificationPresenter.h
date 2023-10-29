@@ -315,7 +315,8 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
-/// Adds a new custom style. This can be used by referencing it using the `styleName`.
+/// Adds a new named style.
+/// This can later be used by referencing it using the `styleName` - or by using the return value directly.
 ///
 /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``presentWithText:customStyle:``.
 /// If a style with the same name already exists, it will be replaced.
@@ -329,7 +330,8 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (NSString *)addStyleNamed:(NSString*)styleName
                     prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_REFINED_FOR_SWIFT;
 
-/// Adds a new custom style based on a specific included style. This can be used by referencing it using the `styleName`.
+/// Adds a new named style based on an included style.
+/// This can later be used by referencing it using the `styleName` - or by using the return value directly.
 ///
 /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``presentWithText:customStyle:``.
 /// If a style with the same name already exists, it will be replaced.
