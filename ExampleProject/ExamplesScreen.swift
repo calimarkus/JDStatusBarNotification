@@ -160,6 +160,16 @@ struct ExamplesScreen: View {
         }
       }
 
+      Section("Included Styles") {
+        includedStyleCell("Uh huh.", style: .defaultStyle)
+        includedStyleCell("It's time.", style: .light)
+        includedStyleCell("Don't mess with me!", style: .dark)
+        includedStyleCell("That's how we roll!", style: .success)
+        includedStyleCell("You know who I am!", style: .warning)
+        includedStyleCell("Uh oh, that didn't work..", style: .error)
+        includedStyleCell("Wake up Neo…", style: .matrix)
+      }
+
       Section("SwiftUI Examples") {
         cell(title: "Simple text", subtitle: "A custom view displaying a SwiftUI text") {
           let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
@@ -250,16 +260,6 @@ struct ExamplesScreen: View {
             NotificationPresenter.shared().dismiss(delay: 2.5)
           }
         }
-      }
-
-      Section("Included Styles") {
-        includedStyleCell("Uh huh.", style: .defaultStyle)
-        includedStyleCell("It's time.", style: .light)
-        includedStyleCell("Don't mess with me!", style: .dark)
-        includedStyleCell("That's how we roll!", style: .success)
-        includedStyleCell("You know who I am!", style: .warning)
-        includedStyleCell("Uh oh, that didn't work..", style: .error)
-        includedStyleCell("Wake up Neo…", style: .matrix)
       }
 
       Section("Custom Style Examples") {
