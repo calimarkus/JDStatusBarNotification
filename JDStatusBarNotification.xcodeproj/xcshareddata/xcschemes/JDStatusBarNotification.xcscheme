@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EA91CA8284EF3AF00F32F09"
-               BuildableName = "JDSBN_LayoutDebugging.app"
-               BlueprintName = "LayoutDebugging"
-               ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+               BlueprintIdentifier = "7E5402C1286708840079C579"
+               BuildableName = "JDStatusBarNotification.framework"
+               BlueprintName = "JDStatusBarNotification"
+               ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -39,16 +39,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA91CA8284EF3AF00F32F09"
-            BuildableName = "JDSBN_LayoutDebugging.app"
-            BlueprintName = "LayoutDebugging"
-            ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -56,16 +46,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EA91CA8284EF3AF00F32F09"
-            BuildableName = "JDSBN_LayoutDebugging.app"
-            BlueprintName = "LayoutDebugging"
-            ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+            BlueprintIdentifier = "7E5402C1286708840079C579"
+            BuildableName = "JDStatusBarNotification.framework"
+            BlueprintName = "JDStatusBarNotification"
+            ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

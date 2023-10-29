@@ -128,8 +128,8 @@
 		7E8C519828585BE400C7C003 /* JDStatusBarNotificationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotificationPresenter.m; sourceTree = "<group>"; };
 		7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyleEditorView.swift; sourceTree = "<group>"; };
 		7EA91CC3284EF3AF00F32F09 /* JDSBN_LayoutDebugging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_LayoutDebugging.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = JDStatusBarNotification.podspec; path = ../../JDStatusBarNotification.podspec; sourceTree = "<group>"; };
-		7EB82C4C2A31BACE004E2B19 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../../Package.swift; sourceTree = "<group>"; };
+		7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JDStatusBarNotification.podspec; sourceTree = "<group>"; };
+		7EB82C4C2A31BACE004E2B19 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7EB914CF2ADC11F4004B3435 /* JDStatusBarNotificationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDStatusBarNotificationPresenter.swift; sourceTree = "<group>"; };
 		7EBE340C2844CA2D0096CD55 /* JDSBNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationViewController.h; sourceTree = "<group>"; };
 		7EBE340D2844CA2D0096CD55 /* UIApplication+JDSB_MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JDSB_MainWindow.m"; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */,
 				7E5402C5286708850079C579 /* JDStatusBarNotification.docc */,
 			);
-			path = JDStatusBarNotification;
+			name = JDStatusBarNotification;
 			sourceTree = "<group>";
 		};
 		7E6FBC1F285EB4C600A63FEF /* Views */ = {
@@ -264,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
-				D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */,
+				D264F8961820213200DA0E53 /* ExampleProject */,
 				7E5402C3286708850079C579 /* JDStatusBarNotification */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
 				D264F88E1820213200DA0E53 /* Products */,
@@ -291,7 +291,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D264F8961820213200DA0E53 /* JDStatusBarNotificationExample */ = {
+		D264F8961820213200DA0E53 /* ExampleProject */ = {
 			isa = PBXGroup;
 			children = (
 				7E67050A284A4BE900AD58E1 /* ObjC-to-Swift-Bridging-Header.h */,
@@ -306,7 +306,7 @@
 				D264F8A21820213200DA0E53 /* Images.xcassets */,
 				D264F8971820213200DA0E53 /* Supporting Files */,
 			);
-			path = JDStatusBarNotificationExample;
+			path = ExampleProject;
 			sourceTree = "<group>";
 		};
 		D264F8971820213200DA0E53 /* Supporting Files */ = {
@@ -325,8 +325,7 @@
 				7E8C519228585BE400C7C003 /* Public */,
 				7EBE340B2844CA2D0096CD55 /* Private */,
 			);
-			name = JDStatusBarNotification;
-			path = ../JDStatusBarNotification;
+			path = JDStatusBarNotification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,7 +447,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */;
+			buildConfigurationList = D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotification" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -721,7 +720,7 @@
 					"IS_SCENE_BASED_EXAMPLE=1",
 					"JDSB_LAYOUT_DEBUGGING=1",
 				);
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -746,7 +745,7 @@
 					"IS_SCENE_BASED_EXAMPLE=1",
 					"JDSB_LAYOUT_DEBUGGING=1",
 				);
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -766,7 +765,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -787,7 +786,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -858,7 +857,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/ObjC-to-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExampleProject/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -920,7 +919,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/ObjC-to-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExampleProject/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -935,7 +934,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=0";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/Classic-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/Classic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -956,7 +955,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=0";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/Classic-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/Classic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -999,7 +998,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotificationExample" */ = {
+		D264F8881820213200DA0E53 /* Build configuration list for PBXProject "JDStatusBarNotification" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D264F8B71820213200DA0E53 /* Debug */,
