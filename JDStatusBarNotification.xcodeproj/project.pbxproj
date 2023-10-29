@@ -194,14 +194,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E5402C3286708850079C579 /* JDStatusBarNotification */ = {
+		7E5402C3286708850079C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				7EB82C4C2A31BACE004E2B19 /* Package.swift */,
 				7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */,
 				7E5402C5286708850079C579 /* JDStatusBarNotification.docc */,
 			);
-			name = JDStatusBarNotification;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		7E6FBC1F285EB4C600A63FEF /* Views */ = {
@@ -265,7 +265,7 @@
 			children = (
 				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
 				D264F8961820213200DA0E53 /* ExampleProject */,
-				7E5402C3286708850079C579 /* JDStatusBarNotification */,
+				7E5402C3286708850079C579 /* Supporting Files */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
 				D264F88E1820213200DA0E53 /* Products */,
 			);
