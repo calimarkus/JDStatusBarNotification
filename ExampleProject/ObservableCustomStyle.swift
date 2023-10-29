@@ -129,11 +129,9 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   }
 
   func registerComputedStyle() -> String {
-    let styleName = "custom"
-    NotificationPresenter.shared().addStyle(styleName: styleName) { _ in
+    return NotificationPresenter.shared().addStyle(named: "custom") { _ in
       computedStyle()
     }
-    return styleName
   }
 
   func computedStyle() -> StatusBarNotificationStyle {

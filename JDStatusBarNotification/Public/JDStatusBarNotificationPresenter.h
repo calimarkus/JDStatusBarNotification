@@ -59,7 +59,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 /// - Returns: The presented UIView for further customization
 ///
-- (UIView *)presentWithText:(NSString *)text NS_SWIFT_NAME(present(text:));
+- (UIView *)presentWithText:(NSString *)text NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using the current default style.
 ///
@@ -70,7 +70,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// - Returns: The presented UIView for further customization
 ///
 - (UIView *)presentWithText:(NSString *)text
-                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:completion:));
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using the current default style.
 ///
@@ -83,7 +83,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
-                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:completion:));
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using the current default style.
 ///
@@ -96,7 +96,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// - Returns: The presented UIView for further customization
 ///
 - (UIView *)presentWithText:(NSString *)text
-          dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(present(text:dismissAfterDelay:));
+          dismissAfterDelay:(NSTimeInterval)delay NS_REFINED_FOR_SWIFT;
 
 #pragma mark - Custom Style Presentation
 
@@ -112,7 +112,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// - Returns: The presented UIView for further customization
 ///
 - (UIView *)presentWithText:(NSString *)text
-                customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:customStyle:));
+                customStyle:(NSString * _Nullable)styleName NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using a specified `customStyle`.
 ///
@@ -128,7 +128,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (UIView *)presentWithText:(NSString *)text
                 customStyle:(NSString * _Nullable)styleName
-                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:customStyle:completion:));
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using a specified `customStyle`.
 ///
@@ -146,7 +146,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
                  customStyle:(NSString * _Nullable)styleName
-                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:customStyle:completion:));
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using a specified `customStyle`.
 ///
@@ -163,7 +163,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay
-                customStyle:(NSString * _Nullable)styleName NS_SWIFT_NAME(present(text:dismissAfterDelay:customStyle:));
+                customStyle:(NSString * _Nullable)styleName NS_REFINED_FOR_SWIFT;
 
 #pragma mark - Included Style Presentation
 
@@ -176,7 +176,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// - Returns: The presented UIView for further customization
 ///
 - (UIView *)presentWithText:(NSString *)text
-              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:includedStyle:));
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using an existing `includedStyle`.
 ///
@@ -189,7 +189,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (UIView *)presentWithText:(NSString *)text
               includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
-                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(text:includedStyle:completion:));
+                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using an existing `includedStyle`.
 ///
@@ -204,7 +204,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (UIView *)presentWithTitle:(NSString *)title
                     subtitle:(NSString * _Nullable)subtitle
                includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
-                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(title:subtitle:includedStyle:completion:));
+                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using an existing `includedStyle`.
 ///
@@ -219,7 +219,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (UIView *)presentWithText:(NSString *)text
           dismissAfterDelay:(NSTimeInterval)delay
-              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle NS_SWIFT_NAME(present(text:dismissAfterDelay:includedStyle:));
+              includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle NS_REFINED_FOR_SWIFT;
 
 #pragma mark - Custom View Presentation
 
@@ -241,7 +241,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (UIView *)presentWithCustomView:(UIView *)customView
                         styleName:(NSString * _Nullable)styleName
-                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(customView:style:completion:));
+                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Present a notification using a custom subview.
 ///
@@ -263,14 +263,14 @@ NS_SWIFT_NAME(NotificationPresenter)
 - (UIView *)presentWithCustomView:(UIView *)customView
                  sizingController:(id<JDStatusBarNotificationPresenterCustomViewSizingController> _Nullable)sizingController
                         styleName:(NSString * _Nullable)styleName
-                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(present(customView:sizingController:style:completion:));
+                       completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 #pragma mark - Dismissal
 
 /// Dismisses any currently displayed notification immediately using an animation.
 ///
 /// The animation is determined by the currently set ``JDStatusBarNotificationAnimationType``.
-- (void)dismiss;
+- (void)dismiss NS_REFINED_FOR_SWIFT;
 
 /// Dismisses any currently displayed notification immediately using an animation.
 ///
@@ -278,14 +278,14 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 /// - Parameter completion: A ``JDStatusBarNotificationPresenterCompletionBlock``, which gets called once the dismiss animation finishes.
 ///
-- (void)dismissWithCompletion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(dismiss(completion:));
+- (void)dismissWithCompletion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 /// Dismisses any currently displayed notification.
 ///
 /// - Parameter animated: If `true`, the notification will be dismissed animated according to the currently
 ///                       set ``JDStatusBarNotificationAnimationType``. Otherwise it will be dismissed without animation.
 ///
-- (void)dismissAnimated:(BOOL)animated NS_SWIFT_NAME(dismiss(animated:));
+- (void)dismissAnimated:(BOOL)animated;
 
 /// Dismisses any currently displayed notification animated after the provided delay.
 ///
@@ -293,7 +293,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 /// - Parameter delay: The delay in seconds, before the notification should be dismissed.
 ///
-- (void)dismissAfterDelay:(NSTimeInterval)delay NS_SWIFT_NAME(dismiss(afterDelay:));
+- (void)dismissAfterDelay:(NSTimeInterval)delay NS_REFINED_FOR_SWIFT;
 
 /// Dismisses any currently displayed notification animated after the provided delay.
 ///
@@ -304,7 +304,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///   - completion: A ``JDStatusBarNotificationPresenterCompletionBlock``, which gets called once the dismiss animation finishes.
 ///
 - (void)dismissAfterDelay:(NSTimeInterval)delay
-               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_SWIFT_NAME(dismiss(afterDelay:completion:));
+               completion:(JDStatusBarNotificationPresenterCompletionBlock)completion NS_REFINED_FOR_SWIFT;
 
 #pragma mark - Style Modification
 
@@ -315,7 +315,8 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
-/// Adds a new custom style. This can be used by referencing it using the `styleName`.
+/// Adds a new named style.
+/// This can later be used by referencing it using the `styleName` - or by using the return value directly.
 ///
 /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``presentWithText:customStyle:``.
 /// If a style with the same name already exists, it will be replaced.
@@ -327,9 +328,10 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// - Returns: Returns the `styleName`, so that this call can be used directly within a presentation call.
 ///
 - (NSString *)addStyleNamed:(NSString*)styleName
-                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:prepare:));
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_REFINED_FOR_SWIFT;
 
-/// Adds a new custom style based on a specific included style. This can be used by referencing it using the `styleName`.
+/// Adds a new named style based on an included style.
+/// This can later be used by referencing it using the `styleName` - or by using the return value directly.
 ///
 /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``presentWithText:customStyle:``.
 /// If a style with the same name already exists, it will be replaced.
@@ -343,7 +345,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 - (NSString *)addStyleNamed:(NSString*)styleName
                basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
-                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_SWIFT_NAME(addStyle(styleName:basedOnIncludedStyle:prepare:));
+                    prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock NS_REFINED_FOR_SWIFT;
 
 #pragma mark - Progress Bar
 
