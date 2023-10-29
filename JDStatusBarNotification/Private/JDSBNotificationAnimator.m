@@ -66,11 +66,12 @@ void animateInWithBounceAnimation(JDSBNotificationView *topBar, id<CAAnimationDe
   };
 
   // create values
-  int fromCenterY = -topBar.bounds.size.height, toCenterY=0, animationSteps=200;
+  const NSInteger animationSteps = 200;
+  const CGFloat fromCenterY = -CGRectGetHeight(topBar.bounds), toCenterY=0;
   NSMutableArray *values = [NSMutableArray arrayWithCapacity:animationSteps];
   for (int t = 1; t<=animationSteps; t++) {
-    float easedTime = RBBEasingFunctionEaseOutBounce((t*1.0)/animationSteps);
-    float easedValue = fromCenterY + easedTime * (toCenterY-fromCenterY);
+    CGFloat easedTime = RBBEasingFunctionEaseOutBounce((t*1.0)/animationSteps);
+    CGFloat easedValue = fromCenterY + easedTime * (toCenterY-fromCenterY);
     [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeTranslation(0, easedValue, 0)]];
   }
 

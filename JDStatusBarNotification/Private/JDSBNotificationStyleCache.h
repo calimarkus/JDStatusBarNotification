@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(_SBNotificationStyleCache)
 @interface JDSBNotificationStyleCache : NSObject
 
-- (JDStatusBarNotificationStyle *)styleForName:(NSString *)styleName;
-- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarNotificationIncludedStyle)style;
+- (JDStatusBarNotificationStyle *)styleForName:(NSString * _Nullable)styleName;
+- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle;
 
 - (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
@@ -20,7 +20,7 @@ NS_SWIFT_NAME(_SBNotificationStyleCache)
                     prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
 - (NSString *)addStyleNamed:(NSString*)styleName
-               basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
+               basedOnStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                     prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock;
 
 @end

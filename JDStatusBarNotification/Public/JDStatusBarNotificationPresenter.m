@@ -245,9 +245,9 @@
 }
 
 - (NSString *)addStyleNamed:(NSString*)styleName
-               basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
+               basedOnStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                     prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock {
-  return [_styleCache addStyleNamed:styleName basedOnStyle:basedOnStyle prepare:prepareBlock];
+  return [_styleCache addStyleNamed:styleName basedOnStyle:includedStyle prepare:prepareBlock];
 }
 
 #pragma mark - Progress Bar

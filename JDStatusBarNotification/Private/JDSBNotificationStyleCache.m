@@ -19,12 +19,12 @@
   return self;
 }
 
-- (JDStatusBarNotificationStyle *)styleForName:(NSString *)styleName {
+- (JDStatusBarNotificationStyle *)styleForName:(NSString * _Nullable)styleName {
   return (_userStyles[styleName] ?: _defaultStyle);
 }
 
-- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarNotificationIncludedStyle)style {
-  return includedStyle(style);
+- (JDStatusBarNotificationStyle *)styleForIncludedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle {
+  return buildStyleForIncludedStyle(includedStyle);
 }
 
 - (void)updateDefaultStyle:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock {
@@ -38,14 +38,14 @@
 }
 
 - (NSString *)addStyleNamed:(NSString*)styleName
-               basedOnStyle:(JDStatusBarNotificationIncludedStyle)basedOnStyle
+               basedOnStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                     prepare:(NS_NOESCAPE JDStatusBarNotificationPresenterPrepareStyleBlock)prepareBlock {
-  [_userStyles setObject:prepareBlock([includedStyle(basedOnStyle) copy]) forKey:styleName];
+  [_userStyles setObject:prepareBlock([buildStyleForIncludedStyle(includedStyle) copy]) forKey:styleName];
   return styleName;
 }
 
-static JDStatusBarNotificationStyle *includedStyle(JDStatusBarNotificationIncludedStyle style) {
-  switch (style) {
+static JDStatusBarNotificationStyle *buildStyleForIncludedStyle(JDStatusBarNotificationIncludedStyle includedStyle) {
+  switch (includedStyle) {
     case JDStatusBarNotificationIncludedStyleDefaultStyle:
       return [JDStatusBarNotificationStyle new];
 

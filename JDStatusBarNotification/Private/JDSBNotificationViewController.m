@@ -280,9 +280,7 @@ static BOOL isGestureRecognizerActive(UIGestureRecognizer *gestureRecognizer) {
 
   [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
     [self _relayoutWindowAndStatusBarView];
-  } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-    //
-  }];
+  } completion:nil];
 }
 
 #pragma mark - System StatusBar Management

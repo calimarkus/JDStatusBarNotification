@@ -199,6 +199,9 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
   if (_progressBarPercentage == 0.0 && animationDuration == 0.0) {
     _progressView.hidden = YES;
     _progressView.frame = progressViewRectForPercentage(_contentView.bounds, 0.0, _style);
+    if (completion != nil) {
+      completion();
+    }
     return;
   }
 
@@ -258,10 +261,15 @@ CGRect progressViewRectForPercentage(CGRect contentRect, CGFloat percentage, JDS
 - (void)setLeftView:(UIView *)leftView {
   [_leftView removeFromSuperview];
   _leftView = leftView;
+  
   if (_style.leftViewStyle.tintColor) {
     _leftView.tintColor = _style.leftViewStyle.tintColor;
   }
-  [_contentView addSubview:leftView];
+
+  if (leftView) {
+    [_contentView addSubview:leftView];
+  }
+
   [self setNeedsLayout];
 
 #if JDSB_LAYOUT_DEBUGGING

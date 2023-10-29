@@ -29,7 +29,7 @@
     _hostingController = hostingController;
   } else {
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"The Example App only supports iOS 15+";
+    label.text = NSLocalizedString(@"The Example App only supports iOS 15+", "");
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor systemGray6Color];
     [label sizeToFit];
