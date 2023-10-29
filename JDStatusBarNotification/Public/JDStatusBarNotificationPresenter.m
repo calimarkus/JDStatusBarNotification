@@ -46,10 +46,10 @@
 
 #pragma mark - Core Presentation logic
 
-- (JDSBNotificationView *)presentWithTitle:(NSString *)title
-                                  subtitle:(NSString *)subtitle
-                                     style:(JDStatusBarNotificationStyle *)style
-                                completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (JDSBNotificationView *)_presentWithTitle:(NSString *)title
+                                   subtitle:(NSString *)subtitle
+                                      style:(JDStatusBarNotificationStyle *)style
+                                 completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   if(_overlayWindow == nil) {
     _overlayWindow = [[JDSBNotificationWindow alloc] initWithStyle:style
                                                        windowScene:_windowScene
@@ -131,7 +131,7 @@
                  customStyle:(NSString * _Nullable)styleName
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarNotificationStyle *style = [_styleCache styleForName:styleName];
-  UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
+  UIView *view = [self _presentWithTitle:title subtitle:subtitle style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }
@@ -170,7 +170,7 @@
                includedStyle:(JDStatusBarNotificationIncludedStyle)includedStyle
                   completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarNotificationStyle *style = [_styleCache styleForIncludedStyle:includedStyle];
-  UIView *view = [self presentWithTitle:title subtitle:subtitle style:style completion:completion];
+  UIView *view = [self _presentWithTitle:title subtitle:subtitle style:style completion:completion];
   if (delay > 0.0) {
     [self dismissAfterDelay:delay];
   }
@@ -193,7 +193,7 @@
                         styleName:(NSString * _Nullable)styleName
                        completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   JDStatusBarNotificationStyle *style = [_styleCache styleForName:styleName];
-  JDSBNotificationView *view = [self presentWithTitle:nil subtitle:nil style:style completion:completion];
+  JDSBNotificationView *view = [self _presentWithTitle:nil subtitle:nil style:style completion:completion];
   view.customSubview = customView;
   view.customSubviewSizingController = sizingController;
   return view;
@@ -202,18 +202,18 @@
 #pragma mark - Dismissal
 
 - (void)dismiss {
-  [self dismissAnimated:YES completion:nil];
+  [self _dismissAnimated:YES completion:nil];
 }
 
 - (void)dismissWithCompletion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  [self dismissAnimated:YES completion:completion];
+  [self _dismissAnimated:YES completion:completion];
 }
 
 - (void)dismissAnimated:(BOOL)animated {
-  [self dismissAnimated:animated completion:nil];
+  [self _dismissAnimated:animated completion:nil];
 }
 
-- (void)dismissAnimated:(BOOL)animated completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+- (void)_dismissAnimated:(BOOL)animated completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   __weak __typeof(self) weakSelf = self;
   [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 completion:^{
     if (completion) {
