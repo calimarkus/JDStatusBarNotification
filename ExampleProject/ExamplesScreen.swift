@@ -78,31 +78,6 @@ struct ExamplesScreen: View {
         }.foregroundColor(.accentColor)
       }
 
-      Section("Default Style") {
-        cell(title: "Present / dismiss", subtitle: "Default style, don't autohide", useAccentColor: true) {
-          if NotificationPresenter.shared().isVisible() {
-            NotificationPresenter.shared().dismiss()
-          } else {
-            showDefaultNotification("Better call Saul!") { _ in }
-          }
-        }
-        cell(title: "Animate progress bar & hide", subtitle: "Hide bar at 100%", useAccentColor: true) {
-          if !NotificationPresenter.shared().isVisible() {
-            showDefaultNotification("Animating Progress…") { presenter in
-              presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-                presenter.dismiss()
-              }
-            }
-            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-          } else {
-            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-            NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
-              presenter.dismiss()
-            }
-          }
-        }
-      }
-
       Section("Settings") {
         Toggle("Show subtitle", isOn: $showSubtitle)
           .onChange(of: showSubtitle) { on in
