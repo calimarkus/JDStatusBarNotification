@@ -173,7 +173,7 @@ struct ExamplesScreen: View {
 
           NotificationPresenter.shared().presentSwiftView(style: styleName) {
             Text("👋 This is SwiftUI!")
-              .font(.subheadline.bold())
+              .font(.caption.bold())
               .padding([.leading, .trailing], 20.0)
               .fixedSize()
           }
