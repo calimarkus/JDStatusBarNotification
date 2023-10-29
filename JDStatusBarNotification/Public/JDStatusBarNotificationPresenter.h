@@ -270,7 +270,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// Dismisses any currently displayed notification immediately using an animation.
 ///
 /// The animation is determined by the currently set ``JDStatusBarNotificationAnimationType``.
-- (void)dismiss;
+- (void)dismiss NS_REFINED_FOR_SWIFT;
 
 /// Dismisses any currently displayed notification immediately using an animation.
 ///
@@ -285,7 +285,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 /// - Parameter animated: If `true`, the notification will be dismissed animated according to the currently
 ///                       set ``JDStatusBarNotificationAnimationType``. Otherwise it will be dismissed without animation.
 ///
-- (void)dismissAnimated:(BOOL)animated NS_REFINED_FOR_SWIFT;
+- (void)dismissAnimated:(BOOL)animated;
 
 /// Dismisses any currently displayed notification animated after the provided delay.
 ///
