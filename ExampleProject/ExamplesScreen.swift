@@ -48,9 +48,7 @@ struct ExamplesScreen: View {
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
-    NotificationPresenter.shared().present(text,
-                                           subtitle: showSubtitle ? "{subtitle}" : nil,
-                                           styleName: styleName)
+    NotificationPresenter.shared().present(text, subtitle: showSubtitle ? "{subtitle}" : nil, styleName: styleName)
     NotificationPresenter.shared().dismiss(delay: 3.0)
 
     if showActivity {
@@ -79,6 +77,10 @@ struct ExamplesScreen: View {
       }
 
       Section("Settings") {
+        Text("These settings can be toggled before and during presentation of below examples.")
+          .font(.caption)
+          .foregroundStyle(.secondary)
+
         Toggle("Show subtitle", isOn: $showSubtitle)
           .onChange(of: showSubtitle) { on in
             if on, !NotificationPresenter.shared().isVisible() {
@@ -123,7 +125,8 @@ struct ExamplesScreen: View {
         }.font(.subheadline)
 
         VStack(alignment: .leading, spacing: 6.0) {
-          Text("BarBackgroundType").font(.subheadline)
+          Text("Background Type")
+            .font(.subheadline)
           Picker("", selection: $backgroundType) {
             EnumPickerOptionView(StatusBarNotificationBackgroundType.pill)
             EnumPickerOptionView(StatusBarNotificationBackgroundType.fullWidth)
@@ -146,7 +149,11 @@ struct ExamplesScreen: View {
       }
 
       Section("SwiftUI Examples") {
-        cell(title: "Simple text", subtitle: "A custom view displaying a SwiftUI text") {
+        Text("These ignore above settings except the Background Type.")
+          .font(.caption)
+          .foregroundStyle(.secondary)
+
+        cell(title: "Simple text", subtitle: "Display a SwiftUI text, 2.5s") {
           let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemMint
@@ -164,7 +171,7 @@ struct ExamplesScreen: View {
           NotificationPresenter.shared().dismiss(delay: 2.5)
         }
 
-        cell(title: "Two row layout + Icon", subtitle: "A custom view displaying a Swift View") {
+        cell(title: "Two row layout + Icon", subtitle: "Display SwiftUI text & image, 2.5s") {
           let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemIndigo
@@ -202,7 +209,7 @@ struct ExamplesScreen: View {
         }
 
         if #available(iOS 16.0, *) { // Gradient is iOS 16+
-          cell(title: "Gradient & Icon", subtitle: "A custom SwiftUI background") {
+          cell(title: "Gradient & Icon", subtitle: "A custom SwiftUI background, 2.5s") {
             let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
               style.backgroundStyle.backgroundType = backgroundType
               style.backgroundStyle.backgroundColor = UIColor(.orange)
@@ -238,6 +245,10 @@ struct ExamplesScreen: View {
       }
 
       Section("Custom Style Examples") {
+        Text("These include a progress bar animation.")
+          .font(.caption)
+          .foregroundStyle(.secondary)
+
         customStyleCell("Love it!", subtitle: "AnimationType.fade + Progress", style: .loveIt)
         customStyleCell("Level Up!", subtitle: "AnimationType.bounce + Progress", style: .levelUp)
         customStyleCell("Looks good", subtitle: "Subtitle + Activity", style: .looksGood)
@@ -262,7 +273,7 @@ struct ExamplesScreen: View {
           NotificationPresenter.shared().presentCustomView(button, styleName: styleName)
         }
 
-        cell(title: "Present custom left icon", subtitle: "A custom left view") {
+        cell(title: "Present custom left icon", subtitle: "A custom left view, 2.5s") {
           // create icon
           let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
 
@@ -275,7 +286,7 @@ struct ExamplesScreen: View {
       }
 
       Section("Sequencing Example") {
-        cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block") {
+        cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block, 2 x 1s") {
           showIncludedStyle("This is 1/2!", style: .dark)
           NotificationPresenter.shared().displayActivityIndicator(true)
           NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
