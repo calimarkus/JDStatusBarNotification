@@ -720,7 +720,7 @@
 					"IS_SCENE_BASED_EXAMPLE=1",
 					"JDSB_LAYOUT_DEBUGGING=1",
 				);
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -745,7 +745,7 @@
 					"IS_SCENE_BASED_EXAMPLE=1",
 					"JDSB_LAYOUT_DEBUGGING=1",
 				);
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -765,7 +765,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -786,7 +786,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/WindowScene-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/WindowScene-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -857,7 +857,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/ObjC-to-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExampleProject/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -919,7 +919,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "JDStatusBarNotificationExample/ObjC-to-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExampleProject/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -934,7 +934,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=0";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/Classic-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/Classic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -955,7 +955,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=0";
-				INFOPLIST_FILE = "JDStatusBarNotificationExample/Classic-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/Classic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
