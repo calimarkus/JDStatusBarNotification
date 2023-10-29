@@ -17,7 +17,7 @@
                BlueprintIdentifier = "7EA91CA8284EF3AF00F32F09"
                BuildableName = "JDSBN_LayoutDebugging.app"
                BlueprintName = "LayoutDebugging"
-               ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+               ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,7 +46,7 @@
             BlueprintIdentifier = "7EA91CA8284EF3AF00F32F09"
             BuildableName = "JDSBN_LayoutDebugging.app"
             BlueprintName = "LayoutDebugging"
-            ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+            ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "7EA91CA8284EF3AF00F32F09"
             BuildableName = "JDSBN_LayoutDebugging.app"
             BlueprintName = "LayoutDebugging"
-            ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+            ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

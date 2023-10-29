@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1500"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "NO">
@@ -17,7 +17,7 @@
                BlueprintIdentifier = "7E5402C1286708840079C579"
                BuildableName = "JDStatusBarNotification.framework"
                BlueprintName = "JDStatusBarNotification"
-               ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+               ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,9 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -53,7 +52,7 @@
             BlueprintIdentifier = "7E5402C1286708840079C579"
             BuildableName = "JDStatusBarNotification.framework"
             BlueprintName = "JDStatusBarNotification"
-            ReferencedContainer = "container:JDStatusBarNotificationExample.xcodeproj">
+            ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
