@@ -31,6 +31,9 @@
 ### Present a notification (using a custom view)
 
 - ``present(customView:style:completion:)``
+- ``present(customView:sizingController:style:completion:)``
+- ``presentSwiftView(style:viewBuilder:completion:)``
+- ``NotificationPresenterCustomViewSizingController``
 
 ### Dismiss a notification
 

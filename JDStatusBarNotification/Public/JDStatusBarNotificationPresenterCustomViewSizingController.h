@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// A protocol for a custom controller, which controls the size of a presented custom view.
 NS_SWIFT_NAME(NotificationPresenterCustomViewSizingController)
 @protocol JDStatusBarNotificationPresenterCustomViewSizingController
 - (CGSize)sizeThatFits:(CGSize)size NS_SWIFT_NAME(sizeThatFits(in:));

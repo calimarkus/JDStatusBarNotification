@@ -253,6 +253,7 @@ NS_SWIFT_NAME(NotificationPresenter)
 ///
 /// - Parameters:
 ///   - customView: A custom UIView to display as notification content.
+///   - sizingController: An optional controller conforming to ``NotificationPresenterCustomViewSizingController``, which controls the size of a presented custom view.
 ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyleNamed:prepare:``.
 ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
 ///   - completion: A ``JDStatusBarNotificationPresenterCompletionBlock``, which gets called once the presentation animation finishes.
