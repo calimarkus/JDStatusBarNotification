@@ -31,7 +31,7 @@ NotificationPresenter.shared.dismiss(after: 0.5) { presenter in
    // ...
 }
 ```
-    
+
 ### Showing activity
 
 See ``NotificationPresenter/displayActivityIndicator(_:)``
@@ -54,7 +54,7 @@ NotificationPresenter.shared.displayLeftView(image)
 ```
 
 ![leftview](https://user-images.githubusercontent.com/807039/175884751-c93ffd31-a436-43d2-9eed-82d7cb23d8f6.gif)
-    
+
 ### Showing progress
 
 See ``NotificationPresenter/animateProgressBar(to:duration:completion:)``
@@ -71,7 +71,7 @@ NotificationPresenter.shared.displayProgressBar(at: 0.0)
 ```
 
 ![progress](https://user-images.githubusercontent.com/807039/175886588-e1aba466-85fa-4e32-951a-cd368c7d553d.gif)
-    
+
 ### Using other included styles
 
 There's a few included styles you can easily use with the following API:
