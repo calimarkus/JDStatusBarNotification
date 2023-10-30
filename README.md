@@ -39,21 +39,19 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 ## Getting started
 
-`NotificationPresenter` is a singleton. You don't need to initialize it anywhere.
-All examples are Swift code, but the class can be used in Objective-C as well.
+`NotificationPresenter` is a singleton. You don't need to initialize it anywhere. All examples here are written in Swift. But everything can be called from Objective-C too.
+
 Also checkout the example project, which has many examples and includes a convenient style editor.
 
 Here's some usage examples:
 
 ### Showing a text notification
 
-It's as simple as this:
-
 ```swift
-NotificationPresenter.shared().present(text: "Hello World")
+NotificationPresenter.shared.present("Hello World")
 
 // with completion
-NotificationPresenter.shared().present(text: "Hello World") { presenter in
+NotificationPresenter.shared.present("Hello World") { presenter in
    // ...
 }
 ```
@@ -61,84 +59,85 @@ NotificationPresenter.shared().present(text: "Hello World") { presenter in
 ### Dismissing a notification
 
 ```swift
-NotificationPresenter.shared().dismiss(animated: true)
+NotificationPresenter.shared.dismiss()
 
 // with completion
-NotificationPresenter.shared().dismiss(afterDelay: 0.5) { presenter in
+NotificationPresenter.shared.dismiss(after: 0.5) { presenter in
    // ...
 }
 ```
-    
+
 ### Showing activity
+
+```swift
+NotificationPresenter.shared.present("")
+NotificationPresenter.shared.displayActivityIndicator(true)
+```
 
 ![activity](https://user-images.githubusercontent.com/807039/175884729-c6255d41-4728-4bcb-bf72-fb12db01b5d5.gif)
 
-```swift
-NotificationPresenter.shared().present(text: "")
-NotificationPresenter.shared().displayActivityIndicator(true)
-```
-    
 ### Showing a custom left view
-
-![leftview](https://user-images.githubusercontent.com/807039/175884751-c93ffd31-a436-43d2-9eed-82d7cb23d8f6.gif)
 
 ```swift
 let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
-NotificationPresenter.shared().present(title: "Player II", subtitle: "Connected")
-NotificationPresenter.shared().displayLeftView(image)
+NotificationPresenter.shared.present("Player II", subtitle: "Connected")
+NotificationPresenter.shared.displayLeftView(image)
 ```
-    
+
+![leftview](https://user-images.githubusercontent.com/807039/175884751-c93ffd31-a436-43d2-9eed-82d7cb23d8f6.gif)
+
 ### Showing progress
 
-![progress](https://user-images.githubusercontent.com/807039/175886588-e1aba466-85fa-4e32-951a-cd368c7d553d.gif)
-
 ```swift
-NotificationPresenter.shared().present(text: "Animating Progress…") { presenter in
-  presenter.animateProgressBar(toPercentage: 1.0, animationDuration: 0.75) { presenter in
+NotificationPresenter.shared.present("Animating Progress…") { presenter in
+  presenter.animateProgressBar(to: 1.0, duration: 0.75) { presenter in
     presenter.dismiss()
   }
 }
 
 // or set an explicit percentage manually (without animation)
-NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+NotificationPresenter.shared.displayProgressBar(at: 0.0)
 ```
-    
+
+![progress](https://user-images.githubusercontent.com/807039/175886588-e1aba466-85fa-4e32-951a-cd368c7d553d.gif)
+
 ### Using other included styles
 
 There's a few included styles you can easily use with the following API:
 
-![itworks](https://user-images.githubusercontent.com/807039/175888059-3beeb659-b561-4e7c-9c66-6fbc683ae152.jpg)
-
 ```swift
-NotificationPresenter.shared().present(text: "Yay, it works!", includedStyle: .success)
+NotificationPresenter.shared.present("Yay, it works!",
+                                     includedStyle: .success)
 ```
+
+![itworks](https://user-images.githubusercontent.com/807039/175888059-3beeb659-b561-4e7c-9c66-6fbc683ae152.jpg)
 
 ### Using a custom UIView
 
 If you want full control over the notification content and styling, you can use your own custom UIView.
 
-![customView](https://user-images.githubusercontent.com/807039/173234544-7a75edbe-00b1-437b-8651-2e63a1ba63c8.gif)  ![customView2](https://user-images.githubusercontent.com/807039/173234636-b3745101-0723-4342-9a3a-32a868ea820e.gif)
-
 ```swift
 // present a custom view
 let button = UIButton(type: .system, primaryAction: UIAction { _ in
-  NotificationPresenter.shared().dismiss()
+  NotificationPresenter.shared.dismiss()
 })
 button.setTitle("Dismiss!", for: .normal)
-NotificationPresenter.shared().present(customView: button)
+NotificationPresenter.shared.presentCustomView(button)
 ```
 
-Note: For buttons to work you need to create a custom style and set `style.canTapToHold = false`, so that the button can receive touches.
+| Light Mode  | Dark Mode |
+| --- | --- |
+| ![customView](https://user-images.githubusercontent.com/807039/173234544-7a75edbe-00b1-437b-8651-2e63a1ba63c8.gif) | ![customView2](https://user-images.githubusercontent.com/807039/173234636-b3745101-0723-4342-9a3a-32a868ea820e.gif) |
 
 ## Customization
 
 You have the option to easily create & use fully customized styles.
 
-The closures of [`updateDefaultStyle()`](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/notificationpresenter/updatedefaultstyle(_:)) and [`addStyle(styleName: String)`](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/notificationpresenter/addstyle(stylename:prepare:)) provide a copy of the default style, which can then be modified. See the [`JDStatusBarStyle` class documentation](http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/statusbarnotificationstyle) for all options.
+The ``PrepareStyleClosure`` provides a copy of the default style, which can then be modified. See the ``StatusBarNotificationStyle`` API for all options.
 
 ```swift
 // update default style
-NotificationPresenter.shared().updateDefaultStyle { style in
+NotificationPresenter.shared.updateDefaultStyle { style in
    style.backgroundStyle.backgroundColor = .red
    style.textStyle.textColor = .white
    style.textStyle.font = UIFont.preferredFont(forTextStyle: .title3)
@@ -147,7 +146,7 @@ NotificationPresenter.shared().updateDefaultStyle { style in
 }
 
 // set a named custom style
-NotificationPresenter.shared().addStyle(styleName: "xxx") { style in
+NotificationPresenter.shared.addStyle(named: "xxx") { style in
    // ...
    return style
 }
