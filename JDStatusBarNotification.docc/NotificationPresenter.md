@@ -4,71 +4,42 @@
 
 ### Retrieve the presenter
 
-- ``shared()``
-
-### Present a notification in Swift
-
-- ``present(_:subtitle:delay:styleName:completion:)``
-- ``present(_:subtitle:delay:includedStyle:completion:)``
-- ``presentCustomView(_:sizingController:styleName:completion:)``
-- ``presentSwiftView(styleName:viewBuilder:completion:)``
+- ``shared``
 
 ### Present a notification
 
-- ``present(text:)``
-- ``present(text:completion:)``
-- ``present(title:subtitle:completion:)``
-- ``present(text:dismissAfterDelay:)``
-
-### Present a notification (using a custom style)
-
-- ``present(text:customStyle:)``
-- ``present(text:customStyle:completion:)``
-- ``present(title:subtitle:customStyle:completion:)``
-- ``present(text:dismissAfterDelay:customStyle:)``
-
-### Present a notification (using an included style)
-
+- ``Completion``
+- ``present(_:subtitle:after:styleName:completion:)``
+- ``present(_:subtitle:after:includedStyle:completion:)``
 - ``IncludedStatusBarNotificationStyle``
-- ``present(text:includedStyle:)``
-- ``present(text:includedStyle:completion:)``
-- ``present(title:subtitle:includedStyle:completion:)``
-- ``present(text:dismissAfterDelay:includedStyle:)``
 
 ### Present a notification (using a custom view)
 
-- ``present(customView:style:completion:)``
-- ``present(customView:sizingController:style:completion:)``
-- ``presentSwiftView(style:viewBuilder:completion:)``
+- ``presentCustomView(_:sizingController:styleName:completion:)``
+- ``presentSwiftView(styleName:viewBuilder:completion:)``
 - ``NotificationPresenterCustomViewSizingController``
 
 ### Dismiss a notification
 
-- ``dismiss()``
-- ``dismiss(completion:)``
-- ``dismiss(animated:)``
-- ``dismiss(afterDelay:)``
-- ``dismiss(afterDelay:completion:)``
-- ``dismiss(delay:completion:)``
+- ``dismissAnimated(_:)``
+- ``dismiss(after:completion:)``
 
 ### Customize the style (Appearance & Behavior)
 
+- ``PrepareStyleClosure``
 - ``updateDefaultStyle(_:)``
 - ``addStyle(named:usingStyle:prepare:)``
-- ``addStyle(styleName:prepare:)``
-- ``addStyle(styleName:basedOnIncludedStyle:prepare:)``
-- ``NotificationPresenterPrepareStyleClosure``
 
 ### Display supplementary views
 
-- ``displayProgressBar(percentage:)``
-- ``animateProgressBar(toPercentage:animationDuration:completion:)``
+- ``displayProgressBar(at:)``
+- ``animateProgressBar(to:duration:completion:)``
 - ``displayActivityIndicator(_:)``
 - ``displayLeftView(_:)``
 
 ### Additional Presenter APIs
 
-- ``updateText(_:)``
+- ``updateTitle(_:)``
 - ``updateSubtitle(_:)``
-- ``isVisible()``
+- ``isVisible``
 - ``setWindowScene(_:)``

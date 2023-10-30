@@ -4,13 +4,13 @@
 
 ### Default Style
 
-- ``defaultStyle``
-- ``light``
-- ``dark``
+- ``IncludedStatusBarNotificationStyle/defaultStyle``
+- ``IncludedStatusBarNotificationStyle/light``
+- ``IncludedStatusBarNotificationStyle/dark``
 
 ### Other Included Styles
 
-- ``success``
-- ``warning``
-- ``error``
-- ``matrix``
+- ``IncludedStatusBarNotificationStyle/success``
+- ``IncludedStatusBarNotificationStyle/warning``
+- ``IncludedStatusBarNotificationStyle/error``
+- ``IncludedStatusBarNotificationStyle/matrix``
