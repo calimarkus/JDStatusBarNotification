@@ -15,7 +15,7 @@ struct StyleEditorScreen: View {
   weak static var statusBarView: _SBNotificationView? = nil
 
   func presentDefault(allowActivity: Bool = true, allowProgress: Bool = true, completion: @escaping () -> Void) {
-    StyleEditorScreen.statusBarView = NotificationPresenter.shared().present(
+    StyleEditorScreen.statusBarView = NotificationPresenter.shared.present(
       text,
       subtitle: subtitle,
       styleName: style.registerComputedStyle()
@@ -24,10 +24,10 @@ struct StyleEditorScreen: View {
     } as? _SBNotificationView
 
     if allowActivity && showActivity {
-      NotificationPresenter.shared().displayActivityIndicator(true)
+      NotificationPresenter.shared.displayActivityIndicator(true)
     }
     if allowProgress && progress > 0.0 {
-      NotificationPresenter.shared().displayProgressBar(percentage: progress)
+      NotificationPresenter.shared.displayProgressBar(percentage: progress)
     }
   }
 
@@ -47,31 +47,31 @@ struct StyleEditorScreen: View {
           presentDefault {}
         }
         .onChange(of: text) { _ in
-          NotificationPresenter.shared().updateText(text)
+          NotificationPresenter.shared.updateText(text)
         }
         .onChange(of: subtitle) { _ in
-          NotificationPresenter.shared().updateSubtitle(subtitle)
+          NotificationPresenter.shared.updateSubtitle(subtitle)
         }
 
       Section {
         buttonRow(title: "Present / Dismiss", subtitle: "Don't autohide.") {
-          if NotificationPresenter.shared().isVisible() {
-            NotificationPresenter.shared().dismiss()
+          if NotificationPresenter.shared.isVisible() {
+            NotificationPresenter.shared.dismiss()
           } else {
             presentDefault {}
           }
         }
 
         buttonRow(title: "Animate progress (0% to 100%)", subtitle: "Hides at 100%") {
-          if !NotificationPresenter.shared().isVisible() {
+          if !NotificationPresenter.shared.isVisible() {
             presentDefault(allowProgress: false) {
-              NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
+              NotificationPresenter.shared.animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
                 presenter.dismiss()
               }
             }
           } else {
-            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-            NotificationPresenter.shared().animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
+            NotificationPresenter.shared.displayProgressBar(percentage: 0.0)
+            NotificationPresenter.shared.animateProgressBar(toPercentage: 1.0, animationDuration: style.backgroundType == .pill ? 0.66 : 1.2) { presenter in
               presenter.dismiss()
             }
           }
@@ -110,10 +110,10 @@ struct StyleEditorScreen: View {
 
         Toggle("Activity Indicator", isOn: $showActivity)
           .onChange(of: showActivity) { _ in
-            if !NotificationPresenter.shared().isVisible() {
+            if !NotificationPresenter.shared.isVisible() {
               presentDefault {}
             } else {
-              NotificationPresenter.shared().displayActivityIndicator(showActivity)
+              NotificationPresenter.shared.displayActivityIndicator(showActivity)
             }
           }.font(.subheadline)
 
@@ -124,10 +124,10 @@ struct StyleEditorScreen: View {
             .frame(width: 150)
         }
         .onChange(of: progress) { _ in
-          if !NotificationPresenter.shared().isVisible() {
+          if !NotificationPresenter.shared.isVisible() {
             presentDefault {}
           } else {
-            NotificationPresenter.shared().displayProgressBar(percentage: progress)
+            NotificationPresenter.shared.displayProgressBar(percentage: progress)
           }
         }.font(.subheadline)
       }

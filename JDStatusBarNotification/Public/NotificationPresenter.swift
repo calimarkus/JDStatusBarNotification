@@ -19,14 +19,13 @@ private class NotificationPresenterSizingController<Content>: NotificationPresen
   }
 }
 
-class NotificationPresenter {
+public class NotificationPresenter {
 
-  private let presenter: __JDStatusBarNotificationPresenter
-  static let shared = NotificationPresenter()
+  public static let shared = NotificationPresenter()
+  public typealias Completion = (_ presenter: NotificationPresenter) -> ()
 
-  typealias Completion = (_ presenter: NotificationPresenter) -> ()
-
-  private init() {
+  let presenter: __JDStatusBarNotificationPresenter
+  init() {
     presenter = __JDStatusBarNotificationPresenter.shared()
   }
 
@@ -43,11 +42,11 @@ class NotificationPresenter {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  func present(_ title: String,
-               subtitle: String? = nil,
-               delay: Double? = nil,
-               styleName: String? = nil,
-               completion: Completion? = nil) -> UIView
+  public func present(_ title: String,
+                      subtitle: String? = nil,
+                      delay: Double? = nil,
+                      styleName: String? = nil,
+                      completion: Completion? = nil) -> UIView
   {
     let view = presenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
     if let delay {
@@ -68,11 +67,11 @@ class NotificationPresenter {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  func present(_ title: String,
-               subtitle: String? = nil,
-               delay: Double? = nil,
-               includedStyle: IncludedStatusBarNotificationStyle,
-               completion: Completion? = nil) -> UIView
+  public func present(_ title: String,
+                      subtitle: String? = nil,
+                      delay: Double? = nil,
+                      includedStyle: IncludedStatusBarNotificationStyle,
+                      completion: Completion? = nil) -> UIView
   {
     let view = presenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
     if let delay {
@@ -99,10 +98,10 @@ class NotificationPresenter {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  func presentCustomView(_ view: UIView,
-                         sizingController: NotificationPresenterCustomViewSizingController? = nil,
-                         styleName: String? = nil,
-                         completion: Completion? = nil) -> UIView
+  public func presentCustomView(_ view: UIView,
+                                sizingController: NotificationPresenterCustomViewSizingController? = nil,
+                                styleName: String? = nil,
+                                completion: Completion? = nil) -> UIView
   {
     return presenter.present(withCustomView: view,
                              sizingController: sizingController,
@@ -118,9 +117,9 @@ class NotificationPresenter {
   ///   - viewBuilder: A ViewBuilder closure to build your custom SwiftUI view.
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
   @discardableResult
-  func presentSwiftView(styleName: String? = nil,
-                        @ViewBuilder viewBuilder: () -> some View,
-                        completion: Completion? = nil) -> UIView
+  public func presentSwiftView(styleName: String? = nil,
+                               @ViewBuilder viewBuilder: () -> some View,
+                               completion: Completion? = nil) -> UIView
   {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
@@ -136,7 +135,7 @@ class NotificationPresenter {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  func dismiss(delay: Double? = nil, completion: Completion? = nil)
+  public func dismiss(delay: Double? = nil, completion: Completion? = nil)
   {
     if let delay {
       presenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
@@ -159,9 +158,9 @@ class NotificationPresenter {
   /// - Returns: Returns the `styleName`, so that this call can be used directly within a presentation call.
   ///
   @discardableResult
-  func addStyle(named name: String,
-                usingStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
-                prepare: NotificationPresenterPrepareStyleClosure) -> String
+  public func addStyle(named name: String,
+                       usingStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
+                       prepare: NotificationPresenterPrepareStyleClosure) -> String
   {
     if let includedStyle {
       presenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
@@ -169,4 +168,6 @@ class NotificationPresenter {
       presenter.addStyleNamed(name, prepare: prepare)
     }
   }
+
+
 }

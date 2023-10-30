@@ -129,7 +129,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   }
 
   func registerComputedStyle() -> String {
-    return NotificationPresenter.shared().addStyle(named: "custom") { _ in
+    return NotificationPresenter.shared.addStyle(named: "custom") { _ in
       computedStyle()
     }
   }

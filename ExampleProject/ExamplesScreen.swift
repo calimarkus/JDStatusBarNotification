@@ -9,7 +9,7 @@ import SwiftUI
 class ExamplesScreenFactory: NSObject {
   @objc static func createExamplesScreen() -> UIViewController {
     let text = "👋 Hello World!"
-    NotificationPresenter.shared().present(text, delay: 2.5, includedStyle: IncludedStatusBarNotificationStyle.matrix)
+    NotificationPresenter.shared.present(text, delay: 2.5, includedStyle: IncludedStatusBarNotificationStyle.matrix)
     return UIHostingController(rootView:
       NavigationView {
         ExamplesScreen()
@@ -26,36 +26,36 @@ struct ExamplesScreen: View {
   @State var backgroundType: StatusBarNotificationBackgroundType = .pill
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
-    let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+    let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
-    NotificationPresenter.shared().present(text,
+    NotificationPresenter.shared.present(text,
                                            subtitle: showSubtitle ? "{subtitle}" : nil,
                                            styleName: styleName,
                                            completion: completion)
 
     if showActivity {
-      NotificationPresenter.shared().displayActivityIndicator(true)
+      NotificationPresenter.shared.displayActivityIndicator(true)
     }
     if progress > 0.0 {
-      NotificationPresenter.shared().displayProgressBar(percentage: progress)
+      NotificationPresenter.shared.displayProgressBar(percentage: progress)
     }
   }
 
   func showIncludedStyle(_ text: String, style: IncludedStatusBarNotificationStyle) {
-    let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: style) { style in
+    let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: style) { style in
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
-    NotificationPresenter.shared().present(text, subtitle: showSubtitle ? "{subtitle}" : nil, styleName: styleName)
-    NotificationPresenter.shared().dismiss(delay: 3.0)
+    NotificationPresenter.shared.present(text, subtitle: showSubtitle ? "{subtitle}" : nil, styleName: styleName)
+    NotificationPresenter.shared.dismiss(delay: 3.0)
 
     if showActivity {
-      NotificationPresenter.shared().displayActivityIndicator(true)
+      NotificationPresenter.shared.displayActivityIndicator(true)
     }
     if progress > 0.0 {
-      NotificationPresenter.shared().displayProgressBar(percentage: progress)
+      NotificationPresenter.shared.displayProgressBar(percentage: progress)
     }
   }
 
@@ -83,27 +83,27 @@ struct ExamplesScreen: View {
 
         Toggle("Show subtitle", isOn: $showSubtitle)
           .onChange(of: showSubtitle) { on in
-            if on, !NotificationPresenter.shared().isVisible() {
+            if on, !NotificationPresenter.shared.isVisible() {
               showDefaultNotification("Look!") { _ in }
-              NotificationPresenter.shared().dismiss(delay: 2.0)
+              NotificationPresenter.shared.dismiss(delay: 2.0)
             }
-            NotificationPresenter.shared().updateSubtitle(on ? "I am a subtitle" : nil)
+            NotificationPresenter.shared.updateSubtitle(on ? "I am a subtitle" : nil)
           }.font(.subheadline)
 
         Toggle("Activity Indicator", isOn: $showActivity)
           .onChange(of: showActivity) { _ in
-            if !NotificationPresenter.shared().isVisible() {
+            if !NotificationPresenter.shared.isVisible() {
               if showActivity {
-                let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+                let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
                   style.backgroundStyle.backgroundType = backgroundType
                   style.backgroundStyle.pillStyle.minimumWidth = 0.0
                   return style
                 }
-                NotificationPresenter.shared().present("", delay: 2.0, styleName: styleName)
-                NotificationPresenter.shared().displayActivityIndicator(true)
+                NotificationPresenter.shared.present("", delay: 2.0, styleName: styleName)
+                NotificationPresenter.shared.displayActivityIndicator(true)
               }
             } else {
-              NotificationPresenter.shared().displayActivityIndicator(showActivity)
+              NotificationPresenter.shared.displayActivityIndicator(showActivity)
             }
           }.font(.subheadline)
 
@@ -114,13 +114,13 @@ struct ExamplesScreen: View {
             .frame(width: 150)
         }
         .onChange(of: progress) { _ in
-          if !NotificationPresenter.shared().isVisible() {
+          if !NotificationPresenter.shared.isVisible() {
             if progress > 0.0 {
               showDefaultNotification("Making progress…") { _ in }
-              NotificationPresenter.shared().dismiss(delay: 2.0)
+              NotificationPresenter.shared.dismiss(delay: 2.0)
             }
           } else {
-            NotificationPresenter.shared().displayProgressBar(percentage: progress)
+            NotificationPresenter.shared.displayProgressBar(percentage: progress)
           }
         }.font(.subheadline)
 
@@ -134,7 +134,7 @@ struct ExamplesScreen: View {
         }
         .onChange(of: backgroundType) { _ in
           showDefaultNotification(backgroundType == .pill ? "Ohhh so shiny!" : "I prefer classic…") { _ in }
-          NotificationPresenter.shared().dismiss(delay: 2.0)
+          NotificationPresenter.shared.dismiss(delay: 2.0)
         }
       }
 
@@ -154,32 +154,32 @@ struct ExamplesScreen: View {
           .foregroundStyle(.secondary)
 
         cell(title: "Simple text", subtitle: "Display a SwiftUI text, 2.5s") {
-          let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemMint
             style.backgroundStyle.pillStyle.minimumWidth = 20.0
             return style
           }
 
-          NotificationPresenter.shared().presentSwiftView(styleName: styleName) {
+          NotificationPresenter.shared.presentSwiftView(styleName: styleName) {
             Text("👋 This is SwiftUI!")
               .font(.caption.bold())
               .padding([.leading, .trailing], 20.0)
               .fixedSize()
           }
 
-          NotificationPresenter.shared().dismiss(delay: 2.5)
+          NotificationPresenter.shared.dismiss(delay: 2.5)
         }
 
         cell(title: "Two row layout + Icon", subtitle: "Display SwiftUI text & image, 2.5s") {
-          let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemIndigo
             style.backgroundStyle.pillStyle.minimumWidth = 20.0
             return style
           }
 
-          NotificationPresenter.shared().presentSwiftView(styleName: styleName) {
+          NotificationPresenter.shared.presentSwiftView(styleName: styleName) {
             HStack {
               Spacer()
 
@@ -205,19 +205,19 @@ struct ExamplesScreen: View {
             .fixedSize()
           }
 
-          NotificationPresenter.shared().dismiss(delay: 2.5)
+          NotificationPresenter.shared.dismiss(delay: 2.5)
         }
 
         if #available(iOS 16.0, *) { // Gradient is iOS 16+
           cell(title: "Gradient & Icon", subtitle: "A custom SwiftUI background, 2.5s") {
-            let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+            let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
               style.backgroundStyle.backgroundType = backgroundType
               style.backgroundStyle.backgroundColor = UIColor(.orange)
               style.backgroundStyle.pillStyle.minimumWidth = 20.0
               return style
             }
 
-            NotificationPresenter.shared().presentSwiftView(styleName: styleName) {
+            NotificationPresenter.shared.presentSwiftView(styleName: styleName) {
               let inner = VStack {
                 Spacer()
                 Image(systemName: "swift")
@@ -239,7 +239,7 @@ struct ExamplesScreen: View {
               .background(Gradient(colors: [.orange, .red]))
             }
 
-            NotificationPresenter.shared().dismiss(delay: 2.5)
+            NotificationPresenter.shared.dismiss(delay: 2.5)
           }
         }
       }
@@ -260,17 +260,17 @@ struct ExamplesScreen: View {
         cell(title: "Present a button", subtitle: "A custom notification view") {
           // create button
           let button = UIButton(type: .system, primaryAction: UIAction { _ in
-            NotificationPresenter.shared().dismiss()
+            NotificationPresenter.shared.dismiss()
           })
           button.setTitle("Dismiss!", for: .normal)
 
           // present
-          let styleName = NotificationPresenter.shared().addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
             style.backgroundStyle.backgroundType = backgroundType
             style.canTapToHold = false // this ensure the button can receive touches
             return style
           }
-          NotificationPresenter.shared().presentCustomView(button, styleName: styleName)
+          NotificationPresenter.shared.presentCustomView(button, styleName: styleName)
         }
 
         cell(title: "Present custom left icon", subtitle: "A custom left view, 2.5s") {
@@ -279,21 +279,21 @@ struct ExamplesScreen: View {
 
           // present
           ExampleStyle.iconLeftView.register(for: backgroundType)
-          NotificationPresenter.shared().present("Player II", subtitle: "Connected", styleName: ExampleStyle.iconLeftView.rawValue)
-          NotificationPresenter.shared().displayLeftView(image)
-          NotificationPresenter.shared().dismiss(delay: 2.5)
+          NotificationPresenter.shared.present("Player II", subtitle: "Connected", styleName: ExampleStyle.iconLeftView.rawValue)
+          NotificationPresenter.shared.displayLeftView(image)
+          NotificationPresenter.shared.dismiss(delay: 2.5)
         }
       }
 
       Section("Sequencing Example") {
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block, 2 x 1s") {
           showIncludedStyle("This is 1/2!", style: .dark)
-          NotificationPresenter.shared().displayActivityIndicator(true)
-          NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
-          NotificationPresenter.shared().dismiss(delay: 1.0) { presenter in
+          NotificationPresenter.shared.displayActivityIndicator(true)
+          NotificationPresenter.shared.displayProgressBar(percentage: 0.0)
+          NotificationPresenter.shared.dismiss(delay: 1.0) { presenter in
             showIncludedStyle("✅ This is 2/2!", style: .dark)
-            NotificationPresenter.shared().displayActivityIndicator(false)
-            NotificationPresenter.shared().displayProgressBar(percentage: 0.0)
+            NotificationPresenter.shared.displayActivityIndicator(false)
+            NotificationPresenter.shared.displayProgressBar(percentage: 0.0)
             presenter.dismiss(delay: 1.0)
           }
         }
@@ -336,12 +336,12 @@ struct ExamplesScreen: View {
     let content = style.exampleContent
     return cell(title: "Present: \(title)", subtitle: subtitle) {
       style.register(for: backgroundType)
-      NotificationPresenter.shared().present(content.title, subtitle: content.subtitle, styleName: style.rawValue) { presenter in
+      NotificationPresenter.shared.present(content.title, subtitle: content.subtitle, styleName: style.rawValue) { presenter in
         presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
           presenter.dismiss()
         }
       }
-      NotificationPresenter.shared().displayActivityIndicator(showActivity)
+      NotificationPresenter.shared.displayActivityIndicator(showActivity)
     }
   }
 
