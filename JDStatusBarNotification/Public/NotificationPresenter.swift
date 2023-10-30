@@ -22,12 +22,17 @@ import SwiftUI
  * your application once it was created. The default ``StatusBarNotificationStyle`` and any styles
  * added by the user also stay in memory permanently.
  */
-public class NotificationPresenter {
+public struct NotificationPresenter {
 
   /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
   ///
   /// - Returns: An initialized ``NotificationPresenter`` instance.
   public static let shared = NotificationPresenter()
+
+  private init() {}
+  var presenter: __JDStatusBarNotificationPresenter {
+    __JDStatusBarNotificationPresenter.shared()
+  }
 
   /// Called upon animation completion.
   ///
@@ -42,11 +47,6 @@ public class NotificationPresenter {
   /// - Returns: The modified ``StatusBarNotificationStyle`` instance.
   ///
   public typealias PrepareStyleClosure = (StatusBarNotificationStyle) -> StatusBarNotificationStyle
-
-  let presenter: __JDStatusBarNotificationPresenter
-  init() {
-    presenter = __JDStatusBarNotificationPresenter.shared()
-  }
 
   // MARK: - Presentation
 
