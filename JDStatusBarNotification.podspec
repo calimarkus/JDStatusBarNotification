@@ -1,12 +1,13 @@
 Pod::Spec.new do |s|
   
   # basics
-  s.name      = 'JDStatusBarNotification'
-  s.version   = '2.0.9'
-  s.platform  = :ios, '13.0'
-  s.license   = { :type => 'MIT' }
-  s.author    = { 'Markus Emrich' => 'markus.emrich@gmail.com' }  
-  s.source    = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
+  s.name           = 'JDStatusBarNotification'
+  s.version        = '2.1'
+  s.platform       = :ios, '13.0'
+  s.swift_versions = ['5.1']
+  s.license        = { :type => 'MIT' }
+  s.author         = { 'Markus Emrich' => 'markus.emrich@gmail.com' }  
+  s.source         = { :git => 'https://github.com/calimarkus/JDStatusBarNotification.git', :tag => "#{s.version}" }
   
   # description
   s.summary      = 'Highly customizable & feature rich notifications displayed below the status bar. Swift ready!'
@@ -18,7 +19,7 @@ Pod::Spec.new do |s|
   s.screenshot        = 'https://user-images.githubusercontent.com/807039/173831886-d7c8cca9-9274-429d-b924-78f21a4f6092.jpg'
   
   # sources
-  s.source_files         = 'JDStatusBarNotification/**/*.{h,m}'
+  s.source_files         = 'JDStatusBarNotification/**/*.{h,m,swift}'
   s.private_header_files = 'JDStatusBarNotification/Private/*.h'
   
 end
