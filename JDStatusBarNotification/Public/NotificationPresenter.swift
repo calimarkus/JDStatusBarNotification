@@ -29,6 +29,8 @@ public class NotificationPresenter {
     presenter = __JDStatusBarNotificationPresenter.shared()
   }
 
+  // MARK: - Presentation
+
   /// Present a notification.
   ///
   /// - Parameters:
@@ -129,6 +131,8 @@ public class NotificationPresenter {
                              completion: { _ in completion?(self) })
   }
 
+  // MARK: - Dismissal
+
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
@@ -143,6 +147,17 @@ public class NotificationPresenter {
       presenter.dismiss(completion: { _ in completion?(self) })
     }
   }
+
+  /// Defines a new default style.
+  /// The new style will be used in all future presentations that have no specific style specified.
+  ///
+  /// - Parameter prepare: Provides the current default ``StatusBarNotificationStyle`` instance for further customization.
+  ///
+  public func updateDefaultStyle(_ prepare: NotificationPresenterPrepareStyleClosure) {
+    presenter.updateDefaultStyle(prepare)
+  }
+
+  // MARK: - Style Customization
 
   /// Adds a new named style - based on an included style, if given.
   /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
@@ -169,5 +184,89 @@ public class NotificationPresenter {
     }
   }
 
+  // MARK: - Display supplementary views
+
+  /// Displays a progress bar at the given `percentage`.
+  ///
+  /// Displays the given percentage immediately without animation.
+  /// The progress bar will be styled according to the current ``StatusBarNotificationProgressBarStyle``.
+  ///
+  /// - Parameter percentage: The percentage in a range from 0.0 to 1.0
+  ///
+  public func displayProgressBar(at percentage: Double) {
+    presenter.displayProgressBar(withPercentage: percentage)
+  }
+
+  /// Displays a progress bar and animates it to the provided `percentage`.
+  ///
+  /// Animates the progress bar from the currently set `percentage` to the provided `percentage` using the provided `duration`.
+  /// The progress bar will be styled according to the current ``StatusBarNotificationProgressBarStyle``.
+  ///
+  /// - Parameters:
+  ///   - percentage: Relative progress from 0.0 to 1.0
+  ///   - animationDuration: The duration of the animation from the current percentage to the provided percentage.
+  ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
+  ///
+  public func animateProgressBar(to percentage: Double, duration: Double, completion: Completion?) {
+    presenter.animateProgressBar(toPercentage: percentage, animationDuration: duration, completion: { _ in completion?(self) })
+  }
+
+  /// Displays an activity indicator as the notifications left view.
+  ///
+  /// It will have the same color as the text color of the current style by default.
+  /// The color can also be set explicitly by using the `leftViewStyle.tintColor`.
+  /// The layout is also defined by the ``StatusBarNotificationLeftViewStyle``.
+  ///
+  /// - Parameter show:  Show or hide the activity indicator.
+  ///
+  public func displayActivityIndicator(_ show: Bool) {
+    presenter.displayActivityIndicator(show)
+  }
+
+  /// Displays a view on the left side of the text.
+  /// The layout is defined by the ``StatusBarNotificationLeftViewStyle``.
+  ///
+  /// - Parameter leftView: A custom `UIView` to display on the left side of the text. E.g. an
+  ///                       icon / image / profile picture etc. A nil value removes an existing leftView.
+  ///
+  public func displayLeftView(_ leftView: UIView?) {
+    presenter.displayLeftView(leftView)
+  }
+
+  // MARK: - Additional Presenter APIs
+
+  /// Updates the title of an existing notification without animation.
+  ///
+  /// - Parameter title: The new title to display
+  ///
+  public func updateTitle(_ title: String) {
+    presenter.updateText(title)
+  }
+
+  /// Updates the subtitle of an existing notification without animation.
+  ///
+  /// - Parameter subtitle: The new subtitle to display
+  ///
+  public func updateSubtitle(_ subtitle: String?) {
+    presenter.updateSubtitle(subtitle)
+  }
+
+  /// Let's you check if a notification is currently displayed.
+  ///
+  /// - Returns: `true` if a notification is currently displayed. Otherwise `false`.
+  ///
+  public var isVisible: Bool {
+    return presenter.isVisible()
+  }
+
+  /// Lets you set an explicit `UIWindowScene`, in which notifications should be presented in. In most cases you don't need to set this.
+  ///
+  /// The `UIWindowScene` is usually inferred automatically, but if that doesn't work for your setup, you can set it explicitly.
+  ///
+  /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
+  ///
+  public func setWindowScene(_ windowScene: UIWindowScene) {
+    presenter.setWindowScene(windowScene)
+  }
 
 }

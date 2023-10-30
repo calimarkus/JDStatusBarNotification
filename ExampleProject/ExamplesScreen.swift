@@ -39,7 +39,7 @@ struct ExamplesScreen: View {
       NotificationPresenter.shared.displayActivityIndicator(true)
     }
     if progress > 0.0 {
-      NotificationPresenter.shared.displayProgressBar(percentage: progress)
+      NotificationPresenter.shared.displayProgressBar(at: progress)
     }
   }
 
@@ -55,7 +55,7 @@ struct ExamplesScreen: View {
       NotificationPresenter.shared.displayActivityIndicator(true)
     }
     if progress > 0.0 {
-      NotificationPresenter.shared.displayProgressBar(percentage: progress)
+      NotificationPresenter.shared.displayProgressBar(at: progress)
     }
   }
 
@@ -83,7 +83,7 @@ struct ExamplesScreen: View {
 
         Toggle("Show subtitle", isOn: $showSubtitle)
           .onChange(of: showSubtitle) { on in
-            if on, !NotificationPresenter.shared.isVisible() {
+            if on, !NotificationPresenter.shared.isVisible {
               showDefaultNotification("Look!") { _ in }
               NotificationPresenter.shared.dismiss(delay: 2.0)
             }
@@ -92,7 +92,7 @@ struct ExamplesScreen: View {
 
         Toggle("Activity Indicator", isOn: $showActivity)
           .onChange(of: showActivity) { _ in
-            if !NotificationPresenter.shared.isVisible() {
+            if !NotificationPresenter.shared.isVisible {
               if showActivity {
                 let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
                   style.backgroundStyle.backgroundType = backgroundType
@@ -114,13 +114,13 @@ struct ExamplesScreen: View {
             .frame(width: 150)
         }
         .onChange(of: progress) { _ in
-          if !NotificationPresenter.shared.isVisible() {
+          if !NotificationPresenter.shared.isVisible {
             if progress > 0.0 {
               showDefaultNotification("Making progress…") { _ in }
               NotificationPresenter.shared.dismiss(delay: 2.0)
             }
           } else {
-            NotificationPresenter.shared.displayProgressBar(percentage: progress)
+            NotificationPresenter.shared.displayProgressBar(at: progress)
           }
         }.font(.subheadline)
 
@@ -289,11 +289,11 @@ struct ExamplesScreen: View {
         cell(title: "2 notifications in sequence", subtitle: "Utilizing the completion block, 2 x 1s") {
           showIncludedStyle("This is 1/2!", style: .dark)
           NotificationPresenter.shared.displayActivityIndicator(true)
-          NotificationPresenter.shared.displayProgressBar(percentage: 0.0)
+          NotificationPresenter.shared.displayProgressBar(at: 0.0)
           NotificationPresenter.shared.dismiss(delay: 1.0) { presenter in
             showIncludedStyle("✅ This is 2/2!", style: .dark)
             NotificationPresenter.shared.displayActivityIndicator(false)
-            NotificationPresenter.shared.displayProgressBar(percentage: 0.0)
+            NotificationPresenter.shared.displayProgressBar(at: 0.0)
             presenter.dismiss(delay: 1.0)
           }
         }
@@ -337,7 +337,7 @@ struct ExamplesScreen: View {
     return cell(title: "Present: \(title)", subtitle: subtitle) {
       style.register(for: backgroundType)
       NotificationPresenter.shared.present(content.title, subtitle: content.subtitle, styleName: style.rawValue) { presenter in
-        presenter.animateProgressBar(toPercentage: 1.0, animationDuration: animationDurationForCurrentStyle()) { presenter in
+        presenter.animateProgressBar(to: 1.0, duration: animationDurationForCurrentStyle()) { presenter in
           presenter.dismiss()
         }
       }

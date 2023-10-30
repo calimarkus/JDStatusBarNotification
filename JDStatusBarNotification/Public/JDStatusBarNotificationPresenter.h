@@ -414,7 +414,7 @@ NS_REFINED_FOR_SWIFT
 
 #pragma mark - WindowScene
 
-/// Lets you set an explicit `UIWindowScene`, in which notifications should be presented. In most cases you don't need to set this.
+/// Lets you set an explicit `UIWindowScene`, in which notifications should be presented in. In most cases you don't need to set this.
 ///
 /// The `UIWindowScene` is usually inferred automatically, but if that doesn't work for your setup, you can set it explicitly.
 ///
