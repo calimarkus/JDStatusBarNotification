@@ -19,7 +19,17 @@ private class NotificationPresenterSizingController<Content>: NotificationPresen
   }
 }
 
-public extension NotificationPresenter {
+class NotificationPresenter {
+
+  private let presenter: __JDStatusBarNotificationPresenter
+  static let shared = NotificationPresenter()
+
+  typealias Completion = (_ presenter: NotificationPresenter) -> ()
+
+  private init() {
+    presenter = __JDStatusBarNotificationPresenter.shared()
+  }
+
   /// Present a notification.
   ///
   /// - Parameters:
@@ -28,7 +38,7 @@ public extension NotificationPresenter {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
-  ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -37,9 +47,9 @@ public extension NotificationPresenter {
                subtitle: String? = nil,
                delay: Double? = nil,
                styleName: String? = nil,
-               completion: NotificationPresenterCompletion? = nil) -> UIView
+               completion: Completion? = nil) -> UIView
   {
-    let view = __present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: completion)
+    let view = presenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
     if let delay {
       dismiss(delay: delay)
     }
@@ -53,7 +63,7 @@ public extension NotificationPresenter {
   ///   - subtitle: The text to display as subtitle
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
-  ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -62,9 +72,9 @@ public extension NotificationPresenter {
                subtitle: String? = nil,
                delay: Double? = nil,
                includedStyle: IncludedStatusBarNotificationStyle,
-               completion: NotificationPresenterCompletion? = nil) -> UIView
+               completion: Completion? = nil) -> UIView
   {
-    let view = __present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: completion)
+    let view = presenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
     if let delay {
       dismiss(delay: delay)
     }
@@ -84,7 +94,7 @@ public extension NotificationPresenter {
   ///   - sizingController: An optional controller conforming to ``NotificationPresenterCustomViewSizingController``, which controls the size of a presented custom view.
   ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
-  ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes.
+  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -92,12 +102,12 @@ public extension NotificationPresenter {
   func presentCustomView(_ view: UIView,
                          sizingController: NotificationPresenterCustomViewSizingController? = nil,
                          styleName: String? = nil,
-                         completion: NotificationPresenterCompletion? = nil) -> UIView
+                         completion: Completion? = nil) -> UIView
   {
-    return __present(withCustomView: view,
-                     sizingController: sizingController,
-                     styleName: styleName,
-                     completion: completion)
+    return presenter.present(withCustomView: view,
+                             sizingController: sizingController,
+                             styleName: styleName,
+                             completion: { _ in completion?(self) })
   }
 
   /// Present a notification using a custom SwiftUI view.
@@ -106,33 +116,32 @@ public extension NotificationPresenter {
   ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///            If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - viewBuilder: A ViewBuilder closure to build your custom SwiftUI view.
-  ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the presentation animation finishes.
+  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
   @discardableResult
   func presentSwiftView(styleName: String? = nil,
                         @ViewBuilder viewBuilder: () -> some View,
-                        completion: NotificationPresenterCompletion? = nil) -> UIView
+                        completion: Completion? = nil) -> UIView
   {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
-    return __present(withCustomView: controller.view,
-                     sizingController: NotificationPresenterSizingController(hostingController: controller),
-                     styleName: styleName,
-                     completion: completion)
+    return presenter.present(withCustomView: controller.view,
+                             sizingController: NotificationPresenterSizingController(hostingController: controller),
+                             styleName: styleName,
+                             completion: { _ in completion?(self) })
   }
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
   ///   - delay: The delay in seconds, before the notification should be dismissed.
-  ///   - completion: A ``NotificationPresenterCompletion`` closure, which gets called once the dismiss animation finishes.
+  ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  func dismiss(delay: Double? = nil,
-               completion: NotificationPresenterCompletion? = nil)
+  func dismiss(delay: Double? = nil, completion: Completion? = nil)
   {
     if let delay {
-      __dismiss(afterDelay: delay, completion: completion)
+      presenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
     } else {
-      __dismiss(completion: completion)
+      presenter.dismiss(completion: { _ in completion?(self) })
     }
   }
 
@@ -155,9 +164,9 @@ public extension NotificationPresenter {
                 prepare: NotificationPresenterPrepareStyleClosure) -> String
   {
     if let includedStyle {
-      __addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
+      presenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
     } else {
-      __addStyleNamed(name, prepare: prepare)
+      presenter.addStyleNamed(name, prepare: prepare)
     }
   }
 }
