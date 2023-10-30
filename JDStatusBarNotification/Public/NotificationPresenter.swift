@@ -7,10 +7,41 @@
 
 import SwiftUI
 
+/**
+ * The NotificationPresenter let's you present notifications below the statusBar.
+ * You can customize the style (colors, fonts, etc.) and animations. It supports notch
+ * and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. It can display a
+ * title, a subtitle, an activity indicator, an animated progress bar & custom views out of the box.
+ *
+ * To customize the appearance, see the *Customize the style* section. To see all customization
+ * options, see the ``StatusBarNotificationStyle`` documentation.
+ *
+ * While a notification is displayed, a separate window is presented on top of your application
+ * window. Upon dismissal this window, its view controller and all its views are removed from
+ * memory. The presenter class itself is a singleton which will stay in memory for the lifetime of
+ * your application once it was created. The default ``StatusBarNotificationStyle`` and any styles
+ * added by the user also stay in memory permanently.
+ */
 public class NotificationPresenter {
 
+  /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
+  ///
+  /// - Returns: An initialized ``NotificationPresenter`` instance.
   public static let shared = NotificationPresenter()
+
+  /// Called upon animation completion.
+  ///
+  /// - Parameter presenter: Provides the shared ``NotificationPresenter`` instance. That simplifies any subsequent calls to it upon completion.
+  ///
   public typealias Completion = (_ presenter: NotificationPresenter) -> ()
+
+  /// Creates a modified copy of an existing ``StatusBarNotificationStyle`` instance.
+  ///
+  /// - Parameter style: The current default ``StatusBarNotificationStyle`` instance.
+  ///
+  /// - Returns: The modified ``StatusBarNotificationStyle`` instance.
+  ///
+  public typealias PrepareStyleClosure = (StatusBarNotificationStyle) -> StatusBarNotificationStyle
 
   let presenter: __JDStatusBarNotificationPresenter
   init() {
@@ -19,7 +50,7 @@ public class NotificationPresenter {
 
   // MARK: - Presentation
 
-  /// Present a notification.
+  /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
   ///   - title: The text to display as title
@@ -45,7 +76,7 @@ public class NotificationPresenter {
     return view
   }
 
-  /// Present a notification.
+  /// Present a notification using an included style.
   ///
   /// - Parameters:
   ///   - title: The text to display as title
@@ -121,6 +152,15 @@ public class NotificationPresenter {
 
   // MARK: - Dismissal
 
+  /// Dismisses any currently displayed notification.
+  ///
+  /// - Parameter animated: If `true`, the notification will be dismissed animated according to the currently
+  ///                       set ``StatusBarNotificationAnimationType``. Otherwise it will be dismissed without animation.
+  ///
+  public func dismissAnimated(_ animated: Bool) {
+    presenter.dismiss(animated: animated)
+  }
+
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
@@ -141,7 +181,7 @@ public class NotificationPresenter {
   ///
   /// - Parameter prepare: Provides the current default ``StatusBarNotificationStyle`` instance for further customization.
   ///
-  public func updateDefaultStyle(_ prepare: NotificationPresenterPrepareStyleClosure) {
+  public func updateDefaultStyle(_ prepare: PrepareStyleClosure) {
     presenter.updateDefaultStyle(prepare)
   }
 
@@ -163,7 +203,7 @@ public class NotificationPresenter {
   @discardableResult
   public func addStyle(named name: String,
                        usingStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
-                       prepare: NotificationPresenterPrepareStyleClosure) -> String
+                       prepare: PrepareStyleClosure) -> String
   {
     if let includedStyle {
       presenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)

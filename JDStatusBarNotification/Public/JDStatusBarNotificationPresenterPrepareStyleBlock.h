@@ -16,6 +16,6 @@
 ///
 /// - Returns: The modified ``JDStatusBarNotificationStyle`` instance.
 ///
-typedef JDStatusBarNotificationStyle * _Nonnull(^JDStatusBarNotificationPresenterPrepareStyleBlock)(JDStatusBarNotificationStyle * _Nonnull style) NS_SWIFT_NAME(NotificationPresenterPrepareStyleClosure);
+typedef JDStatusBarNotificationStyle * _Nonnull(^JDStatusBarNotificationPresenterPrepareStyleBlock)(JDStatusBarNotificationStyle * _Nonnull style) NS_REFINED_FOR_SWIFT;
 
 #endif /* JDStatusBarNotificationPresenterPrepareStyleBlock_h */
