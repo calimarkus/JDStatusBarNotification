@@ -8,7 +8,7 @@ Explore the full Swift API in ``JDStatusBarNotification/NotificationPresenter``,
 
 ### Showing a text notification
 
-It's as simple as this:
+See ``NotificationPresenter/present(_:subtitle:after:styleName:completion:)``
 
 ```swift
 NotificationPresenter.shared.present("Hello World")
@@ -21,16 +21,20 @@ NotificationPresenter.shared.present("Hello World") { presenter in
 
 ### Dismissing a notification
 
+See ``NotificationPresenter/dismiss(after:completion:)``
+
 ```swift
 NotificationPresenter.shared.dismiss()
 
 // with completion
-NotificationPresenter.shared.dismiss(delay: 0.5) { presenter in
+NotificationPresenter.shared.dismiss(after: 0.5) { presenter in
    // ...
 }
 ```
     
 ### Showing activity
+
+See ``NotificationPresenter/displayActivityIndicator(_:)``
 
 ```swift
 NotificationPresenter.shared.present("")
@@ -41,6 +45,8 @@ NotificationPresenter.shared.displayActivityIndicator(true)
     
 ### Showing a custom left view
 
+See ``NotificationPresenter/displayLeftView(_:)``
+
 ```swift
 let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
 NotificationPresenter.shared.present("Player II", subtitle: "Connected")
@@ -50,6 +56,8 @@ NotificationPresenter.shared.displayLeftView(image)
 ![leftview](https://user-images.githubusercontent.com/807039/175884751-c93ffd31-a436-43d2-9eed-82d7cb23d8f6.gif)
     
 ### Showing progress
+
+See ``NotificationPresenter/animateProgressBar(to:duration:completion:)``
 
 ```swift
 NotificationPresenter.shared.present("Animating Progress…") { presenter in
@@ -68,6 +76,8 @@ NotificationPresenter.shared.displayProgressBar(at: 0.0)
 
 There's a few included styles you can easily use with the following API:
 
+See ``NotificationPresenter/present(_:subtitle:after:includedStyle:completion:)``
+
 ```swift
 NotificationPresenter.shared.present("Yay, it works!",
                                      includedStyle: .success)
@@ -78,6 +88,8 @@ NotificationPresenter.shared.present("Yay, it works!",
 ### Using a custom UIView
 
 If you want full control over the notification content and styling, you can use your own custom UIView.
+
+See ``NotificationPresenter/presentCustomView(_:sizingController:styleName:completion:)``
 
 ```swift
 // present a custom view
@@ -96,8 +108,9 @@ NotificationPresenter.shared.presentCustomView(button)
 
 You have the option to easily create & use fully customized styles.
 
-The closures of ``JDStatusBarNotification/NotificationPresenter/updateDefaultStyle(_:)`` and ``JDStatusBarNotification/NotificationPresenter/addStyle(named:usingStyle:prepare:)`` provide a copy of
-the default style, which can then be modified. See the ``JDStatusBarNotification/StatusBarNotificationStyle`` API for all options.
+See ``NotificationPresenter/updateDefaultStyle(_:)`` and ``NotificationPresenter/addStyle(named:usingStyle:prepare:)``
+
+The ``NotificationPresenter/PrepareStyleClosure`` provides a copy of the default style, which can then be modified. See the ``JDStatusBarNotification/StatusBarNotificationStyle`` API for all options.
 
 ```swift
 // update default style

@@ -65,13 +65,13 @@ public class NotificationPresenter {
   @discardableResult
   public func present(_ title: String,
                       subtitle: String? = nil,
-                      delay: Double? = nil,
+                      after delay: Double? = nil,
                       styleName: String? = nil,
                       completion: Completion? = nil) -> UIView
   {
     let view = presenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
     if let delay {
-      dismiss(delay: delay)
+      presenter.dismiss(afterDelay: delay)
     }
     return view
   }
@@ -90,13 +90,13 @@ public class NotificationPresenter {
   @discardableResult
   public func present(_ title: String,
                       subtitle: String? = nil,
-                      delay: Double? = nil,
+                      after delay: Double? = nil,
                       includedStyle: IncludedStatusBarNotificationStyle,
                       completion: Completion? = nil) -> UIView
   {
     let view = presenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
     if let delay {
-      dismiss(delay: delay)
+      presenter.dismiss(afterDelay: delay)
     }
     return view
   }
@@ -167,7 +167,7 @@ public class NotificationPresenter {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  public func dismiss(delay: Double? = nil, completion: Completion? = nil)
+  public func dismiss(after delay: Double? = nil, completion: Completion? = nil)
   {
     if let delay {
       presenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
@@ -190,7 +190,7 @@ public class NotificationPresenter {
   /// Adds a new named style - based on an included style, if given.
   /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
   ///
-  /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:delay:styleName:completion:)``.
+  /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:after:styleName:completion:)``.
   /// If a style with the same name already exists, it will be replaced.
   ///
   /// - Parameters:
@@ -298,6 +298,8 @@ public class NotificationPresenter {
   }
 
 }
+
+// MARK: - HostingControllerSizingController
 
 extension NotificationPresenter {
   private class HostingControllerSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {

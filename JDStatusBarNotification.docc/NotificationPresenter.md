@@ -9,8 +9,8 @@
 ### Present a notification
 
 - ``Completion``
-- ``present(_:subtitle:delay:styleName:completion:)``
-- ``present(_:subtitle:delay:includedStyle:completion:)``
+- ``present(_:subtitle:after:styleName:completion:)``
+- ``present(_:subtitle:after:includedStyle:completion:)``
 - ``IncludedStatusBarNotificationStyle``
 
 ### Present a notification (using a custom view)
@@ -22,7 +22,7 @@
 ### Dismiss a notification
 
 - ``dismissAnimated(_:)``
-- ``dismiss(delay:completion:)``
+- ``dismiss(after:completion:)``
 
 ### Customize the style (Appearance & Behavior)
 
