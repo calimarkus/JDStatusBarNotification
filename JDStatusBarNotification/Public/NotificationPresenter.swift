@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-private class NotificationPresenterSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {
-  let hostingController: UIHostingController<Content>
-
-  init(hostingController: UIHostingController<Content>) {
-    self.hostingController = hostingController
-  }
-
-  func sizeThatFits(in size: CGSize) -> CGSize {
-    return hostingController.sizeThatFits(in: size)
-  }
-}
-
 public class NotificationPresenter {
 
   public static let shared = NotificationPresenter()
@@ -126,7 +114,7 @@ public class NotificationPresenter {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
     return presenter.present(withCustomView: controller.view,
-                             sizingController: NotificationPresenterSizingController(hostingController: controller),
+                             sizingController: HostingControllerSizingController(for: controller),
                              styleName: styleName,
                              completion: { _ in completion?(self) })
   }
@@ -269,4 +257,18 @@ public class NotificationPresenter {
     presenter.setWindowScene(windowScene)
   }
 
+}
+
+extension NotificationPresenter {
+  private class HostingControllerSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {
+    let hostingController: UIHostingController<Content>
+
+    init(for hostingController: UIHostingController<Content>) {
+      self.hostingController = hostingController
+    }
+
+    func sizeThatFits(in size: CGSize) -> CGSize {
+      return hostingController.sizeThatFits(in: size)
+    }
+  }
 }
