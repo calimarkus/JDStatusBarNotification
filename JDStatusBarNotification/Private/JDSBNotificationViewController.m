@@ -190,26 +190,34 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
 
 #pragma mark - Dismissal
 
-- (void)dismissAfterDelay:(NSTimeInterval)delay
-             completion:(JDSBNotificationViewControllerCompletion)completion {
+- (void)dismissWithDuration:(CGFloat)duration
+                 afterDelay:(NSTimeInterval)delay
+                 completion:(JDSBNotificationViewControllerCompletion)completion {
   [_dismissTimer invalidate];
+
+  if (delay == 0.0) {
+    [self _dismissWithDuration:duration completion:completion];
+    return;
+  }
 
   _dismissCompletionBlock = [completion copy];
   _dismissTimer = [NSTimer scheduledTimerWithTimeInterval:delay
                                                    target:self
                                                  selector:@selector(_dismissTimerFired:)
-                                                 userInfo:nil
+                                                 userInfo:@{@"duration": @(duration)}
                                                   repeats:NO];
 }
 
 - (void)_dismissTimerFired:(NSTimer *)timer {
   JDSBNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
-  [self dismissWithDuration:0.4 completion:block];
+
+  NSNumber *duration = timer.userInfo[@"duration"];
+  [self _dismissWithDuration:[duration doubleValue] completion:block];
 }
 
-- (void)dismissWithDuration:(CGFloat)duration
-                 completion:(JDSBNotificationViewControllerCompletion)completion {
+- (void)_dismissWithDuration:(CGFloat)duration
+                  completion:(JDSBNotificationViewControllerCompletion)completion {
   [_dismissTimer invalidate];
   _dismissTimer = nil;
 
@@ -233,7 +241,7 @@ static BOOL canRubberBandForBackgroundType(JDStatusBarNotificationBackgroundType
 - (void)_forceDismiss {
   JDSBNotificationViewControllerCompletion block = _dismissCompletionBlock;
   _dismissCompletionBlock = nil;
-  [self dismissWithDuration:0.25 completion:block];
+  [self _dismissWithDuration:0.25 completion:block];
 }
 
 - (BOOL)_canDismiss {

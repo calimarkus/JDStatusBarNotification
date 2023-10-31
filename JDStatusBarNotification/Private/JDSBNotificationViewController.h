@@ -25,10 +25,8 @@ NS_SWIFT_NAME(_SBNotificationViewController)
 - (JDSBNotificationView *)presentWithStyle:(JDStatusBarNotificationStyle *)style
                                 completion:(JDSBNotificationViewControllerCompletion)completion;
 
-- (void)dismissAfterDelay:(NSTimeInterval)delay
-               completion:(JDSBNotificationViewControllerCompletion)completion;
-
 - (void)dismissWithDuration:(CGFloat)duration
+                 afterDelay:(NSTimeInterval)delay
                  completion:(JDSBNotificationViewControllerCompletion)completion;
 
 @end

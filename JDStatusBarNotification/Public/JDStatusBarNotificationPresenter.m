@@ -215,7 +215,7 @@
 
 - (void)_dismissAnimated:(BOOL)animated completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   __weak __typeof(self) weakSelf = self;
-  [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 completion:^{
+  [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 afterDelay:0.0 completion:^{
     if (completion) {
       completion(weakSelf);
     }
@@ -223,13 +223,19 @@
 }
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay {
-  [_overlayWindow.statusBarViewController dismissAfterDelay:delay completion:nil];
+  [_overlayWindow.statusBarViewController dismissWithDuration:0.4 afterDelay:delay completion:nil];
 }
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay
                completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
+  [self dismissAnimated:YES afterDelay:delay completion:completion];
+}
+
+- (void)dismissAnimated:(BOOL)animated
+             afterDelay:(NSTimeInterval)delay
+             completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
   __weak __typeof(self) weakSelf = self;
-  [_overlayWindow.statusBarViewController dismissAfterDelay:delay completion:^{
+  [_overlayWindow.statusBarViewController dismissWithDuration:animated ? 0.4 : 0.0 afterDelay:delay completion:^{
     if (completion) {
       completion(weakSelf);
     }

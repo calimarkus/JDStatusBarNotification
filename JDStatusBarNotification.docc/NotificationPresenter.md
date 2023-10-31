@@ -21,8 +21,7 @@
 
 ### Dismiss a notification
 
-- ``dismissAnimated(_:)``
-- ``dismiss(after:completion:)``
+- ``dismiss(animated:after:completion:)``
 
 ### Customize the style (Appearance & Behavior)
 

@@ -151,27 +151,16 @@ public struct NotificationPresenter {
 
   // MARK: - Dismissal
 
-  /// Dismisses any currently displayed notification.
-  ///
-  /// - Parameter animated: If `true`, the notification will be dismissed animated according to the currently
-  ///                       set ``StatusBarNotificationAnimationType``. Otherwise it will be dismissed without animation.
-  ///
-  public func dismissAnimated(_ animated: Bool) {
-    objcPresenter.dismiss(animated: animated)
-  }
-
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
+  ///   - animated: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
+  ///   Otherwise it will be dismissed without animation.
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  public func dismiss(after delay: Double? = nil, completion: Completion? = nil) {
-    if let delay {
-      objcPresenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
-    } else {
-      objcPresenter.dismiss(completion: { _ in completion?(self) })
-    }
+  public func dismiss(animated: Bool = true, after delay: Double? = nil, completion: Completion? = nil) {
+    objcPresenter.dismiss(animated:animated, afterDelay: delay ?? 0.0, completion: { _ in completion?(self) })
   }
 
   /// Defines a new default style.

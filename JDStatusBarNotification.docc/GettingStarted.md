@@ -21,7 +21,7 @@ NotificationPresenter.shared.present("Hello World") { presenter in
 
 ### Dismissing a notification
 
-See ``NotificationPresenter/dismiss(after:completion:)``
+See ``NotificationPresenter/dismiss(animated:after:completion:)``
 
 ```swift
 NotificationPresenter.shared.dismiss()

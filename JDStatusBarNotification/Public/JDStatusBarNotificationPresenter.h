@@ -306,6 +306,21 @@ NS_REFINED_FOR_SWIFT
 - (void)dismissAfterDelay:(NSTimeInterval)delay
                completion:(JDStatusBarNotificationPresenterCompletionBlock)completion;
 
+/// Dismisses any currently displayed notification animated after the provided delay.
+///
+/// The animation is determined by the currently set ``JDStatusBarNotificationAnimationType``.
+///
+
+///
+/// - Parameters:
+///   - animated: If `true`, the notification will be dismissed animated according to the currently set ``JDStatusBarNotificationAnimationType``. Otherwise it will be dismissed without animation.
+///   - delay: The delay in seconds, before the notification should be dismissed.
+///   - completion: A ``JDStatusBarNotificationPresenterCompletionBlock``, which gets called once the dismiss animation finishes.
+///
+- (void)dismissAnimated:(BOOL)animated
+             afterDelay:(NSTimeInterval)delay
+             completion:(JDStatusBarNotificationPresenterCompletionBlock)completion;
+
 #pragma mark - Style Modification
 
 /// Defines a new default style.
