@@ -30,7 +30,7 @@ public struct NotificationPresenter {
   public static let shared = NotificationPresenter()
 
   private init() {}
-  var presenter: __JDStatusBarNotificationPresenter {
+  var objcPresenter: __JDStatusBarNotificationPresenter {
     __JDStatusBarNotificationPresenter.shared()
   }
 
@@ -69,9 +69,9 @@ public struct NotificationPresenter {
                       duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
-    let view = presenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
+    let view = objcPresenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
     if let duration {
-      presenter.dismiss(afterDelay: duration)
+      objcPresenter.dismiss(afterDelay: duration)
     }
     return view
   }
@@ -94,9 +94,9 @@ public struct NotificationPresenter {
                       duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
-    let view = presenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
+    let view = objcPresenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
     if let duration {
-      presenter.dismiss(afterDelay: duration)
+      objcPresenter.dismiss(afterDelay: duration)
     }
     return view
   }
@@ -124,7 +124,7 @@ public struct NotificationPresenter {
                                 styleName: String? = nil,
                                 completion: Completion? = nil) -> UIView
   {
-    return presenter.present(withCustomView: view,
+    return objcPresenter.present(withCustomView: view,
                              sizingController: sizingController,
                              styleName: styleName,
                              completion: { _ in completion?(self) })
@@ -144,7 +144,7 @@ public struct NotificationPresenter {
   {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
-    return presenter.present(withCustomView: controller.view,
+    return objcPresenter.present(withCustomView: controller.view,
                              sizingController: HostingControllerSizingController(for: controller),
                              styleName: styleName,
                              completion: { _ in completion?(self) })
@@ -158,7 +158,7 @@ public struct NotificationPresenter {
   ///                       set ``StatusBarNotificationAnimationType``. Otherwise it will be dismissed without animation.
   ///
   public func dismissAnimated(_ animated: Bool) {
-    presenter.dismiss(animated: animated)
+    objcPresenter.dismiss(animated: animated)
   }
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
@@ -170,9 +170,9 @@ public struct NotificationPresenter {
   public func dismiss(after delay: Double? = nil, completion: Completion? = nil)
   {
     if let delay {
-      presenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
+      objcPresenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
     } else {
-      presenter.dismiss(completion: { _ in completion?(self) })
+      objcPresenter.dismiss(completion: { _ in completion?(self) })
     }
   }
 
@@ -182,7 +182,7 @@ public struct NotificationPresenter {
   /// - Parameter prepare: Provides the current default ``StatusBarNotificationStyle`` instance for further customization.
   ///
   public func updateDefaultStyle(_ prepare: PrepareStyleClosure) {
-    presenter.updateDefaultStyle(prepare)
+    objcPresenter.updateDefaultStyle(prepare)
   }
 
   // MARK: - Style Customization
@@ -206,9 +206,9 @@ public struct NotificationPresenter {
                        prepare: PrepareStyleClosure) -> String
   {
     if let includedStyle {
-      presenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
+      objcPresenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
     } else {
-      presenter.addStyleNamed(name, prepare: prepare)
+      objcPresenter.addStyleNamed(name, prepare: prepare)
     }
   }
 
@@ -222,7 +222,7 @@ public struct NotificationPresenter {
   /// - Parameter percentage: The percentage in a range from 0.0 to 1.0
   ///
   public func displayProgressBar(at percentage: Double) {
-    presenter.displayProgressBar(withPercentage: percentage)
+    objcPresenter.displayProgressBar(withPercentage: percentage)
   }
 
   /// Displays a progress bar and animates it to the provided `percentage`.
@@ -236,7 +236,7 @@ public struct NotificationPresenter {
   ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
   ///
   public func animateProgressBar(to percentage: Double, duration: Double, completion: Completion?) {
-    presenter.animateProgressBar(toPercentage: percentage, animationDuration: duration, completion: { _ in completion?(self) })
+    objcPresenter.animateProgressBar(toPercentage: percentage, animationDuration: duration, completion: { _ in completion?(self) })
   }
 
   /// Displays an activity indicator as the notifications left view.
@@ -248,7 +248,7 @@ public struct NotificationPresenter {
   /// - Parameter show:  Show or hide the activity indicator.
   ///
   public func displayActivityIndicator(_ show: Bool) {
-    presenter.displayActivityIndicator(show)
+    objcPresenter.displayActivityIndicator(show)
   }
 
   /// Displays a view on the left side of the text.
@@ -258,7 +258,7 @@ public struct NotificationPresenter {
   ///                       icon / image / profile picture etc. A nil value removes an existing leftView.
   ///
   public func displayLeftView(_ leftView: UIView?) {
-    presenter.displayLeftView(leftView)
+    objcPresenter.displayLeftView(leftView)
   }
 
   // MARK: - Additional Presenter APIs
@@ -268,7 +268,7 @@ public struct NotificationPresenter {
   /// - Parameter title: The new title to display
   ///
   public func updateTitle(_ title: String) {
-    presenter.updateText(title)
+    objcPresenter.updateText(title)
   }
 
   /// Updates the subtitle of an existing notification without animation.
@@ -276,7 +276,7 @@ public struct NotificationPresenter {
   /// - Parameter subtitle: The new subtitle to display
   ///
   public func updateSubtitle(_ subtitle: String?) {
-    presenter.updateSubtitle(subtitle)
+    objcPresenter.updateSubtitle(subtitle)
   }
 
   /// Let's you check if a notification is currently displayed.
@@ -284,7 +284,7 @@ public struct NotificationPresenter {
   /// - Returns: `true` if a notification is currently displayed. Otherwise `false`.
   ///
   public var isVisible: Bool {
-    return presenter.isVisible()
+    return objcPresenter.isVisible()
   }
 
   /// Lets you set an explicit `UIWindowScene`, in which notifications should be presented in. In most cases you don't need to set this.
@@ -294,7 +294,7 @@ public struct NotificationPresenter {
   /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
   ///
   public func setWindowScene(_ windowScene: UIWindowScene) {
-    presenter.setWindowScene(windowScene)
+    objcPresenter.setWindowScene(windowScene)
   }
 
 }
