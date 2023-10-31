@@ -38,7 +38,7 @@
 
 ### Additional Presenter APIs
 
+- ``isVisible``
 - ``updateTitle(_:)``
 - ``updateSubtitle(_:)``
-- ``isVisible``
 - ``setWindowScene(_:)``
