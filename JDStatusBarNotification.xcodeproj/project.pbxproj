@@ -119,6 +119,8 @@
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
 		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
+		7E83FF1A2AF1AA630011EA4C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7E8C519328585BE400C7C003 /* JDStatusBarNotificationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationStyle.h; sourceTree = "<group>"; };
 		7E8C519428585BE400C7C003 /* JDStatusBarNotificationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotificationPresenter.h; sourceTree = "<group>"; };
@@ -197,6 +199,8 @@
 		7E5402C3286708850079C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E83FF1A2AF1AA630011EA4C /* README.md */,
+				7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */,
 				7EB82C4C2A31BACE004E2B19 /* Package.swift */,
 				7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */,
 				7E5402C5286708850079C579 /* JDStatusBarNotification.docc */,
