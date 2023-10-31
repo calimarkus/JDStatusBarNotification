@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2023-10-31
+
+### Changed
+
+- Breaking change: A rewritten Swift API for better Swift ergonomics, Obj-C unaffected.
+
+### Added
+
+- A swift-only `presentSwiftView()` presentation helper to easily present SwiftUI views
+- A new `presentWithCustomView:sizingController:` API for additional control on the sizing, utilized by the above swift API
+
 ## [2.0.9] - 2023-10-11
 
 ### Changed
@@ -140,7 +151,8 @@ Those adjustments should be simple though - mostly new API naming.
 
 Old version based on original release. No release notes available.
 
-[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.9...HEAD
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.9...2.1.0
 [2.0.9]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.8...2.0.9
 [2.0.8]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.7...2.0.8
 [2.0.7]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.6...2.0.7
