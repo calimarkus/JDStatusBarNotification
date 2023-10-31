@@ -3,3 +3,4 @@ builder:
   configs:
   - platform: ios
     documentation_targets: [JDStatusBarNotification]
+    scheme: JDStatusBarNotification
