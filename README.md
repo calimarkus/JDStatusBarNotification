@@ -56,6 +56,21 @@ NotificationPresenter.shared.present("Hello World") { presenter in
 }
 ```
 
+### Showing a SwiftUI based notification
+
+```swift
+NotificationPresenter.shared.presentSwiftView {
+    Text("Hi from Swift!")
+}
+
+// with completion
+NotificationPresenter.shared.presentSwiftView {
+    Text("Hi from Swift!")
+} completion: { presenter in
+   // ...
+}
+```
+
 ### Dismissing a notification
 
 ```swift
