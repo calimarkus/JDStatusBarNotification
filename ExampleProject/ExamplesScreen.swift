@@ -9,7 +9,7 @@ import SwiftUI
 class ExamplesScreenFactory: NSObject {
   @objc static func createExamplesScreen() -> UIViewController {
     let text = "👋 Hello World!"
-    NotificationPresenter.shared.present(text, after: 2.5, includedStyle: IncludedStatusBarNotificationStyle.matrix)
+    NotificationPresenter.shared.present(text, includedStyle: .matrix, duration: 2.5)
     return UIHostingController(rootView:
       NavigationView {
         ExamplesScreen()
@@ -99,7 +99,7 @@ struct ExamplesScreen: View {
                   style.backgroundStyle.pillStyle.minimumWidth = 0.0
                   return style
                 }
-                NotificationPresenter.shared.present("", after: 2.0, styleName: styleName)
+                NotificationPresenter.shared.present("", styleName: styleName, duration: 2.0)
                 NotificationPresenter.shared.displayActivityIndicator(true)
               }
             } else {

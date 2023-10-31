@@ -8,7 +8,7 @@ Explore the full Swift API in ``JDStatusBarNotification/NotificationPresenter``,
 
 ### Showing a text notification
 
-See ``NotificationPresenter/present(_:subtitle:after:styleName:completion:)``
+See ``NotificationPresenter/present(_:subtitle:styleName:duration:completion:)``
 
 ```swift
 NotificationPresenter.shared.present("Hello World")
@@ -76,7 +76,7 @@ NotificationPresenter.shared.displayProgressBar(at: 0.0)
 
 There's a few included styles you can easily use with the following API:
 
-See ``NotificationPresenter/present(_:subtitle:after:includedStyle:completion:)``
+See ``NotificationPresenter/present(_:subtitle:includedStyle:duration:completion:)``
 
 ```swift
 NotificationPresenter.shared.present("Yay, it works!",

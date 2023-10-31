@@ -9,8 +9,8 @@
 ### Present a notification
 
 - ``Completion``
-- ``present(_:subtitle:after:styleName:completion:)``
-- ``present(_:subtitle:after:includedStyle:completion:)``
+- ``present(_:subtitle:styleName:duration:completion:)``
+- ``present(_:subtitle:includedStyle:duration:completion:)``
 - ``IncludedStatusBarNotificationStyle``
 
 ### Present a notification (using a custom view)

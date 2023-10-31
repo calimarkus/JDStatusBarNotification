@@ -55,7 +55,7 @@ public struct NotificationPresenter {
   /// - Parameters:
   ///   - title: The text to display as title
   ///   - subtitle: The text to display as subtitle
-  ///   - delay: The delay in seconds, before the notification should be dismissed.
+  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed..
   ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
@@ -65,13 +65,13 @@ public struct NotificationPresenter {
   @discardableResult
   public func present(_ title: String,
                       subtitle: String? = nil,
-                      after delay: Double? = nil,
                       styleName: String? = nil,
+                      duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
     let view = presenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
-    if let delay {
-      presenter.dismiss(afterDelay: delay)
+    if let duration {
+      presenter.dismiss(afterDelay: duration)
     }
     return view
   }
@@ -81,7 +81,7 @@ public struct NotificationPresenter {
   /// - Parameters:
   ///   - title: The text to display as title
   ///   - subtitle: The text to display as subtitle
-  ///   - delay: The delay in seconds, before the notification should be dismissed.
+  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed.
   ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
@@ -90,13 +90,13 @@ public struct NotificationPresenter {
   @discardableResult
   public func present(_ title: String,
                       subtitle: String? = nil,
-                      after delay: Double? = nil,
                       includedStyle: IncludedStatusBarNotificationStyle,
+                      duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
     let view = presenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
-    if let delay {
-      presenter.dismiss(afterDelay: delay)
+    if let duration {
+      presenter.dismiss(afterDelay: duration)
     }
     return view
   }
@@ -190,7 +190,7 @@ public struct NotificationPresenter {
   /// Adds a new named style - based on an included style, if given.
   /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
   ///
-  /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:after:styleName:completion:)``.
+  /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:styleName:duration:completion:)``.
   /// If a style with the same name already exists, it will be replaced.
   ///
   /// - Parameters:
