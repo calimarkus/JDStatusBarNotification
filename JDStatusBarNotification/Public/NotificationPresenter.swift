@@ -23,7 +23,6 @@ import SwiftUI
  * added by the user also stay in memory permanently.
  */
 public struct NotificationPresenter {
-
   /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
   ///
   /// - Returns: An initialized ``NotificationPresenter`` instance.
@@ -125,9 +124,9 @@ public struct NotificationPresenter {
                                 completion: Completion? = nil) -> UIView
   {
     return objcPresenter.present(withCustomView: view,
-                             sizingController: sizingController,
-                             styleName: styleName,
-                             completion: { _ in completion?(self) })
+                                 sizingController: sizingController,
+                                 styleName: styleName,
+                                 completion: { _ in completion?(self) })
   }
 
   /// Present a notification using a custom SwiftUI view.
@@ -145,9 +144,9 @@ public struct NotificationPresenter {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
     return objcPresenter.present(withCustomView: controller.view,
-                             sizingController: HostingControllerSizingController(for: controller),
-                             styleName: styleName,
-                             completion: { _ in completion?(self) })
+                                 sizingController: HostingControllerSizingController(for: controller),
+                                 styleName: styleName,
+                                 completion: { _ in completion?(self) })
   }
 
   // MARK: - Dismissal
@@ -167,8 +166,7 @@ public struct NotificationPresenter {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  public func dismiss(after delay: Double? = nil, completion: Completion? = nil)
-  {
+  public func dismiss(after delay: Double? = nil, completion: Completion? = nil) {
     if let delay {
       objcPresenter.dismiss(afterDelay: delay, completion: { _ in completion?(self) })
     } else {
@@ -296,7 +294,6 @@ public struct NotificationPresenter {
   public func setWindowScene(_ windowScene: UIWindowScene) {
     objcPresenter.setWindowScene(windowScene)
   }
-
 }
 
 // MARK: - HostingControllerSizingController

@@ -31,9 +31,9 @@ struct ExamplesScreen: View {
       return style
     }
     NotificationPresenter.shared.present(text,
-                                           subtitle: showSubtitle ? "{subtitle}" : nil,
-                                           styleName: styleName,
-                                           completion: completion)
+                                         subtitle: showSubtitle ? "{subtitle}" : nil,
+                                         styleName: styleName,
+                                         completion: completion)
 
     if showActivity {
       NotificationPresenter.shared.displayActivityIndicator(true)
