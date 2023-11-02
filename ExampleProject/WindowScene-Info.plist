@@ -5,7 +5,7 @@
 	<key>ExampleIsWindowSceneBased</key>
 	<true/>
 	<key>ExampleViewControllerTitle</key>
-	<string>Scene Example</string>
+	<string>ExampleApp (SceneDelegate)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
