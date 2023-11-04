@@ -1,5 +1,9 @@
 # Getting Started
 
+@Metadata {
+    @SupportedLanguage(swift)
+}
+
 Some simple examples to get started.
 
 All examples here are written in Swift. But everything can be called from Objective-C too.
