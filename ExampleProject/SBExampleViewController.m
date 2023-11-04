@@ -14,13 +14,21 @@
   UIViewController *_hostingController;
 }
 
+- (instancetype)initWithTitle:(NSString *)title {
+  self = [super initWithNibName:nil bundle:nil];
+  if (self) {
+    self.title = title;
+  }
+  return self;
+}
+
 - (void)loadView {
   self.view = [[UIView alloc] init];
   self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.view.backgroundColor = [UIColor systemGray6Color];
 
   if (@available(iOS 15.0, *)) {
-    UIViewController *hostingController = [ExamplesScreenFactory createExamplesScreen];
+    UIViewController *hostingController = [ExamplesScreenFactory createExamplesScreenWithTitle:self.title];
     [hostingController willMoveToParentViewController:self];
     [self addChildViewController:hostingController];
     [self.view addSubview:hostingController.view];

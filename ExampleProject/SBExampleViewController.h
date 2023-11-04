@@ -10,4 +10,6 @@
 
 @interface SBExampleViewController : UIViewController
 
+- (instancetype)initWithTitle:(NSString *)title;
+
 @end

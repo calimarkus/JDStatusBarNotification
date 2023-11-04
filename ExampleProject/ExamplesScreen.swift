@@ -7,12 +7,12 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 class ExamplesScreenFactory: NSObject {
-  @objc static func createExamplesScreen() -> UIViewController {
+  @objc static func createExamplesScreen(title: String) -> UIViewController {
     let text = "👋 Hello World!"
     NotificationPresenter.shared.present(text, includedStyle: .matrix, duration: 2.5)
     return UIHostingController(rootView:
       NavigationView {
-        ExamplesScreen()
+        ExamplesScreen(title: title)
       }
     )
   }
@@ -20,6 +20,9 @@ class ExamplesScreenFactory: NSObject {
 
 @available(iOS 15.0, *)
 struct ExamplesScreen: View {
+
+  let title: String
+
   @State var progress = 0.0
   @State var showActivity = false
   @State var showSubtitle = false
@@ -299,7 +302,7 @@ struct ExamplesScreen: View {
         }
       }
     }
-    .navigationTitle(Bundle.main.object(forInfoDictionaryKey: "ExampleViewControllerTitle") as? String ?? "")
+    .navigationTitle(title)
     .navigationBarTitleDisplayMode(.inline)
   }
 
@@ -367,7 +370,7 @@ extension NavigationLink where Label == EmptyView, Destination == EmptyView {
 struct ExamplesScreen_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      ExamplesScreen()
+      ExamplesScreen(title: "ExampleScreen")
     }
   }
 }
