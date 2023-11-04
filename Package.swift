@@ -4,25 +4,29 @@
 import PackageDescription
 
 let package = Package(
-    name: "JDStatusBarNotification",
-    platforms: [
-        .iOS(.v13)
-    ],
-    products: [
-        .library(
-            name: "JDStatusBarNotification",
-            targets: ["JDStatusBarNotification"]),
-    ],
-    targets: [
-        .target(
-            name: "JDStatusBarNotification",
-            dependencies: [],
+  name: "JDStatusBarNotification",
+  platforms: [
+    .iOS(.v13),
+  ],
+  products: [
+    .library(name: "JDStatusBarNotification",
+             targets: ["JDStatusBarNotification", "JDStatusBarNotificationObjC"]),
+  ],
+  targets: [
+    .target(name: "JDStatusBarNotificationObjC",
             path: ".",
-            exclude: ["ExampleProject/"],
-            sources: ["JDStatusBarNotification/"],
+            exclude: ["JDStatusBarNotification/Public/NotificationPresenter.swift"],
+            sources: ["JDStatusBarNotification/Public/", "JDStatusBarNotification/Private/"],
             publicHeadersPath: "JDStatusBarNotification/Public/",
             cSettings: [
-                .headerSearchPath("JDStatusBarNotification/Private/"),
+              .headerSearchPath("JDStatusBarNotification/Private/"),
             ]),
-    ]
+    .target(name: "JDStatusBarNotification",
+            dependencies: ["JDStatusBarNotificationObjC"],
+            path: ".",
+            sources: ["JDStatusBarNotification/Public/NotificationPresenter.swift"],
+            swiftSettings: [
+              .define("JDSB_SPM_DEPLOYMENT"),
+            ]),
+  ]
 )

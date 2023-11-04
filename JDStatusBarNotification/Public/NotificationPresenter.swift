@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+#if JDSB_SPM_DEPLOYMENT
+@_exported import JDStatusBarNotificationObjC
+#endif
+
 /**
  * The NotificationPresenter let's you present notifications below the statusBar.
  * You can customize the style (colors, fonts, etc.) and animations. It supports notch
