@@ -33,13 +33,19 @@ def checkedFile(path):
 proj_dir = os.getenv("PROJECT_DIR")
 print(f"PROJECT_DIR: {proj_dir}")
 
-# verify src/dest dirs
+# verify src dirs
 sources_dir = checkedDir(os.path.join(proj_dir, "JDStatusBarNotification"))
 swift_source = checkedFile(os.path.join(sources_dir, "Public/NotificationPresenter.swift"))
-spm_mirror_dir_name = "spm_sources"
-spm_mirror_dir = checkedDir(os.path.join(proj_dir, spm_mirror_dir_name))
 
 # copy to dest dir
+spm_mirror_dir_name = "spm_sources"
+spm_mirror_dir = os.path.join(proj_dir, spm_mirror_dir_name)
+
+if os.path.isdir(spm_mirror_dir):
+    print(f"Deleting existing copies.")
+    shutil.rmtree(spm_mirror_dir)
+    os.mkdir(spm_mirror_dir)
+
 print(f"Copying sources to: {spm_mirror_dir_name}")
 shutil.copytree(sources_dir, spm_mirror_dir, dirs_exist_ok=True)
 
