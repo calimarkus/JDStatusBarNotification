@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D264F88C1820213200DA0E53"
                BuildableName = "JDSBN Example.app"
-               BlueprintName = "ExampleApp_Classic"
+               BlueprintName = "ExampleApp_AppDelegate"
                ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D264F88C1820213200DA0E53"
             BuildableName = "JDSBN Example.app"
-            BlueprintName = "ExampleApp_Classic"
+            BlueprintName = "ExampleApp_AppDelegate"
             ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,7 +62,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D264F88C1820213200DA0E53"
             BuildableName = "JDSBN Example.app"
-            BlueprintName = "ExampleApp_Classic"
+            BlueprintName = "ExampleApp_AppDelegate"
             ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -495,9 +495,9 @@
 			productReference = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7EFD778A2843461D000BFBF1 /* ExampleApp_WindowScene */ = {
+		7EFD778A2843461D000BFBF1 /* ExampleApp_SceneDelegate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EFD779E2843461D000BFBF1 /* Build configuration list for PBXNativeTarget "ExampleApp_WindowScene" */;
+			buildConfigurationList = 7EFD779E2843461D000BFBF1 /* Build configuration list for PBXNativeTarget "ExampleApp_SceneDelegate" */;
 			buildPhases = (
 				7EFD778B2843461D000BFBF1 /* Sources */,
 				7EFD77952843461D000BFBF1 /* Frameworks */,
@@ -509,14 +509,14 @@
 			dependencies = (
 				7EDAEE602AF6E982001B6ABE /* PBXTargetDependency */,
 			);
-			name = ExampleApp_WindowScene;
+			name = ExampleApp_SceneDelegate;
 			productName = JDStatusBarNotificationExample;
 			productReference = 7EFD77A12843461D000BFBF1 /* JDSBN Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D264F88C1820213200DA0E53 /* ExampleApp_Classic */ = {
+		D264F88C1820213200DA0E53 /* ExampleApp_AppDelegate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "ExampleApp_Classic" */;
+			buildConfigurationList = D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "ExampleApp_AppDelegate" */;
 			buildPhases = (
 				D264F8891820213200DA0E53 /* Sources */,
 				D264F88A1820213200DA0E53 /* Frameworks */,
@@ -528,7 +528,7 @@
 			dependencies = (
 				7EDAEE652AF6E985001B6ABE /* PBXTargetDependency */,
 			);
-			name = ExampleApp_Classic;
+			name = ExampleApp_AppDelegate;
 			productName = JDStatusBarNotificationExample;
 			productReference = D264F88D1820213200DA0E53 /* JDSBN Example.app */;
 			productType = "com.apple.product-type.application";
@@ -575,8 +575,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D264F88C1820213200DA0E53 /* ExampleApp_Classic */,
-				7EFD778A2843461D000BFBF1 /* ExampleApp_WindowScene */,
+				D264F88C1820213200DA0E53 /* ExampleApp_AppDelegate */,
+				7EFD778A2843461D000BFBF1 /* ExampleApp_SceneDelegate */,
 				7EA91CA8284EF3AF00F32F09 /* ExampleApp_LayoutDebug */,
 				7E5402C1286708840079C579 /* JDStatusBarNotification */,
 				7EDAEE882AF6EC5E001B6ABE /* JDStatusBarNotification_LayoutDebug */,
@@ -1038,7 +1038,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7EFD779E2843461D000BFBF1 /* Build configuration list for PBXNativeTarget "ExampleApp_WindowScene" */ = {
+		7EFD779E2843461D000BFBF1 /* Build configuration list for PBXNativeTarget "ExampleApp_SceneDelegate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EFD779F2843461D000BFBF1 /* Debug */,
@@ -1054,7 +1054,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "ExampleApp_Classic" */ = {
+		D264F8B91820213200DA0E53 /* Build configuration list for PBXNativeTarget "ExampleApp_AppDelegate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D264F8BA1820213200DA0E53 /* Debug */,
