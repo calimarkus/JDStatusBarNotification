@@ -36,7 +36,7 @@ print(f"PROJECT_DIR: {proj_dir}")
 # verify src/dest dirs
 sources_dir = checkedDir(os.path.join(proj_dir, "JDStatusBarNotification"))
 swift_source = checkedFile(os.path.join(sources_dir, "Public/NotificationPresenter.swift"))
-spm_mirror_dir_name = ".spm_mirror"
+spm_mirror_dir_name = "spm_sources"
 spm_mirror_dir = checkedDir(os.path.join(proj_dir, spm_mirror_dir_name))
 
 # copy to dest dir
