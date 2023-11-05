@@ -618,8 +618,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		7EDAEEC12AF7AE0F001B6ABE /* Run Script (spm mirror + replace imports) */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
