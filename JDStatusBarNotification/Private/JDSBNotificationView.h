@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <JDStatusBarNotification/JDStatusBarNotificationPresenterCustomViewSizingController.h>
+#import "JDStatusBarNotificationPresenterCustomViewSizingController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
