@@ -15,16 +15,16 @@ let package = Package(
   targets: [
     .target(name: "JDStatusBarNotificationObjC",
             path: ".",
-            exclude: ["JDStatusBarNotification/Public/NotificationPresenter.swift"],
-            sources: ["JDStatusBarNotification/Public/", "JDStatusBarNotification/Private/"],
-            publicHeadersPath: "JDStatusBarNotification/Public/",
+            exclude: [".spm_mirror/Public/NotificationPresenter.swift"],
+            sources: [".spm_mirror/Public/", ".spm_mirror/Private/"],
+            publicHeadersPath: ".spm_mirror/Public/",
             cSettings: [
-              .headerSearchPath("JDStatusBarNotification/Private/"),
+              .headerSearchPath(".spm_mirror/Private/"),
             ]),
     .target(name: "JDStatusBarNotification",
             dependencies: ["JDStatusBarNotificationObjC"],
             path: ".",
-            sources: ["JDStatusBarNotification/Public/NotificationPresenter.swift"],
+            sources: [".spm_mirror/Public/NotificationPresenter.swift"],
             swiftSettings: [
               .define("JDSB_SPM_DEPLOYMENT"),
             ]),
