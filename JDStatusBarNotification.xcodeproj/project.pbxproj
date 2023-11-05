@@ -208,6 +208,7 @@
 		7ED140952848513800593D6F /* JDSBNotificationStyleCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationStyleCache.h; sourceTree = "<group>"; };
 		7ED140962848513800593D6F /* JDSBNotificationStyleCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationStyleCache.m; sourceTree = "<group>"; };
 		7ED306A42AF8270B00F6FFE3 /* mirror_and_fix_spm_sources.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = mirror_and_fix_spm_sources.py; path = scripts/mirror_and_fix_spm_sources.py; sourceTree = "<group>"; };
+		7ED306AA2AF842C300F6FFE3 /* FrameworkFiles.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = FrameworkFiles.xcfilelist; path = scripts/FrameworkFiles.xcfilelist; sourceTree = "<group>"; };
 		7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +274,7 @@
 				7E83FF1A2AF1AA630011EA4C /* README.md */,
 				7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */,
 				7ED306A42AF8270B00F6FFE3 /* mirror_and_fix_spm_sources.py */,
+				7ED306AA2AF842C300F6FFE3 /* FrameworkFiles.xcfilelist */,
 				7EB82C4C2A31BACE004E2B19 /* Package.swift */,
 				7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */,
 				7E5402C5286708850079C579 /* JDStatusBarNotification.docc */,
@@ -622,6 +624,7 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"$(SRCROOT)/scripts/FrameworkFiles.xcfilelist",
 			);
 			inputPaths = (
 			);
@@ -629,7 +632,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/JDStatusBarNotification/**/*",
+				"$(DERIVED_FILE_DIR)/spm_sources/Public/JDStatusBarNotification.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
