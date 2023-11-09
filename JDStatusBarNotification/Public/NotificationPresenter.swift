@@ -197,9 +197,9 @@ public struct NotificationPresenter {
                        prepare: PrepareStyleClosure) -> String
   {
     if let includedStyle {
-      objcPresenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
+      return objcPresenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
     } else {
-      objcPresenter.addStyleNamed(name, prepare: prepare)
+      return objcPresenter.addStyleNamed(name, prepare: prepare)
     }
   }
 
@@ -275,7 +275,7 @@ public struct NotificationPresenter {
   /// - Returns: `true` if a notification is currently displayed. Otherwise `false`.
   ///
   public var isVisible: Bool {
-    return objcPresenter.isVisible()
+    objcPresenter.isVisible()
   }
 
   /// Lets you set an explicit `UIWindowScene`, in which notifications should be presented in. In most cases you don't need to set this.
