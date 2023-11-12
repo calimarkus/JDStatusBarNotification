@@ -12,7 +12,7 @@ struct StyleEditorScreen: View {
   @StateObject var style: ObservableCustomStyle = .init(ExampleStyle.editor.buildStyle())
   @State var editingTitle: Bool = true
 
-  weak static var statusBarView: _SBNotificationView? = nil
+  weak static var statusBarView: __JDSBNotificationView? = nil
 
   func presentDefault(allowActivity: Bool = true, allowProgress: Bool = true, completion: @escaping () -> Void) {
     StyleEditorScreen.statusBarView = NotificationPresenter.shared.present(
@@ -21,7 +21,7 @@ struct StyleEditorScreen: View {
       styleName: style.registerComputedStyle()
     ) { _ in
       completion()
-    } as? _SBNotificationView
+    } as? __JDSBNotificationView
 
     if allowActivity && showActivity {
       NotificationPresenter.shared.displayActivityIndicator(true)

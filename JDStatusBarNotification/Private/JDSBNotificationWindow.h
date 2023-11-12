@@ -8,12 +8,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(_SBNotificationWindowDelegate)
+NS_REFINED_FOR_SWIFT
 @protocol JDSBNotificationWindowDelegate <NSObject>
 - (void)didDismissStatusBar;
 @end
 
-NS_SWIFT_NAME(_SBNotificationWindow)
+NS_REFINED_FOR_SWIFT
 @interface JDSBNotificationWindow : UIWindow
 
 @property (nonatomic, strong) JDSBNotificationViewController *statusBarViewController;

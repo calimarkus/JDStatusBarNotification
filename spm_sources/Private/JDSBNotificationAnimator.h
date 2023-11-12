@@ -7,9 +7,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ _Nullable JDSBNotificationAnimatorCompletion)(void) NS_SWIFT_NAME(_SBNotificationAnimatorCompletion);
+typedef void (^ _Nullable JDSBNotificationAnimatorCompletion)(void) NS_REFINED_FOR_SWIFT;
 
-NS_SWIFT_NAME(_SBNotificationAnimator)
+NS_REFINED_FOR_SWIFT
 @interface JDSBNotificationAnimator : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;

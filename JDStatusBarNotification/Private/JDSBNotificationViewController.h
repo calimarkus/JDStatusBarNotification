@@ -8,14 +8,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ _Nullable JDSBNotificationViewControllerCompletion)(void) NS_SWIFT_NAME(_SBNotificationViewControllerCompletion);
+typedef void (^ _Nullable JDSBNotificationViewControllerCompletion)(void) NS_REFINED_FOR_SWIFT;
 
-NS_SWIFT_NAME(_SBNotificationViewControllerDelegate)
+NS_REFINED_FOR_SWIFT
 @protocol JDSBNotificationViewControllerDelegate
 - (void)didDismissStatusBar;
 @end
 
-NS_SWIFT_NAME(_SBNotificationViewController)
+NS_REFINED_FOR_SWIFT
 @interface JDSBNotificationViewController : UIViewController
 
 @property (nonatomic, strong, readonly) JDSBNotificationView *statusBarView;

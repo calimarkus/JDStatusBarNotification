@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class JDStatusBarNotificationStyle;
 
-NS_SWIFT_NAME(_SBNotificationViewDelegate)
+NS_REFINED_FOR_SWIFT
 @protocol JDSBNotificationViewDelegate <NSObject>
 - (void)didUpdateStyle;
 @end
 
-NS_SWIFT_NAME(_SBNotificationView)
+NS_REFINED_FOR_SWIFT
 @interface JDSBNotificationView : UIView
 
 @property (nonatomic, weak, nullable) id<JDSBNotificationViewDelegate> delegate;
