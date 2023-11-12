@@ -18,7 +18,7 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
     super.init()
   }
 
-  func animateIn(duration: Double, completion: (() -> Void)?) {
+  func animateIn(for duration: Double, completion: (() -> Void)?) {
     let view = statusBarView
 
     animateInCompletionBlock = nil
@@ -81,7 +81,7 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
     statusBarView.layer.add(animation, forKey: "JDBounceAnimation")
   }
 
-  func animateOut(duration: Double, completion: (() -> Void)?) {
+  func animateOut(for duration: Double, completion: (() -> Void)?) {
     let style = statusBarView.style
     let view = statusBarView
 
