@@ -6,7 +6,7 @@
 #import "JDSBNotificationAnimator.h"
 #import "JDStatusBarNotificationStyle.h"
 #import "JDSBNotificationView.h"
-#import "UIApplication+JDSB_MainWindow.h"
+#import "GeneratedObjcSymbolsFromSwift.h"
 
 @interface JDSBNotificationViewController () <JDSBNotificationViewDelegate>
 @end
