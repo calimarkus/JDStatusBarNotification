@@ -26,15 +26,19 @@ import SwiftUI
  * your application once it was created. The default ``StatusBarNotificationStyle`` and any styles
  * added by the user also stay in memory permanently.
  */
-public struct NotificationPresenter {
+public class NotificationPresenter: NotificationWindowDelegate {
+
+  var windowScene: UIWindowScene?
+  var overlayWindow: NotificationWindow?
+  var styleCache: StyleCache
+
   /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
   ///
   /// - Returns: An initialized ``NotificationPresenter`` instance.
-  public static let shared = NotificationPresenter()
+  public static var shared = NotificationPresenter()
 
-  private init() {}
-  var objcPresenter: __JDStatusBarNotificationPresenter {
-    __JDStatusBarNotificationPresenter.shared()
+  private init() {
+    styleCache = StyleCache()
   }
 
   /// Called upon animation completion.
@@ -51,6 +55,41 @@ public struct NotificationPresenter {
   ///
   public typealias PrepareStyleClosure = (StatusBarNotificationStyle) -> StatusBarNotificationStyle
 
+  fileprivate func present(_ title: String?,
+                           subtitle: String? = nil,
+                           style: StatusBarNotificationStyle,
+                           completion: Completion? = nil) -> NotificationView {
+    let window = overlayWindow ?? NotificationWindow(for: style, using: windowScene, delegate: self)
+    overlayWindow = window
+
+    let view = window.statusBarViewController.present(withStyle: style) {
+      completion?(self)
+    }
+
+    view.title = title
+    view.subtitle = subtitle
+
+    return view
+  }
+
+  // MARK: - NotificationWindowDelegate
+
+  func didDismissStatusBar() {
+    overlayWindow?.removeFromSuperview()
+    overlayWindow?.isHidden = true
+    overlayWindow?.rootViewController = nil
+    overlayWindow = nil
+  }
+}
+
+// MARK: - Public API
+
+/// A protocol for a custom controller, which controls the size of a presented custom view.
+public protocol NotificationPresenterCustomViewSizingController {
+  func sizeThatFits(in size: CGSize) -> CGSize
+}
+
+extension NotificationPresenter {
   // MARK: - Presentation
 
   /// Present a notification using the default style or a named style.
@@ -72,9 +111,10 @@ public struct NotificationPresenter {
                       duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
-    let view = objcPresenter.present(withTitle: title, subtitle: subtitle, customStyle: styleName, completion: { _ in completion?(self) })
+    let style = styleCache.style(forName: styleName)
+    let view = present(title, subtitle: subtitle, style: style, completion: completion)
     if let duration {
-      objcPresenter.dismiss(afterDelay: duration)
+      dismiss(after: duration)
     }
     return view
   }
@@ -97,9 +137,10 @@ public struct NotificationPresenter {
                       duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
-    let view = objcPresenter.present(withTitle: title, subtitle: subtitle, includedStyle: includedStyle, completion: { _ in completion?(self) })
+    let style = styleCache.style(forIncludedStyle: includedStyle)
+    let view = present(title, subtitle: subtitle, style: style, completion: completion)
     if let duration {
-      objcPresenter.dismiss(afterDelay: duration)
+      dismiss(after: duration)
     }
     return view
   }
@@ -127,10 +168,11 @@ public struct NotificationPresenter {
                                 styleName: String? = nil,
                                 completion: Completion? = nil) -> UIView
   {
-    return objcPresenter.present(withCustomView: view,
-                                 sizingController: sizingController,
-                                 styleName: styleName,
-                                 completion: { _ in completion?(self) })
+    let style = styleCache.style(forName: styleName)
+    let view = present(nil, style: style, completion: completion)
+    view.customSubview = view
+    view.customSubviewSizingController = sizingController
+    return view
   }
 
   /// Present a notification using a custom SwiftUI view.
@@ -147,10 +189,10 @@ public struct NotificationPresenter {
   {
     let controller = UIHostingController(rootView: viewBuilder())
     controller.view.backgroundColor = .clear
-    return objcPresenter.present(withCustomView: controller.view,
-                                 sizingController: HostingControllerSizingController(for: controller),
-                                 styleName: styleName,
-                                 completion: { _ in completion?(self) })
+    return presentCustomView(controller.view,
+                             sizingController: HostingControllerSizingController(for: controller),
+                             styleName: styleName,
+                             completion: completion)
   }
 
   // MARK: - Dismissal
@@ -164,8 +206,12 @@ public struct NotificationPresenter {
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
   public func dismiss(animated: Bool = true, after delay: Double? = nil, completion: Completion? = nil) {
-    objcPresenter.dismiss(animated:animated, afterDelay: delay ?? 0.0, completion: { _ in completion?(self) })
+    overlayWindow?.statusBarViewController .dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: {
+      completion?(self)
+    })
   }
+
+  // MARK: - Style Customization
 
   /// Defines a new default style.
   /// The new style will be used in all future presentations that have no specific style specified.
@@ -173,10 +219,8 @@ public struct NotificationPresenter {
   /// - Parameter prepare: Provides the current default ``StatusBarNotificationStyle`` instance for further customization.
   ///
   public func updateDefaultStyle(_ prepare: PrepareStyleClosure) {
-    objcPresenter.updateDefaultStyle(prepare)
+    styleCache.updateDefaultStyle(prepare)
   }
-
-  // MARK: - Style Customization
 
   /// Adds a new named style - based on an included style, if given.
   /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
@@ -196,11 +240,7 @@ public struct NotificationPresenter {
                        usingStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
                        prepare: PrepareStyleClosure) -> String
   {
-    if let includedStyle {
-      return objcPresenter.addStyleNamed(name, basedOn: includedStyle, prepare: prepare)
-    } else {
-      return objcPresenter.addStyleNamed(name, prepare: prepare)
-    }
+    return styleCache.addStyleNamed(name, basedOnStyle: includedStyle, prepare: prepare)
   }
 
   // MARK: - Display supplementary views
@@ -213,7 +253,7 @@ public struct NotificationPresenter {
   /// - Parameter percentage: The percentage in a range from 0.0 to 1.0
   ///
   public func displayProgressBar(at percentage: Double) {
-    objcPresenter.displayProgressBar(withPercentage: percentage)
+    overlayWindow?.statusBarViewController.statusBarView.progressBarPercentage = percentage
   }
 
   /// Displays a progress bar and animates it to the provided `percentage`.
@@ -227,7 +267,9 @@ public struct NotificationPresenter {
   ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
   ///
   public func animateProgressBar(to percentage: Double, duration: Double, completion: Completion?) {
-    objcPresenter.animateProgressBar(toPercentage: percentage, animationDuration: duration, completion: { _ in completion?(self) })
+    overlayWindow?.statusBarViewController.statusBarView.animateProgressBar(toPercentage: percentage, animationDuration: duration) {
+      completion?(self)
+    }
   }
 
   /// Displays an activity indicator as the notifications left view.
@@ -239,7 +281,7 @@ public struct NotificationPresenter {
   /// - Parameter show:  Show or hide the activity indicator.
   ///
   public func displayActivityIndicator(_ show: Bool) {
-    objcPresenter.displayActivityIndicator(show)
+    overlayWindow?.statusBarViewController.statusBarView.displaysActivityIndicator = show
   }
 
   /// Displays a view on the left side of the text.
@@ -249,7 +291,7 @@ public struct NotificationPresenter {
   ///                       icon / image / profile picture etc. A nil value removes an existing leftView.
   ///
   public func displayLeftView(_ leftView: UIView?) {
-    objcPresenter.displayLeftView(leftView)
+    overlayWindow?.statusBarViewController.statusBarView.leftView = leftView
   }
 
   // MARK: - Additional Presenter APIs
@@ -259,7 +301,7 @@ public struct NotificationPresenter {
   /// - Parameter title: The new title to display
   ///
   public func updateTitle(_ title: String) {
-    objcPresenter.updateText(title)
+    overlayWindow?.statusBarViewController.statusBarView.title = title
   }
 
   /// Updates the subtitle of an existing notification without animation.
@@ -267,7 +309,7 @@ public struct NotificationPresenter {
   /// - Parameter subtitle: The new subtitle to display
   ///
   public func updateSubtitle(_ subtitle: String?) {
-    objcPresenter.updateSubtitle(subtitle)
+    overlayWindow?.statusBarViewController.statusBarView.subtitle = subtitle
   }
 
   /// Let's you check if a notification is currently displayed.
@@ -275,7 +317,7 @@ public struct NotificationPresenter {
   /// - Returns: `true` if a notification is currently displayed. Otherwise `false`.
   ///
   public var isVisible: Bool {
-    objcPresenter.isVisible()
+    overlayWindow != nil
   }
 
   /// Lets you set an explicit `UIWindowScene`, in which notifications should be presented in. In most cases you don't need to set this.
@@ -285,7 +327,7 @@ public struct NotificationPresenter {
   /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
   ///
   public func setWindowScene(_ windowScene: UIWindowScene) {
-    objcPresenter.setWindowScene(windowScene)
+    self.windowScene = windowScene
   }
 }
 

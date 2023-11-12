@@ -9,25 +9,28 @@
 import Foundation
 import UIKit
 
-class JDSBNotificationStyleCache: NSObject {
+public class StyleCache: NSObject {
   var defaultStyle: StatusBarNotificationStyle = StatusBarNotificationStyle()
   var userStyles: [String: StatusBarNotificationStyle] = [:]
 
-  public func style(forName styleName: String) -> StatusBarNotificationStyle {
-    return userStyles[styleName] ?? defaultStyle
+  public func style(forName styleName: String?) -> StatusBarNotificationStyle {
+    if let styleName, let style = userStyles[styleName] {
+      return style
+    }
+    return defaultStyle
   }
 
   public func style(forIncludedStyle includedStyle: IncludedStatusBarNotificationStyle) -> StatusBarNotificationStyle {
     return buildStyleForIncludedStyle(includedStyle) ?? defaultStyle
   }
 
-  public func updateDefaultStyle(prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) {
+  public func updateDefaultStyle(_ styleBuilder: NotificationPresenter.PrepareStyleClosure) {
     defaultStyle = styleBuilder(defaultStyle)
   }
 
   public func addStyleNamed(_ styleName: String,
                      basedOnStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
-                     prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) -> String?
+                     prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) -> String
   {
     userStyles[styleName] = styleBuilder(buildStyleForIncludedStyle(includedStyle) ?? defaultStyle)
     return styleName

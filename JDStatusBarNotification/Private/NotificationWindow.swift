@@ -8,32 +8,32 @@
 
 import Foundation
 
-protocol NotificationWindowDelegate: NSObject {
+protocol NotificationWindowDelegate : AnyObject {
   func didDismissStatusBar()
 }
 
-public class NotificationWindow: UIWindow, JDSBNotificationViewControllerDelegate {
-  let statusBarViewController: JDSBNotificationViewController
+public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
+  let statusBarViewController: NotificationViewController
   weak var delegate: NotificationWindowDelegate?
 
-  init(style: StatusBarNotificationStyle,
-       windowScene: UIWindowScene?,
-       statusBarViewController: JDSBNotificationViewController,
+  init(for style: StatusBarNotificationStyle,
+       using windowScene: UIWindowScene?,
        delegate: NotificationWindowDelegate)
   {
     // attempt to infer window scene
+    var windowSceneToUse = windowScene
     if windowScene == nil {
-      windowScene = UIApplication.shared.jdsb_mainApplicationWindowIgnoringWindow(nil)?.windowScene
+      windowSceneToUse = UIApplication.shared.jdsb_mainApplicationWindowIgnoringWindow(nil)?.windowScene
     }
 
-    if let windowScene {
-      super.init(windowScene: windowScene)
+    if let windowSceneToUse {
+      super.init(windowScene: windowSceneToUse)
     } else {
       super.init(frame: UIScreen.main.bounds)
     }
 
     self.delegate = delegate
-    let statusBarViewController = JDSBNotificationViewController()
+    let statusBarViewController = NotificationViewController()
     statusBarViewController.delegate = self
     statusBarViewController.jdsb_window = self
     self.rootViewController = statusBarViewController
@@ -49,7 +49,7 @@ public class NotificationWindow: UIWindow, JDSBNotificationViewControllerDelegat
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - JDSBNotificationViewControllerDelegate
+  // MARK: - NotificationViewControllerDelegate
 
   func didDismissStatusBar() {
     delegate?.didDismissStatusBar()
