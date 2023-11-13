@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2023-11-13
+
+### Changed
+
+- Bring back Swift 5.7 compatibility
+
 ## [2.1.1] - 2023-11-05
 
 ### Changed
@@ -157,7 +163,8 @@ Those adjustments should be simple though - mostly new API naming.
 
 Old version based on original release. No release notes available.
 
-[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.1...HEAD
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.2...HEAD
+[2.1.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.0...2.1.2
 [2.1.1]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.9...2.1.0
 [2.0.9]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.8...2.0.9
