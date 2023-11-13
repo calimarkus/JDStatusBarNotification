@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NotificationWindowDelegate : AnyObject {
   func didDismissStatusBar()
@@ -20,6 +21,10 @@ public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
        using windowScene: UIWindowScene?,
        delegate: NotificationWindowDelegate)
   {
+
+    let statusBarViewController = NotificationViewController()
+    self.statusBarViewController = statusBarViewController
+
     // attempt to infer window scene
     var windowSceneToUse = windowScene
     if windowScene == nil {
@@ -33,16 +38,14 @@ public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
     }
 
     self.delegate = delegate
-    let statusBarViewController = NotificationViewController()
     statusBarViewController.delegate = self
     statusBarViewController.jdsb_window = self
-    self.rootViewController = statusBarViewController
-    self.statusBarViewController = statusBarViewController
+    rootViewController = statusBarViewController
 
-    self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    self.backgroundColor = .clear
-    self.isUserInteractionEnabled = true
-    self.windowLevel = .statusBar
+    autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    backgroundColor = .clear
+    isUserInteractionEnabled = true
+    windowLevel = .statusBar
   }
   
   required init?(coder: NSCoder) {
@@ -59,7 +62,7 @@ public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
 
   public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     let topBar = statusBarViewController.statusBarView
-    if let topBar, topBar.userInteractionEnabled {
+    if topBar.isUserInteractionEnabled {
       return topBar.hitTest(convert(point, to: topBar), with: event)
     }
     return nil;

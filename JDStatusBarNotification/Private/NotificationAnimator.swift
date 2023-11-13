@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
 
@@ -24,7 +25,7 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
     animateInCompletionBlock = nil
     view.layer.removeAllAnimations()
 
-    if statusBarView.style.animationType == .fade {
+    if view.style.animationType == .fade {
       view.alpha = 0.0
       view.transform = CGAffineTransform.identity
     } else {
@@ -32,8 +33,8 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
       view.transform = CGAffineTransform(translationX: 0, y: -view.bounds.height)
     }
 
-    if statusBarView.style.animationType == .bounce {
-      animateInWithBounceAnimation(statusBarView: statusBarView, delegate: self)
+    if view.style.animationType == .bounce {
+      animateInWithBounceAnimation(statusBarView: view, delegate: self)
     } else {
       UIView.animate(withDuration: duration, animations: {
         view.alpha = 1.0
@@ -70,23 +71,23 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
       values.append(CATransform3DMakeTranslation(0, CGFloat(easedValue), 0))
     }
 
-    let animation = CAKeyframeAnimation(keyPath: "transform")
+    let keyPath = "transform"
+    let animation = CAKeyframeAnimation(keyPath: keyPath)
     animation.timingFunction = CAMediaTimingFunction(name: .linear)
     animation.duration = 0.75
     animation.values = values
     animation.isRemovedOnCompletion = false
     animation.fillMode = .forwards
     animation.delegate = delegate
-    statusBarView.layer.setValue(toCenterY, forKeyPath: animation.keyPath)
+    statusBarView.layer.setValue(toCenterY, forKeyPath: keyPath)
     statusBarView.layer.add(animation, forKey: "JDBounceAnimation")
   }
 
   func animateOut(for duration: Double, completion: (() -> Void)?) {
-    let style = statusBarView.style
     let view = statusBarView
 
     UIView.animate(withDuration: duration, animations: {
-      if style.animationType == .fade {
+      if view.style.animationType == .fade {
         view.alpha = 0.0
       } else {
         view.transform = CGAffineTransform(translationX: 0, y: -view.bounds.height)

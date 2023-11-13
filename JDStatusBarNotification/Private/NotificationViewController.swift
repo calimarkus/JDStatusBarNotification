@@ -19,7 +19,7 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
   private var forceDismissalOnTouchesEnded = false
   private var dismissTimer: Timer?
   private var dismissCompletionBlock: DismissCompletion?
-  private var animator: JDSBNotificationAnimator!
+  private var animator: JDSBNotificationAnimator
   private var panInitialY: CGFloat = 0.0
   private var panMaxY: CGFloat = 0.0
 
@@ -29,12 +29,14 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
 
   init() {
     let statusBarView = NotificationView()
-    statusBarView.delegate = self
-    statusBarView.panGestureRecognizer.addTarget(self, action: #selector(_panGestureRecognized(_:)))
-    statusBarView.longPressGestureRecognizer.addTarget(self, action: #selector(_longPressGestureRecognized(_:)))
-    statusBarView = statusBarView
+    self.statusBarView = statusBarView
+    self.animator = JDSBNotificationAnimator(statusBarView: statusBarView)
+    super.init(nibName: nil, bundle: nil)
 
-    animator = JDSBNotificationAnimator(statusBarView: statusBarView)
+    statusBarView.delegate = self
+    statusBarView.panGestureRecognizer.addTarget(self, action: #selector(panGestureRecognized(_:)))
+    statusBarView.longPressGestureRecognizer.addTarget(self, action: #selector(longPressGestureRecognized(_:)))
+
   }
 
   @available(*, unavailable)
@@ -51,19 +53,17 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
   // MARK: - Presentation
 
   @discardableResult
-  func present(withStyle style: NotificationStyle, completion: (() -> Void)?) -> NotificationView {
-    let topBar = statusBarView
+  func present(withStyle style: StatusBarNotificationStyle, completion: (() -> Void)?) -> NotificationView {
+    let view = statusBarView
 
-    // reset text
-    topBar.setTitle(nil)
-    topBar.setSubtitle(nil)
-
-    // reset progress & activity
-    topBar.setProgressBarPercentage(0.0)
-    topBar.setDisplaysActivityIndicator(false)
+    // reset text, progress & activity
+    view.title = nil
+    view.subtitle = nil
+    view.progressBarPercentage = 0.0
+    view.displaysActivityIndicator = false
 
     // set style
-    topBar.setStyle(style)
+    view.style = style
 
     // reset dismiss timer & completion
     dismissTimer?.invalidate()
@@ -73,7 +73,7 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
     // animate in
     animator.animateIn(for: 0.4, completion: completion)
 
-    return topBar
+    return view
   }
 
   // MARK: - NotificationViewDelegate
@@ -94,17 +94,17 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
     }
 
     // Resize statusBarView
-    guard let statusBarView = statusBarView else { return }
+    let view = statusBarView
     let safeAreaInset = jdsbWindow.safeAreaInsets.top
-    let heightIncludingNavBar = safeAreaInset + contentHeight(for: statusBarView.style, with: safeAreaInset)
-    statusBarView.transform = CGAffineTransform.identity
-    statusBarView.frame = CGRect(x: 0, y: 0, width: window.frame.size.width, height: heightIncludingNavBar)
+    let heightIncludingNavBar = safeAreaInset + contentHeight(for: view.style, with: safeAreaInset)
+    view.transform = CGAffineTransform.identity
+    view.frame = CGRect(x: 0, y: 0, width: jdsbWindow.frame.size.width, height: heightIncludingNavBar)
 
     // Relayout progress bar
-    statusBarView.setProgressBarPercentage(statusBarView.progressBarPercentage)
+    view.progressBarPercentage = view.progressBarPercentage
   }
 
-  private func contentHeight(for style: JDStatusBarNotificationStyle, with safeAreaInset: CGFloat) -> CGFloat {
+  private func contentHeight(for style: StatusBarNotificationStyle, with safeAreaInset: CGFloat) -> CGFloat {
     switch style.backgroundStyle.backgroundType {
     case .fullWidth:
       if safeAreaInset >= 54.0 {
@@ -163,12 +163,14 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
       if !forceDismissalOnTouchesEnded && -relativeMovement < 0.25 {
         // Animate back in place
         UIView.animate(withDuration: 0.22) {
-          statusBarView.transform = .identity
+          self.statusBarView.transform = .identity
         }
       } else {
         // Dismiss
         forceDismiss()
       }
+      @unknown default:
+        break
     }
   }
 
