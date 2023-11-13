@@ -27,6 +27,7 @@ Full-Width styles in action (the pill styles support the same features / animati
       - In ObjC: `#import "JDStatusBarNotification.h"` (or `@import JDStatusBarNotificationObjC;`)
 - [**CocoaPods:**](https://guides.cocoapods.org)
   - `pod 'JDStatusBarNotification'`
+  - or `pod 'JDStatusBarNotification/ObjC'` if you want to avoid pulling in any Swift.
 - [**Carthage:**](https://github.com/Carthage/Carthage)
   - `github "calimarkus/JDStatusBarNotification"`
 - **Manually:**
