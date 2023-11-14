@@ -27,7 +27,8 @@ struct ExamplesScreen: View {
   @State var backgroundType: StatusBarNotificationBackgroundType = .pill
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
-    let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+    let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) {
+      var style = $0
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
@@ -45,7 +46,8 @@ struct ExamplesScreen: View {
   }
 
   func showIncludedStyle(_ text: String, style: IncludedStatusBarNotificationStyle) {
-    let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: style) { style in
+    let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: style) {
+      var style = $0
       style.backgroundStyle.backgroundType = backgroundType
       return style
     }
@@ -95,7 +97,8 @@ struct ExamplesScreen: View {
           .onChange(of: showActivity) { _ in
             if !NotificationPresenter.shared.isVisible {
               if showActivity {
-                let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+                let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) {
+                  var style = $0
                   style.backgroundStyle.backgroundType = backgroundType
                   style.backgroundStyle.pillStyle.minimumWidth = 0.0
                   return style
@@ -155,7 +158,8 @@ struct ExamplesScreen: View {
           .foregroundStyle(.secondary)
 
         cell(title: "Simple text", subtitle: "Display a SwiftUI text, 2.5s") {
-          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) {
+            var style = $0
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemMint
             style.backgroundStyle.pillStyle.minimumWidth = 20.0
@@ -173,7 +177,8 @@ struct ExamplesScreen: View {
         }
 
         cell(title: "Two row layout + Icon", subtitle: "Display SwiftUI text & image, 2.5s") {
-          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) {
+            var style = $0
             style.backgroundStyle.backgroundType = backgroundType
             style.backgroundStyle.backgroundColor = .systemIndigo
             style.backgroundStyle.pillStyle.minimumWidth = 20.0
@@ -211,7 +216,8 @@ struct ExamplesScreen: View {
 
         if #available(iOS 16.0, *) { // Gradient is iOS 16+
           cell(title: "Gradient & Icon", subtitle: "A custom SwiftUI background, 2.5s") {
-            let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+            let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) {
+              var style = $0
               style.backgroundStyle.backgroundType = backgroundType
               style.backgroundStyle.backgroundColor = UIColor(.orange)
               style.backgroundStyle.pillStyle.minimumWidth = 20.0
@@ -266,7 +272,8 @@ struct ExamplesScreen: View {
           button.setTitle("Dismiss!", for: .normal)
 
           // present
-          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) { style in
+          let styleName = NotificationPresenter.shared.addStyle(named: "tmp", usingStyle: .defaultStyle) {
+            var style = $0
             style.backgroundStyle.backgroundType = backgroundType
             style.canTapToHold = false // this ensure the button can receive touches
             return style

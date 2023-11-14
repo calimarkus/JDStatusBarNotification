@@ -2,6 +2,8 @@
 //
 
 import Combine
+import JDStatusBarNotification
+import UIKit
 
 class CustomTextStyle: ObservableObject, Equatable {
   @Published var font: UIFont
@@ -23,8 +25,8 @@ class CustomTextStyle: ObservableObject, Equatable {
   }
 
   func computedStyle() -> StatusBarNotificationTextStyle {
-    let style = StatusBarNotificationTextStyle()
-    style.textColor = textColor
+    var style = StatusBarNotificationTextStyle()
+    style.textColor = textColor ?? .black
     style.font = font
     style.textOffsetY = textOffsetY
     style.shadowColor = shadowColor
@@ -100,7 +102,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     pillBorderWidth = defaultStyle.backgroundStyle.pillStyle.borderWidth
     pillShadowColor = defaultStyle.backgroundStyle.pillStyle.shadowColor
     pillShadowRadius = defaultStyle.backgroundStyle.pillStyle.shadowRadius
-    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffsetXY
+    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
 
     // bar
     animationType = .bounce
@@ -135,12 +137,12 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   }
 
   func computedStyle() -> StatusBarNotificationStyle {
-    let style = StatusBarNotificationStyle()
+    var style = StatusBarNotificationStyle()
 
     style.textStyle = textStyle.computedStyle()
     style.subtitleStyle = subtitleStyle.computedStyle()
 
-    style.backgroundStyle.backgroundColor = backgroundColor
+    style.backgroundStyle.backgroundColor = backgroundColor ?? .white
     style.backgroundStyle.backgroundType = backgroundType
     style.backgroundStyle.pillStyle.minimumWidth = minimumPillWidth
     style.backgroundStyle.pillStyle.height = pillHeight
@@ -149,7 +151,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.pillStyle.borderWidth = pillBorderWidth
     style.backgroundStyle.pillStyle.shadowColor = pillShadowColor
     style.backgroundStyle.pillStyle.shadowRadius = pillShadowRadius
-    style.backgroundStyle.pillStyle.shadowOffsetXY = pillShadowOffset
+    style.backgroundStyle.pillStyle.shadowOffset = pillShadowOffset
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
@@ -162,7 +164,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.leftViewStyle.tintColor = leftViewTintColor
     style.leftViewStyle.alignment = leftViewAlignment
 
-    style.progressBarStyle.barColor = pbBarColor
+    style.progressBarStyle.barColor = pbBarColor ?? .white
     style.progressBarStyle.barHeight = pbBarHeight
     style.progressBarStyle.position = pbPosition
     style.progressBarStyle.horizontalInsets = pbHorizontalInsets

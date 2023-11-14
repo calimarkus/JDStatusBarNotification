@@ -2,6 +2,7 @@
 //
 
 import SwiftUI
+import JDStatusBarNotification
 
 struct StatusBarPreviewView: UIViewRepresentable {
   var title: String?
@@ -41,7 +42,7 @@ struct StatusBarPreviewView: UIViewRepresentable {
   }
 
   func makeUIView(context: Context) -> UIView {
-    let view = __JDSBNotificationView()
+    let view = NotificationView()
     view.title = self.title
     view.subtitle = self.subtitle
     view.style = self.style
@@ -56,12 +57,14 @@ struct StatusBarPreviewView: UIViewRepresentable {
 struct StatusBarPreviewView_Previews: PreviewProvider {
   static var previews: some View {
     VStack(spacing: 8.0) {
-      StatusBarPreviewView("Full Width Style - Light") { style in
+      StatusBarPreviewView("Full Width Style - Light") {
+        var style = $0
         style.backgroundStyle.backgroundType = .fullWidth
       }
       .frame(height: 100)
 
-      StatusBarPreviewView("Full Width Style - Dark", subtitle: "Test", progress: 0.88, activity: true) { style in
+      StatusBarPreviewView("Full Width Style - Dark", subtitle: "Test", progress: 0.88, activity: true) {
+        var style = $0
         style.backgroundStyle.backgroundColor = .darkGray
         style.textStyle.textColor = .white
         style.backgroundStyle.backgroundType = .fullWidth
@@ -70,24 +73,28 @@ struct StatusBarPreviewView_Previews: PreviewProvider {
         style.progressBarStyle.horizontalInsets = 0.0
       }.frame(height: 100)
 
-      StatusBarPreviewView("Pill Style - Light", subtitle: "Test II") { style in
+      StatusBarPreviewView("Pill Style - Light", subtitle: "Test II") {
+        var style = $0
         style.progressBarStyle.offsetY = 0.0
       }.frame(height: 50)
 
-      StatusBarPreviewView("Pill Style - Dark", progress: 0.88, activity: true) { style in
+      StatusBarPreviewView("Pill Style - Dark", progress: 0.88, activity: true) {
+        var style = $0
         style.backgroundStyle.backgroundColor = .darkGray
         style.textStyle.textColor = .white
         style.progressBarStyle.barColor = .magenta
       }.frame(height: 50)
 
       StatusBarPreviewView("The quick brown fox jumps over the lazy dog. (Longer text test)",
-                           progress: 1.0) { style in
+                           progress: 1.0) {
+        var style = $0
         style.progressBarStyle.offsetY = 0.0
         style.progressBarStyle.horizontalInsets = 10.0
       }.frame(height: 50)
 
       StatusBarPreviewView("FYI", subtitle: "Short one.",
-                           progress: 1.0) { style in
+                           progress: 1.0) {
+        var style = $0
         style.progressBarStyle.offsetY = 0.0
         style.progressBarStyle.horizontalInsets = 10.0
       }.frame(height: 50)
@@ -96,15 +103,18 @@ struct StatusBarPreviewView_Previews: PreviewProvider {
         .frame(height: 36)
         .padding(.bottom, 5.0)
 
-      StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)") { style in
+      StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)") {
+        var style = $0
         style.progressBarStyle.offsetY = 0.0
       }.frame(height: 50)
 
-      StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)", activity: true) { style in
+      StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)", activity: true) {
+        var style = $0
         style.progressBarStyle.offsetY = 0.0
       }.frame(height: 50)
 
-      StatusBarPreviewView("The quick brown fox jumps over the lazy dog. (Longer text test)", subtitle: "Short one", activity: true) { style in
+      StatusBarPreviewView("The quick brown fox jumps over the lazy dog. (Longer text test)", subtitle: "Short one", activity: true) {
+        var style = $0
         style.progressBarStyle.offsetY = 0.0
       }.frame(height: 50)
 

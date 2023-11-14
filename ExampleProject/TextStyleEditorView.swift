@@ -2,6 +2,7 @@
 //
 
 import SwiftUI
+import JDStatusBarNotification
 
 struct TextStyleEditorView: View {
   let title: String
