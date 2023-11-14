@@ -4,11 +4,11 @@
 import Foundation
 import UIKit
 
-protocol NotificationViewDelegate: AnyObject {
+public protocol NotificationViewDelegate: AnyObject {
   func didUpdateStyle()
 }
 
-class NotificationView: UIView, UIGestureRecognizerDelegate {
+public class NotificationView: UIView, UIGestureRecognizerDelegate {
   public weak var delegate: NotificationViewDelegate?
 
   public let longPressGestureRecognizer = UILongPressGestureRecognizer()
@@ -220,7 +220,7 @@ class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // MARK: - Title
-  var title: String? {
+  public var title: String? {
     get {
       return titleLabel.text
     }
@@ -234,7 +234,7 @@ class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // MARK: - Subtitle
-  var subtitle: String? {
+  public var subtitle: String? {
     get {
       return subtitleLabel.text
     }
@@ -281,14 +281,14 @@ class NotificationView: UIView, UIGestureRecognizerDelegate {
     }
   }
 
-  var customSubviewSizingController: NotificationPresenterCustomViewSizingController? {
+  public var customSubviewSizingController: NotificationPresenterCustomViewSizingController? {
     didSet {
       setNeedsLayout()
     }
   }
 
   // MARK: - Style
-  var style: StatusBarNotificationStyle = StatusBarNotificationStyle() {
+  public var style: StatusBarNotificationStyle = StatusBarNotificationStyle() {
     didSet {
       // Background
       let color = style.backgroundStyle.backgroundColor
@@ -401,7 +401,7 @@ class NotificationView: UIView, UIGestureRecognizerDelegate {
     return CGRect(x: pillX, y: pillY, width: pillWidth, height: pillHeight)
   }
 
-  override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
 
     // Content & pill view
@@ -538,8 +538,10 @@ class NotificationView: UIView, UIGestureRecognizerDelegate {
     }
   }
 
+  // MARK: - UIView overrides
+
   // HitTest
-  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+  public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     if isUserInteractionEnabled {
       return contentView.hitTest(convert(point, to: contentView), with: event)
     }
@@ -547,7 +549,7 @@ class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // UIGestureRecognizerDelegate
-  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     return (otherGestureRecognizer == longPressGestureRecognizer)
   }
 

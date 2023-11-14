@@ -71,7 +71,7 @@ public class StyleCache: NSObject {
           var style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = UIColor(red: 0.900, green: 0.734, blue: 0.034, alpha: 1.000)
           style.textStyle.textColor = .darkGray
-          style.subtitleStyle.textColor = .darkGray.withAlphaComponent(0.75)
+          style.subtitleStyle.textColor = UIColor.darkGray.withAlphaComponent(0.75)
           style.progressBarStyle.barColor = style.textStyle.textColor
           return style
 
@@ -88,7 +88,7 @@ public class StyleCache: NSObject {
           style.backgroundStyle.backgroundColor = .black
           style.textStyle.textColor = .green
           style.textStyle.font = UIFont(name: "Courier-Bold", size: 14.0)!
-          style.subtitleStyle.textColor = .white
+          style.subtitleStyle.textColor = UIColor.white
           style.subtitleStyle.font = UIFont(name: "Courier", size: 12.0)!
           style.progressBarStyle.barColor = .green
           style.systemStatusBarStyle = .lightContent
