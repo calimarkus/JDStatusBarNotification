@@ -181,7 +181,6 @@
 		7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableCustomStyle.swift; sourceTree = "<group>"; };
 		7E5402C2286708840079C579 /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5402C5286708850079C579 /* JDStatusBarNotification.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JDStatusBarNotification.docc; sourceTree = "<group>"; };
-		7E67050A284A4BE900AD58E1 /* ObjC-to-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjC-to-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
 		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
@@ -373,7 +372,6 @@
 		D264F8961820213200DA0E53 /* ExampleProject */ = {
 			isa = PBXGroup;
 			children = (
-				7E67050A284A4BE900AD58E1 /* ObjC-to-Swift-Bridging-Header.h */,
 				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
 				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
 				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
@@ -994,7 +992,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calimarkus.jdstatusbarnotifications;
 				PRODUCT_NAME = "JDSBN Example";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "ExampleProject/ObjC-to-Swift-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Swift-To-ObjC-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
