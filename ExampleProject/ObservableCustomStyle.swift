@@ -25,7 +25,7 @@ class CustomTextStyle: ObservableObject, Equatable {
   }
 
   func computedStyle() -> StatusBarNotificationTextStyle {
-    var style = StatusBarNotificationTextStyle()
+    let style = StatusBarNotificationTextStyle()
     style.textColor = textColor ?? .black
     style.font = font
     style.textOffsetY = textOffsetY
@@ -137,7 +137,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
   }
 
   func computedStyle() -> StatusBarNotificationStyle {
-    var style = StatusBarNotificationStyle()
+    let style = StatusBarNotificationStyle()
 
     style.textStyle = textStyle.computedStyle()
     style.subtitleStyle = subtitleStyle.computedStyle()

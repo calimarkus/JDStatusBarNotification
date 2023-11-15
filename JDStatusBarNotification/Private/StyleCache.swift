@@ -46,21 +46,21 @@ public class StyleCache: NSObject {
           return StatusBarNotificationStyle()
 
       case .light:
-          var style = StatusBarNotificationStyle()
+          let style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = .white
           style.textStyle.textColor = .gray
           style.systemStatusBarStyle = .darkContent
           return style
 
       case .dark:
-          var style = StatusBarNotificationStyle()
+          let style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = UIColor(red: 0.050, green: 0.078, blue: 0.120, alpha: 1.000)
           style.textStyle.textColor = UIColor(white: 0.95, alpha: 1.0)
           style.systemStatusBarStyle = .lightContent
           return style
 
       case .error:
-          var style = StatusBarNotificationStyle()
+          let style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = UIColor(red: 0.588, green: 0.118, blue: 0.000, alpha: 1.000)
           style.textStyle.textColor = .white
           style.subtitleStyle.textColor = UIColor.white.withAlphaComponent(0.6)
@@ -68,7 +68,7 @@ public class StyleCache: NSObject {
           return style
 
       case .warning:
-          var style = StatusBarNotificationStyle()
+          let style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = UIColor(red: 0.900, green: 0.734, blue: 0.034, alpha: 1.000)
           style.textStyle.textColor = .darkGray
           style.subtitleStyle.textColor = UIColor.darkGray.withAlphaComponent(0.75)
@@ -76,7 +76,7 @@ public class StyleCache: NSObject {
           return style
 
       case .success:
-          var style = StatusBarNotificationStyle()
+          let style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = UIColor(red: 0.588, green: 0.797, blue: 0.000, alpha: 1.000)
           style.textStyle.textColor = .white
           style.subtitleStyle.textColor = UIColor(red: 0.2, green: 0.5, blue: 0.2, alpha: 1.0)
@@ -84,7 +84,7 @@ public class StyleCache: NSObject {
           return style
 
       case .matrix:
-          var style = StatusBarNotificationStyle()
+          let style = StatusBarNotificationStyle()
           style.backgroundStyle.backgroundColor = .black
           style.textStyle.textColor = .green
           style.textStyle.font = UIFont(name: "Courier-Bold", size: 14.0)!
