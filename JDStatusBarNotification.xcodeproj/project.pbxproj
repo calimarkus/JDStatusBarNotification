@@ -242,23 +242,13 @@
 		7E6FBC1F285EB4C600A63FEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
 				7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */,
 				7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */,
 				7E0FCB78285DAEE800E7CB78 /* FormViews.swift */,
 				7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		7E6FBC20285EB4D300A63FEF /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
-				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
-				7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */,
-				7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */,
-			);
-			name = Screens;
 			sourceTree = "<group>";
 		};
 		7E8C519228585BE400C7C003 /* Public */ = {
@@ -320,10 +310,12 @@
 			children = (
 				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
 				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
-				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
+				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
+				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
 				7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */,
 				7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */,
-				7E6FBC20285EB4D300A63FEF /* Screens */,
+				7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */,
+				7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */,
 				7E6FBC1F285EB4C600A63FEF /* Views */,
 				7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */,
 				D264F8A21820213200DA0E53 /* Images.xcassets */,
