@@ -185,21 +185,21 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     // clamp progress
     clampedProgress = min(1.0, max(0.0, percentage))
 
-    guard let progressView else { return }
-
     // reset animations
-    progressView.layer.removeAllAnimations()
+    progressView?.layer.removeAllAnimations()
 
     // reset view
     if clampedProgress == 0.0 && animationDuration == 0.0 {
-      progressView.isHidden = true
-      progressView.frame = progressViewRect(forPercentage: 0.0, in: contentView.bounds, with: style)
+      progressView?.isHidden = true
+      progressView?.frame = progressViewRect(forPercentage: 0.0, in: contentView.bounds, with: style)
       completion?()
       return
     }
 
     // create view & reset state
     createProgressViewIfNeeded()
+    guard let progressView else { return }
+
     progressView.isHidden = false
 
     // update progressView frame
@@ -363,7 +363,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
 
   func realTextSizeForLabel(_ textLabel: UILabel) -> CGSize {
     let attributes = [NSAttributedString.Key.font: textLabel.font!]
-    return (textLabel.text! as NSString).size(withAttributes: attributes)
+    return ((textLabel.text ?? "") as NSString).size(withAttributes: attributes)
   }
 
   func roundRectMaskForRectAndRadius(_ rect: CGRect) -> CALayer {

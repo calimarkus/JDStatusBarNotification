@@ -28,7 +28,6 @@ import SwiftUI
  */
 public class NotificationPresenter: NotificationWindowDelegate {
 
-  var windowScene: UIWindowScene?
   var overlayWindow: NotificationWindow?
   var styleCache: StyleCache
 
@@ -69,6 +68,9 @@ public class NotificationPresenter: NotificationWindowDelegate {
     view.title = title
     view.subtitle = subtitle
 
+    window.isHidden = false;
+    window.statusBarViewController.setNeedsStatusBarAppearanceUpdate();
+
     return view
   }
 
@@ -80,16 +82,9 @@ public class NotificationPresenter: NotificationWindowDelegate {
     overlayWindow?.rootViewController = nil
     overlayWindow = nil
   }
-}
 
-// MARK: - Public API
+  // MARK: - Public API
 
-/// A protocol for a custom controller, which controls the size of a presented custom view.
-public protocol NotificationPresenterCustomViewSizingController {
-  func sizeThatFits(in size: CGSize) -> CGSize
-}
-
-extension NotificationPresenter {
   // MARK: - Presentation
 
   /// Present a notification using the default style or a named style.
@@ -163,14 +158,14 @@ extension NotificationPresenter {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  public func presentCustomView(_ view: UIView,
+  public func presentCustomView(_ customView: UIView,
                                 sizingController: NotificationPresenterCustomViewSizingController? = nil,
                                 styleName: String? = nil,
                                 completion: Completion? = nil) -> UIView
   {
     let style = styleCache.style(forName: styleName)
     let view = present(nil, style: style, completion: completion)
-    view.customSubview = view
+    view.customSubview = customView
     view.customSubviewSizingController = sizingController
     return view
   }
@@ -206,7 +201,7 @@ extension NotificationPresenter {
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
   public func dismiss(animated: Bool = true, after delay: Double? = nil, completion: Completion? = nil) {
-    overlayWindow?.statusBarViewController .dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: {
+    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: {
       completion?(self)
     })
   }
@@ -326,12 +321,15 @@ extension NotificationPresenter {
   ///
   /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
   ///
-  public func setWindowScene(_ windowScene: UIWindowScene) {
-    self.windowScene = windowScene
-  }
+  public var windowScene: UIWindowScene?
 }
 
 // MARK: - HostingControllerSizingController
+
+/// A protocol for a custom controller, which controls the size of a presented custom view.
+public protocol NotificationPresenterCustomViewSizingController {
+  func sizeThatFits(in size: CGSize) -> CGSize
+}
 
 extension NotificationPresenter {
   private class HostingControllerSizingController<Content>: NotificationPresenterCustomViewSizingController where Content: View {

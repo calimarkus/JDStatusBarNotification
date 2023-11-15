@@ -34,6 +34,7 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
     }
 
     if view.style.animationType == .bounce {
+      animateInCompletionBlock = completion
       animateInWithBounceAnimation(statusBarView: view, delegate: self)
     } else {
       UIView.animate(withDuration: duration, animations: {

@@ -198,7 +198,7 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
     }
 
     dismissCompletionBlock = completion
-    dismissTimer = Timer(timeInterval: delay, repeats: false) { [weak self] _ in
+    dismissTimer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { [weak self] _ in
       guard let self else { return }
       let block = dismissCompletionBlock
       dismissCompletionBlock = nil
