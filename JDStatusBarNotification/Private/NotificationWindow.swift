@@ -28,7 +28,7 @@ public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
     // attempt to infer window scene
     var windowSceneToUse = windowScene
     if windowScene == nil {
-      windowSceneToUse = UIApplication.shared.jdsb_mainApplicationWindowIgnoringWindow(nil)?.windowScene
+      windowSceneToUse = DiscoveryHelper.discoverMainWindowScene()
     }
 
     if let windowSceneToUse {

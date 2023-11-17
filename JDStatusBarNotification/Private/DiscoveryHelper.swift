@@ -1,5 +1,5 @@
 //
-//  UIApplication+Windows.swift
+//  DiscoveryHelper.swift
 //  JDStatusBarNotification
 //
 //  Created by Markus on 11/12/23.
@@ -9,27 +9,30 @@
 import Foundation
 import UIKit
 
-@objc
-public extension UIApplication {
+enum DiscoveryHelper {
 
-  func jdsb_mainApplicationWindowIgnoringWindow(_ ignoringWindow: UIWindow? = nil) -> UIWindow? {
+  static func discoverMainWindowScene() -> UIWindowScene? {
+    return discoverMainWindow()?.windowScene
+  }
+
+  static func discoverMainWindow(ignoring ignoredWindow: UIWindow? = nil) -> UIWindow? {
     var allWindows: [UIWindow];
-    if let ignoringWindow, let windowScene = ignoringWindow.windowScene {
+    if let ignoredWindow, let windowScene = ignoredWindow.windowScene {
       allWindows = windowScene.windows;
     } else {
       allWindows = UIApplication.shared.windows;
     }
     
     for window in allWindows {
-      if (!window.isHidden && window != ignoringWindow) {
+      if (!window.isHidden && window != ignoredWindow) {
         return window;
       }
     }
     return nil;
   }
 
-  func jdsb_mainControllerIgnoringViewController(_ viewController: UIViewController) -> UIViewController? {
-    let mainAppWindow = jdsb_mainApplicationWindowIgnoringWindow(viewController.view.window);
+  static func discoverMainViewController(ignoring viewController: UIViewController) -> UIViewController? {
+    let mainAppWindow = discoverMainWindow(ignoring: viewController.view.window);
     guard let mainAppWindow else { return nil }
 
     var topController = mainAppWindow.rootViewController;

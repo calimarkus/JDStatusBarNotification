@@ -88,7 +88,7 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
     guard let jdsbWindow = jdsb_window else { return }
 
     // Match main window transform & frame
-    if let window = UIApplication.shared.jdsb_mainApplicationWindowIgnoringWindow(jdsbWindow) {
+    if let window = DiscoveryHelper.discoverMainWindow(ignoring: jdsbWindow) {
       jdsbWindow.transform = window.transform
       jdsbWindow.frame = window.frame
     }
@@ -258,15 +258,15 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
   // MARK: - Rotation handling
 
   func shouldAutorotate() -> Bool {
-      return UIApplication.shared.jdsb_mainControllerIgnoringViewController(self)?.shouldAutorotate ?? false
+      return DiscoveryHelper.discoverMainViewController(ignoring: self)?.shouldAutorotate ?? false
   }
 
   func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-      return UIApplication.shared.jdsb_mainControllerIgnoringViewController(self)?.supportedInterfaceOrientations ?? .portrait
+      return DiscoveryHelper.discoverMainViewController(ignoring: self)?.supportedInterfaceOrientations ?? .portrait
   }
 
   func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-      return UIApplication.shared.jdsb_mainControllerIgnoringViewController(self)?.preferredInterfaceOrientationForPresentation ?? .portrait
+      return DiscoveryHelper.discoverMainViewController(ignoring: self)?.preferredInterfaceOrientationForPresentation ?? .portrait
   }
 
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -305,14 +305,14 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
 
   func defaultStatusBarStyle() -> UIStatusBarStyle {
       if isStatusBarAppearanceEnabled {
-          return UIApplication.shared.jdsb_mainControllerIgnoringViewController(self)?.preferredStatusBarStyle ?? .default
+          return DiscoveryHelper.discoverMainViewController(ignoring: self)?.preferredStatusBarStyle ?? .default
       }
       return super.preferredStatusBarStyle
   }
 
   override var prefersStatusBarHidden: Bool {
       if isStatusBarAppearanceEnabled {
-          return UIApplication.shared.jdsb_mainControllerIgnoringViewController(self)?.prefersStatusBarHidden ?? false
+          return DiscoveryHelper.discoverMainViewController(ignoring: self)?.prefersStatusBarHidden ?? false
       }
       return super.prefersStatusBarHidden
   }

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28D81A942B010C7500DE2CDF /* UIApplication+Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A932B010C7500DE2CDF /* UIApplication+Windows.swift */; };
-		28D81A952B0110C700DE2CDF /* UIApplication+Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A932B010C7500DE2CDF /* UIApplication+Windows.swift */; };
+		28D81A942B010C7500DE2CDF /* DiscoveryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */; };
+		28D81A952B0110C700DE2CDF /* DiscoveryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */; };
 		28D81A9B2B01217100DE2CDF /* NotificationWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */; };
 		28D81A9C2B01217100DE2CDF /* NotificationWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */; };
 		28D81A9E2B01257A00DE2CDF /* StyleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A9D2B01257A00DE2CDF /* StyleCache.swift */; };
@@ -142,7 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		28D81A932B010C7500DE2CDF /* UIApplication+Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Windows.swift"; sourceTree = "<group>"; };
+		28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryHelper.swift; sourceTree = "<group>"; };
 		28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationWindow.swift; sourceTree = "<group>"; };
 		28D81A9D2B01257A00DE2CDF /* StyleCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCache.swift; sourceTree = "<group>"; };
 		28D81AA02B012B0800DE2CDF /* NotificationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAnimator.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		7EBE340B2844CA2D0096CD55 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				28D81A932B010C7500DE2CDF /* UIApplication+Windows.swift */,
+				28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */,
 				28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */,
 				28D81A9D2B01257A00DE2CDF /* StyleCache.swift */,
 				28D81AA02B012B0800DE2CDF /* NotificationAnimator.swift */,
@@ -547,7 +547,7 @@
 				28D81A9E2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA12B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
 				7E008F5B2B02D38D00968AFE /* NotificationView.swift in Sources */,
-				28D81A942B010C7500DE2CDF /* UIApplication+Windows.swift in Sources */,
+				28D81A942B010C7500DE2CDF /* DiscoveryHelper.swift in Sources */,
 				28D81A9B2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7E2A4E852AE70A4B001F0DB0 /* NotificationPresenter.swift in Sources */,
 				28D81AA72B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
@@ -584,7 +584,7 @@
 				7E008F5C2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				28D81A9C2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7EDAEE972AF6EC5E001B6ABE /* NotificationPresenter.swift in Sources */,
-				28D81A952B0110C700DE2CDF /* UIApplication+Windows.swift in Sources */,
+				28D81A952B0110C700DE2CDF /* DiscoveryHelper.swift in Sources */,
 				28D81AA82B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
 				7EDAEEA22AF6EC5E001B6ABE /* JDStatusBarNotification.docc in Sources */,
 			);
