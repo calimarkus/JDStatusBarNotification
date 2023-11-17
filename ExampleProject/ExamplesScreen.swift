@@ -5,8 +5,8 @@ import Foundation
 import JDStatusBarNotification
 import SwiftUI
 
-class ExamplesScreenFactory: NSObject {
-  @objc static func createExamplesScreen(title: String) -> UIViewController {
+public class ExamplesScreenFactory: NSObject {
+  @objc public static func createExamplesScreen(title: String) -> UIViewController {
     let text = "👋 Hello World!"
     NotificationPresenter.shared.present(text, includedStyle: .matrix, duration: 2.5)
     return UIHostingController(rootView:
