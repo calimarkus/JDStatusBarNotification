@@ -53,7 +53,6 @@ struct StatusBarPreviewView: UIViewRepresentable {
   func updateUIView(_ view: UIView, context: Context) {}
 }
 
-@available(iOS 15.0, *)
 struct StatusBarPreviewView_Previews: PreviewProvider {
   static var previews: some View {
     VStack(spacing: 8.0) {

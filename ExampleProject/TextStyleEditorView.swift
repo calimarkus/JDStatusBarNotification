@@ -3,7 +3,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct TextStyleEditorView: View {
   let title: String
   let offsetInfo: String
@@ -51,7 +50,6 @@ struct TextStyleEditorView: View {
   }
 }
 
-@available(iOS 15.0, *)
 struct TextStyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
     Form {

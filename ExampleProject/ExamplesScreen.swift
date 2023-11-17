@@ -5,7 +5,6 @@ import Foundation
 import JDStatusBarNotification
 import SwiftUI
 
-@available(iOS 15.0, *)
 class ExamplesScreenFactory: NSObject {
   @objc static func createExamplesScreen(title: String) -> UIViewController {
     let text = "👋 Hello World!"
@@ -18,7 +17,6 @@ class ExamplesScreenFactory: NSObject {
   }
 }
 
-@available(iOS 15.0, *)
 struct ExamplesScreen: View {
 
   let title: String
@@ -366,7 +364,6 @@ extension NavigationLink where Label == EmptyView, Destination == EmptyView {
   }
 }
 
-@available(iOS 15.0, *)
 struct ExamplesScreen_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {

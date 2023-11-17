@@ -3,7 +3,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct StyleEditorScreen: View {
   @State var text: String = "You're great!"
   @State var subtitle: String = "I mean it"
@@ -264,7 +263,6 @@ struct StyleEditorScreen: View {
   }
 }
 
-@available(iOS 15.0, *)
 struct StyleEditorView_Previews: PreviewProvider {
   static var previews: some View {
     StyleEditorScreen()

@@ -3,7 +3,6 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
 struct InfoLabel: View {
   let text: String
 
@@ -19,7 +18,6 @@ struct InfoLabel: View {
   }
 }
 
-@available(iOS 15.0, *)
 struct OptionalColorPicker: View {
   var title: String
   @Binding var color: UIColor?
@@ -34,7 +32,6 @@ struct OptionalColorPicker: View {
   }
 }
 
-@available(iOS 14.0, *)
 struct OptionalColorToggle<SomeView>: View where SomeView: View {
   var title: String
   @Binding var color: UIColor?
@@ -54,7 +51,6 @@ struct OptionalColorToggle<SomeView>: View where SomeView: View {
   }
 }
 
-@available(iOS 15.0, *)
 struct CGPointStepper: View {
   var title: String
   @Binding var point: CGPoint
@@ -91,7 +87,6 @@ struct SegmentedPicker<T, SomeView>: View where T: Hashable, SomeView: View {
   }
 }
 
-@available(iOS 15.0, *)
 struct TextFieldStepper: View {
   var title: String
   var binding: Binding<Double>
@@ -124,7 +119,6 @@ struct TextFieldStepper: View {
   }
 }
 
-@available(iOS 15.0, *)
 struct FormFactory_Previews: PreviewProvider {
   static var previews: some View {
     Form {

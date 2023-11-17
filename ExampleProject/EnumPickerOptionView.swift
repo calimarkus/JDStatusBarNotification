@@ -87,7 +87,6 @@ struct EnumPickerOptionView<T: StringRepresentable>: View where T: Hashable {
   }
 }
 
-@available(iOS 15.0, *)
 struct EnumPickerOptionView_Previews: PreviewProvider {
   static var previews: some View {
     Form {

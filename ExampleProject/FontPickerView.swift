@@ -3,7 +3,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 public struct FontPickerView: UIViewControllerRepresentable {
   @Environment(\.presentationMode) var presentationMode
   @Binding var font: UIFont
