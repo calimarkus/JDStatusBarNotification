@@ -21,6 +21,8 @@
 		28D81AA52B012F7F00DE2CDF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81AA32B012F7E00DE2CDF /* NotificationViewController.swift */; };
 		28D81AA72B0140C100DE2CDF /* NotificationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81AA62B0140C100DE2CDF /* NotificationStyle.swift */; };
 		28D81AA82B0140C100DE2CDF /* NotificationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81AA62B0140C100DE2CDF /* NotificationStyle.swift */; };
+		7E008F5B2B02D38D00968AFE /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E008F5A2B02D38D00968AFE /* NotificationView.swift */; };
+		7E008F5C2B02D38D00968AFE /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E008F5A2B02D38D00968AFE /* NotificationView.swift */; };
 		7E0FCB75285DAEB200E7CB78 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
 		7E0FCB76285DAEB200E7CB78 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
 		7E0FCB77285DAEB200E7CB78 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
@@ -35,8 +37,6 @@
 		7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
 		7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7E5402C5286708850079C579 /* JDStatusBarNotification.docc */; };
-		7E5402DA286708E70079C579 /* JDSBNotificationView.h in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA3184F343600B8174B /* JDSBNotificationView.h */; };
-		7E5402DB286708E70079C579 /* JDSBNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDSBNotificationView.m */; };
 		7E67050D284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
 		7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
 		7E670513284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
@@ -62,8 +62,6 @@
 		7EDAEE622AF6E985001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
 		7EDAEE632AF6E985001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7EDAEE972AF6EC5E001B6ABE /* NotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB914CF2ADC11F4004B3435 /* NotificationPresenter.swift */; };
-		7EDAEE9A2AF6EC5E001B6ABE /* JDSBNotificationView.h in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA3184F343600B8174B /* JDSBNotificationView.h */; };
-		7EDAEE9B2AF6EC5E001B6ABE /* JDSBNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B0FA4184F343600B8174B /* JDSBNotificationView.m */; };
 		7EDAEEA22AF6EC5E001B6ABE /* JDStatusBarNotification.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7E5402C5286708850079C579 /* JDStatusBarNotification.docc */; };
 		7EDAEEA92AF6ECAB001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */; };
 		7EDAEEAA2AF6ECAB001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -153,6 +151,7 @@
 		28D81AA02B012B0800DE2CDF /* NotificationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAnimator.swift; sourceTree = "<group>"; };
 		28D81AA32B012F7E00DE2CDF /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		28D81AA62B0140C100DE2CDF /* NotificationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStyle.swift; sourceTree = "<group>"; };
+		7E008F5A2B02D38D00968AFE /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
 		7E0FCB78285DAEE800E7CB78 /* FormViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViews.swift; sourceTree = "<group>"; };
 		7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPickerOptionView.swift; sourceTree = "<group>"; };
@@ -176,8 +175,6 @@
 		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
-		D25B0FA3184F343600B8174B /* JDSBNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationView.h; sourceTree = "<group>"; };
-		D25B0FA4184F343600B8174B /* JDSBNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationView.m; sourceTree = "<group>"; };
 		D264F88D1820213200DA0E53 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D264F8901820213200DA0E53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D264F8941820213200DA0E53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -280,13 +277,12 @@
 			isa = PBXGroup;
 			children = (
 				28D81A972B011F4700DE2CDF /* GeneratedObjcSymbolsFromSwift.h */,
-				D25B0FA3184F343600B8174B /* JDSBNotificationView.h */,
-				D25B0FA4184F343600B8174B /* JDSBNotificationView.m */,
 				28D81A932B010C7500DE2CDF /* UIApplication+Windows.swift */,
 				28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */,
 				28D81A9D2B01257A00DE2CDF /* StyleCache.swift */,
 				28D81AA02B012B0800DE2CDF /* NotificationAnimator.swift */,
 				28D81AA32B012F7E00DE2CDF /* NotificationViewController.swift */,
+				7E008F5A2B02D38D00968AFE /* NotificationView.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -593,12 +589,11 @@
 				28D81AA42B012F7F00DE2CDF /* NotificationViewController.swift in Sources */,
 				28D81A9E2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA12B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
+				7E008F5B2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				28D81A942B010C7500DE2CDF /* UIApplication+Windows.swift in Sources */,
 				28D81A9B2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7E2A4E852AE70A4B001F0DB0 /* NotificationPresenter.swift in Sources */,
 				28D81AA72B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
-				7E5402DA286708E70079C579 /* JDSBNotificationView.h in Sources */,
-				7E5402DB286708E70079C579 /* JDSBNotificationView.m in Sources */,
 				7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,12 +624,11 @@
 				28D81AA52B012F7F00DE2CDF /* NotificationViewController.swift in Sources */,
 				28D81A9F2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA22B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
+				7E008F5C2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				28D81A9C2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7EDAEE972AF6EC5E001B6ABE /* NotificationPresenter.swift in Sources */,
 				28D81A952B0110C700DE2CDF /* UIApplication+Windows.swift in Sources */,
 				28D81AA82B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
-				7EDAEE9A2AF6EC5E001B6ABE /* JDSBNotificationView.h in Sources */,
-				7EDAEE9B2AF6EC5E001B6ABE /* JDSBNotificationView.m in Sources */,
 				7EDAEEA22AF6EC5E001B6ABE /* JDStatusBarNotification.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
