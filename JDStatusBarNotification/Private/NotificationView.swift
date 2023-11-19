@@ -144,7 +144,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     let progressView = UIView(frame: .zero)
     progressView.backgroundColor = style.progressBarStyle.barColor
     progressView.layer.cornerRadius = style.progressBarStyle.cornerRadius
-    progressView.frame = progressViewRect(forPercentage: 0.0, in: contentView.bounds, with: style)
+    progressView.frame = progressViewRect(forPercentage: 0.0, with: style)
     progressView.tag = expectedSubviewTag
     self.progressView = progressView
 
@@ -154,12 +154,13 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     return progressView
   }
 
-  private func progressViewRect(forPercentage percentage: CGFloat, in contentRect: CGRect, with style: StatusBarNotificationStyle) -> CGRect {
+  private func progressViewRect(forPercentage percentage: CGFloat, with style: StatusBarNotificationStyle) -> CGRect {
     let progressBarStyle = style.progressBarStyle
+    let contentSize = contentRectForViewMinusSafeAreaInsets().size
 
     // calculate progressView frame
-    let barHeight = min(contentRect.size.height, max(0.5, progressBarStyle.barHeight))
-    let width = round((contentRect.size.width - 2 * progressBarStyle.horizontalInsets) * percentage)
+    let barHeight = min(contentSize.height, max(0.5, progressBarStyle.barHeight))
+    let width = round((contentSize.width - 2 * progressBarStyle.horizontalInsets) * percentage)
     var barFrame = CGRect(x: progressBarStyle.horizontalInsets, y: progressBarStyle.offsetY, width: width, height: barHeight)
 
     // calculate y-position
@@ -167,9 +168,9 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
       case .top:
         break
       case .center:
-        barFrame.origin.y += style.textStyle.textOffsetY + round((contentRect.size.height - barHeight) / 2.0) + 1
+        barFrame.origin.y += style.textStyle.textOffsetY + round((contentSize.height - barHeight) / 2.0) + 1
       case .bottom:
-        barFrame.origin.y += contentRect.size.height - barHeight
+        barFrame.origin.y += contentSize.height - barHeight
     }
 
     return barFrame
@@ -181,9 +182,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
       clampedProgress
     }
     set {
-      if newValue != clampedProgress {
-        animateProgressBar(toPercentage: newValue, animationDuration: 0.0, completion: nil)
-      }
+      animateProgressBar(toPercentage: newValue, animationDuration: 0.0, completion: nil)
     }
   }
 
@@ -196,8 +195,12 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
 
     // reset view
     if clampedProgress == 0.0 && animationDuration == 0.0 {
-      progressView?.isHidden = true
-      progressView?.frame = progressViewRect(forPercentage: clampedProgress, in: contentView.bounds, with: style)
+      if let progressView {
+        progressView.isHidden = true
+        layoutSubviews()
+        let frame = progressViewRect(forPercentage: clampedProgress, with: style)
+        progressView.frame = frame
+      }
       completion?()
       return
     }
@@ -207,7 +210,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     progressView.isHidden = false
 
     // calculate progressView frame
-    let frame = progressViewRect(forPercentage: clampedProgress, in: contentView.bounds, with: style)
+    let frame = progressViewRect(forPercentage: clampedProgress, with: style)
 
     // immediately set frame, if duration is 0s
     if animationDuration == 0.0 {
@@ -362,10 +365,17 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // MARK: - Layout
-  func contentRectForViewMinusSafeAreaInsets(_ view: UIView) -> CGRect {
-    let topLayoutMargins = view.window?.safeAreaInsets.top ?? 0.0
-    let height = view.bounds.size.height - topLayoutMargins
-    return CGRect(x: 0, y: topLayoutMargins, width: view.bounds.size.width, height: height)
+  func contentRectForViewMinusSafeAreaInsets() -> CGRect {
+    let topLayoutMargins = self.window?.safeAreaInsets.top ?? 0.0
+    let height = self.bounds.size.height - topLayoutMargins
+    let rect = CGRect(x: 0, y: topLayoutMargins, width: self.bounds.size.width, height: height)
+
+    switch style.backgroundStyle.backgroundType {
+      case .fullWidth:
+        return rect
+      case .pill:
+        return pillContentRectForContentRect(rect)
+    }
   }
 
   func realTextSizeForLabel(_ textLabel: UILabel) -> CGSize {
@@ -411,18 +421,17 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   public override func layoutSubviews() {
     super.layoutSubviews()
 
-    // Content & pill view
-    switch style.backgroundStyle.backgroundType {
-      case .fullWidth:
-        contentView.frame = contentRectForViewMinusSafeAreaInsets(self)
-      case .pill:
-        contentView.frame = pillContentRectForContentRect(contentRectForViewMinusSafeAreaInsets(self))
-        pillView.frame = contentView.bounds
+    // update content view
+    contentView.frame = contentRectForViewMinusSafeAreaInsets()
 
-        // Setup rounded corners (not using a mask layer, so that we can use shadows on this view)
-        pillView.layer.cornerRadius = round(pillView.frame.size.height / 2.0)
-        pillView.layer.cornerCurve = .continuous
-        pillView.layer.allowsEdgeAntialiasing = true
+    // relayout pill view
+    if style.backgroundStyle.backgroundType == .pill {
+      pillView.frame = contentView.bounds
+
+      // Setup rounded corners (not using a mask layer, so that we can use shadows on this view)
+      pillView.layer.cornerRadius = round(pillView.frame.size.height / 2.0)
+      pillView.layer.cornerCurve = .continuous
+      pillView.layer.allowsEdgeAntialiasing = true
     }
 
     // Custom subview always matches full content view
@@ -447,7 +456,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
 
     // Progress view
     if let progressView, (progressView.layer.animationKeys())?.count == 0 {
-      progressView.frame = progressViewRect(forPercentage: progressBarPercentage, in: contentView.bounds, with: style)
+      progressView.frame = progressViewRect(forPercentage: progressBarPercentage, with: style)
     }
 
     // Left view
