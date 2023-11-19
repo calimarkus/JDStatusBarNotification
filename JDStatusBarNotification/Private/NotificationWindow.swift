@@ -17,8 +17,7 @@ public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
   let statusBarViewController: NotificationViewController
   weak var delegate: NotificationWindowDelegate?
 
-  init(for style: StatusBarNotificationStyle,
-       using windowScene: UIWindowScene?,
+  init(windowScene: UIWindowScene?,
        delegate: NotificationWindowDelegate)
   {
 

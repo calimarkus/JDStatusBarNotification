@@ -54,7 +54,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
                            subtitle: String? = nil,
                            style: StatusBarNotificationStyle,
                            completion: Completion? = nil) -> NotificationView {
-    let window = overlayWindow ?? NotificationWindow(for: style, using: windowScene, delegate: self)
+    let window = overlayWindow ?? NotificationWindow(windowScene: windowScene, delegate: self)
     overlayWindow = window
 
     let view = window.statusBarViewController.present(withStyle: style) {
