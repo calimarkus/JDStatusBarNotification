@@ -244,7 +244,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Parameter percentage: The percentage in a range from 0.0 to 1.0
   ///
   public func displayProgressBar(at percentage: Double) {
-    overlayWindow?.statusBarViewController.statusBarView.progressBarPercentage = percentage
+    statusBarView?.progressBarPercentage = percentage
   }
 
   /// Displays a progress bar and animates it to the provided `percentage`.
@@ -258,7 +258,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
   ///
   public func animateProgressBar(to percentage: Double, duration: Double, completion: Completion?) {
-    overlayWindow?.statusBarViewController.statusBarView.animateProgressBar(toPercentage: percentage, animationDuration: duration) {
+    statusBarView?.animateProgressBar(toPercentage: percentage, animationDuration: duration) {
       completion?(self)
     }
   }
@@ -272,7 +272,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Parameter show:  Show or hide the activity indicator.
   ///
   public func displayActivityIndicator(_ show: Bool) {
-    overlayWindow?.statusBarViewController.statusBarView.displaysActivityIndicator = show
+    statusBarView?.displaysActivityIndicator = show
   }
 
   /// Displays a view on the left side of the text.
@@ -282,7 +282,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///                       icon / image / profile picture etc. A nil value removes an existing leftView.
   ///
   public func displayLeftView(_ leftView: UIView?) {
-    overlayWindow?.statusBarViewController.statusBarView.leftView = leftView
+    statusBarView?.leftView = leftView
   }
 
   // MARK: - Additional Presenter APIs
@@ -292,7 +292,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Parameter title: The new title to display
   ///
   public func updateTitle(_ title: String) {
-    overlayWindow?.statusBarViewController.statusBarView.title = title
+    statusBarView?.title = title
   }
 
   /// Updates the subtitle of an existing notification without animation.
@@ -300,7 +300,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Parameter subtitle: The new subtitle to display
   ///
   public func updateSubtitle(_ subtitle: String?) {
-    overlayWindow?.statusBarViewController.statusBarView.subtitle = subtitle
+    statusBarView?.subtitle = subtitle
   }
 
   /// Let's you check if a notification is currently displayed.
@@ -318,6 +318,12 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
   ///
   public var windowScene: UIWindowScene?
+
+  // MARK: - Private
+
+  private var statusBarView: NotificationView? {
+    return overlayWindow?.statusBarViewController.statusBarView
+  }
 }
 
 // MARK: - HostingControllerSizingController
