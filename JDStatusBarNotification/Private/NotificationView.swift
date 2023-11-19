@@ -136,18 +136,22 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
 
   // MARK: - Progress Bar
 
-  private func createProgressViewIfNeeded() {
-    if progressView == nil {
-      let progressView = UIView(frame: .zero)
-      progressView.backgroundColor = style.progressBarStyle.barColor
-      progressView.layer.cornerRadius = style.progressBarStyle.cornerRadius
-      progressView.frame = progressViewRect(forPercentage: 0.0, in: contentView.bounds, with: style)
-      progressView.tag = expectedSubviewTag
-      self.progressView = progressView
-
-      contentView.insertSubview(progressView, belowSubview: titleLabel)
-      setNeedsLayout()
+  private func createProgressViewIfNeeded() -> UIView {
+    if let progressView {
+      return progressView
     }
+
+    let progressView = UIView(frame: .zero)
+    progressView.backgroundColor = style.progressBarStyle.barColor
+    progressView.layer.cornerRadius = style.progressBarStyle.cornerRadius
+    progressView.frame = progressViewRect(forPercentage: 0.0, in: contentView.bounds, with: style)
+    progressView.tag = expectedSubviewTag
+    self.progressView = progressView
+
+    contentView.insertSubview(progressView, belowSubview: titleLabel)
+    setNeedsLayout()
+
+    return progressView
   }
 
   private func progressViewRect(forPercentage percentage: CGFloat, in contentRect: CGRect, with style: StatusBarNotificationStyle) -> CGRect {
@@ -177,7 +181,9 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
       clampedProgress
     }
     set {
-      animateProgressBar(toPercentage: newValue, animationDuration: 0.0, completion: nil)
+      if newValue != clampedProgress {
+        animateProgressBar(toPercentage: newValue, animationDuration: 0.0, completion: nil)
+      }
     }
   }
 
@@ -191,32 +197,33 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     // reset view
     if clampedProgress == 0.0 && animationDuration == 0.0 {
       progressView?.isHidden = true
-      progressView?.frame = progressViewRect(forPercentage: 0.0, in: contentView.bounds, with: style)
+      progressView?.frame = progressViewRect(forPercentage: clampedProgress, in: contentView.bounds, with: style)
       completion?()
       return
     }
 
     // create view & reset state
-    createProgressViewIfNeeded()
-    guard let progressView else { return }
-
+    let progressView = createProgressViewIfNeeded()
     progressView.isHidden = false
 
-    // update progressView frame
+    // calculate progressView frame
     let frame = progressViewRect(forPercentage: clampedProgress, in: contentView.bounds, with: style)
 
+    // immediately set frame, if duration is 0s
     if animationDuration == 0.0 {
       progressView.frame = frame
       completion?()
-    } else {
-      UIView.animate(withDuration: TimeInterval(animationDuration), delay: 0, options: .curveLinear, animations: {
-        progressView.frame = frame
-      }, completion: { finished in
-        if finished {
-          completion?()
-        }
-      })
+      return
     }
+
+    // animate
+    UIView.animate(withDuration: TimeInterval(animationDuration), delay: 0, options: .curveLinear, animations: {
+      progressView.frame = frame
+    }, completion: { finished in
+      if finished {
+        completion?()
+      }
+    })
   }
 
   // MARK: - Title
