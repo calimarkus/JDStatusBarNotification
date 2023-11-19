@@ -15,9 +15,8 @@
   __weak id<JDSBNotificationWindowDelegate> _delegate;
 }
 
-- (instancetype)initWithStyle:(JDStatusBarNotificationStyle *)style
-                  windowScene:(UIWindowScene * _Nullable)windowScene
-                     delegate:(id<JDSBNotificationWindowDelegate>)delegate {
+- (instancetype)initWithWindowScene:(UIWindowScene * _Nullable)windowScene
+                           delegate:(id<JDSBNotificationWindowDelegate>)delegate {
   // attempt to infer window scene
   if (windowScene == nil) {
     windowScene = [[UIApplication sharedApplication] jdsb_mainApplicationWindowIgnoringWindow:nil].windowScene;

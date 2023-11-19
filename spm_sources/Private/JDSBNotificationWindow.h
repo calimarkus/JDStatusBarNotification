@@ -3,7 +3,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class JDStatusBarNotificationStyle;
 @class JDSBNotificationViewController;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,9 +21,8 @@ NS_REFINED_FOR_SWIFT
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
 
-- (instancetype)initWithStyle:(JDStatusBarNotificationStyle *)style
-                  windowScene:(UIWindowScene * _Nullable)windowScene
-                     delegate:(id<JDSBNotificationWindowDelegate>)delegate;
+- (instancetype)initWithWindowScene:(UIWindowScene * _Nullable)windowScene
+                           delegate:(id<JDSBNotificationWindowDelegate>)delegate;
 
 @end
 

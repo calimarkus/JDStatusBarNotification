@@ -50,11 +50,7 @@
                                    subtitle:(NSString *)subtitle
                                       style:(JDStatusBarNotificationStyle *)style
                                  completion:(JDStatusBarNotificationPresenterCompletionBlock)completion {
-  if(_overlayWindow == nil) {
-    _overlayWindow = [[JDSBNotificationWindow alloc] initWithStyle:style
-                                                       windowScene:_windowScene
-                                                          delegate:self];
-  }
+  _overlayWindow = _overlayWindow ?: [[JDSBNotificationWindow alloc] initWithWindowScene:_windowScene delegate:self];
 
   JDSBNotificationView *view = [_overlayWindow.statusBarViewController presentWithStyle:style completion:^{
     if (completion) {
