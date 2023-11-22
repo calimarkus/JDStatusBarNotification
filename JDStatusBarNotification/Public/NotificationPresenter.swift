@@ -22,7 +22,8 @@ import SwiftUI
  * your application once it was created. The default ``StatusBarNotificationStyle`` and any styles
  * added by the user also stay in memory permanently.
  */
-public class NotificationPresenter: NotificationWindowDelegate {
+@objc(JDStatusBarNotificationPresenter)
+public class NotificationPresenter: NSObject, NotificationWindowDelegate {
 
   var overlayWindow: NotificationWindow?
   var styleCache: StyleCache
@@ -30,9 +31,10 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
   ///
   /// - Returns: An initialized ``NotificationPresenter`` instance.
-  public static var shared = NotificationPresenter()
+  @objc(sharedPresenter)
+  public private(set) static var shared = NotificationPresenter()
 
-  private init() {
+  private override init() {
     styleCache = StyleCache()
   }
 
@@ -40,7 +42,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter presenter: Provides the shared ``NotificationPresenter`` instance. That simplifies any subsequent calls to it upon completion.
   ///
-  public typealias Completion = (_ presenter: NotificationPresenter) -> ()
+  public typealias Completion = (_ presenter : NotificationPresenter) -> ()
 
   /// Creates a modified copy of an existing ``StatusBarNotificationStyle`` instance.
   ///
@@ -96,15 +98,16 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
+  @objc
   public func present(_ title: String,
                       subtitle: String? = nil,
                       styleName: String? = nil,
-                      duration: Double? = nil,
+                      duration: CGFloat = 0.0,
                       completion: Completion? = nil) -> UIView
   {
     let style = styleCache.style(forName: styleName)
     let view = present(title, subtitle: subtitle, style: style, completion: completion)
-    if let duration {
+    if duration > 0.0 {
       dismiss(after: duration)
     }
     return view
@@ -122,15 +125,16 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
+  @objc
   public func present(_ title: String,
                       subtitle: String? = nil,
                       includedStyle: IncludedStatusBarNotificationStyle,
-                      duration: Double? = nil,
+                      duration: CGFloat = 0.0,
                       completion: Completion? = nil) -> UIView
   {
     let style = styleCache.style(forIncludedStyle: includedStyle)
     let view = present(title, subtitle: subtitle, style: style, completion: completion)
-    if let duration {
+    if duration > 0.0 {
       dismiss(after: duration)
     }
     return view
@@ -154,6 +158,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
+  @objc
   public func presentCustomView(_ customView: UIView,
                                 sizingController: NotificationPresenterCustomViewSizingController? = nil,
                                 styleName: String? = nil,
@@ -196,8 +201,9 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  public func dismiss(animated: Bool = true, after delay: Double? = nil, completion: Completion? = nil) {
-    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: {
+  @objc(dismissAnimated:delay:completion:)
+  public func dismiss(animated: Bool = true, after delay: CGFloat = 0.0, completion: Completion? = nil) {
+    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay, completion: {
       completion?(self)
     })
   }
@@ -209,6 +215,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter prepare: Provides the current default ``StatusBarNotificationStyle`` instance for further customization.
   ///
+  @objc
   public func updateDefaultStyle(_ prepare: PrepareStyleClosure) {
     styleCache.updateDefaultStyle(prepare)
   }
@@ -227,8 +234,9 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Returns: Returns the `styleName`, so that this call can be used directly within a presentation call.
   ///
   @discardableResult
+  @objc(addStyleNamed:usingStyle:prepare:)
   public func addStyle(named name: String,
-                       usingStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
+                       usingStyle includedStyle: IncludedStatusBarNotificationStyle = .defaultStyle,
                        prepare: PrepareStyleClosure) -> String
   {
     return styleCache.addStyleNamed(name, basedOnStyle: includedStyle, prepare: prepare)
@@ -243,6 +251,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter percentage: The percentage in a range from 0.0 to 1.0
   ///
+  @objc(setProgress:)
   public func displayProgressBar(at percentage: Double) {
     statusBarView?.progressBarPercentage = percentage
   }
@@ -257,6 +266,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///   - animationDuration: The duration of the animation from the current percentage to the provided percentage.
   ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
   ///
+  @objc(setProgressAnimated:duration:completion:)
   public func animateProgressBar(to percentage: Double, duration: Double, completion: Completion?) {
     statusBarView?.animateProgressBar(toPercentage: percentage, animationDuration: duration) {
       completion?(self)
@@ -271,6 +281,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter show:  Show or hide the activity indicator.
   ///
+  @objc(setDisplaysActivityIndicator:)
   public func displayActivityIndicator(_ show: Bool) {
     statusBarView?.displaysActivityIndicator = show
   }
@@ -281,6 +292,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   /// - Parameter leftView: A custom `UIView` to display on the left side of the text. E.g. an
   ///                       icon / image / profile picture etc. A nil value removes an existing leftView.
   ///
+  @objc(setLeftView:)
   public func displayLeftView(_ leftView: UIView?) {
     statusBarView?.leftView = leftView
   }
@@ -291,6 +303,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter title: The new title to display
   ///
+  @objc(setTitle:)
   public func updateTitle(_ title: String) {
     statusBarView?.title = title
   }
@@ -299,6 +312,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter subtitle: The new subtitle to display
   ///
+  @objc(setSubtitle:)
   public func updateSubtitle(_ subtitle: String?) {
     statusBarView?.subtitle = subtitle
   }
@@ -307,6 +321,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Returns: `true` if a notification is currently displayed. Otherwise `false`.
   ///
+  @objc
   public var isVisible: Bool {
     overlayWindow != nil
   }
@@ -317,6 +332,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
   ///
   /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
   ///
+  @objc
   public var windowScene: UIWindowScene?
 
   // MARK: - Private
@@ -329,6 +345,7 @@ public class NotificationPresenter: NotificationWindowDelegate {
 // MARK: - HostingControllerSizingController
 
 /// A protocol for a custom controller, which controls the size of a presented custom view.
+@objc
 public protocol NotificationPresenterCustomViewSizingController {
   func sizeThatFits(in size: CGSize) -> CGSize
 }

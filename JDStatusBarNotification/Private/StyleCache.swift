@@ -21,7 +21,7 @@ class StyleCache: NSObject {
   }
 
   func style(forIncludedStyle includedStyle: IncludedStatusBarNotificationStyle) -> StatusBarNotificationStyle {
-    return buildStyleForIncludedStyle(includedStyle) ?? defaultStyle
+    return buildStyleForIncludedStyle(includedStyle)
   }
 
   func updateDefaultStyle(_ styleBuilder: NotificationPresenter.PrepareStyleClosure) {
@@ -29,21 +29,19 @@ class StyleCache: NSObject {
   }
 
   func addStyleNamed(_ styleName: String,
-                     basedOnStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
+                     basedOnStyle includedStyle: IncludedStatusBarNotificationStyle,
                      prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) -> String
   {
-    userStyles[styleName] = styleBuilder(buildStyleForIncludedStyle(includedStyle) ?? defaultStyle)
+    userStyles[styleName] = styleBuilder(style(forIncludedStyle: includedStyle))
     return styleName
   }
 
   // MARK: - Included Styles
 
-  func buildStyleForIncludedStyle(_ includedStyle: IncludedStatusBarNotificationStyle?) -> StatusBarNotificationStyle? {
-    guard let includedStyle else { return nil }
-
+  private func buildStyleForIncludedStyle(_ includedStyle: IncludedStatusBarNotificationStyle) -> StatusBarNotificationStyle {
       switch includedStyle {
       case .defaultStyle:
-          return StatusBarNotificationStyle()
+          return defaultStyle
 
       case .light:
           let style = StatusBarNotificationStyle()
