@@ -2,9 +2,8 @@
 //
 
 import SwiftUI
-import JDStatusBarNotification
 
-struct StatusBarPreviewView: UIViewRepresentable {
+fileprivate struct StatusBarPreviewView: UIViewRepresentable {
   var title: String?
   var subtitle: String?
   var style: StatusBarNotificationStyle
@@ -17,16 +16,6 @@ struct StatusBarPreviewView: UIViewRepresentable {
     self.style = StatusBarNotificationStyle()
     self.progress = progress
     self.activity = activity
-  }
-
-  init(_ title: String? = nil,
-       subtitle: String? = nil,
-       progress: Double = 0.00,
-       activity: Bool = false,
-       exampleStyle: ExampleStyle)
-  {
-    self.init(title, subtitle: subtitle, progress: progress, activity: activity)
-    self.style = exampleStyle.buildStyle()
   }
 
   init(_ title: String? = nil,
@@ -54,6 +43,7 @@ struct StatusBarPreviewView: UIViewRepresentable {
   func updateUIView(_ view: UIView, context: Context) {}
 }
 
+@available(iOS 15.0, *)
 struct StatusBarPreviewView_Previews: PreviewProvider {
   static var previews: some View {
     VStack(spacing: 8.0) {
@@ -92,10 +82,6 @@ struct StatusBarPreviewView_Previews: PreviewProvider {
         style.progressBarStyle.offsetY = 0.0
         style.progressBarStyle.horizontalInsets = 10.0
       }.frame(height: 50)
-
-      StatusBarPreviewView("Example Style - SmallPill", exampleStyle: .smallPill)
-        .frame(height: 36)
-        .padding(.bottom, 5.0)
 
       StatusBarPreviewView("Title", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)") { style in
         style.progressBarStyle.offsetY = 0.0

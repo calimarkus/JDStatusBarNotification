@@ -4,15 +4,19 @@
 import Foundation
 import UIKit
 
-public protocol NotificationViewDelegate: AnyObject {
+protocol NotificationViewDelegate: AnyObject {
   func didUpdateStyle()
 }
 
-public class NotificationView: UIView, UIGestureRecognizerDelegate {
-  public weak var delegate: NotificationViewDelegate?
+public protocol StylableView: UIView {
+  var style: StatusBarNotificationStyle { get set }
+}
 
-  public let longPressGestureRecognizer = UILongPressGestureRecognizer()
-  public let panGestureRecognizer = UIPanGestureRecognizer()
+class NotificationView: UIView, UIGestureRecognizerDelegate, StylableView {
+  weak var delegate: NotificationViewDelegate?
+
+  let longPressGestureRecognizer = UILongPressGestureRecognizer()
+  let panGestureRecognizer = UIPanGestureRecognizer()
 
   // Private
   let expectedSubviewTag = 12321
@@ -114,7 +118,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     }
   }
 
-  public var displaysActivityIndicator: Bool {
+  var displaysActivityIndicator: Bool {
     get {
       return leftView === activityIndicatorView
     }
@@ -177,7 +181,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   private var clampedProgress: CGFloat = 0.0
-  public var progressBarPercentage: CGFloat {
+  var progressBarPercentage: CGFloat {
     get {
       clampedProgress
     }
@@ -186,7 +190,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     }
   }
 
-  public func animateProgressBar(toPercentage percentage: CGFloat, animationDuration: CGFloat, completion: (() -> Void)?) {
+  func animateProgressBar(toPercentage percentage: CGFloat, animationDuration: CGFloat, completion: (() -> Void)?) {
     // clamp progress
     clampedProgress = min(1.0, max(0.0, percentage))
 
@@ -230,7 +234,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // MARK: - Title
-  public var title: String? {
+  var title: String? {
     get {
       return titleLabel.text
     }
@@ -244,7 +248,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // MARK: - Subtitle
-  public var subtitle: String? {
+  var subtitle: String? {
     get {
       return subtitleLabel.text
     }
@@ -259,7 +263,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
 
   // MARK: - Left View
 
-  public var leftView: UIView? {
+  var leftView: UIView? {
     didSet {
       oldValue?.removeFromSuperview()
 
@@ -281,7 +285,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // MARK: - Custom Subview
-  public var customSubview: UIView? {
+  var customSubview: UIView? {
     didSet {
       oldValue?.removeFromSuperview()
       if let customSubview {
@@ -291,14 +295,14 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     }
   }
 
-  public var customSubviewSizingController: NotificationPresenterCustomViewSizingController? {
+  var customSubviewSizingController: NotificationPresenterCustomViewSizingController? {
     didSet {
       setNeedsLayout()
     }
   }
 
   // MARK: - Style
-  public var style: StatusBarNotificationStyle = StatusBarNotificationStyle() {
+  var style: StatusBarNotificationStyle = StatusBarNotificationStyle() {
     didSet {
       // Background
       let color = style.backgroundStyle.backgroundColor
@@ -418,7 +422,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
     return CGRect(x: pillX, y: pillY, width: pillWidth, height: pillHeight)
   }
 
-  public override func layoutSubviews() {
+  override func layoutSubviews() {
     super.layoutSubviews()
 
     // update content view
@@ -565,7 +569,7 @@ public class NotificationView: UIView, UIGestureRecognizerDelegate {
   }
 
   // UIGestureRecognizerDelegate
-  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     return (otherGestureRecognizer == longPressGestureRecognizer)
   }
 

@@ -13,7 +13,7 @@ protocol NotificationWindowDelegate : AnyObject {
   func didDismissStatusBar()
 }
 
-public class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
+class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
   let statusBarViewController: NotificationViewController
   weak var delegate: NotificationWindowDelegate?
 

@@ -9,26 +9,26 @@
 import Foundation
 import UIKit
 
-public class StyleCache: NSObject {
+class StyleCache: NSObject {
   var defaultStyle: StatusBarNotificationStyle = StatusBarNotificationStyle()
   var userStyles: [String: StatusBarNotificationStyle] = [:]
 
-  public func style(forName styleName: String?) -> StatusBarNotificationStyle {
+  func style(forName styleName: String?) -> StatusBarNotificationStyle {
     if let styleName, let style = userStyles[styleName] {
       return style
     }
     return defaultStyle
   }
 
-  public func style(forIncludedStyle includedStyle: IncludedStatusBarNotificationStyle) -> StatusBarNotificationStyle {
+  func style(forIncludedStyle includedStyle: IncludedStatusBarNotificationStyle) -> StatusBarNotificationStyle {
     return buildStyleForIncludedStyle(includedStyle) ?? defaultStyle
   }
 
-  public func updateDefaultStyle(_ styleBuilder: NotificationPresenter.PrepareStyleClosure) {
+  func updateDefaultStyle(_ styleBuilder: NotificationPresenter.PrepareStyleClosure) {
     defaultStyle = styleBuilder(defaultStyle)
   }
 
-  public func addStyleNamed(_ styleName: String,
+  func addStyleNamed(_ styleName: String,
                      basedOnStyle includedStyle: IncludedStatusBarNotificationStyle? = nil,
                      prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) -> String
   {

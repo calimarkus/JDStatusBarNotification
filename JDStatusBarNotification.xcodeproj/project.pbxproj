@@ -55,6 +55,8 @@
 		7EA91CBC284EF3AF00F32F09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		7EA91CBE284EF3AF00F32F09 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
 		7EA91CBF284EF3AF00F32F09 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
+		7ECB76E02B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
+		7ECB76E12B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EDAEE5D2AF6E982001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
 		7EDAEE5E2AF6E982001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7EDAEE622AF6E985001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
@@ -63,9 +65,6 @@
 		7EDAEEA22AF6EC5E001B6ABE /* JDStatusBarNotification.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7E5402C5286708850079C579 /* JDStatusBarNotification.docc */; };
 		7EDAEEA92AF6ECAB001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */; };
 		7EDAEEAA2AF6ECAB001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7EEDBE142856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
-		7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
-		7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 		7EFD77982843461D000BFBF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		7EFD77992843461D000BFBF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
@@ -238,7 +237,6 @@
 		7E6FBC1F285EB4C600A63FEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
 				7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */,
 				7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */,
 				7E0FCB78285DAEE800E7CB78 /* FormViews.swift */,
@@ -267,6 +265,14 @@
 				7E008F5A2B02D38D00968AFE /* NotificationView.swift */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		7ECB76E22B0EA46400A8A00C /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 		D264F8841820213200DA0E53 = {
@@ -335,6 +341,7 @@
 			children = (
 				7E8C519228585BE400C7C003 /* Public */,
 				7EBE340B2844CA2D0096CD55 /* Private */,
+				7ECB76E22B0EA46400A8A00C /* Previews */,
 			);
 			path = JDStatusBarNotification;
 			sourceTree = "<group>";
@@ -546,6 +553,7 @@
 				28D81AA42B012F7F00DE2CDF /* NotificationViewController.swift in Sources */,
 				28D81A9E2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA12B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
+				7ECB76E02B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */,
 				7E008F5B2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				28D81A942B010C7500DE2CDF /* DiscoveryHelper.swift in Sources */,
 				28D81A9B2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
@@ -566,7 +574,6 @@
 				7EA91CB0284EF3AF00F32F09 /* SBExampleViewController.m in Sources */,
 				7EA91CB2284EF3AF00F32F09 /* StyleEditorScreen.swift in Sources */,
 				7E8C51A22858857200C7C003 /* TextStyleEditorView.swift in Sources */,
-				7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */,
 				7EA91CB3284EF3AF00F32F09 /* ExamplesScreen.swift in Sources */,
 				7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 				7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */,
@@ -581,6 +588,7 @@
 				28D81AA52B012F7F00DE2CDF /* NotificationViewController.swift in Sources */,
 				28D81A9F2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA22B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
+				7ECB76E12B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */,
 				7E008F5C2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				28D81A9C2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7EDAEE972AF6EC5E001B6ABE /* NotificationPresenter.swift in Sources */,
@@ -601,7 +609,6 @@
 				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
 				7E670514284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */,
 				7E8C51A12858857200C7C003 /* TextStyleEditorView.swift in Sources */,
-				7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */,
 				7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
 				7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 				7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */,
@@ -615,7 +622,6 @@
 			files = (
 				D264F89D1820213200DA0E53 /* main.m in Sources */,
 				7E1C2837285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
-				7EEDBE142856EDD9007747AA /* StatusBarPreviewView.swift in Sources */,
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
 				7E67050D284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
 				7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */,
@@ -699,6 +705,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PACKAGE_NAME = JDStatusBarNotification;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -781,6 +788,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PACKAGE_NAME = JDStatusBarNotification;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
