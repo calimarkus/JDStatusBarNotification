@@ -98,7 +98,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  @objc
+  @objc(presentWithTitle:subtitle:customStyle:dismissAfterDelay:completion:)
   public func present(_ title: String,
                       subtitle: String? = nil,
                       styleName: String? = nil,
@@ -125,7 +125,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  @objc
+  @objc(presentWithTitle:subtitle:includedStyle:dismissAfterDelay:completion:)
   public func present(_ title: String,
                       subtitle: String? = nil,
                       includedStyle: IncludedStatusBarNotificationStyle,
@@ -158,7 +158,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  @objc
+  @objc(presentWithCustomView:sizingController:styleName:completion:)
   public func presentCustomView(_ customView: UIView,
                                 sizingController: NotificationPresenterCustomViewSizingController? = nil,
                                 styleName: String? = nil,
@@ -201,7 +201,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  @objc(dismissAnimated:delay:completion:)
+  @objc(dismissAnimated:afterDelay:completion:)
   public func dismiss(animated: Bool = true, after delay: CGFloat = 0.0, completion: Completion? = nil) {
     overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay, completion: {
       completion?(self)
@@ -234,7 +234,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Returns: Returns the `styleName`, so that this call can be used directly within a presentation call.
   ///
   @discardableResult
-  @objc(addStyleNamed:usingStyle:prepare:)
+  @objc(addStyleNamed:basedOnStyle:prepare:)
   public func addStyle(named name: String,
                        usingStyle includedStyle: IncludedStatusBarNotificationStyle = .defaultStyle,
                        prepare: PrepareStyleClosure) -> String
@@ -251,7 +251,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///
   /// - Parameter percentage: The percentage in a range from 0.0 to 1.0
   ///
-  @objc(setProgress:)
+  @objc(displayProgressBarWithPercentage:)
   public func displayProgressBar(at percentage: Double) {
     statusBarView?.progressBarPercentage = percentage
   }
@@ -266,7 +266,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///   - animationDuration: The duration of the animation from the current percentage to the provided percentage.
   ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
   ///
-  @objc(setProgressAnimated:duration:completion:)
+  @objc(animateProgressBarToPercentage:animationDuration:completion:)
   public func animateProgressBar(to percentage: Double, duration: Double, completion: Completion?) {
     statusBarView?.animateProgressBar(toPercentage: percentage, animationDuration: duration) {
       completion?(self)
@@ -281,7 +281,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///
   /// - Parameter show:  Show or hide the activity indicator.
   ///
-  @objc(setDisplaysActivityIndicator:)
+  @objc(displayActivityIndicator:)
   public func displayActivityIndicator(_ show: Bool) {
     statusBarView?.displaysActivityIndicator = show
   }
@@ -292,7 +292,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Parameter leftView: A custom `UIView` to display on the left side of the text. E.g. an
   ///                       icon / image / profile picture etc. A nil value removes an existing leftView.
   ///
-  @objc(setLeftView:)
+  @objc(displayLeftView:)
   public func displayLeftView(_ leftView: UIView?) {
     statusBarView?.leftView = leftView
   }
@@ -303,7 +303,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///
   /// - Parameter title: The new title to display
   ///
-  @objc(setTitle:)
+  @objc(updateText:)
   public func updateTitle(_ title: String) {
     statusBarView?.title = title
   }
@@ -312,7 +312,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///
   /// - Parameter subtitle: The new subtitle to display
   ///
-  @objc(setSubtitle:)
+  @objc(updateSubtitle:)
   public func updateSubtitle(_ subtitle: String?) {
     statusBarView?.subtitle = subtitle
   }
@@ -333,7 +333,10 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Parameter windowScene: The `UIWindowScene` in which the notifcation should be presented.
   ///
   @objc
-  public var windowScene: UIWindowScene?
+  public func setWindowScene(_ windowScene: UIWindowScene?) {
+    self.windowScene = windowScene
+  }
+  private var windowScene: UIWindowScene?
 
   // MARK: - Private
 
@@ -345,8 +348,9 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
 // MARK: - HostingControllerSizingController
 
 /// A protocol for a custom controller, which controls the size of a presented custom view.
-@objc
+@objc(JDStatusBarNotificationPresenterCustomViewSizingController)
 public protocol NotificationPresenterCustomViewSizingController {
+  @objc(sizeThatFits:)
   func sizeThatFits(in size: CGSize) -> CGSize
 }
 

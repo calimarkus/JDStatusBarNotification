@@ -14,7 +14,7 @@ import UIKit
 ///
 /// Note that only the ``IncludedStatusBarNotificationStyle/defaultStyle`` is dynamic
 /// and adjusts for light- & dark-mode. Other styles have a fixed appearance.
-@objc
+@objc(JDStatusBarNotificationIncludedStyle)
 public enum IncludedStatusBarNotificationStyle: Int {
     /// The default style. This is used when no other style was provided and the
     /// default style wasn't replaced by the user. This is a dynamic style matching
@@ -35,7 +35,7 @@ public enum IncludedStatusBarNotificationStyle: Int {
 }
 
 /// Defines the appearance of the notification background.
-@objc
+@objc(JDStatusBarNotificationBackgroundType)
 public enum StatusBarNotificationBackgroundType: Int {
     /// The background covers the full display width and the full status bar + navbar height.
     case fullWidth
@@ -46,7 +46,7 @@ public enum StatusBarNotificationBackgroundType: Int {
 /// Defines the animation used during presentation and dismissal of the notification.
 ///
 /// Default is ``StatusBarNotificationAnimationType/move``
-@objc
+@objc(JDStatusBarNotificationAnimationType)
 public enum StatusBarNotificationAnimationType: Int {
     /// Slide in from the top of the screen and slide back out to the top. This is the default.
     case move
@@ -57,7 +57,7 @@ public enum StatusBarNotificationAnimationType: Int {
 }
 
 /// Defines the position of the progress bar, when used.
-@objc
+@objc(JDStatusBarNotificationProgressBarPosition)
 public enum StatusBarNotificationProgressBarPosition: Int {
     /// The progress bar will be at the bottom of the notification content. This is the default.
     case bottom
@@ -71,7 +71,7 @@ public enum StatusBarNotificationProgressBarPosition: Int {
 ///
 /// Note that if you use ``StatusBarNotificationBackgroundType/pill``, this is ignored.
 /// The default is ``StatusBarNotificationSystemBarStyle/defaultStyle``.
-@objc
+@objc(JDStatusBarNotificationSystemBarStyle)
 public enum StatusBarNotificationSystemBarStyle: Int {
     /// Matches the current viewController / window.
     case defaultStyle
@@ -87,7 +87,7 @@ public enum StatusBarNotificationSystemBarStyle: Int {
 /// If no title or subtitle is set, the left-view is always fully centered.
 ///
 /// Note: This can also influence the text layout as described below.
-@objc
+@objc(JDStatusBarNotificationLeftViewAlignment)
 public enum StatusBarNotificationLeftViewAlignment: Int {
     /// Aligns the left-view on the left side of the notification. The text is center-aligned unless it touches the left-view.
     ///
@@ -101,7 +101,7 @@ public enum StatusBarNotificationLeftViewAlignment: Int {
 }
 
 /// A Style defines the appearance of a notification.
-@objc
+@objc(JDStatusBarNotificationStyle)
 public class StatusBarNotificationStyle: NSObject {
     /// Defines the appearance of the title label.
     ///
@@ -168,7 +168,7 @@ public class StatusBarNotificationStyle: NSObject {
 }
 
 /// Defines the appearance of a left-view, if set. It also applies to the activity indicator.
-@objc
+@objc(JDStatusBarNotificationLeftViewStyle)
 public class StatusBarNotificationLeftViewStyle: NSObject {
     /// The minimum distance between the left-view and the text. Defaults to 5.0.
     @objc public var spacing: Double = 5.0
@@ -188,7 +188,7 @@ public class StatusBarNotificationLeftViewStyle: NSObject {
 }
 
 /// Defines the appearance of a text label.
-@objc
+@objc(JDStatusBarNotificationTextStyle)
 public class StatusBarNotificationTextStyle: NSObject {
     public init(textColor: UIColor? = nil, font: UIFont? = nil) {
         if let textColor {
@@ -225,7 +225,7 @@ public class StatusBarNotificationTextStyle: NSObject {
 }
 
 /// Defines the appearance of the pill, when using ``StatusBarNotificationBackgroundType/pill``
-@objc
+@objc(JDStatusBarNotificationPillStyle)
 public class StatusBarNotificationPillStyle: NSObject {
     /// The height of the pill. Default is `50.0`.
     @objc public var height: Double = 50.0
@@ -254,7 +254,7 @@ public class StatusBarNotificationPillStyle: NSObject {
 }
 
 /// Defines the appearance of the notification background.
-@objc
+@objc(JDStatusBarNotificationBackgroundStyle)
 public class StatusBarNotificationBackgroundStyle: NSObject {
     /// The background color of the notification bar
     @objc public var backgroundColor = UIColor { traitCollection in
@@ -276,7 +276,7 @@ public class StatusBarNotificationBackgroundStyle: NSObject {
 }
 
 /// Defines the appearance of the progress bar.
-@objc
+@objc(JDStatusBarNotificationProgressBarStyle)
 public class StatusBarNotificationProgressBarStyle: NSObject {
     /// The background color of the progress bar (on top of the notification bar)
     @objc public var barColor: UIColor = .green
