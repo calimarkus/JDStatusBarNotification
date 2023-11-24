@@ -22,7 +22,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:)
-  @available(*, unavailable)
   func present(_ text: String) -> UIView
   {
     present(text, subtitle: nil, styleName: nil, duration: 0.0, completion: nil)
@@ -38,7 +37,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:completion:)
-  @available(*, unavailable)
   func present(_ text: String, completion: Completion?) -> UIView
   {
     present(text, subtitle: nil, styleName: nil, duration: 0.0, completion: completion)
@@ -54,7 +52,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithTitle:subtitle:completion:)
-  @available(*, unavailable)
   func present(_ title: String, subtitle: String, completion: Completion?) -> UIView
   {
     present(title, subtitle: subtitle, styleName: nil, duration: 0.0, completion: completion)
@@ -69,7 +66,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:)
-  @available(*, unavailable)
   func present(_ text: String, delay: CGFloat) -> UIView
   {
     present(text, subtitle: nil, styleName: nil, duration: delay, completion: nil)
@@ -89,7 +85,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:customStyle:)
-  @available(*, unavailable)
   func present(_ text: String, customStyle: String) -> UIView
   {
     present(text, subtitle: nil, styleName: customStyle, duration: 0.0, completion: nil)
@@ -106,7 +101,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:customStyle:completion:)
-  @available(*, unavailable)
   func present(_ text: String, customStyle: String?, completion: Completion?) -> UIView
   {
     present(text, subtitle: nil, styleName: customStyle, duration: 0.0, completion: completion)
@@ -125,7 +119,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithTitle:subtitle:customStyle:completion:)
-  @available(*, unavailable)
   func present(_ title: String,
                subtitle: String?,
                customStyle: String?,
@@ -145,7 +138,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:customStyle:)
-  @available(*, unavailable)
   func present(_ text: String, delay: CGFloat, customStyle: String) -> UIView
   {
     present(text, subtitle: nil, styleName: customStyle, duration: delay, completion: nil)
@@ -163,7 +155,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:includedStyle:)
-  @available(*, unavailable)
   func present(_ text: String, includedStyle: IncludedStatusBarNotificationStyle) -> UIView
   {
     present(text, subtitle: nil, includedStyle: includedStyle, duration: 0.0, completion: nil)
@@ -180,7 +171,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:includedStyle:completion:)
-  @available(*, unavailable)
   func present(_ text: String,
                includedStyle: IncludedStatusBarNotificationStyle,
                completion: Completion?) -> UIView
@@ -200,7 +190,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithTitle:subtitle:includedStyle:completion:)
-  @available(*, unavailable)
   func present(_ title: String,
                subtitle: String?,
                includedStyle: IncludedStatusBarNotificationStyle,
@@ -220,7 +209,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:includedStyle:)
-  @available(*, unavailable)
   func present(_ text: String,
                delay: CGFloat = 0.0,
                includedStyle: IncludedStatusBarNotificationStyle) -> UIView
@@ -232,7 +220,6 @@ public extension NotificationPresenter {
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   @objc
-  @available(*, unavailable)
   func dismiss() {
     dismiss(animated: true, after: 0.0, completion: nil)
   }
@@ -242,7 +229,6 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissWithCompletion:)
-  @available(*, unavailable)
   func dismiss(completion: Completion?) {
     dismiss(animated: true, after: 0.0, completion: completion)
   }
@@ -253,7 +239,6 @@ public extension NotificationPresenter {
   ///   - animated: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
   ///   Otherwise it will be dismissed without animation.
   @objc(dismissAnimated:)
-  @available(*, unavailable)
   func dismiss(animated: Bool) {
     dismiss(animated: animated, after: 0.0, completion: nil)
   }
@@ -263,7 +248,6 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   @objc(dismissAfterDelay:)
-  @available(*, unavailable)
   func dismiss(after delay: CGFloat) {
     dismiss(animated: true, after: delay, completion: nil)
   }
@@ -274,7 +258,6 @@ public extension NotificationPresenter {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissAfterDelay:completion:)
-  @available(*, unavailable)
   func dismiss(after delay: CGFloat, completion: Completion?) {
     dismiss(animated: true, after: delay, completion: completion)
   }
@@ -295,7 +278,6 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(addStyleNamed:prepare:)
-  @available(*, unavailable)
   func addStyle(named name: String, prepare: PrepareStyleClosure) -> String {
     return addStyle(named: name, usingStyle: .defaultStyle, prepare: prepare)
   }
