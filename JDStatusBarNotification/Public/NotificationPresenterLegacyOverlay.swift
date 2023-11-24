@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+/// NOTE: These functions only exist for legacy objc compatibility.
+/// You should not use them from Swift.
+/// They do not offer any additional functionality over the existing Swift API.
+///
+/// For the curious, they start with the letter of z to show last in the auto-complete of swift code.
+/// And they use abbreviated names, so that they don't show up for their names either.
 public extension NotificationPresenter {
 
 
@@ -22,9 +28,9 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:)
-  func present(_ text: String) -> UIView
+  func zlp(t: String) -> UIView
   {
-    present(text, subtitle: nil, styleName: nil, duration: 0.0, completion: nil)
+    present(t, subtitle: nil, styleName: nil, duration: 0.0, completion: nil)
   }
 
   /// Present a notification
@@ -37,9 +43,9 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:completion:)
-  func present(_ text: String, completion: Completion?) -> UIView
+  func zlp(t: String, c: Completion?) -> UIView
   {
-    present(text, subtitle: nil, styleName: nil, duration: 0.0, completion: completion)
+    present(t, subtitle: nil, styleName: nil, duration: 0.0, completion: c)
   }
 
   /// Present a notification
@@ -52,9 +58,9 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithTitle:subtitle:completion:)
-  func present(_ title: String, subtitle: String, completion: Completion?) -> UIView
+  func zlp(t: String, st: String, c: Completion?) -> UIView
   {
-    present(title, subtitle: subtitle, styleName: nil, duration: 0.0, completion: completion)
+    present(t, subtitle: st, styleName: nil, duration: 0.0, completion: c)
   }
 
   /// Present a notification
@@ -66,9 +72,9 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:)
-  func present(_ text: String, delay: CGFloat) -> UIView
+  func zlp(t: String, d: CGFloat) -> UIView
   {
-    present(text, subtitle: nil, styleName: nil, duration: delay, completion: nil)
+    present(t, subtitle: nil, styleName: nil, duration: d, completion: nil)
   }
 
 
@@ -78,32 +84,32 @@ public extension NotificationPresenter {
   ///
   /// - Parameters:
   ///   - text: The text to display as title
-  ///   - customStyle: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                  If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithText:customStyle:)
-  func present(_ text: String, customStyle: String) -> UIView
+  func zlp(t: String, cu: String) -> UIView
   {
-    present(text, subtitle: nil, styleName: customStyle, duration: 0.0, completion: nil)
+    present(t, subtitle: nil, styleName: cu, duration: 0.0, completion: nil)
   }
 
   /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
   ///   - text: The text to display as title
-  ///   - customStyle: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                  If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithText:customStyle:completion:)
-  func present(_ text: String, customStyle: String?, completion: Completion?) -> UIView
+  func zlp(t: String, cu: String?, c: Completion?) -> UIView
   {
-    present(text, subtitle: nil, styleName: customStyle, duration: 0.0, completion: completion)
+    present(t, subtitle: nil, styleName: cu, duration: 0.0, completion: c)
   }
 
   /// Present a notification using the default style or a named style.
@@ -119,28 +125,28 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithTitle:subtitle:customStyle:completion:)
-  func present(_ title: String,
-               subtitle: String?,
-               customStyle: String?,
-               completion: Completion?) -> UIView
+  func zlp(t: String,
+           st: String?,
+           cu: String?,
+           c: Completion?) -> UIView
   {
-    present(title, subtitle: subtitle, styleName: customStyle, duration: 0.0, completion: completion)
+    present(t, subtitle: st, styleName: cu, duration: 0.0, completion: c)
   }
 
   /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
   ///   - text: The text to display as title
-  ///   - customStyle: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                  If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:customStyle:)
-  func present(_ text: String, delay: CGFloat, customStyle: String) -> UIView
+  func zlp(t: String, d: CGFloat, cu: String) -> UIView
   {
-    present(text, subtitle: nil, styleName: customStyle, duration: delay, completion: nil)
+    present(t, subtitle: nil, styleName: cu, duration: d, completion: nil)
   }
 
   // MARK: - Presentation (included style)
@@ -149,33 +155,33 @@ public extension NotificationPresenter {
   ///
   /// - Parameters:
   ///   - text: The text to display as title
-  ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
+  ///   - s: An existing ``IncludedStatusBarNotificationStyle``
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithText:includedStyle:)
-  func present(_ text: String, includedStyle: IncludedStatusBarNotificationStyle) -> UIView
+  func zlp(t: String, s: IncludedStatusBarNotificationStyle) -> UIView
   {
-    present(text, subtitle: nil, includedStyle: includedStyle, duration: 0.0, completion: nil)
+    present(t, subtitle: nil, includedStyle: s, duration: 0.0, completion: nil)
   }
 
   /// Present a notification using an included style.
   ///
   /// - Parameters:
   ///   - text: The text to display as title
-  ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
+  ///   - s: An existing ``IncludedStatusBarNotificationStyle``
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithText:includedStyle:completion:)
-  func present(_ text: String,
-               includedStyle: IncludedStatusBarNotificationStyle,
-               completion: Completion?) -> UIView
+  func zlp(t: String,
+           s: IncludedStatusBarNotificationStyle,
+           c: Completion?) -> UIView
   {
-    present(text, subtitle: nil, includedStyle: includedStyle, duration: 0.0, completion: completion)
+    present(t, subtitle: nil, includedStyle: s, duration: 0.0, completion: c)
   }
 
   /// Present a notification using an included style.
@@ -183,19 +189,19 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - title: The text to display as title
   ///   - subtitle: The text to display as subtitle
-  ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
+  ///   - s: An existing ``IncludedStatusBarNotificationStyle``
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithTitle:subtitle:includedStyle:completion:)
-  func present(_ title: String,
-               subtitle: String?,
-               includedStyle: IncludedStatusBarNotificationStyle,
-               completion: Completion?) -> UIView
+  func zlp(t: String,
+           st: String?,
+           s: IncludedStatusBarNotificationStyle,
+           c: Completion?) -> UIView
   {
-    present(title, subtitle: subtitle, includedStyle: includedStyle, duration: 0.0, completion: completion)
+    present(t, subtitle: st, includedStyle: s, duration: 0.0, completion: c)
   }
 
   /// Present a notification using an included style.
@@ -203,24 +209,24 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - text: The text to display as title
   ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed.
-  ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
+  ///   - s: An existing ``IncludedStatusBarNotificationStyle``
   ///
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:includedStyle:)
-  func present(_ text: String,
-               delay: CGFloat = 0.0,
-               includedStyle: IncludedStatusBarNotificationStyle) -> UIView
+  func zlp(t: String,
+           d: CGFloat = 0.0,
+           s: IncludedStatusBarNotificationStyle) -> UIView
   {
-    present(text, subtitle: nil, includedStyle: includedStyle, duration: delay, completion: nil)
+    present(t, subtitle: nil, includedStyle: s, duration: d, completion: nil)
   }
 
   // MARK: - Dismissal
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   @objc
-  func dismiss() {
+  func zld() {
     dismiss(animated: true, after: 0.0, completion: nil)
   }
 
@@ -229,8 +235,8 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissWithCompletion:)
-  func dismiss(completion: Completion?) {
-    dismiss(animated: true, after: 0.0, completion: completion)
+  func zld(c: Completion?) {
+    dismiss(animated: true, after: 0.0, completion: c)
   }
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
@@ -239,8 +245,8 @@ public extension NotificationPresenter {
   ///   - animated: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
   ///   Otherwise it will be dismissed without animation.
   @objc(dismissAnimated:)
-  func dismiss(animated: Bool) {
-    dismiss(animated: animated, after: 0.0, completion: nil)
+  func zld(a: Bool) {
+    dismiss(animated: a, after: 0.0, completion: nil)
   }
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
@@ -248,8 +254,8 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   @objc(dismissAfterDelay:)
-  func dismiss(after delay: CGFloat) {
-    dismiss(animated: true, after: delay, completion: nil)
+  func zld(d: CGFloat) {
+    dismiss(animated: true, after: d, completion: nil)
   }
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
@@ -258,8 +264,8 @@ public extension NotificationPresenter {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissAfterDelay:completion:)
-  func dismiss(after delay: CGFloat, completion: Completion?) {
-    dismiss(animated: true, after: delay, completion: completion)
+  func zld(d: CGFloat, c: Completion?) {
+    dismiss(animated: true, after: d, completion: c)
   }
 
   // MARK: - Style Customization
@@ -278,7 +284,7 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(addStyleNamed:prepare:)
-  func addStyle(named name: String, prepare: PrepareStyleClosure) -> String {
-    return addStyle(named: name, usingStyle: .defaultStyle, prepare: prepare)
+  func zlas(n: String, p: PrepareStyleClosure) -> String {
+    return addStyle(named: n, usingStyle: .defaultStyle, prepare: p)
   }
 }
