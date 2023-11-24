@@ -190,6 +190,11 @@ public class StatusBarNotificationLeftViewStyle: NSObject {
 /// Defines the appearance of a text label.
 @objc(JDStatusBarNotificationTextStyle)
 public class StatusBarNotificationTextStyle: NSObject {
+
+    @objc
+    public override init() { }
+
+    @objc
     public init(textColor: UIColor? = nil, font: UIFont? = nil) {
         if let textColor {
             self.textColor = textColor
