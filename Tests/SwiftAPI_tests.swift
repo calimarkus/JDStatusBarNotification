@@ -58,4 +58,13 @@ class SwiftAPI_tests: XCTestCase {
       NotificationPresenter.shared.setWindowScene(scene)
     }
   }
+
+  func testEnumAvailability() {
+    let _:[IncludedStatusBarNotificationStyle] = [.defaultStyle, .dark, .light, .success, .warning, .error, .matrix]
+    let _:[StatusBarNotificationBackgroundType] = [.fullWidth, .pill]
+    let _:[StatusBarNotificationAnimationType] = [.move, .bounce, .fade]
+    let _:[StatusBarNotificationProgressBarPosition] = [.top, .center, .bottom]
+    let _:[StatusBarNotificationSystemBarStyle] = [.defaultStyle, .darkContent, .lightContent]
+    let _:[StatusBarNotificationLeftViewAlignment] = [.left, .centerWithText]
+  }
 }

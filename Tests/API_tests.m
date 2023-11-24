@@ -86,4 +86,32 @@
   [_presenter setWindowScene:nil];
 }
 
+- (void)testEnumAvailability {
+    int a = (JDStatusBarNotificationIncludedStyleDefaultStyle
+             + JDStatusBarNotificationIncludedStyleDark
+             + JDStatusBarNotificationIncludedStyleLight
+             + JDStatusBarNotificationIncludedStyleSuccess
+             + JDStatusBarNotificationIncludedStyleWarning
+             + JDStatusBarNotificationIncludedStyleError
+             + JDStatusBarNotificationIncludedStyleMatrix);
+
+  int b = (JDStatusBarNotificationBackgroundTypeFullWidth
+           + JDStatusBarNotificationBackgroundTypePill);
+
+  int c = (JDStatusBarNotificationAnimationTypeMove
+           + JDStatusBarNotificationAnimationTypeBounce
+           + JDStatusBarNotificationAnimationTypeFade);
+
+  int d = (JDStatusBarNotificationProgressBarPositionTop
+           + JDStatusBarNotificationProgressBarPositionCenter
+           + JDStatusBarNotificationProgressBarPositionBottom);
+
+  int e = (JDStatusBarNotificationSystemBarStyleDefaultStyle
+           + JDStatusBarNotificationSystemBarStyleLightContent
+           + JDStatusBarNotificationSystemBarStyleDarkContent);
+
+  int f = (JDStatusBarNotificationLeftViewAlignmentLeft
+           + JDStatusBarNotificationLeftViewAlignmentCenterWithText);
+}
+
 @end
