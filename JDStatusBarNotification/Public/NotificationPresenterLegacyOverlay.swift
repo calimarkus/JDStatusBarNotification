@@ -222,10 +222,37 @@ public extension NotificationPresenter {
     present(t, subtitle: nil, includedStyle: s, duration: d, completion: nil)
   }
 
+  // MARK: - Custom View
+
+  /// Present a notification using a custom subview.
+  ///
+  /// The `customView` will be layouted correctly according to the selected style & the current device
+  /// state (rotation, status bar visibility, etc.). The background will still be styled & layouted
+  /// according to the provided style. If your custom view requires custom touch handling,
+  /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't
+  /// receive any touches, as the internal `gestureRecognizer` would receive them.
+  ///
+  /// - Parameters:
+  ///   - view: A custom UIView to display as notification content.
+  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
+  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
+  ///
+  /// - Returns: The presented UIView for further customization
+  ///
+  @discardableResult
+  @objc(presentWithCustomView:styleName:completion:)
+  func zlp(cv: UIView,
+           s: String? = nil,
+           c: Completion? = nil) -> UIView
+  {
+    return presentCustomView(cv, sizingController: nil, styleName: s, completion: c)
+  }
+
   // MARK: - Dismissal
 
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
-  @objc
+  @objc(dismiss)
   func zld() {
     dismiss(animated: true, after: 0.0, completion: nil)
   }
