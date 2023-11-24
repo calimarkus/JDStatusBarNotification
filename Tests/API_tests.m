@@ -150,7 +150,7 @@
   JDStatusBarNotificationTextStyle *style = [JDStatusBarNotificationTextStyle new];
 
   style.textColor = nil;
-  style.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+  style.font = [UIFont systemFontOfSize:10];
   style.textShadowColor = nil;
   style.textShadowOffset = CGSizeZero;
   style.shadowColor = nil;
