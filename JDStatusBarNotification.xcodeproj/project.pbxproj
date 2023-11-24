@@ -95,6 +95,11 @@
 		7EEDBE142856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
+		7EF32BBA2B113A0B000E7CAE /* API_tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32BB92B113A0B000E7CAE /* API_tests.m */; };
+		7EF32BC22B113BCE000E7CAE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
+		7EF32BC32B113BCE000E7CAE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7EF32BC52B113C1F000E7CAE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
+		7EF32BC62B113C26000E7CAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		7EF8C5EB2869559700DE1045 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519528585BE400C7C003 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 		7EFD77982843461D000BFBF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
@@ -133,6 +138,13 @@
 			remoteGlobalIDString = 7EDAEE882AF6EC5E001B6ABE;
 			remoteInfo = JDStatusBarNotification_LayoutDebug;
 		};
+		7EF32BBF2B113B96000E7CAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D264F8851820213200DA0E53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E5402C1286708840079C579;
+			remoteInfo = JDStatusBarNotification;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -165,6 +177,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7EDAEEAA2AF6ECAB001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32BC42B113BCE000E7CAE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7EF32BC32B113BCE000E7CAE /* JDStatusBarNotification.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,6 +234,8 @@
 		7ED306AA2AF842C300F6FFE3 /* FrameworkFiles.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = FrameworkFiles.xcfilelist; path = scripts/FrameworkFiles.xcfilelist; sourceTree = "<group>"; };
 		7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
+		7EF32BB72B113A0B000E7CAE /* API_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = API_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF32BB92B113A0B000E7CAE /* API_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = API_tests.m; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
 		D25B0FA3184F343600B8174B /* JDSBNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationView.h; sourceTree = "<group>"; };
@@ -242,6 +267,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32BB42B113A0B000E7CAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32BC62B113C26000E7CAE /* Foundation.framework in Frameworks */,
+				7EF32BC52B113C1F000E7CAE /* UIKit.framework in Frameworks */,
+				7EF32BC22B113BCE000E7CAE /* JDStatusBarNotification.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,10 +373,19 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
+		7EF32BB82B113A0B000E7CAE /* API_tests */ = {
+			isa = PBXGroup;
+			children = (
+				7EF32BB92B113A0B000E7CAE /* API_tests.m */,
+			);
+			path = API_tests;
+			sourceTree = "<group>";
+		};
 		D264F8841820213200DA0E53 = {
 			isa = PBXGroup;
 			children = (
 				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
+				7EF32BB82B113A0B000E7CAE /* API_tests */,
 				D264F8961820213200DA0E53 /* ExampleProject */,
 				7E5402C3286708850079C579 /* Supporting Files */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
@@ -357,6 +401,7 @@
 				7EA91CC3284EF3AF00F32F09 /* JDSBN Example.app */,
 				7E5402C2286708840079C579 /* JDStatusBarNotification.framework */,
 				7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */,
+				7EF32BB72B113A0B000E7CAE /* API_tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -491,6 +536,25 @@
 			productReference = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		7EF32BB62B113A0B000E7CAE /* API_tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EF32BBE2B113A0C000E7CAE /* Build configuration list for PBXNativeTarget "API_tests" */;
+			buildPhases = (
+				7EF32BB32B113A0B000E7CAE /* Sources */,
+				7EF32BB42B113A0B000E7CAE /* Frameworks */,
+				7EF32BB52B113A0B000E7CAE /* Resources */,
+				7EF32BC42B113BCE000E7CAE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EF32BC02B113B96000E7CAE /* PBXTargetDependency */,
+			);
+			name = API_tests;
+			productName = API_tests;
+			productReference = 7EF32BB72B113A0B000E7CAE /* API_tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7EFD778A2843461D000BFBF1 /* ExampleApp_SceneDelegate */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EFD779E2843461D000BFBF1 /* Build configuration list for PBXNativeTarget "ExampleApp_SceneDelegate" */;
@@ -548,6 +612,10 @@
 					7EA91CA8284EF3AF00F32F09 = {
 						DevelopmentTeam = 8M37KCPR2Q;
 					};
+					7EF32BB62B113A0B000E7CAE = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = D264F88C1820213200DA0E53;
+					};
 					7EFD778A2843461D000BFBF1 = {
 						DevelopmentTeam = 8M37KCPR2Q;
 						LastSwiftMigration = 1340;
@@ -576,6 +644,7 @@
 				7EA91CA8284EF3AF00F32F09 /* ExampleApp_LayoutDebug */,
 				7E5402C1286708840079C579 /* JDStatusBarNotification */,
 				7EDAEE882AF6EC5E001B6ABE /* JDStatusBarNotification_LayoutDebug */,
+				7EF32BB62B113A0B000E7CAE /* API_tests */,
 			);
 		};
 /* End PBXProject section */
@@ -591,6 +660,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7EDAEEA42AF6EC5E001B6ABE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF32BB52B113A0B000E7CAE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -713,6 +789,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EF32BB32B113A0B000E7CAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF32BBA2B113A0B000E7CAE /* API_tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EFD778B2843461D000BFBF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,6 +852,11 @@
 			isa = PBXTargetDependency;
 			target = 7EDAEE882AF6EC5E001B6ABE /* JDStatusBarNotification_LayoutDebug */;
 			targetProxy = 7EDAEEAB2AF6ECAB001B6ABE /* PBXContainerItemProxy */;
+		};
+		7EF32BC02B113B96000E7CAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E5402C1286708840079C579 /* JDStatusBarNotification */;
+			targetProxy = 7EF32BBF2B113B96000E7CAE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -906,6 +995,41 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7EF32BBD2B113A0C000E7CAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8M37KCPR2Q;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.jdsb.apitests.API-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1048,6 +1172,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EDAEEA62AF6EC5E001B6ABE /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7EF32BBE2B113A0C000E7CAE /* Build configuration list for PBXNativeTarget "API_tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF32BBD2B113A0C000E7CAE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

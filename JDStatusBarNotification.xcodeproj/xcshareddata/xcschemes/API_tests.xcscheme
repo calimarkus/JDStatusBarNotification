@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1510"
-   version = "1.7">
+   LastUpgradeVersion = "1500"
+   version = "2.2">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "NO">
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D264F88C1820213200DA0E53"
-               BuildableName = "JDSBN Example.app"
-               BlueprintName = "ExampleApp_AppDelegate"
-               ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
-            </BuildableReference>
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <AutocreatedTestPlanReference>
+            </AutocreatedTestPlanReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -52,39 +47,28 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D264F88C1820213200DA0E53"
-            BuildableName = "JDSBN Example.app"
-            BlueprintName = "ExampleApp_AppDelegate"
-            ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D264F88C1820213200DA0E53"
-            BuildableName = "JDSBN Example.app"
-            BlueprintName = "ExampleApp_AppDelegate"
+            BlueprintIdentifier = "7EF32BB62B113A0B000E7CAE"
+            BuildableName = "API_tests.xctest"
+            BlueprintName = "API_tests"
             ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
