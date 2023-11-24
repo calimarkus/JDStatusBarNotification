@@ -25,6 +25,8 @@
   _presenter = [JDStatusBarNotificationPresenter sharedPresenter];
 }
 
+#pragma mark - Presenter Tests
+
 - (void)testPresentationAPI_Basic {
   XCTAssertNotNil([_presenter presentWithText:@"text"]);
   XCTAssertNotNil([_presenter presentWithText:@"text"]);
@@ -86,7 +88,9 @@
   [_presenter setWindowScene:nil];
 }
 
-- (void)testEnumAvailability {
+#pragma mark - Style Enum Tests
+
+- (void)testStyleEnumAvailability {
     int a = (JDStatusBarNotificationIncludedStyleDefaultStyle
              + JDStatusBarNotificationIncludedStyleDark
              + JDStatusBarNotificationIncludedStyleLight
@@ -112,6 +116,79 @@
 
   int f = (JDStatusBarNotificationLeftViewAlignmentLeft
            + JDStatusBarNotificationLeftViewAlignmentCenterWithText);
+}
+
+#pragma mark - Style Tests
+
+- (void)testStyle {
+  JDStatusBarNotificationStyle *style = [JDStatusBarNotificationStyle new];
+
+  style.textStyle = [JDStatusBarNotificationTextStyle new];
+  style.subtitleStyle = [JDStatusBarNotificationTextStyle new];
+  style.backgroundStyle = [JDStatusBarNotificationBackgroundStyle new];
+  style.progressBarStyle = [JDStatusBarNotificationProgressBarStyle new];
+  style.leftViewStyle = [JDStatusBarNotificationLeftViewStyle new];
+
+  style.systemStatusBarStyle = JDStatusBarNotificationSystemBarStyleDefaultStyle;
+  style.animationType = JDStatusBarNotificationAnimationTypeMove;
+  style.canSwipeToDismiss = NO;
+  style.canTapToHold = NO;
+  style.canDismissDuringUserInteraction = NO;
+}
+
+- (void)testLeftViewStyle {
+  JDStatusBarNotificationLeftViewStyle *style = [JDStatusBarNotificationLeftViewStyle new];
+
+  style.spacing = 0;
+  style.offsetX = 0;
+  style.offset = CGPointZero;
+  style.tintColor = nil;
+  style.alignment = JDStatusBarNotificationLeftViewAlignmentLeft;
+}
+
+- (void)testTextStyle {
+  JDStatusBarNotificationTextStyle *style = [JDStatusBarNotificationTextStyle new];
+
+  style.textColor = nil;
+  style.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+  style.textShadowColor = nil;
+  style.textShadowOffset = CGSizeZero;
+  style.shadowColor = nil;
+  style.shadowOffset = CGPointZero;
+  style.textOffsetY = 0;
+}
+
+- (void)testPillStyle {
+  JDStatusBarNotificationPillStyle *style = [JDStatusBarNotificationPillStyle new];
+
+  style.height = 0;
+  style.topSpacing = 0;
+  style.minimumWidth = 0;
+  style.borderColor = nil;
+  style.borderWidth = 0;
+  style.shadowColor = nil;
+  style.shadowRadius = 0;
+  style.shadowOffset = CGSizeZero;
+  style.shadowOffsetXY = CGPointZero;
+}
+
+- (void)testBackgroundStyle {
+  JDStatusBarNotificationBackgroundStyle *style = [JDStatusBarNotificationBackgroundStyle new];
+
+  style.backgroundColor = nil;
+  style.backgroundType = JDStatusBarNotificationBackgroundTypePill;
+  style.pillStyle = [JDStatusBarNotificationPillStyle new];
+}
+
+- (void)testProgressBarStyle {
+  JDStatusBarNotificationProgressBarStyle *style = [JDStatusBarNotificationProgressBarStyle new];
+
+  style.barColor = nil;
+  style.barHeight = 0;
+  style.position = JDStatusBarNotificationProgressBarPositionBottom;
+  style.horizontalInsets = 0;
+  style.offsetY = 0;
+  style.cornerRadius = 0;
 }
 
 @end
