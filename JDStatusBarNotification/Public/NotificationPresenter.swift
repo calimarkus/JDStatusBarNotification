@@ -98,16 +98,15 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  @objc(presentWithTitle:subtitle:customStyle:dismissAfterDelay:completion:)
   public func present(_ title: String,
                       subtitle: String? = nil,
                       styleName: String? = nil,
-                      duration: CGFloat = 0.0,
+                      duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
     let style = styleCache.style(forName: styleName)
     let view = present(title, subtitle: subtitle, style: style, completion: completion)
-    if duration > 0.0 {
+    if let duration {
       dismiss(after: duration)
     }
     return view
@@ -125,16 +124,15 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Returns: The presented UIView for further customization
   ///
   @discardableResult
-  @objc(presentWithTitle:subtitle:includedStyle:dismissAfterDelay:completion:)
   public func present(_ title: String,
                       subtitle: String? = nil,
                       includedStyle: IncludedStatusBarNotificationStyle,
-                      duration: CGFloat = 0.0,
+                      duration: Double? = nil,
                       completion: Completion? = nil) -> UIView
   {
     let style = styleCache.style(forIncludedStyle: includedStyle)
     let view = present(title, subtitle: subtitle, style: style, completion: completion)
-    if duration > 0.0 {
+    if let duration {
       dismiss(after: duration)
     }
     return view
@@ -202,7 +200,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
   @objc(dismissAnimated:afterDelay:completion:)
-  public func dismiss(animated: Bool = true, after delay: CGFloat = 0.0, completion: Completion? = nil) {
+  public func dismiss(animated: Bool = true, after delay: Double = 0.0, completion: Completion? = nil) {
     overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay, completion: {
       completion?(self)
     })
