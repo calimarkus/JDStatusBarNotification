@@ -1,5 +1,5 @@
 //
-//  NotificationPresenterOverlay.swift
+//  NotificationPresenterLegacyOverlay.swift
 //
 //  Created by Markus Emrich on 10/15/23.
 //  Copyright 2023 Markus Emrich. All rights reserved.
