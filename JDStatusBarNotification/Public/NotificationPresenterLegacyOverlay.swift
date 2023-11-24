@@ -295,6 +295,18 @@ public extension NotificationPresenter {
     dismiss(animated: true, after: d, completion: c)
   }
 
+  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  ///
+  /// - Parameters:
+  ///   - a: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
+  ///   Otherwise it will be dismissed without animation.   
+  ///   - d: The delay in seconds, before the notification should be dismissed.
+  ///   - c: A ``Completion`` closure, which gets called once the dismiss animation finishes.
+  @objc(dismissAnimated:afterDelay:completion:)
+  func zld(a: Bool, d: Double, c: Completion?) {
+    dismiss(animated: a, after: d, completion: c)
+  }
+
   // MARK: - Style Customization
 
   /// Adds a new named style - based on an included style, if given.

@@ -199,9 +199,8 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///   - delay: The delay in seconds, before the notification should be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
-  @objc(dismissAnimated:afterDelay:completion:)
-  public func dismiss(animated: Bool = true, after delay: Double = 0.0, completion: Completion? = nil) {
-    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay, completion: {
+  public func dismiss(animated: Bool = true, after delay: Double? = nil, completion: Completion? = nil) {
+    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: {
       completion?(self)
     })
   }
