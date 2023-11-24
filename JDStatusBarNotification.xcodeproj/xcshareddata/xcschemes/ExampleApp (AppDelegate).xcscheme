@@ -35,8 +35,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7EF32BB62B113A0B000E7CAE"
-               BuildableName = "API_tests.xctest"
-               BlueprintName = "API_tests"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
          </TestableReference>

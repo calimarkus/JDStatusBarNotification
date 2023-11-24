@@ -19,8 +19,8 @@
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
       <Testables>
@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7EF32BB62B113A0B000E7CAE"
-               BuildableName = "API_tests.xctest"
-               BlueprintName = "API_tests"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7EF32BB62B113A0B000E7CAE"
-            BuildableName = "API_tests.xctest"
-            BlueprintName = "API_tests"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
             ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

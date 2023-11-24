@@ -236,7 +236,7 @@
 		7ED306AA2AF842C300F6FFE3 /* FrameworkFiles.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = FrameworkFiles.xcfilelist; path = scripts/FrameworkFiles.xcfilelist; sourceTree = "<group>"; };
 		7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
-		7EF32BB72B113A0B000E7CAE /* API_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = API_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EF32BB72B113A0B000E7CAE /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF32BB92B113A0B000E7CAE /* API_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = API_tests.m; sourceTree = "<group>"; };
 		7EFD77A12843461D000BFBF1 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
@@ -375,20 +375,20 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
-		7EF32BB82B113A0B000E7CAE /* API_tests */ = {
+		7EF32BB82B113A0B000E7CAE /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				7EF32BB92B113A0B000E7CAE /* API_tests.m */,
 				7E1878B62B1142FF00E0FA2D /* SwiftAPI_tests.swift */,
 			);
-			path = API_tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		D264F8841820213200DA0E53 = {
 			isa = PBXGroup;
 			children = (
 				D264F8BF1820216300DA0E53 /* JDStatusBarNotification */,
-				7EF32BB82B113A0B000E7CAE /* API_tests */,
+				7EF32BB82B113A0B000E7CAE /* Tests */,
 				D264F8961820213200DA0E53 /* ExampleProject */,
 				7E5402C3286708850079C579 /* Supporting Files */,
 				D264F88F1820213200DA0E53 /* Frameworks */,
@@ -404,7 +404,7 @@
 				7EA91CC3284EF3AF00F32F09 /* JDSBN Example.app */,
 				7E5402C2286708840079C579 /* JDStatusBarNotification.framework */,
 				7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */,
-				7EF32BB72B113A0B000E7CAE /* API_tests.xctest */,
+				7EF32BB72B113A0B000E7CAE /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -539,9 +539,9 @@
 			productReference = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7EF32BB62B113A0B000E7CAE /* API_tests */ = {
+		7EF32BB62B113A0B000E7CAE /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EF32BBE2B113A0C000E7CAE /* Build configuration list for PBXNativeTarget "API_tests" */;
+			buildConfigurationList = 7EF32BBE2B113A0C000E7CAE /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				7EF32BB32B113A0B000E7CAE /* Sources */,
 				7EF32BB42B113A0B000E7CAE /* Frameworks */,
@@ -553,9 +553,9 @@
 			dependencies = (
 				7EF32BC02B113B96000E7CAE /* PBXTargetDependency */,
 			);
-			name = API_tests;
+			name = Tests;
 			productName = API_tests;
-			productReference = 7EF32BB72B113A0B000E7CAE /* API_tests.xctest */;
+			productReference = 7EF32BB72B113A0B000E7CAE /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		7EFD778A2843461D000BFBF1 /* ExampleApp_SceneDelegate */ = {
@@ -648,7 +648,7 @@
 				7EA91CA8284EF3AF00F32F09 /* ExampleApp_LayoutDebug */,
 				7E5402C1286708840079C579 /* JDStatusBarNotification */,
 				7EDAEE882AF6EC5E001B6ABE /* JDStatusBarNotification_LayoutDebug */,
-				7EF32BB62B113A0B000E7CAE /* API_tests */,
+				7EF32BB62B113A0B000E7CAE /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1029,7 +1029,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.calimarkus.jdsb.apitests.API-tests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calimarkus.jdsb.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1185,7 +1185,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7EF32BBE2B113A0C000E7CAE /* Build configuration list for PBXNativeTarget "API_tests" */ = {
+		7EF32BBE2B113A0C000E7CAE /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EF32BBD2B113A0C000E7CAE /* Debug */,
