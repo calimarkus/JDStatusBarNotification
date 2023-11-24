@@ -13,6 +13,7 @@
 		7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
 		7E0FCB7A285DAEE800E7CB78 /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
 		7E0FCB7B285DAEE800E7CB78 /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
+		7E1878B72B1142FF00E0FA2D /* SwiftAPI_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1878B62B1142FF00E0FA2D /* SwiftAPI_tests.swift */; };
 		7E1C2837285226F5004315CC /* EnumPickerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */; };
 		7E1C2838285226F5004315CC /* EnumPickerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */; };
 		7E1C2839285226F5004315CC /* EnumPickerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */; };
@@ -197,6 +198,7 @@
 /* Begin PBXFileReference section */
 		7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
 		7E0FCB78285DAEE800E7CB78 /* FormViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViews.swift; sourceTree = "<group>"; };
+		7E1878B62B1142FF00E0FA2D /* SwiftAPI_tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAPI_tests.swift; sourceTree = "<group>"; };
 		7E1C283128520F56004315CC /* JDSBNotificationAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDSBNotificationAnimator.h; sourceTree = "<group>"; };
 		7E1C283228520F56004315CC /* JDSBNotificationAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDSBNotificationAnimator.m; sourceTree = "<group>"; };
 		7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPickerOptionView.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				7EF32BB92B113A0B000E7CAE /* API_tests.m */,
+				7E1878B62B1142FF00E0FA2D /* SwiftAPI_tests.swift */,
 			);
 			path = API_tests;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 					};
 					7EF32BB62B113A0B000E7CAE = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 						TestTargetID = D264F88C1820213200DA0E53;
 					};
 					7EFD778A2843461D000BFBF1 = {
@@ -793,6 +797,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E1878B72B1142FF00E0FA2D /* SwiftAPI_tests.swift in Sources */,
 				7EF32BBA2B113A0B000E7CAE /* API_tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1005,6 +1010,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
@@ -1029,6 +1035,9 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
