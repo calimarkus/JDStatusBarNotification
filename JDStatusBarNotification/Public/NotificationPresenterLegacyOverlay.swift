@@ -72,7 +72,7 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:)
-  func zlp(t: String, d: CGFloat) -> UIView
+  func zlp(t: String, d: Double) -> UIView
   {
     present(t, subtitle: nil, styleName: nil, duration: d, completion: nil)
   }
@@ -144,7 +144,7 @@ public extension NotificationPresenter {
   ///
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:customStyle:)
-  func zlp(t: String, d: CGFloat, cu: String) -> UIView
+  func zlp(t: String, d: Double, cu: String) -> UIView
   {
     present(t, subtitle: nil, styleName: cu, duration: d, completion: nil)
   }
@@ -216,7 +216,7 @@ public extension NotificationPresenter {
   @discardableResult
   @objc(presentWithText:dismissAfterDelay:includedStyle:)
   func zlp(t: String,
-           d: CGFloat = 0.0,
+           d: Double = 0.0,
            s: IncludedStatusBarNotificationStyle) -> UIView
   {
     present(t, subtitle: nil, includedStyle: s, duration: d, completion: nil)
@@ -281,7 +281,7 @@ public extension NotificationPresenter {
   /// - Parameters:
   ///   - d: The delay in seconds, before the notification should be dismissed.
   @objc(dismissAfterDelay:)
-  func zld(d: CGFloat) {
+  func zld(d: Double) {
     dismiss(animated: true, after: d, completion: nil)
   }
 
@@ -291,7 +291,7 @@ public extension NotificationPresenter {
   ///   - d: The delay in seconds, before the notification should be dismissed.
   ///   - c: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissAfterDelay:completion:)
-  func zld(d: CGFloat, c: Completion?) {
+  func zld(d: Double, c: Completion?) {
     dismiss(animated: true, after: d, completion: c)
   }
 
