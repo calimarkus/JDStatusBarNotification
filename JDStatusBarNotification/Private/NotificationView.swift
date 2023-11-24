@@ -365,7 +365,7 @@ class NotificationView: UIView, UIGestureRecognizerDelegate, StylableView {
     pillView.layer.shadowColor = pillStyle.shadowColor?.cgColor
     pillView.layer.shadowRadius = pillStyle.shadowColor != nil ? pillStyle.shadowRadius : 0.0
     pillView.layer.shadowOpacity = pillStyle.shadowColor != nil ? 1.0 : 0.0
-    pillView.layer.shadowOffset = sizeFromPoint(pillStyle.shadowOffset)
+    pillView.layer.shadowOffset = sizeFromPoint(pillStyle.shadowOffsetXY)
   }
 
   // MARK: - Layout

@@ -173,6 +173,14 @@ public class StatusBarNotificationLeftViewStyle: NSObject {
     /// The minimum distance between the left-view and the text. Defaults to 5.0.
     @objc public var spacing: Double = 5.0
 
+    /// An optional offset to adjust the left-views position. Default 0.0.
+    @available(*, deprecated, renamed: "offset")
+    @objc public var offsetX: Double { set {
+      offset.x = newValue
+    } get {
+      offset.x
+    }}
+
     /// An optional offset to adjust the left-views position. Default is `CGPointZero`.
     @objc public var offset = CGPoint.zero
 
@@ -220,7 +228,23 @@ public class StatusBarNotificationTextStyle: NSObject {
     @objc public var font: UIFont? = UIFont.preferredFont(forTextStyle: .footnote)
 
     /// The text shadow color, the default is `nil`, meaning no shadow.
+    @available(*, deprecated, renamed: "shadowColor")
+    @objc public var textShadowColor: UIColor? { set {
+      shadowColor = newValue
+    } get {
+      shadowColor
+    }}
+
+    /// The text shadow color, the default is `nil`, meaning no shadow.
     @objc public var shadowColor: UIColor? = nil
+
+    /// The text shadow offset of the notification label. Default is `(1, 2)`
+    @available(*, deprecated, renamed: "shadowOffset")
+    @objc public var textShadowOffset: CGSize { set {
+      shadowOffset = CGPoint(x: newValue.width, y: newValue.height)
+    } get {
+      CGSize(width: shadowOffset.x, height: shadowOffset.y)
+    }}
 
     /// The text shadow offset of the notification label. Default is `(1, 2)`
     @objc public var shadowOffset = CGPoint(x: 1.0, y: 2.0)
@@ -255,7 +279,15 @@ public class StatusBarNotificationPillStyle: NSObject {
     @objc public var shadowRadius: Double = 4.0
 
     /// The shadow offset for the pill shadow. The default is `(0, 2)`.
-    @objc public var shadowOffset = CGPoint(x: 0, y: 2)
+    @available(*, deprecated, renamed: "shadowOffsetXY")
+    @objc public var shadowOffset: CGSize { set {
+      shadowOffsetXY = CGPoint(x: newValue.width, y: newValue.height)
+    } get {
+      CGSize(width: shadowOffsetXY.x, height: shadowOffsetXY.y)
+    }}
+
+    /// The shadow offset for the pill shadow. The default is `(0, 2)`.
+    @objc public var shadowOffsetXY = CGPoint(x: 0, y: 2)
 }
 
 /// Defines the appearance of the notification background.
