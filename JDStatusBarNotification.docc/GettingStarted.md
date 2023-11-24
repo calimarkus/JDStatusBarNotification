@@ -1,14 +1,10 @@
 # Getting Started
 
-@Metadata {
-    @SupportedLanguage(swift)
-}
-
 Some simple examples to get started.
 
 All examples here are written in Swift. But everything can be called from Objective-C too.
 
-Explore the full Swift API in ``JDStatusBarNotification/NotificationPresenter``, or the Objective-C API in ``JDStatusBarNotificationPresenter``.
+Explore the full Swift API in ``JDStatusBarNotification/NotificationPresenter``.
 
 ### Showing a text notification
 

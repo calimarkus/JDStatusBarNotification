@@ -15,7 +15,6 @@ Highly customizable & feature rich notifications displayed below the status bar.
 ### Notification Presenter
 
 - ``NotificationPresenter``
-- ``JDStatusBarNotificationPresenter``
 
 ### Notification Style
 
