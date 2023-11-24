@@ -116,7 +116,7 @@ public class StatusBarNotificationStyle: NSObject {
     ///
     /// The subtitle's .textOffsetY affects only the subtitle.
     @objc public var subtitleStyle = StatusBarNotificationTextStyle(
-        textColor: StatusBarNotificationTextStyle().textColor.withAlphaComponent(0.66),
+        textColor: StatusBarNotificationTextStyle().textColor?.withAlphaComponent(0.66),
         font: UIFont.preferredFont(forTextStyle: .caption1)
     )
 
@@ -205,7 +205,7 @@ public class StatusBarNotificationTextStyle: NSObject {
     }
 
     /// The color of the  label.
-    @objc public var textColor = UIColor { traitCollection in
+    @objc public var textColor: UIColor? = UIColor { traitCollection in
         switch traitCollection.userInterfaceStyle {
         case .dark:
             return UIColor(white: 0.95, alpha: 1.0)
@@ -217,7 +217,7 @@ public class StatusBarNotificationTextStyle: NSObject {
     }
 
     /// The font of the label.
-    @objc public var font = UIFont.preferredFont(forTextStyle: .footnote)
+    @objc public var font: UIFont? = UIFont.preferredFont(forTextStyle: .footnote)
 
     /// The text shadow color, the default is `nil`, meaning no shadow.
     @objc public var shadowColor: UIColor? = nil
@@ -262,7 +262,7 @@ public class StatusBarNotificationPillStyle: NSObject {
 @objc(JDStatusBarNotificationBackgroundStyle)
 public class StatusBarNotificationBackgroundStyle: NSObject {
     /// The background color of the notification bar
-    @objc public var backgroundColor = UIColor { traitCollection in
+    @objc public var backgroundColor: UIColor? = UIColor { traitCollection in
         switch traitCollection.userInterfaceStyle {
         case .dark:
             return UIColor(red: 0.050, green: 0.078, blue: 0.120, alpha: 1.000)
@@ -284,7 +284,7 @@ public class StatusBarNotificationBackgroundStyle: NSObject {
 @objc(JDStatusBarNotificationProgressBarStyle)
 public class StatusBarNotificationProgressBarStyle: NSObject {
     /// The background color of the progress bar (on top of the notification bar)
-    @objc public var barColor: UIColor = .green
+    @objc public var barColor: UIColor? = .green
 
     /// The height of the progress bar. Default is `2.0`. The applied minimum is 0.5 and the maximum equals the full height of the notification.
     @objc public var barHeight: Double = 2.0
