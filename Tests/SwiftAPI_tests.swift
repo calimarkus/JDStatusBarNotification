@@ -11,8 +11,10 @@ class SwiftAPI_tests: XCTestCase {
 
   func testPresentationAPI() {
     NotificationPresenter.shared.present("x")
+    NotificationPresenter.shared.present("x") { presenter in _ = presenter }
     NotificationPresenter.shared.present("x", subtitle: nil, styleName: nil, duration: nil, completion: nil)
     NotificationPresenter.shared.present("x", subtitle: nil, includedStyle: .defaultStyle, duration: nil, completion: nil)
+    NotificationPresenter.shared.present("x", subtitle: nil, includedStyle: .defaultStyle, duration: nil) { presenter in _ = presenter }
     NotificationPresenter.shared.presentSwiftView(styleName: "s") {
       Text("x")
     }
@@ -23,20 +25,17 @@ class SwiftAPI_tests: XCTestCase {
     NotificationPresenter.shared.dismiss()
     NotificationPresenter.shared.dismiss(animated: false)
     NotificationPresenter.shared.dismiss(after: 0)
+    NotificationPresenter.shared.dismiss(after: 1)
     NotificationPresenter.shared.dismiss(completion: nil)
     NotificationPresenter.shared.dismiss(animated: false, completion: nil)
+    NotificationPresenter.shared.dismiss(animated: true) { presenter in _ = presenter }
     NotificationPresenter.shared.dismiss(after: 0, completion: nil)
     NotificationPresenter.shared.dismiss(animated: true, after: nil, completion: nil)
   }
 
   func testStyleAPI() {
-    NotificationPresenter.shared.updateDefaultStyle { style in
-      return style
-    }
-
-    NotificationPresenter.shared.addStyle(named: "x", usingStyle: .defaultStyle) { style in
-      return style
-    }
+    NotificationPresenter.shared.updateDefaultStyle { style in return style }
+    NotificationPresenter.shared.addStyle(named: "x", usingStyle: .defaultStyle) { style in return style }
   }
 
   func testOtherAPI() {

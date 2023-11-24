@@ -31,6 +31,7 @@
   XCTAssertNotNil([_presenter presentWithText:@"text"]);
   XCTAssertNotNil([_presenter presentWithText:@"text"]);
   XCTAssertNotNil([_presenter presentWithText:@"text" completion:nil]);
+  XCTAssertNotNil([_presenter presentWithText:@"text" completion:^(id presenter){}]);
   XCTAssertNotNil([_presenter presentWithTitle:@"text" subtitle:@"another" completion:nil]);
   XCTAssertNotNil([_presenter presentWithText:@"text" dismissAfterDelay:0]);
 }
@@ -38,6 +39,7 @@
 - (void)testPresentationAPI_CustomStyle {
   XCTAssertNotNil([_presenter presentWithText:@"text" customStyle:@"x"]);
   XCTAssertNotNil([_presenter presentWithText:@"text" customStyle:@"x" completion:nil]);
+  XCTAssertNotNil([_presenter presentWithText:@"text" customStyle:@"x" completion:^(id presenter){}]);
   XCTAssertNotNil([_presenter presentWithTitle:@"text" subtitle:@"another" customStyle:@"x" completion:nil]);
   XCTAssertNotNil([_presenter presentWithText:@"text" dismissAfterDelay:0 customStyle:@"x"]);
 }
@@ -46,6 +48,7 @@
   const JDStatusBarNotificationIncludedStyle style = JDStatusBarNotificationIncludedStyleDefaultStyle;
   XCTAssertNotNil([_presenter presentWithText:@"text" includedStyle:style]);
   XCTAssertNotNil([_presenter presentWithText:@"text" includedStyle:style completion:nil]);
+  XCTAssertNotNil([_presenter presentWithText:@"text" includedStyle:style completion:^(id presenter){}]);
   XCTAssertNotNil([_presenter presentWithTitle:@"text" subtitle:@"another" includedStyle:style completion:nil]);
   XCTAssertNotNil([_presenter presentWithText:@"text" dismissAfterDelay:0 includedStyle:style]);
 }
@@ -59,8 +62,10 @@
 - (void)testDismissalAPI {
   [_presenter dismiss];
   [_presenter dismissWithCompletion:nil];
+  [_presenter dismissWithCompletion:^(id presenter){}];
   [_presenter dismissAnimated:false];
   [_presenter dismissAfterDelay:0];
+  [_presenter dismissAfterDelay:1];
   [_presenter dismissAfterDelay:0 completion:nil];
   [_presenter dismissAnimated:false afterDelay:0 completion:nil];
 }
@@ -73,8 +78,12 @@
 
 - (void)testProgressBarAPI {
   [_presenter displayProgressBarWithPercentage:0];
+  [_presenter displayProgressBarWithPercentage:1];
   [_presenter animateProgressBarToPercentage:0
                        animationDuration:0
+                              completion:nil];
+  [_presenter animateProgressBarToPercentage:1
+                       animationDuration:1
                               completion:nil];
 }
 
