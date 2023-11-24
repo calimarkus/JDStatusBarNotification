@@ -4,7 +4,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <JDStatusBarNotification/JDStatusBarNotification.h>
+@import JDStatusBarNotification;
 
 @interface API_tests : XCTestCase
 @end
