@@ -90,9 +90,9 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Parameters:
   ///   - title: The text to display as title
   ///   - subtitle: The text to display as subtitle
-  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed..
   ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
+  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed..
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
@@ -117,8 +117,8 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// - Parameters:
   ///   - title: The text to display as title
   ///   - subtitle: The text to display as subtitle
-  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed.
   ///   - includedStyle: An existing ``IncludedStatusBarNotificationStyle``
+  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed.
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
@@ -147,7 +147,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   /// receive any touches, as the internal `gestureRecognizer` would receive them.
   ///
   /// - Parameters:
-  ///   - view: A custom UIView to display as notification content.
+  ///   - customView: A custom UIView to display as notification content.
   ///   - sizingController: An optional controller conforming to ``NotificationPresenterCustomViewSizingController``, which controls the size of a presented custom view.
   ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
@@ -260,7 +260,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///
   /// - Parameters:
   ///   - percentage: Relative progress from 0.0 to 1.0
-  ///   - animationDuration: The duration of the animation from the current percentage to the provided percentage.
+  ///   - duration: The duration of the animation from the current percentage to the provided percentage.
   ///   - completion: A ``Completion``, which gets called once the progress bar animation finishes.
   ///
   @objc(animateProgressBarToPercentage:animationDuration:completion:)

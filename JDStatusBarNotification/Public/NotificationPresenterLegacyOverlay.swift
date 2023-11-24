@@ -22,7 +22,7 @@ public extension NotificationPresenter {
   /// Present a notification
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -36,8 +36,8 @@ public extension NotificationPresenter {
   /// Present a notification
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
-  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - t: The text to display as title
+  ///   - c: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -51,8 +51,8 @@ public extension NotificationPresenter {
   /// Present a notification
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
-  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - t: The text to display as title
+  ///   - c: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -66,7 +66,7 @@ public extension NotificationPresenter {
   /// Present a notification
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -83,7 +83,7 @@ public extension NotificationPresenter {
   /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                  If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
@@ -99,7 +99,7 @@ public extension NotificationPresenter {
   /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                  If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
@@ -115,11 +115,11 @@ public extension NotificationPresenter {
   /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
-  ///   - title: The text to display as title
-  ///   - subtitle: The text to display as subtitle
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - t: The text to display as title
+  ///   - st: The text to display as subtitle
+  ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
-  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - c: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -136,7 +136,7 @@ public extension NotificationPresenter {
   /// Present a notification using the default style or a named style.
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///   - cu: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                  If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
@@ -154,7 +154,7 @@ public extension NotificationPresenter {
   /// Present a notification using an included style.
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///   - s: An existing ``IncludedStatusBarNotificationStyle``
   ///
   /// - Returns: The presented UIView for further customization
@@ -169,9 +169,9 @@ public extension NotificationPresenter {
   /// Present a notification using an included style.
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
+  ///   - t: The text to display as title
   ///   - s: An existing ``IncludedStatusBarNotificationStyle``
-  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - c: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -187,10 +187,10 @@ public extension NotificationPresenter {
   /// Present a notification using an included style.
   ///
   /// - Parameters:
-  ///   - title: The text to display as title
-  ///   - subtitle: The text to display as subtitle
+  ///   - t: The text to display as title
+  ///   - st: The text to display as subtitle
   ///   - s: An existing ``IncludedStatusBarNotificationStyle``
-  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
+  ///   - c: A ``Completion`` closure, which gets called once the presentation animation finishes. It won't be called after dismissal.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -207,8 +207,8 @@ public extension NotificationPresenter {
   /// Present a notification using an included style.
   ///
   /// - Parameters:
-  ///   - text: The text to display as title
-  ///   - duration: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed.
+  ///   - t: The text to display as title
+  ///   - d: The duration defines how long the notification will be visible. If not provided the notifcation will never be dismissed.
   ///   - s: An existing ``IncludedStatusBarNotificationStyle``
   ///
   /// - Returns: The presented UIView for further customization
@@ -233,10 +233,10 @@ public extension NotificationPresenter {
   /// receive any touches, as the internal `gestureRecognizer` would receive them.
   ///
   /// - Parameters:
-  ///   - view: A custom UIView to display as notification content.
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - cv: A custom UIView to display as notification content.
+  ///   - s: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
   ///                If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
-  ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
+  ///   - c: A ``Completion`` closure, which gets called once the presentation animation finishes.
   ///
   /// - Returns: The presented UIView for further customization
   ///
@@ -260,7 +260,7 @@ public extension NotificationPresenter {
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
-  ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
+  ///   - c: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissWithCompletion:)
   func zld(c: Completion?) {
     dismiss(animated: true, after: 0.0, completion: c)
@@ -269,7 +269,7 @@ public extension NotificationPresenter {
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
-  ///   - animated: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
+  ///   - a: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
   ///   Otherwise it will be dismissed without animation.
   @objc(dismissAnimated:)
   func zld(a: Bool) {
@@ -279,7 +279,7 @@ public extension NotificationPresenter {
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
-  ///   - delay: The delay in seconds, before the notification should be dismissed.
+  ///   - d: The delay in seconds, before the notification should be dismissed.
   @objc(dismissAfterDelay:)
   func zld(d: CGFloat) {
     dismiss(animated: true, after: d, completion: nil)
@@ -288,8 +288,8 @@ public extension NotificationPresenter {
   /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
   ///
   /// - Parameters:
-  ///   - delay: The delay in seconds, before the notification should be dismissed.
-  ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
+  ///   - d: The delay in seconds, before the notification should be dismissed.
+  ///   - c: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   @objc(dismissAfterDelay:completion:)
   func zld(d: CGFloat, c: Completion?) {
     dismiss(animated: true, after: d, completion: c)
@@ -316,8 +316,8 @@ public extension NotificationPresenter {
   /// If a style with the same name already exists, it will be replaced.
   ///
   /// - Parameters:
-  ///   - name:  The styleName which will later be used to reference the added style.
-  ///   - prepare: Provides an ``StatusBarNotificationStyle`` instance based on the provided `includedStyle` for further customization.
+  ///   - n:  The styleName which will later be used to reference the added style.
+  ///   - p: Provides an ``StatusBarNotificationStyle`` instance based on the provided `includedStyle` for further customization.
   ///
   /// - Returns: Returns the `styleName`, so that this call can be used directly within a presentation call.
   ///
