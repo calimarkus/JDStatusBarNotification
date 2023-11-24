@@ -6,7 +6,7 @@ import JDStatusBarNotification
 import UIKit
 
 class CustomTextStyle: ObservableObject, Equatable {
-  @Published var font: UIFont
+  @Published var font: UIFont?
   @Published var textColor: UIColor?
   @Published var textOffsetY: Double
   @Published var shadowColor: UIColor?
@@ -38,7 +38,7 @@ class CustomTextStyle: ObservableObject, Equatable {
   func styleConfigurationString(propertyName: String) -> String {
     """
     style.\(propertyName).textColor = \(textColor?.initString ?? "nil")
-    style.\(propertyName).font = \(font.initString)
+    style.\(propertyName).font = \(font?.initString ?? "nil")
     style.\(propertyName).textOffsetY = \(textOffsetY)
     """
 
@@ -102,7 +102,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     pillBorderWidth = defaultStyle.backgroundStyle.pillStyle.borderWidth
     pillShadowColor = defaultStyle.backgroundStyle.pillStyle.shadowColor
     pillShadowRadius = defaultStyle.backgroundStyle.pillStyle.shadowRadius
-    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffset
+    pillShadowOffset = defaultStyle.backgroundStyle.pillStyle.shadowOffsetXY
 
     // bar
     animationType = .bounce
@@ -151,7 +151,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.backgroundStyle.pillStyle.borderWidth = pillBorderWidth
     style.backgroundStyle.pillStyle.shadowColor = pillShadowColor
     style.backgroundStyle.pillStyle.shadowRadius = pillShadowRadius
-    style.backgroundStyle.pillStyle.shadowOffset = pillShadowOffset
+    style.backgroundStyle.pillStyle.shadowOffsetXY = pillShadowOffset
 
     style.animationType = animationType
     style.systemStatusBarStyle = systemStatusBarStyle
