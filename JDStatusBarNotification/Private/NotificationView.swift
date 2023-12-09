@@ -8,10 +8,6 @@ protocol NotificationViewDelegate: AnyObject {
   func didUpdateStyle()
 }
 
-public protocol StylableView: UIView {
-  var style: StatusBarNotificationStyle { get set }
-}
-
 class NotificationView: UIView, UIGestureRecognizerDelegate, StylableView {
   weak var delegate: NotificationViewDelegate?
 

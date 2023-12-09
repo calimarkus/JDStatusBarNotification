@@ -100,6 +100,12 @@ public enum StatusBarNotificationLeftViewAlignment: Int {
     case centerWithText
 }
 
+/// A view that can be styled by setting a StatusBarNotificationStyle.
+///
+public protocol StylableView: UIView {
+  var style: StatusBarNotificationStyle { get set }
+}
+
 /// A Style defines the appearance of a notification.
 @objc(JDStatusBarNotificationStyle)
 public class StatusBarNotificationStyle: NSObject {
