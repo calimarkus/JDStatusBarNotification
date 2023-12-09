@@ -80,7 +80,7 @@ public extension NotificationPresenter {
 
   // MARK: - Presentation (custom style)
 
-  /// Present a notification using the default style or a named style.
+  /// Present a notification using a custom style.
   ///
   /// - Parameters:
   ///   - t: The text to display as title
@@ -96,7 +96,7 @@ public extension NotificationPresenter {
     present(t, subtitle: nil, styleName: cu, duration: 0.0, completion: nil)
   }
 
-  /// Present a notification using the default style or a named style.
+  /// Present a notification using a custom style.
   ///
   /// - Parameters:
   ///   - t: The text to display as title
@@ -112,7 +112,7 @@ public extension NotificationPresenter {
     present(t, subtitle: nil, styleName: cu, duration: 0.0, completion: c)
   }
 
-  /// Present a notification using the default style or a named style.
+  /// Present a notification using a custom style.
   ///
   /// - Parameters:
   ///   - t: The text to display as title
@@ -133,7 +133,7 @@ public extension NotificationPresenter {
     present(t, subtitle: st, styleName: cu, duration: 0.0, completion: c)
   }
 
-  /// Present a notification using the default style or a named style.
+  /// Present a notification using a custom style.
   ///
   /// - Parameters:
   ///   - t: The text to display as title
@@ -251,13 +251,13 @@ public extension NotificationPresenter {
 
   // MARK: - Dismissal
 
-  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  /// Dismisses the displayed notification.
   @objc(dismiss)
   func zld() {
     dismiss(animated: true, after: 0.0, completion: nil)
   }
 
-  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  /// Dismisses the displayed notification.
   ///
   /// - Parameters:
   ///   - c: A ``Completion`` closure, which gets called once the dismiss animation finishes.
@@ -266,7 +266,7 @@ public extension NotificationPresenter {
     dismiss(animated: true, after: 0.0, completion: c)
   }
 
-  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  /// Dismisses the displayed notification.
   ///
   /// - Parameters:
   ///   - a: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
@@ -276,7 +276,7 @@ public extension NotificationPresenter {
     dismiss(animated: a, after: 0.0, completion: nil)
   }
 
-  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  /// Dismisses the displayed notification after the provided delay.
   ///
   /// - Parameters:
   ///   - d: The delay in seconds, before the notification should be dismissed.
@@ -285,7 +285,7 @@ public extension NotificationPresenter {
     dismiss(animated: true, after: d, completion: nil)
   }
 
-  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  /// Dismisses the displayed notification after the provided delay.
   ///
   /// - Parameters:
   ///   - d: The delay in seconds, before the notification should be dismissed.
@@ -295,7 +295,7 @@ public extension NotificationPresenter {
     dismiss(animated: true, after: d, completion: c)
   }
 
-  /// Dismisses any currently displayed notification animated - after the provided delay, if provided.
+  /// Dismisses the displayed notification after the provided delay.
   ///
   /// - Parameters:
   ///   - a: If `true`, the notification will be dismissed animated according to the currently set ``StatusBarNotificationAnimationType``.
@@ -309,8 +309,7 @@ public extension NotificationPresenter {
 
   // MARK: - Style Customization
 
-  /// Adds a new named style - based on an included style, if given.
-  /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
+  /// Adds a new named style, which can later be used by referencing it using the `styleName`.
   ///
   /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:styleName:duration:completion:)``.
   /// If a style with the same name already exists, it will be replaced.

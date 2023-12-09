@@ -1,10 +1,8 @@
 # Getting Started
 
-Some simple examples to get started.
+Find some simple examples below to get started. Most APIs can also be called from Objective-C.
 
-All examples here are written in Swift. But everything can be called from Objective-C too.
-
-Explore the full Swift API in ``JDStatusBarNotification/NotificationPresenter``.
+Explore the full API in ``JDStatusBarNotification/NotificationPresenter``.
 
 ### Showing a text notification
 

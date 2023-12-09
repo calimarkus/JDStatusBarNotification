@@ -218,7 +218,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   }
 
   /// Adds a new named style - based on an included style, if given.
-  /// This can later be used by referencing it using the `styleName` - or by using the return value directly.
+  /// This can later be used by referencing it using the `styleName`.
   ///
   /// The added style can be used in future presentations by utilizing the same `styleName` in e.g. ``present(_:subtitle:styleName:duration:completion:)``.
   /// If a style with the same name already exists, it will be replaced.
