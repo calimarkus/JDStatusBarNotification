@@ -68,15 +68,11 @@
 		7EDAEEAA2AF6ECAB001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7EF32BB12B1018A1000E7CAE /* NotificationPresenterLegacyOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32BB02B10167B000E7CAE /* NotificationPresenterLegacyOverlay.swift */; };
 		7EF32BB22B1018A2000E7CAE /* NotificationPresenterLegacyOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32BB02B10167B000E7CAE /* NotificationPresenterLegacyOverlay.swift */; };
-		7EEDBE142856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
-		7EEDBE152856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
-		7EEDBE162856EDD9007747AA /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EF32BBA2B113A0B000E7CAE /* API_tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF32BB92B113A0B000E7CAE /* API_tests.m */; };
 		7EF32BC22B113BCE000E7CAE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
 		7EF32BC32B113BCE000E7CAE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7EF32BC52B113C1F000E7CAE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		7EF32BC62B113C26000E7CAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
-		7EF8C5EB2869559700DE1045 /* JDStatusBarNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8C519528585BE400C7C003 /* JDStatusBarNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 		7EFD77982843461D000BFBF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		7EFD77992843461D000BFBF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
@@ -302,12 +298,12 @@
 		7EBE340B2844CA2D0096CD55 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */,
 				28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */,
-				28D81A9D2B01257A00DE2CDF /* StyleCache.swift */,
-				28D81AA02B012B0800DE2CDF /* NotificationAnimator.swift */,
 				28D81AA32B012F7E00DE2CDF /* NotificationViewController.swift */,
 				7E008F5A2B02D38D00968AFE /* NotificationView.swift */,
+				28D81AA02B012B0800DE2CDF /* NotificationAnimator.swift */,
+				28D81A9D2B01257A00DE2CDF /* StyleCache.swift */,
+				28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
