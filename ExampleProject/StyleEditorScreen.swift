@@ -2,6 +2,7 @@
 //
 
 import SwiftUI
+import JDStatusBarNotification
 
 struct StyleEditorScreen: View {
   @State var text: String = "You're great!"
@@ -11,7 +12,7 @@ struct StyleEditorScreen: View {
   @StateObject var style: ObservableCustomStyle = .init(ExampleStyle.editor.buildStyle())
   @State var editingTitle: Bool = true
 
-  weak static var statusBarView: __JDSBNotificationView? = nil
+  weak static var statusBarView: StylableView? = nil
 
   func presentDefault(allowActivity: Bool = true, allowProgress: Bool = true, completion: @escaping () -> Void) {
     StyleEditorScreen.statusBarView = NotificationPresenter.shared.present(
@@ -20,7 +21,7 @@ struct StyleEditorScreen: View {
       styleName: style.registerComputedStyle()
     ) { _ in
       completion()
-    } as? __JDSBNotificationView
+    } as? StylableView
 
     if allowActivity && showActivity {
       NotificationPresenter.shared.displayActivityIndicator(true)

@@ -2,9 +2,11 @@
 //
 
 import Combine
+import JDStatusBarNotification
+import UIKit
 
 class CustomTextStyle: ObservableObject, Equatable {
-  @Published var font: UIFont
+  @Published var font: UIFont?
   @Published var textColor: UIColor?
   @Published var textOffsetY: Double
   @Published var shadowColor: UIColor?
@@ -24,7 +26,7 @@ class CustomTextStyle: ObservableObject, Equatable {
 
   func computedStyle() -> StatusBarNotificationTextStyle {
     let style = StatusBarNotificationTextStyle()
-    style.textColor = textColor
+    style.textColor = textColor ?? .black
     style.font = font
     style.textOffsetY = textOffsetY
     style.shadowColor = shadowColor
@@ -36,7 +38,7 @@ class CustomTextStyle: ObservableObject, Equatable {
   func styleConfigurationString(propertyName: String) -> String {
     """
     style.\(propertyName).textColor = \(textColor?.initString ?? "nil")
-    style.\(propertyName).font = \(font.initString)
+    style.\(propertyName).font = \(font?.initString ?? "nil")
     style.\(propertyName).textOffsetY = \(textOffsetY)
     """
 
@@ -140,7 +142,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.textStyle = textStyle.computedStyle()
     style.subtitleStyle = subtitleStyle.computedStyle()
 
-    style.backgroundStyle.backgroundColor = backgroundColor
+    style.backgroundStyle.backgroundColor = backgroundColor ?? .white
     style.backgroundStyle.backgroundType = backgroundType
     style.backgroundStyle.pillStyle.minimumWidth = minimumPillWidth
     style.backgroundStyle.pillStyle.height = pillHeight
@@ -162,7 +164,7 @@ class ObservableCustomStyle: ObservableObject, Equatable {
     style.leftViewStyle.tintColor = leftViewTintColor
     style.leftViewStyle.alignment = leftViewAlignment
 
-    style.progressBarStyle.barColor = pbBarColor
+    style.progressBarStyle.barColor = pbBarColor ?? .white
     style.progressBarStyle.barHeight = pbBarHeight
     style.progressBarStyle.position = pbPosition
     style.progressBarStyle.horizontalInsets = pbHorizontalInsets

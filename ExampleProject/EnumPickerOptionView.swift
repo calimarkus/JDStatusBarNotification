@@ -2,6 +2,7 @@
 //
 
 import SwiftUI
+import JDStatusBarNotification
 
 protocol StringRepresentable {
   var stringValue: String { get }
@@ -17,7 +18,6 @@ extension IncludedStatusBarNotificationStyle: StringRepresentable {
       case .warning: return ".warning"
       case .error: return ".error"
       case .matrix: return ".matrix"
-      default: return "?"
     }
   }
 }
@@ -28,7 +28,6 @@ extension StatusBarNotificationAnimationType: StringRepresentable {
       case .move: return ".move"
       case .fade: return ".fade"
       case .bounce: return ".bounce"
-      default: return "?"
     }
   }
 }
@@ -38,7 +37,6 @@ extension StatusBarNotificationBackgroundType: StringRepresentable {
     switch self {
       case .fullWidth: return ".fullWidth"
       case .pill: return ".pill"
-      default: return "?"
     }
   }
 }
@@ -49,7 +47,6 @@ extension StatusBarNotificationSystemBarStyle: StringRepresentable {
       case .defaultStyle: return ".defaultStyle"
       case .lightContent: return ".lightContent"
       case .darkContent: return ".darkContent"
-      default: return "?"
     }
   }
 }
@@ -59,7 +56,6 @@ extension StatusBarNotificationLeftViewAlignment: StringRepresentable {
     switch self {
       case .left: return ".left"
       case .centerWithText: return ".centerWithText"
-      default: return "?"
     }
   }
 }
@@ -70,7 +66,6 @@ extension StatusBarNotificationProgressBarPosition: StringRepresentable {
       case .top: return ".top"
       case .center: return ".center"
       case .bottom: return ".bottom"
-      default: return "?"
     }
   }
 }

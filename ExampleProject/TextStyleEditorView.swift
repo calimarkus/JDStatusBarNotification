@@ -2,6 +2,7 @@
 //
 
 import SwiftUI
+import JDStatusBarNotification
 
 struct TextStyleEditorView: View {
   let title: String
@@ -27,16 +28,16 @@ struct TextStyleEditorView: View {
         HStack {
           Text("Font").font(.subheadline)
           Spacer()
-          Text("\(style.font.fontDescriptor.postscriptName)")
+          Text("\(style.font?.fontDescriptor.postscriptName ?? "nil")")
             .font(.caption)
         }
       }
     )
 
     TextFieldStepper(title: "Font size", binding: Binding<Double>(get: {
-      style.font.pointSize
+      Double(style.font?.pointSize ?? 12.0)
     }, set: { size in
-      style.font = style.font.withSize(size)
+      style.font = style.font?.withSize(size)
     }), range: 5 ... 36)
 
     TextFieldStepper(title: "Offset Y", binding: $style.textOffsetY, range: -30 ... 30)

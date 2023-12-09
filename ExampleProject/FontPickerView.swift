@@ -5,9 +5,9 @@ import SwiftUI
 
 public struct FontPickerView: UIViewControllerRepresentable {
   @Environment(\.presentationMode) var presentationMode
-  @Binding var font: UIFont
+  @Binding var font: UIFont?
 
-  public init(font: Binding<UIFont>) {
+  public init(font: Binding<UIFont?>) {
     self._font = font
   }
 
@@ -16,7 +16,7 @@ public struct FontPickerView: UIViewControllerRepresentable {
     configuration.includeFaces = true
     let vc = UIFontPickerViewController(configuration: configuration)
     vc.delegate = context.coordinator
-    vc.selectedFontDescriptor = context.coordinator.font.fontDescriptor
+    vc.selectedFontDescriptor = context.coordinator.font?.fontDescriptor
     return vc
   }
 
@@ -26,16 +26,16 @@ public struct FontPickerView: UIViewControllerRepresentable {
 
   public class Coordinator: NSObject, UIFontPickerViewControllerDelegate {
     var parent: FontPickerView
-    @Binding var font: UIFont
+    @Binding var font: UIFont?
 
-    init(_ parent: FontPickerView, font: Binding<UIFont>) {
+    init(_ parent: FontPickerView, font: Binding<UIFont?>) {
       self.parent = parent
       self._font = font
     }
 
     public func fontPickerViewControllerDidPickFont(_ viewController: UIFontPickerViewController) {
       guard let descriptor = viewController.selectedFontDescriptor else { return }
-      $font.wrappedValue = UIFont(descriptor: descriptor, size: font.pointSize)
+      $font.wrappedValue = UIFont(descriptor: descriptor, size: font?.pointSize ?? 12.0)
       parent.presentationMode.wrappedValue.dismiss()
     }
 

@@ -1,6 +1,9 @@
 //
 //
 
+import JDStatusBarNotification
+import UIKit
+
 struct NotificationContent {
   var title: String
   var subtitle: String? = nil

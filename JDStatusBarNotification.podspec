@@ -18,16 +18,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'http://calimarkus.github.io/JDStatusBarNotification/documentation/jdstatusbarnotification/'
   s.screenshot        = 'https://user-images.githubusercontent.com/807039/173831886-d7c8cca9-9274-429d-b924-78f21a4f6092.jpg'
   
-  # sources: objc subspec
-  s.subspec 'ObjC' do |objc|
-    objc.source_files = 'JDStatusBarNotification/**/*.{h,m}'
-    objc.private_header_files = 'JDStatusBarNotification/Private/*.h'
-  end
-
-  # sources: swift subspec
-  s.subspec 'Swift' do |swift|
-    swift.source_files = 'JDStatusBarNotification/**/*.{swift}'
-    swift.dependency 'JDStatusBarNotification/ObjC'
-  end
+  # sources
+  s.source_files = 'JDStatusBarNotification/**/*.{swift}'
   
 end
