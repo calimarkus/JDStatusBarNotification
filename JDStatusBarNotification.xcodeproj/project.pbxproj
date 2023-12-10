@@ -57,6 +57,8 @@
 		7E6AAB482B261302001D82FE /* ExampleApp_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */; };
 		7E6AAB8A2B261EB4001D82FE /* SBSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */; };
 		7E6AAB8B2B261EED001D82FE /* SBSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */; };
+		7E6AAB932B262659001D82FE /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB922B262659001D82FE /* StatusBarPreviewView.swift */; };
+		7E6AAB942B262659001D82FE /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB922B262659001D82FE /* StatusBarPreviewView.swift */; };
 		7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
@@ -72,8 +74,6 @@
 		7EA91CBC284EF3AF00F32F09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		7EA91CBE284EF3AF00F32F09 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
 		7EA91CBF284EF3AF00F32F09 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
-		7ECB76E02B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
-		7ECB76E12B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */; };
 		7EDAEE5D2AF6E982001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
 		7EDAEE5E2AF6E982001B6ABE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7EDAEE622AF6E985001B6ABE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
@@ -221,6 +221,7 @@
 		7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp_SwiftUI.swift; sourceTree = "<group>"; };
 		7E6AAB882B261E76001D82FE /* SBSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSceneDelegate.h; sourceTree = "<group>"; };
 		7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSceneDelegate.m; sourceTree = "<group>"; };
+		7E6AAB922B262659001D82FE /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
 		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
 		7E83FF1A2AF1AA630011EA4C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -231,7 +232,6 @@
 		7EB82C4C2A31BACE004E2B19 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7EB914CF2ADC11F4004B3435 /* NotificationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPresenter.swift; sourceTree = "<group>"; };
 		7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusBarPreviewView.swift; path = ../../ExampleProject/StatusBarPreviewView.swift; sourceTree = "<group>"; };
 		7EF32BB02B10167B000E7CAE /* NotificationPresenterLegacyOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresenterLegacyOverlay.swift; sourceTree = "<group>"; };
 		7EF32BB72B113A0B000E7CAE /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF32BB92B113A0B000E7CAE /* API_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = API_tests.m; sourceTree = "<group>"; };
@@ -386,14 +386,6 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
-		7ECB76E22B0EA46400A8A00C /* Previews */ = {
-			isa = PBXGroup;
-			children = (
-				7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */,
-			);
-			path = Previews;
-			sourceTree = "<group>";
-		};
 		7EF32BB82B113A0B000E7CAE /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +433,7 @@
 		D264F8961820213200DA0E53 /* ExampleProject */ = {
 			isa = PBXGroup;
 			children = (
+				7E6AAB922B262659001D82FE /* StatusBarPreviewView.swift */,
 				7E6AAB8C2B261F0E001D82FE /* AppEntrypoints */,
 				7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */,
 				7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */,
@@ -470,7 +463,6 @@
 			children = (
 				7E8C519228585BE400C7C003 /* Public */,
 				7EBE340B2844CA2D0096CD55 /* Private */,
-				7ECB76E22B0EA46400A8A00C /* Previews */,
 			);
 			path = JDStatusBarNotification;
 			sourceTree = "<group>";
@@ -740,10 +732,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E6AAB932B262659001D82FE /* StatusBarPreviewView.swift in Sources */,
 				28D81AA42B012F7F00DE2CDF /* NotificationViewController.swift in Sources */,
 				28D81A9E2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA12B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
-				7ECB76E02B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */,
 				7E008F5B2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				7EF32BB22B1018A2000E7CAE /* NotificationPresenterLegacyOverlay.swift in Sources */,
 				28D81A942B010C7500DE2CDF /* DiscoveryHelper.swift in Sources */,
@@ -792,10 +784,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E6AAB942B262659001D82FE /* StatusBarPreviewView.swift in Sources */,
 				28D81AA52B012F7F00DE2CDF /* NotificationViewController.swift in Sources */,
 				28D81A9F2B01257A00DE2CDF /* StyleCache.swift in Sources */,
 				28D81AA22B012B0800DE2CDF /* NotificationAnimator.swift in Sources */,
-				7ECB76E12B0EA12500A8A00C /* StatusBarPreviewView.swift in Sources */,
 				7E008F5C2B02D38D00968AFE /* NotificationView.swift in Sources */,
 				7EF32BB12B1018A1000E7CAE /* NotificationPresenterLegacyOverlay.swift in Sources */,
 				28D81A9C2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
