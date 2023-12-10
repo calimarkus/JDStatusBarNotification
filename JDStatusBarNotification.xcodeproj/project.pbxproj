@@ -774,17 +774,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA91CB6284EF3AF00F32F09 /* main.m in Sources */,
+				7E6AAB8B2B261EED001D82FE /* SBSceneDelegate.m in Sources */,
+				7EA91CB0284EF3AF00F32F09 /* SBExampleViewController.m in Sources */,
 				7E0FCB77285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
-				7E6AAB8B2B261EED001D82FE /* SBSceneDelegate.m in Sources */,
 				7E0FCB7B285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				7E1C2839285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
-				7EA91CB0284EF3AF00F32F09 /* SBExampleViewController.m in Sources */,
 				7EA91CB2284EF3AF00F32F09 /* StyleEditorScreen.swift in Sources */,
 				7E8C51A22858857200C7C003 /* TextStyleEditorView.swift in Sources */,
 				7EA91CB3284EF3AF00F32F09 /* ExamplesScreen.swift in Sources */,
 				7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
-				7EA91CB6284EF3AF00F32F09 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,17 +819,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EFD77A728434A03000BFBF1 /* main.m in Sources */,
+				7E6AAB8A2B261EB4001D82FE /* SBSceneDelegate.m in Sources */,
+				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
 				7E0FCB76285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
-				7E6AAB8A2B261EB4001D82FE /* SBSceneDelegate.m in Sources */,
 				7E0FCB7A285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				7E1C2838285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
-				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
 				7E670514284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */,
 				7E8C51A12858857200C7C003 /* TextStyleEditorView.swift in Sources */,
 				7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
 				7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
-				7EFD77A728434A03000BFBF1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,16 +838,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D264F89D1820213200DA0E53 /* main.m in Sources */,
-				7E1C2837285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
 				D264F8A11820213200DA0E53 /* SBAppDelegate.m in Sources */,
-				7E67050D284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
-				7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */,
-				7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 				D264F8C61820219F00DA0E53 /* SBExampleViewController.m in Sources */,
 				7E0FCB75285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
-				7E670513284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */,
 				7E2F3BBB284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
+				7E0FCB79285DAEE800E7CB78 /* FormViews.swift in Sources */,
+				7E1C2837285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
+				7E670513284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */,
 				7E8C51A02858857200C7C003 /* TextStyleEditorView.swift in Sources */,
+				7E67050D284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
+				7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
