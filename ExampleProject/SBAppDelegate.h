@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SBAppDelegate : UIResponder <UIApplicationDelegate>
-@end
+#if IS_SCENE_BASED_EXAMPLE
 
 @interface SBSceneDelegate : UIResponder <UIWindowSceneDelegate>
 @end
+
+#else
+
+@interface SBAppDelegate : UIResponder <UIApplicationDelegate>
+@end
+
+#endif

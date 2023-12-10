@@ -13,6 +13,10 @@
 int main(int argc, char * argv[])
 {
   @autoreleasepool {
+#if IS_SCENE_BASED_EXAMPLE
+    return UIApplicationMain(argc, argv, nil, nil);
+#else
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([SBAppDelegate class]));
+#endif
   }
 }
