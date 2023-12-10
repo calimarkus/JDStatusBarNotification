@@ -216,7 +216,7 @@
 		7E5402C5286708850079C579 /* JDStatusBarNotification.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JDStatusBarNotification.docc; sourceTree = "<group>"; };
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
-		7E6AAB452B26117A001D82FE /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6AAB452B26117A001D82FE /* JDSBN_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6AAB462B26117A001D82FE /* SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SwiftUI-Info.plist"; path = "/Users/chaetwo/Projects/JDStatusBarNotification/SwiftUI-Info.plist"; sourceTree = "<absolute>"; };
 		7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp_SwiftUI.swift; sourceTree = "<group>"; };
 		7E6AAB882B261E76001D82FE /* SBSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSceneDelegate.h; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyleEditorView.swift; sourceTree = "<group>"; };
-		7EA91CC3284EF3AF00F32F09 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA91CC3284EF3AF00F32F09 /* JDSBN_LayoutDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_LayoutDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB82C4B2A31BACE004E2B19 /* JDStatusBarNotification.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JDStatusBarNotification.podspec; sourceTree = "<group>"; };
 		7EB82C4C2A31BACE004E2B19 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7EB914CF2ADC11F4004B3435 /* NotificationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPresenter.swift; sourceTree = "<group>"; };
@@ -235,9 +235,9 @@
 		7EF32BB02B10167B000E7CAE /* NotificationPresenterLegacyOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresenterLegacyOverlay.swift; sourceTree = "<group>"; };
 		7EF32BB72B113A0B000E7CAE /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF32BB92B113A0B000E7CAE /* API_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = API_tests.m; sourceTree = "<group>"; };
-		7EFD77A12843461D000BFBF1 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EFD77A12843461D000BFBF1 /* JDSBN_SceneDelegate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_SceneDelegate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindowScene-Info.plist"; sourceTree = "<group>"; };
-		D264F88D1820213200DA0E53 /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D264F88D1820213200DA0E53 /* JDSBN_AppDelegate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_AppDelegate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D264F8901820213200DA0E53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D264F8941820213200DA0E53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D264F8981820213200DA0E53 /* Classic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Classic-Info.plist"; sourceTree = "<group>"; };
@@ -410,13 +410,13 @@
 		D264F88E1820213200DA0E53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D264F88D1820213200DA0E53 /* JDSBN Example.app */,
-				7EFD77A12843461D000BFBF1 /* JDSBN Example.app */,
-				7EA91CC3284EF3AF00F32F09 /* JDSBN Example.app */,
+				D264F88D1820213200DA0E53 /* JDSBN_AppDelegate.app */,
+				7EFD77A12843461D000BFBF1 /* JDSBN_SceneDelegate.app */,
+				7EA91CC3284EF3AF00F32F09 /* JDSBN_LayoutDebug.app */,
 				7E5402C2286708840079C579 /* JDStatusBarNotification.framework */,
 				7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */,
 				7EF32BB72B113A0B000E7CAE /* Tests.xctest */,
-				7E6AAB452B26117A001D82FE /* JDSBN Example.app */,
+				7E6AAB452B26117A001D82FE /* JDSBN_SwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -519,7 +519,7 @@
 			);
 			name = ExampleApp_SwiftUI;
 			productName = JDStatusBarNotificationExample;
-			productReference = 7E6AAB452B26117A001D82FE /* JDSBN Example.app */;
+			productReference = 7E6AAB452B26117A001D82FE /* JDSBN_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7EA91CA8284EF3AF00F32F09 /* ExampleApp_LayoutDebug */ = {
@@ -538,7 +538,7 @@
 			);
 			name = ExampleApp_LayoutDebug;
 			productName = JDStatusBarNotificationExample;
-			productReference = 7EA91CC3284EF3AF00F32F09 /* JDSBN Example.app */;
+			productReference = 7EA91CC3284EF3AF00F32F09 /* JDSBN_LayoutDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7EDAEE882AF6EC5E001B6ABE /* JDStatusBarNotification_LayoutDebug */ = {
@@ -594,7 +594,7 @@
 			);
 			name = ExampleApp_SceneDelegate;
 			productName = JDStatusBarNotificationExample;
-			productReference = 7EFD77A12843461D000BFBF1 /* JDSBN Example.app */;
+			productReference = 7EFD77A12843461D000BFBF1 /* JDSBN_SceneDelegate.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D264F88C1820213200DA0E53 /* ExampleApp_AppDelegate */ = {
@@ -613,7 +613,7 @@
 			);
 			name = ExampleApp_AppDelegate;
 			productName = JDStatusBarNotificationExample;
-			productReference = D264F88D1820213200DA0E53 /* JDSBN Example.app */;
+			productReference = D264F88D1820213200DA0E53 /* JDSBN_AppDelegate.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -946,6 +946,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.calimarkus.jdstatusbarnotifications.sui;
+				PRODUCT_NAME = JDSBN_SwiftUI;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -971,6 +972,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.calimarkus.jdstatusbarnotifications.ld;
+				PRODUCT_NAME = JDSBN_LayoutDebug;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1097,6 +1099,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.calimarkus.jdstatusbarnotifications.sd;
+				PRODUCT_NAME = JDSBN_SceneDelegate;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1190,6 +1193,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.calimarkus.jdstatusbarnotifications.ad;
+				PRODUCT_NAME = JDSBN_AppDelegate;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
