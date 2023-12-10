@@ -95,6 +95,14 @@ struct StatusBarPreviewView_Previews: PreviewProvider {
         style.progressBarStyle.offsetY = 0.0
       }.frame(height: 50)
 
+      StatusBarPreviewView("Short one", subtitle: "The quick brown fox jumps over the lazy dog. (Longer text test)", activity: true) { style in
+        style.progressBarStyle.offsetY = 0.0
+      }.frame(height: 50)
+
+      StatusBarPreviewView("Short one", activity: true) { style in
+        style.progressBarStyle.offsetY = 0.0
+      }.frame(height: 50)
+
       Spacer()
     }
     .background(Color(uiColor: UIColor.systemGray5))
