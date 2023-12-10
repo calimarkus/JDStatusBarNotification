@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2023-12-10
+
+### Added
+
+- New Swift-native APIs. These achieve more with less, as I can make proper use of optionals and default parameters.
+
+### Changed
+
+- Converted source code to Swift (with backwards compatible objc translation)
+- This lets me remove the hacks around multi-language targets
+
 ## [2.1.2] - 2023-11-13
 
 ### Changed
