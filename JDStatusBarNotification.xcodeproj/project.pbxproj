@@ -40,6 +40,21 @@
 		7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
 		7E670513284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
 		7E670514284B177B00AD58E1 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
+		7E6AAB2F2B26117A001D82FE /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB74285DAEB200E7CB78 /* FontPickerView.swift */; };
+		7E6AAB302B26117A001D82FE /* ObservableCustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */; };
+		7E6AAB312B26117A001D82FE /* FormViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FCB78285DAEE800E7CB78 /* FormViews.swift */; };
+		7E6AAB322B26117A001D82FE /* EnumPickerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C2836285226F5004315CC /* EnumPickerOptionView.swift */; };
+		7E6AAB342B26117A001D82FE /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
+		7E6AAB352B26117A001D82FE /* TextStyleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C519F2858857200C7C003 /* TextStyleEditorView.swift */; };
+		7E6AAB362B26117A001D82FE /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
+		7E6AAB372B26117A001D82FE /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
+		7E6AAB3B2B26117A001D82FE /* JDStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; };
+		7E6AAB3C2B26117A001D82FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
+		7E6AAB3D2B26117A001D82FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
+		7E6AAB3F2B26117A001D82FE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
+		7E6AAB402B26117A001D82FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
+		7E6AAB422B26117A001D82FE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7E6AAB482B261302001D82FE /* ExampleApp_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */; };
 		7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
@@ -89,6 +104,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7E6AAB2D2B26117A001D82FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D264F8851820213200DA0E53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E5402C1286708840079C579;
+			remoteInfo = JDStatusBarNotification;
+		};
 		7EDAEE5F2AF6E982001B6ABE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D264F8851820213200DA0E53 /* Project object */;
@@ -120,6 +142,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7E6AAB412B26117A001D82FE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7E6AAB422B26117A001D82FE /* JDStatusBarNotification.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EDAEE612AF6E982001B6ABE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +216,9 @@
 		7E5402C5286708850079C579 /* JDStatusBarNotification.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = JDStatusBarNotification.docc; sourceTree = "<group>"; };
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
+		7E6AAB452B26117A001D82FE /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6AAB462B26117A001D82FE /* SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SwiftUI-Info.plist"; path = "/Users/chaetwo/Projects/JDStatusBarNotification/SwiftUI-Info.plist"; sourceTree = "<absolute>"; };
+		7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp_SwiftUI.swift; sourceTree = "<group>"; };
 		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
 		7E83FF1A2AF1AA630011EA4C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -212,6 +248,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E6AAB3A2B26117A001D82FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E6AAB3B2B26117A001D82FE /* JDStatusBarNotification.framework in Frameworks */,
+				7E6AAB3C2B26117A001D82FE /* UIKit.framework in Frameworks */,
+				7E6AAB3D2B26117A001D82FE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA91CBA284EF3AF00F32F09 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,6 +392,7 @@
 				7E5402C2286708840079C579 /* JDStatusBarNotification.framework */,
 				7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */,
 				7EF32BB72B113A0B000E7CAE /* Tests.xctest */,
+				7E6AAB452B26117A001D82FE /* JDSBN Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -366,6 +413,7 @@
 				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
 				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
 				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
+				7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */,
 				7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */,
 				7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */,
 				7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */,
@@ -383,6 +431,7 @@
 			children = (
 				D264F8981820213200DA0E53 /* Classic-Info.plist */,
 				7EFD77A32843462F000BFBF1 /* WindowScene-Info.plist */,
+				7E6AAB462B26117A001D82FE /* SwiftUI-Info.plist */,
 				D264F89C1820213200DA0E53 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -433,6 +482,25 @@
 			productName = JDStatusBarNotification;
 			productReference = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		7E6AAB2B2B26117A001D82FE /* ExampleApp_SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E6AAB432B26117A001D82FE /* Build configuration list for PBXNativeTarget "ExampleApp_SwiftUI" */;
+			buildPhases = (
+				7E6AAB2E2B26117A001D82FE /* Sources */,
+				7E6AAB3A2B26117A001D82FE /* Frameworks */,
+				7E6AAB3E2B26117A001D82FE /* Resources */,
+				7E6AAB412B26117A001D82FE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E6AAB2C2B26117A001D82FE /* PBXTargetDependency */,
+			);
+			name = ExampleApp_SwiftUI;
+			productName = JDStatusBarNotificationExample;
+			productReference = 7E6AAB452B26117A001D82FE /* JDSBN Example.app */;
+			productType = "com.apple.product-type.application";
 		};
 		7EA91CA8284EF3AF00F32F09 /* ExampleApp_LayoutDebug */ = {
 			isa = PBXNativeTarget;
@@ -577,6 +645,7 @@
 			targets = (
 				D264F88C1820213200DA0E53 /* ExampleApp_AppDelegate */,
 				7EFD778A2843461D000BFBF1 /* ExampleApp_SceneDelegate */,
+				7E6AAB2B2B26117A001D82FE /* ExampleApp_SwiftUI */,
 				7EA91CA8284EF3AF00F32F09 /* ExampleApp_LayoutDebug */,
 				7E5402C1286708840079C579 /* JDStatusBarNotification */,
 				7EDAEE882AF6EC5E001B6ABE /* JDStatusBarNotification_LayoutDebug */,
@@ -586,6 +655,15 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E6AAB3E2B26117A001D82FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E6AAB3F2B26117A001D82FE /* Launch Screen.storyboard in Resources */,
+				7E6AAB402B26117A001D82FE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7EA91CBD284EF3AF00F32F09 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -645,6 +723,22 @@
 				7E2A4E852AE70A4B001F0DB0 /* NotificationPresenter.swift in Sources */,
 				28D81AA72B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
 				7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E6AAB2E2B26117A001D82FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E6AAB2F2B26117A001D82FE /* FontPickerView.swift in Sources */,
+				7E6AAB302B26117A001D82FE /* ObservableCustomStyle.swift in Sources */,
+				7E6AAB312B26117A001D82FE /* FormViews.swift in Sources */,
+				7E6AAB322B26117A001D82FE /* EnumPickerOptionView.swift in Sources */,
+				7E6AAB342B26117A001D82FE /* StyleEditorScreen.swift in Sources */,
+				7E6AAB352B26117A001D82FE /* TextStyleEditorView.swift in Sources */,
+				7E6AAB482B261302001D82FE /* ExampleApp_SwiftUI.swift in Sources */,
+				7E6AAB362B26117A001D82FE /* ExamplesScreen.swift in Sources */,
+				7E6AAB372B26117A001D82FE /* ExampleStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +826,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7E6AAB2C2B26117A001D82FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E5402C1286708840079C579 /* JDStatusBarNotification */;
+			targetProxy = 7E6AAB2D2B26117A001D82FE /* PBXContainerItemProxy */;
+		};
 		7EDAEE602AF6E982001B6ABE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7E5402C1286708840079C579 /* JDStatusBarNotification */;
@@ -810,6 +909,30 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7E6AAB442B26117A001D82FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
+				INFOPLIST_FILE = "SwiftUI-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Wall";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -1061,6 +1184,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E5402CD286708850079C579 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7E6AAB432B26117A001D82FE /* Build configuration list for PBXNativeTarget "ExampleApp_SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E6AAB442B26117A001D82FE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
