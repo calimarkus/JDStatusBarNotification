@@ -193,7 +193,7 @@
 		7EB82C4C2A31BACE004E2B19 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		7EB914CF2ADC11F4004B3435 /* NotificationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPresenter.swift; sourceTree = "<group>"; };
 		7EDAEEA82AF6EC5E001B6ABE /* JDStatusBarNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JDStatusBarNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarPreviewView.swift; sourceTree = "<group>"; };
+		7EEDBE132856EDD9007747AA /* StatusBarPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusBarPreviewView.swift; path = ../../ExampleProject/StatusBarPreviewView.swift; sourceTree = "<group>"; };
 		7EF32BB02B10167B000E7CAE /* NotificationPresenterLegacyOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPresenterLegacyOverlay.swift; sourceTree = "<group>"; };
 		7EF32BB72B113A0B000E7CAE /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF32BB92B113A0B000E7CAE /* API_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = API_tests.m; sourceTree = "<group>"; };
