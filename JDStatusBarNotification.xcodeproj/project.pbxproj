@@ -55,6 +55,8 @@
 		7E6AAB402B26117A001D82FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
 		7E6AAB422B26117A001D82FE /* JDStatusBarNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5402C2286708840079C579 /* JDStatusBarNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7E6AAB482B261302001D82FE /* ExampleApp_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */; };
+		7E6AAB8A2B261EB4001D82FE /* SBSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */; };
+		7E6AAB8B2B261EED001D82FE /* SBSceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */; };
 		7E6FBC22285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
 		7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */; };
@@ -65,7 +67,6 @@
 		7EA91CB0284EF3AF00F32F09 /* SBExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8C41820219F00DA0E53 /* SBExampleViewController.m */; };
 		7EA91CB2284EF3AF00F32F09 /* StyleEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */; };
 		7EA91CB3284EF3AF00F32F09 /* ExamplesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */; };
-		7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
 		7EA91CB6284EF3AF00F32F09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
 		7EA91CBB284EF3AF00F32F09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		7EA91CBC284EF3AF00F32F09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
@@ -94,7 +95,6 @@
 		7EFD779B2843461D000BFBF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E8B9AEE283B6FD300507BC1 /* Launch Screen.storyboard */; };
 		7EFD779D2843461D000BFBF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D264F8A21820213200DA0E53 /* Images.xcassets */; };
 		7EFD77A728434A03000BFBF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
-		7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F8A01820213200DA0E53 /* SBAppDelegate.m */; };
 		D264F8911820213200DA0E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8901820213200DA0E53 /* Foundation.framework */; };
 		D264F8951820213200DA0E53 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D264F8941820213200DA0E53 /* UIKit.framework */; };
 		D264F89D1820213200DA0E53 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D264F89C1820213200DA0E53 /* main.m */; };
@@ -219,6 +219,8 @@
 		7E6AAB452B26117A001D82FE /* JDSBN Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JDSBN Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6AAB462B26117A001D82FE /* SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SwiftUI-Info.plist"; path = "/Users/chaetwo/Projects/JDStatusBarNotification/SwiftUI-Info.plist"; sourceTree = "<absolute>"; };
 		7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp_SwiftUI.swift; sourceTree = "<group>"; };
+		7E6AAB882B261E76001D82FE /* SBSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSceneDelegate.h; sourceTree = "<group>"; };
+		7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSceneDelegate.m; sourceTree = "<group>"; };
 		7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStyle.swift; sourceTree = "<group>"; };
 		7E83FF1A2AF1AA630011EA4C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E83FF1B2AF1AA630011EA4C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -320,6 +322,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7E6AAB8C2B261F0E001D82FE /* AppEntrypoints */ = {
+			isa = PBXGroup;
+			children = (
+				7E6AAB8D2B261F33001D82FE /* AppDelegate-SceneDelegate */,
+				7E6AAB8E2B261F4B001D82FE /* SwiftUI Lifecycle */,
+			);
+			name = AppEntrypoints;
+			sourceTree = "<group>";
+		};
+		7E6AAB8D2B261F33001D82FE /* AppDelegate-SceneDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
+				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
+				7E6AAB882B261E76001D82FE /* SBSceneDelegate.h */,
+				7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */,
+				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
+				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
+			);
+			name = "AppDelegate-SceneDelegate";
+			sourceTree = "<group>";
+		};
+		7E6AAB8E2B261F4B001D82FE /* SwiftUI Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */,
+			);
+			name = "SwiftUI Lifecycle";
+			sourceTree = "<group>";
+		};
 		7E6FBC1F285EB4C600A63FEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,11 +441,7 @@
 		D264F8961820213200DA0E53 /* ExampleProject */ = {
 			isa = PBXGroup;
 			children = (
-				D264F89F1820213200DA0E53 /* SBAppDelegate.h */,
-				D264F8A01820213200DA0E53 /* SBAppDelegate.m */,
-				D264F8C31820219F00DA0E53 /* SBExampleViewController.h */,
-				D264F8C41820219F00DA0E53 /* SBExampleViewController.m */,
-				7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */,
+				7E6AAB8C2B261F0E001D82FE /* AppEntrypoints */,
 				7E2F3BBA284F6144002B2181 /* ObservableCustomStyle.swift */,
 				7E6FBC21285EF3B100A63FEF /* ExampleStyle.swift */,
 				7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */,
@@ -748,6 +776,7 @@
 			files = (
 				7E0FCB77285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBD284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
+				7E6AAB8B2B261EED001D82FE /* SBSceneDelegate.m in Sources */,
 				7E0FCB7B285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				7E1C2839285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
 				7EA91CB0284EF3AF00F32F09 /* SBExampleViewController.m in Sources */,
@@ -755,7 +784,6 @@
 				7E8C51A22858857200C7C003 /* TextStyleEditorView.swift in Sources */,
 				7EA91CB3284EF3AF00F32F09 /* ExamplesScreen.swift in Sources */,
 				7E6FBC24285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
-				7EA91CB4284EF3AF00F32F09 /* SBAppDelegate.m in Sources */,
 				7EA91CB6284EF3AF00F32F09 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -793,6 +821,7 @@
 			files = (
 				7E0FCB76285DAEB200E7CB78 /* FontPickerView.swift in Sources */,
 				7E2F3BBC284F6144002B2181 /* ObservableCustomStyle.swift in Sources */,
+				7E6AAB8A2B261EB4001D82FE /* SBSceneDelegate.m in Sources */,
 				7E0FCB7A285DAEE800E7CB78 /* FormViews.swift in Sources */,
 				7E1C2838285226F5004315CC /* EnumPickerOptionView.swift in Sources */,
 				7EFD77902843461D000BFBF1 /* SBExampleViewController.m in Sources */,
@@ -800,7 +829,6 @@
 				7E8C51A12858857200C7C003 /* TextStyleEditorView.swift in Sources */,
 				7E67050E284A4BE900AD58E1 /* ExamplesScreen.swift in Sources */,
 				7E6FBC23285EF3B100A63FEF /* ExampleStyle.swift in Sources */,
-				7EFD77A828434A0B000BFBF1 /* SBAppDelegate.m in Sources */,
 				7EFD77A728434A03000BFBF1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -919,7 +947,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				DISPLAY_NAME = "JDSB (SUI)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "IS_SCENE_BASED_EXAMPLE=1";
 				INFOPLIST_FILE = "SwiftUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

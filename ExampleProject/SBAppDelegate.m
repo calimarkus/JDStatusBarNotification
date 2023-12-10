@@ -10,28 +10,8 @@
 
 #import "SBAppDelegate.h"
 
-#if IS_SCENE_BASED_EXAMPLE
-
-@implementation SBSceneDelegate {
-  UIWindow *_window;
-}
-
-- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-  if ([scene isKindOfClass:[UIWindowScene class]]) {
-    UIWindowScene *windowScene = (UIWindowScene *)scene;
-    _window = [[UIWindow alloc] initWithWindowScene:windowScene];
-    _window.rootViewController = [[SBExampleViewController alloc] initWithTitle:@"ExampleApp (SceneDelegate)"];
-    [_window makeKeyAndVisible];
-  }
-}
-
-@end
-
-#else
-
 @implementation SBAppDelegate {
   UIWindow *_window;
-
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -43,5 +23,3 @@
 }
 
 @end
-
-#endif

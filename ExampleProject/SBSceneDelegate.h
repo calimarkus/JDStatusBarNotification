@@ -1,5 +1,5 @@
 //
-//  SBAppDelegate.h
+//  SBSceneDelegate.h
 //  JDStatusBarNotificationExample
 //
 //  Created by Markus on 29.10.13.
@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SBAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SBSceneDelegate : UIResponder <UIWindowSceneDelegate>
 @end
