@@ -1,6 +1,6 @@
 # JDStatusBarNotification
 
-Highly customizable & feature rich notifications displayed below the status bar. Customizable colors, fonts & animations. Supports notch and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. Can display a subtitle, an activity indicator, a progress bar & custom views out of the box. iOS 13+. Swift ready!
+Highly customizable & feature rich notifications displayed below the status bar. Customizable colors, fonts & animations. Supports notch and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. Can display a subtitle, an activity indicator, a progress bar & custom views out of the box. Written in Swift, compatible for ObjC!
 
 Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
@@ -27,7 +27,6 @@ Full-Width styles in action (the pill styles support the same features / animati
       - In ObjC: `@import JDStatusBarNotification;`
 - [**CocoaPods:**](https://guides.cocoapods.org)
   - `pod 'JDStatusBarNotification'`
-  - or `pod 'JDStatusBarNotification/ObjC'` if you want to avoid pulling in any Swift.
 - [**Carthage:**](https://github.com/Carthage/Carthage)
   - `github "calimarkus/JDStatusBarNotification"`
 - **Manually:**
