@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7E6AAB2B2B26117A001D82FE"
-               BuildableName = "JDSBN_SUI.app"
+               BuildableName = "JDSBN_SwiftUI.app"
                BlueprintName = "ExampleApp_SwiftUI"
                ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E6AAB2B2B26117A001D82FE"
-            BuildableName = "JDSBN_SUI.app"
+            BuildableName = "JDSBN_SwiftUI.app"
             BlueprintName = "ExampleApp_SwiftUI"
             ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7E6AAB2B2B26117A001D82FE"
-            BuildableName = "JDSBN_SUI.app"
+            BuildableName = "JDSBN_SwiftUI.app"
             BlueprintName = "ExampleApp_SwiftUI"
             ReferencedContainer = "container:JDStatusBarNotification.xcodeproj">
          </BuildableReference>
