@@ -30,7 +30,7 @@ public extension NotificationPresenter {
   @objc(presentWithText:)
   func zlp(t: String) -> UIView
   {
-    present(t, subtitle: nil, styleName: nil, duration: 0.0, completion: nil)
+    present(t, subtitle: nil, styleName: nil, duration: nil, completion: nil)
   }
 
   /// Present a notification
@@ -45,7 +45,7 @@ public extension NotificationPresenter {
   @objc(presentWithText:completion:)
   func zlp(t: String, c: Completion?) -> UIView
   {
-    present(t, subtitle: nil, styleName: nil, duration: 0.0, completion: c)
+    present(t, subtitle: nil, styleName: nil, duration: nil, completion: c)
   }
 
   /// Present a notification
@@ -60,7 +60,7 @@ public extension NotificationPresenter {
   @objc(presentWithTitle:subtitle:completion:)
   func zlp(t: String, st: String, c: Completion?) -> UIView
   {
-    present(t, subtitle: st, styleName: nil, duration: 0.0, completion: c)
+    present(t, subtitle: st, styleName: nil, duration: nil, completion: c)
   }
 
   /// Present a notification
@@ -93,7 +93,7 @@ public extension NotificationPresenter {
   @objc(presentWithText:customStyle:)
   func zlp(t: String, cu: String) -> UIView
   {
-    present(t, subtitle: nil, styleName: cu, duration: 0.0, completion: nil)
+    present(t, subtitle: nil, styleName: cu, duration: nil, completion: nil)
   }
 
   /// Present a notification using a custom style.
@@ -109,7 +109,7 @@ public extension NotificationPresenter {
   @objc(presentWithText:customStyle:completion:)
   func zlp(t: String, cu: String?, c: Completion?) -> UIView
   {
-    present(t, subtitle: nil, styleName: cu, duration: 0.0, completion: c)
+    present(t, subtitle: nil, styleName: cu, duration: nil, completion: c)
   }
 
   /// Present a notification using a custom style.
@@ -130,7 +130,7 @@ public extension NotificationPresenter {
            cu: String?,
            c: Completion?) -> UIView
   {
-    present(t, subtitle: st, styleName: cu, duration: 0.0, completion: c)
+    present(t, subtitle: st, styleName: cu, duration: nil, completion: c)
   }
 
   /// Present a notification using a custom style.
@@ -163,7 +163,7 @@ public extension NotificationPresenter {
   @objc(presentWithText:includedStyle:)
   func zlp(t: String, s: IncludedStatusBarNotificationStyle) -> UIView
   {
-    present(t, subtitle: nil, includedStyle: s, duration: 0.0, completion: nil)
+    present(t, subtitle: nil, includedStyle: s, duration: nil, completion: nil)
   }
 
   /// Present a notification using an included style.
@@ -181,7 +181,7 @@ public extension NotificationPresenter {
            s: IncludedStatusBarNotificationStyle,
            c: Completion?) -> UIView
   {
-    present(t, subtitle: nil, includedStyle: s, duration: 0.0, completion: c)
+    present(t, subtitle: nil, includedStyle: s, duration: nil, completion: c)
   }
 
   /// Present a notification using an included style.
@@ -201,7 +201,7 @@ public extension NotificationPresenter {
            s: IncludedStatusBarNotificationStyle,
            c: Completion?) -> UIView
   {
-    present(t, subtitle: st, includedStyle: s, duration: 0.0, completion: c)
+    present(t, subtitle: st, includedStyle: s, duration: nil, completion: c)
   }
 
   /// Present a notification using an included style.
