@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class StyleCache: NSObject {
-  var defaultStyle: StatusBarNotificationStyle = StatusBarNotificationStyle()
-  var userStyles: [String: StatusBarNotificationStyle] = [:]
+  private(set) var defaultStyle: StatusBarNotificationStyle = StatusBarNotificationStyle()
+  private(set) var userStyles: [String: StatusBarNotificationStyle] = [:]
 
   func style(forName styleName: String?) -> StatusBarNotificationStyle {
     if let styleName, let style = userStyles[styleName] {
@@ -26,6 +26,10 @@ class StyleCache: NSObject {
 
   func updateDefaultStyle(_ styleBuilder: NotificationPresenter.PrepareStyleClosure) {
     defaultStyle = styleBuilder(defaultStyle)
+  }
+
+  func resetDefaultStyle() {
+    defaultStyle = StatusBarNotificationStyle()
   }
 
   func addStyleNamed(_ styleName: String,
