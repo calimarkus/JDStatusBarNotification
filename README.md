@@ -2,7 +2,22 @@
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fcalimarkus%2FJDStatusBarNotification%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/calimarkus/JDStatusBarNotification)
 
-Highly customizable & feature rich notifications displayed below the status bar. Customizable colors, fonts & animations. Supports notch and no-notch devices, landscape & portrait layouts and Drag-to-Dismiss. Can display a subtitle, an activity indicator, a progress bar & custom views out of the box. Written in Swift, compatible for ObjC!
+Highly customizable & feature rich notifications displayed below the status bar / the notch.
+
+* Customizable colors, fonts & animations with multiple built-in styles
+* Interactive & interuptable Drag-to-Dismiss
+* Adaptive, dynamic layout
+    * Built-in pill-style or full-width layouts
+    * Pill width matches the presented text (customizable)
+    * Works on notch and no-notch devices
+    * Works in landscape & portrait
+* Built-in features (automatic layout):
+    * Title, subtitle and left-hand-views (e.g. Icons)
+    * An activity indicator
+    * A progress bar
+    * Custom views (UIView or SwiftUI View)
+
+Written in Swift, compatible for Obj-C!
 
 Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
