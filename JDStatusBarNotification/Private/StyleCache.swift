@@ -31,10 +31,6 @@ class StyleCache: NSObject {
     style = styleBuilder(style)
   }
 
-  func resetDefaultStyle() {
-      userStyles[styleName] = StatusBarNotificationStyle()
-  }
-
   func addStyleNamed(_ styleName: String,
                      basedOnStyle includedStyle: IncludedStatusBarNotificationStyle,
                      prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) -> String

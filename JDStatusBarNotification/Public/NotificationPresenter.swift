@@ -200,11 +200,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   ///   - completion: A ``Completion`` closure, which gets called once the dismiss animation finishes.
   ///
   public func dismiss(animated: Bool = true, after delay: Double? = nil, completion: Completion? = nil) {
-    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: { [weak self] in
-      guard let self else { return }
-      if self.styleCache.userStyles.contains(where: { $0.value.systemStatusBarStyle == .defaultStyle }) {
-         self.styleCache.resetDefaultStyle()
-      }
+    overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: {
       completion?(self)
     })
   }
