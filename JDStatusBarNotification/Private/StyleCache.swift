@@ -10,16 +10,14 @@ import Foundation
 import UIKit
 
 class StyleCache: NSObject {
-
-  private var styleName: String = "defaultStyleName"
-  private let defaultStyle: StatusBarNotificationStyle = StatusBarNotificationStyle()
+  private var styleName: String = "styleName"
   private(set) var userStyles: [String: StatusBarNotificationStyle] = [:]
 
   func style(forName styleName: String?) -> StatusBarNotificationStyle {
     if let styleName, let style = userStyles[styleName] {
       return style
     }
-    return userStyles[self.styleName] ?? defaultStyle
+    return userStyles[self.styleName] ?? StatusBarNotificationStyle()
   }
 
   func style(forIncludedStyle includedStyle: IncludedStatusBarNotificationStyle) -> StatusBarNotificationStyle {
