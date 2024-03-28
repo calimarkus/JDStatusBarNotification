@@ -30,6 +30,9 @@ class StyleCache: NSObject {
 
   func resetDefaultStyle() {
     defaultStyle = StatusBarNotificationStyle()
+    if let index = userStyles.firstIndex(where: { $0.value.systemStatusBarStyle == .defaultStyle }) {
+        userStyles.remove(at: index)
+    }
   }
 
   func addStyleNamed(_ styleName: String,
