@@ -28,10 +28,6 @@ class StyleCache: NSObject {
     defaultStyle = styleBuilder(defaultStyle)
   }
 
-  func resetDefaultStyle() {
-    defaultStyle = StatusBarNotificationStyle()
-  }
-
   func addStyleNamed(_ styleName: String,
                      basedOnStyle includedStyle: IncludedStatusBarNotificationStyle,
                      prepare styleBuilder: NotificationPresenter.PrepareStyleClosure) -> String

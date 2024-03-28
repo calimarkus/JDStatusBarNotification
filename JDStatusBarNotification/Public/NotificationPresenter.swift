@@ -203,7 +203,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
     overlayWindow?.statusBarViewController.dismiss(withDuration: animated ? 0.4 : 0.0, afterDelay: delay ?? 0.0, completion: { [weak self] in
       guard let self else { return }
       if self.styleCache.userStyles.contains(where: { $0.value.systemStatusBarStyle == .defaultStyle }) {
-          self.styleCache.resetDefaultStyle()
+          self.styleCache.updateDefaultStyle { _ in return StatusBarNotificationStyle() }
       }
       completion?(self)
     })
