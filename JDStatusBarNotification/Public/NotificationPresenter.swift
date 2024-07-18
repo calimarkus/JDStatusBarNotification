@@ -6,6 +6,24 @@
 //
 
 import SwiftUI
+import Foundation
+
+/// Struct for storing notifications in queue
+public struct StatusBarNotification {
+    public let title: String?
+    public let subtitle: String?
+    public let style: StatusBarNotificationStyle?
+    public let styleName: String
+    public let completion: NotificationPresenter.Completion?
+
+    public init(title: String?, subtitle: String? = nil, style: StatusBarNotificationStyle? = nil,  styleName: String, completion: NotificationPresenter.Completion? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self.style = style
+        self.styleName = styleName
+        self.completion = completion
+    }
+}
 
 /**
  * The NotificationPresenter let's you present notifications below the statusBar.
@@ -28,6 +46,8 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   var overlayWindow: NotificationWindow?
   var styleCache: StyleCache
 
+  public private(set) var queue: [StatusBarNotification]
+
   /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
   ///
   /// - Returns: An initialized ``NotificationPresenter`` instance.
@@ -36,6 +56,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
 
   private override init() {
     styleCache = StyleCache()
+    queue = []
   }
 
   /// Called upon animation completion.
@@ -70,6 +91,41 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
     window.statusBarViewController.setNeedsStatusBarAppearanceUpdate();
 
     return view
+  }
+
+  // MARK: - Queue
+
+  /// Adds a ``StatusBarNotification`` to the queue (FIFO).
+  /// - Parameter notification: the notification to store in the queue.
+  public func addToQueue(notification: StatusBarNotification) {
+    queue.append(notification)
+  }
+
+  /// Removes all elements from the queue and dismisses the current notification.
+  public func clearQueue() {
+    queue = []
+    dismiss()
+  }
+
+  /// Presents the first notification from the queue.
+  /// - Parameter duration: Duration in secons.
+  public func presentFromQueue(duration: Double? = nil) {
+    if queue.count > 0 {
+      present(queue[0].title ?? "", subtitle: queue[0].subtitle, styleName: queue[0].styleName, duration: duration, completion: queue[0].completion)
+      queue.remove(at: 0)
+    }
+  }
+
+  /// Presents all notification of the queue. Recursively adds an async job for `duration` + 0.5 seconds until queue is empty.
+  /// NOTE: `duration` doesn't support `nil` yet because the notifications are displayed all at a time by default and the time until dismissal must be known.
+  /// - Parameter duration: duration in seconds.
+  public func presentQueue(duration: Double = 2.0) {
+    if self.queue.count > 0 {
+      self.presentFromQueue(duration: duration)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration + 0.5) {
+        self.presentQueue()
+      }
+    }
   }
 
   // MARK: - NotificationWindowDelegate
