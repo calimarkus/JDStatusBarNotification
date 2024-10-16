@@ -181,7 +181,7 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
                                @ViewBuilder viewBuilder: () -> some View,
                                completion: Completion? = nil) -> UIView
   {
-    let controller = UIHostingController(rootView: viewBuilder())
+    let controller = UIHostingController(rootView: viewBuilder().edgesIgnoringSafeArea(.all))
     controller.view.backgroundColor = .clear
     return presentCustomView(controller.view,
                              sizingController: HostingControllerSizingController(for: controller),
