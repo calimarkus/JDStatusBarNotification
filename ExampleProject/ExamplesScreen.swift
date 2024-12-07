@@ -26,6 +26,8 @@ struct ExamplesScreen: View {
   @State var showSubtitle = false
   @State var backgroundType: StatusBarNotificationBackgroundType = .pill
 
+  @State var queueContent: [StatusBarNotification]? = nil // for queue counter
+
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
     let styleName = NotificationPresenter.shared.addStyle(named: "default_sample") { style in
       style.backgroundStyle.backgroundType = backgroundType
@@ -298,6 +300,31 @@ struct ExamplesScreen: View {
             presenter.dismiss(after: 1.0)
           }
         }
+      }
+
+      Section("Queue") {
+        Button("Clear queue") {
+          NotificationPresenter.shared.clearQueue()
+            queueContent = NotificationPresenter.shared.queue
+        }
+        Button("Add to queue") {
+          NotificationPresenter.shared.addToQueue(notification: StatusBarNotification(title: "From queue", styleName: "default_sample"))
+            queueContent = NotificationPresenter.shared.queue
+        }
+        Button("Present first from queue") {
+          NotificationPresenter.shared.presentFromQueue(duration: 5.0)
+          if NotificationPresenter.shared.queue.count == 0 {
+            NotificationPresenter.shared.present("Queue is empty", styleName: "default_sample", duration: 5.0)
+          }
+            queueContent = NotificationPresenter.shared.queue
+        }
+        Button("Present queue") {
+          NotificationPresenter.shared.presentQueue()
+            queueContent = NotificationPresenter.shared.queue
+        }
+          if queueContent != nil {
+              Text("\(queueContent!.count) notification\(queueContent!.count == 1 ? "" : "s") in queue")
+          }
       }
     }
     .navigationTitle(title)
