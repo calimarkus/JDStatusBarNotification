@@ -23,20 +23,28 @@ import SwiftUI
  * added by the user also stay in memory permanently.
  */
 @objc(JDStatusBarNotificationPresenter)
-public class NotificationPresenter: NSObject, NotificationWindowDelegate {
+public class NotificationPresenter: NSObject {
 
   var overlayWindow: NotificationWindow?
-  var styleCache: StyleCache
+  var windowScene: UIWindowScene?
+  var styleCache = StyleCache()
 
-  /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
-  ///
-  /// - Returns: An initialized ``NotificationPresenter`` instance.
-  @objc(sharedPresenter)
-  public private(set) static var shared = NotificationPresenter()
+  // swiftui-alert-style presentation state
+  var activeNotificationId: UUID? = nil
+  var didPresentNotificationClosure: ((NotificationPresenter) -> Void)? = nil
+  var didDismissNotificationClosure: ((NotificationPresenter) -> Void)? = nil
 
-  private override init() {
-    styleCache = StyleCache()
+  var statusBarView: NotificationView? {
+    return overlayWindow?.statusBarViewController.statusBarView
   }
+
+  // keep init private to this file
+  private override init() {}
+}
+
+// MARK: - Core Logic
+
+extension NotificationPresenter : NotificationPresentationDelegate {
 
   /// Called upon animation completion.
   ///
@@ -56,6 +64,8 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
                            subtitle: String? = nil,
                            style: StatusBarNotificationStyle,
                            completion: Completion? = nil) -> NotificationView {
+    activeNotificationId = UUID()
+
     let window = overlayWindow ?? NotificationWindow(windowScene: windowScene, delegate: self)
     overlayWindow = window
 
@@ -72,16 +82,32 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
     return view
   }
 
-  // MARK: - NotificationWindowDelegate
+  // MARK: - NotificationPresentationDelegate
 
-  func didDismissStatusBar() {
+  func didPresentNotification() {
+    didPresentNotificationClosure?(self)
+  }
+
+  func didDismissNotification() {
     overlayWindow?.removeFromSuperview()
     overlayWindow?.isHidden = true
     overlayWindow?.rootViewController = nil
     overlayWindow = nil
-  }
 
-  // MARK: - Public API
+    activeNotificationId = nil
+    didDismissNotificationClosure?(self)
+  }
+}
+
+// MARK: - Public API
+
+extension NotificationPresenter {
+
+  /// Provides access to the shared presenter. This is the entry point to present, style and dismiss notifications.
+  ///
+  /// - Returns: An initialized ``NotificationPresenter`` instance.
+  @objc(sharedPresenter)
+  public private(set) static var shared = NotificationPresenter()
 
   // MARK: - Presentation
 
@@ -335,13 +361,6 @@ public class NotificationPresenter: NSObject, NotificationWindowDelegate {
   @objc
   public func setWindowScene(_ windowScene: UIWindowScene?) {
     self.windowScene = windowScene
-  }
-  private var windowScene: UIWindowScene?
-
-  // MARK: - Private
-
-  private var statusBarView: NotificationView? {
-    return overlayWindow?.statusBarViewController.statusBarView
   }
 }
 

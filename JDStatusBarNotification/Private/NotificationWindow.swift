@@ -9,16 +9,11 @@
 import Foundation
 import UIKit
 
-protocol NotificationWindowDelegate : AnyObject {
-  func didDismissStatusBar()
-}
-
-class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
+class NotificationWindow: UIWindow {
   let statusBarViewController: NotificationViewController
-  weak var delegate: NotificationWindowDelegate?
 
   init(windowScene: UIWindowScene?,
-       delegate: NotificationWindowDelegate)
+       delegate: NotificationPresentationDelegate)
   {
 
     let statusBarViewController = NotificationViewController()
@@ -36,8 +31,7 @@ class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
       super.init(frame: UIScreen.main.bounds)
     }
 
-    self.delegate = delegate
-    statusBarViewController.delegate = self
+    statusBarViewController.delegate = delegate
     statusBarViewController.jdsb_window = self
     rootViewController = statusBarViewController
 
@@ -49,12 +43,6 @@ class NotificationWindow: UIWindow, NotificationViewControllerDelegate {
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  // MARK: - NotificationViewControllerDelegate
-
-  func didDismissStatusBar() {
-    delegate?.didDismissStatusBar()
   }
 
   // MARK: - HitTest

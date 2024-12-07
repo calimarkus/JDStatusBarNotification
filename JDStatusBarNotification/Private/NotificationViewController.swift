@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-protocol NotificationViewControllerDelegate: NSObject {
-  func didDismissStatusBar()
+protocol NotificationPresentationDelegate: NSObject {
+  func didPresentNotification()
+  func didDismissNotification()
 }
 
 class NotificationViewController: UIViewController, NotificationViewDelegate {
@@ -24,7 +25,7 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
   private var panMaxY: CGFloat = 0.0
 
   private(set) var statusBarView: NotificationView
-  weak var delegate: NotificationViewControllerDelegate?
+  weak var delegate: NotificationPresentationDelegate?
   weak var jdsb_window: UIWindow?
 
   init() {
@@ -71,7 +72,10 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
     dismissCompletionBlock = nil
 
     // animate in
-    animator.animateIn(for: 0.4, completion: completion)
+    animator.animateIn(for: 0.4) { [weak self] in
+      self?.delegate?.didPresentNotification()
+      completion?()
+    }
 
     return view
   }
@@ -215,7 +219,7 @@ class NotificationViewController: UIViewController, NotificationViewDelegate {
 
       // Animate out
       animator.animateOut(for: duration) { [weak self] in
-        self?.delegate?.didDismissStatusBar()
+        self?.delegate?.didDismissNotification()
         completion?()
       }
     } else {

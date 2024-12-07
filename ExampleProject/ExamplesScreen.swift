@@ -25,6 +25,7 @@ struct ExamplesScreen: View {
   @State var showActivity = false
   @State var showSubtitle = false
   @State var backgroundType: StatusBarNotificationBackgroundType = .pill
+  @State var showStateDrivenNotification = false
 
   func showDefaultNotification(_ text: String, completion: @escaping (NotificationPresenter) -> ()) {
     let styleName = NotificationPresenter.shared.addStyle(named: "default_sample") { style in
@@ -242,6 +243,32 @@ struct ExamplesScreen: View {
 
             NotificationPresenter.shared.dismiss(after: 2.5)
           }
+        }
+
+        Button {
+          showStateDrivenNotification.toggle()
+        } label: {
+          Toggle(isOn: $showStateDrivenNotification) {
+            Text("State driven presentation")
+              .font(.subheadline)
+
+            Text("A .notification() view modifier")
+              .font(.caption2)
+              .foregroundColor(.secondary)
+          }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .notification(isPresented: $showStateDrivenNotification, style: {
+          $0.backgroundStyle.backgroundColor = .systemTeal
+          $0.backgroundStyle.pillStyle.minimumWidth = 100.0
+        }) {
+          Text("✨ So simple!")
+            .font(.subheadline)
+            .bold()
+            .foregroundStyle(.white)
+            .lineLimit(0)
+            .minimumScaleFactor(0.66)
+            .padding([.leading, .trailing], 20)
         }
       }
 
