@@ -1,0 +1,5 @@
+platform :ios, 17.0
+target 'pod_test'
+
+pod 'JDStatusBarNotification', :git => 'https://github.com/calimarkus/JDStatusBarNotification.git'
+

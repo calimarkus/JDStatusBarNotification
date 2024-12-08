@@ -17,7 +17,7 @@ profile
 *.moved-aside
 DerivedData
 .xcconfig
-ExampleProject/Pods/
+*/Pods/
 
 # SPM
 .build

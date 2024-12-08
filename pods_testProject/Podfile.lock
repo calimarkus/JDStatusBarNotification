@@ -1,0 +1,21 @@
+PODS:
+  - JDStatusBarNotification (2.2.3)
+
+DEPENDENCIES:
+  - JDStatusBarNotification (from `https://github.com/calimarkus/JDStatusBarNotification.git`)
+
+EXTERNAL SOURCES:
+  JDStatusBarNotification:
+    :git: https://github.com/calimarkus/JDStatusBarNotification.git
+
+CHECKOUT OPTIONS:
+  JDStatusBarNotification:
+    :commit: 64c2edfa02b82cfece5a54266ba610a363938ca2
+    :git: https://github.com/calimarkus/JDStatusBarNotification.git
+
+SPEC CHECKSUMS:
+  JDStatusBarNotification: 13e81a2fd3dcc89c629657706190dcba81b8f174
+
+PODFILE CHECKSUM: 91f4498062016fab02c26d379525febdbf0b79a1
+
+COCOAPODS: 1.16.2
