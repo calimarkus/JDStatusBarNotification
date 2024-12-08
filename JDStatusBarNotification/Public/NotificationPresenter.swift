@@ -166,12 +166,6 @@ extension NotificationPresenter {
 
   /// Present a notification using a custom subview.
   ///
-  /// The `customView` will be layouted correctly according to the selected style & the current device
-  /// state (rotation, status bar visibility, etc.). The background will still be styled & layouted
-  /// according to the provided style. If your custom view requires custom touch handling,
-  /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't
-  /// receive any touches, as the internal `gestureRecognizer` would receive them.
-  ///
   /// - Parameters:
   ///   - customView: A custom UIView to display as notification content.
   ///   - sizingController: An optional controller conforming to ``NotificationPresenterCustomViewSizingController``, which controls the size of a presented custom view.
@@ -180,6 +174,12 @@ extension NotificationPresenter {
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
   ///
   /// - Returns: The presented UIView for further customization
+  ///
+  /// The `customView` will be layouted according to the selected style & the current device
+  /// state (rotation, status bar visibility, etc.). The background will be styled & layouted
+  /// according to the provided style. If your custom view requires custom touch handling,
+  /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't
+  /// receive any touches, as the internal `gestureRecognizer` would receive them.
   ///
   @discardableResult
   @objc(presentWithCustomView:sizingController:styleName:completion:)
@@ -202,6 +202,13 @@ extension NotificationPresenter {
   ///            If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - viewBuilder: A ViewBuilder closure to build your custom SwiftUI view.
   ///   - completion: A ``Completion`` closure, which gets called once the presentation animation finishes.
+  ///
+  /// The `View` created by the `viewBuilder` will be layouted according to the selected style & the current device
+  /// state (rotation, status bar visibility, etc.). The background will be styled & layouted
+  /// according to the provided style. If your custom view requires custom touch handling,
+  /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't
+  /// receive any touches, as the internal `gestureRecognizer` would receive them.
+  ///
   @discardableResult
   public func presentSwiftView(styleName: String? = nil,
                                @ViewBuilder viewBuilder: () -> some View,
