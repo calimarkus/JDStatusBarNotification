@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2884CAC02D04DCA5005E00A6 /* NotificationViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884CABF2D04DCA5005E00A6 /* NotificationViewExtension.swift */; };
-		2884CAC12D04DCA5005E00A6 /* NotificationViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884CABF2D04DCA5005E00A6 /* NotificationViewExtension.swift */; };
+		2884CAC02D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884CABF2D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift */; };
+		2884CAC12D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884CABF2D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift */; };
 		28D81A942B010C7500DE2CDF /* DiscoveryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */; };
 		28D81A952B0110C700DE2CDF /* DiscoveryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */; };
 		28D81A9B2B01217100DE2CDF /* NotificationWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */; };
@@ -202,7 +202,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2884CABF2D04DCA5005E00A6 /* NotificationViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewExtension.swift; sourceTree = "<group>"; };
+		2884CABF2D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSwiftUIModifer.swift; sourceTree = "<group>"; };
 		28D81A932B010C7500DE2CDF /* DiscoveryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryHelper.swift; sourceTree = "<group>"; };
 		28D81A9A2B01217100DE2CDF /* NotificationWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationWindow.swift; sourceTree = "<group>"; };
 		28D81A9D2B01257A00DE2CDF /* StyleCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCache.swift; sourceTree = "<group>"; };
@@ -372,7 +372,7 @@
 				7EB914CF2ADC11F4004B3435 /* NotificationPresenter.swift */,
 				7EF32BB02B10167B000E7CAE /* NotificationPresenterLegacyOverlay.swift */,
 				28D81AA62B0140C100DE2CDF /* NotificationStyle.swift */,
-				2884CABF2D04DCA5005E00A6 /* NotificationViewExtension.swift */,
+				2884CABF2D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -745,7 +745,7 @@
 				28D81A942B010C7500DE2CDF /* DiscoveryHelper.swift in Sources */,
 				28D81A9B2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7E2A4E852AE70A4B001F0DB0 /* NotificationPresenter.swift in Sources */,
-				2884CAC12D04DCA5005E00A6 /* NotificationViewExtension.swift in Sources */,
+				2884CAC12D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift in Sources */,
 				28D81AA72B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
 				7E5402C6286708850079C579 /* JDStatusBarNotification.docc in Sources */,
 			);
@@ -798,7 +798,7 @@
 				28D81A9C2B01217100DE2CDF /* NotificationWindow.swift in Sources */,
 				7EDAEE972AF6EC5E001B6ABE /* NotificationPresenter.swift in Sources */,
 				28D81A952B0110C700DE2CDF /* DiscoveryHelper.swift in Sources */,
-				2884CAC02D04DCA5005E00A6 /* NotificationViewExtension.swift in Sources */,
+				2884CAC02D04DCA5005E00A6 /* NotificationSwiftUIModifer.swift in Sources */,
 				28D81AA82B0140C100DE2CDF /* NotificationStyle.swift in Sources */,
 				7EDAEEA22AF6EC5E001B6ABE /* JDStatusBarNotification.docc in Sources */,
 			);
