@@ -10,12 +10,34 @@ import SwiftUI
 
 private struct SwiftUINotficationState {
   static var notificationId: UUID? = nil
+  static let internalStyleName = "__swiftui-extension-style"
 }
 
 extension View {
   public typealias NotificationPrepareStyleClosure = (StatusBarNotificationStyle) -> Void
 
   nonisolated public func notification(isPresented: Binding<Bool>, style: NotificationPrepareStyleClosure? = nil, @ViewBuilder viewBuilder: () -> some View) -> some View {
+    let np = NotificationPresenter.shared
+    var styleName: String? = nil
+    if let style {
+      styleName = np.addStyle(named: SwiftUINotficationState.internalStyleName) { s in
+        let _ = style(s)
+        return s
+      }
+    }
+    return notification(isPresented: isPresented, styleName: styleName, viewBuilder: viewBuilder)
+  }
+
+  nonisolated public func notification(isPresented: Binding<Bool>, includedStyle: IncludedStatusBarNotificationStyle? = nil, @ViewBuilder viewBuilder: () -> some View) -> some View {
+    let np = NotificationPresenter.shared
+    var styleName: String? = nil
+    if let includedStyle {
+      styleName = np.addStyle(named: SwiftUINotficationState.internalStyleName, usingStyle: includedStyle) { return $0 }
+    }
+    return notification(isPresented: isPresented, styleName: styleName, viewBuilder: viewBuilder)
+  }
+
+  nonisolated public func notification(isPresented: Binding<Bool>, styleName: String? = nil, @ViewBuilder viewBuilder: () -> some View) -> some View {
     let np = NotificationPresenter.shared
 
     // dismiss if needed
@@ -25,15 +47,7 @@ extension View {
 
     // present if needed
     if isPresented.wrappedValue && SwiftUINotficationState.notificationId == nil {
-      if let style {
-        let name = np.addStyle(named: "__swiftui-extension-style") { s in
-          let _ = style(s)
-          return s
-        }
-        np.presentSwiftView(styleName: name, viewBuilder: viewBuilder)
-      } else {
-        np.presentSwiftView(viewBuilder: viewBuilder)
-      }
+      np.presentSwiftView(styleName: styleName, viewBuilder: viewBuilder)
 
       // remember id of our presentation
       SwiftUINotficationState.notificationId = np.activeNotificationId
