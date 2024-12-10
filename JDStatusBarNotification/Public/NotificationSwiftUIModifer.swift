@@ -110,12 +110,17 @@ extension View {
   /// according to the provided style. If your custom view requires custom touch handling,
   /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't receive any touches.
   ///
-  nonisolated public func notification(title: String, subtitle: String? = nil, isPresented: Binding<Bool>, style: NotificationStyleClosure) -> some View {
+  nonisolated public func notification(title: String,
+                                       subtitle: String? = nil,
+                                       isPresented: Binding<Bool>,
+                                       isShowingActivity: Binding<Bool>? = nil,
+                                       progress: Binding<Double>? = nil,
+                                       style: NotificationStyleClosure) -> some View {
     let styleName = NotificationPresenter.shared.addStyle(named: SwiftUINotficationState.internalStyleName) { s in
       let _ = style(s)
       return s
     }
-    return notification(title: title, subtitle: subtitle, isPresented: isPresented, styleName: styleName, includedStyle: nil)
+    return notification(title: title, subtitle: subtitle, isPresented: isPresented, isShowingActivity: isShowingActivity, progress: progress, styleName: styleName, includedStyle: nil)
   }
 
 
@@ -134,8 +139,13 @@ extension View {
   /// according to the provided style. If your custom view requires custom touch handling,
   /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't receive any touches.
   ///
-  nonisolated public func notification(title: String, subtitle: String? = nil, isPresented: Binding<Bool>, includedStyle: IncludedStatusBarNotificationStyle) -> some View {
-    return notification(title: title, subtitle: subtitle, isPresented: isPresented, styleName: nil, includedStyle: includedStyle)
+  nonisolated public func notification(title: String,
+                                       subtitle: String? = nil,
+                                       isPresented: Binding<Bool>,
+                                       isShowingActivity: Binding<Bool>? = nil,
+                                       progress: Binding<Double>? = nil,
+                                       includedStyle: IncludedStatusBarNotificationStyle) -> some View {
+    return notification(title: title, subtitle: subtitle, isPresented: isPresented, isShowingActivity: isShowingActivity, progress: progress, styleName: nil, includedStyle: includedStyle)
   }
 
 
@@ -155,14 +165,25 @@ extension View {
   /// according to the provided style. If your custom view requires custom touch handling,
   /// make sure to set `style.canTapToHold` to `false`. Otherwise the `customView` won't receive any touches.
   ///
-  nonisolated public func notification(title: String, subtitle: String? = nil, isPresented: Binding<Bool>, styleName: String? = nil) -> some View {
-    return notification(title: title, subtitle: subtitle, isPresented: isPresented, styleName: styleName, includedStyle: nil)
+  nonisolated public func notification(title: String,
+                                       subtitle: String? = nil,
+                                       isPresented: Binding<Bool>,
+                                       isShowingActivity: Binding<Bool>? = nil,
+                                       progress: Binding<Double>? = nil,
+                                       styleName: String? = nil) -> some View {
+    return notification(title: title, subtitle: subtitle, isPresented: isPresented, isShowingActivity: isShowingActivity, progress: progress, styleName: styleName, includedStyle: nil)
   }
 
   // MARK: - Internal
 
 
-  nonisolated private func notification(title: String, subtitle: String? = nil, isPresented: Binding<Bool>, styleName: String? = nil, includedStyle: IncludedStatusBarNotificationStyle? = nil) -> some View {
+  nonisolated private func notification(title: String,
+                                        subtitle: String? = nil,
+                                        isPresented: Binding<Bool>,
+                                        isShowingActivity: Binding<Bool>? = nil,
+                                        progress: Binding<Double>? = nil,
+                                        styleName: String? = nil,
+                                        includedStyle: IncludedStatusBarNotificationStyle? = nil) -> some View {
     let np = NotificationPresenter.shared
 
     // dismiss if needed
@@ -178,6 +199,16 @@ extension View {
         np.present(title, subtitle: subtitle, styleName: styleName)
       }
       trackNotificationState(isPresented: isPresented)
+    }
+
+    // update activity
+    if let isShowingActivity {
+      np.displayActivityIndicator(isShowingActivity.wrappedValue)
+    }
+
+    // update progress bar
+    if let progress {
+      np.displayProgressBar(at: progress.wrappedValue)
     }
 
     return self
