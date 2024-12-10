@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2884CAC32D061DBC005E00A6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884CAC22D061DBC005E00A6 /* ContentView.swift */; };
+		28A0A8062D08FA3B007EF675 /* ContentView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0A8052D08FA3B007EF675 /* ContentView1.swift */; };
 		2F09D4C844F74D4B8F079160 /* libPods-pod_test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC30F6DDA748D5FF5BC38BAB /* libPods-pod_test.a */; };
 		7ED306A82AF833B500F6FFE3 /* SomeObjcClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED306A62AF8337400F6FFE3 /* SomeObjcClass.m */; };
 		7ED5176E2AF68AB700D29ED7 /* pod_testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5176D2AF68AB700D29ED7 /* pod_testApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2884CAC22D061DBC005E00A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../spm_testProject/spm_test/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		28A0A8052D08FA3B007EF675 /* ContentView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView1.swift; path = ../spm_testProject/spm_test/ContentView1.swift; sourceTree = SOURCE_ROOT; };
 		7ED306A62AF8337400F6FFE3 /* SomeObjcClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomeObjcClass.m; sourceTree = "<group>"; };
 		7ED306A72AF8337700F6FFE3 /* SomeObjcClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomeObjcClass.h; sourceTree = "<group>"; };
 		7ED5176A2AF68AB700D29ED7 /* pod_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pod_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				7ED5176D2AF68AB700D29ED7 /* pod_testApp.swift */,
-				2884CAC22D061DBC005E00A6 /* ContentView.swift */,
+				28A0A8052D08FA3B007EF675 /* ContentView1.swift */,
 				7ED306A72AF8337700F6FFE3 /* SomeObjcClass.h */,
 				7ED306A62AF8337400F6FFE3 /* SomeObjcClass.m */,
 			);
@@ -177,9 +177,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A0A8062D08FA3B007EF675 /* ContentView1.swift in Sources */,
 				7ED306A82AF833B500F6FFE3 /* SomeObjcClass.m in Sources */,
 				7ED5176E2AF68AB700D29ED7 /* pod_testApp.swift in Sources */,
-				2884CAC32D061DBC005E00A6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

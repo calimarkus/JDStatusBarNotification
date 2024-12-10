@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28A0A8022D08F7BA007EF675 /* ContentView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0A8012D08F7BA007EF675 /* ContentView 2.swift */; };
 		7ED306AD2AF8455D00F6FFE3 /* SomeObjcClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED306AC2AF8455D00F6FFE3 /* SomeObjcClass.m */; };
 		7ED5176E2AF68AB700D29ED7 /* spm_testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5176D2AF68AB700D29ED7 /* spm_testApp.swift */; };
-		7ED517702AF68AB700D29ED7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5176F2AF68AB700D29ED7 /* ContentView.swift */; };
+		7ED517702AF68AB700D29ED7 /* ContentView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5176F2AF68AB700D29ED7 /* ContentView1.swift */; };
 		7ED5177E2AF68AFD00D29ED7 /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = 7ED5177D2AF68AFD00D29ED7 /* JDStatusBarNotification */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28A0A8012D08F7BA007EF675 /* ContentView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView 2.swift"; sourceTree = "<group>"; };
 		7ED306AB2AF8455D00F6FFE3 /* SomeObjcClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomeObjcClass.h; sourceTree = "<group>"; };
 		7ED306AC2AF8455D00F6FFE3 /* SomeObjcClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomeObjcClass.m; sourceTree = "<group>"; };
 		7ED5176A2AF68AB700D29ED7 /* spm_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spm_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED5176D2AF68AB700D29ED7 /* spm_testApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spm_testApp.swift; sourceTree = "<group>"; };
-		7ED5176F2AF68AB700D29ED7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7ED5176F2AF68AB700D29ED7 /* ContentView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				7ED5176D2AF68AB700D29ED7 /* spm_testApp.swift */,
-				7ED5176F2AF68AB700D29ED7 /* ContentView.swift */,
+				7ED5176F2AF68AB700D29ED7 /* ContentView1.swift */,
+				28A0A8012D08F7BA007EF675 /* ContentView 2.swift */,
 				7ED306AB2AF8455D00F6FFE3 /* SomeObjcClass.h */,
 				7ED306AC2AF8455D00F6FFE3 /* SomeObjcClass.m */,
 			);
@@ -144,7 +147,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ED306AD2AF8455D00F6FFE3 /* SomeObjcClass.m in Sources */,
-				7ED517702AF68AB700D29ED7 /* ContentView.swift in Sources */,
+				7ED517702AF68AB700D29ED7 /* ContentView1.swift in Sources */,
+				28A0A8022D08F7BA007EF675 /* ContentView 2.swift in Sources */,
 				7ED5176E2AF68AB700D29ED7 /* spm_testApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +291,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,6 +322,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,8 +364,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -5,12 +5,12 @@ import JDStatusBarNotification
 import SwiftUI
 
 extension NotificationPresenter {
-  func includedStyle(_ style: IncludedStatusBarNotificationStyle) -> String {
-    return addStyle(named: UUID().uuidString, usingStyle: style) { $0 }
+  func addStyleForIncludedStyle(_ style: IncludedStatusBarNotificationStyle) -> String {
+    return addStyle(named: "example-style", usingStyle: style) { $0 }
   }
 }
 
-struct ContentView: View {
+struct ContentView1: View {
 
   @State var isPresented: Bool = false
 
@@ -26,27 +26,28 @@ struct ContentView: View {
 
       Section("Swift style Presentation") {
         Button("Classic-Swift (1.5s)") {
-          presenter.presentSwiftView(styleName: presenter.includedStyle(.dark)) {
+          presenter.presentSwiftView(styleName: presenter.addStyleForIncludedStyle(.dark)) {
             HelloSPMView(title: "Now also working in SPM.")
           }
           presenter.dismiss(after: 1.5)
         }
-
+        
         Button("State-based (toggle)") {
           isPresented.toggle()
         }
-        .notification(isPresented: $isPresented, style: {
-          let s = $0.backgroundStyle
-          s.backgroundColor = .black
-          s.pillStyle.minimumWidth = 150
-          s.pillStyle.height = 44
-        }) {
-          Text("👋 Hi there!")
-            .font(.subheadline)
-            .foregroundStyle(.white)
-        }
       }
     }
+    .notification(isPresented: $isPresented, style: {
+      let s = $0.backgroundStyle
+      s.backgroundColor = .black
+      s.pillStyle.minimumWidth = 150
+      s.pillStyle.height = 44
+    }) {
+      Text("👋 Hi there!")
+        .font(.subheadline)
+        .foregroundStyle(.white)
+    }
+    
   }
 }
 
@@ -69,5 +70,5 @@ struct HelloSPMView: View {
 }
 
 #Preview {
-  ContentView()
+  ContentView1()
 }

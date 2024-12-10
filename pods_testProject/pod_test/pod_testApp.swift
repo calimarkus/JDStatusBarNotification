@@ -9,7 +9,7 @@ struct pod_testApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        ContentView()
+        ContentView1()
           .navigationTitle("Pods Test App")
       }
     }
