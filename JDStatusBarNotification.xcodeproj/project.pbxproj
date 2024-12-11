@@ -220,7 +220,7 @@
 		7E67050C284A4BE900AD58E1 /* ExamplesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesScreen.swift; sourceTree = "<group>"; };
 		7E670512284B177B00AD58E1 /* StyleEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorScreen.swift; sourceTree = "<group>"; };
 		7E6AAB452B26117A001D82FE /* JDSBN_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDSBN_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E6AAB462B26117A001D82FE /* SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SwiftUI-Info.plist"; path = "/Users/chaetwo/Projects/JDStatusBarNotification/SwiftUI-Info.plist"; sourceTree = "<absolute>"; };
+		7E6AAB462B26117A001D82FE /* SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwiftUI-Info.plist"; sourceTree = "<group>"; };
 		7E6AAB472B261302001D82FE /* ExampleApp_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp_SwiftUI.swift; sourceTree = "<group>"; };
 		7E6AAB882B261E76001D82FE /* SBSceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBSceneDelegate.h; sourceTree = "<group>"; };
 		7E6AAB892B261E77001D82FE /* SBSceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBSceneDelegate.m; sourceTree = "<group>"; };
@@ -945,7 +945,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DISPLAY_NAME = "JDSB (SUI)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				INFOPLIST_FILE = "SwiftUI-Info.plist";
+				INFOPLIST_FILE = "ExampleProject/SwiftUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
