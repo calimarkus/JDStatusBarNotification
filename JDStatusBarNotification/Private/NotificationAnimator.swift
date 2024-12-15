@@ -49,6 +49,7 @@ class JDSBNotificationAnimator: NSObject, CAAnimationDelegate {
   }
 
   private func animateInWithBounceAnimation(statusBarView: NotificationView, delegate: CAAnimationDelegate) {
+    // easing function (based on github.com/robb/RBBAnimation)
     func RBBEasingFunctionEaseOutBounce(_ t: Double) -> Double {
       if t < 4.0 / 11.0 {
         return pow(11.0 / 4.0, 2) * pow(t, 2)
