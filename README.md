@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fcalimarkus%2FJDStatusBarNotification%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/calimarkus/JDStatusBarNotification)
 
-Highly customizable & feature rich notifications displayed below the status bar / the notch.
+Highly customizable & feature rich notifications displayed below the status bar / notch / Island. Written in Swift, compatible for Obj-C! Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
 
 * Customizable colors, fonts & animations with multiple built-in styles
 * Interactive & interuptable Drag-to-Dismiss
@@ -17,15 +17,11 @@ Highly customizable & feature rich notifications displayed below the status bar 
     * A progress bar
     * Custom views (UIView or SwiftUI View)
 
-Written in Swift, compatible for Obj-C!
-
-Please open a [Github issue](https://github.com/calimarkus/JDStatusBarNotification/issues), if you think anything is missing or wrong.
-
-Here's some examples of the possibilities (the pill style is the default):
+Some examples of the possibilities - the pill style is the default:
 
 ![examples](https://user-images.githubusercontent.com/807039/173831886-d7c8cca9-9274-429d-b924-78f21a4f6092.jpg)
 
-Full-Width styles in action (the pill styles support the same features / animations):
+Full-Width styles in action - the above pill style supports the same features and animations:
 
 | Drag to dismiss | Activity & Progress Bars | Custom styles |
 | ------------- | ------------- | ------------- |
@@ -59,39 +55,67 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 ## Getting started
 
-`NotificationPresenter` is a singleton. You don't need to initialize it anywhere. All examples here are written in Swift. But everything can be called from Objective-C too.
+All examples here are written in Swift. But everything can be called from Objective-C too. Also checkout the example project, which has many examples and includes a convenient style editor to build a custom style.
 
-Also checkout the example project, which has many examples and includes a convenient style editor.
+### SwiftUI state-driven presentation
 
-Here's some usage examples:
+#### Showing a simple text notification
 
-### Showing a text notification
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(title: "Hello World", isPresented: $isPresented)
+}
+```
+
+#### Showing a styled notification with subtitle, activity and/or progress
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(title: "A text",
+                  subtitle: "with a little subtitle.",
+                  isPresented: $isPresented,
+                  isShowingActivity: $activity, // toggles an activity indicator on/off
+                  progress: $progress,          // sets the percentage of a progress bar
+                  includedStyle: .success)      // picks a predefined style
+}
+```
+
+
+#### Showing a custom view as notification
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(isPresented: $isPresented) {
+      Text("👋 Hi there!")
+        .font(.subheadline)
+        .foregroundStyle(.white)
+    }
+}
+```
+
+### Manual presentation (from Swift or ObjC)
+
+#### Showing a text notification
 
 ```swift
 NotificationPresenter.shared.present("Hello World")
 
 // with completion
 NotificationPresenter.shared.present("Hello World") { presenter in
-   // ...
+    // ...
 }
 ```
 
-### Showing a SwiftUI based notification
-
-```swift
-NotificationPresenter.shared.presentSwiftView {
-    Text("Hi from Swift!")
-}
-
-// with completion
-NotificationPresenter.shared.presentSwiftView {
-    Text("Hi from Swift!")
-} completion: { presenter in
-   // ...
-}
-```
-
-### Dismissing a notification
+#### Dismissing a notification
 
 ```swift
 NotificationPresenter.shared.dismiss()
@@ -102,7 +126,7 @@ NotificationPresenter.shared.dismiss(after: 0.5) { presenter in
 }
 ```
 
-### Showing activity
+#### Showing activity
 
 ```swift
 NotificationPresenter.shared.present("")
@@ -111,7 +135,7 @@ NotificationPresenter.shared.displayActivityIndicator(true)
 
 ![activity](https://user-images.githubusercontent.com/807039/175884729-c6255d41-4728-4bcb-bf72-fb12db01b5d5.gif)
 
-### Showing a custom left view
+#### Showing a custom left view
 
 ```swift
 let image = UIImageView(image: UIImage(systemName: "gamecontroller.fill"))
@@ -121,7 +145,7 @@ NotificationPresenter.shared.displayLeftView(image)
 
 ![leftview](https://user-images.githubusercontent.com/807039/175884751-c93ffd31-a436-43d2-9eed-82d7cb23d8f6.gif)
 
-### Showing progress
+#### Showing progress
 
 ```swift
 NotificationPresenter.shared.present("Animating Progress…") { presenter in
@@ -136,7 +160,7 @@ NotificationPresenter.shared.displayProgressBar(at: 0.0)
 
 ![progress](https://user-images.githubusercontent.com/807039/175886588-e1aba466-85fa-4e32-951a-cd368c7d553d.gif)
 
-### Using other included styles
+#### Using other included styles
 
 There's a few included styles you can easily use with the following API:
 
@@ -147,7 +171,22 @@ NotificationPresenter.shared.present("Yay, it works!",
 
 ![itworks](https://user-images.githubusercontent.com/807039/175888059-3beeb659-b561-4e7c-9c66-6fbc683ae152.jpg)
 
-### Using a custom UIView
+#### Showing a custom SwiftUI view (Swift only)
+
+```swift
+NotificationPresenter.shared.presentSwiftView {
+    Text("Hi from Swift!")
+}
+
+// with completion
+NotificationPresenter.shared.presentSwiftView {
+    Text("Hi from Swift!")
+} completion: { presenter in
+   // ...
+}
+```
+
+#### Using a custom UIView (Swift or ObjC)
 
 If you want full control over the notification content and styling, you can use your own custom UIView.
 
@@ -167,6 +206,30 @@ NotificationPresenter.shared.presentCustomView(button)
 ## Customization
 
 You have the option to easily create & use fully customized styles.
+
+### From SwiftUI
+
+Modify the style in a `NotificationStyleClosure`:
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(isPresented: $isPresented, style: {
+      let s = $0.backgroundStyle
+      s.backgroundColor = .black
+      s.pillStyle.minimumWidth = 150
+      s.pillStyle.height = 44
+    }) {
+      Text("👋 Hi there!")
+        .font(.subheadline)
+        .foregroundStyle(.white)
+    }
+}
+```
+
+### Manually
 
 The ``PrepareStyleClosure`` provides a copy of the default style, which can then be modified. See the ``StatusBarNotificationStyle`` API for all options.
 
@@ -195,26 +258,36 @@ Or checkout the example project, which contains a full style editor. You can twe
 
 ### Background Styles
 
-There's two supported background styles:
+There's two supported `StatusBarNotificationBackgroundType`'s:
 
 ```swift
-/// The background is a floating pill around the text. The pill size and appearance can be customized. This is the default.
-StatusBarNotificationBackgroundType.pill
-/// The background covers the full display width and the full status bar + navbar height.
-StatusBarNotificationBackgroundType.fullWidth
+enum {
+    /// The background is a floating pill around the text.
+    /// The pill size and appearance can be customized. This is the default.
+    .pill,
+
+    /// The background covers the full display width and the full status bar + navbar height.
+    .fullWidth
+}
 ```
 
 ### Animation Types
 
-The supported animation types:
+The supported `StatusBarNotificationAnimationType`'s:
 
 ```swift
-/// Slide in from the top of the screen and slide back out to the top. This is the default.
-StatusBarNotificationAnimationType.move,
-/// Fade-in and fade-out in place. No movement animation.
-StatusBarNotificationAnimationType.fade,
-/// Fall down from the top and bounce a little bit, before coming to a rest. Slides back out to the top.
-StatusBarNotificationAnimationType.bounce,
+enum {
+    /// Slide in from the top of the screen and slide
+    /// back out to the top. This is the default.
+    .move,
+
+    /// Fade-in and fade-out in place. No movement animation.
+    .fade,
+
+    /// Fall down from the top and bounce a little bit, before
+    /// coming to a rest. Slides back out to the top.
+    .bounce
+}
 ```
 
 ## Troubleshooting
