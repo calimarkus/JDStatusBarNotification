@@ -11,6 +11,7 @@ Highly customizable & feature rich notifications displayed below the status bar.
 ### Intros
 
 - <doc:GettingStarted>
+- <doc:SwiftUIModifiers>
 
 ### Notification Presenter
 

@@ -14,11 +14,14 @@ private struct SwiftUINotficationState {
 }
 
 extension View {
+  /// The `NotificationStyleClosure` lets you conveniently modify the style of the presented notification inline.
+  ///
+  /// It provides an instance of `StatusBarNotificationStyle`, which can be modified as desired.
   public typealias NotificationStyleClosure = (StatusBarNotificationStyle) -> Void
 
   // MARK: - ViewBuilder based
 
-  /// Presents a notification when a given condition is true.
+  /// Presents a notification when a given condition is true. Uses the `viewBuilder` to create the contents. Uses the `style` closure to modify the style.
   ///
   /// - Parameters:
   ///   - isPresented: A binding to a Boolean value that determines whether to
@@ -41,7 +44,7 @@ extension View {
   }
 
 
-  /// Presents a notification when a given condition is true.
+  /// Presents a notification when a given condition is true. Uses the `viewBuilder` to create the contents. Uses the provided `includedStyle` to modify the style.
   ///
   /// - Parameters:
   ///   - isPresented: A binding to a Boolean value that determines whether to
@@ -61,13 +64,13 @@ extension View {
   }
 
 
-  /// Presents a notification when a given condition is true.
+  /// Presents a notification when a given condition is true. Uses the `viewBuilder` to create the contents. Uses the provided `styleName` to modify the style.
   ///
   /// - Parameters:
   ///   - isPresented: A binding to a Boolean value that determines whether to
   ///     present the notification. When the notification gets dismissed for any reason,
   ///     this value will be set to `false` again.
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``JDStatusBarNotification/NotificationPresenter/addStyle(named:usingStyle:prepare:)``.
   ///            If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///   - viewBuilder: A ViewBuilder closure to build your custom SwiftUI view.
   ///
@@ -95,7 +98,7 @@ extension View {
 
   // MARK: - Title/Subtitle based
 
-  /// Presents a notification when a given condition is true.
+  /// Presents a notification when a given condition is true. Uses the `title` / `subtitle` to create the contents. Uses the `style` closure to modify the style.
   ///
   /// - Parameters:
   ///   - title: The text to display as title
@@ -103,6 +106,8 @@ extension View {
   ///   - isPresented: A binding to a Boolean value that determines whether to
   ///     present the notification. When the notification gets dismissed for any reason,
   ///     this value will be set to `false` again.
+  ///   - isShowingActivity: A binding to a Boolean value that determines whether to display an activity indicator or not.
+  ///   - progress: A binding to a Double value that determines whether and how to display a progress bar.
   ///   - style:  A ``NotificationStyleClosure`` to customize a ``StatusBarNotificationStyle`` freely.
   ///
   /// The `View` created by the `viewBuilder` will be layouted according to the selected style & the current device
@@ -124,7 +129,7 @@ extension View {
   }
 
 
-  /// Presents a notification when a given condition is true.
+  /// Presents a notification when a given condition is true. Uses the `title` / `subtitle` to create the contents. Uses the provided `includedStyle` to modify the style.
   ///
   /// - Parameters:
   ///   - title: The text to display as title
@@ -132,6 +137,8 @@ extension View {
   ///   - isPresented: A binding to a Boolean value that determines whether to
   ///     present the notification. When the notification gets dismissed for any reason,
   ///     this value will be set to `false` again.
+  ///   - isShowingActivity: A binding to a Boolean value that determines whether to display an activity indicator or not.
+  ///   - progress: A binding to a Double value that determines whether and how to display a progress bar.
   ///   - includedStyle:  A predefined ``IncludedStatusBarNotificationStyle`` to style this notification.
   ///
   /// The `View` created by the `viewBuilder` will be layouted according to the selected style & the current device
@@ -148,8 +155,7 @@ extension View {
     return notification(title: title, subtitle: subtitle, isPresented: isPresented, isShowingActivity: isShowingActivity, progress: progress, styleName: nil, includedStyle: includedStyle)
   }
 
-
-  /// Presents a notification when a given condition is true.
+  /// Presents a notification when a given condition is true. Uses the `title` / `subtitle` to create the contents. Uses the provided `styleName` to modify the style.
   ///
   /// - Parameters:
   ///   - title: The text to display as title
@@ -157,7 +163,9 @@ extension View {
   ///   - isPresented: A binding to a Boolean value that determines whether to
   ///     present the notification. When the notification gets dismissed for any reason,
   ///     this value will be set to `false` again.
-  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``addStyle(named:usingStyle:prepare:)``.
+  ///   - isShowingActivity: A binding to a Boolean value that determines whether to display an activity indicator or not.
+  ///   - progress: A binding to a Double value that determines whether and how to display a progress bar.
+  ///   - styleName: The name of the style. You can use styles previously added using e.g. ``JDStatusBarNotification/NotificationPresenter/addStyle(named:usingStyle:prepare:)``.
   ///            If no style can be found for the given `styleName` or it is `nil`, the default style will be used.
   ///
   /// The `View` created by the `viewBuilder` will be layouted according to the selected style & the current device

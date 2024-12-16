@@ -1,8 +1,55 @@
 # Getting Started
 
-Find some simple examples below to get started. Most APIs can also be called from Objective-C.
+All examples here are written in Swift. But everything can be called from Objective-C too. Also checkout the example project, which has many examples and includes a convenient style editor to build a custom style.
 
 Explore the full API in ``JDStatusBarNotification/NotificationPresenter``.
+
+## SwiftUI state-driven presentation
+
+### Showing a simple text notification
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(title: "Hello World", isPresented: $isPresented)
+}
+```
+
+### Showing a styled notification with subtitle, activity and/or progress
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(title: "A text",
+                  subtitle: "with a little subtitle.",
+                  isPresented: $isPresented,
+                  isShowingActivity: $activity, // toggles an activity indicator on/off
+                  progress: $progress,          // sets the percentage of a progress bar
+                  includedStyle: .success)      // picks a predefined style
+}
+```
+
+
+### Showing a custom view as notification
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(isPresented: $isPresented) {
+      Text("👋 Hi there!")
+        .font(.subheadline)
+        .foregroundStyle(.white)
+    }
+}
+```
+
+## Manual presentation (from Swift or ObjC)
 
 ### Showing a text notification
 
@@ -13,23 +60,6 @@ NotificationPresenter.shared.present("Hello World")
 
 // with completion
 NotificationPresenter.shared.present("Hello World") { presenter in
-   // ...
-}
-```
-
-### Showing a SwiftUI based notification
-
-See ``NotificationPresenter/presentSwiftView(styleName:viewBuilder:completion:)``
-
-```swift
-NotificationPresenter.shared.presentSwiftView {
-    Text("Hi from Swift!")
-}
-
-// with completion
-NotificationPresenter.shared.presentSwiftView {
-    Text("Hi from Swift!")
-} completion: { presenter in
    // ...
 }
 ```
@@ -100,7 +130,24 @@ NotificationPresenter.shared.present("Yay, it works!",
 
 ![itworks](https://user-images.githubusercontent.com/807039/175888059-3beeb659-b561-4e7c-9c66-6fbc683ae152.jpg)
 
-### Using a custom UIView
+### Showing a custom SwiftUI view (Swift only)
+
+See ``NotificationPresenter/presentSwiftView(styleName:viewBuilder:completion:)``
+
+```swift
+NotificationPresenter.shared.presentSwiftView {
+    Text("Hi from Swift!")
+}
+
+// with completion
+NotificationPresenter.shared.presentSwiftView {
+    Text("Hi from Swift!")
+} completion: { presenter in
+   // ...
+}
+```
+
+### Using a custom UIView (Swift or ObjC)
 
 If you want full control over the notification content and styling, you can use your own custom UIView.
 
@@ -122,6 +169,30 @@ NotificationPresenter.shared.presentCustomView(button)
 ## Customization
 
 You have the option to easily create & use fully customized styles.
+
+### From SwiftUI
+
+Modify the style in a `NotificationStyleClosure`:
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(isPresented: $isPresented, style: {
+      let s = $0.backgroundStyle
+      s.backgroundColor = .black
+      s.pillStyle.minimumWidth = 150
+      s.pillStyle.height = 44
+    }) {
+      Text("👋 Hi there!")
+        .font(.subheadline)
+        .foregroundStyle(.white)
+    }
+}
+```
+
+### Manually
 
 See ``NotificationPresenter/updateDefaultStyle(_:)`` and ``NotificationPresenter/addStyle(named:usingStyle:prepare:)``
 
