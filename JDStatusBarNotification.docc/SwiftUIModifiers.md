@@ -47,6 +47,26 @@ var body: some View {
 }
 ```
 
+### Using a modified style
+
+Modify the style in a `NotificationStyleClosure`:
+
+```swift
+var body: some View {
+    Button("Present/dismiss") {
+      isPresented.toggle()
+    }
+    .notification(isPresented: $isPresented, style: {
+      let s = $0.backgroundStyle
+      s.backgroundColor = .black
+      s.pillStyle.minimumWidth = 150
+      s.pillStyle.height = 44
+    }) {
+      Text("Oh hello!")
+    }
+}
+```
+
 Explore all SwiftUI `View` extensions in ``SwiftUICore/View/``.
 
 ## Using a ViewBuilder
