@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.4] - 2024-12-16
+
+### Changed
+
+- Extended SwiftUI modfiers to also enable title based presentation and multiple ways to set a custom style.
+
+## [2.2.3] - 2024-12-08
+
+### Added
+
+- Added alert-like SwiftUI modfier to present a notification.
+
+### Changed
+
+- Fixed vertical centering of presented SwiftUI views on Notch devices.
+
+
+## [2.2.2] - 2024-03-28
+
+### Changed
+
+- Improved StyleCache behavior.
+
+## [2.2.1] - 2023-12-22
+
+### Changed
+
+- Fixed the default dismiss duration in legacy apis.
+
 ## [2.2.0] - 2023-12-10
 
 ### Added
@@ -174,9 +203,13 @@ Those adjustments should be simple though - mostly new API naming.
 
 Old version based on original release. No release notes available.
 
-[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.2.4...HEAD
+[2.2.4]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.2.3...2.2.4
+[2.2.3]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.2.2...2.2.3
+[2.2.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.2.1...2.2.2
+[2.2.1]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.2...2.2.0
-[2.1.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.0...2.1.2
+[2.1.2]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.1...2.1.2
 [2.1.1]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.9...2.1.0
 [2.0.9]: https://github.com/calimarkus/JDStatusBarNotification/compare/2.0.8...2.0.9
